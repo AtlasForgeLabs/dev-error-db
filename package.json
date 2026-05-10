@@ -7,6 +7,7 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
+    "discover:errors": "node automation/discovery/discovery-pipeline.mjs",
     "generate:errors": "node scripts/generate-error-pages.mjs",
     "report": "node scripts/report.mjs"
   },

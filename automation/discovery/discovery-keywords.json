@@ -1,0 +1,223 @@
+{
+  "version": 1,
+  "seed_technologies": [
+    {
+      "technology": "OpenAI API",
+      "category": "OpenAI API",
+      "source_areas": ["OpenAI API", "Cursor", "AI coding tools"],
+      "commands": ["test -n \"$OPENAI_API_KEY\" && echo \"OPENAI_API_KEY is set\"", "curl https://api.openai.com/v1/models -H \"Authorization: Bearer $OPENAI_API_KEY\""],
+      "config_files": [".env", "server environment variables", "project API settings"]
+    },
+    {
+      "technology": "GitHub Actions",
+      "category": "GitHub Actions",
+      "source_areas": ["GitHub issues", "GitHub Actions", "CI/CD"],
+      "commands": ["node --version", "npm ci", "git remote -v"],
+      "config_files": [".github/workflows/*.yml", "package-lock.json", "package.json"]
+    },
+    {
+      "technology": "Git",
+      "category": "Git",
+      "source_areas": ["GitHub issues", "Stack Overflow", "Dev forums"],
+      "commands": ["git status", "git remote -v", "git branch", "ssh -T git@github.com"],
+      "config_files": [".git/config", "~/.ssh/config"]
+    },
+    {
+      "technology": "Docker",
+      "category": "Docker",
+      "source_areas": ["Docker", "Dev forums", "Stack Overflow"],
+      "commands": ["docker info", "docker ps", "docker system df", "systemctl status docker"],
+      "config_files": ["Dockerfile", "docker-compose.yml", ".dockerignore"]
+    },
+    {
+      "technology": "npm",
+      "category": "npm",
+      "source_areas": ["npm", "Node.js", "GitHub Actions"],
+      "commands": ["npm --version", "npm install", "npm ci", "npm cache verify"],
+      "config_files": ["package.json", "package-lock.json", ".npmrc"]
+    },
+    {
+      "technology": "Node.js",
+      "category": "Node.js",
+      "source_areas": ["Node.js", "npm", "GitHub Actions"],
+      "commands": ["node --version", "npm --version", "node -p \"process.versions\""],
+      "config_files": ["package.json", ".nvmrc", "tsconfig.json"]
+    },
+    {
+      "technology": "Python",
+      "category": "Python",
+      "source_areas": ["Python", "pip", "Dev forums"],
+      "commands": ["python3 --version", "python3 -m pip --version", "python3 -m venv venv"],
+      "config_files": ["requirements.txt", "pyproject.toml", "Pipfile"]
+    },
+    {
+      "technology": "SSL/TLS",
+      "category": "SSL/TLS",
+      "source_areas": ["SSL certificates", "Python", "Node.js", "Cloudflare"],
+      "commands": ["HOST=dev-error-db.com; openssl s_client -connect \"$HOST:443\" -servername \"$HOST\"", "HOST=dev-error-db.com; curl -Iv \"https://$HOST\""],
+      "config_files": ["certificate chain", "trust store", "proxy SSL settings"]
+    },
+    {
+      "technology": "DNS",
+      "category": "DNS",
+      "source_areas": ["Cloudflare", "DNS", "Vercel"],
+      "commands": ["HOST=dev-error-db.com; dig \"$HOST\"", "HOST=dev-error-db.com; dig CNAME \"$HOST\"", "HOST=dev-error-db.com; nslookup \"$HOST\""],
+      "config_files": ["DNS zone records", "nameserver settings", "CNAME records"]
+    },
+    {
+      "technology": "Cloudflare",
+      "category": "Cloudflare",
+      "source_areas": ["Cloudflare", "DNS", "SSL/TLS"],
+      "commands": ["HOST=dev-error-db.com; dig \"$HOST\"", "HOST=dev-error-db.com; curl -Iv \"https://$HOST\""],
+      "config_files": ["Cloudflare DNS records", "SSL/TLS mode", "origin certificate"]
+    },
+    {
+      "technology": "Vercel",
+      "category": "GitHub Actions",
+      "source_areas": ["Vercel", "GitHub Actions", "Node.js"],
+      "commands": ["npm run build", "node --version", "npm ci"],
+      "config_files": ["vercel.json", "package.json", ".env"]
+    },
+    {
+      "technology": "Cursor",
+      "category": "OpenAI API",
+      "source_areas": ["Cursor", "AI coding tools", "OpenAI API"],
+      "commands": ["test -n \"$OPENAI_API_KEY\" && echo \"OPENAI_API_KEY is set\""],
+      "config_files": ["Cursor settings", ".env", "model provider settings"]
+    },
+    {
+      "technology": "Claude Code",
+      "category": "OpenAI API",
+      "source_areas": ["Claude Code", "AI coding tools"],
+      "commands": ["node --version"],
+      "config_files": ["tool settings", "environment variables"]
+    },
+    {
+      "technology": "OpenCode",
+      "category": "OpenAI API",
+      "source_areas": ["OpenCode", "AI coding tools"],
+      "commands": ["node --version"],
+      "config_files": ["tool settings", "provider configuration"]
+    },
+    {
+      "technology": "OpenClaw",
+      "category": "OpenAI API",
+      "source_areas": ["OpenClaw", "AI coding tools", "automation"],
+      "commands": ["node --version", "npm run build"],
+      "config_files": ["automation configuration", "environment variables"]
+    }
+  ],
+  "seed_error_signatures": [
+    {
+      "signature": "401 Unauthorized",
+      "technology": "OpenAI API",
+      "intent": "Fix API authentication failures caused by missing, invalid, revoked, or incorrectly loaded credentials."
+    },
+    {
+      "signature": "429 Too Many Requests",
+      "technology": "OpenAI API",
+      "intent": "Diagnose API rate limit failures, retry behavior, and request throttling."
+    },
+    {
+      "signature": "The model does not exist or you do not have access to it",
+      "technology": "OpenAI API",
+      "intent": "Resolve model access and model name configuration errors."
+    },
+    {
+      "signature": "npm ci can only install packages when your package.json and package-lock.json are in sync",
+      "technology": "GitHub Actions",
+      "intent": "Fix CI dependency install failures caused by stale or missing lockfiles."
+    },
+    {
+      "signature": "fatal: could not read from remote repository",
+      "technology": "Git",
+      "intent": "Fix Git remote authentication, SSH, or repository access failures."
+    },
+    {
+      "signature": "Permission denied (publickey)",
+      "technology": "Git",
+      "intent": "Diagnose SSH key and remote access problems for Git operations."
+    },
+    {
+      "signature": "Cannot connect to the Docker daemon",
+      "technology": "Docker",
+      "intent": "Restore access to the Docker service or Docker Desktop runtime."
+    },
+    {
+      "signature": "bind: address already in use",
+      "technology": "Docker",
+      "intent": "Find and resolve port conflicts in local containers or development servers."
+    },
+    {
+      "signature": "npm ERR! code ERESOLVE",
+      "technology": "npm",
+      "intent": "Resolve dependency tree conflicts without unsafe package overrides."
+    },
+    {
+      "signature": "Error: Cannot find module",
+      "technology": "Node.js",
+      "intent": "Fix Node.js module resolution errors in local, build, and CI environments."
+    },
+    {
+      "signature": "ModuleNotFoundError: No module named",
+      "technology": "Python",
+      "intent": "Fix Python import failures caused by missing packages, wrong interpreters, or virtual environments."
+    },
+    {
+      "signature": "SSL: CERTIFICATE_VERIFY_FAILED",
+      "technology": "Python",
+      "intent": "Resolve Python TLS verification failures caused by local trust store or certificate chain issues."
+    },
+    {
+      "signature": "DNS_PROBE_FINISHED_NXDOMAIN",
+      "technology": "DNS",
+      "intent": "Fix browser DNS lookup failures caused by missing records, wrong nameservers, or propagation delay."
+    },
+    {
+      "signature": "Error 525 SSL handshake failed",
+      "technology": "Cloudflare",
+      "intent": "Diagnose Cloudflare-to-origin TLS handshake failures."
+    },
+    {
+      "signature": "Command \"npm run build\" exited with 1",
+      "technology": "Vercel",
+      "intent": "Fix deployment build failures caused by scripts, dependencies, or environment configuration."
+    }
+  ],
+  "seed_keyword_patterns": [
+    "{technology} {signature} fix",
+    "{technology} {signature} troubleshooting",
+    "{technology} error {signature}",
+    "how to fix {signature} in {technology}",
+    "{technology} {signature} in GitHub Actions",
+    "{technology} {signature} on macOS",
+    "{technology} {signature} in Docker",
+    "{technology} {signature} environment variable",
+    "{technology} {signature} permission denied",
+    "{technology} {signature} certificate verify failed"
+  ],
+  "common_developer_issue_patterns": [
+    "works locally but fails in CI",
+    "fails after dependency update",
+    "fails after changing Node version",
+    "fails after rotating API key",
+    "fails only in Docker",
+    "fails only on macOS",
+    "fails only on Linux server",
+    "fails after DNS change",
+    "fails after enabling Cloudflare proxy",
+    "fails during GitHub Actions deploy",
+    "fails during Vercel build",
+    "fails after package-lock.json merge conflict",
+    "fails with missing environment variable",
+    "fails with expired certificate",
+    "fails with SSH key permission error"
+  ],
+  "approved_statuses": [
+    "accepted-for-review",
+    "needs-research",
+    "duplicate-risk",
+    "rejected-low-value",
+    "rejected-unsafe"
+  ]
+}
