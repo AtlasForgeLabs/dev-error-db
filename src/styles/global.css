@@ -221,6 +221,19 @@ li + li {
   padding: 72px 0;
 }
 
+.content-page {
+  max-width: 760px;
+  padding: 56px 0;
+}
+
+.content-page h1 {
+  font-size: clamp(2rem, 6vw, 3.4rem);
+}
+
+.content-page h2 {
+  margin-top: 32px;
+}
+
 .button {
   display: inline-block;
   border-radius: 8px;
@@ -241,6 +254,13 @@ li + li {
   margin-top: 64px;
   padding: 24px 0 36px;
   font-size: 0.95rem;
+}
+
+.footer-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-top: 12px;
 }
 
 @media (max-width: 680px) {

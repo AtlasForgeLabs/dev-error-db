@@ -1,0 +1,38 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Terms"
+  description="Terms for using Dev Error DB troubleshooting content, including informational use, user responsibility, and safe debugging guidance."
+>
+  <section class="content-page">
+    <h1>Terms</h1>
+    <p>
+      Dev Error DB provides troubleshooting content for informational purposes.
+      The site is intended to help developers understand error messages, common
+      causes, and practical next steps.
+    </p>
+
+    <h2>No Guaranteed Fixes</h2>
+    <p>
+      Software environments differ. A fix that works for one project may not
+      work for every operating system, dependency version, hosting provider, CI
+      setup, or local configuration. You are responsible for testing changes in
+      your own environment before relying on them.
+    </p>
+
+    <h2>Safe Debugging</h2>
+    <p>
+      Do not expose secrets, API keys, tokens, passwords, private credentials,
+      or confidential project data while debugging. Redact sensitive values from
+      logs, screenshots, issue reports, and support requests.
+    </p>
+
+    <h2>Contact</h2>
+    <p>
+      For questions about these terms, contact
+      <a href="mailto:contact@dev-error-db.com">contact@dev-error-db.com</a>.
+    </p>
+  </section>
+</BaseLayout>
