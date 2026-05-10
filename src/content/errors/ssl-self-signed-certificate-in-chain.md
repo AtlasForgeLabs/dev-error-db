@@ -1,7 +1,7 @@
 ---
 title: "SSL self signed certificate in certificate chain"
 description: "Fix self signed certificate in certificate chain errors in Node.js, npm, Git, and corporate networks."
-category: "Networking"
+category: "SSL/TLS"
 technology: "SSL/TLS"
 error_signature: "self signed certificate in certificate chain"
 common_causes:
@@ -10,12 +10,22 @@ common_causes:
   - "Local trust store does not include the signing root"
   - "Certificate chain is misconfigured"
 quick_fix: "Install the trusted root certificate and configure the affected tool to use the correct CA bundle."
+related_errors:
+  - "unable to get local issuer certificate"
+  - "Python SSL certificate verify failed"
+  - "npm ERR! code E401"
 updated: "2026-05-10"
 ---
 
 ## What this error means
 
-`self signed certificate in certificate chain` means SSL/TLS is protecting a usage limit: request rate, token volume, account quota, or project billing. The request may be valid, but the provider will not accept more work until the limit resets, usage is reduced, or account limits change. This page helps you configure trusted corporate or private CA certificates without disabling TLS verification.
+`self signed certificate in certificate chain` means name resolution, origin connectivity, or TLS certificate validation failed before the application request could complete.
+
+## Why this happens
+
+DNS and TLS failures often happen outside the application: resolver cache, authoritative records, proxy mode, origin firewall, or CA trust.
+
+For SSL self signed certificate in certificate chain, separate DNS, CDN/proxy, origin, and certificate checks instead of changing app code first.
 
 ## Common causes
 
@@ -26,20 +36,72 @@ updated: "2026-05-10"
 
 ## Quick fixes
 
-1. Pause automatic retries so they do not keep increasing traffic.
+1. Check the exact hostname, not just the apex domain.
 2. Install the trusted root certificate and configure the affected tool to use the correct CA bundle.
-3. Lower concurrency, prompt size, batch size, or requested output length before retrying.
-4. Check usage, billing, or project limits in the provider dashboard.
+3. Compare direct origin behavior with proxied/CDN behavior when possible.
+4. Retry after DNS TTL or certificate deployment has had time to propagate.
+
+## Copy-paste commands
+
+### Query DNS records
+
+```bash
+dig example.com A
+
+dig example.com CNAME
+```
+
+### Check HTTP response headers
+
+```bash
+curl -I https://example.com
+```
+
+### Inspect TLS certificate chain
+
+```bash
+openssl s_client -connect example.com:443 -servername example.com </dev/null
+```
+
+### Flush macOS DNS cache
+
+```bash
+sudo dscacheutil -flushcache; sudo killall -HUP mDNSResponder
+```
+
+## Platform-specific fixes
+
+### macOS
+
+- Use `dscacheutil` to clear local DNS cache after changing records.
+
+### Linux
+
+- Use `dig` or `resolvectl query` to compare resolver answers.
+
+### Windows
+
+- Use `ipconfig /flushdns` after DNS changes, then retest the exact hostname.
+
+## Real-world fixes
+
+- If Cloudflare is enabled, test whether the origin responds when accessed directly.
+- If only one network fails, compare DNS resolver answers before changing server config.
+- Install the trusted root certificate and configure the affected tool to use the correct CA bundle.
 
 ## Step-by-step troubleshooting
 
-1. Start with the exact signature: `self signed certificate in certificate chain`. Confirm it appears on the failing command, request, or deployment log you are debugging.
-2. Check whether the error is request rate, token volume, billing quota, or model access rather than treating all 429-style errors the same.
-3. Review retry code for immediate loops; add backoff and a maximum retry count if retries are allowed.
-4. Reduce parallel workers or batch size and confirm the error rate drops.
-5. Use a certificate checker or `openssl s_client` to inspect the served certificate and intermediates.
-6. Check the local system clock, because an incorrect date can make valid certificates fail.
-7. If a corporate proxy is involved, install the approved root CA rather than bypassing TLS checks.
+1. Confirm the browser, client, or log reports `self signed certificate in certificate chain` for the same hostname.
+2. Use `dig` to verify the authoritative DNS answer.
+3. Use `curl -I` to check whether the hostname reaches the expected service.
+4. Use `openssl s_client` to inspect certificate hostname, issuer, and expiry.
+5. If a CDN is involved, compare proxied and direct-origin behavior.
+
+## How to prevent it
+
+- Track DNS changes with owner, TTL, and expected target.
+- Monitor certificate expiry before renewal windows close.
+- Keep CDN SSL mode and origin certificate configuration documented.
 
 ## Related errors
 
@@ -51,16 +113,16 @@ updated: "2026-05-10"
 
 ### What should I check first?
 
-Start with the exact `self signed certificate in certificate chain` message and the certificate chain, expiry, hostname, and local trust store. That usually tells you whether this is a credential, configuration, dependency, network, or runtime issue.
+Start with the exact `self signed certificate in certificate chain` line and the command, request, or workflow step that produced it. In DNS or SSL/TLS, the first useful clue is usually near the first failure line, not the final stack trace.
 
 ### Can I ignore this error?
 
-No. Treat it as a failed SSL/TLS step. Temporary bypasses can be useful for diagnosis, but publish or deploy only after the underlying cause is fixed.
+No. Treat it as a failed DNS or SSL/TLS step. A temporary bypass may help diagnosis, but the underlying cause should be fixed before shipping or publishing changes.
 
-### Why does this work locally but fail in CI?
+### Why does this work locally but fail elsewhere?
 
-CI may run from a different network and use a different DNS resolver or CA bundle. Compare DNS answers, certificate chains, and proxy settings between local and CI.
+Local machines often have cached credentials, old dependencies, different runtime versions, or network settings that CI and production do not share. Reproduce from a clean shell or clean install when possible.
 
 ### How do I know the fix worked?
 
-Rerun the smallest command, request, workflow, or deployment that previously produced `self signed certificate in certificate chain`. The fix is working when that step completes without the same signature and the expected artifact, response, or connection is produced.
+Rerun the smallest command, request, or deployment step that produced `self signed certificate in certificate chain`. The fix is working when that step completes without the same signature and produces the expected output.

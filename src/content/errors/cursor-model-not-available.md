@@ -1,7 +1,7 @@
 ---
 title: "Cursor model not available"
 description: "Fix Cursor model not available errors caused by unavailable models, provider settings, or access limits."
-category: "AI coding tools"
+category: "OpenAI API"
 technology: "Cursor"
 error_signature: "Model not available"
 common_causes:
@@ -10,12 +10,22 @@ common_causes:
   - "Model name changed or is not supported by the selected provider"
   - "Network or proxy settings block provider requests"
 quick_fix: "Choose a model available to your account and verify the matching provider credentials."
+related_errors:
+  - "Cursor OpenAI API key not working"
+  - "OpenAI API model not found"
+  - "OpenAI API rate limit error"
 updated: "2026-05-10"
 ---
 
 ## What this error means
 
-`Model not available` means the AI coding tool could not use the selected provider, model, key, or account limit. In practice, check the provider field, base URL, model name, and whether the account has access to that model. This page helps you resolve unavailable model errors in Cursor and connected AI providers.
+`Model not available` means the API or AI coding tool rejected the request because credentials, model access, quota, context size, or provider configuration does not match the request being sent.
+
+## Why this happens
+
+OpenAI-compatible tooling usually has three moving parts: API key, selected model, and request size.
+
+For Cursor model not available, debug the smallest request that uses the same provider, model, and environment variable.
 
 ## Common causes
 
@@ -26,19 +36,57 @@ updated: "2026-05-10"
 
 ## Quick fixes
 
-1. Copy the exact error signature and the command that produced it.
-2. Choose a model available to your account and verify the matching provider credentials.
-3. Check the Cursor configuration that matches this command.
-4. Rerun the smallest failing command after each change.
+1. Verify the API key is present without printing its value.
+2. Check the configured model name and provider/base URL.
+3. Choose a model available to your account and verify the matching provider credentials.
+4. Retry with a minimal request before rerunning the full app or editor workflow.
+
+## Copy-paste commands
+
+### Check whether the key is set
+
+```bash
+printf "OPENAI_API_KEY=%s\n" "${OPENAI_API_KEY:+set}"
+```
+
+### Send a minimal API request
+
+```bash
+curl https://api.openai.com/v1/models \
+  -H "Authorization: Bearer $OPENAI_API_KEY"
+```
+
+### Inspect app environment without exposing the key
+
+```bash
+env | grep -E "OPENAI|MODEL|BASE_URL" | sed "s/=.*/=<redacted>/"
+```
+
+## Platform-specific fixes
+
+### CI/CD
+
+- Set API keys as CI secrets, then restart or rerun the job so the process reads the updated environment.
+
+## Real-world fixes
+
+- If a tool works in one editor window but not another, compare provider settings and restart the editor.
+- If a model fails but authentication works, test a known available model before changing application code.
+- Choose a model available to your account and verify the matching provider credentials.
 
 ## Step-by-step troubleshooting
 
-1. Start with the exact signature: `Model not available`. Confirm it appears on the failing command, request, or deployment log you are debugging.
-2. Open the model or provider settings and verify the selected provider matches the API key.
-3. Check base URL, model name, and account access before changing editor-wide settings.
-4. Restart the editor after changing provider credentials so stale settings are not reused.
-5. Make the targeted change: Choose a model available to your account and verify the matching provider credentials.
-6. Rerun the smallest failing command, request, or deployment step and keep the output for comparison.
+1. Record the request path, model, and `Model not available` without logging secret values.
+2. Verify `OPENAI_API_KEY` or the provider-specific key exists in the process that sends the request.
+3. Send a minimal API request with curl to separate SDK bugs from account or credential issues.
+4. If the error mentions context, reduce prompt history and requested output tokens.
+5. If the error mentions quota or rate limits, reduce concurrency before requesting higher limits.
+
+## How to prevent it
+
+- Centralize model names and provider base URLs in configuration.
+- Add retry backoff for rate-limit errors, not for quota or credential errors.
+- Log request IDs and non-secret configuration for production debugging.
 
 ## Related errors
 
@@ -50,16 +98,16 @@ updated: "2026-05-10"
 
 ### What should I check first?
 
-Start with the exact `Model not available` message and the provider, model, base URL, and API key settings. That usually tells you whether this is a credential, configuration, dependency, network, or runtime issue.
+Start with the exact `Model not available` line and the command, request, or workflow step that produced it. In OpenAI API or AI coding tool, the first useful clue is usually near the first failure line, not the final stack trace.
 
 ### Can I ignore this error?
 
-No. Treat it as a failed Cursor step. Temporary bypasses can be useful for diagnosis, but publish or deploy only after the underlying cause is fixed.
+No. Treat it as a failed OpenAI API or AI coding tool step. A temporary bypass may help diagnosis, but the underlying cause should be fixed before shipping or publishing changes.
 
-### Why does this work locally but fail in CI?
+### Why does this work locally but fail elsewhere?
 
-Local and CI environments often differ in installed tools, environment variables, permissions, and network access. Log the versions and non-secret configuration values used by the failing step.
+Local machines often have cached credentials, old dependencies, different runtime versions, or network settings that CI and production do not share. Reproduce from a clean shell or clean install when possible.
 
 ### How do I know the fix worked?
 
-Rerun the smallest command, request, workflow, or deployment that previously produced `Model not available`. The fix is working when that step completes without the same signature and the expected artifact, response, or connection is produced.
+Rerun the smallest command, request, or deployment step that produced `Model not available`. The fix is working when that step completes without the same signature and produces the expected output.

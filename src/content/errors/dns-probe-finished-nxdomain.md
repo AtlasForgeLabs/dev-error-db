@@ -1,7 +1,7 @@
 ---
 title: "DNS_PROBE_FINISHED_NXDOMAIN"
 description: "Fix DNS_PROBE_FINISHED_NXDOMAIN errors caused by missing, incorrect, or not-yet-propagated DNS records."
-category: "Networking"
+category: "DNS"
 technology: "DNS"
 error_signature: "DNS_PROBE_FINISHED_NXDOMAIN"
 common_causes:
@@ -10,12 +10,16 @@ common_causes:
   - "DNS record was recently changed and has not propagated"
   - "Local DNS cache contains stale data"
 quick_fix: "Check authoritative DNS records, verify nameservers, and flush local DNS cache after changes."
+related_errors:
+  - "Cloudflare error 522 connection timed out"
+  - "Vercel invalid domain configuration"
+  - "ERR_NAME_NOT_RESOLVED"
 updated: "2026-05-10"
 ---
 
 ## What this error means
 
-`DNS_PROBE_FINISHED_NXDOMAIN` means the browser, DNS resolver, or Cloudflare edge could not reach the expected origin in a healthy way. The important checks are authoritative DNS records, proxy status, origin availability, firewall rules, and TLS mode. This page helps you troubleshoot domains that do not resolve in browsers or deployment checks.
+`DNS_PROBE_FINISHED_NXDOMAIN` means the build or deployment failed in a clean automation environment. The cause is usually runtime version, lockfile state, secrets, project root, or deploy permissions.
 
 ## Common causes
 
@@ -24,21 +28,70 @@ updated: "2026-05-10"
 - DNS record was recently changed and has not propagated
 - Local DNS cache contains stale data
 
+## Copy-paste commands
+
+### Check local Node version
+
+```bash
+node --version
+npm --version
+```
+
+### Reproduce a clean install
+
+```bash
+rm -rf node_modules
+npm ci
+```
+
+### Run the production build locally
+
+```bash
+npm run build
+```
+
+### Check GitHub SSH from a runner-like shell
+
+```bash
+ssh -T git@github.com
+```
+
 ## Quick fixes
 
-1. Check the authoritative DNS record for the exact hostname, not only the browser result.
+1. Open the failed log and find the first error line above the stack trace.
 2. Check authoritative DNS records, verify nameservers, and flush local DNS cache after changes.
-3. Test the origin directly when possible, bypassing the proxy or CDN.
-4. Flush local DNS cache or wait for TTL before judging propagation.
+3. Check Node version, working directory, lockfile state, and required secrets.
+4. Rerun the job only after committing the config or lockfile change.
 
 ## Step-by-step troubleshooting
 
-1. Start with the exact signature: `DNS_PROBE_FINISHED_NXDOMAIN`. Confirm it appears on the failing command, request, or deployment log you are debugging.
-2. Query authoritative DNS with `dig` or your DNS provider UI for the exact hostname.
-3. Check whether Cloudflare proxy mode, SSL mode, and origin firewall rules match the deployment.
-4. Compare direct origin response with proxied response to separate DNS, CDN, and origin problems.
-5. Make the targeted change: Check authoritative DNS records, verify nameservers, and flush local DNS cache after changes.
-6. Rerun the smallest failing command, request, or deployment step and keep the output for comparison.
+1. Find the first log line containing `DNS_PROBE_FINISHED_NXDOMAIN`.
+2. Check the job Node version and package manager command.
+3. Verify secrets are available for the event type; forked PRs often have restricted secrets.
+4. Compare the workflow working directory with the folder containing `package.json`.
+5. Run the same install and build commands locally from a clean checkout.
+
+## Platform-specific fixes
+
+### GitHub Actions
+
+- Use `actions/setup-node` for the intended Node version and keep `package-lock.json` committed for `npm ci`.
+
+### Vercel
+
+- Check the configured project root, build command, output directory, and environment variables in the Vercel project settings.
+
+## Real-world fixes
+
+- If the lockfile error appears only in CI, regenerate and commit the lockfile instead of switching to `npm install` in CI.
+- If deploy keys fail, confirm the public key is attached to the target repository and the private key secret keeps newlines intact.
+- Check authoritative DNS records, verify nameservers, and flush local DNS cache after changes.
+
+## How to prevent it
+
+- Keep workflow runtime versions explicit.
+- Commit lockfiles and generated config needed at build time.
+- Add a small CI job that runs the same build command before deploy.
 
 ## Related errors
 
@@ -50,16 +103,16 @@ updated: "2026-05-10"
 
 ### What should I check first?
 
-Start with the exact `DNS_PROBE_FINISHED_NXDOMAIN` message and the authoritative DNS record, Cloudflare mode, and origin health. That usually tells you whether this is a credential, configuration, dependency, network, or runtime issue.
+Start with the exact `DNS_PROBE_FINISHED_NXDOMAIN` line and the command, request, or workflow step that produced it. In CI/CD, the first useful clue is usually near the first failure line, not the final stack trace.
 
 ### Can I ignore this error?
 
-No. Treat it as a failed DNS step. Temporary bypasses can be useful for diagnosis, but publish or deploy only after the underlying cause is fixed.
+No. Treat it as a failed CI/CD step. A temporary bypass may help diagnosis, but the underlying cause should be fixed before shipping or publishing changes.
 
-### Why does this work locally but fail in CI?
+### Why does this work locally but fail elsewhere?
 
-CI may run from a different network and use a different DNS resolver or CA bundle. Compare DNS answers, certificate chains, and proxy settings between local and CI.
+Local machines often have cached credentials, old dependencies, different runtime versions, or network settings that CI and production do not share. Reproduce from a clean shell or clean install when possible.
 
 ### How do I know the fix worked?
 
-Rerun the smallest command, request, workflow, or deployment that previously produced `DNS_PROBE_FINISHED_NXDOMAIN`. The fix is working when that step completes without the same signature and the expected artifact, response, or connection is produced.
+Rerun the smallest command, request, or deployment step that produced `DNS_PROBE_FINISHED_NXDOMAIN`. The fix is working when that step completes without the same signature and produces the expected output.

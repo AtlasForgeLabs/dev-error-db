@@ -2,7 +2,7 @@
 title: "npm ERR! code E401"
 slug: "npm-err-code-e401"
 description: "Fix npm ERR! code E401 authentication failures when installing or publishing packages."
-category: "Package managers"
+category: "npm"
 technology: "npm"
 error_signature: "npm ERR! code E401"
 common_causes:
@@ -11,6 +11,10 @@ common_causes:
   - "Package scope points to the wrong registry"
   - "Two-factor authentication is required for publishing"
 quick_fix: "Run npm login for the correct registry, then retry the install or publish command."
+related_errors:
+  - "npm ERR! code ERESOLVE"
+  - "GitHub Actions npm ci lockfile error"
+  - "SSL self signed certificate in certificate chain"
 updated: "2026-05-10"
 ---
 

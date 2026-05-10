@@ -1,7 +1,7 @@
 ---
 title: "Vercel build command failed"
 description: "Fix Vercel build command failed errors by reproducing the build locally and checking environment settings."
-category: "Deployment"
+category: "GitHub Actions"
 technology: "Vercel"
 error_signature: "Command \"npm run build\" exited with 1"
 common_causes:
@@ -10,12 +10,22 @@ common_causes:
   - "Node version differs from local development"
   - "Dependency or lockfile is out of sync"
 quick_fix: "Run the same build command locally after a clean install, then align environment variables and Node version in Vercel."
+related_errors:
+  - "GitHub Actions Node version mismatch"
+  - "npm ci lockfile error"
+  - "Vercel module not found"
 updated: "2026-05-10"
 ---
 
 ## What this error means
 
-`Command "npm run build" exited with 1` means npm or Node.js could not install, resolve, or load the package metadata it needs for the current project. The practical issue is usually a dependency conflict, missing `package.json`, stale lockfile, module path, or runtime version problem. This page helps you debug failed Vercel builds for frontend and static sites.
+`Command "npm run build" exited with 1` means the build or deployment failed in a clean automation environment. The cause is usually runtime version, lockfile state, secrets, project root, or deploy permissions.
+
+## Why this happens
+
+CI/CD jobs do not inherit your local shell, installed packages, or editor credentials.
+
+For Vercel build command failed, compare the workflow/runtime setup with the exact command that succeeds locally.
 
 ## Common causes
 
@@ -26,20 +36,68 @@ updated: "2026-05-10"
 
 ## Quick fixes
 
-1. Run the command from the directory that contains `package.json`.
+1. Open the failed log and find the first error line above the stack trace.
 2. Run the same build command locally after a clean install, then align environment variables and Node version in Vercel.
-3. If install state is suspect, remove `node_modules` and reinstall from the committed lockfile.
-4. Use the same Node and npm versions locally and in CI.
+3. Check Node version, working directory, lockfile state, and required secrets.
+4. Rerun the job only after committing the config or lockfile change.
+
+## Copy-paste commands
+
+### Check local Node version
+
+```bash
+node --version
+npm --version
+```
+
+### Reproduce a clean install
+
+```bash
+rm -rf node_modules
+npm ci
+```
+
+### Run the production build locally
+
+```bash
+npm run build
+```
+
+### Check GitHub SSH from a runner-like shell
+
+```bash
+ssh -T git@github.com
+```
+
+## Platform-specific fixes
+
+### GitHub Actions
+
+- Use `actions/setup-node` for the intended Node version and keep `package-lock.json` committed for `npm ci`.
+
+### Vercel
+
+- Check the configured project root, build command, output directory, and environment variables in the Vercel project settings.
+
+## Real-world fixes
+
+- If the lockfile error appears only in CI, regenerate and commit the lockfile instead of switching to `npm install` in CI.
+- If deploy keys fail, confirm the public key is attached to the target repository and the private key secret keeps newlines intact.
+- Run the same build command locally after a clean install, then align environment variables and Node version in Vercel.
 
 ## Step-by-step troubleshooting
 
-1. Start with the exact signature: `Command "npm run build" exited with 1`. Confirm it appears on the failing command, request, or deployment log you are debugging.
-2. Confirm `package.json` and `package-lock.json` are both present when using `npm ci`.
-3. Check the package named in the npm error and compare its required peer dependency range with the installed version.
-4. Regenerate the lockfile only after deciding the correct dependency versions.
-5. Check Vercel build logs for the first module, command, or environment variable that fails.
-6. Verify the project root and build command match the folder that contains `package.json`.
-7. Check file-name casing because Vercel builds on a case-sensitive filesystem.
+1. Find the first log line containing `Command "npm run build" exited with 1`.
+2. Check the job Node version and package manager command.
+3. Verify secrets are available for the event type; forked PRs often have restricted secrets.
+4. Compare the workflow working directory with the folder containing `package.json`.
+5. Run the same install and build commands locally from a clean checkout.
+
+## How to prevent it
+
+- Keep workflow runtime versions explicit.
+- Commit lockfiles and generated config needed at build time.
+- Add a small CI job that runs the same build command before deploy.
 
 ## Related errors
 
@@ -51,16 +109,16 @@ updated: "2026-05-10"
 
 ### What should I check first?
 
-Start with the exact `Command "npm run build" exited with 1` message and the `package.json`, `package-lock.json`, and npm version. That usually tells you whether this is a credential, configuration, dependency, network, or runtime issue.
+Start with the exact `Command "npm run build" exited with 1` line and the command, request, or workflow step that produced it. In CI/CD, the first useful clue is usually near the first failure line, not the final stack trace.
 
 ### Can I ignore this error?
 
-No. Treat it as a failed Vercel step. Temporary bypasses can be useful for diagnosis, but publish or deploy only after the underlying cause is fixed.
+No. Treat it as a failed CI/CD step. A temporary bypass may help diagnosis, but the underlying cause should be fixed before shipping or publishing changes.
 
-### Why does this work locally but fail in CI?
+### Why does this work locally but fail elsewhere?
 
-CI starts from a clean machine. It may use a different Node or Python version, a stricter filesystem, missing secrets, or a lockfile that does not match local `node_modules`. Reproduce with a clean install and match the CI runtime.
+Local machines often have cached credentials, old dependencies, different runtime versions, or network settings that CI and production do not share. Reproduce from a clean shell or clean install when possible.
 
 ### How do I know the fix worked?
 
-Rerun the smallest command, request, workflow, or deployment that previously produced `Command "npm run build" exited with 1`. The fix is working when that step completes without the same signature and the expected artifact, response, or connection is produced.
+Rerun the smallest command, request, or deployment step that produced `Command "npm run build" exited with 1`. The fix is working when that step completes without the same signature and produces the expected output.

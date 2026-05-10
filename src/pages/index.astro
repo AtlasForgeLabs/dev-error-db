@@ -1,14 +1,13 @@
 ---
 import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
+import { categoryPathFor, getCategoryGroups, entrySlug } from '../lib/taxonomy';
 
 const errors = (await getCollection('errors')).sort((a, b) =>
   a.data.title.localeCompare(b.data.title)
 );
 
-const slugFor = (entry: (typeof errors)[number]) => entry.id.replace(/\.mdx?$/, '');
-const technologies = [...new Set(errors.map((entry) => entry.data.technology))].sort();
-const categories = [...new Set(errors.map((entry) => entry.data.category))].sort();
+const categoryGroups = getCategoryGroups(errors);
 ---
 
 <BaseLayout
@@ -25,13 +24,16 @@ const categories = [...new Set(errors.map((entry) => entry.data.category))].sort
   </section>
 
   <section class="filters" aria-labelledby="browse-heading">
-    <h2 id="browse-heading">Browse by technology</h2>
-    <div class="tag-list">
-      {technologies.map((technology) => <span>{technology}</span>)}
-    </div>
-    <h2>Browse by category</h2>
-    <div class="tag-list">
-      {categories.map((category) => <span>{category}</span>)}
+    <h2 id="browse-heading">Browse by category</h2>
+    <div class="category-grid">
+      {
+        categoryGroups.map((group) => (
+          <a class="category-card" href={categoryPathFor(group.label)}>
+            <strong>{group.label}</strong>
+            <span>{group.entries.length} error{group.entries.length === 1 ? '' : 's'}</span>
+          </a>
+        ))
+      }
     </div>
   </section>
 
@@ -46,7 +48,7 @@ const categories = [...new Set(errors.map((entry) => entry.data.category))].sort
               <span>{entry.data.category}</span>
             </div>
             <h3>
-              <a href={`/errors/${slugFor(entry)}/`}>{entry.data.title}</a>
+              <a href={`/errors/${entrySlug(entry)}/`}>{entry.data.title}</a>
             </h3>
             <p>{entry.data.description}</p>
             <code>{entry.data.error_signature}</code>

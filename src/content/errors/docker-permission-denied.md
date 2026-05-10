@@ -2,7 +2,7 @@
 title: "Docker permission denied"
 slug: "docker-permission-denied"
 description: "Fix Docker permission denied errors when running docker commands or mounting files."
-category: "Containers"
+category: "Docker"
 technology: "Docker"
 error_signature: "permission denied while trying to connect to the Docker daemon socket"
 common_causes:
@@ -11,6 +11,10 @@ common_causes:
   - "Bind-mounted files have incompatible ownership or permissions"
   - "A container process is running as a user without required access"
 quick_fix: "Start Docker and make sure your user has permission to access the Docker daemon."
+related_errors:
+  - "Docker cannot connect to the daemon"
+  - "Docker no space left on device"
+  - "Docker Compose port is already allocated"
 updated: "2026-05-10"
 ---
 

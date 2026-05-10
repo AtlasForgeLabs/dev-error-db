@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css';
+import { SITE_NAME, SITE_URL, absoluteUrl, titleWithSite } from '../lib/seo';
 
 interface Props {
   title: string;
@@ -8,9 +9,8 @@ interface Props {
 }
 
 const { title, description, canonical } = Astro.props;
-const siteUrl = new URL(Astro.site ?? 'https://dev-error-db.com');
-const canonicalUrl = canonical ?? new URL(Astro.url.pathname, siteUrl).toString();
-const pageTitle = title.includes('Dev Error DB') ? title : `${title} | Dev Error DB`;
+const canonicalUrl = canonical ?? absoluteUrl(Astro.url.pathname, Astro.site?.toString() ?? SITE_URL);
+const pageTitle = titleWithSite(title);
 ---
 
 <!doctype html>
@@ -24,7 +24,7 @@ const pageTitle = title.includes('Dev Error DB') ? title : `${title} | Dev Error
     <link rel="canonical" href={canonicalUrl} />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
     <meta property="og:type" content="website" />
-    <meta property="og:site_name" content="Dev Error DB" />
+    <meta property="og:site_name" content={SITE_NAME} />
     <meta property="og:title" content={pageTitle} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonicalUrl} />

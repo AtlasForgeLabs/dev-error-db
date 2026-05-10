@@ -1,7 +1,7 @@
 ---
 title: "Git refusing to merge unrelated histories"
 description: "Fix Git refusing to merge unrelated histories when combining repositories or mismatched branches."
-category: "Version control"
+category: "Git"
 technology: "Git"
 error_signature: "fatal: refusing to merge unrelated histories"
 common_causes:
@@ -10,12 +10,22 @@ common_causes:
   - "Default branch was recreated"
   - "Remote history was replaced"
 quick_fix: "Confirm the histories should be combined, then merge with --allow-unrelated-histories and resolve conflicts carefully."
+related_errors:
+  - "fatal: not a git repository"
+  - "fatal: refusing to merge unrelated histories"
+  - "CONFLICT content"
 updated: "2026-05-10"
 ---
 
 ## What this error means
 
-`fatal: refusing to merge unrelated histories` means Git cannot complete the repository operation with the current working directory, remote, history, or authentication setup. The command is often correct, but the repository state or remote configuration is not what Git expects. This page helps you understand and resolve Git merges between branches with no shared commit history.
+`fatal: refusing to merge unrelated histories` means Git cannot complete the requested repository operation with the current directory, remote, branch history, or SSH/HTTPS credentials. Inspect repository state before forcing commands.
+
+## Why this happens
+
+Git is stateful: the current branch, remote URL, working directory, and configured identity all affect the same command.
+
+For Git refusing to merge unrelated histories, verify the repository state and remote access before rewriting history or changing credentials.
 
 ## Common causes
 
@@ -26,19 +36,62 @@ updated: "2026-05-10"
 
 ## Quick fixes
 
-1. Copy the exact error signature and the command that produced it.
-2. Confirm the histories should be combined, then merge with --allow-unrelated-histories and resolve conflicts carefully.
-3. Check the Git configuration that matches this command.
-4. Rerun the smallest failing command after each change.
+1. Run `git status` from the directory where the error appears.
+2. Check remotes with `git remote -v`.
+3. Confirm the histories should be combined, then merge with --allow-unrelated-histories and resolve conflicts carefully.
+4. Retry using the same SSH or HTTPS remote style your team expects.
+
+## Copy-paste commands
+
+### Check repository state
+
+```bash
+git status
+```
+
+### Show remotes
+
+```bash
+git remote -v
+```
+
+### List local branches
+
+```bash
+git branch
+```
+
+### Fetch remote refs
+
+```bash
+git fetch origin
+```
+
+### Test GitHub SSH
+
+```bash
+ssh -T git@github.com
+```
+
+## Real-world fixes
+
+- If SSH fails, confirm the public key is added to the account that owns the repository.
+- If a remote URL is wrong, update it with `git remote set-url origin <url>` instead of adding a duplicate remote.
+- Confirm the histories should be combined, then merge with --allow-unrelated-histories and resolve conflicts carefully.
 
 ## Step-by-step troubleshooting
 
-1. Start with the exact signature: `fatal: refusing to merge unrelated histories`. Confirm it appears on the failing command, request, or deployment log you are debugging.
-2. Run `git status` and `git remote -v` from the directory where the error happens.
-3. For history or merge errors, inspect the branch relationship before forcing a merge or rewriting history.
-4. For remote errors, confirm whether the URL should use SSH or HTTPS.
-5. Make the targeted change: Confirm the histories should be combined, then merge with --allow-unrelated-histories and resolve conflicts carefully.
-6. Rerun the smallest failing command, request, or deployment step and keep the output for comparison.
+1. Copy the exact `fatal: refusing to merge unrelated histories` line and the Git command that produced it.
+2. Run `git status` to confirm you are inside the intended repository.
+3. Run `git remote -v` and verify SSH versus HTTPS matches your credential setup.
+4. Run `git fetch origin` to separate network/auth problems from local branch problems.
+5. Avoid force pushes or history rewrites until you know which branch and remote are affected.
+
+## How to prevent it
+
+- Document the expected remote URL format for the project.
+- Use SSH config host aliases when working with multiple Git accounts.
+- Check branch and remote before running destructive Git commands.
 
 ## Related errors
 
@@ -50,16 +103,16 @@ updated: "2026-05-10"
 
 ### What should I check first?
 
-Start with the exact `fatal: refusing to merge unrelated histories` message and the Git setting named in the log. That usually tells you whether this is a credential, configuration, dependency, network, or runtime issue.
+Start with the exact `fatal: refusing to merge unrelated histories` line and the command, request, or workflow step that produced it. In Git, the first useful clue is usually near the first failure line, not the final stack trace.
 
 ### Can I ignore this error?
 
-No. Treat it as a failed Git step. Temporary bypasses can be useful for diagnosis, but publish or deploy only after the underlying cause is fixed.
+No. Treat it as a failed Git step. A temporary bypass may help diagnosis, but the underlying cause should be fixed before shipping or publishing changes.
 
-### Why does this work locally but fail in CI?
+### Why does this work locally but fail elsewhere?
 
-Local and CI environments often differ in installed tools, environment variables, permissions, and network access. Log the versions and non-secret configuration values used by the failing step.
+Local machines often have cached credentials, old dependencies, different runtime versions, or network settings that CI and production do not share. Reproduce from a clean shell or clean install when possible.
 
 ### How do I know the fix worked?
 
-Rerun the smallest command, request, workflow, or deployment that previously produced `fatal: refusing to merge unrelated histories`. The fix is working when that step completes without the same signature and the expected artifact, response, or connection is produced.
+Rerun the smallest command, request, or deployment step that produced `fatal: refusing to merge unrelated histories`. The fix is working when that step completes without the same signature and produces the expected output.

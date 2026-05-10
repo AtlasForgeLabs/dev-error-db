@@ -2,7 +2,7 @@
 title: "OpenAI API rate limit error"
 slug: "openai-api-rate-limit-error"
 description: "Fix OpenAI API rate limit errors by reducing request volume, retrying with backoff, and checking account limits."
-category: "APIs"
+category: "OpenAI API"
 technology: "OpenAI API"
 error_signature: "RateLimitError: 429 Too Many Requests"
 common_causes:
@@ -11,6 +11,10 @@ common_causes:
   - "Concurrent workers are retrying too aggressively"
   - "Account quota or billing limits need attention"
 quick_fix: "Retry failed requests with exponential backoff and reduce request concurrency."
+related_errors:
+  - "OpenAI API insufficient quota"
+  - "OpenAI API context length exceeded"
+  - "OpenAI API model not found"
 updated: "2026-05-10"
 ---
 

@@ -10,6 +10,7 @@ const errors = defineCollection({
     error_signature: z.string(),
     common_causes: z.array(z.string()),
     quick_fix: z.string(),
+    related_errors: z.array(z.string()).default([]),
     updated: z.string(),
   }),
 });

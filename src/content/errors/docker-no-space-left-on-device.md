@@ -1,7 +1,7 @@
 ---
 title: "Docker no space left on device"
 description: "Fix Docker no space left on device errors by cleaning unused images, containers, volumes, and build cache."
-category: "Containers"
+category: "Docker"
 technology: "Docker"
 error_signature: "no space left on device"
 common_causes:
@@ -10,36 +10,89 @@ common_causes:
   - "Stopped containers still consume disk"
   - "Docker Desktop disk image reached its limit"
 quick_fix: "Inspect docker system df, then prune unused Docker resources that are safe to remove."
+related_errors:
+  - "Docker cannot connect to the daemon"
+  - "failed to register layer"
+  - "write /var/lib/docker: no space left on device"
 updated: "2026-05-10"
 ---
 
 ## What this error means
 
-`no space left on device` means Docker could not reach or use the local container runtime, storage, network port, or mounted file path needed for this command. The fix usually depends on whether Docker is running, which process owns the port, and what permissions the current user or container has. This page helps you free Docker storage when builds, pulls, or containers fail due to disk pressure.
+`no space left on device` means Docker cannot use the local container runtime, a host resource, or a compose binding needed by this command. For this error, check daemon status, socket permissions, disk pressure, and port ownership before changing application code.
 
-## Common causes
+## Why this happens
 
-- Unused images and layers accumulated
-- Build cache is too large
-- Stopped containers still consume disk
-- Docker Desktop disk image reached its limit
+Docker errors often come from the host environment around the container, not from the application image itself.
+
+For Docker no space left on device, the fastest path is to identify whether the failure is daemon access, storage, networking, or file permissions.
 
 ## Quick fixes
 
-1. Run `docker info` or open Docker Desktop to confirm the daemon is running.
+1. Run `docker info` to confirm the Docker client can reach the daemon.
 2. Inspect docker system df, then prune unused Docker resources that are safe to remove.
-3. Check the failing resource directly: socket permissions, disk usage, port owner, or mounted path.
-4. Restart only the affected container or compose stack after changing Docker settings.
+3. Check whether the failing container, volume, port, or socket already exists.
+4. Restart Docker Desktop or the Docker service only after collecting the first error message.
+
+## Copy-paste commands
+
+### Check daemon access
+
+```bash
+docker info
+```
+
+### List running containers
+
+```bash
+docker ps
+```
+
+### Check Docker disk usage
+
+```bash
+docker system df
+```
+
+### Find a process using port 3000
+
+```bash
+lsof -i :3000
+```
+
+## Real-world fixes
+
+- If a compose stack was interrupted, run `docker compose ps` and stop the old stack before reusing ports.
+- If disk usage is high, prune only resources you recognize; volumes can contain database state.
+- Inspect docker system df, then prune unused Docker resources that are safe to remove.
 
 ## Step-by-step troubleshooting
 
-1. Start with the exact signature: `no space left on device`. Confirm it appears on the failing command, request, or deployment log you are debugging.
-2. Run `docker info` to confirm the client can talk to the daemon.
-3. For port errors, identify the process using the port with `lsof -i :PORT` or the platform equivalent.
-4. For disk errors, run `docker system df` before pruning images, volumes, or build cache.
-5. For permission errors, check socket ownership, container user IDs, and bind-mounted file permissions.
-6. Make the targeted change: Inspect docker system df, then prune unused Docker resources that are safe to remove.
-7. Rerun the smallest failing command, request, or deployment step and keep the output for comparison.
+1. Search the log for `no space left on device` and note the resource named next to it.
+2. Run `docker info`; if it fails, fix daemon access before debugging images or compose files.
+3. For port errors, run `lsof -i :3000` with the actual port and stop the owning process or change the host port.
+4. For storage errors, run `docker system df` before pruning cache, images, or volumes.
+5. Retry the smallest failing Docker command after each change.
+
+## Platform-specific fixes
+
+### macOS
+
+- Open Docker Desktop and wait until the engine status is running before retrying `docker` or `docker compose`.
+
+### Linux
+
+- Check the service with `systemctl status docker` and confirm your user can access `/var/run/docker.sock`.
+
+### Windows
+
+- Confirm Docker Desktop is running with the expected WSL backend and retry from the same shell where the command failed.
+
+## How to prevent it
+
+- Use project-specific host ports in compose files.
+- Schedule occasional Docker cache cleanup on development machines.
+- Document required container users, mounted paths, and volume ownership for the project.
 
 ## Related errors
 
@@ -51,16 +104,16 @@ updated: "2026-05-10"
 
 ### What should I check first?
 
-Start with the exact `no space left on device` message and the Docker daemon, socket, port, disk, or mount involved. That usually tells you whether this is a credential, configuration, dependency, network, or runtime issue.
+Start with the exact `no space left on device` line and the command, request, or workflow step that produced it. In Docker, the first useful clue is usually near the first failure line, not the final stack trace.
 
 ### Can I ignore this error?
 
-No. Treat it as a failed Docker step. Temporary bypasses can be useful for diagnosis, but publish or deploy only after the underlying cause is fixed.
+No. Treat it as a failed Docker step. A temporary bypass may help diagnosis, but the underlying cause should be fixed before shipping or publishing changes.
 
-### Why does this work locally but fail in CI?
+### Why does this work locally but fail elsewhere?
 
-Local and CI environments often differ in installed tools, environment variables, permissions, and network access. Log the versions and non-secret configuration values used by the failing step.
+Local machines often have cached credentials, old dependencies, different runtime versions, or network settings that CI and production do not share. Reproduce from a clean shell or clean install when possible.
 
 ### How do I know the fix worked?
 
-Rerun the smallest command, request, workflow, or deployment that previously produced `no space left on device`. The fix is working when that step completes without the same signature and the expected artifact, response, or connection is produced.
+Rerun the smallest command, request, or deployment step that produced `no space left on device`. The fix is working when that step completes without the same signature and produces the expected output.

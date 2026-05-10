@@ -1,0 +1,54 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { entrySlug, getCategoryGroups } from '../../lib/taxonomy';
+
+export async function getStaticPaths() {
+  const errors = await getCollection('errors');
+  const groups = getCategoryGroups(errors);
+
+  return groups.map((group) => ({
+    params: { category: group.slug },
+    props: { group },
+  }));
+}
+
+const { group } = Astro.props;
+const pageTitle = `${group.label} error troubleshooting`;
+const pageDescription = `${group.entries.length} ${group.label} error troubleshooting page${
+  group.entries.length === 1 ? '' : 's'
+} with concise explanations, common causes, quick fixes, and related developer errors.`;
+---
+
+<BaseLayout title={pageTitle} description={pageDescription}>
+  <section class="category-page">
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <a href="/">Home</a>
+      <span aria-hidden="true">/</span>
+      <span>{group.label}</span>
+    </nav>
+
+    <p class="eyebrow">Error category</p>
+    <h1>{group.label} errors</h1>
+    <p>{group.description}</p>
+    <p class="count-line">{group.entries.length} article{group.entries.length === 1 ? '' : 's'} in this category.</p>
+
+    <div class="cards">
+      {
+        group.entries.map((entry) => (
+          <article class="card">
+            <div class="meta-row">
+              <span>{entry.data.category}</span>
+              <span>{entry.data.technology}</span>
+            </div>
+            <h2>
+              <a href={`/errors/${entrySlug(entry)}/`}>{entry.data.title}</a>
+            </h2>
+            <p>{entry.data.description}</p>
+            <code>{entry.data.error_signature}</code>
+          </article>
+        ))
+      }
+    </div>
+  </section>
+</BaseLayout>

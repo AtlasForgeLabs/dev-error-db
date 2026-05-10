@@ -2,7 +2,7 @@
 title: "Git permission denied (publickey)"
 slug: "git-permission-denied-publickey"
 description: "Fix Git SSH permission denied publickey errors when cloning, pulling, or pushing repositories."
-category: "Version control"
+category: "Git"
 technology: "Git"
 error_signature: "Permission denied (publickey)."
 common_causes:
@@ -11,6 +11,10 @@ common_causes:
   - "Remote URL uses SSH but the account expects HTTPS"
   - "Wrong SSH key is selected for the host"
 quick_fix: "Add the correct SSH key to your agent and Git hosting account, then test the SSH connection."
+related_errors:
+  - "GitHub Actions permission denied publickey"
+  - "Git remote origin already exists"
+  - "Git fatal not a git repository"
 updated: "2026-05-10"
 ---
 

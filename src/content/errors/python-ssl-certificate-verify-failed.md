@@ -2,7 +2,7 @@
 title: "Python SSL: certificate verify failed"
 slug: "python-ssl-certificate-verify-failed"
 description: "Fix Python SSL certificate verification failures in pip, requests, urllib, and API clients."
-category: "Networking"
+category: "Python"
 technology: "Python"
 error_signature: "SSLError: [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed"
 common_causes:
@@ -11,6 +11,10 @@ common_causes:
   - "System clock is incorrect"
   - "Python installation cannot find trusted root certificates"
 quick_fix: "Update certifi and your system certificates, then retry the Python command."
+related_errors:
+  - "SSL unable to get local issuer certificate"
+  - "SSL certificate has expired"
+  - "SSL self signed certificate in certificate chain"
 updated: "2026-05-10"
 ---
 

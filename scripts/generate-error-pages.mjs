@@ -12,25 +12,27 @@ const updated = new Date().toISOString().slice(0, 10);
 
 const seeds = JSON.parse(await readFile(seedsPath, 'utf8'));
 
-validateSeeds(seeds);
-await mkdir(outputDir, { recursive: true });
+async function main() {
+  validateSeeds(seeds);
+  await mkdir(outputDir, { recursive: true });
 
-let created = 0;
-let skipped = 0;
+  let created = 0;
+  let skipped = 0;
 
-for (const seed of seeds) {
-  const filePath = path.join(outputDir, `${seed.slug}.md`);
+  for (const seed of seeds) {
+    const filePath = path.join(outputDir, `${seed.slug}.md`);
 
-  if (existsSync(filePath) && !force) {
-    skipped += 1;
-    continue;
+    if (existsSync(filePath) && !force) {
+      skipped += 1;
+      continue;
+    }
+
+    await writeFile(filePath, renderMarkdown(seed), 'utf8');
+    created += 1;
   }
 
-  await writeFile(filePath, renderMarkdown(seed), 'utf8');
-  created += 1;
+  console.log(`Generated ${created} error page(s). Skipped ${skipped} existing file(s).`);
 }
-
-console.log(`Generated ${created} error page(s). Skipped ${skipped} existing file(s).`);
 
 function validateSeeds(items) {
   if (!Array.isArray(items)) {
@@ -83,60 +85,439 @@ function validateSeeds(items) {
 }
 
 function renderMarkdown(seed) {
-  const quickFixes = quickFixSteps(seed);
-  const troubleshooting = troubleshootingSteps(seed);
-  const faq = faqItems(seed);
+  const profile = profileFor(seed);
+  const sections = buildSections(seed, profile);
 
   return `---
 title: ${yamlString(seed.title)}
 description: ${yamlString(seed.description)}
-category: ${yamlString(seed.category)}
+category: ${yamlString(normalizeCategory(seed.category, seed.technology))}
 technology: ${yamlString(seed.technology)}
 error_signature: ${yamlString(seed.error_signature)}
 common_causes:
 ${seed.common_causes.map((cause) => `  - ${yamlString(cause)}`).join('\n')}
 quick_fix: ${yamlString(seed.quick_fix)}
+related_errors:
+${seed.related_errors.map((related) => `  - ${yamlString(related)}`).join('\n')}
 updated: ${yamlString(updated)}
 ---
 
-## What this error means
-
-${meaningText(seed)}
-
-## Common causes
-
-${bulletList(seed.common_causes)}
-
-## Quick fixes
-
-${numberedList(quickFixes)}
-
-## Step-by-step troubleshooting
-
-${numberedList(troubleshooting)}
-
-## Related errors
-
-${bulletList(seed.related_errors)}
-
-## FAQ
-
-### ${faq[0].question}
-
-${faq[0].answer}
-
-### ${faq[1].question}
-
-${faq[1].answer}
-
-### ${faq[2].question}
-
-${faq[2].answer}
-
-### ${faq[3].question}
-
-${faq[3].answer}
+${sections.join('\n\n')}
 `;
+}
+
+function buildSections(seed, profile) {
+  const variants = [
+    ['meaning', 'why', 'causes', 'quick', 'commands', 'platform', 'realWorld', 'troubleshooting', 'prevention', 'related', 'faq'],
+    ['meaning', 'causes', 'commands', 'quick', 'troubleshooting', 'platform', 'realWorld', 'prevention', 'related', 'faq'],
+    ['meaning', 'why', 'quick', 'commands', 'realWorld', 'troubleshooting', 'platform', 'prevention', 'related', 'faq'],
+  ];
+  const order = variants[hash(seed.slug) % variants.length];
+  const registry = {
+    meaning: () => section('What this error means', profile.meaning(seed)),
+    why: () => section('Why this happens', paragraphList(profile.why(seed))),
+    causes: () => section('Common causes', bulletList(seed.common_causes)),
+    quick: () => section('Quick fixes', numberedList(profile.quickFixes(seed))),
+    commands: () => commandSection(profile.commands(seed)),
+    platform: () => platformSection(profile.platform(seed)),
+    realWorld: () => section('Real-world fixes', bulletList(profile.realWorld(seed))),
+    troubleshooting: () => section('Step-by-step troubleshooting', numberedList(profile.troubleshooting(seed))),
+    prevention: () => section('How to prevent it', bulletList(profile.prevention(seed))),
+    related: () => section('Related errors', bulletList(seed.related_errors)),
+    faq: () => faqSection(profile.faq(seed)),
+  };
+
+  return order.map((key) => registry[key]()).filter(Boolean);
+}
+
+const profiles = [
+  {
+    name: 'docker',
+    match: (seed) => /docker|compose|container/i.test(text(seed)),
+    meaning: (seed) =>
+      `\`${seed.error_signature}\` means Docker cannot use the local container runtime, a host resource, or a compose binding needed by this command. For this error, check daemon status, socket permissions, disk pressure, and port ownership before changing application code.`,
+    why: (seed) => [
+      `Docker errors often come from the host environment around the container, not from the application image itself.`,
+      `For ${seed.title}, the fastest path is to identify whether the failure is daemon access, storage, networking, or file permissions.`,
+    ],
+    quickFixes: (seed) => [
+      'Run `docker info` to confirm the Docker client can reach the daemon.',
+      seed.quick_fix,
+      'Check whether the failing container, volume, port, or socket already exists.',
+      'Restart Docker Desktop or the Docker service only after collecting the first error message.',
+    ],
+    commands: (seed) => [
+      { label: 'Check daemon access', code: 'docker info' },
+      { label: 'List running containers', code: 'docker ps' },
+      { label: 'Check Docker disk usage', code: 'docker system df' },
+      { label: 'Find a process using port 3000', code: 'lsof -i :3000' },
+    ],
+    platform: () => ({
+      macOS: ['Open Docker Desktop and wait until the engine status is running before retrying `docker` or `docker compose`.'],
+      Linux: ['Check the service with `systemctl status docker` and confirm your user can access `/var/run/docker.sock`.'],
+      Windows: ['Confirm Docker Desktop is running with the expected WSL backend and retry from the same shell where the command failed.'],
+    }),
+    realWorld: (seed) => [
+      'If a compose stack was interrupted, run `docker compose ps` and stop the old stack before reusing ports.',
+      'If disk usage is high, prune only resources you recognize; volumes can contain database state.',
+      seed.quick_fix,
+    ],
+    troubleshooting: (seed) => [
+      `Search the log for \`${seed.error_signature}\` and note the resource named next to it.`,
+      'Run `docker info`; if it fails, fix daemon access before debugging images or compose files.',
+      'For port errors, run `lsof -i :3000` with the actual port and stop the owning process or change the host port.',
+      'For storage errors, run `docker system df` before pruning cache, images, or volumes.',
+      'Retry the smallest failing Docker command after each change.',
+    ],
+    prevention: () => [
+      'Use project-specific host ports in compose files.',
+      'Schedule occasional Docker cache cleanup on development machines.',
+      'Document required container users, mounted paths, and volume ownership for the project.',
+    ],
+    faq: (seed) => commonFaq(seed, 'Docker'),
+  },
+  {
+    name: 'git',
+    match: (seed) => /\bgit\b|repository|remote|merge|publickey|histories/i.test(text(seed)) && !/github actions/i.test(text(seed)),
+    meaning: (seed) =>
+      `\`${seed.error_signature}\` means Git cannot complete the requested repository operation with the current directory, remote, branch history, or SSH/HTTPS credentials. Inspect repository state before forcing commands.`,
+    why: (seed) => [
+      'Git is stateful: the current branch, remote URL, working directory, and configured identity all affect the same command.',
+      `For ${seed.title}, verify the repository state and remote access before rewriting history or changing credentials.`,
+    ],
+    quickFixes: (seed) => [
+      'Run `git status` from the directory where the error appears.',
+      'Check remotes with `git remote -v`.',
+      seed.quick_fix,
+      'Retry using the same SSH or HTTPS remote style your team expects.',
+    ],
+    commands: () => [
+      { label: 'Check repository state', code: 'git status' },
+      { label: 'Show remotes', code: 'git remote -v' },
+      { label: 'List local branches', code: 'git branch' },
+      { label: 'Fetch remote refs', code: 'git fetch origin' },
+      { label: 'Test GitHub SSH', code: 'ssh -T git@github.com' },
+    ],
+    platform: () => ({}),
+    realWorld: (seed) => [
+      'If SSH fails, confirm the public key is added to the account that owns the repository.',
+      'If a remote URL is wrong, update it with `git remote set-url origin <url>` instead of adding a duplicate remote.',
+      seed.quick_fix,
+    ],
+    troubleshooting: (seed) => [
+      `Copy the exact \`${seed.error_signature}\` line and the Git command that produced it.`,
+      'Run `git status` to confirm you are inside the intended repository.',
+      'Run `git remote -v` and verify SSH versus HTTPS matches your credential setup.',
+      'Run `git fetch origin` to separate network/auth problems from local branch problems.',
+      'Avoid force pushes or history rewrites until you know which branch and remote are affected.',
+    ],
+    prevention: () => [
+      'Document the expected remote URL format for the project.',
+      'Use SSH config host aliases when working with multiple Git accounts.',
+      'Check branch and remote before running destructive Git commands.',
+    ],
+    faq: (seed) => commonFaq(seed, 'Git'),
+  },
+  {
+    name: 'npm-node',
+    match: (seed) => /npm|node\.js|module|package|lockfile|eresolve|enoent/i.test(text(seed)) && !/github actions|vercel|python/i.test(text(seed)),
+    meaning: (seed) =>
+      `\`${seed.error_signature}\` means npm or Node.js cannot resolve the project files, package metadata, dependency graph, or module path required by the command. Check the project root, lockfile, and Node version first.`,
+    why: (seed) => [
+      'Node projects depend on a consistent relationship between `package.json`, lockfiles, installed modules, and runtime version.',
+      `For ${seed.title}, local success can be misleading if \`node_modules\` is stale or the lockfile was not regenerated.`,
+    ],
+    quickFixes: (seed) => [
+      'Run the command from the folder containing `package.json`.',
+      seed.quick_fix,
+      'Check `node --version` and `npm --version`.',
+      'Use `npm ci` for a clean lockfile-based install when a lockfile exists.',
+    ],
+    commands: () => [
+      { label: 'Check runtime versions', code: 'node --version\nnpm --version' },
+      { label: 'Install dependencies', code: 'npm install' },
+      { label: 'Clean CI-style install', code: 'npm ci' },
+      { label: 'Clear npm cache', code: 'npm cache clean --force' },
+      { label: 'Reset local install state', code: 'rm -rf node_modules package-lock.json\nnpm install' },
+    ],
+    platform: () => ({
+      'CI/CD': ['Prefer `npm ci` in CI so the build fails when `package.json` and `package-lock.json` drift apart.'],
+    }),
+    realWorld: (seed) => [
+      'If the error names a peer dependency, update the plugin and framework versions together.',
+      'If the error names a missing file, check filename casing; CI often runs on a case-sensitive filesystem.',
+      seed.quick_fix,
+    ],
+    troubleshooting: (seed) => [
+      `Find the first \`${seed.error_signature}\` occurrence in the npm output; later stack lines are often symptoms.`,
+      'Confirm the command is running in the intended package directory.',
+      'Compare `package.json` and `package-lock.json` after dependency changes.',
+      'Remove stale `node_modules` only after checking whether the lockfile is committed.',
+      'Rerun the failing command with the same Node version used in CI or production.',
+    ],
+    prevention: () => [
+      'Commit lockfile changes with dependency changes.',
+      'Pin the project Node version in `.nvmrc`, `.node-version`, or CI configuration.',
+      'Use CI to catch dependency drift before deploy.',
+    ],
+    faq: (seed) => commonFaq(seed, 'npm or Node.js'),
+  },
+  {
+    name: 'python',
+    match: (seed) => /python|pip|venv|modulenotfounderror|ensurepip/i.test(text(seed)),
+    meaning: (seed) =>
+      `\`${seed.error_signature}\` means Python is using an interpreter, package environment, certificate store, or virtual environment that does not match what the script expects.`,
+    why: (seed) => [
+      'Python commands can silently target different interpreters depending on PATH, shell activation, and virtual environment state.',
+      `For ${seed.title}, verify the active Python executable before installing packages or changing source code.`,
+    ],
+    quickFixes: (seed) => [
+      'Check the active interpreter with `python3 --version`.',
+      'Use `python -m pip` so pip targets the interpreter that runs the code.',
+      seed.quick_fix,
+      'Recreate the virtual environment if the interpreter version changed.',
+    ],
+    commands: () => [
+      { label: 'Check Python version', code: 'python3 --version' },
+      { label: 'Check pip target', code: 'python -m pip --version' },
+      { label: 'List installed packages', code: 'python -m pip list' },
+      { label: 'Create a virtual environment', code: 'python -m venv venv' },
+      { label: 'Activate on macOS/Linux', code: 'source venv/bin/activate' },
+    ],
+    platform: () => ({
+      macOS: ['If system Python and Homebrew Python both exist, use `python3 -m pip` from the interpreter you run in production.'],
+      Linux: ['On Debian/Ubuntu, install virtual environment support with `sudo apt install python3-venv` when `ensurepip` is missing.'],
+      Windows: ['Use `py -m pip --version` and `py -m venv venv` when the Python launcher is installed.'],
+    }),
+    realWorld: (seed) => [
+      'If imports fail after installation, the package was likely installed into a different interpreter.',
+      'If SSL fails only in Python, update the CA bundle used by Python before disabling verification.',
+      seed.quick_fix,
+    ],
+    troubleshooting: (seed) => [
+      `Confirm the failing traceback contains \`${seed.error_signature}\`.`,
+      'Run `python -m pip --version` and verify the path belongs to the expected environment.',
+      'Activate the virtual environment, then rerun the same version and pip checks.',
+      'Install packages with `python -m pip install <package>` rather than a bare `pip` command.',
+      'Retry the smallest script or import that produced the error.',
+    ],
+    prevention: () => [
+      'Use a virtual environment per project.',
+      'Record dependencies in `requirements.txt`, `pyproject.toml`, or the project lockfile.',
+      'Use `python -m pip` in documentation and CI scripts.',
+    ],
+    faq: (seed) => commonFaq(seed, 'Python'),
+  },
+  {
+    name: 'openai',
+    match: (seed) => /openai|cursor|ai coding|model|quota|context_length|rate limit|api key/i.test(text(seed)),
+    meaning: (seed) =>
+      `\`${seed.error_signature}\` means the API or AI coding tool rejected the request because credentials, model access, quota, context size, or provider configuration does not match the request being sent.`,
+    why: (seed) => [
+      'OpenAI-compatible tooling usually has three moving parts: API key, selected model, and request size.',
+      `For ${seed.title}, debug the smallest request that uses the same provider, model, and environment variable.`,
+    ],
+    quickFixes: (seed) => [
+      'Verify the API key is present without printing its value.',
+      'Check the configured model name and provider/base URL.',
+      seed.quick_fix,
+      'Retry with a minimal request before rerunning the full app or editor workflow.',
+    ],
+    commands: () => [
+      { label: 'Check whether the key is set', code: 'printf "OPENAI_API_KEY=%s\\n" "${OPENAI_API_KEY:+set}"' },
+      {
+        label: 'Send a minimal API request',
+        code:
+          'curl https://api.openai.com/v1/models \\\n+  -H "Authorization: Bearer $OPENAI_API_KEY"'.replace('\n+', '\n'),
+      },
+      { label: 'Inspect app environment without exposing the key', code: 'env | grep -E "OPENAI|MODEL|BASE_URL" | sed "s/=.*/=<redacted>/"' },
+    ],
+    platform: () => ({
+      'CI/CD': ['Set API keys as CI secrets, then restart or rerun the job so the process reads the updated environment.'],
+    }),
+    realWorld: (seed) => [
+      'If a tool works in one editor window but not another, compare provider settings and restart the editor.',
+      'If a model fails but authentication works, test a known available model before changing application code.',
+      seed.quick_fix,
+    ],
+    troubleshooting: (seed) => [
+      `Record the request path, model, and \`${seed.error_signature}\` without logging secret values.`,
+      'Verify `OPENAI_API_KEY` or the provider-specific key exists in the process that sends the request.',
+      'Send a minimal API request with curl to separate SDK bugs from account or credential issues.',
+      'If the error mentions context, reduce prompt history and requested output tokens.',
+      'If the error mentions quota or rate limits, reduce concurrency before requesting higher limits.',
+    ],
+    prevention: () => [
+      'Centralize model names and provider base URLs in configuration.',
+      'Add retry backoff for rate-limit errors, not for quota or credential errors.',
+      'Log request IDs and non-secret configuration for production debugging.',
+    ],
+    faq: (seed) => commonFaq(seed, 'OpenAI API or AI coding tool'),
+  },
+  {
+    name: 'github-actions',
+    match: (seed) => /github actions|workflow|runner|vercel|deploy|build command/i.test(text(seed)),
+    meaning: (seed) =>
+      `\`${seed.error_signature}\` means the build or deployment failed in a clean automation environment. The cause is usually runtime version, lockfile state, secrets, project root, or deploy permissions.`,
+    why: (seed) => [
+      'CI/CD jobs do not inherit your local shell, installed packages, or editor credentials.',
+      `For ${seed.title}, compare the workflow/runtime setup with the exact command that succeeds locally.`,
+    ],
+    quickFixes: (seed) => [
+      'Open the failed log and find the first error line above the stack trace.',
+      seed.quick_fix,
+      'Check Node version, working directory, lockfile state, and required secrets.',
+      'Rerun the job only after committing the config or lockfile change.',
+    ],
+    commands: () => [
+      { label: 'Check local Node version', code: 'node --version\nnpm --version' },
+      { label: 'Reproduce a clean install', code: 'rm -rf node_modules\nnpm ci' },
+      { label: 'Run the production build locally', code: 'npm run build' },
+      { label: 'Check GitHub SSH from a runner-like shell', code: 'ssh -T git@github.com' },
+    ],
+    platform: () => ({
+      'GitHub Actions': ['Use `actions/setup-node` for the intended Node version and keep `package-lock.json` committed for `npm ci`.'],
+      'Vercel': ['Check the configured project root, build command, output directory, and environment variables in the Vercel project settings.'],
+    }),
+    realWorld: (seed) => [
+      'If the lockfile error appears only in CI, regenerate and commit the lockfile instead of switching to `npm install` in CI.',
+      'If deploy keys fail, confirm the public key is attached to the target repository and the private key secret keeps newlines intact.',
+      seed.quick_fix,
+    ],
+    troubleshooting: (seed) => [
+      `Find the first log line containing \`${seed.error_signature}\`.`,
+      'Check the job Node version and package manager command.',
+      'Verify secrets are available for the event type; forked PRs often have restricted secrets.',
+      'Compare the workflow working directory with the folder containing `package.json`.',
+      'Run the same install and build commands locally from a clean checkout.',
+    ],
+    prevention: () => [
+      'Keep workflow runtime versions explicit.',
+      'Commit lockfiles and generated config needed at build time.',
+      'Add a small CI job that runs the same build command before deploy.',
+    ],
+    faq: (seed) => commonFaq(seed, 'CI/CD'),
+  },
+  {
+    name: 'dns-ssl',
+    match: (seed) => /dns|cloudflare|ssl|tls|certificate|issuer|nxdomain|origin/i.test(text(seed)),
+    meaning: (seed) =>
+      `\`${seed.error_signature}\` means name resolution, origin connectivity, or TLS certificate validation failed before the application request could complete.`,
+    why: (seed) => [
+      'DNS and TLS failures often happen outside the application: resolver cache, authoritative records, proxy mode, origin firewall, or CA trust.',
+      `For ${seed.title}, separate DNS, CDN/proxy, origin, and certificate checks instead of changing app code first.`,
+    ],
+    quickFixes: (seed) => [
+      'Check the exact hostname, not just the apex domain.',
+      seed.quick_fix,
+      'Compare direct origin behavior with proxied/CDN behavior when possible.',
+      'Retry after DNS TTL or certificate deployment has had time to propagate.',
+    ],
+    commands: () => [
+      { label: 'Query DNS records', code: 'dig example.com A\n\ndig example.com CNAME' },
+      { label: 'Check HTTP response headers', code: 'curl -I https://example.com' },
+      { label: 'Inspect TLS certificate chain', code: 'openssl s_client -connect example.com:443 -servername example.com </dev/null' },
+      { label: 'Flush macOS DNS cache', code: 'sudo dscacheutil -flushcache; sudo killall -HUP mDNSResponder' },
+    ],
+    platform: () => ({
+      macOS: ['Use `dscacheutil` to clear local DNS cache after changing records.'],
+      Linux: ['Use `dig` or `resolvectl query` to compare resolver answers.'],
+      Windows: ['Use `ipconfig /flushdns` after DNS changes, then retest the exact hostname.'],
+    }),
+    realWorld: (seed) => [
+      'If Cloudflare is enabled, test whether the origin responds when accessed directly.',
+      'If only one network fails, compare DNS resolver answers before changing server config.',
+      seed.quick_fix,
+    ],
+    troubleshooting: (seed) => [
+      `Confirm the browser, client, or log reports \`${seed.error_signature}\` for the same hostname.`,
+      'Use `dig` to verify the authoritative DNS answer.',
+      'Use `curl -I` to check whether the hostname reaches the expected service.',
+      'Use `openssl s_client` to inspect certificate hostname, issuer, and expiry.',
+      'If a CDN is involved, compare proxied and direct-origin behavior.',
+    ],
+    prevention: () => [
+      'Track DNS changes with owner, TTL, and expected target.',
+      'Monitor certificate expiry before renewal windows close.',
+      'Keep CDN SSL mode and origin certificate configuration documented.',
+    ],
+    faq: (seed) => commonFaq(seed, 'DNS or SSL/TLS'),
+  },
+];
+
+const fallbackProfile = {
+  name: 'generic',
+  match: () => true,
+  meaning: (seed) =>
+    `\`${seed.error_signature}\` identifies a known failure mode in ${seed.technology}. Use the exact signature, command, and surrounding log lines to narrow the cause before changing configuration.`,
+  why: (seed) => [`This usually happens when ${seed.technology} receives configuration, environment, or input that does not match the current project state.`],
+  quickFixes: (seed) => ['Copy the exact error text.', seed.quick_fix, 'Retry the smallest failing command after each change.'],
+  commands: () => [],
+  platform: () => ({}),
+  realWorld: (seed) => [seed.quick_fix],
+  troubleshooting: (seed) => [
+    `Search logs for \`${seed.error_signature}\`.`,
+    'Identify the smallest command or request that reproduces the error.',
+    'Change one variable at a time and keep the output for comparison.',
+  ],
+  prevention: () => ['Document the working configuration once fixed.'],
+  faq: (seed) => commonFaq(seed, seed.technology),
+};
+
+function profileFor(seed) {
+  return profiles.find((profile) => profile.match(seed)) ?? fallbackProfile;
+}
+
+function commonFaq(seed, context) {
+  return [
+    {
+      question: 'What should I check first?',
+      answer: `Start with the exact \`${seed.error_signature}\` line and the command, request, or workflow step that produced it. In ${context}, the first useful clue is usually near the first failure line, not the final stack trace.`,
+    },
+    {
+      question: 'Can I ignore this error?',
+      answer: `No. Treat it as a failed ${context} step. A temporary bypass may help diagnosis, but the underlying cause should be fixed before shipping or publishing changes.`,
+    },
+    {
+      question: 'Why does this work locally but fail elsewhere?',
+      answer: `Local machines often have cached credentials, old dependencies, different runtime versions, or network settings that CI and production do not share. Reproduce from a clean shell or clean install when possible.`,
+    },
+    {
+      question: 'How do I know the fix worked?',
+      answer: `Rerun the smallest command, request, or deployment step that produced \`${seed.error_signature}\`. The fix is working when that step completes without the same signature and produces the expected output.`,
+    },
+  ];
+}
+
+function section(title, body) {
+  if (!body) return '';
+  return `## ${title}\n\n${body}`;
+}
+
+function commandSection(commands) {
+  if (!commands.length) return '';
+  return section(
+    'Copy-paste commands',
+    commands.map((command) => `### ${command.label}\n\n\`\`\`bash\n${command.code}\n\`\`\``).join('\n\n')
+  );
+}
+
+function platformSection(platforms) {
+  const entries = Object.entries(platforms).filter(([, items]) => items.length);
+  if (!entries.length) return '';
+
+  return section(
+    'Platform-specific fixes',
+    entries.map(([platform, items]) => `### ${platform}\n\n${bulletList(items)}`).join('\n\n')
+  );
+}
+
+function faqSection(items) {
+  return section('FAQ', items.map((item) => `### ${item.question}\n\n${item.answer}`).join('\n\n'));
+}
+
+function paragraphList(items) {
+  return items.filter(Boolean).join('\n\n');
 }
 
 function bulletList(items) {
@@ -151,388 +532,49 @@ function yamlString(value) {
   return JSON.stringify(value);
 }
 
-function meaningText(seed) {
-  const signature = seed.error_signature;
-  const tech = seed.technology;
-  const intent = lowerFirst(seed.search_intent.replace(/\.$/, ''));
+function normalizeCategory(category, technology = '') {
+  if (technology === 'SSL/TLS' || category === 'SSL/TLS') return 'SSL/TLS';
+  if (technology === 'Cloudflare') return 'Cloudflare';
 
-  if (isAuth(seed)) {
-    return `\`${signature}\` means ${tech} rejected the credentials used by your command, app, workflow, or editor. In practice, the key, token, SSH key, or account setting being sent is missing, expired, malformed, or not allowed to access the requested resource. This page helps you ${intent}.`;
-  }
-
-  if (isRateOrQuota(seed)) {
-    return `\`${signature}\` means ${tech} is protecting a usage limit: request rate, token volume, account quota, or project billing. The request may be valid, but the provider will not accept more work until the limit resets, usage is reduced, or account limits change. This page helps you ${intent}.`;
-  }
-
-  if (isDocker(seed)) {
-    return `\`${signature}\` means Docker could not reach or use the local container runtime, storage, network port, or mounted file path needed for this command. The fix usually depends on whether Docker is running, which process owns the port, and what permissions the current user or container has. This page helps you ${intent}.`;
-  }
-
-  if (isOpenAI(seed)) {
-    return `\`${signature}\` means the OpenAI API accepted the request format far enough to identify a model, context, or account issue, but the request cannot run as configured. Check the model name, project access, token size, and account limits before changing application logic. This page helps you ${intent}.`;
-  }
-
-  if (isGitHubActions(seed)) {
-    return `\`${signature}\` means a GitHub Actions runner failed in a clean CI environment, not necessarily on your local machine. The usual gap is workflow configuration: Node version, lockfile state, secrets, SSH setup, or project paths. This page helps you ${intent}.`;
-  }
-
-  if (isNpm(seed)) {
-    return `\`${signature}\` means npm or Node.js could not install, resolve, or load the package metadata it needs for the current project. The practical issue is usually a dependency conflict, missing \`package.json\`, stale lockfile, module path, or runtime version problem. This page helps you ${intent}.`;
-  }
-
-  if (isGit(seed)) {
-    return `\`${signature}\` means Git cannot complete the repository operation with the current working directory, remote, history, or authentication setup. The command is often correct, but the repository state or remote configuration is not what Git expects. This page helps you ${intent}.`;
-  }
-
-  if (isPython(seed)) {
-    return `\`${signature}\` means Python cannot use the package, virtual environment, certificate store, or interpreter setup required by the script. The same command can behave differently depending on which Python executable and environment are active. This page helps you ${intent}.`;
-  }
-
-  if (isSsl(seed)) {
-    return `\`${signature}\` means a TLS client could not verify the certificate chain or validity period for the server it contacted. The problem can be on the server certificate, an intermediate certificate, the local trust store, or an intercepting proxy. This page helps you ${intent}.`;
-  }
-
-  if (isDnsOrCloudflare(seed)) {
-    return `\`${signature}\` means the browser, DNS resolver, or Cloudflare edge could not reach the expected origin in a healthy way. The important checks are authoritative DNS records, proxy status, origin availability, firewall rules, and TLS mode. This page helps you ${intent}.`;
-  }
-
-  if (isVercel(seed)) {
-    return `\`${signature}\` means Vercel could not build or resolve the project in its deployment environment. Local success does not guarantee Vercel has the same Node version, root directory, environment variables, file casing, or dependency state. This page helps you ${intent}.`;
-  }
-
-  if (isAiTool(seed)) {
-    return `\`${signature}\` means the AI coding tool could not use the selected provider, model, key, or account limit. In practice, check the provider field, base URL, model name, and whether the account has access to that model. This page helps you ${intent}.`;
-  }
-
-  return `\`${signature}\` means ${tech} encountered a known failure mode for this workflow. Use the signature, command, and surrounding log lines to narrow the cause before changing configuration. This page helps you ${intent}.`;
-}
-
-function quickFixSteps(seed) {
-  const steps = [];
-
-  if (isAuth(seed)) {
-    steps.push(`Confirm the ${credentialName(seed)} is being loaded by the command that fails.`);
-    steps.push(seed.quick_fix);
-    steps.push('Restart the shell, app, CI job, or editor after changing credentials so it reads the new value.');
-    steps.push(authVerificationStep(seed));
-    return limitSteps(steps);
-  }
-
-  if (isRateOrQuota(seed)) {
-    steps.push('Pause automatic retries so they do not keep increasing traffic.');
-    steps.push(seed.quick_fix);
-    steps.push('Lower concurrency, prompt size, batch size, or requested output length before retrying.');
-    steps.push('Check usage, billing, or project limits in the provider dashboard.');
-    return limitSteps(steps);
-  }
-
-  if (isDocker(seed)) {
-    steps.push('Run `docker info` or open Docker Desktop to confirm the daemon is running.');
-    steps.push(seed.quick_fix);
-    steps.push('Check the failing resource directly: socket permissions, disk usage, port owner, or mounted path.');
-    steps.push('Restart only the affected container or compose stack after changing Docker settings.');
-    return limitSteps(steps);
-  }
-
-  if (isGitHubActions(seed)) {
-    steps.push('Open the failed workflow step and copy the first real error above the stack trace.');
-    steps.push(seed.quick_fix);
-    steps.push('Check `.github/workflows/*` for Node version, working-directory, secrets, and deploy permissions.');
-    steps.push('Rerun the job after committing lockfile or workflow changes.');
-    return limitSteps(steps);
-  }
-
-  if (isNpm(seed)) {
-    steps.push('Run the command from the directory that contains `package.json`.');
-    steps.push(seed.quick_fix);
-    steps.push('If install state is suspect, remove `node_modules` and reinstall from the committed lockfile.');
-    steps.push('Use the same Node and npm versions locally and in CI.');
-    return limitSteps(steps);
-  }
-
-  if (isOpenAI(seed)) {
-    steps.push('Verify the configured model name and project access before changing prompts or SDK code.');
-    steps.push(seed.quick_fix);
-    steps.push('Check prompt size, output token settings, and account limits if the error mentions context or quota.');
-    steps.push('Retry with a minimal request that uses the same API key and model.');
-    return limitSteps(steps);
-  }
-
-  if (isDnsOrCloudflare(seed)) {
-    steps.push('Check the authoritative DNS record for the exact hostname, not only the browser result.');
-    steps.push(seed.quick_fix);
-    steps.push('Test the origin directly when possible, bypassing the proxy or CDN.');
-    steps.push('Flush local DNS cache or wait for TTL before judging propagation.');
-    return limitSteps(steps);
-  }
-
-  if (isVercel(seed)) {
-    steps.push('Run the same build command locally after a clean install.');
-    steps.push(seed.quick_fix);
-    steps.push('Verify Vercel project root, Node version, environment variables, and install command.');
-    steps.push('Commit any generated files or lockfile changes required by the build.');
-    return limitSteps(steps);
-  }
-
-  if (isPython(seed)) {
-    steps.push('Check `python --version` and `python -m pip --version` to confirm the active interpreter.');
-    steps.push(seed.quick_fix);
-    steps.push('Activate the intended virtual environment before installing or running the script.');
-    steps.push('Retry with `python -m ...` commands to avoid using the wrong executable.');
-    return limitSteps(steps);
-  }
-
-  if (isSsl(seed)) {
-    steps.push('Inspect the certificate chain and expiry for the exact hostname.');
-    steps.push(seed.quick_fix);
-    steps.push('Update the client trust store or CA bundle instead of disabling verification.');
-    steps.push('Retry from another network if a proxy or antivirus tool may intercept TLS.');
-    return limitSteps(steps);
-  }
-
-  steps.push('Copy the exact error signature and the command that produced it.');
-  steps.push(seed.quick_fix);
-  steps.push(`Check the ${seed.technology} configuration that matches this command.`);
-  steps.push('Rerun the smallest failing command after each change.');
-  return limitSteps(steps);
-}
-
-function troubleshootingSteps(seed) {
-  const steps = [
-    `Start with the exact signature: \`${seed.error_signature}\`. Confirm it appears on the failing command, request, or deployment log you are debugging.`,
-  ];
-
-  if (isAuth(seed)) {
-    steps.push('Print or inspect whether the expected environment variable is set without exposing the secret value.');
-    steps.push(`Check whether the ${credentialName(seed)} has access to the specific project, repo, registry, or model.`);
-    steps.push('Look for whitespace, copied quotes, wrong provider fields, or credentials from another organization or project.');
-  }
-
-  if (isRateOrQuota(seed)) {
-    steps.push('Check whether the error is request rate, token volume, billing quota, or model access rather than treating all 429-style errors the same.');
-    steps.push('Review retry code for immediate loops; add backoff and a maximum retry count if retries are allowed.');
-    steps.push('Reduce parallel workers or batch size and confirm the error rate drops.');
-  }
-
-  if (isDocker(seed)) {
-    steps.push('Run `docker info` to confirm the client can talk to the daemon.');
-    steps.push('For port errors, identify the process using the port with `lsof -i :PORT` or the platform equivalent.');
-    steps.push('For disk errors, run `docker system df` before pruning images, volumes, or build cache.');
-    steps.push('For permission errors, check socket ownership, container user IDs, and bind-mounted file permissions.');
-  }
-
-  if (isOpenAI(seed)) {
-    steps.push('Log the configured model name and project or organization identifier without exposing the API key.');
-    steps.push('If the error mentions context, count prompt, history, tool, and requested output tokens together.');
-    steps.push('If the error mentions access, verify the selected project can use that model.');
-  }
-
-  if (isNpm(seed)) {
-    steps.push('Confirm `package.json` and `package-lock.json` are both present when using `npm ci`.');
-    steps.push('Check the package named in the npm error and compare its required peer dependency range with the installed version.');
-    steps.push('Regenerate the lockfile only after deciding the correct dependency versions.');
-  }
-
-  if (isGitHubActions(seed)) {
-    steps.push('Check the runner log for Node version, working directory, and whether secrets are available to the event type.');
-    if (/npm ci|lockfile|package-lock/.test(text(seed))) {
-      steps.push('Verify `package-lock.json` is committed and matches `package.json`.');
-      steps.push('Check that `actions/setup-node` uses the same major Node version you use to regenerate the lockfile.');
-    } else if (/ssh|publickey|deploy key/.test(text(seed))) {
-      steps.push('Verify the private key secret, public deploy key, and `known_hosts` setup.');
-      steps.push('Confirm the workflow uses the SSH remote URL for the repository or host that owns the deploy key.');
-    } else if (/node|engine/.test(text(seed))) {
-      steps.push('Compare the workflow Node version with `.nvmrc`, `package.json` engines, and local `node --version`.');
-      steps.push('Update `actions/setup-node` before changing dependencies.');
-    }
-  }
-
-  if (isGit(seed)) {
-    steps.push('Run `git status` and `git remote -v` from the directory where the error happens.');
-    steps.push('For history or merge errors, inspect the branch relationship before forcing a merge or rewriting history.');
-    steps.push('For remote errors, confirm whether the URL should use SSH or HTTPS.');
-  }
-
-  if (isPython(seed)) {
-    steps.push('Run `which python` and `python -m pip --version` to verify installs target the interpreter that runs the code.');
-    steps.push('If a virtual environment is expected, recreate it only after confirming the right Python version is installed.');
-    steps.push('For certificate failures, update `certifi` or the system CA store before changing application code.');
-  }
-
-  if (isSsl(seed)) {
-    steps.push('Use a certificate checker or `openssl s_client` to inspect the served certificate and intermediates.');
-    steps.push('Check the local system clock, because an incorrect date can make valid certificates fail.');
-    steps.push('If a corporate proxy is involved, install the approved root CA rather than bypassing TLS checks.');
-  }
-
-  if (isDnsOrCloudflare(seed)) {
-    steps.push('Query authoritative DNS with `dig` or your DNS provider UI for the exact hostname.');
-    steps.push('Check whether Cloudflare proxy mode, SSL mode, and origin firewall rules match the deployment.');
-    steps.push('Compare direct origin response with proxied response to separate DNS, CDN, and origin problems.');
-  }
-
-  if (isVercel(seed)) {
-    steps.push('Check Vercel build logs for the first module, command, or environment variable that fails.');
-    steps.push('Verify the project root and build command match the folder that contains `package.json`.');
-    steps.push('Check file-name casing because Vercel builds on a case-sensitive filesystem.');
-  }
-
-  if (isAiTool(seed)) {
-    steps.push('Open the model or provider settings and verify the selected provider matches the API key.');
-    steps.push('Check base URL, model name, and account access before changing editor-wide settings.');
-    steps.push('Restart the editor after changing provider credentials so stale settings are not reused.');
-  }
-
-  steps.push(`Make the targeted change: ${seed.quick_fix}`);
-  steps.push('Rerun the smallest failing command, request, or deployment step and keep the output for comparison.');
-
-  return dedupe(steps).slice(0, 7);
-}
-
-function faqItems(seed) {
-  const firstCheck = firstCheckText(seed);
-
-  return [
-    {
-      question: 'What should I check first?',
-      answer: `Start with the exact \`${seed.error_signature}\` message and the ${firstCheck}. That usually tells you whether this is a credential, configuration, dependency, network, or runtime issue.`,
-    },
-    {
-      question: 'Can I ignore this error?',
-      answer: `No. Treat it as a failed ${seed.technology} step. Temporary bypasses can be useful for diagnosis, but publish or deploy only after the underlying cause is fixed.`,
-    },
-    {
-      question: 'Why does this work locally but fail in CI?',
-      answer: ciAnswer(seed),
-    },
-    {
-      question: 'How do I know the fix worked?',
-      answer: `Rerun the smallest command, request, workflow, or deployment that previously produced \`${seed.error_signature}\`. The fix is working when that step completes without the same signature and the expected artifact, response, or connection is produced.`,
-    },
-  ];
-}
-
-function firstCheckText(seed) {
-  if (isAuth(seed)) return `${credentialName(seed)} source being used by the failing process`;
-  if (isDocker(seed)) return 'Docker daemon, socket, port, disk, or mount involved';
-  if (isNpm(seed)) return '`package.json`, `package-lock.json`, and npm version';
-  if (isGitHubActions(seed)) return 'workflow step, Node version, lockfile, and secrets';
-  if (isDnsOrCloudflare(seed)) return 'authoritative DNS record, Cloudflare mode, and origin health';
-  if (isSsl(seed)) return 'certificate chain, expiry, hostname, and local trust store';
-  if (isPython(seed)) return 'active Python interpreter and virtual environment';
-  if (isVercel(seed)) return 'Vercel build log, project root, and environment variables';
-  if (isAiTool(seed)) return 'provider, model, base URL, and API key settings';
-  return `${seed.technology} setting named in the log`;
-}
-
-function credentialName(seed) {
-  const value = text(seed);
-
-  if (/ssh|publickey|deploy key/.test(value)) return 'SSH key';
-  if (/api key/.test(value)) return 'API key';
-  if (/token/.test(value)) return 'token';
-  if (/quota|billing/.test(value)) return 'account quota or billing setting';
-  if (/permission/.test(value)) return 'permission or access setting';
-
-  return 'credential';
-}
-
-function authVerificationStep(seed) {
-  const value = text(seed);
-
-  if (/npm|registry/.test(value)) return 'Run `npm whoami` against the same registry used by the failing command.';
-  if (/ssh|publickey|deploy key|git/.test(value)) return 'Run the matching `ssh -T` host check to confirm the key is accepted.';
-  if (/cursor|ai coding/.test(value)) return 'Send a small test request from the same editor provider settings.';
-  if (/openai|api key/.test(value)) return 'Send a minimal API request with the same key, project, and model.';
-
-  return 'Run the smallest supported authentication check for the tool that failed.';
-}
-
-function ciAnswer(seed) {
-  if (isPython(seed)) {
-    return 'CI starts from a clean machine. It may use a different Python version, miss the virtual environment, or install packages into a different interpreter. Reproduce with `python -m pip` and log the Python version used by the job.';
-  }
-
-  if (isGitHubActions(seed) || isNpm(seed) || isVercel(seed)) {
-    return 'CI starts from a clean machine. It may use a different Node or Python version, a stricter filesystem, missing secrets, or a lockfile that does not match local `node_modules`. Reproduce with a clean install and match the CI runtime.';
-  }
-
-  if (isAuth(seed)) {
-    return 'Local tools may read credentials from your shell, keychain, or editor, while CI only sees explicitly configured secrets. Check secret names, event permissions, and whether the workflow is allowed to access them.';
-  }
-
-  if (isDnsOrCloudflare(seed) || isSsl(seed)) {
-    return 'CI may run from a different network and use a different DNS resolver or CA bundle. Compare DNS answers, certificate chains, and proxy settings between local and CI.';
-  }
-
-  return 'Local and CI environments often differ in installed tools, environment variables, permissions, and network access. Log the versions and non-secret configuration values used by the failing step.';
-}
-
-function limitSteps(steps) {
-  return dedupe(steps).slice(0, 5);
-}
-
-function dedupe(items) {
-  return [...new Set(items.filter(Boolean))];
-}
-
-function lowerFirst(value) {
-  return `${value.charAt(0).toLowerCase()}${value.slice(1)}`;
+  const mergeMap = {
+    'AI coding tools': 'OpenAI API',
+    APIs: 'OpenAI API',
+    'CI/CD': 'GitHub Actions',
+    Containers: 'Docker',
+    Cursor: 'OpenAI API',
+    Deployment: 'GitHub Actions',
+    'Docker Compose': 'Docker',
+    Networking: 'DNS',
+    'Package managers': 'npm',
+    Runtime: 'Node.js',
+    'Version control': 'Git',
+    Vercel: 'GitHub Actions',
+  };
+  const finalCategories = new Set([
+    'Cloudflare',
+    'DNS',
+    'Docker',
+    'Git',
+    'GitHub Actions',
+    'Node.js',
+    'npm',
+    'OpenAI API',
+    'Python',
+    'SSL/TLS',
+  ]);
+  const technologyTarget = mergeMap[technology] ?? technology;
+  if (finalCategories.has(technologyTarget)) return technologyTarget;
+  return mergeMap[category] ?? category;
 }
 
 function text(seed) {
   return `${seed.technology} ${seed.category} ${seed.error_signature} ${seed.title} ${seed.search_intent}`.toLowerCase();
 }
 
-function isAuth(seed) {
-  const value = text(seed);
-  return (
-    /auth|api key|token|credential|permission denied|publickey|ssh|quota/.test(value) &&
-    !isRateOrQuota(seed) &&
-    !isDocker(seed)
-  );
+function hash(value) {
+  let result = 0;
+  for (const char of value) result = (result * 31 + char.charCodeAt(0)) >>> 0;
+  return result;
 }
 
-function isRateOrQuota(seed) {
-  return /rate|quota|too many requests|limit/.test(text(seed));
-}
-
-function isDocker(seed) {
-  return /docker|compose|container/.test(text(seed));
-}
-
-function isNpm(seed) {
-  return /npm|node\.js|node|module|package|lockfile|eresolve|enoent/.test(text(seed)) && !isPython(seed);
-}
-
-function isGitHubActions(seed) {
-  return /github actions|workflow|runner/.test(text(seed));
-}
-
-function isGit(seed) {
-  return /\bgit\b|remote|repository|merge|histories/.test(text(seed)) && !isGitHubActions(seed);
-}
-
-function isPython(seed) {
-  return /python|pip|venv|modulenotfounderror|ensurepip/.test(text(seed));
-}
-
-function isSsl(seed) {
-  return /ssl|tls|certificate|issuer|cert/.test(text(seed)) && !isDnsOrCloudflare(seed);
-}
-
-function isDnsOrCloudflare(seed) {
-  return /cloudflare|dns|nxdomain|origin/.test(text(seed));
-}
-
-function isVercel(seed) {
-  return /vercel/.test(text(seed));
-}
-
-function isAiTool(seed) {
-  return /cursor|ai coding/.test(text(seed));
-}
-
-function isOpenAI(seed) {
-  return /openai api/.test(text(seed));
-}
+await main();

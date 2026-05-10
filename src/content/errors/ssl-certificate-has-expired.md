@@ -1,7 +1,7 @@
 ---
 title: "SSL certificate has expired"
 description: "Fix SSL certificate has expired errors by renewing certificates and checking intermediate certificate chains."
-category: "Networking"
+category: "SSL/TLS"
 technology: "SSL/TLS"
 error_signature: "certificate has expired"
 common_causes:
@@ -10,12 +10,16 @@ common_causes:
   - "Certificate automation failed"
   - "Client system clock is incorrect"
 quick_fix: "Renew and deploy the certificate, then verify the full chain and server time."
+related_errors:
+  - "Python SSL certificate verify failed"
+  - "unable to get local issuer certificate"
+  - "NET::ERR_CERT_DATE_INVALID"
 updated: "2026-05-10"
 ---
 
 ## What this error means
 
-`certificate has expired` means a TLS client could not verify the certificate chain or validity period for the server it contacted. The problem can be on the server certificate, an intermediate certificate, the local trust store, or an intercepting proxy. This page helps you resolve expired TLS certificate errors in browsers, APIs, and command-line clients.
+`certificate has expired` means name resolution, origin connectivity, or TLS certificate validation failed before the application request could complete.
 
 ## Common causes
 
@@ -24,21 +28,74 @@ updated: "2026-05-10"
 - Certificate automation failed
 - Client system clock is incorrect
 
+## Copy-paste commands
+
+### Query DNS records
+
+```bash
+dig example.com A
+
+dig example.com CNAME
+```
+
+### Check HTTP response headers
+
+```bash
+curl -I https://example.com
+```
+
+### Inspect TLS certificate chain
+
+```bash
+openssl s_client -connect example.com:443 -servername example.com </dev/null
+```
+
+### Flush macOS DNS cache
+
+```bash
+sudo dscacheutil -flushcache; sudo killall -HUP mDNSResponder
+```
+
 ## Quick fixes
 
-1. Inspect the certificate chain and expiry for the exact hostname.
+1. Check the exact hostname, not just the apex domain.
 2. Renew and deploy the certificate, then verify the full chain and server time.
-3. Update the client trust store or CA bundle instead of disabling verification.
-4. Retry from another network if a proxy or antivirus tool may intercept TLS.
+3. Compare direct origin behavior with proxied/CDN behavior when possible.
+4. Retry after DNS TTL or certificate deployment has had time to propagate.
 
 ## Step-by-step troubleshooting
 
-1. Start with the exact signature: `certificate has expired`. Confirm it appears on the failing command, request, or deployment log you are debugging.
-2. Use a certificate checker or `openssl s_client` to inspect the served certificate and intermediates.
-3. Check the local system clock, because an incorrect date can make valid certificates fail.
-4. If a corporate proxy is involved, install the approved root CA rather than bypassing TLS checks.
-5. Make the targeted change: Renew and deploy the certificate, then verify the full chain and server time.
-6. Rerun the smallest failing command, request, or deployment step and keep the output for comparison.
+1. Confirm the browser, client, or log reports `certificate has expired` for the same hostname.
+2. Use `dig` to verify the authoritative DNS answer.
+3. Use `curl -I` to check whether the hostname reaches the expected service.
+4. Use `openssl s_client` to inspect certificate hostname, issuer, and expiry.
+5. If a CDN is involved, compare proxied and direct-origin behavior.
+
+## Platform-specific fixes
+
+### macOS
+
+- Use `dscacheutil` to clear local DNS cache after changing records.
+
+### Linux
+
+- Use `dig` or `resolvectl query` to compare resolver answers.
+
+### Windows
+
+- Use `ipconfig /flushdns` after DNS changes, then retest the exact hostname.
+
+## Real-world fixes
+
+- If Cloudflare is enabled, test whether the origin responds when accessed directly.
+- If only one network fails, compare DNS resolver answers before changing server config.
+- Renew and deploy the certificate, then verify the full chain and server time.
+
+## How to prevent it
+
+- Track DNS changes with owner, TTL, and expected target.
+- Monitor certificate expiry before renewal windows close.
+- Keep CDN SSL mode and origin certificate configuration documented.
 
 ## Related errors
 
@@ -50,16 +107,16 @@ updated: "2026-05-10"
 
 ### What should I check first?
 
-Start with the exact `certificate has expired` message and the certificate chain, expiry, hostname, and local trust store. That usually tells you whether this is a credential, configuration, dependency, network, or runtime issue.
+Start with the exact `certificate has expired` line and the command, request, or workflow step that produced it. In DNS or SSL/TLS, the first useful clue is usually near the first failure line, not the final stack trace.
 
 ### Can I ignore this error?
 
-No. Treat it as a failed SSL/TLS step. Temporary bypasses can be useful for diagnosis, but publish or deploy only after the underlying cause is fixed.
+No. Treat it as a failed DNS or SSL/TLS step. A temporary bypass may help diagnosis, but the underlying cause should be fixed before shipping or publishing changes.
 
-### Why does this work locally but fail in CI?
+### Why does this work locally but fail elsewhere?
 
-CI may run from a different network and use a different DNS resolver or CA bundle. Compare DNS answers, certificate chains, and proxy settings between local and CI.
+Local machines often have cached credentials, old dependencies, different runtime versions, or network settings that CI and production do not share. Reproduce from a clean shell or clean install when possible.
 
 ### How do I know the fix worked?
 
-Rerun the smallest command, request, workflow, or deployment that previously produced `certificate has expired`. The fix is working when that step completes without the same signature and the expected artifact, response, or connection is produced.
+Rerun the smallest command, request, or deployment step that produced `certificate has expired`. The fix is working when that step completes without the same signature and produces the expected output.
