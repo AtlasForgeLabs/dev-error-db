@@ -4,3 +4,4 @@ dist/
 .DS_Store
 
 automation/discovery/output/
+automation/expand/output/
