@@ -1,149 +1,192 @@
 [
   {
-    "slug": "openai-api-invalid-api-key",
-    "title": "OpenAI API invalid API key",
-    "description": "Fix OpenAI API authentication failures caused by missing, invalid, or incorrectly loaded API keys.",
-    "category": "APIs",
-    "technology": "OpenAI API",
-    "error_signature": "401 Incorrect API key provided",
-    "search_intent": "Resolve OpenAI API 401 authentication errors and verify API key configuration.",
+    "slug": "cloudflare-error-522-connection-timed-out",
+    "title": "Cloudflare error 522 connection timed out",
+    "description": "Fix Cloudflare 522 errors when Cloudflare cannot establish a timely connection to the origin server.",
+    "category": "Networking",
+    "technology": "Cloudflare",
+    "error_signature": "Error 522: Connection timed out",
+    "search_intent": "Troubleshoot Cloudflare 522 origin connection timeouts.",
     "common_causes": [
-      "API key is missing from the environment",
-      "API key was copied with extra whitespace",
-      "Application is reading the wrong environment variable",
-      "Key was revoked or belongs to a different project"
+      "Origin server is down or overloaded",
+      "Firewall blocks Cloudflare IP ranges",
+      "Origin network drops connections",
+      "DNS points to the wrong origin IP"
     ],
-    "quick_fix": "Create or copy the correct API key, set it in the expected environment variable, restart the app, and retry the request.",
+    "quick_fix": "Confirm the origin responds directly, allow Cloudflare IP ranges, and verify DNS points to the correct server.",
     "related_errors": [
-      "OpenAI API rate limit error",
-      "OpenAI API insufficient quota",
-      "OpenAI API model not found"
+      "Cloudflare error 525 SSL handshake failed",
+      "DNS_PROBE_FINISHED_NXDOMAIN",
+      "ERR_TOO_MANY_REDIRECTS"
     ]
   },
   {
-    "slug": "openai-api-insufficient-quota",
-    "title": "OpenAI API insufficient quota",
-    "description": "Fix OpenAI API insufficient quota errors by checking billing, project limits, and usage.",
-    "category": "APIs",
-    "technology": "OpenAI API",
-    "error_signature": "insufficient_quota",
-    "search_intent": "Understand why OpenAI API requests fail with insufficient quota and how to restore access.",
+    "slug": "cloudflare-error-525-ssl-handshake-failed",
+    "title": "Cloudflare error 525 SSL handshake failed",
+    "description": "Fix Cloudflare 525 SSL handshake failures between Cloudflare and the origin server.",
+    "category": "Networking",
+    "technology": "Cloudflare",
+    "error_signature": "Error 525: SSL handshake failed",
+    "search_intent": "Resolve TLS handshake failures on Cloudflare proxied domains.",
     "common_causes": [
-      "Billing is not active for the account",
-      "Project usage limit has been reached",
-      "Free trial or promotional credit is exhausted",
-      "Requests are sent from the wrong organization or project"
+      "Origin certificate is invalid or expired",
+      "Origin does not support compatible TLS settings",
+      "Cloudflare SSL mode does not match origin configuration",
+      "Server name indication is not configured correctly"
     ],
-    "quick_fix": "Check billing and project limits, then update the API key or reduce usage before retrying.",
+    "quick_fix": "Install a valid origin certificate and use a Cloudflare SSL mode that matches the origin HTTPS setup.",
     "related_errors": [
-      "OpenAI API rate limit error",
-      "OpenAI API invalid API key",
-      "429 Too Many Requests"
+      "SSL certificate has expired",
+      "Cloudflare error 522 connection timed out",
+      "unable to get local issuer certificate"
     ]
   },
   {
-    "slug": "openai-api-model-not-found",
-    "title": "OpenAI API model not found",
-    "description": "Fix OpenAI API model not found errors caused by wrong model names, access limits, or stale configuration.",
-    "category": "APIs",
-    "technology": "OpenAI API",
-    "error_signature": "The model does not exist or you do not have access to it",
-    "search_intent": "Resolve OpenAI API model lookup errors in SDKs, scripts, and production apps.",
+    "slug": "cursor-model-not-available",
+    "title": "Cursor model not available",
+    "description": "Fix Cursor model not available errors caused by unavailable models, provider settings, or access limits.",
+    "category": "AI coding tools",
+    "technology": "Cursor",
+    "error_signature": "Model not available",
+    "search_intent": "Resolve unavailable model errors in Cursor and connected AI providers.",
     "common_causes": [
-      "Model name is misspelled",
-      "Application uses a deprecated model name",
-      "Project does not have access to the requested model",
-      "Configuration points to a model intended for another provider"
+      "Selected model is not enabled for the account",
+      "Provider key is invalid or missing",
+      "Model name changed or is not supported by the selected provider",
+      "Network or proxy settings block provider requests"
     ],
-    "quick_fix": "Replace the model value with a currently available model name that your project can access.",
+    "quick_fix": "Choose a model available to your account and verify the matching provider credentials.",
     "related_errors": [
-      "OpenAI API invalid API key",
-      "OpenAI API rate limit error",
-      "context_length_exceeded"
-    ]
-  },
-  {
-    "slug": "openai-api-context-length-exceeded",
-    "title": "OpenAI API context length exceeded",
-    "description": "Fix OpenAI API context length exceeded errors by reducing prompt, history, or output token size.",
-    "category": "APIs",
-    "technology": "OpenAI API",
-    "error_signature": "context_length_exceeded",
-    "search_intent": "Reduce token usage when OpenAI API requests exceed model context limits.",
-    "common_causes": [
-      "Prompt includes too much chat history",
-      "Large documents are sent without chunking",
-      "Maximum output tokens are set too high",
-      "Tool or retrieval context is appended without trimming"
-    ],
-    "quick_fix": "Trim old context, chunk large inputs, and lower the maximum output token setting.",
-    "related_errors": [
+      "Cursor OpenAI API key not working",
       "OpenAI API model not found",
-      "OpenAI API rate limit error",
+      "OpenAI API rate limit error"
+    ]
+  },
+  {
+    "slug": "cursor-openai-api-key-not-working",
+    "title": "Cursor OpenAI API key not working",
+    "description": "Fix Cursor API key issues when custom model access or OpenAI-compatible settings fail.",
+    "category": "AI coding tools",
+    "technology": "Cursor",
+    "error_signature": "API key not working",
+    "search_intent": "Troubleshoot API key configuration problems in Cursor and AI coding tools.",
+    "common_causes": [
+      "API key was pasted into the wrong provider field",
+      "Provider base URL is incorrect",
+      "Key lacks access to the selected model",
+      "Application needs to be restarted after settings change"
+    ],
+    "quick_fix": "Verify the provider, API key, base URL, and model selection, then restart Cursor before retrying.",
+    "related_errors": [
+      "OpenAI API invalid API key",
+      "OpenAI API model not found",
       "OpenAI API insufficient quota"
     ]
   },
   {
-    "slug": "github-actions-permission-denied-deploy-key",
-    "title": "GitHub Actions permission denied publickey",
-    "description": "Fix GitHub Actions SSH permission denied errors when a workflow clones, deploys, or pushes with a key.",
-    "category": "CI/CD",
-    "technology": "GitHub Actions",
-    "error_signature": "Permission denied (publickey)",
-    "search_intent": "Fix SSH authentication failures inside GitHub Actions workflows.",
+    "slug": "dns-probe-finished-nxdomain",
+    "title": "DNS_PROBE_FINISHED_NXDOMAIN",
+    "description": "Fix DNS_PROBE_FINISHED_NXDOMAIN errors caused by missing, incorrect, or not-yet-propagated DNS records.",
+    "category": "Networking",
+    "technology": "DNS",
+    "error_signature": "DNS_PROBE_FINISHED_NXDOMAIN",
+    "search_intent": "Troubleshoot domains that do not resolve in browsers or deployment checks.",
     "common_causes": [
-      "Deploy key is not added to the target repository",
-      "Private key secret is missing or malformed",
-      "Known hosts entry is missing",
-      "Workflow uses the wrong remote URL"
+      "Domain has no matching DNS record",
+      "Nameservers are not configured correctly",
+      "DNS record was recently changed and has not propagated",
+      "Local DNS cache contains stale data"
     ],
-    "quick_fix": "Store the private key in a secret, add the matching public key to the target repo, and configure known_hosts before SSH commands.",
+    "quick_fix": "Check authoritative DNS records, verify nameservers, and flush local DNS cache after changes.",
     "related_errors": [
-      "fatal: Could not read from remote repository",
-      "Host key verification failed",
-      "Git permission denied (publickey)"
+      "Cloudflare error 522 connection timed out",
+      "Vercel invalid domain configuration",
+      "ERR_NAME_NOT_RESOLVED"
     ]
   },
   {
-    "slug": "github-actions-npm-ci-lockfile-error",
-    "title": "GitHub Actions npm ci lockfile error",
-    "description": "Fix GitHub Actions npm ci failures caused by missing or out-of-sync package lock files.",
-    "category": "CI/CD",
-    "technology": "GitHub Actions",
-    "error_signature": "npm ci can only install packages when your package.json and package-lock.json are in sync",
-    "search_intent": "Resolve npm ci lockfile errors in GitHub Actions builds.",
+    "slug": "docker-bind-address-already-in-use",
+    "title": "Docker bind: address already in use",
+    "description": "Fix Docker bind address already in use errors by finding the host process or compose stack occupying the port, then stopping it or remapping the host port.",
+    "category": "Docker",
+    "technology": "Docker",
+    "error_signature": "bind: address already in use",
+    "search_intent": "Find and resolve port conflicts in local containers or development servers.",
     "common_causes": [
-      "package.json changed without updating package-lock.json",
-      "Lockfile was not committed",
-      "Different npm versions generated incompatible lockfile metadata",
-      "Dependency changes were made on another branch"
+      "Host port is already used by another local process",
+      "An old Docker Compose stack is still running",
+      "Another container already publishes the same host port",
+      "Compose maps multiple services to the same host port"
     ],
-    "quick_fix": "Run npm install locally with the intended Node and npm versions, commit the updated lockfile, and rerun the workflow.",
+    "quick_fix": "Find the process or container using the host port, stop it if appropriate, or change the host-side port mapping such as 3001:3000.",
     "related_errors": [
-      "npm ERR! code ERESOLVE",
-      "npm ERR! code ENOLOCK",
-      "GitHub Actions Node version mismatch"
+      "Docker cannot connect to the daemon",
+      "Docker Compose port is already allocated",
+      "Docker no space left on device",
+      "Docker permission denied"
     ]
   },
   {
-    "slug": "github-actions-node-version-mismatch",
-    "title": "GitHub Actions Node version mismatch",
-    "description": "Fix GitHub Actions builds that fail because the workflow Node.js version differs from local development.",
-    "category": "CI/CD",
-    "technology": "GitHub Actions",
-    "error_signature": "The engine \"node\" is incompatible with this module",
-    "search_intent": "Align GitHub Actions Node.js versions with project requirements.",
+    "slug": "docker-cannot-connect-to-daemon",
+    "title": "Docker cannot connect to the daemon",
+    "description": "Fix Docker daemon connection errors when Docker Desktop or the Linux Docker service is not available.",
+    "category": "Containers",
+    "technology": "Docker",
+    "error_signature": "Cannot connect to the Docker daemon",
+    "search_intent": "Restore Docker daemon access for local builds, compose commands, and CI jobs.",
     "common_causes": [
-      "Workflow uses an older Node version than package engines require",
-      ".nvmrc and workflow configuration disagree",
-      "Dependency requires a newer runtime",
-      "Local build uses a different Node version than CI"
+      "Docker Desktop is not running",
+      "Linux Docker service is stopped",
+      "Current user cannot access the Docker socket",
+      "DOCKER_HOST points to an unavailable daemon"
     ],
-    "quick_fix": "Set actions/setup-node to the project-supported Node.js version and keep .nvmrc or package engines aligned.",
+    "quick_fix": "Start Docker, verify docker info works, and clear incorrect DOCKER_HOST settings if needed.",
     "related_errors": [
-      "GitHub Actions npm ci lockfile error",
-      "npm ERR! unsupported engine",
-      "Astro build failed in GitHub Actions"
+      "Docker permission denied",
+      "docker: command not found",
+      "permission denied while trying to connect to the Docker daemon socket"
+    ]
+  },
+  {
+    "slug": "docker-compose-port-is-already-allocated",
+    "title": "Docker Compose port is already allocated",
+    "description": "Fix Docker Compose port allocation errors when another process or container already uses the host port.",
+    "category": "Containers",
+    "technology": "Docker Compose",
+    "error_signature": "Bind for 0.0.0.0:PORT failed: port is already allocated",
+    "search_intent": "Resolve Docker Compose host port conflicts during local development.",
+    "common_causes": [
+      "Another container is already publishing the same port",
+      "A local service uses the requested host port",
+      "Old compose stack is still running",
+      "Multiple projects use the same default port mapping"
+    ],
+    "quick_fix": "Stop the process using the port or change the host-side port mapping in compose.yaml.",
+    "related_errors": [
+      "address already in use",
+      "Docker cannot connect to the daemon",
+      "Docker permission denied"
+    ]
+  },
+  {
+    "slug": "docker-no-space-left-on-device",
+    "title": "Docker no space left on device",
+    "description": "Fix Docker no space left on device errors by cleaning unused images, containers, volumes, and build cache.",
+    "category": "Containers",
+    "technology": "Docker",
+    "error_signature": "no space left on device",
+    "search_intent": "Free Docker storage when builds, pulls, or containers fail due to disk pressure.",
+    "common_causes": [
+      "Unused images and layers accumulated",
+      "Build cache is too large",
+      "Stopped containers still consume disk",
+      "Docker Desktop disk image reached its limit"
+    ],
+    "quick_fix": "Inspect docker system df, then prune unused Docker resources that are safe to remove.",
+    "related_errors": [
+      "Docker cannot connect to the daemon",
+      "failed to register layer",
+      "write /var/lib/docker: no space left on device"
     ]
   },
   {
@@ -210,108 +253,87 @@
     ]
   },
   {
-    "slug": "docker-cannot-connect-to-daemon",
-    "title": "Docker cannot connect to the daemon",
-    "description": "Fix Docker daemon connection errors when Docker Desktop or the Linux Docker service is not available.",
-    "category": "Containers",
-    "technology": "Docker",
-    "error_signature": "Cannot connect to the Docker daemon",
-    "search_intent": "Restore Docker daemon access for local builds, compose commands, and CI jobs.",
+    "slug": "github-actions-node-version-mismatch",
+    "title": "GitHub Actions Node version mismatch",
+    "description": "Fix GitHub Actions builds that fail because the workflow Node.js version differs from local development.",
+    "category": "CI/CD",
+    "technology": "GitHub Actions",
+    "error_signature": "The engine \"node\" is incompatible with this module",
+    "search_intent": "Align GitHub Actions Node.js versions with project requirements.",
     "common_causes": [
-      "Docker Desktop is not running",
-      "Linux Docker service is stopped",
-      "Current user cannot access the Docker socket",
-      "DOCKER_HOST points to an unavailable daemon"
+      "Workflow uses an older Node version than package engines require",
+      ".nvmrc and workflow configuration disagree",
+      "Dependency requires a newer runtime",
+      "Local build uses a different Node version than CI"
     ],
-    "quick_fix": "Start Docker, verify docker info works, and clear incorrect DOCKER_HOST settings if needed.",
+    "quick_fix": "Set actions/setup-node to the project-supported Node.js version and keep .nvmrc or package engines aligned.",
     "related_errors": [
-      "Docker permission denied",
-      "docker: command not found",
-      "permission denied while trying to connect to the Docker daemon socket"
-    ]
-  },
-  {
-    "slug": "docker-no-space-left-on-device",
-    "title": "Docker no space left on device",
-    "description": "Fix Docker no space left on device errors by cleaning unused images, containers, volumes, and build cache.",
-    "category": "Containers",
-    "technology": "Docker",
-    "error_signature": "no space left on device",
-    "search_intent": "Free Docker storage when builds, pulls, or containers fail due to disk pressure.",
-    "common_causes": [
-      "Unused images and layers accumulated",
-      "Build cache is too large",
-      "Stopped containers still consume disk",
-      "Docker Desktop disk image reached its limit"
-    ],
-    "quick_fix": "Inspect docker system df, then prune unused Docker resources that are safe to remove.",
-    "related_errors": [
-      "Docker cannot connect to the daemon",
-      "failed to register layer",
-      "write /var/lib/docker: no space left on device"
-    ]
-  },
-  {
-    "slug": "docker-compose-port-is-already-allocated",
-    "title": "Docker Compose port is already allocated",
-    "description": "Fix Docker Compose port allocation errors when another process or container already uses the host port.",
-    "category": "Containers",
-    "technology": "Docker Compose",
-    "error_signature": "Bind for 0.0.0.0:PORT failed: port is already allocated",
-    "search_intent": "Resolve Docker Compose host port conflicts during local development.",
-    "common_causes": [
-      "Another container is already publishing the same port",
-      "A local service uses the requested host port",
-      "Old compose stack is still running",
-      "Multiple projects use the same default port mapping"
-    ],
-    "quick_fix": "Stop the process using the port or change the host-side port mapping in compose.yaml.",
-    "related_errors": [
-      "address already in use",
-      "Docker cannot connect to the daemon",
-      "Docker permission denied"
-    ]
-  },
-  {
-    "slug": "npm-err-code-eresolve",
-    "title": "npm ERR! code ERESOLVE",
-    "description": "Fix npm ERR! code ERESOLVE dependency resolution errors caused by conflicting peer dependencies.",
-    "category": "Package managers",
-    "technology": "npm",
-    "error_signature": "npm ERR! code ERESOLVE",
-    "search_intent": "Resolve npm peer dependency conflicts without masking real package incompatibilities.",
-    "common_causes": [
-      "Package requires a different peer dependency version",
-      "Framework major versions are mixed",
-      "Lockfile contains stale dependency choices",
-      "A plugin has not been updated for the installed framework"
-    ],
-    "quick_fix": "Update the conflicting packages to compatible versions, then regenerate the lockfile.",
-    "related_errors": [
-      "npm ERR! code E401",
+      "GitHub Actions npm ci lockfile error",
       "npm ERR! unsupported engine",
-      "npm ci lockfile error"
+      "Astro build failed in GitHub Actions"
     ]
   },
   {
-    "slug": "npm-err-code-enoent-package-json",
-    "title": "npm ERR! enoent package.json",
-    "description": "Fix npm enoent package.json errors when npm commands are run outside a Node.js project.",
-    "category": "Package managers",
-    "technology": "npm",
-    "error_signature": "npm ERR! enoent Could not read package.json",
-    "search_intent": "Find and fix missing package.json errors in npm projects and scripts.",
+    "slug": "github-actions-npm-ci-lockfile-error",
+    "title": "GitHub Actions npm ci lockfile error",
+    "description": "Fix GitHub Actions npm ci failures caused by missing or out-of-sync package lock files.",
+    "category": "CI/CD",
+    "technology": "GitHub Actions",
+    "error_signature": "npm ci can only install packages when your package.json and package-lock.json are in sync",
+    "search_intent": "Resolve npm ci lockfile errors in GitHub Actions builds.",
     "common_causes": [
-      "Command is running in the wrong directory",
-      "package.json was deleted or not committed",
-      "Project has not been initialized",
-      "CI working-directory points to the wrong folder"
+      "package.json changed without updating package-lock.json",
+      "Lockfile was not committed",
+      "Different npm versions generated incompatible lockfile metadata",
+      "Dependency changes were made on another branch"
     ],
-    "quick_fix": "Run npm commands from the directory that contains package.json or create one with npm init.",
+    "quick_fix": "Run npm install locally with the intended Node and npm versions, commit the updated lockfile, and rerun the workflow.",
     "related_errors": [
-      "npm ERR! missing script",
-      "npm ERR! code ENOENT",
-      "GitHub Actions npm ci lockfile error"
+      "npm ERR! code ERESOLVE",
+      "npm ERR! code ENOLOCK",
+      "GitHub Actions Node version mismatch"
+    ]
+  },
+  {
+    "slug": "github-actions-permission-denied-deploy-key",
+    "title": "GitHub Actions permission denied publickey",
+    "description": "Fix GitHub Actions SSH permission denied errors when a workflow clones, deploys, or pushes with a key.",
+    "category": "CI/CD",
+    "technology": "GitHub Actions",
+    "error_signature": "Permission denied (publickey)",
+    "search_intent": "Fix SSH authentication failures inside GitHub Actions workflows.",
+    "common_causes": [
+      "Deploy key is not added to the target repository",
+      "Private key secret is missing or malformed",
+      "Known hosts entry is missing",
+      "Workflow uses the wrong remote URL"
+    ],
+    "quick_fix": "Store the private key in a secret, add the matching public key to the target repo, and configure known_hosts before SSH commands.",
+    "related_errors": [
+      "fatal: Could not read from remote repository",
+      "Host key verification failed",
+      "Git permission denied (publickey)"
+    ]
+  },
+  {
+    "slug": "node-err-module-not-found",
+    "title": "Node.js ERR_MODULE_NOT_FOUND",
+    "description": "Fix Node.js ERR_MODULE_NOT_FOUND errors in ES module projects.",
+    "category": "Runtime",
+    "technology": "Node.js",
+    "error_signature": "Error [ERR_MODULE_NOT_FOUND]",
+    "search_intent": "Debug ES module import resolution errors in Node.js.",
+    "common_causes": [
+      "Relative import is missing a file extension",
+      "Package is not installed",
+      "Path points to a CommonJS-only entry incorrectly",
+      "Case-sensitive filesystem reveals a path mismatch"
+    ],
+    "quick_fix": "Check the exact import specifier, include required file extensions for relative ESM imports, and reinstall dependencies.",
+    "related_errors": [
+      "Node.js cannot find module",
+      "Cannot use import statement outside a module",
+      "npm ERR! code ERESOLVE"
     ]
   },
   {
@@ -336,24 +358,175 @@
     ]
   },
   {
-    "slug": "node-err-module-not-found",
-    "title": "Node.js ERR_MODULE_NOT_FOUND",
-    "description": "Fix Node.js ERR_MODULE_NOT_FOUND errors in ES module projects.",
-    "category": "Runtime",
-    "technology": "Node.js",
-    "error_signature": "Error [ERR_MODULE_NOT_FOUND]",
-    "search_intent": "Debug ES module import resolution errors in Node.js.",
+    "slug": "npm-err-code-enoent-package-json",
+    "title": "npm ERR! enoent package.json",
+    "description": "Fix npm enoent package.json errors when npm commands are run outside a Node.js project.",
+    "category": "Package managers",
+    "technology": "npm",
+    "error_signature": "npm ERR! enoent Could not read package.json",
+    "search_intent": "Find and fix missing package.json errors in npm projects and scripts.",
     "common_causes": [
-      "Relative import is missing a file extension",
-      "Package is not installed",
-      "Path points to a CommonJS-only entry incorrectly",
-      "Case-sensitive filesystem reveals a path mismatch"
+      "Command is running in the wrong directory",
+      "package.json was deleted or not committed",
+      "Project has not been initialized",
+      "CI working-directory points to the wrong folder"
     ],
-    "quick_fix": "Check the exact import specifier, include required file extensions for relative ESM imports, and reinstall dependencies.",
+    "quick_fix": "Run npm commands from the directory that contains package.json or create one with npm init.",
     "related_errors": [
-      "Node.js cannot find module",
-      "Cannot use import statement outside a module",
-      "npm ERR! code ERESOLVE"
+      "npm ERR! missing script",
+      "npm ERR! code ENOENT",
+      "GitHub Actions npm ci lockfile error"
+    ]
+  },
+  {
+    "slug": "npm-err-code-eresolve",
+    "title": "npm ERR! code ERESOLVE",
+    "description": "Fix npm ERR! code ERESOLVE dependency resolution errors caused by conflicting peer dependencies.",
+    "category": "Package managers",
+    "technology": "npm",
+    "error_signature": "npm ERR! code ERESOLVE",
+    "search_intent": "Resolve npm peer dependency conflicts without masking real package incompatibilities.",
+    "common_causes": [
+      "Package requires a different peer dependency version",
+      "Framework major versions are mixed",
+      "Lockfile contains stale dependency choices",
+      "A plugin has not been updated for the installed framework"
+    ],
+    "quick_fix": "Update the conflicting packages to compatible versions, then regenerate the lockfile.",
+    "related_errors": [
+      "npm ERR! code E401",
+      "npm ERR! unsupported engine",
+      "npm ci lockfile error"
+    ]
+  },
+  {
+    "slug": "openai-api-401-unauthorized",
+    "title": "OpenAI API 401 Unauthorized",
+    "description": "Fix OpenAI API 401 Unauthorized errors caused by missing keys, revoked keys, wrong project access, or mismatched provider configuration.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "401 Unauthorized",
+    "search_intent": "Fix API authentication failures caused by missing, invalid, revoked, or incorrectly loaded credentials.",
+    "common_causes": [
+      "API key is missing from the runtime environment",
+      "API key was revoked, rotated, or copied incorrectly",
+      "Application is reading the wrong environment variable",
+      "Key belongs to a different project or organization",
+      "Base URL points to a different OpenAI-compatible provider"
+    ],
+    "quick_fix": "Verify the API key is present in the process sending the request, confirm project/provider settings, restart the app after secret changes, and retry a minimal authenticated request.",
+    "related_errors": [
+      "Cursor model not available",
+      "Cursor OpenAI API key not working",
+      "OpenAI API context length exceeded",
+      "OpenAI API insufficient quota"
+    ]
+  },
+  {
+    "slug": "openai-api-429-too-many-requests",
+    "title": "OpenAI API 429 Too Many Requests",
+    "description": "Fix OpenAI API 429 Too Many Requests errors by reducing bursts, adding retry backoff, lowering concurrency, and checking rate or quota limits.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "429 Too Many Requests",
+    "search_intent": "Diagnose API rate limit failures, retry behavior, and request throttling.",
+    "common_causes": [
+      "Requests are sent in bursts or large parallel batches",
+      "Retry logic immediately repeats failed requests",
+      "Request-per-minute or token-per-minute limits are exceeded",
+      "Worker or queue concurrency is too high",
+      "Project quota or usage limits are exhausted"
+    ],
+    "quick_fix": "Reduce concurrency and request volume, add exponential backoff with jitter, respect Retry-After when present, and check provider usage and rate-limit dashboards.",
+    "related_errors": [
+      "Cursor model not available",
+      "Cursor OpenAI API key not working",
+      "OpenAI API context length exceeded",
+      "OpenAI API insufficient quota"
+    ]
+  },
+  {
+    "slug": "openai-api-context-length-exceeded",
+    "title": "OpenAI API context length exceeded",
+    "description": "Fix OpenAI API context length exceeded errors by reducing prompt, history, or output token size.",
+    "category": "APIs",
+    "technology": "OpenAI API",
+    "error_signature": "context_length_exceeded",
+    "search_intent": "Reduce token usage when OpenAI API requests exceed model context limits.",
+    "common_causes": [
+      "Prompt includes too much chat history",
+      "Large documents are sent without chunking",
+      "Maximum output tokens are set too high",
+      "Tool or retrieval context is appended without trimming"
+    ],
+    "quick_fix": "Trim old context, chunk large inputs, and lower the maximum output token setting.",
+    "related_errors": [
+      "OpenAI API model not found",
+      "OpenAI API rate limit error",
+      "OpenAI API insufficient quota"
+    ]
+  },
+  {
+    "slug": "openai-api-insufficient-quota",
+    "title": "OpenAI API insufficient quota",
+    "description": "Fix OpenAI API insufficient quota errors by checking billing, project limits, and usage.",
+    "category": "APIs",
+    "technology": "OpenAI API",
+    "error_signature": "insufficient_quota",
+    "search_intent": "Understand why OpenAI API requests fail with insufficient quota and how to restore access.",
+    "common_causes": [
+      "Billing is not active for the account",
+      "Project usage limit has been reached",
+      "Free trial or promotional credit is exhausted",
+      "Requests are sent from the wrong organization or project"
+    ],
+    "quick_fix": "Check billing and project limits, then update the API key or reduce usage before retrying.",
+    "related_errors": [
+      "OpenAI API rate limit error",
+      "OpenAI API invalid API key",
+      "429 Too Many Requests"
+    ]
+  },
+  {
+    "slug": "openai-api-invalid-api-key",
+    "title": "OpenAI API invalid API key",
+    "description": "Fix OpenAI API authentication failures caused by missing, invalid, or incorrectly loaded API keys.",
+    "category": "APIs",
+    "technology": "OpenAI API",
+    "error_signature": "401 Incorrect API key provided",
+    "search_intent": "Resolve OpenAI API 401 authentication errors and verify API key configuration.",
+    "common_causes": [
+      "API key is missing from the environment",
+      "API key was copied with extra whitespace",
+      "Application is reading the wrong environment variable",
+      "Key was revoked or belongs to a different project"
+    ],
+    "quick_fix": "Create or copy the correct API key, set it in the expected environment variable, restart the app, and retry the request.",
+    "related_errors": [
+      "OpenAI API rate limit error",
+      "OpenAI API insufficient quota",
+      "OpenAI API model not found"
+    ]
+  },
+  {
+    "slug": "openai-api-model-not-found",
+    "title": "OpenAI API model not found",
+    "description": "Fix OpenAI API model not found errors caused by wrong model names, access limits, or stale configuration.",
+    "category": "APIs",
+    "technology": "OpenAI API",
+    "error_signature": "The model does not exist or you do not have access to it",
+    "search_intent": "Resolve OpenAI API model lookup errors in SDKs, scripts, and production apps.",
+    "common_causes": [
+      "Model name is misspelled",
+      "Application uses a deprecated model name",
+      "Project does not have access to the requested model",
+      "Configuration points to a model intended for another provider"
+    ],
+    "quick_fix": "Replace the model value with a currently available model name that your project can access.",
+    "related_errors": [
+      "OpenAI API invalid API key",
+      "OpenAI API rate limit error",
+      "context_length_exceeded"
     ]
   },
   {
@@ -441,27 +614,6 @@
     ]
   },
   {
-    "slug": "ssl-unable-to-get-local-issuer-certificate",
-    "title": "SSL unable to get local issuer certificate",
-    "description": "Fix unable to get local issuer certificate errors by repairing trust stores or serving a complete certificate chain.",
-    "category": "Networking",
-    "technology": "SSL/TLS",
-    "error_signature": "unable to get local issuer certificate",
-    "search_intent": "Resolve certificate chain validation errors in Node.js, Python, Git, curl, and browsers.",
-    "common_causes": [
-      "Server is missing an intermediate certificate",
-      "Local CA bundle is outdated",
-      "Corporate proxy uses an untrusted root certificate",
-      "Client points to the wrong CA file"
-    ],
-    "quick_fix": "Verify the server certificate chain and update the client trust store or CA bundle.",
-    "related_errors": [
-      "Python SSL certificate verify failed",
-      "SSL certificate has expired",
-      "self signed certificate in certificate chain"
-    ]
-  },
-  {
     "slug": "ssl-self-signed-certificate-in-chain",
     "title": "SSL self signed certificate in certificate chain",
     "description": "Fix self signed certificate in certificate chain errors in Node.js, npm, Git, and corporate networks.",
@@ -483,66 +635,24 @@
     ]
   },
   {
-    "slug": "cloudflare-error-522-connection-timed-out",
-    "title": "Cloudflare error 522 connection timed out",
-    "description": "Fix Cloudflare 522 errors when Cloudflare cannot establish a timely connection to the origin server.",
+    "slug": "ssl-unable-to-get-local-issuer-certificate",
+    "title": "SSL unable to get local issuer certificate",
+    "description": "Fix unable to get local issuer certificate errors by repairing trust stores or serving a complete certificate chain.",
     "category": "Networking",
-    "technology": "Cloudflare",
-    "error_signature": "Error 522: Connection timed out",
-    "search_intent": "Troubleshoot Cloudflare 522 origin connection timeouts.",
+    "technology": "SSL/TLS",
+    "error_signature": "unable to get local issuer certificate",
+    "search_intent": "Resolve certificate chain validation errors in Node.js, Python, Git, curl, and browsers.",
     "common_causes": [
-      "Origin server is down or overloaded",
-      "Firewall blocks Cloudflare IP ranges",
-      "Origin network drops connections",
-      "DNS points to the wrong origin IP"
+      "Server is missing an intermediate certificate",
+      "Local CA bundle is outdated",
+      "Corporate proxy uses an untrusted root certificate",
+      "Client points to the wrong CA file"
     ],
-    "quick_fix": "Confirm the origin responds directly, allow Cloudflare IP ranges, and verify DNS points to the correct server.",
+    "quick_fix": "Verify the server certificate chain and update the client trust store or CA bundle.",
     "related_errors": [
-      "Cloudflare error 525 SSL handshake failed",
-      "DNS_PROBE_FINISHED_NXDOMAIN",
-      "ERR_TOO_MANY_REDIRECTS"
-    ]
-  },
-  {
-    "slug": "cloudflare-error-525-ssl-handshake-failed",
-    "title": "Cloudflare error 525 SSL handshake failed",
-    "description": "Fix Cloudflare 525 SSL handshake failures between Cloudflare and the origin server.",
-    "category": "Networking",
-    "technology": "Cloudflare",
-    "error_signature": "Error 525: SSL handshake failed",
-    "search_intent": "Resolve TLS handshake failures on Cloudflare proxied domains.",
-    "common_causes": [
-      "Origin certificate is invalid or expired",
-      "Origin does not support compatible TLS settings",
-      "Cloudflare SSL mode does not match origin configuration",
-      "Server name indication is not configured correctly"
-    ],
-    "quick_fix": "Install a valid origin certificate and use a Cloudflare SSL mode that matches the origin HTTPS setup.",
-    "related_errors": [
+      "Python SSL certificate verify failed",
       "SSL certificate has expired",
-      "Cloudflare error 522 connection timed out",
-      "unable to get local issuer certificate"
-    ]
-  },
-  {
-    "slug": "dns-probe-finished-nxdomain",
-    "title": "DNS_PROBE_FINISHED_NXDOMAIN",
-    "description": "Fix DNS_PROBE_FINISHED_NXDOMAIN errors caused by missing, incorrect, or not-yet-propagated DNS records.",
-    "category": "Networking",
-    "technology": "DNS",
-    "error_signature": "DNS_PROBE_FINISHED_NXDOMAIN",
-    "search_intent": "Troubleshoot domains that do not resolve in browsers or deployment checks.",
-    "common_causes": [
-      "Domain has no matching DNS record",
-      "Nameservers are not configured correctly",
-      "DNS record was recently changed and has not propagated",
-      "Local DNS cache contains stale data"
-    ],
-    "quick_fix": "Check authoritative DNS records, verify nameservers, and flush local DNS cache after changes.",
-    "related_errors": [
-      "Cloudflare error 522 connection timed out",
-      "Vercel invalid domain configuration",
-      "ERR_NAME_NOT_RESOLVED"
+      "self signed certificate in certificate chain"
     ]
   },
   {
@@ -585,48 +695,6 @@
       "Node.js cannot find module",
       "Vercel build command failed",
       "ERR_MODULE_NOT_FOUND"
-    ]
-  },
-  {
-    "slug": "cursor-openai-api-key-not-working",
-    "title": "Cursor OpenAI API key not working",
-    "description": "Fix Cursor API key issues when custom model access or OpenAI-compatible settings fail.",
-    "category": "AI coding tools",
-    "technology": "Cursor",
-    "error_signature": "API key not working",
-    "search_intent": "Troubleshoot API key configuration problems in Cursor and AI coding tools.",
-    "common_causes": [
-      "API key was pasted into the wrong provider field",
-      "Provider base URL is incorrect",
-      "Key lacks access to the selected model",
-      "Application needs to be restarted after settings change"
-    ],
-    "quick_fix": "Verify the provider, API key, base URL, and model selection, then restart Cursor before retrying.",
-    "related_errors": [
-      "OpenAI API invalid API key",
-      "OpenAI API model not found",
-      "OpenAI API insufficient quota"
-    ]
-  },
-  {
-    "slug": "cursor-model-not-available",
-    "title": "Cursor model not available",
-    "description": "Fix Cursor model not available errors caused by unavailable models, provider settings, or access limits.",
-    "category": "AI coding tools",
-    "technology": "Cursor",
-    "error_signature": "Model not available",
-    "search_intent": "Resolve unavailable model errors in Cursor and connected AI providers.",
-    "common_causes": [
-      "Selected model is not enabled for the account",
-      "Provider key is invalid or missing",
-      "Model name changed or is not supported by the selected provider",
-      "Network or proxy settings block provider requests"
-    ],
-    "quick_fix": "Choose a model available to your account and verify the matching provider credentials.",
-    "related_errors": [
-      "Cursor OpenAI API key not working",
-      "OpenAI API model not found",
-      "OpenAI API rate limit error"
     ]
   }
 ]

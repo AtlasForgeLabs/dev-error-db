@@ -8,6 +8,7 @@ const rootDir = path.resolve(__dirname, '..');
 const seedsPath = path.join(rootDir, 'data', 'error-seeds.json');
 const outputDir = path.join(rootDir, 'src', 'content', 'errors');
 const force = process.argv.includes('--force');
+const onlySlugs = new Set(parseOnlySlugs(process.argv));
 const updated = new Date().toISOString().slice(0, 10);
 
 const seeds = JSON.parse(await readFile(seedsPath, 'utf8'));
@@ -20,6 +21,11 @@ async function main() {
   let skipped = 0;
 
   for (const seed of seeds) {
+    if (onlySlugs.size > 0 && !onlySlugs.has(seed.slug)) {
+      skipped += 1;
+      continue;
+    }
+
     const filePath = path.join(outputDir, `${seed.slug}.md`);
 
     if (existsSync(filePath) && !force) {
@@ -110,7 +116,7 @@ function buildSections(seed, profile) {
   const variants = [
     ['meaning', 'why', 'causes', 'quick', 'commands', 'platform', 'realWorld', 'troubleshooting', 'prevention', 'related', 'faq'],
     ['meaning', 'causes', 'commands', 'quick', 'troubleshooting', 'platform', 'realWorld', 'prevention', 'related', 'faq'],
-    ['meaning', 'why', 'quick', 'commands', 'realWorld', 'troubleshooting', 'platform', 'prevention', 'related', 'faq'],
+    ['meaning', 'why', 'causes', 'quick', 'commands', 'realWorld', 'troubleshooting', 'platform', 'prevention', 'related', 'faq'],
   ];
   const order = variants[hash(seed.slug) % variants.length];
   const registry = {
@@ -131,6 +137,69 @@ function buildSections(seed, profile) {
 }
 
 const profiles = [
+  {
+    name: 'docker-port-conflict',
+    match: (seed) => /docker/i.test(text(seed)) && /address already in use|port.*allocated|bind/i.test(text(seed)),
+    meaning: (seed) =>
+      `\`${seed.error_signature}\` means Docker tried to publish a container port onto a host port that is already occupied. The conflict is on the host machine, so the fix is to find the process or older compose stack using that port, then stop it or map the container to a different host port.`,
+    why: (seed) => [
+      'Port publishing uses the host network namespace. If another process already owns `localhost:3000`, `0.0.0.0:5432`, or any other requested host port, Docker cannot bind that address for the new container.',
+      `For ${seed.title}, focus on host port ownership and compose state. Docker daemon health, disk usage, and image contents are usually secondary unless other Docker commands also fail.`,
+    ],
+    quickFixes: (seed) => [
+      'Read the error line and identify the host port Docker tried to bind.',
+      'Run `lsof -i :3000` with the actual port from the error.',
+      'Stop the old process or compose stack that owns the port.',
+      'If both services must run, change the left side of the compose port mapping, such as `3001:3000`.',
+    ],
+    commands: () => [
+      { label: 'List running containers with published ports', code: 'docker ps --format "table {{.Names}}\\t{{.Ports}}\\t{{.Status}}"' },
+      { label: 'Check compose services in this project', code: 'docker compose ps' },
+      { label: 'Find the process using port 3000', code: 'lsof -nP -iTCP:3000 -sTCP:LISTEN' },
+      { label: 'Stop the current compose stack', code: 'docker compose down' },
+      { label: 'Check whether Docker itself is reachable', code: 'docker info' },
+    ],
+    platform: () => ({
+      macOS: ['Use `lsof -nP -iTCP:<port> -sTCP:LISTEN` to find apps, dev servers, or Docker Desktop proxies holding the port.'],
+      Linux: ['Use `ss -ltnp | grep :<port>` when `lsof` is unavailable, then stop the owning service with the normal service manager.'],
+      Windows: ['Use `netstat -ano | findstr :<port>` in PowerShell or Command Prompt, then match the PID in Task Manager.'],
+    }),
+    realWorld: (seed) => [
+      'A previous `docker compose up` may still be running from another terminal. Run `docker compose ps` in the project before starting a second stack.',
+      'Local dev servers commonly occupy ports like 3000, 5173, 8000, and 8080. Stop the dev server or remap the Docker host port.',
+      'For databases, avoid deleting volumes just to free a port. Stop the container first; the volume may contain local data.',
+    ],
+    troubleshooting: (seed) => [
+      `Find the port mentioned near \`${seed.error_signature}\`; it is usually shown as the host-side bind address.`,
+      'Run `docker ps --format "table {{.Names}}\\t{{.Ports}}\\t{{.Status}}"` to see whether another container already publishes that port.',
+      'Run `lsof -nP -iTCP:<port> -sTCP:LISTEN` or the platform equivalent to find non-Docker processes.',
+      'Stop the old container, compose stack, or local process that owns the port.',
+      'If the port is intentionally in use, change only the host side of the mapping, for example `3001:3000`, then retry `docker compose up`.',
+    ],
+    prevention: () => [
+      'Reserve predictable host ports per project and document them in the compose file.',
+      'Run `docker compose down` when switching branches or projects that publish the same ports.',
+      'Use project-specific compose project names when running multiple stacks at once.',
+    ],
+    faq: (seed) => [
+      {
+        question: 'What should I check first?',
+        answer: `Check the host port shown beside \`${seed.error_signature}\`, then run \`docker ps\` and \`lsof\` for that port. The fastest fix is usually stopping the older process or remapping the host port.`,
+      },
+      {
+        question: 'Is this caused by the Dockerfile?',
+        answer: 'Usually no. A Dockerfile can expose a container port, but this error happens when Docker publishes that port to a host address that is already taken.',
+      },
+      {
+        question: 'Can I run both services at the same time?',
+        answer: 'Yes, if they use different host ports. Keep the container port the same and change the host side, such as `3001:3000`.',
+      },
+      {
+        question: 'How do I know the fix worked?',
+        answer: `Rerun the same \`docker run\` or \`docker compose up\` command. The fix worked when Docker starts the container without another \`${seed.error_signature}\` message and \`docker ps\` shows the expected port mapping.`,
+      },
+    ],
+  },
   {
     name: 'docker',
     match: (seed) => /docker|compose|container/i.test(text(seed)),
@@ -307,6 +376,187 @@ const profiles = [
       'Use `python -m pip` in documentation and CI scripts.',
     ],
     faq: (seed) => commonFaq(seed, 'Python'),
+  },
+  {
+    name: 'openai-authentication',
+    match: (seed) => /openai|cursor|ai coding/i.test(text(seed)) && /401|unauthorized|incorrect api key|invalid api key|api key|authentication/i.test(text(seed)),
+    meaning: (seed) =>
+      `\`${seed.error_signature}\` means the OpenAI API rejected the request before processing it because authentication failed. The request is reaching an API endpoint, but the key, project, organization, environment variable, or provider/base URL does not match what that endpoint expects.`,
+    why: (seed) => [
+      'A 401 is an authentication problem, not a rate-limit or model-size problem. The most common cause is that the runtime sending the request does not have the key you think it has.',
+      'It can also happen after rotating keys, switching projects, changing provider settings in an AI coding tool, or pointing OpenAI SDK code at an OpenAI-compatible provider with the wrong base URL.',
+    ],
+    quickFixes: (seed) => [
+      'Verify the key exists without printing the secret value.',
+      'Confirm the app reads the same environment variable name you set, such as `OPENAI_API_KEY`.',
+      'Check that the key belongs to the intended project or organization.',
+      'If you use a proxy or OpenAI-compatible provider, verify the base URL and provider-specific key match.',
+    ],
+    commands: () => [
+      { label: 'Check whether the OpenAI key is present', code: 'printf "OPENAI_API_KEY=%s\\n" "${OPENAI_API_KEY:+set}"' },
+      { label: 'Check provider-related environment names without exposing values', code: 'env | grep -E "OPENAI|MODEL|BASE_URL|ORGANIZATION|PROJECT" | sed "s/=.*/=<redacted>/"' },
+      {
+        label: 'Send a minimal authenticated request',
+        code: 'curl https://api.openai.com/v1/models \\\n  -H "Authorization: Bearer $OPENAI_API_KEY"',
+      },
+      { label: 'Check for whitespace around the key length without printing it', code: 'python3 - <<\'PY\'\nimport os\nkey = os.getenv("OPENAI_API_KEY", "")\nprint("set:", bool(key))\nprint("starts_with_sk:", key.startswith("sk-"))\nprint("has_outer_whitespace:", key != key.strip())\nPY' },
+    ],
+    platform: () => ({
+      'CI/CD': ['Set the key as a CI secret, verify the job has access to secrets for that event type, and rerun the job after updating the secret.'],
+      'AI coding tools': ['Check the tool provider settings separately from shell environment variables; editors often store provider keys outside `.env`.'],
+    }),
+    realWorld: (seed) => [
+      'If local requests work but CI fails, the CI secret may be missing, scoped to a different environment, or unavailable to pull requests from forks.',
+      'If a new key was created, restart the server, worker, notebook kernel, or editor window so the process reads the updated environment.',
+      'If you recently switched to a compatible provider, pair that provider base URL with that provider key instead of mixing it with an OpenAI API key.',
+    ],
+    troubleshooting: (seed) => [
+      `Confirm the response status or error body contains \`${seed.error_signature}\`.`,
+      'Check the environment variable in the same shell, process manager, container, or CI job that sends the request.',
+      'Send a minimal `curl` request to `/v1/models` with the same key to separate SDK configuration from credentials.',
+      'Verify project, organization, provider base URL, and key source are from the same account or provider.',
+      'Rotate the key only after confirming the app is not reading an old `.env`, secret, or editor setting.',
+    ],
+    prevention: () => [
+      'Keep API key names consistent across local, CI, and deployment environments.',
+      'Log non-secret provider metadata such as base URL, model name, and project identifier for debugging.',
+      'Restart long-running processes after secret rotation.',
+    ],
+    faq: (seed) => [
+      {
+        question: 'What should I check first?',
+        answer: `Check whether the process sending the request has the expected API key. For \`${seed.error_signature}\`, missing or stale credentials are more likely than request volume or model size.`,
+      },
+      {
+        question: 'Can a wrong base URL cause this?',
+        answer: 'Yes. If OpenAI SDK code points at another provider or proxy, that endpoint may reject an OpenAI key, or OpenAI may reject a provider-specific key.',
+      },
+      {
+        question: 'Why does this work locally but fail in CI?',
+        answer: 'Your local shell may have a valid key while CI has no secret, a secret with a different name, or restricted secret access for the workflow event.',
+      },
+      {
+        question: 'How do I know authentication is fixed?',
+        answer: `The same minimal request should stop returning \`${seed.error_signature}\`. After that, retry the application request with the same key and provider configuration.`,
+      },
+    ],
+  },
+  {
+    name: 'openai-rate-limit',
+    match: (seed) => /openai|cursor|ai coding/i.test(text(seed)) && /429|too many requests|rate limit|rpm|tpm|requests per minute|tokens per minute/i.test(text(seed)),
+    meaning: (seed) =>
+      `\`${seed.error_signature}\` means the API accepted your authentication but throttled the workload because requests arrived too quickly, too many tokens were sent, concurrency was too high, or the account/project is constrained by rate or usage limits.`,
+    why: (seed) => [
+      'A 429 is mainly a traffic-shaping problem. It is different from a 401 authentication failure: the key can be valid while the request pattern still exceeds request-per-minute, token-per-minute, or concurrency limits.',
+      'Bursty retries can make the problem worse. If every failed request immediately retries, a short throttle can turn into a sustained overload.',
+    ],
+    quickFixes: (seed) => [
+      'Reduce concurrent requests and batch size before retrying the same workload.',
+      'Add exponential backoff with jitter and respect any `Retry-After` header returned by the provider.',
+      'Lower prompt size or max output tokens if token-per-minute limits are being hit.',
+      'Check usage, quota, and rate-limit settings in the provider dashboard to distinguish throttling from exhausted quota.',
+    ],
+    commands: () => [
+      {
+        label: 'Send one request and inspect rate-limit headers',
+        code: 'curl -i https://api.openai.com/v1/models \\\n  -H "Authorization: Bearer $OPENAI_API_KEY" \\\n  | grep -iE "HTTP/|retry-after|rate|limit|remaining"',
+      },
+      {
+        label: 'Find aggressive retry loops in JavaScript or TypeScript',
+        code: 'rg -n "retry|setTimeout|setInterval|Promise\\.all|concurr|p-limit|queue" src scripts .',
+      },
+      {
+        label: 'Find retry loops in Python',
+        code: 'rg -n "retry|backoff|sleep|asyncio\\.gather|ThreadPoolExecutor|concurrent" .',
+      },
+      {
+        label: 'Confirm the request volume from local logs',
+        code: 'rg -n "429|Too Many Requests|rate limit|Retry-After" logs .',
+      },
+    ],
+    platform: () => ({
+      'CI/CD': ['Avoid running many API-heavy tests in parallel jobs unless the test suite uses mocks or a shared throttling queue.'],
+      'Production workers': ['Cap worker concurrency and queue API jobs so deploys or cron runs do not start a burst of requests at the same time.'],
+    }),
+    realWorld: (seed) => [
+      'If the error appears after adding retries, make sure retries wait longer after each failure instead of firing immediately.',
+      'If the error appears only with long prompts, token-per-minute limits may be the bottleneck even when request count looks low.',
+      'If the dashboard shows exhausted quota or billing limits, treat it as a quota problem; retry backoff alone will not restore capacity.',
+    ],
+    troubleshooting: (seed) => [
+      `Confirm the error is \`${seed.error_signature}\` and not a 401 or insufficient-quota response.`,
+      'Check whether the response includes `Retry-After` or rate-limit headers and log them without logging request content.',
+      'Temporarily run the workload with concurrency set to `1`; if it succeeds, add a queue or limiter.',
+      'Inspect retry code for immediate loops, nested retries, or `Promise.all` over large request batches.',
+      'Compare request count and token usage in the provider dashboard before asking for higher limits.',
+    ],
+    prevention: () => [
+      'Use exponential backoff with jitter for retryable 429 responses.',
+      'Set explicit concurrency limits around API calls.',
+      'Track request count, token usage, and 429 rate in application metrics.',
+      'Use mocks or fixtures for tests that do not need live API calls.',
+    ],
+    faq: (seed) => [
+      {
+        question: 'Is this caused by an invalid API key?',
+        answer: `Usually no. \`${seed.error_signature}\` means the request is being throttled. Invalid or missing keys usually produce 401-style authentication errors instead.`,
+      },
+      {
+        question: 'What should I check first?',
+        answer: 'Check concurrency, retry behavior, and recent request volume. A single deploy, queue drain, or test run can create a burst that crosses request-per-minute or token-per-minute limits.',
+      },
+      {
+        question: 'What is exponential backoff?',
+        answer: 'It means waiting progressively longer between retries, often with a small random jitter, so clients do not retry in synchronized bursts.',
+      },
+      {
+        question: 'How do I know the fix worked?',
+        answer: `Run the same workload with logging for 429 responses. The fix is working when request volume stays under the limit and \`${seed.error_signature}\` no longer appears during normal traffic.`,
+      },
+    ],
+  },
+  {
+    name: 'openai-model-access',
+    match: (seed) => /openai|cursor|ai coding/i.test(text(seed)) && /model.*not|does not exist|no access|unavailable model|model/i.test(text(seed)),
+    meaning: (seed) =>
+      `\`${seed.error_signature}\` means the request named a model that the selected provider, project, or account cannot use. The key may be valid, but the model value is wrong, unavailable, deprecated, or not enabled for that project.`,
+    why: (seed) => [
+      'Model access errors are configuration errors around the `model` field and provider selection, not general network failures.',
+      'They often appear after copying examples, switching providers, or deploying a stale environment variable that still points at an older model name.',
+    ],
+    quickFixes: (seed) => [
+      'Check the exact model string sent by the app or AI coding tool.',
+      'Verify the provider/base URL matches the model namespace.',
+      seed.quick_fix,
+      'Retry with a model known to be available for the current project.',
+    ],
+    commands: () => [
+      { label: 'Show model-related environment values without secrets', code: 'env | grep -E "MODEL|OPENAI|BASE_URL" | sed "s/=.*/=<redacted>/"' },
+      {
+        label: 'List reachable models for the configured key',
+        code: 'curl https://api.openai.com/v1/models \\\n  -H "Authorization: Bearer $OPENAI_API_KEY"',
+      },
+    ],
+    platform: () => ({
+      'AI coding tools': ['Check both global provider settings and per-project overrides; one stale project setting can override a working global model.'],
+    }),
+    realWorld: (seed) => [
+      'If the same key works with one model but not another, focus on model availability and project access.',
+      'If a deployment fails but local works, compare model environment variables between local and production.',
+      seed.quick_fix,
+    ],
+    troubleshooting: (seed) => [
+      `Find the exact model value used in the request that returned \`${seed.error_signature}\`.`,
+      'Confirm the configured provider supports that model name.',
+      'Check for stale environment variables in CI, hosting, or editor settings.',
+      'Retry with a known available model and the same request shape.',
+    ],
+    prevention: () => [
+      'Centralize model names in one config file or environment variable.',
+      'Validate model configuration at startup before processing user traffic.',
+      'Keep provider-specific model names out of shared generic defaults.',
+    ],
+    faq: (seed) => commonFaq(seed, 'OpenAI API model configuration'),
   },
   {
     name: 'openai',
@@ -575,6 +825,26 @@ function hash(value) {
   let result = 0;
   for (const char of value) result = (result * 31 + char.charCodeAt(0)) >>> 0;
   return result;
+}
+
+function parseOnlySlugs(argv) {
+  const slugs = [];
+
+  for (let index = 0; index < argv.length; index += 1) {
+    const value = argv[index];
+
+    if (value === '--only' && argv[index + 1]) {
+      slugs.push(...argv[index + 1].split(','));
+      index += 1;
+      continue;
+    }
+
+    if (value.startsWith('--only=')) {
+      slugs.push(...value.slice('--only='.length).split(','));
+    }
+  }
+
+  return slugs.map((slug) => slug.trim()).filter(Boolean);
 }
 
 await main();
