@@ -1,0 +1,58 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const errors = (await getCollection('errors')).sort((a, b) =>
+  a.data.title.localeCompare(b.data.title)
+);
+
+const slugFor = (entry: (typeof errors)[number]) => entry.id.replace(/\.mdx?$/, '');
+const technologies = [...new Set(errors.map((entry) => entry.data.technology))].sort();
+const categories = [...new Set(errors.map((entry) => entry.data.category))].sort();
+---
+
+<BaseLayout
+  title="Dev Error DB"
+  description="Search concise troubleshooting pages for common developer error messages across npm, Docker, Python, Git, APIs, and more."
+>
+  <section class="hero">
+    <p class="eyebrow">Static developer troubleshooting database</p>
+    <h1>Fix developer error messages faster.</h1>
+    <p>
+      Dev Error DB is a searchable, static-first knowledge base for common build,
+      package, runtime, API, and deployment errors.
+    </p>
+  </section>
+
+  <section class="filters" aria-labelledby="browse-heading">
+    <h2 id="browse-heading">Browse by technology</h2>
+    <div class="tag-list">
+      {technologies.map((technology) => <span>{technology}</span>)}
+    </div>
+    <h2>Browse by category</h2>
+    <div class="tag-list">
+      {categories.map((category) => <span>{category}</span>)}
+    </div>
+  </section>
+
+  <section id="errors" class="error-list" aria-labelledby="errors-heading">
+    <h2 id="errors-heading">Error pages</h2>
+    <div class="cards">
+      {
+        errors.map((entry) => (
+          <article class="card">
+            <div class="meta-row">
+              <span>{entry.data.technology}</span>
+              <span>{entry.data.category}</span>
+            </div>
+            <h3>
+              <a href={`/errors/${slugFor(entry)}/`}>{entry.data.title}</a>
+            </h3>
+            <p>{entry.data.description}</p>
+            <code>{entry.data.error_signature}</code>
+          </article>
+        ))
+      }
+    </div>
+  </section>
+</BaseLayout>

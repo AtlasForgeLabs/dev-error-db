@@ -1,0 +1,46 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description: string;
+  canonical?: string;
+}
+
+const { title, description, canonical } = Astro.props;
+const siteUrl = new URL(Astro.site ?? 'https://dev-error-db.com');
+const canonicalUrl = canonical ?? new URL(Astro.url.pathname, siteUrl).toString();
+const pageTitle = title.includes('Dev Error DB') ? title : `${title} | Dev Error DB`;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{pageTitle}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalUrl} />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Dev Error DB" />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalUrl} />
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="/">Dev Error DB</a>
+      <nav aria-label="Primary navigation">
+        <a href="/#errors">Errors</a>
+        <a href="/robots.txt">Robots</a>
+      </nav>
+    </header>
+    <main>
+      <slot />
+    </main>
+    <footer class="site-footer">
+      <p>Static troubleshooting pages for developer errors. Built for fast search, clear fixes, and low-cost hosting.</p>
+    </footer>
+  </body>
+</html>
