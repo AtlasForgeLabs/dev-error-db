@@ -786,5 +786,157 @@
       "Cursor OpenAI API key not working",
       "Cursor model not available"
     ]
+  },
+  {
+    "slug": "anthropic-api-500-internal-server-error",
+    "title": "Anthropic API strict: true Causes 500 Internal Server Error with Complex Tool Schemas",
+    "description": "Fix Anthropic API 500 Internal Server Error when using strict: true with complex nested tool schemas Includes evidence for Anthropic API troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Anthropic API",
+    "error_signature": "500 Internal Server Error",
+    "search_intent": "Fix Anthropic API 500 Internal Server Error when using strict: true with complex nested tool schemas",
+    "common_causes": [
+      "Using strict: true with Anthropic's structured outputs beta (structured-outputs-2025-11-13) returns a 500 Internal Server Error when tool schemas contain complex nested objects. Developers using structured outputs with Claude need a workaround.",
+      "GitHub issue #885 in anthropics/anthropic-sdk-typescript. Direct 500 error from Anthropic API when combining strict mode with complex nested tool schemas in structured outputs."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Anthropic structured outputs error",
+      "Claude API tool use schema error",
+      "Anthropic API 500 error"
+    ]
+  },
+  {
+    "slug": "litellm-malformed-input-request",
+    "title": "LiteLLM Bedrock serviceTier Parameter Error - Malformed Input Request",
+    "description": "Fix LiteLLM Bedrock serviceTier parameter causing Malformed input request error Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "Malformed input request",
+    "search_intent": "Fix LiteLLM Bedrock serviceTier parameter causing Malformed input request error",
+    "common_causes": [
+      "When using Bedrock Converse API through LiteLLM, the serviceTier parameter is incorrectly nested inside additionalModelRequestFields instead of the top level, causing Bedrock to reject requests with 'Malformed input request'.",
+      "GitHub issue #17336 in BerriAI/litellm with clear reproduction steps. Affects litellm v1.76.0 using Bedrock models via Converse API."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "LiteLLM Bedrock API key error",
+      "LiteLLM Bedrock region error",
+      "Bedrock Converse API malformed request"
+    ]
+  },
+  {
+    "slug": "litellm-400-bad-request-tool-choice-named-function-format",
+    "title": "LiteLLM Chat Completions to Responses API Bridge tool_choice 400 Error",
+    "description": "Fix LiteLLM 400 error when using tool_choice named function format with GPT-5.4/5.5 models Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "400 Bad Request - tool_choice named function format",
+    "search_intent": "Fix LiteLLM 400 error when using tool_choice named function format with GPT-5.4/5.5 models",
+    "common_causes": [
+      "Calling GPT-5.4 or GPT-5.5 through LiteLLM's Chat Completions endpoint with named tool_choice (type: function, function: {name: ...}) causes a 400 error because LiteLLM's bridge to the Responses API passes the parameter incorrectly.",
+      "GitHub issue #27611 in BerriAI/litellm. Affects all GPT-5.4 and GPT-5.5 models through LiteLLM's Chat Completions → Responses API bridge."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "LiteLLM tool use error OpenAI",
+      "LiteLLM function calling 400",
+      "OpenAI Responses API tool_choice error"
+    ]
+  },
+  {
+    "slug": "anthropic-api-400-connection-error-while-communicating-with-mcp-server",
+    "title": "Anthropic API MCP Server Connection Error 400 - No Graceful Degradation",
+    "description": "Fix Anthropic API 400 error when injected MCP server is unreachable Includes evidence for Anthropic API troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Anthropic API",
+    "error_signature": "400 Connection error while communicating with MCP server",
+    "search_intent": "Fix Anthropic API 400 error when injected MCP server is unreachable",
+    "common_causes": [
+      "When passing mcp_servers to the Anthropic Messages API and a configured server is unreachable, the entire request fails with HTTP 400 'Connection error while communicating with MCP server'. There is no way to mark a server as optional, no per-server timeout, and the error doesn't identify which server failed.",
+      "GitHub issue #1027 in anthropics/anthropic-sdk-typescript. MCP server integration is a paid Anthropic API feature. Complete request failure with no graceful degradation option."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Anthropic MCP server timeout",
+      "Claude API MCP configuration error",
+      "Anthropic tool server connection failed"
+    ]
+  },
+  {
+    "slug": "ollama-503-service-unavailable",
+    "title": "Ollama Cloud 503 Service Unavailable - Cloud Models Unreliable",
+    "description": "Fix Ollama Cloud 503 Service Unavailable errors on cloud model inference Includes evidence for Ollama troubleshooting demand.",
+    "category": "Ollama",
+    "technology": "Ollama",
+    "error_signature": "503 Service Unavailable",
+    "search_intent": "Fix Ollama Cloud 503 Service Unavailable errors on cloud model inference",
+    "common_causes": [
+      "Developers using Ollama Cloud for autonomous agents encounter frequent 503 errors on models like glm-5:cloud, glm-5.1:cloud, minimax-m2.7:cloud, and kimi-k2.5:cloud, making cloud models unreliable for production use.",
+      "GitHub issue #15419 in ollama/ollama repo reports frequent 503 Service Unavailable errors across multiple cloud models, affecting production autonomous agent workflows."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Ollama pull failed connection refused",
+      "Ollama model not found error",
+      "Ollama cloud API timeout"
+    ]
+  },
+  {
+    "slug": "anthropic-api-streaming-response-interrupted-connection-closes-without-message-stop-event",
+    "title": "Anthropic API Streaming Responses Interrupted Without message_stop Event",
+    "description": "Fix Anthropic API streaming responses being interrupted mid-transmission without message_stop event Includes evidence for Anthropic API troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Anthropic API",
+    "error_signature": "Streaming response interrupted - connection closes without message_stop event",
+    "search_intent": "Fix Anthropic API streaming responses being interrupted mid-transmission without message_stop event",
+    "common_causes": [
+      "Streaming responses from Anthropic API are being prematurely terminated without sending a message_stop event, leaving responses incomplete. This happens specifically when using tool_use with large JSON payloads, causing broken application state.",
+      "GitHub issue #842 in anthropics/anthropic-sdk-typescript. SDK v0.68.0 with Node.js/NestJS. Affects streaming with tool_use and large JSON payloads."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Anthropic streaming timeout",
+      "Claude API stream disconnected",
+      "Anthropic message_stop missing"
+    ]
+  },
+  {
+    "slug": "litellm-400-litellm-badrequesterror-openaiexception-chunking-strategy-is-required-for-diarization-models",
+    "title": "LiteLLM gpt-4o-transcribe-diarize chunking_strategy Required Error",
+    "description": "Fix LiteLLM 400 error requiring chunking_strategy for gpt-4o-transcribe-diarize model Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "400 litellm.BadRequestError: OpenAIException - chunking_strategy is required for diarization models",
+    "search_intent": "Fix LiteLLM 400 error requiring chunking_strategy for gpt-4o-transcribe-diarize model",
+    "common_causes": [
+      "Using OpenAI's gpt-4o-transcribe-diarize model through LiteLLM returns a 400 BadRequestError stating 'chunking_strategy is required for diarization models'. Developers need to know how to pass this parameter correctly through LiteLLM.",
+      "GitHub issue #18125 in BerriAI/litellm with exact error message and model group context. Affects OpenAI diarization models via LiteLLM proxy."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "LiteLLM OpenAI transcription error",
+      "OpenAI gpt-4o-transcribe error",
+      "LiteLLM audio model 400 error"
+    ]
+  },
+  {
+    "slug": "ollama-500-internal-server-error-mlx-runner-failed-error-layer-0-conv1d-weight-must-be-2d-after-sanitization-got-0d",
+    "title": "Ollama MLX Runner Failed - conv1d Weight Dimension Error on macOS",
+    "description": "Fix Ollama MLX runner failed error with conv1d weight dimension mismatch on macOS Includes evidence for Ollama troubleshooting demand.",
+    "category": "Ollama",
+    "technology": "Ollama",
+    "error_signature": "500 internal server error: mlx runner failed: error: layer 0: conv1d weight must be 2d after sanitization, got 0d",
+    "search_intent": "Fix Ollama MLX runner failed error with conv1d weight dimension mismatch on macOS",
+    "common_causes": [
+      "Ollama v0.23.1 on macOS with Apple Silicon fails when running certain models (e.g., qwen3.6:27b-coding-mxfp8) with 'mlx runner failed: error: layer 0: conv1d weight must be 2d after sanitization, got 0d'. Reverting to v0.23.0 resolves the issue.",
+      "GitHub issue #16007 in ollama/ollama. Exact error message with version-specific reproduction (v0.23.1 only). Affects macOS Apple Silicon users running coding models."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Ollama MLX error macOS",
+      "Ollama qwen model failed",
+      "Ollama Apple Silicon runner error"
+    ]
   }
 ]
