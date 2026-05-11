@@ -2,42 +2,96 @@
 
 This importer prepares qualified OpenClaw findings for human review in Dev Error DB. It does not publish pages, edit existing error pages, push branches, or merge changes.
 
-## Input
+## Data Hub Input
 
-Expected real input:
+OpenClaw should write candidate JSON files to the AtlasForge Data Hub inbox:
 
 ```text
-automation/import/input/high-potential-candidates.json
+~/AtlasForge/prod-env/atlasforge-data-hub/openclaw/dev-error-db/inbox/
 ```
 
-OpenClaw should write a JSON array of candidates using this shape:
+Recommended filename format:
+
+```text
+high-potential-candidates-YYYYMMDD-HHMMSS.json
+```
+
+Runtime exchange data belongs in the Data Hub, not in the Dev Error DB source repository. The repo-local input directory is for examples only.
+
+## Expected OpenClaw JSON Format
+
+Each JSON file should be a JSON array or an object with a `candidates` array:
 
 ```json
-[
-  {
-    "error_signature": "",
-    "title": "",
-    "technology": "",
-    "recommended_category": "",
-    "search_intent": "",
-    "why_developers_search_it": "",
-    "commercial_value_score": 1,
-    "ranking_difficulty_score": 1,
-    "priority_score": 1,
-    "duplicate_risk": false,
-    "source_urls": [],
-    "evidence_summary": "",
-    "suggested_related_errors": [],
-    "notes": ""
-  }
-]
+{
+  "candidates": [
+    {
+      "error_signature": "Exact error message or recognizable failure signature",
+      "title": "Technology-specific error title",
+      "technology": "Docker",
+      "recommended_category": "Docker",
+      "search_intent": "What the developer is trying to fix",
+      "why_developers_search_it": "Why this error creates search demand",
+      "commercial_value_score": 7,
+      "ranking_difficulty_score": 5,
+      "priority_score": 8,
+      "duplicate_risk": false,
+      "source_urls": ["https://public-source.example/path"],
+      "evidence_summary": "Concise evidence from public, allowed sources",
+      "suggested_related_errors": ["Related existing or planned error"],
+      "notes": "Non-secret review notes"
+    }
+  ]
+}
 ```
 
-Use the example file as a template only:
+Use the example file as a schema reference only:
 
 ```text
 automation/import/input/high-potential-candidates.example.json
 ```
+
+## Import Lifecycle
+
+Default command:
+
+```bash
+npm run import:candidates
+```
+
+Default behavior:
+
+1. Ensure the Dev Error DB Data Hub folders exist.
+2. Read all `.json` files from the Data Hub inbox.
+3. Reject unreadable files, invalid JSON, malformed candidate arrays, and files larger than 5MB.
+4. Validate individual candidates and deduplicate across all loaded files.
+5. Write `automation/import/output/imported-candidates.json`.
+6. Move valid input files to `processed/` with a timestamp suffix.
+7. Move invalid or unreadable input files to `rejected/` with a timestamp suffix.
+
+If individual candidates are rejected but the source file is valid, the file still moves to `processed/`. Candidate-level rejections are recorded in the output report.
+
+If the inbox is empty, the importer exits successfully and prints:
+
+```text
+No candidate files found in data hub inbox.
+```
+
+## CLI Options
+
+```bash
+node automation/import/import-candidates.mjs --input /path/to/file.json
+node automation/import/import-candidates.mjs --input-dir /path/to/inbox
+node automation/import/import-candidates.mjs --output /path/to/output.json
+node automation/import/import-candidates.mjs --no-move
+node automation/import/import-candidates.mjs --dry-run
+```
+
+- `--input`: import one JSON file.
+- `--input-dir`: import all `.json` files from a directory.
+- `--output`: write the import report to a custom path.
+- `--no-move`: leave source files in place.
+- `--dry-run`: write the report without moving source files.
 
 ## Validation Rules
 
@@ -47,6 +101,7 @@ The importer rejects candidates with:
 - missing `search_intent`
 - missing `evidence_summary`
 - missing or empty `source_urls`
+- unapproved category after normalization
 - `commercial_value_score < 6`
 - `priority_score < 7`
 - `ranking_difficulty_score > 8` unless `priority_score >= 9`
@@ -60,7 +115,7 @@ Categories and slugs are normalized before duplicate checks. Existing coverage i
 - `automation/discovery/output/discovery-candidates.json`, when present
 - `automation/import/output/imported-candidates.json`, when present
 
-## Output
+## Output Format
 
 The importer writes:
 
@@ -68,25 +123,15 @@ The importer writes:
 automation/import/output/imported-candidates.json
 ```
 
-Output includes a summary plus `accepted_candidates` and `rejected_candidates`. Each record includes import metadata:
+Output includes:
 
-- `imported_at`
-- `imported_from: "openclaw"`
-- `quality_gate_version`
-- `import_status`
-- `rejection_reasons`
+- `summary`
+- per-file lifecycle results
+- `accepted_candidates`
+- `rejected_candidates`
 
 Accepted records are discovery-compatible candidate objects with fields such as `status`, `score`, `slug`, `title`, `category`, `technology`, `error_signature`, `search_intent`, `observed_causes`, `related_terms`, `source`, and `collection_method`.
 
-## Flow
+## Publishing Boundary
 
-```text
-OpenClaw Skill
--> high-potential-candidates.json
--> npm run import:candidates
--> imported-candidates.json
--> human review
--> future expansion pipeline
-```
-
-The importer stops at review-ready candidate preparation. Publication remains a separate future step so AtlasForge can keep quality checks, duplication review, and human approval between discovery and page generation.
+Imported candidates are not automatically published. Import output is a review artifact for later discovery, seed review, generation, validation, and human approval. This boundary keeps OpenClaw discovery separate from content publication and protects the site from duplicate, thin, or unsupported pages.

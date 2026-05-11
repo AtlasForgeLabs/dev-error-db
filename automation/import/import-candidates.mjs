@@ -1,14 +1,16 @@
-import { access, mkdir, readFile, readdir, writeFile } from 'node:fs/promises';
+import { mkdir, readFile, readdir, rename, stat, writeFile } from 'node:fs/promises';
 import path from 'node:path';
 import process from 'node:process';
 
 const projectRoot = path.resolve(new URL('../..', import.meta.url).pathname);
-const importDir = path.join(projectRoot, 'automation', 'import');
-const inputPath = path.join(importDir, 'input', 'high-potential-candidates.json');
-const examplePath = path.join(importDir, 'input', 'high-potential-candidates.example.json');
-const outputPath = path.join(importDir, 'output', 'imported-candidates.json');
-const qualityGateVersion = 'openclaw-high-potential-v1';
+const homeDir = process.env.HOME || process.env.USERPROFILE || '';
+const dataHubRoot = path.join(homeDir, 'AtlasForge', 'prod-env', 'atlasforge-data-hub', 'openclaw', 'dev-error-db');
+const defaultInputDir = path.join(dataHubRoot, 'inbox');
+const outputPathDefault = path.join(projectRoot, 'automation', 'import', 'output', 'imported-candidates.json');
+const maxInputBytes = 5 * 1024 * 1024;
+const qualityGateVersion = 'openclaw-high-potential-v1-datahub';
 
+const dataHubDirs = ['inbox', 'processed', 'rejected', 'archive', 'logs'];
 const approvedCategories = new Set([
   'Cloudflare',
   'DNS',
@@ -45,76 +47,139 @@ const categoryAliases = new Map([
   ['version control', 'Git'],
 ]);
 
+const args = parseArgs(process.argv.slice(2));
+const inputFile = args.input ? path.resolve(args.input) : null;
+const inputDir = path.resolve(args.inputDir ?? defaultInputDir);
+const outputPath = path.resolve(args.output ?? outputPathDefault);
+const noMove = Boolean(args.noMove || args.dryRun);
+const dryRun = Boolean(args.dryRun);
+
 main().catch((error) => {
   console.error(`[import] ${error.message}`);
   process.exitCode = 1;
 });
 
 async function main() {
-  await ensureInputExists();
+  await ensureDataHubDirs();
 
-  const rawCandidates = await readCandidateInput(inputPath);
+  const files = inputFile ? [inputFile] : await listJsonFiles(inputDir);
+  const importedAt = new Date().toISOString();
+
+  if (files.length === 0) {
+    const output = emptyOutput(importedAt);
+    await writeOutput(output);
+    await writeLog(importedAt, '[import] No candidate files found in data hub inbox.');
+    console.log('No candidate files found in data hub inbox.');
+    console.log(`[import] wrote ${displayPath(outputPath)}`);
+    return;
+  }
+
   const existing = await loadExistingCoverage();
   const seen = new Map();
-  const importedAt = new Date().toISOString();
   const acceptedCandidates = [];
   const rejectedCandidates = [];
+  const fileResults = [];
 
-  for (const [index, rawCandidate] of rawCandidates.entries()) {
-    const candidate = normalizeOpenClawCandidate(rawCandidate);
-    const duplicateMatch = findDuplicate(candidate, existing, seen);
-    const rejectionReasons = validateCandidate(candidate, duplicateMatch);
-    const importStatus = rejectionReasons.length === 0 ? 'accepted' : 'rejected';
-    const imported = buildImportedCandidate({
-      candidate,
-      duplicateMatch,
+  for (const filePath of files) {
+    const fileResult = await processInputFile(filePath, {
       importedAt,
-      importStatus,
-      rejectionReasons,
-      sourceIndex: index,
+      existing,
+      seen,
+      acceptedCandidates,
+      rejectedCandidates,
     });
-
-    seen.set(candidate.slug, imported);
-
-    if (importStatus === 'accepted') {
-      acceptedCandidates.push(imported);
-    } else {
-      rejectedCandidates.push(imported);
-    }
+    fileResults.push(fileResult);
   }
 
   const output = {
     generated_at: importedAt,
-    source: 'openclaw',
+    source: 'openclaw-data-hub',
+    data_hub_root: dataHubRoot,
+    dry_run: dryRun,
     summary: {
-      total: rawCandidates.length,
+      files_found: files.length,
+      files_processed: fileResults.filter((file) => file.status === 'processed').length,
+      files_rejected: fileResults.filter((file) => file.status === 'rejected').length,
+      total: acceptedCandidates.length + rejectedCandidates.length,
       accepted: acceptedCandidates.length,
       rejected: rejectedCandidates.length,
       duplicate_risk: [...acceptedCandidates, ...rejectedCandidates].filter(
         (candidate) => candidate.duplicate_risk || candidate.duplicate_match,
       ).length,
     },
+    files: fileResults,
     accepted_candidates: acceptedCandidates,
     rejected_candidates: rejectedCandidates,
   };
 
-  await mkdir(path.dirname(outputPath), { recursive: true });
-  await writeFile(outputPath, `${JSON.stringify(output, null, 2)}\n`, 'utf8');
+  await writeOutput(output);
+  await writeLog(importedAt, `[import] processed ${files.length} file(s), accepted ${acceptedCandidates.length}, rejected ${rejectedCandidates.length}`);
 
-  console.log(`[import] loaded ${rawCandidates.length} OpenClaw candidate(s)`);
+  console.log(`[import] loaded ${files.length} candidate file(s)`);
   console.log(`[import] accepted ${acceptedCandidates.length} candidate(s)`);
   console.log(`[import] rejected ${rejectedCandidates.length} candidate(s)`);
-  console.log(`[import] wrote ${relativePath(outputPath)}`);
+  console.log(`[import] wrote ${displayPath(outputPath)}`);
 }
 
-async function ensureInputExists() {
+async function processInputFile(filePath, context) {
+  const sourceFile = path.resolve(filePath);
+  const baseName = path.basename(sourceFile);
+
   try {
-    await access(inputPath);
-  } catch {
-    throw new Error(
-      `Missing input file: ${relativePath(inputPath)}\n` +
-        `Copy ${relativePath(examplePath)} to ${relativePath(inputPath)} after OpenClaw produces qualified JSON.`,
-    );
+    const fileStat = await stat(sourceFile);
+    if (!fileStat.isFile()) throw new Error('input is not a regular file');
+    if (fileStat.size > maxInputBytes) throw new Error(`input file exceeds 5MB limit (${fileStat.size} bytes)`);
+
+    const rawCandidates = await readCandidateInput(sourceFile);
+    const acceptedBefore = context.acceptedCandidates.length;
+    const rejectedBefore = context.rejectedCandidates.length;
+
+    for (const [index, rawCandidate] of rawCandidates.entries()) {
+      const candidate = normalizeOpenClawCandidate(rawCandidate);
+      const duplicateMatch = findDuplicate(candidate, context.existing, context.seen);
+      const rejectionReasons = validateCandidate(candidate, duplicateMatch);
+      const importStatus = rejectionReasons.length === 0 ? 'accepted' : 'rejected';
+      const imported = buildImportedCandidate({
+        candidate,
+        duplicateMatch,
+        importedAt: context.importedAt,
+        importStatus,
+        rejectionReasons,
+        sourceIndex: index,
+        sourceFile,
+      });
+
+      context.seen.set(candidate.slug, imported);
+
+      if (importStatus === 'accepted') {
+        context.acceptedCandidates.push(imported);
+      } else {
+        context.rejectedCandidates.push(imported);
+      }
+    }
+
+    const destination = await moveInputFile(sourceFile, 'processed');
+    return {
+      file: displayPath(sourceFile),
+      status: 'processed',
+      candidates_loaded: rawCandidates.length,
+      accepted: context.acceptedCandidates.length - acceptedBefore,
+      rejected: context.rejectedCandidates.length - rejectedBefore,
+      moved_to: destination ? displayPath(destination) : null,
+      dry_run: dryRun,
+    };
+  } catch (error) {
+    const destination = await moveInputFile(sourceFile, 'rejected');
+    return {
+      file: displayPath(sourceFile),
+      status: 'rejected',
+      candidates_loaded: 0,
+      accepted: 0,
+      rejected: 0,
+      moved_to: destination ? displayPath(destination) : null,
+      error: error.message,
+      dry_run: dryRun,
+    };
   }
 }
 
@@ -122,7 +187,7 @@ async function readCandidateInput(filePath) {
   const data = JSON.parse(await readFile(filePath, 'utf8'));
   if (Array.isArray(data)) return data;
   if (Array.isArray(data.candidates)) return data.candidates;
-  throw new Error(`Input must be a JSON array or an object with a candidates array: ${relativePath(filePath)}`);
+  throw new Error('input must be a JSON array or an object with a candidates array');
 }
 
 function normalizeOpenClawCandidate(candidate) {
@@ -159,6 +224,7 @@ function validateCandidate(candidate, duplicateMatch) {
   if (!candidate.search_intent) reasons.push('missing search_intent');
   if (!candidate.evidence_summary) reasons.push('missing evidence_summary');
   if (candidate.source_urls.length === 0) reasons.push('missing source_urls');
+  if (!approvedCategories.has(candidate.category)) reasons.push(`unapproved category: ${candidate.category || 'missing'}`);
   if (candidate.commercial_value_score < 6) reasons.push('commercial_value_score below 6');
   if (candidate.priority_score < 7) reasons.push('priority_score below 7');
   if (candidate.ranking_difficulty_score > 8 && candidate.priority_score < 9) {
@@ -173,7 +239,7 @@ function validateCandidate(candidate, duplicateMatch) {
   return reasons;
 }
 
-function buildImportedCandidate({ candidate, duplicateMatch, importedAt, importStatus, rejectionReasons, sourceIndex }) {
+function buildImportedCandidate({ candidate, duplicateMatch, importedAt, importStatus, rejectionReasons, sourceIndex, sourceFile }) {
   return {
     status: importStatus === 'accepted' ? 'accepted-for-review' : 'rejected',
     score: candidate.priority_score * 10,
@@ -203,6 +269,7 @@ function buildImportedCandidate({ candidate, duplicateMatch, importedAt, importS
     import_metadata: {
       imported_at: importedAt,
       imported_from: 'openclaw',
+      source_file: displayPath(sourceFile),
       quality_gate_version: qualityGateVersion,
       import_status: importStatus,
       rejection_reasons: rejectionReasons,
@@ -222,7 +289,7 @@ async function loadExistingCoverage() {
     const absolutePath = path.join(contentDir, file);
     const raw = await readFile(absolutePath, 'utf8');
     const frontmatter = parseFrontmatter(raw);
-    pages.push(toCoverageRecord(frontmatter, relativePath(absolutePath), file.replace(/\.mdx?$/, '')));
+    pages.push(toCoverageRecord(frontmatter, displayPath(absolutePath), file.replace(/\.mdx?$/, '')));
   }
 
   try {
@@ -246,10 +313,10 @@ async function loadExistingCoverage() {
         ...(Array.isArray(report.rejected_candidates) ? report.rejected_candidates : []),
       ];
       for (const candidate of candidates) {
-        discovery.push(toCoverageRecord(candidate, relativePath(discoveryPath), candidate.slug));
+        discovery.push(toCoverageRecord(candidate, displayPath(discoveryPath), candidate.slug));
       }
     } catch {
-      // Discovery output may not exist yet.
+      // Discovery/import output may not exist yet.
     }
   }
 
@@ -301,6 +368,63 @@ function findDuplicate(candidate, existing, seen) {
   }
 
   return null;
+}
+
+async function ensureDataHubDirs() {
+  for (const directory of dataHubDirs) {
+    await mkdir(path.join(dataHubRoot, directory), { recursive: true });
+  }
+}
+
+async function listJsonFiles(directory) {
+  await mkdir(directory, { recursive: true });
+  const entries = await readdir(directory, { withFileTypes: true });
+  return entries
+    .filter((entry) => entry.isFile() && entry.name.endsWith('.json'))
+    .map((entry) => path.join(directory, entry.name))
+    .sort();
+}
+
+async function moveInputFile(filePath, destinationName) {
+  if (noMove) return null;
+
+  const destinationDir = path.join(dataHubRoot, destinationName);
+  await mkdir(destinationDir, { recursive: true });
+  const parsed = path.parse(filePath);
+  const destination = path.join(destinationDir, `${parsed.name}-${timestampForFile()}${parsed.ext || '.json'}`);
+  await rename(filePath, destination);
+  return destination;
+}
+
+async function writeOutput(output) {
+  await mkdir(path.dirname(outputPath), { recursive: true });
+  await writeFile(outputPath, `${JSON.stringify(output, null, 2)}\n`, 'utf8');
+}
+
+async function writeLog(importedAt, message) {
+  const logPath = path.join(dataHubRoot, 'logs', `import-${timestampForFile(importedAt)}.log`);
+  await writeFile(logPath, `${message}\n`, 'utf8');
+}
+
+function emptyOutput(importedAt) {
+  return {
+    generated_at: importedAt,
+    source: 'openclaw-data-hub',
+    data_hub_root: dataHubRoot,
+    dry_run: dryRun,
+    summary: {
+      files_found: 0,
+      files_processed: 0,
+      files_rejected: 0,
+      total: 0,
+      accepted: 0,
+      rejected: 0,
+      duplicate_risk: 0,
+    },
+    files: [],
+    accepted_candidates: [],
+    rejected_candidates: [],
+  };
 }
 
 function normalizeCategory(value) {
@@ -368,6 +492,37 @@ function uniqueStrings(values) {
   return [...new Set(list.map(cleanText).filter(Boolean))];
 }
 
+function parseArgs(values) {
+  const parsed = {};
+
+  for (let index = 0; index < values.length; index += 1) {
+    const value = values[index];
+    if (!value.startsWith('--')) continue;
+
+    const [rawKey, inlineValue] = value.slice(2).split('=');
+    const key = rawKey.replace(/-([a-z])/g, (_, letter) => letter.toUpperCase());
+
+    if (inlineValue !== undefined) {
+      parsed[key] = inlineValue;
+      continue;
+    }
+
+    const next = values[index + 1];
+    if (next && !next.startsWith('--')) {
+      parsed[key] = next;
+      index += 1;
+    } else {
+      parsed[key] = true;
+    }
+  }
+
+  return parsed;
+}
+
+function timestampForFile(value = new Date().toISOString()) {
+  return value.replace(/\D/g, '').slice(0, 14);
+}
+
 function cleanText(value) {
   return String(value ?? '')
     .replace(/\s+/g, ' ')
@@ -378,6 +533,8 @@ function normalizeLookup(value) {
   return normalizeSlug(value);
 }
 
-function relativePath(filePath) {
-  return path.relative(projectRoot, filePath) || '.';
+function displayPath(filePath) {
+  if (filePath.startsWith(projectRoot)) return path.relative(projectRoot, filePath) || '.';
+  if (homeDir && filePath.startsWith(homeDir)) return `~${filePath.slice(homeDir.length)}`;
+  return filePath;
 }

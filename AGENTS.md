@@ -272,6 +272,24 @@ Automation must keep a clear separation between:
 
 Automation should prefer small, reviewable batches. Large-scale generation is allowed only after the generator, taxonomy, and validation checks have proven quality on smaller batches.
 
+## AtlasForge Data Hub Rules
+
+AtlasForge production runtime exchange data must use:
+
+```text
+~/AtlasForge/prod-env/atlasforge-data-hub/
+```
+
+Do not use the source repository as a long-term automation data exchange directory.
+
+For Dev Error DB, OpenClaw candidate files belong under:
+
+```text
+~/AtlasForge/prod-env/atlasforge-data-hub/openclaw/dev-error-db/inbox/
+```
+
+The source repository may contain example input files, import scripts, generated reports, and reviewed content. It must not be treated as the production inbox for OpenClaw runtime data.
+
 ## What Must Never Be Generated
 
 Never generate:
