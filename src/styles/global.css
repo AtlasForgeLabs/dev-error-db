@@ -86,6 +86,10 @@ nav {
   max-width: 760px;
 }
 
+.hero--compact {
+  padding-bottom: 10px;
+}
+
 .eyebrow {
   margin: 0 0 10px;
   color: var(--accent-dark);
@@ -109,6 +113,10 @@ h1 {
 .hero h1 {
   max-width: 760px;
   font-size: clamp(1.8rem, 3.6vw, 2.7rem);
+}
+
+.hero--compact h1 {
+  margin-bottom: 0;
 }
 
 .error-header h1 {
@@ -460,5 +468,9 @@ li + li {
 
   .hero {
     padding: 28px 0 22px;
+  }
+
+  .hero--compact {
+    padding-bottom: 8px;
   }
 }
