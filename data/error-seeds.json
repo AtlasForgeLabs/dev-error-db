@@ -1697,5 +1697,138 @@
       "Google AI Studio API custom provider not working",
       "Gemini API v1beta/openai endpoint issues"
     ]
+  },
+  {
+    "slug": "anthropic-api-authorization-with-the-mcp-server-failed",
+    "title": "Claude.ai MCP Connector Authorization Failed After OAuth Completes",
+    "description": "Fix claude.ai MCP connector showing 'Authorization with the MCP server failed' after OAuth completes successfully Includes evidence for Anthropic API troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Anthropic API",
+    "error_signature": "Authorization with the MCP server failed",
+    "search_intent": "Fix claude.ai MCP connector showing 'Authorization with the MCP server failed' after OAuth completes successfully",
+    "common_causes": [
+      "When connecting Salesforce Hosted MCP (or other custom MCP connectors) to claude.ai, OAuth completes successfully and tokens are issued, but claude.ai fails to complete the authenticated MCP handshake. The connector never shows as 'Connected'. This affects enterprise developers setting up MCP integrations, a key use case for Claude.ai's extensibility. Issue persists across both beta and GA endpoints with correct OAuth Client ID configuration.",
+      "Open issue with 17 comments. OAuth flow completes (confirmed via Salesforce OAuth Usage), token issued and used, but claude.ai returns 'Authorization with the MCP server failed'. Tested with GA setup: v1 endpoint, mcp_api scope, PKCE, OAuth Client ID in claude.ai Advanced settings. Issue persists identically across multiple attempts."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "Claude.ai MCP custom connector timeout",
+      "MCP server OAuth token refresh failed",
+      "claude.ai custom connector 403 forbidden"
+    ]
+  },
+  {
+    "slug": "litellm-provider-token-counting-failed-400-messages-n-content-field-required-falling-back-to-local-tokenizer",
+    "title": "LiteLLM count_tokens Silently Falls Back to Local Tokenizer for Bedrock Anthropic Models",
+    "description": "Fix LiteLLM /v1/messages/count_tokens returning wrong token count for Bedrock-backed Anthropic models Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "Provider token counting failed (400): messages.N.content: Field required. Falling back to local tokenizer",
+    "search_intent": "Fix LiteLLM /v1/messages/count_tokens returning wrong token count for Bedrock-backed Anthropic models",
+    "common_causes": [
+      "When using LiteLLM proxy with Bedrock-backed Anthropic Claude models, POST to /v1/messages/count_tokens silently falls back to local tiktoken after Bedrock rejects with 400. The local tokenizer returns counts that can be ~50% lower than what Bedrock actually charges. For a 110k-token payload, local fallback returned 39,326 vs 85,780 from direct Bedrock CountTokens. This causes significant billing discrepancies and is extremely hard to detect because the fallback is silent.",
+      "Open issue from 2026-05-11. Bedrock rejects with HTTP 400 'messages.N.content: Field required' due to content block shape mismatch (Anthropic vs Converse format). Local tiktoken under-counts by ~50% on representative tool-heavy payloads. Second related bug: invokeModel.body should be Base64-encoded but ships as raw JSON."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "LiteLLM token count mismatch Bedrock",
+      "LiteLLM proxy wrong billing token count",
+      "Anthropic Bedrock token counting API error"
+    ]
+  },
+  {
+    "slug": "ollama-error-400-empty-body-when-pulling-hf-co-gguf-models",
+    "title": "Ollama Error 400 Empty Body Pulling HuggingFace GGUF Models",
+    "description": "Fix Ollama returning empty 400 error after successfully downloading GGUF models from HuggingFace Includes evidence for Ollama troubleshooting demand.",
+    "category": "Ollama",
+    "technology": "Ollama",
+    "error_signature": "Error: 400: (empty body) when pulling hf.co GGUF models",
+    "search_intent": "Fix Ollama returning empty 400 error after successfully downloading GGUF models from HuggingFace",
+    "common_causes": [
+      "When pulling models from hf.co, the download reaches 100% but Ollama returns 'Error: 400:' with no body text. The model never appears in 'ollama list'. This is a common scenario for developers using community-distilled models from HuggingFace, and the lack of error details makes debugging impossible.",
+      "Confirmed bug: ollama run hf.co/<model> downloads successfully (8GB+) then fails with 'Error: 400:'. Server logs show only '200 POST /api/pull' with no error details. Workaround requires manually creating Modelfile from downloaded blob. Affects macOS Apple Silicon with Ollama 0.20.4. 7 comments, open since 2026-04-09."
+    ],
+    "quick_fix": "Verify the model name, local service connectivity, and network access before retrying the model pull.",
+    "related_errors": [
+      "Ollama Error 500 model failed to load",
+      "Ollama GGUF invalid header error",
+      "Ollama pull interrupted resume"
+    ]
+  },
+  {
+    "slug": "ollama-400-unexpected-eof-on-v1-chat-completions-for-cloud-proxy-models",
+    "title": "Ollama 400 Unexpected EOF with Cloud Proxy Models on OpenAI-Compatible Endpoint",
+    "description": "Fix intermittent 400 'unexpected EOF' errors when using Ollama's /v1/chat/completions with cloud proxy models Includes evidence for Ollama troubleshooting demand.",
+    "category": "Ollama",
+    "technology": "Ollama",
+    "error_signature": "400 unexpected EOF on /v1/chat/completions for cloud proxy models",
+    "search_intent": "Fix intermittent 400 'unexpected EOF' errors when using Ollama's /v1/chat/completions with cloud proxy models",
+    "common_causes": [
+      "Ollama's cloud proxy models (glm-5.1:cloud, deepseek-v4-pro:cloud, kimi-k2.6:cloud) fail ~5-10% of the time with 400 'unexpected EOF' or 'cannot parse request body' on the OpenAI-compatible /v1/chat/completions endpoint. The native /api/chat endpoint works fine, so developers using OpenAI SDK or LangChain hit this unpredictably. Larger request bodies (with tool definitions) fail more often.",
+      "Open issue from 2026-05-10. Affects all :cloud models (remote proxy). /v1/chat/completions endpoint returns 400 with 'unexpected EOF' or 'cannot parse request body'. Native /api/chat always works. Error response time 0-11ms. Larger requests (~74KB with tools) fail more frequently. Ollama 0.23.2, Linux WSL2."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Ollama OpenAI API key not found",
+      "Ollama connection refused localhost:11434",
+      "Ollama streaming response cut off"
+    ]
+  },
+  {
+    "slug": "litellm-max-budget-is-ignored-after-reset",
+    "title": "LiteLLM max_budget Ignored After Monthly Budget Reset",
+    "description": "Fix LiteLLM max_budget being ignored after ResetBudgetJob resets key spending to zero Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "max_budget is ignored after reset",
+    "search_intent": "Fix LiteLLM max_budget being ignored after ResetBudgetJob resets key spending to zero",
+    "common_causes": [
+      "After LiteLLM's monthly ResetBudgetJob resets key spending to 0, the max_budget limit stops being enforced — keys can exceed their budget without being blocked. This previously worked correctly (keys were blocked when reaching max_budget) but broke after the budget reset feature. For teams using LiteLLM proxy to manage API key budgets across organizations, this means unlimited spending after reset, with no warning.",
+      "Open issue. After monthly reset, spend set to 0 but max_budget enforcement stops working. Previously keys were correctly blocked at max_budget. Directly impacts billing/cost control for LiteLLM proxy enterprise users."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "LiteLLM budget_limits not working",
+      "LiteLLM key spending limit ignored",
+      "LiteLLM cost tracking incorrect"
+    ]
+  },
+  {
+    "slug": "cloudflare-emfile-too-many-open-files-watch-at-fswatcher-handle-onchange",
+    "title": "Cloudflare Wrangler dev EMFILE Too Many Open Files with Static Assets",
+    "description": "Fix wrangler dev crashing with EMFILE too many open files when Workers Static Assets directory has many subdirectories Includes evidence for Cloudflare troubleshooting demand.",
+    "category": "Cloudflare",
+    "technology": "Cloudflare",
+    "error_signature": "EMFILE: too many open files, watch at FSWatcher._handle.onchange",
+    "search_intent": "Fix wrangler dev crashing with EMFILE too many open files when Workers Static Assets directory has many subdirectories",
+    "common_causes": [
+      "Cloudflare Wrangler dev crashes with EMFILE error when the Workers Static Assets directory contains more than 4,095 subdirectories. The crash happens at watcher setup before the local server is ready. The threshold is exact at 4,096 directories (power-of-two suggests hardcoded watcher cap). .assetsignore does not help because it filters deploy/upload but not the dev watcher. This is a significant limitation for developers with large static asset structures.",
+      "Open issue. wrangler 4.86.0, Node 20.19.2, macOS. Cutoff exact at 4,096 directories regardless of file count. .assetsignore does not prevent the crash. System rlimit is 1,048,576, so this is a Wrangler/libuv watcher cap, not an OS limit."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "wrangler pages dev file watch limit",
+      "Cloudflare Workers hot reload not working",
+      "wrangler dev ENOSPC no space left"
+    ]
+  },
+  {
+    "slug": "github-copilot-pretooluse-hooks-don-t-fire-for-background-task-sub-agents",
+    "title": "GitHub Copilot CLI preToolUse Hooks Not Firing for Sub-Agents",
+    "description": "Fix GitHub Copilot CLI preToolUse hooks not executing when commands run via background/task agents Includes evidence for GitHub Copilot troubleshooting demand.",
+    "category": "GitHub Copilot",
+    "technology": "GitHub Copilot",
+    "error_signature": "preToolUse hooks don't fire for background/task sub-agents",
+    "search_intent": "Fix GitHub Copilot CLI preToolUse hooks not executing when commands run via background/task agents",
+    "common_causes": [
+      "Developers configure preToolUse hooks in Copilot CLI to enforce security policies (file permissions, lock checks, scanning), but these hooks are completely bypassed when Copilot spawns sub-agents (task agents or general-purpose agents). This means any security guardrail defined in hooks can be circumvented by the agent simply delegating to a sub-agent. Both global and project-level hooks are affected. sessionStart hooks also don't fire for sub-agents.",
+      "Open issue with 1 comment. Copilot CLI v1.0.37. All sub-agent types tested (task/Haiku, general-purpose/Sonnet) bypass preToolUse hooks. Both global (~/.copilot/hooks/) and project-level (.github/hooks/) hooks affected. sessionStart hooks also don't fire for sub-agents."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Copilot CLI hooks not working",
+      "Copilot agent sandbox escape",
+      "GitHub Copilot security hooks bypassed"
+    ]
   }
 ]
