@@ -16,6 +16,7 @@ const sitemapIndexExists = existsSync(path.join(rootDir, 'dist', 'sitemap-index.
 const sitemapExists = existsSync(path.join(rootDir, 'dist', 'sitemap-0.xml'));
 const sitemapStats = await inspectSitemaps();
 const seoHealth = buildSeoHealth(parsedPages);
+const monetizationStats = await inspectMonetization();
 
 const runtimeDir = path.join(rootDir, 'automation', 'runtime');
 mkdirSync(runtimeDir, { recursive: true });
@@ -35,6 +36,7 @@ console.log('\nDomain and static files:');
 printFileValue('CNAME');
 printFileValue('public/CNAME');
 printExists('public/robots.txt');
+printExists('public/ads.txt');
 
 console.log('\nPackage scripts:');
 print('build', hasScript('build') ? 'yes' : 'no');
@@ -48,6 +50,13 @@ print('sitemap urls', String(sitemapStats.totalUrls));
 print('sitemap duplicate urls', String(sitemapStats.duplicateUrls));
 print('sitemap missing error urls', String(sitemapStats.missingErrorUrls));
 print('Build reminder', buildReminder());
+
+console.log('\nMonetization:');
+print('ads.txt exists', monetizationStats.adsTxtExists ? 'yes' : 'no');
+print('ads.txt expected line', monetizationStats.adsTxtValid ? 'yes' : 'no');
+print('dist/ads.txt exists', monetizationStats.distAdsTxtExists ? 'yes' : 'no');
+print('dist/index.html AdSense script', monetizationStats.indexHasAdSense ? 'yes' : 'no');
+print('sample error page AdSense script', monetizationStats.sampleErrorHasAdSense ? `yes (${monetizationStats.sampleErrorPage})` : 'no');
 
 console.log('\nSEO health snapshot:');
 print('internal_link_density', String(seoHealth.internal_link_density));
@@ -183,6 +192,26 @@ async function inspectSitemaps() {
     totalUrls: urls.length,
     duplicateUrls: urls.length - uniqueUrls.size,
     missingErrorUrls,
+  };
+}
+
+async function inspectMonetization() {
+  const expectedAdsTxtLine = 'google.com, pub-6843790293923678, DIRECT, f08c47fec0942fa0';
+  const adsScriptNeedle = 'pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6843790293923678';
+  const adsTxtPath = path.join(rootDir, 'public', 'ads.txt');
+  const distAdsTxtPath = path.join(rootDir, 'dist', 'ads.txt');
+  const indexPath = path.join(rootDir, 'dist', 'index.html');
+  const firstErrorFile = errorFiles[0] ? path.basename(errorFiles[0], '.md') : null;
+  const sampleErrorPage = firstErrorFile ? `dist/errors/${firstErrorFile}/index.html` : null;
+  const sampleErrorPath = firstErrorFile ? path.join(rootDir, 'dist', 'errors', firstErrorFile, 'index.html') : null;
+
+  return {
+    adsTxtExists: existsSync(adsTxtPath),
+    adsTxtValid: existsSync(adsTxtPath) && readFileSync(adsTxtPath, 'utf8').includes(expectedAdsTxtLine),
+    distAdsTxtExists: existsSync(distAdsTxtPath),
+    indexHasAdSense: existsSync(indexPath) && readFileSync(indexPath, 'utf8').includes(adsScriptNeedle),
+    sampleErrorPage,
+    sampleErrorHasAdSense: Boolean(sampleErrorPath && existsSync(sampleErrorPath) && readFileSync(sampleErrorPath, 'utf8').includes(adsScriptNeedle)),
   };
 }
 

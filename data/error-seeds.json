@@ -938,5 +938,138 @@
       "Ollama qwen model failed",
       "Ollama Apple Silicon runner error"
     ]
+  },
+  {
+    "slug": "claude-code-invalid-version-2-1-0-2026-01-07",
+    "title": "Claude Code crashes with \"Invalid Version\" semver parsing error on startup",
+    "description": "Fix Claude Code crashing on startup with semver/Invalid Version error Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Invalid Version: 2.1.0 (2026-01-07)",
+    "search_intent": "Fix Claude Code crashing on startup with semver/Invalid Version error",
+    "common_causes": [
+      "Claude Code 2.1.0 introduced a version string format that breaks semver parsing, causing the tool to crash immediately on launch. Multiple developers affected across platforms. Paid AI coding tool — high frustration and search demand.",
+      "Multiple GitHub issues (#16673, #16682, #16696) report Claude Code failing to launch with 'ERROR Invalid Version: 2.1.0 (2026-01-07)' — the version string includes a date suffix that semver library cannot parse."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Claude Code semver parsing error",
+      "Claude Code crashes on startup",
+      "Claude Code version check failure"
+    ]
+  },
+  {
+    "slug": "claude-code-typeerror-the-argument-filename-must-be-a-file-url-object-file-url-string-or-absolute-path-string",
+    "title": "Claude Code VSCode Extension fails to activate with filename path TypeError",
+    "description": "Fix Claude Code VSCode extension activation failure due to path/URL TypeError Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "TypeError: The argument 'filename' must be a file URL object, file URL string, or absolute path string",
+    "search_intent": "Fix Claude Code VSCode extension activation failure due to path/URL TypeError",
+    "common_causes": [
+      "Recent regression (May 2026, v2.1.136) causes the VSCode extension to completely fail activation. The extension is unusable until fixed. High impact for VSCode users of Claude Code.",
+      "GitHub issue #57495 reports Claude Code VSCode Extension v2.1.136 failing to activate with TypeError about filename argument. Error started 2026-05-08. Multiple users confirm same error."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Claude Code VSCode extension not loading",
+      "VSCode extension activation failed TypeError",
+      "Claude Code file URL path error"
+    ]
+  },
+  {
+    "slug": "claude-code-unable-to-connect-to-api-connectionrefused",
+    "title": "Claude Code persistent \"Unable to connect to API (ConnectionRefused)\" error",
+    "description": "Fix persistent API connection refused error in Claude Code when status page shows no incidents Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Unable to connect to API (ConnectionRefused)",
+    "search_intent": "Fix persistent API connection refused error in Claude Code when status page shows no incidents",
+    "common_causes": [
+      "Claude Code shows ConnectionRefused errors while the official status page reports no incidents. This discrepancy is particularly frustrating — users can't tell if it's a local issue or an unreported outage. High search demand from affected developers.",
+      "GitHub issue #56242 reports persistent ConnectionRefused errors in Claude Code/Cowork client stack. Status page shows no incidents but May 4, 2026 had multiple real incidents affecting Claude API, Claude Code, and Claude Cowork."
+    ],
+    "quick_fix": "Confirm the local service is running on the expected host and port, then retry the smallest request.",
+    "related_errors": [
+      "Claude API connection refused",
+      "Claude Code unable to connect",
+      "Claude status page not reporting incidents"
+    ]
+  },
+  {
+    "slug": "openrouter-provider-returned-error",
+    "title": "OpenRouter provider returns 401 unauthorized error in Cline and other AI tools",
+    "description": "Fix OpenRouter 401 authentication error when using Cline, Aider, or other AI coding tools Includes evidence for OpenRouter troubleshooting demand.",
+    "category": "Cloud Platforms",
+    "technology": "OpenRouter",
+    "error_signature": "Provider returned error",
+    "search_intent": "Fix OpenRouter 401 authentication error when using Cline, Aider, or other AI coding tools",
+    "common_causes": [
+      "OpenRouter is a major paid AI API gateway. Users report intermittent 401 errors despite valid API keys with credits. Error appears across multiple tools (Cline, Aider, Home Assistant), indicating a broader API-level issue. High commercial value.",
+      "Multiple GitHub issues report OpenRouter returning 401 unauthorized despite valid API keys with credits. Cline issue #813 shows users creating 'a dozen API keys' with no success. Aider #853 reports no API activity in dashboard after upgrade."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "OpenRouter API key not working",
+      "OpenRouter authentication failed",
+      "OpenRouter 401 error after upgrade"
+    ]
+  },
+  {
+    "slug": "openrouter-ai-apicallerror-user-not-found",
+    "title": "OpenRouter AI_APICallError: User not found despite valid API key",
+    "description": "Fix OpenRouter AI_APICallError 'User not found' when API key works for direct API calls Includes evidence for OpenRouter troubleshooting demand.",
+    "category": "Cloud Platforms",
+    "technology": "OpenRouter",
+    "error_signature": "AI_APICallError: User not found",
+    "search_intent": "Fix OpenRouter AI_APICallError 'User not found' when API key works for direct API calls",
+    "common_causes": [
+      "Distinct error from generic 401 — OpenCode consistently gets 'User not found' error with OpenRouter, while the same API key works for direct API calls. This suggests a tool-specific integration bug. High search intent for OpenCode + OpenRouter users.",
+      "GitHub issue #2245 reports OpenCode consistently failing with AI_APICallError: User not found when using OpenRouter models, despite valid API key that works for direct API calls."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "OpenRouter AI_APICallError",
+      "OpenCode OpenRouter integration error",
+      "OpenRouter API key works directly but not through tool"
+    ]
+  },
+  {
+    "slug": "openrouter-401-missing-authentication-header",
+    "title": "OpenRouter returns 401 Missing Authentication header in OpenClaw and LiteLLM chains",
+    "description": "Fix OpenRouter 401 Missing Authentication header error in proxy chains Includes evidence for OpenRouter troubleshooting demand.",
+    "category": "Cloud Platforms",
+    "technology": "OpenRouter",
+    "error_signature": "401 Missing Authentication header",
+    "search_intent": "Fix OpenRouter 401 Missing Authentication header error in proxy chains",
+    "common_causes": [
+      "Occurs specifically in proxy routing chains (e.g., openclaw -> openrouter). The error indicates the authentication header is being dropped during routing — a common but hard-to-debug issue for developers using multi-provider setups.",
+      "GitHub issue #51056 shows OpenRouter returning '401 Missing Authentication header' in a proxy chain (openclaw -> openrouter). Error occurs during auth step taking 694ms, with any openrouter model affected."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "OpenRouter proxy authentication error",
+      "LiteLLM OpenRouter 401",
+      "API header dropped in proxy chain"
+    ]
+  },
+  {
+    "slug": "claude-code-json-parse-error-on-windows-stream-json-format",
+    "title": "Claude Code persistent JSON parse error on Windows with stream-json output",
+    "description": "Fix Claude Code JSON parse error on Windows when using stream-json output format Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "JSON Parse Error on Windows (stream-json format)",
+    "search_intent": "Fix Claude Code JSON parse error on Windows when using stream-json output format",
+    "common_causes": [
+      "Claude Code on Windows consistently fails to parse its own stream-json output, causing persistent errors. Affects all Windows users using the VSCode extension. Platform-specific bug with high search demand from Windows developers.",
+      "GitHub issue #14442 reports persistent JSON parse error on Windows when Claude Code spawns native binary with --output-format stream-json. Log shows spawning claude.exe with stream-json verbose mode."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Claude Code Windows stream-json error",
+      "Claude Code JSON parsing failure",
+      "Claude Code Windows native binary error"
+    ]
   }
 ]
