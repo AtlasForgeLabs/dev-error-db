@@ -184,9 +184,10 @@ AI coding agents should:
 - avoid unnecessary dependency additions
 - avoid modifying unrelated files
 - summarize changed files after tasks
+- work from the `main` branch by default
+- after completing and validating each task, commit the relevant changes and push them to the remote `main` branch
 
 Do NOT:
-- auto-push to GitHub
 - auto-delete existing content
 - rewrite architecture without explicit instruction
 
@@ -243,7 +244,6 @@ OpenClaw may:
 
 OpenClaw must not:
 - publish directly to production
-- push commits without approval
 - submit URLs for indexing without approval
 - create pages from private logs, secrets, customer data, or unsupported claims
 - expand categories without taxonomy review
@@ -312,7 +312,6 @@ Do not generate content that claims a fix is guaranteed. Do not publish pages th
 ## What Requires Human Approval
 
 Human approval is required before:
-- pushing to GitHub
 - opening or merging pull requests
 - publishing large content batches
 - creating new categories
@@ -325,6 +324,18 @@ Human approval is required before:
 - using private, customer, or sensitive source material
 
 Human review is also required when automation reports unresolved warnings, thin content risk, duplicate content risk, or uncertain technical claims.
+
+## Branch And Push Workflow
+
+All routine Codex development work in this repository should happen on `main`.
+
+After a task is completed and local validation passes, Codex should:
+- stage only relevant files
+- commit with a concise message
+- push the commit to the remote `main` branch
+- report the commit hash, validation result, push result, and final working tree status
+
+This automatic push workflow applies to normal code, content, style, automation, and documentation changes. It does not remove the human approval requirements for large content batches, taxonomy expansion, deployment workflow changes, legal/domain/analytics/ads changes, destructive actions, pull requests, or Google indexing submissions.
 
 ---
 
