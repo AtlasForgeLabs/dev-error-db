@@ -107,8 +107,8 @@ h1 {
 }
 
 .hero h1 {
-  max-width: 820px;
-  font-size: clamp(2rem, 4.8vw, 3.35rem);
+  max-width: 760px;
+  font-size: clamp(1.8rem, 3.6vw, 2.7rem);
 }
 
 .error-header h1 {
