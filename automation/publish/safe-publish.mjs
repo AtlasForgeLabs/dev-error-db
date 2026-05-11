@@ -1,4 +1,4 @@
-import { mkdir, writeFile } from 'node:fs/promises';
+import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import { existsSync } from 'node:fs';
 import path from 'node:path';
 import { spawnSync } from 'node:child_process';
@@ -71,6 +71,7 @@ async function main() {
   report.blocked_files = status.filter((entry) => !isAllowedPath(entry.path)).map((entry) => entry.path);
 
   if (report.changed_files.length === 0) {
+    await preservePreviousPublishMetadata();
     report.status = 'skipped';
     report.reason = 'nothing to publish';
     await writeReport();
@@ -83,6 +84,7 @@ async function main() {
   }
 
   if (report.allowed_files.length === 0) {
+    await preservePreviousPublishMetadata();
     report.status = 'skipped';
     report.reason = 'nothing to publish';
     await writeReport();
@@ -182,4 +184,16 @@ async function fail(reason) {
 async function writeReport() {
   await mkdir(path.dirname(reportPath), { recursive: true });
   await writeFile(reportPath, `${JSON.stringify(report, null, 2)}\n`);
+}
+
+async function preservePreviousPublishMetadata() {
+  if (!existsSync(reportPath)) return;
+
+  try {
+    const previous = JSON.parse(await readFile(reportPath, 'utf8'));
+    if (previous.commit_hash) report.commit_hash = previous.commit_hash;
+    if (previous.pushed_at) report.pushed_at = previous.pushed_at;
+  } catch {
+    // A malformed previous report should not block a safe no-op publish.
+  }
 }
