@@ -1336,5 +1336,81 @@
       "LiteLLM proxy chain double-counts token costs",
       "LiteLLM custom model pricing not applied to routed requests"
     ]
+  },
+  {
+    "slug": "github-copilot-copilot-stuck-evaluating-analyzing-planning",
+    "title": "GitHub Copilot stuck in evaluating/analyzing/planning state with GPT models",
+    "description": "Fix GitHub Copilot Chat stuck forever in evaluating/analyzing/planning state Includes evidence for GitHub Copilot troubleshooting demand.",
+    "category": "GitHub Copilot",
+    "technology": "GitHub Copilot",
+    "error_signature": "Copilot stuck evaluating/analyzing/planning",
+    "search_intent": "Fix GitHub Copilot Chat stuck forever in evaluating/analyzing/planning state",
+    "common_causes": [
+      "GitHub Copilot Chat extension in VS Code becomes permanently stuck in 'evaluating/analyzing/planning' state when using GPT-family models. Users see the tool call executing (`get_errors` with multiple file paths) but never get a response. Affects 14+ users across multiple sessions. Only reproducible in certain chat sessions, suggesting session state corruption.",
+      "GitHub issue #312526 on microsoft/vscode (14 comments, open since 2026-04-25). VS Code 1.118.0-insider with Copilot Chat Extension 0.46.2026042405. Happens specifically with GPT 5.4/5.3/5.5 models. Trace logs show `execute_tool` spans completing but agent state never progresses. Reproduces consistently in affected sessions."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "GitHub Copilot subagent not responding",
+      "Copilot Chat 503 model unavailable",
+      "Copilot usage not showing in exported logs"
+    ]
+  },
+  {
+    "slug": "claude-code-unable-to-connect-to-api-econnreset",
+    "title": "Claude Code ECONNRESET — Unable to connect to Anthropic API",
+    "description": "Fix Claude Code ECONNRESET errors when connecting to the Anthropic API Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Unable to connect to API (ECONNRESET)",
+    "search_intent": "Fix Claude Code ECONNRESET errors when connecting to the Anthropic API",
+    "common_causes": [
+      "Claude Code users experience sudden ECONNRESET failures despite healthy network connectivity — DNS, TCP, TLS, and HTTP/2 all working. The error appears in both CLI (`Unable to connect to API (ECONNRESET)`) and VS Code extension telemetry, making the tool completely unusable until the issue resolves.",
+      "GitHub issue #13657 on anthropics/claude-code (28 comments, closed) reports ECONNRESET on macOS with Opus 4.5. User confirmed DNS/TCP/TLS/HTTP2 all functional, pointing to a transient upstream or client-side connection handling bug. VS Code extension also reports 'Failed to export telemetry events' errors simultaneously."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Claude Code ETIMEDOUT on WSL2",
+      "Claude Code 503 Service Unavailable",
+      "Claude Code auth token expired unexpectedly"
+    ]
+  },
+  {
+    "slug": "litellm-budgetexceedederror-http-429",
+    "title": "LiteLLM phantom BudgetExceededError — Redis spend counter leak",
+    "description": "Fix random LiteLLM BudgetExceededError (429) when actual spend is near zero Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "BudgetExceededError (HTTP 429)",
+    "search_intent": "Fix random LiteLLM BudgetExceededError (429) when actual spend is near zero",
+    "common_causes": [
+      "After upgrading to LiteLLM v1.83.10+, end users randomly receive HTTP 429 BudgetExceededError despite database spend being near $0. The Redis atomic counter `spend:end_user:<id>` accumulates phantom reservations that are never finalized. Requests cycle between success and failure every ~4 minutes. Critical for production proxy deployments with Kubernetes.",
+      "GitHub issue #27639 on BerriAI/litellm (created 2026-05-11). Production deployment on EKS with 4 replicas, Redis cache enabled. Phantom BudgetExceededError cycles every 4 minutes. Root cause: reserve_budget_for_request() leaks Redis spend counters after upgrade. Directly impacts billing and user experience."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "LiteLLM Redis connection timeout",
+      "LiteLLM proxy 500 internal server error",
+      "LiteLLM max_end_user_budget ignored"
+    ]
+  },
+  {
+    "slug": "ollama-llama-runner-process-has-terminated-signal-arrived-during-cgo-execution",
+    "title": "Ollama llama runner cgo crash — exit status 2 on specific GPU/CUDA combos",
+    "description": "Fix Ollama llama runner crash with 'signal arrived during cgo execution' on NVIDIA GPU Includes evidence for Ollama troubleshooting demand.",
+    "category": "Ollama",
+    "technology": "Ollama",
+    "error_signature": "llama runner process has terminated: signal arrived during cgo execution",
+    "search_intent": "Fix Ollama llama runner crash with 'signal arrived during cgo execution' on NVIDIA GPU",
+    "common_causes": [
+      "Ollama users with older NVIDIA GPUs (Maxwell architecture) and CUDA 13 drivers experience immediate crashes when loading Qwen2.5 14B models. The 7B models work fine, suggesting a backend compatibility issue with specific model sizes. Error surfaces as HTTP 500 with 'exit status 2' in Ollama logs.",
+      "Fresh GitHub issue (#16102, created 2026-05-11) on ollama/ollama. GTX TITAN X (12 GB VRAM) + CUDA 13 + Ubuntu crashes on Qwen2.5 14B with 'llama runner process has terminated: signal arrived during cgo execution'. VRAM only reaches ~1 GB before crash, ruling out OOM. 7B models load fine on same hardware."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Ollama GPU memory allocation failed",
+      "Ollama CUDA driver incompatibility",
+      "Ollama model pull fails with connection refused"
+    ]
   }
 ]
