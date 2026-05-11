@@ -1071,5 +1071,138 @@
       "Claude Code JSON parsing failure",
       "Claude Code Windows native binary error"
     ]
+  },
+  {
+    "slug": "github-copilot-cert-has-expired",
+    "title": "GitHub Copilot CERT_HAS_EXPIRED SSL Certificate Error",
+    "description": "Fix GitHub Copilot CERT_HAS_EXPIRED SSL/TLS certificate error in VSCode Includes evidence for GitHub Copilot troubleshooting demand.",
+    "category": "GitHub Copilot",
+    "technology": "GitHub Copilot",
+    "error_signature": "CERT_HAS_EXPIRED",
+    "search_intent": "Fix GitHub Copilot CERT_HAS_EXPIRED SSL/TLS certificate error in VSCode",
+    "common_causes": [
+      "Developers see 'CERT_HAS_EXPIRED' error when GitHub Copilot's SSL certificate validation fails, typically due to corporate proxy or firewall intercepting HTTPS traffic. This completely blocks Copilot functionality and affects paid enterprise users.",
+      "Stack Overflow question (score 7) shows 'CERT_HAS_EXPIRED' error when using GitHub Copilot in VSCode behind firewall. High community engagement indicates widespread issue. Affects paid Copilot subscribers in corporate networks."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "GitHub Copilot proxy configuration",
+      "VSCode SSL certificate error",
+      "GitHub Copilot behind corporate firewall"
+    ]
+  },
+  {
+    "slug": "anthropic-api-anthropic-claude-3-haiku-20240307-v1-0-with-on-demand-throughput-isn-t-supported",
+    "title": "Amazon Bedrock Anthropic Claude Model On-Demand Throughput Not Supported",
+    "description": "Fix Amazon Bedrock error when using Anthropic Claude models with on-demand throughput Includes evidence for Anthropic API troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Anthropic API",
+    "error_signature": "anthropic.claude-3-haiku-20240307-v1:0 with on-demand throughput isn't supported",
+    "search_intent": "Fix Amazon Bedrock error when using Anthropic Claude models with on-demand throughput",
+    "common_causes": [
+      "Amazon Bedrock users get this error when attempting to use specific Claude model IDs with on-demand throughput instead of provisioned throughput. This is a billing/provisioning configuration error that blocks AI application deployment on AWS's paid Bedrock service.",
+      "Stack Overflow question (score 1) about Amazon Bedrock rejecting Anthropic Claude 3 Haiku model ID when using on-demand throughput. Exact error message includes model ID and throughput type mismatch. Affects AWS Bedrock paid service users."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Amazon Bedrock model access denied",
+      "Amazon Bedrock provisioned throughput error",
+      "Anthropic Claude model not found in Bedrock"
+    ]
+  },
+  {
+    "slug": "github-copilot-language-model-unavailable",
+    "title": "GitHub Copilot Language Model Unavailable Error on Azure Compute Instance",
+    "description": "Fix GitHub Copilot showing 'language model unavailable' error in Azure ML compute environments Includes evidence for GitHub Copilot troubleshooting demand.",
+    "category": "GitHub Copilot",
+    "technology": "GitHub Copilot",
+    "error_signature": "language model unavailable",
+    "search_intent": "Fix GitHub Copilot showing 'language model unavailable' error in Azure ML compute environments",
+    "common_causes": [
+      "Developers using Copilot on Azure ML compute instances encounter 'language model unavailable' errors when Copilot cannot reach its backend LLM service. This blocks AI-assisted coding in paid enterprise environments, making it a high-intent search for troubleshooting.",
+      "Stack Overflow question (score 2) describes GitHub Copilot VSCode extension failing on Azure Compute instance with 'language model unavailable' error. Affects paid Copilot users in enterprise Azure ML environments."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "GitHub Copilot sign-in error",
+      "GitHub Copilot no suggestions",
+      "GitHub Copilot rate limit reached"
+    ]
+  },
+  {
+    "slug": "litellm-litellm-authenticationerror-401",
+    "title": "LiteLLM Azure OpenAI Authentication Error 401",
+    "description": "Fix LiteLLM returning 401 Authentication Error when connecting to Azure OpenAI Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "litellm.AuthenticationError: 401",
+    "search_intent": "Fix LiteLLM returning 401 Authentication Error when connecting to Azure OpenAI",
+    "common_causes": [
+      "Developers using LiteLLM as a unified LLM proxy get 401 authentication errors when routing requests to Azure OpenAI. This is a common integration error that blocks AI application development and affects both the paid Azure OpenAI service and the LiteLLM open-source proxy.",
+      "Stack Overflow question describing LiteLLM returning Authentication Error 401 when connecting Azure OpenAI via DSPy. Affects developers using LiteLLM proxy for multi-model routing to paid Azure OpenAI endpoints."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "LiteLLM API key not found",
+      "LiteLLM Azure endpoint configuration",
+      "LiteLLM rate limit error"
+    ]
+  },
+  {
+    "slug": "github-copilot-assigning-github-issue-to-copilot-fails-using-graphql",
+    "title": "GitHub Copilot Issue Assignment Fails via GraphQL API",
+    "description": "Fix GitHub Copilot GraphQL API error when assigning issues to Copilot agent Includes evidence for GitHub Copilot troubleshooting demand.",
+    "category": "GitHub Copilot",
+    "technology": "GitHub Copilot",
+    "error_signature": "Assigning Github Issue to Copilot Fails using GraphQL",
+    "search_intent": "Fix GitHub Copilot GraphQL API error when assigning issues to Copilot agent",
+    "common_causes": [
+      "Developers using GitHub's GraphQL API to programmatically assign issues to Copilot encounter failures. This affects teams automating issue triage with Copilot Workspace, a paid feature of GitHub Enterprise.",
+      "Stack Overflow question (score 2) about failing to assign GitHub issues to Copilot using GraphQL API. Relates to Copilot Workspace automated issue handling — a newer, paid GitHub Enterprise feature."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "GitHub Copilot Workspace setup error",
+      "GitHub GraphQL API permission denied",
+      "GitHub Copilot agent configuration"
+    ]
+  },
+  {
+    "slug": "cloudflare-error-code-1016",
+    "title": "Cloudflare Pages Worker Error 1016 — Origin DNS Not Found",
+    "description": "Fix Cloudflare Pages Worker returning error code 1016 when fetching from Supabase REST API Includes evidence for Cloudflare troubleshooting demand.",
+    "category": "Cloudflare",
+    "technology": "Cloudflare",
+    "error_signature": "error code: 1016",
+    "search_intent": "Fix Cloudflare Pages Worker returning error code 1016 when fetching from Supabase REST API",
+    "common_causes": [
+      "Cloudflare error 1016 means the origin DNS record cannot be resolved. When this occurs from Cloudflare Pages Workers fetching external APIs like Supabase, it causes silent failures that are hard to debug. Affects developers using Cloudflare's paid Workers/Pages platform.",
+      "Stack Overflow question where Cloudflare Pages Worker fetch() returns 'error code: 1016' for Supabase REST API, specifically from DFW edge. Demonstrates edge-specific DNS resolution failures in Cloudflare's paid platform."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Cloudflare Error 522 Connection Timed Out",
+      "Cloudflare Error 525 SSL Handshake Failed",
+      "Cloudflare Workers DNS resolution"
+    ]
+  },
+  {
+    "slug": "openrouter-block-blockfirst-blocklast-are-blocking",
+    "title": "Spring AI + OpenRouter Blocking Call Error in WebFlux",
+    "description": "Fix Spring WebFlux blocking error when using Spring AI with OpenRouter API Includes evidence for OpenRouter troubleshooting demand.",
+    "category": "Cloud Platforms",
+    "technology": "OpenRouter",
+    "error_signature": "block()/blockFirst()/blockLast() are blocking",
+    "search_intent": "Fix Spring WebFlux blocking error when using Spring AI with OpenRouter API",
+    "common_causes": [
+      "Java developers using Spring AI with OpenRouter in reactive WebFlux applications get blocking call errors. This is a framework-level integration error that blocks AI feature deployment in enterprise Java applications using paid OpenRouter API access.",
+      "Stack Overflow question about Spring WebFlux throwing 'block()/blockFirst()/blockLast() are blocking' error when calling OpenRouter via Spring AI. Affects enterprise Java developers integrating paid AI API services."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Spring AI OpenAI API WebFlux error",
+      "OpenRouter API timeout in reactive applications",
+      "Spring AI model configuration error"
+    ]
   }
 ]
