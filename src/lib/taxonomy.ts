@@ -1,6 +1,7 @@
 import type { CollectionEntry } from 'astro:content';
 
 type ErrorEntry = CollectionEntry<'errors'>;
+export const DEFAULT_PAGE_SIZE = 20;
 
 const categoryDescriptions: Record<string, string> = {
   'AI Coding Tools':
@@ -149,6 +150,89 @@ export function getCategoryGroups(entries: ErrorEntry[]) {
     .sort((a, b) => a.label.localeCompare(b.label));
 }
 
+export function sortEntriesByUpdated(entries: ErrorEntry[]) {
+  return [...entries].sort(
+    (a, b) => b.data.updated.localeCompare(a.data.updated) || a.data.title.localeCompare(b.data.title)
+  );
+}
+
+export function lightweightIntentScore(entry: ErrorEntry, now = new Date()) {
+  const recencyDays = Math.max(
+    0,
+    Math.floor((now.getTime() - new Date(`${entry.data.updated}T00:00:00.000Z`).getTime()) / 86_400_000)
+  );
+  const recencyScore = Math.max(0, 40 - Math.min(40, recencyDays));
+  const highIntentSignal = `${entry.data.title} ${entry.data.error_signature} ${entry.data.description}`.toLowerCase();
+  const keywordBoost = [
+    'failed',
+    'error',
+    'denied',
+    'unauthorized',
+    'quota',
+    'rate limit',
+    'cannot',
+    'not found',
+    'timeout',
+    'expired',
+  ].reduce((sum, keyword) => sum + (highIntentSignal.includes(keyword) ? 4 : 0), 0);
+  const categoryBoost = ['OpenAI API', 'GitHub Actions', 'Deployment', 'Docker', 'npm'].includes(
+    normalizeCategoryLabel(entry.data.category, entry.data.technology)
+  )
+    ? 8
+    : 0;
+
+  return recencyScore + keywordBoost + categoryBoost;
+}
+
+export function getTrendingEntries(entries: ErrorEntry[], limit = 12) {
+  return [...entries]
+    .sort((a, b) => {
+      const diff = lightweightIntentScore(b) - lightweightIntentScore(a);
+      return diff || b.data.updated.localeCompare(a.data.updated);
+    })
+    .slice(0, limit);
+}
+
+export function paginateEntries(entries: ErrorEntry[], page: number, pageSize = DEFAULT_PAGE_SIZE) {
+  const safePage = Math.max(1, page);
+  const totalItems = entries.length;
+  const totalPages = Math.max(1, Math.ceil(totalItems / pageSize));
+  const boundedPage = Math.min(safePage, totalPages);
+  const start = (boundedPage - 1) * pageSize;
+  const pageItems = entries.slice(start, start + pageSize);
+
+  return {
+    page: boundedPage,
+    pageSize,
+    totalItems,
+    totalPages,
+    hasPrev: boundedPage > 1,
+    hasNext: boundedPage < totalPages,
+    pageItems,
+  };
+}
+
+export function getRelatedCategoryGroups(
+  current: { slug: string; label: string; entries: ErrorEntry[] },
+  allGroups: { slug: string; label: string; entries: ErrorEntry[] }[],
+  limit = 4
+) {
+  const currentTech = new Set(current.entries.map((entry) => entry.data.technology));
+
+  return allGroups
+    .filter((group) => group.slug !== current.slug)
+    .map((group) => {
+      const overlap = group.entries.filter((entry) => currentTech.has(entry.data.technology)).length;
+      return {
+        group,
+        score: overlap * 4 + Math.min(group.entries.length, 20),
+      };
+    })
+    .sort((a, b) => b.score - a.score || a.group.label.localeCompare(b.group.label))
+    .slice(0, limit)
+    .map((item) => item.group);
+}
+
 export function findRelatedEntries(entry: ErrorEntry, allEntries: ErrorEntry[], limit = 4) {
   const currentSlug = entrySlug(entry);
   const explicitRelated = entry.data.related_errors ?? [];
@@ -168,21 +252,28 @@ export function findRelatedEntries(entry: ErrorEntry, allEntries: ErrorEntry[], 
     }
   }
 
-  for (const candidate of allEntries) {
+  const scoredCandidates = allEntries
+    .filter((candidate) => !usedSlugs.has(entrySlug(candidate)))
+    .map((candidate) => ({
+      candidate,
+      score: relatedScore(entry, candidate),
+    }))
+    .filter((item) => item.score > 0)
+    .sort((a, b) => b.score - a.score || a.candidate.data.title.localeCompare(b.candidate.data.title));
+
+  for (const item of scoredCandidates) {
     if (matches.length >= limit) {
       break;
     }
 
-    const candidateSlug = entrySlug(candidate);
+    const candidateSlug = entrySlug(item.candidate);
 
     if (usedSlugs.has(candidateSlug)) {
       continue;
     }
 
-    if (categoryLabelFor(candidate) === categoryLabelFor(entry) || candidate.data.category === entry.data.category) {
-      matches.push(candidate);
-      usedSlugs.add(candidateSlug);
-    }
+    matches.push(item.candidate);
+    usedSlugs.add(candidateSlug);
   }
 
   return matches;
@@ -216,4 +307,41 @@ function normalizeLookup(value: string) {
     .replace(/[`'"]/g, '')
     .replace(/[^a-z0-9]+/g, '-')
     .replace(/^-+|-+$/g, '');
+}
+
+function relatedScore(entry: ErrorEntry, candidate: ErrorEntry) {
+  let score = 0;
+
+  const sameCategory = categoryLabelFor(candidate) === categoryLabelFor(entry);
+  const sameRawCategory = candidate.data.category === entry.data.category;
+  const sameTechnology = candidate.data.technology === entry.data.technology;
+
+  if (sameCategory) {
+    score += 60;
+  }
+
+  if (sameRawCategory) {
+    score += 20;
+  }
+
+  if (sameTechnology) {
+    score += 10;
+  }
+
+  const sourceTokens = buildSignatureTokens(entry);
+  const candidateTokens = buildSignatureTokens(candidate);
+  const overlap = [...sourceTokens].filter((token) => candidateTokens.has(token)).length;
+
+  score += Math.min(overlap * 8, 32);
+
+  return score;
+}
+
+function buildSignatureTokens(entry: ErrorEntry) {
+  return new Set(
+    `${entry.data.error_signature} ${entry.data.title}`
+      .toLowerCase()
+      .split(/[^a-z0-9]+/)
+      .filter((token) => token.length >= 3)
+  );
 }

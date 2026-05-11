@@ -1,0 +1,55 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { DEFAULT_PAGE_SIZE, entrySlug, paginateEntries, sortEntriesByUpdated } from '../../lib/taxonomy';
+
+const allErrors = sortEntriesByUpdated(await getCollection('errors'));
+const pagination = paginateEntries(allErrors, 1, DEFAULT_PAGE_SIZE);
+---
+
+<BaseLayout
+  title="All developer error pages"
+  description="Paginated directory of Dev Error DB troubleshooting pages for scalable crawlability and long-tail SEO coverage."
+>
+  <section class="category-page">
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <a href="/">Home</a>
+      <span aria-hidden="true">/</span>
+      <span>Errors</span>
+    </nav>
+    <p class="eyebrow">Error listings</p>
+    <h1>All error pages</h1>
+    <p>Paginated listing built for long-term scale and search engine crawl efficiency.</p>
+    <div class="cards">
+      {pagination.pageItems.map((entry) => (
+        <article class="card">
+          <div class="meta-row">
+            <span>{entry.data.category}</span>
+            <span>{entry.data.technology}</span>
+            <span>{entry.data.updated}</span>
+          </div>
+          <h2>
+            <a href={`/errors/${entrySlug(entry)}/`}>{entry.data.title}</a>
+          </h2>
+          <p>{entry.data.description}</p>
+          <code>{entry.data.error_signature}</code>
+        </article>
+      ))}
+    </div>
+    {
+      pagination.totalPages > 1 && (
+        <nav class="pagination" aria-label="Error listing pagination">
+          <a href="/errors/" aria-current="page">
+            1
+          </a>
+          {Array.from({ length: Math.min(8, pagination.totalPages - 1) }, (_, index) => {
+            const page = index + 2;
+            return <a href={`/errors/page/${page}/`}>{page}</a>;
+          })}
+          {pagination.totalPages > 9 && <span>...</span>}
+          {pagination.totalPages > 9 && <a href={`/errors/page/${pagination.totalPages}/`}>{pagination.totalPages}</a>}
+        </nav>
+      )
+    }
+  </section>
+</BaseLayout>

@@ -1,7 +1,25 @@
 ---
 import { getCollection } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import { entrySlug, getCategoryGroups } from '../../lib/taxonomy';
+import {
+  DEFAULT_PAGE_SIZE,
+  entrySlug,
+  getCategoryGroups,
+  getRelatedCategoryGroups,
+  getTrendingEntries,
+  paginateEntries,
+  sortEntriesByUpdated,
+} from '../../lib/taxonomy';
+
+function countBy(values: string[]) {
+  const counts = new Map<string, number>();
+
+  for (const value of values) {
+    counts.set(value, (counts.get(value) ?? 0) + 1);
+  }
+
+  return [...counts.entries()].sort((a, b) => b[1] - a[1]);
+}
 
 export async function getStaticPaths() {
   const errors = await getCollection('errors');
@@ -14,10 +32,19 @@ export async function getStaticPaths() {
 }
 
 const { group } = Astro.props;
-const pageTitle = `${group.label} error troubleshooting`;
+const pageTitle = `${group.label} error troubleshooting cluster`;
 const pageDescription = `${group.entries.length} ${group.label} error troubleshooting page${
   group.entries.length === 1 ? '' : 's'
 } with concise explanations, common causes, quick fixes, and related developer errors.`;
+const allGroups = getCategoryGroups(await getCollection('errors'));
+const technologyCounts = countBy(group.entries.map((entry) => entry.data.technology));
+const sortedEntries = sortEntriesByUpdated(group.entries);
+const latestEntries = sortedEntries.slice(0, 6);
+const popularEntries = getTrendingEntries(group.entries, 6);
+const pagination = paginateEntries(sortedEntries, 1, DEFAULT_PAGE_SIZE);
+const relatedCategories = getRelatedCategoryGroups(group, allGroups, 5);
+const oldestDate = [...sortedEntries].sort((a, b) => a.data.updated.localeCompare(b.data.updated))[0]?.data.updated;
+const newestDate = latestEntries[0]?.data.updated;
 ---
 
 <BaseLayout title={pageTitle} description={pageDescription}>
@@ -31,11 +58,54 @@ const pageDescription = `${group.entries.length} ${group.label} error troublesho
     <p class="eyebrow">Error category</p>
     <h1>{group.label} errors</h1>
     <p>{group.description}</p>
+    <p>
+      This topic cluster focuses on recurring {group.label} failure signatures, practical fixes, and diagnostic patterns that
+      help teams resolve incidents faster and improve long-term operational reliability.
+    </p>
     <p class="count-line">{group.entries.length} article{group.entries.length === 1 ? '' : 's'} in this category.</p>
+    <ul class="stats-list">
+      <li><strong>Technologies covered:</strong> {technologyCounts.length}</li>
+      <li><strong>Date range:</strong> {oldestDate ?? 'n/a'} to {newestDate ?? 'n/a'}</li>
+      <li><strong>Latest updates:</strong> {latestEntries.length}</li>
+    </ul>
+
+    <section class="latest-pages" aria-labelledby="latest-pages-heading">
+      <h2 id="latest-pages-heading">Latest pages in this category</h2>
+      <ul>
+        {latestEntries.map((entry) => (
+          <li>
+            <a href={`/errors/${entrySlug(entry)}/`}>{entry.data.title}</a>
+            <span> ({entry.data.updated})</span>
+          </li>
+        ))}
+      </ul>
+    </section>
+
+    <section class="latest-pages" aria-labelledby="popular-pages-heading">
+      <h2 id="popular-pages-heading">Popular pages in this category</h2>
+      <ul>
+        {popularEntries.map((entry) => (
+          <li>
+            <a href={`/errors/${entrySlug(entry)}/`}>{entry.data.title}</a>
+          </li>
+        ))}
+      </ul>
+    </section>
+
+    <section class="latest-pages" aria-labelledby="related-categories-heading">
+      <h2 id="related-categories-heading">Related categories</h2>
+      <ul>
+        {relatedCategories.map((relatedGroup) => (
+          <li>
+            <a href={`/categories/${relatedGroup.slug}/`}>{relatedGroup.label}</a> ({relatedGroup.entries.length})
+          </li>
+        ))}
+      </ul>
+    </section>
 
     <div class="cards">
       {
-        group.entries.map((entry) => (
+        pagination.pageItems.map((entry) => (
           <article class="card">
             <div class="meta-row">
               <span>{entry.data.category}</span>
@@ -50,5 +120,20 @@ const pageDescription = `${group.entries.length} ${group.label} error troublesho
         ))
       }
     </div>
+    {
+      pagination.totalPages > 1 && (
+        <nav class="pagination" aria-label="Category pagination">
+          <a href={`/categories/${group.slug}/`} aria-current="page">
+            1
+          </a>
+          {Array.from({ length: Math.min(5, pagination.totalPages - 1) }, (_, index) => {
+            const page = index + 2;
+            return <a href={`/categories/${group.slug}/page/${page}/`}>{page}</a>;
+          })}
+          {pagination.totalPages > 6 && <span>...</span>}
+          {pagination.totalPages > 6 && <a href={`/categories/${group.slug}/page/${pagination.totalPages}/`}>{pagination.totalPages}</a>}
+        </nav>
+      )
+    }
   </section>
 </BaseLayout>

@@ -1,0 +1,97 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../../../layouts/BaseLayout.astro';
+import {
+  DEFAULT_PAGE_SIZE,
+  entrySlug,
+  getCategoryGroups,
+  getTrendingEntries,
+  paginateEntries,
+  sortEntriesByUpdated,
+} from '../../../../lib/taxonomy';
+
+export async function getStaticPaths() {
+  const groups = getCategoryGroups(await getCollection('errors'));
+  const paths = [];
+
+  for (const group of groups) {
+    const totalPages = Math.max(1, Math.ceil(group.entries.length / DEFAULT_PAGE_SIZE));
+
+    for (let page = 2; page <= totalPages; page += 1) {
+      paths.push({
+        params: { category: group.slug, page: String(page) },
+        props: { group, page },
+      });
+    }
+  }
+
+  return paths;
+}
+
+const { group, page } = Astro.props;
+const sortedEntries = sortEntriesByUpdated(group.entries);
+const pagination = paginateEntries(sortedEntries, Number(page), DEFAULT_PAGE_SIZE);
+const popularEntries = getTrendingEntries(group.entries, 5);
+---
+
+<BaseLayout
+  title={`${group.label} errors - page ${pagination.page}`}
+  description={`Topic hub page ${pagination.page} for ${group.label} troubleshooting and related error links.`}
+  canonical={`/categories/${group.slug}/page/${pagination.page}/`}
+>
+  <section class="category-page">
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <a href="/">Home</a>
+      <span aria-hidden="true">/</span>
+      <a href={`/categories/${group.slug}/`}>{group.label}</a>
+      <span aria-hidden="true">/</span>
+      <span>Page {pagination.page}</span>
+    </nav>
+
+    <p class="eyebrow">Topic hub pagination</p>
+    <h1>{group.label} errors - page {pagination.page}</h1>
+    <p>Continue browsing this topic cluster with SEO-safe static pagination.</p>
+
+    <div class="cards">
+      {pagination.pageItems.map((entry) => (
+        <article class="card">
+          <div class="meta-row">
+            <span>{entry.data.category}</span>
+            <span>{entry.data.technology}</span>
+            <span>{entry.data.updated}</span>
+          </div>
+          <h2>
+            <a href={`/errors/${entrySlug(entry)}/`}>{entry.data.title}</a>
+          </h2>
+          <p>{entry.data.description}</p>
+          <code>{entry.data.error_signature}</code>
+        </article>
+      ))}
+    </div>
+
+    <section class="latest-pages" aria-labelledby="popular-links-heading">
+      <h2 id="popular-links-heading">Popular links in this topic hub</h2>
+      <ul>
+        {popularEntries.map((entry) => (
+          <li>
+            <a href={`/errors/${entrySlug(entry)}/`}>{entry.data.title}</a>
+          </li>
+        ))}
+      </ul>
+    </section>
+
+    <nav class="pagination" aria-label="Category pagination">
+      {pagination.hasPrev ? (
+        <a href={pagination.page - 1 === 1 ? `/categories/${group.slug}/` : `/categories/${group.slug}/page/${pagination.page - 1}/`}>
+          Previous
+        </a>
+      ) : (
+        <span>Previous</span>
+      )}
+      <span>
+        Page {pagination.page} of {pagination.totalPages}
+      </span>
+      {pagination.hasNext ? <a href={`/categories/${group.slug}/page/${pagination.page + 1}/`}>Next</a> : <span>Next</span>}
+    </nav>
+  </section>
+</BaseLayout>

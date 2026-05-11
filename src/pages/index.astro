@@ -1,13 +1,25 @@
 ---
 import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { categoryPathFor, getCategoryGroups, entrySlug } from '../lib/taxonomy';
+import {
+  categoryPathFor,
+  entrySlug,
+  getCategoryGroups,
+  getTrendingEntries,
+  lightweightIntentScore,
+  sortEntriesByUpdated,
+} from '../lib/taxonomy';
 
-const errors = (await getCollection('errors')).sort((a, b) =>
-  a.data.title.localeCompare(b.data.title)
-);
-
+const errors = await getCollection('errors');
 const categoryGroups = getCategoryGroups(errors);
+const sortedByUpdated = sortEntriesByUpdated(errors);
+const latestPages = sortedByUpdated.slice(0, 20);
+const recentlyUpdatedPages = sortedByUpdated.slice(0, 10);
+const trendingPages = getTrendingEntries(errors, 12);
+const topCategories = [...categoryGroups].sort((a, b) => b.entries.length - a.entries.length).slice(0, 12);
+const totalCategories = categoryGroups.length;
+const totalErrors = errors.length;
+const totalTechnologies = new Set(errors.map((entry) => entry.data.technology)).size;
 ---
 
 <BaseLayout
@@ -15,19 +27,38 @@ const categoryGroups = getCategoryGroups(errors);
   description="Search concise troubleshooting pages for common developer error messages across npm, Docker, Python, Git, APIs, and more."
 >
   <section class="hero">
-    <p class="eyebrow">Static developer troubleshooting database</p>
-    <h1>Fix developer error messages faster.</h1>
+    <p class="eyebrow">AI SEO knowledge base</p>
+    <h1>Developer error search architecture for long-tail troubleshooting.</h1>
     <p>
-      Dev Error DB is a searchable, static-first knowledge base for common build,
-      package, runtime, API, and deployment errors.
+      Dev Error DB is evolving into a large-scale static error intelligence system that can support
+      thousands of troubleshooting pages without sacrificing crawlability, speed, or clarity.
     </p>
+    <div class="search-placeholder" role="search" aria-label="Search placeholder">
+      <strong>Search is coming soon</strong>
+      <p>Future-ready structure for local, vector, and hybrid error search.</p>
+    </div>
   </section>
 
-  <section class="filters" aria-labelledby="browse-heading">
-    <h2 id="browse-heading">Browse by category</h2>
+  <section class="stats-strip" aria-label="Site statistics">
+    <article>
+      <h2>{totalErrors}</h2>
+      <p>Error pages</p>
+    </article>
+    <article>
+      <h2>{totalCategories}</h2>
+      <p>Topic clusters</p>
+    </article>
+    <article>
+      <h2>{totalTechnologies}</h2>
+      <p>Technologies covered</p>
+    </article>
+  </section>
+
+  <section class="filters" aria-labelledby="top-categories-heading">
+    <h2 id="top-categories-heading">Top categories</h2>
     <div class="category-grid">
       {
-        categoryGroups.map((group) => (
+        topCategories.map((group) => (
           <a class="category-card" href={categoryPathFor(group.label)}>
             <strong>{group.label}</strong>
             <span>{group.entries.length} error{group.entries.length === 1 ? '' : 's'}</span>
@@ -37,15 +68,24 @@ const categoryGroups = getCategoryGroups(errors);
     </div>
   </section>
 
-  <section id="errors" class="error-list" aria-labelledby="errors-heading">
-    <h2 id="errors-heading">Error pages</h2>
+  <section class="topic-nav" aria-labelledby="topic-nav-heading">
+    <h2 id="topic-nav-heading">Topic cluster navigation</h2>
+    <p>Use category hubs for deep troubleshooting exploration and internal link discovery.</p>
+    <div class="tag-list">
+      {categoryGroups.map((group) => <a href={categoryPathFor(group.label)}>{group.label}</a>)}
+    </div>
+  </section>
+
+  <section id="trending" class="error-list" aria-labelledby="trending-heading">
+    <h2 id="trending-heading">Trending and high-intent pages</h2>
     <div class="cards">
       {
-        errors.map((entry) => (
+        trendingPages.map((entry) => (
           <article class="card">
             <div class="meta-row">
               <span>{entry.data.technology}</span>
               <span>{entry.data.category}</span>
+              <span>Intent score {lightweightIntentScore(entry)}</span>
             </div>
             <h3>
               <a href={`/errors/${entrySlug(entry)}/`}>{entry.data.title}</a>
@@ -56,5 +96,35 @@ const categoryGroups = getCategoryGroups(errors);
         ))
       }
     </div>
+  </section>
+
+  <section class="error-list" aria-labelledby="latest-value-heading">
+    <h2 id="latest-value-heading">Latest high-value pages</h2>
+    <div class="cards">
+      {
+        latestPages.map((entry) => (
+          <article class="card">
+            <div class="meta-row">
+              <span>{entry.data.technology}</span>
+              <span>{entry.data.category}</span>
+              <span>Updated {entry.data.updated}</span>
+            </div>
+            <h3>
+              <a href={`/errors/${entrySlug(entry)}/`}>{entry.data.title}</a>
+            </h3>
+            <p>{entry.data.description}</p>
+            <code>{entry.data.error_signature}</code>
+          </article>
+        ))
+      }
+    </div>
+    <p><a href="/errors/">Browse all error pages with pagination</a></p>
+  </section>
+
+  <section class="error-list" aria-labelledby="recently-updated-heading">
+    <h2 id="recently-updated-heading">Recently updated pages</h2>
+    <ul>
+      {recentlyUpdatedPages.map((entry) => <li><a href={`/errors/${entrySlug(entry)}/`}>{entry.data.title}</a> ({entry.data.updated})</li>)}
+    </ul>
   </section>
 </BaseLayout>

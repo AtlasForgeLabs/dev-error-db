@@ -125,6 +125,48 @@ p {
   font-size: 1.12rem;
 }
 
+.search-placeholder {
+  border: 1px dashed #9bb7b1;
+  border-radius: 10px;
+  background: var(--surface);
+  margin-top: 22px;
+  padding: 14px 16px;
+}
+
+.search-placeholder strong {
+  display: block;
+  color: var(--text);
+}
+
+.search-placeholder p {
+  margin-top: 4px;
+  font-size: 0.95rem;
+}
+
+.stats-strip {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 12px;
+  margin: 4px 0 24px;
+}
+
+.stats-strip article {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--surface);
+  padding: 14px;
+}
+
+.stats-strip h2 {
+  margin: 0;
+  font-size: 1.5rem;
+}
+
+.stats-strip p {
+  margin: 4px 0 0;
+  font-size: 0.92rem;
+}
+
 .filters {
   padding: 12px 0 28px;
 }
@@ -173,6 +215,21 @@ p {
   color: var(--muted);
   font-size: 0.85rem;
   padding: 4px 10px;
+}
+
+.tag-list a {
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--surface);
+  color: var(--muted);
+  font-size: 0.85rem;
+  padding: 4px 10px;
+  text-decoration: none;
+}
+
+.tag-list a:hover {
+  color: var(--accent-dark);
+  border-color: #9bb7b1;
 }
 
 .cards {
@@ -245,6 +302,55 @@ pre code {
 }
 
 .count-line {
+  font-weight: 700;
+}
+
+.topic-nav {
+  margin: 10px 0 22px;
+}
+
+.stats-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 8px;
+  list-style: none;
+  margin: 10px 0 12px;
+  padding: 0;
+}
+
+.stats-list li {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--surface);
+  margin: 0;
+  padding: 10px 12px;
+}
+
+.latest-pages ul {
+  padding-left: 20px;
+}
+
+.pagination {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  margin-top: 22px;
+}
+
+.pagination a,
+.pagination span {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: var(--surface);
+  color: var(--text);
+  padding: 4px 10px;
+  text-decoration: none;
+}
+
+.pagination a[aria-current="page"] {
+  border-color: #7ca69f;
+  color: var(--accent-dark);
   font-weight: 700;
 }
 

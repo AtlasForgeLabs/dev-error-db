@@ -1,0 +1,66 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import { DEFAULT_PAGE_SIZE, entrySlug, paginateEntries, sortEntriesByUpdated } from '../../../lib/taxonomy';
+
+export async function getStaticPaths() {
+  const allErrors = sortEntriesByUpdated(await getCollection('errors'));
+  const totalPages = Math.max(1, Math.ceil(allErrors.length / DEFAULT_PAGE_SIZE));
+
+  return Array.from({ length: Math.max(0, totalPages - 1) }, (_, index) => {
+    const page = index + 2;
+    return {
+      params: { page: String(page) },
+      props: { allErrors, page },
+    };
+  });
+}
+
+const { allErrors, page } = Astro.props;
+const pagination = paginateEntries(allErrors, Number(page), DEFAULT_PAGE_SIZE);
+---
+
+<BaseLayout
+  title={`All developer error pages - page ${pagination.page}`}
+  description={`Paginated developer error directory page ${pagination.page} of ${pagination.totalPages}.`}
+  canonical={`/errors/page/${pagination.page}/`}
+>
+  <section class="category-page">
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <a href="/">Home</a>
+      <span aria-hidden="true">/</span>
+      <a href="/errors/">Errors</a>
+      <span aria-hidden="true">/</span>
+      <span>Page {pagination.page}</span>
+    </nav>
+    <p class="eyebrow">Error listings</p>
+    <h1>All error pages - page {pagination.page}</h1>
+    <div class="cards">
+      {pagination.pageItems.map((entry) => (
+        <article class="card">
+          <div class="meta-row">
+            <span>{entry.data.category}</span>
+            <span>{entry.data.technology}</span>
+            <span>{entry.data.updated}</span>
+          </div>
+          <h2>
+            <a href={`/errors/${entrySlug(entry)}/`}>{entry.data.title}</a>
+          </h2>
+          <p>{entry.data.description}</p>
+          <code>{entry.data.error_signature}</code>
+        </article>
+      ))}
+    </div>
+    <nav class="pagination" aria-label="Error listing pagination">
+      {pagination.hasPrev ? (
+        <a href={pagination.page - 1 === 1 ? '/errors/' : `/errors/page/${pagination.page - 1}/`}>Previous</a>
+      ) : (
+        <span>Previous</span>
+      )}
+      <span>
+        Page {pagination.page} of {pagination.totalPages}
+      </span>
+      {pagination.hasNext ? <a href={`/errors/page/${pagination.page + 1}/`}>Next</a> : <span>Next</span>}
+    </nav>
+  </section>
+</BaseLayout>
