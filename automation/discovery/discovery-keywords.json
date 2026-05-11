@@ -4,107 +4,341 @@
     {
       "technology": "OpenAI API",
       "category": "OpenAI API",
-      "source_areas": ["OpenAI API", "Cursor", "AI coding tools"],
-      "commands": ["test -n \"$OPENAI_API_KEY\" && echo \"OPENAI_API_KEY is set\"", "curl https://api.openai.com/v1/models -H \"Authorization: Bearer $OPENAI_API_KEY\""],
-      "config_files": [".env", "server environment variables", "project API settings"]
+      "source_areas": [
+        "OpenAI API",
+        "Cursor",
+        "AI coding tools"
+      ],
+      "commands": [
+        "test -n \"$OPENAI_API_KEY\" && echo \"OPENAI_API_KEY is set\"",
+        "curl https://api.openai.com/v1/models -H \"Authorization: Bearer $OPENAI_API_KEY\""
+      ],
+      "config_files": [
+        ".env",
+        "server environment variables",
+        "project API settings"
+      ]
     },
     {
       "technology": "GitHub Actions",
       "category": "GitHub Actions",
-      "source_areas": ["GitHub issues", "GitHub Actions", "CI/CD"],
-      "commands": ["node --version", "npm ci", "git remote -v"],
-      "config_files": [".github/workflows/*.yml", "package-lock.json", "package.json"]
+      "source_areas": [
+        "GitHub issues",
+        "GitHub Actions",
+        "CI/CD"
+      ],
+      "commands": [
+        "node --version",
+        "npm ci",
+        "git remote -v"
+      ],
+      "config_files": [
+        ".github/workflows/*.yml",
+        "package-lock.json",
+        "package.json"
+      ]
     },
     {
       "technology": "Git",
       "category": "Git",
-      "source_areas": ["GitHub issues", "Stack Overflow", "Dev forums"],
-      "commands": ["git status", "git remote -v", "git branch", "ssh -T git@github.com"],
-      "config_files": [".git/config", "~/.ssh/config"]
+      "source_areas": [
+        "GitHub issues",
+        "Stack Overflow",
+        "Dev forums"
+      ],
+      "commands": [
+        "git status",
+        "git remote -v",
+        "git branch",
+        "ssh -T git@github.com"
+      ],
+      "config_files": [
+        ".git/config",
+        "~/.ssh/config"
+      ]
     },
     {
       "technology": "Docker",
       "category": "Docker",
-      "source_areas": ["Docker", "Dev forums", "Stack Overflow"],
-      "commands": ["docker info", "docker ps", "docker system df", "systemctl status docker"],
-      "config_files": ["Dockerfile", "docker-compose.yml", ".dockerignore"]
+      "source_areas": [
+        "Docker",
+        "Dev forums",
+        "Stack Overflow"
+      ],
+      "commands": [
+        "docker info",
+        "docker ps",
+        "docker system df",
+        "systemctl status docker"
+      ],
+      "config_files": [
+        "Dockerfile",
+        "docker-compose.yml",
+        ".dockerignore"
+      ]
     },
     {
       "technology": "npm",
       "category": "npm",
-      "source_areas": ["npm", "Node.js", "GitHub Actions"],
-      "commands": ["npm --version", "npm install", "npm ci", "npm cache verify"],
-      "config_files": ["package.json", "package-lock.json", ".npmrc"]
+      "source_areas": [
+        "npm",
+        "Node.js",
+        "GitHub Actions"
+      ],
+      "commands": [
+        "npm --version",
+        "npm install",
+        "npm ci",
+        "npm cache verify"
+      ],
+      "config_files": [
+        "package.json",
+        "package-lock.json",
+        ".npmrc"
+      ]
     },
     {
       "technology": "Node.js",
       "category": "Node.js",
-      "source_areas": ["Node.js", "npm", "GitHub Actions"],
-      "commands": ["node --version", "npm --version", "node -p \"process.versions\""],
-      "config_files": ["package.json", ".nvmrc", "tsconfig.json"]
+      "source_areas": [
+        "Node.js",
+        "npm",
+        "GitHub Actions"
+      ],
+      "commands": [
+        "node --version",
+        "npm --version",
+        "node -p \"process.versions\""
+      ],
+      "config_files": [
+        "package.json",
+        ".nvmrc",
+        "tsconfig.json"
+      ]
     },
     {
       "technology": "Python",
       "category": "Python",
-      "source_areas": ["Python", "pip", "Dev forums"],
-      "commands": ["python3 --version", "python3 -m pip --version", "python3 -m venv venv"],
-      "config_files": ["requirements.txt", "pyproject.toml", "Pipfile"]
+      "source_areas": [
+        "Python",
+        "pip",
+        "Dev forums"
+      ],
+      "commands": [
+        "python3 --version",
+        "python3 -m pip --version",
+        "python3 -m venv venv"
+      ],
+      "config_files": [
+        "requirements.txt",
+        "pyproject.toml",
+        "Pipfile"
+      ]
     },
     {
       "technology": "SSL/TLS",
       "category": "SSL/TLS",
-      "source_areas": ["SSL certificates", "Python", "Node.js", "Cloudflare"],
-      "commands": ["HOST=dev-error-db.com; openssl s_client -connect \"$HOST:443\" -servername \"$HOST\"", "HOST=dev-error-db.com; curl -Iv \"https://$HOST\""],
-      "config_files": ["certificate chain", "trust store", "proxy SSL settings"]
+      "source_areas": [
+        "SSL certificates",
+        "Python",
+        "Node.js",
+        "Cloudflare"
+      ],
+      "commands": [
+        "HOST=dev-error-db.com; openssl s_client -connect \"$HOST:443\" -servername \"$HOST\"",
+        "HOST=dev-error-db.com; curl -Iv \"https://$HOST\""
+      ],
+      "config_files": [
+        "certificate chain",
+        "trust store",
+        "proxy SSL settings"
+      ]
     },
     {
       "technology": "DNS",
       "category": "DNS",
-      "source_areas": ["Cloudflare", "DNS", "Vercel"],
-      "commands": ["HOST=dev-error-db.com; dig \"$HOST\"", "HOST=dev-error-db.com; dig CNAME \"$HOST\"", "HOST=dev-error-db.com; nslookup \"$HOST\""],
-      "config_files": ["DNS zone records", "nameserver settings", "CNAME records"]
+      "source_areas": [
+        "Cloudflare",
+        "DNS",
+        "Vercel"
+      ],
+      "commands": [
+        "HOST=dev-error-db.com; dig \"$HOST\"",
+        "HOST=dev-error-db.com; dig CNAME \"$HOST\"",
+        "HOST=dev-error-db.com; nslookup \"$HOST\""
+      ],
+      "config_files": [
+        "DNS zone records",
+        "nameserver settings",
+        "CNAME records"
+      ]
     },
     {
       "technology": "Cloudflare",
       "category": "Cloudflare",
-      "source_areas": ["Cloudflare", "DNS", "SSL/TLS"],
-      "commands": ["HOST=dev-error-db.com; dig \"$HOST\"", "HOST=dev-error-db.com; curl -Iv \"https://$HOST\""],
-      "config_files": ["Cloudflare DNS records", "SSL/TLS mode", "origin certificate"]
+      "source_areas": [
+        "Cloudflare",
+        "DNS",
+        "SSL/TLS"
+      ],
+      "commands": [
+        "HOST=dev-error-db.com; dig \"$HOST\"",
+        "HOST=dev-error-db.com; curl -Iv \"https://$HOST\""
+      ],
+      "config_files": [
+        "Cloudflare DNS records",
+        "SSL/TLS mode",
+        "origin certificate"
+      ]
     },
     {
       "technology": "Vercel",
-      "category": "GitHub Actions",
-      "source_areas": ["Vercel", "GitHub Actions", "Node.js"],
-      "commands": ["npm run build", "node --version", "npm ci"],
-      "config_files": ["vercel.json", "package.json", ".env"]
+      "category": "Deployment",
+      "source_areas": [
+        "Vercel",
+        "GitHub Actions",
+        "Node.js"
+      ],
+      "commands": [
+        "npm run build",
+        "node --version",
+        "npm ci"
+      ],
+      "config_files": [
+        "vercel.json",
+        "package.json",
+        ".env"
+      ]
     },
     {
       "technology": "Cursor",
-      "category": "OpenAI API",
-      "source_areas": ["Cursor", "AI coding tools", "OpenAI API"],
-      "commands": ["test -n \"$OPENAI_API_KEY\" && echo \"OPENAI_API_KEY is set\""],
-      "config_files": ["Cursor settings", ".env", "model provider settings"]
+      "category": "Cursor",
+      "source_areas": [
+        "Cursor",
+        "AI coding tools",
+        "OpenAI API"
+      ],
+      "commands": [
+        "test -n \"$OPENAI_API_KEY\" && echo \"OPENAI_API_KEY is set\""
+      ],
+      "config_files": [
+        "Cursor settings",
+        ".env",
+        "model provider settings"
+      ]
     },
     {
       "technology": "Claude Code",
-      "category": "OpenAI API",
-      "source_areas": ["Claude Code", "AI coding tools"],
-      "commands": ["node --version"],
-      "config_files": ["tool settings", "environment variables"]
+      "category": "AI Coding Tools",
+      "source_areas": [
+        "Claude Code",
+        "AI coding tools"
+      ],
+      "commands": [
+        "node --version"
+      ],
+      "config_files": [
+        "tool settings",
+        "environment variables"
+      ]
     },
     {
       "technology": "OpenCode",
-      "category": "OpenAI API",
-      "source_areas": ["OpenCode", "AI coding tools"],
-      "commands": ["node --version"],
-      "config_files": ["tool settings", "provider configuration"]
+      "category": "AI Coding Tools",
+      "source_areas": [
+        "OpenCode",
+        "AI coding tools"
+      ],
+      "commands": [
+        "node --version"
+      ],
+      "config_files": [
+        "tool settings",
+        "provider configuration"
+      ]
     },
     {
       "technology": "OpenClaw",
-      "category": "OpenAI API",
-      "source_areas": ["OpenClaw", "AI coding tools", "automation"],
-      "commands": ["node --version", "npm run build"],
-      "config_files": ["automation configuration", "environment variables"]
+      "category": "AI Coding Tools",
+      "source_areas": [
+        "OpenClaw",
+        "AI coding tools",
+        "automation"
+      ],
+      "commands": [
+        "node --version",
+        "npm run build"
+      ],
+      "config_files": [
+        "automation configuration",
+        "environment variables"
+      ]
+    },
+    {
+      "technology": "Anthropic API",
+      "category": "Anthropic API",
+      "source_areas": [
+        "Anthropic API",
+        "Claude",
+        "AI developer tools"
+      ],
+      "commands": [
+        "test -n \"$ANTHROPIC_API_KEY\" && echo \"ANTHROPIC_API_KEY is set\""
+      ],
+      "config_files": [
+        ".env",
+        "provider settings",
+        "server environment variables"
+      ]
+    },
+    {
+      "technology": "GitHub Copilot",
+      "category": "GitHub Copilot",
+      "source_areas": [
+        "GitHub Copilot",
+        "VS Code",
+        "AI coding tools"
+      ],
+      "commands": [
+        "gh auth status"
+      ],
+      "config_files": [
+        "VS Code settings",
+        "GitHub account settings"
+      ]
+    },
+    {
+      "technology": "Ollama",
+      "category": "Ollama",
+      "source_areas": [
+        "Ollama",
+        "local AI models",
+        "AI developer tools"
+      ],
+      "commands": [
+        "ollama list",
+        "ollama ps"
+      ],
+      "config_files": [
+        "Ollama model store",
+        "local server settings"
+      ]
+    },
+    {
+      "technology": "LiteLLM",
+      "category": "LiteLLM",
+      "source_areas": [
+        "LiteLLM",
+        "OpenAI-compatible APIs",
+        "AI developer tools"
+      ],
+      "commands": [
+        "litellm --version"
+      ],
+      "config_files": [
+        "litellm config",
+        "provider environment variables"
+      ]
     }
   ],
   "seed_error_signatures": [

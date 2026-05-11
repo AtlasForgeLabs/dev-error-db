@@ -14,13 +14,21 @@ const expandOutputDir = path.join(projectRoot, 'automation', 'expand', 'output')
 const expandReportPath = path.join(expandOutputDir, 'expand-report.json');
 
 const approvedCategories = new Set([
+  'AI Coding Tools',
+  'Anthropic API',
   'Cloudflare',
+  'Cloud Platforms',
+  'Cursor',
+  'Deployment',
   'DNS',
   'Docker',
   'Git',
   'GitHub Actions',
+  'GitHub Copilot',
+  'LiteLLM',
   'Node.js',
   'npm',
+  'Ollama',
   'OpenAI API',
   'Python',
   'SSL/TLS',
@@ -516,4 +524,3 @@ function cleanText(value) {
 function relativePath(filePath) {
   return path.relative(projectRoot, filePath) || '.';
 }
-

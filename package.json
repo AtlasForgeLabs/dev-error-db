@@ -16,6 +16,8 @@
     "expand:errors": "node automation/expand/expand-errors.mjs",
     "expand:errors:dry": "node automation/expand/expand-errors.mjs --dry-run",
     "expand:errors:commit": "node automation/expand/expand-errors.mjs --commit",
+    "expand:imported:dry": "node automation/expand/expand-imported-candidates.mjs --dry-run --limit 5",
+    "expand:imported": "node automation/expand/expand-imported-candidates.mjs --write --limit 5",
     "generate:errors": "node scripts/generate-error-pages.mjs",
     "report": "node scripts/report.mjs"
   },

@@ -696,5 +696,95 @@
       "Vercel build command failed",
       "ERR_MODULE_NOT_FOUND"
     ]
+  },
+  {
+    "slug": "claude-code-claude-code-invalid-version-crash",
+    "title": "Fix Claude Code Invalid Version Crash on Startup",
+    "description": "Fix Claude Code crash with semver parsing error on startup Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Claude Code Invalid Version crash",
+    "search_intent": "Fix Claude Code crash with semver parsing error on startup",
+    "common_causes": [
+      "Claude Code 2.1.0 crashes on startup with 'Invalid Version: 2.1.0 (2026-01-07)' due to non-semver date suffix in version cache",
+      "Multiple GitHub issues confirm Claude Code 2.1.0 crashes on startup with semver parsing error; affects Linux/WSL/Windows"
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Claude Code installation failed",
+      "Claude Code update error"
+    ]
+  },
+  {
+    "slug": "claude-code-claude-code-rate-limit-reached",
+    "title": "Fix Claude Code API Error Rate Limit Reached",
+    "description": "Fix rate limit errors in Claude Code CLI Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Claude Code rate limit reached",
+    "search_intent": "Fix rate limit errors in Claude Code CLI",
+    "common_causes": [
+      "Claude Code users on Pro/Max plans hit rate limits unexpectedly; session quota depletes in 1-2 hours instead of 5",
+      "Multiple reports of abnormal session limit drain on Claude Max plans since March 2026; 5-hour sessions deplete in 1-2 hours"
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "Claude Code session limit exceeded",
+      "Anthropic API 529 Overloaded"
+    ]
+  },
+  {
+    "slug": "anthropic-api-anthropic-api-529-overloaded",
+    "title": "Fix Anthropic API 529 Overloaded Error",
+    "description": "Fix HTTP 529 status when calling Anthropic Claude API Includes evidence for Anthropic API troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Anthropic API",
+    "error_signature": "Anthropic API 529 Overloaded",
+    "search_intent": "Fix HTTP 529 status when calling Anthropic Claude API",
+    "common_causes": [
+      "Anthropic API returns 529 when overloaded; developers building AI apps hit this during peak hours and need retry/backoff strategies",
+      "Claude Code users report rate limit errors with 529 status; Anthropic docs confirm 529 as overloaded status code"
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "Anthropic API 429 Rate Limit",
+      "Anthropic API 401 Unauthorized"
+    ]
+  },
+  {
+    "slug": "github-copilot-github-copilot-quota-exceeded",
+    "title": "Fix GitHub Copilot Quota Exceeded Error",
+    "description": "Fix GitHub Copilot usage quota or rate limit errors Includes evidence for GitHub Copilot troubleshooting demand.",
+    "category": "GitHub Copilot",
+    "technology": "GitHub Copilot",
+    "error_signature": "GitHub Copilot quota exceeded",
+    "search_intent": "Fix GitHub Copilot usage quota or rate limit errors",
+    "common_causes": [
+      "Copilot free tier has monthly quotas; paid users hit rate limits during heavy usage",
+      "VS Code issue requests exposing rate-limit status in Copilot Chat; gh-aw-fleet issue requests diagnostic hint for HTTP 402 / billing-quota errors"
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "GitHub Copilot not working",
+      "GitHub Copilot authentication error"
+    ]
+  },
+  {
+    "slug": "cursor-cursor-authentication-failed-please-login",
+    "title": "Fix Cursor Authentication Failed Please Login Error",
+    "description": "Fix Cursor login/authentication failures Includes evidence for Cursor troubleshooting demand.",
+    "category": "Cursor",
+    "technology": "Cursor",
+    "error_signature": "Cursor authentication failed please login",
+    "search_intent": "Fix Cursor login/authentication failures",
+    "common_causes": [
+      "Cursor requires GitHub/Google auth; session expires or OAuth fails, blocking all AI features",
+      "Cursor is a paid IDE ($20/mo Pro); auth failures block all AI features. Community reports of OAuth session expiration."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "Cursor OpenAI API key not working",
+      "Cursor model not available"
+    ]
   }
 ]
