@@ -185,13 +185,15 @@ export async function enforcePublishLimits({ requestedCount, mode = 'write' }) {
   const state = await loadPipelineState();
   const today = new Date().toISOString().slice(0, 10);
   const pagesToday = Number(state.daily_counters?.[today] ?? 0);
+  const maxPagesPerRun = Number(policy.max_pages_per_run);
+  const maxPagesPerDay = Number(policy.max_pages_per_day);
   const errors = [];
 
   if (state.paused) errors.push('pipeline is paused');
-  if (mode !== 'dry-run' && requestedCount > Number(policy.max_pages_per_run)) {
+  if (mode !== 'dry-run' && Number.isFinite(maxPagesPerRun) && maxPagesPerRun > 0 && requestedCount > maxPagesPerRun) {
     errors.push(`max_pages_per_run exceeded: ${requestedCount} > ${policy.max_pages_per_run}`);
   }
-  if (mode !== 'dry-run' && pagesToday + requestedCount > Number(policy.max_pages_per_day)) {
+  if (mode !== 'dry-run' && Number.isFinite(maxPagesPerDay) && maxPagesPerDay > 0 && pagesToday + requestedCount > maxPagesPerDay) {
     errors.push(`max_pages_per_day exceeded: ${pagesToday + requestedCount} > ${policy.max_pages_per_day}`);
   }
 

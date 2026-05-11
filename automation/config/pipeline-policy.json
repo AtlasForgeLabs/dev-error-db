@@ -1,7 +1,7 @@
 {
   "auto_publish_enabled": true,
-  "max_pages_per_day": 10,
-  "max_pages_per_run": 5,
+  "max_pages_per_day": 99999,
+  "max_pages_per_run": 99999,
   "min_priority_score": 7,
   "min_commercial_value_score": 6,
   "max_ranking_difficulty_score": 8,

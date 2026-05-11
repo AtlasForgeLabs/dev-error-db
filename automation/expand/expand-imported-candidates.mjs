@@ -62,7 +62,7 @@ const categoryAliases = new Map([
 ]);
 
 const args = parseArgs(process.argv.slice(2));
-const limit = Number(args.limit ?? 5);
+const manualLimit = args.limit === undefined ? null : Number(args.limit);
 const minPriority = Number(args.minPriority ?? 7);
 const minCommercial = Number(args.minCommercial ?? 6);
 const dryRun = Boolean(args.dryRun) || !args.write;
@@ -91,10 +91,10 @@ async function main() {
       continue;
     }
 
-    if (selected.length < limit) {
+    if (manualLimit === null || selected.length < manualLimit) {
       selected.push(toPreviewCandidate(normalized, { warnings }));
     } else {
-      skipped.push(toPreviewCandidate(normalized, { reasons: [`over limit ${limit}`], warnings }));
+      skipped.push(toPreviewCandidate(normalized, { reasons: [`over manual limit ${manualLimit}`], warnings }));
     }
   }
 
@@ -104,7 +104,8 @@ async function main() {
     source: 'latest-import',
     input: 'automation/import/output/latest-import.json',
     criteria: {
-      limit,
+      limit: manualLimit === null ? 'all' : manualLimit,
+      production_mode: manualLimit === null,
       min_priority: minPriority,
       min_commercial: minCommercial,
       force,
