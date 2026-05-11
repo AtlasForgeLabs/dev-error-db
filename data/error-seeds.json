@@ -1564,5 +1564,138 @@
       "Claude Code semver version check failed",
       "Claude Code downgrade to previous version"
     ]
+  },
+  {
+    "slug": "claude-code-ultrareview-fails-with-authentication-failed-on-max-plan-after-fresh-auth-login",
+    "title": "Claude Code /ultrareview Authentication Failed on Max Plan After Login — How to Fix",
+    "description": "Fix /ultrareview authentication failure on Claude Code Max plan despite successful login Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "/ultrareview fails with \"Authentication failed\" on Max plan after fresh auth login",
+    "search_intent": "Fix /ultrareview authentication failure on Claude Code Max plan despite successful login",
+    "common_causes": [
+      "Max plan subscribers encounter 'Authentication failed' when running /ultrareview after a fresh Claude Code auth login, blocking a core paid feature without clear recovery steps",
+      "Bug report filed 2026-05-11 on anthropics/claude-code: /ultrareview command fails with 'Authentication failed' on Max plan even after fresh auth login. Confirmed on latest version with preflight checklist completed."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "Claude Code auth token expired unexpectedly",
+      "Claude Code Max plan features not accessible after login",
+      "Claude Code /review command authentication error"
+    ]
+  },
+  {
+    "slug": "claude-code-can-t-use-claude-code-when-mdm-blocks-bypasspermissions",
+    "title": "Claude Code Blocked by MDM bypassPermissions Policy — Enterprise Fix Guide",
+    "description": "Run Claude Code on enterprise Macs where MDM policy blocks bypassPermissions flag Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Can't use Claude Code when MDM blocks bypassPermissions",
+    "search_intent": "Run Claude Code on enterprise Macs where MDM policy blocks bypassPermissions flag",
+    "common_causes": [
+      "Enterprise IT teams using MDM (Jamf, Intune) cannot run Claude Code Desktop because security policies block the bypassPermissions flag, preventing adoption in corporate environments",
+      "Issue reported 2026-05-11: Claude Code Desktop fails on macOS when MDM blocks bypassPermissions. This blocks enterprise deployment entirely, as the app requires this flag to function."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Claude Code enterprise deployment MDM requirements",
+      "Claude Code macOS security permissions not granted",
+      "Claude Code Jamf Intune deployment blocked"
+    ]
+  },
+  {
+    "slug": "claude-code-claude-code-desktop-fails-on-remote-arm64-ssh-host-process-exited-with-code-1",
+    "title": "Claude Code Remote SSH ARM64 Host — Process Exited with Code 1 Error Fix",
+    "description": "Fix Claude Code crashing on remote ARM64 SSH hosts with process exited code 1 Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Claude Code Desktop fails on remote ARM64 SSH host: \"process exited with code 1\"",
+    "search_intent": "Fix Claude Code crashing on remote ARM64 SSH hosts with process exited code 1",
+    "common_causes": [
+      "Developers using Claude Code Desktop over SSH to remote ARM64 machines (AWS Graviton, Apple Silicon servers) encounter 'process exited with code 1' on launch, blocking remote AI-assisted development workflows",
+      "Bug report filed 2026-05-11: Claude Code Desktop crashes with 'process exited with code 1' on remote ARM64 SSH hosts. Affects developers using cloud ARM instances for remote development."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Claude Code remote SSH connection failed",
+      "Claude Code ARM64 architecture not supported",
+      "Claude Code remote development setup error"
+    ]
+  },
+  {
+    "slug": "litellm-litellm-badrequesterror-tools-array-exceeds-azure-limit-of-128",
+    "title": "LiteLLM BadRequestError Azure tools Array Exceeds 128 Limit — MCP Server Fix",
+    "description": "Fix LiteLLM BadRequestError when MCP server tools array exceeds Azure OpenAI's 128 tool limit Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "LiteLLM BadRequestError: tools array exceeds Azure limit of 128",
+    "search_intent": "Fix LiteLLM BadRequestError when MCP server tools array exceeds Azure OpenAI's 128 tool limit",
+    "common_causes": [
+      "Developers using LiteLLM to proxy MCP servers (e.g., Chemlit) through Azure OpenAI hit BadRequestError when the tools array exceeds Azure's 128-tool maximum, breaking AI agent workflows",
+      "Bug report from 2026-05-11: LiteLLM raises BadRequestError because Chemlit MCP server generates 144 tools, exceeding Azure OpenAI's maximum of 128 tools. Error: 'litellm.BadRequestError: AzureExcept...'"
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "LiteLLM Azure OpenAI tool count limit",
+      "Azure OpenAI max tools per request exceeded",
+      "MCP server too many tools LiteLLM proxy"
+    ]
+  },
+  {
+    "slug": "claude-code-routine-push-to-main-returns-http-403-from-git-proxy-despite-allow-unrestricted-branch-pushes-enabled",
+    "title": "Claude Code Git Push HTTP 403 Error Despite Allow Unrestricted Branch Pushes — Fix",
+    "description": "Fix HTTP 403 error when Claude Code pushes to main branch even with unrestricted branch pushes enabled Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Routine push to main returns HTTP 403 from git proxy despite \"Allow unrestricted branch pushes\" enabled",
+    "search_intent": "Fix HTTP 403 error when Claude Code pushes to main branch even with unrestricted branch pushes enabled",
+    "common_causes": [
+      "Claude Code users encounter HTTP 403 from git proxy during routine pushes to main branch despite having 'Allow unrestricted branch pushes' enabled, blocking AI-assisted code commits",
+      "Bug report filed 2026-05-11: Routine push to main returns HTTP 403 from git proxy on Claude Code despite 'Allow unrestricted branch pushes' being enabled. Confirmed on latest version."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Claude Code git integration permission denied",
+      "Claude Code git proxy configuration error",
+      "Claude Code branch push 403 forbidden"
+    ]
+  },
+  {
+    "slug": "litellm-typeerror-async-for-requires-an-object-with-aiter-method-got-nonetype-when-streaming-models-with-reasoning-field-in-delta",
+    "title": "LiteLLM Streaming Crash with Reasoning Field — async for NoneType Error Fix",
+    "description": "Fix LiteLLM TypeError crash when streaming models that return reasoning field in delta Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "TypeError: 'async for' requires an object with __aiter__ method, got NoneType when streaming models with reasoning field in delta",
+    "search_intent": "Fix LiteLLM TypeError crash when streaming models that return reasoning field in delta",
+    "common_causes": [
+      "LiteLLM crashes with TypeError when using stream=True with models that return a reasoning field in the delta (e.g., Scaleway, reasoning models), breaking streaming for any provider using extended thinking",
+      "Bug report from 2026-05-11: LiteLLM crashes with \"TypeError: 'async for' requires an object with __aiter__ method, got NoneType\" when streaming models with reasoning field in delta. Affects Scaleway and any provider returning reasoning content."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "LiteLLM streaming reasoning content crash",
+      "LiteLLM extended thinking streaming error",
+      "LiteLLM async streaming NoneType error"
+    ]
+  },
+  {
+    "slug": "gemini-api-google-gemini-api-stability-issues-errors-via-openai-compatible-custom-provider-endpoint",
+    "title": "Google Gemini API Errors via OpenAI-Compatible Custom Provider — Troubleshooting Guide",
+    "description": "Fix stability issues and errors when using Google Gemini API through OpenAI-compatible custom provider endpoint Includes evidence for Gemini API troubleshooting demand.",
+    "category": "Cloud Platforms",
+    "technology": "Gemini API",
+    "error_signature": "Google Gemini API stability issues/errors via OpenAI-compatible custom provider endpoint",
+    "search_intent": "Fix stability issues and errors when using Google Gemini API through OpenAI-compatible custom provider endpoint",
+    "common_causes": [
+      "Developers configuring Gemini API as an OpenAI-compatible custom provider (base URL: generativelanguage.googleapis.com/v1beta/openai/) encounter intermittent errors and stability issues, breaking AI tool integrations",
+      "Multiple bug reports from 2026-05-11: Google Gemini API via OpenAI-compatible custom provider endpoint (generativelanguage.googleapis.com/v1beta/openai/) shows stability issues and errors across different apps using the same configuration pattern."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Gemini API OpenAI compatibility mode errors",
+      "Google AI Studio API custom provider not working",
+      "Gemini API v1beta/openai endpoint issues"
+    ]
   }
 ]
