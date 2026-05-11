@@ -1,0 +1,50 @@
+[
+  {
+    "error_signature": "ERR_PNPM_OUTDATED_LOCKFILE",
+    "title": "ERR_PNPM_OUTDATED_LOCKFILE",
+    "technology": "pnpm",
+    "recommended_category": "package managers",
+    "search_intent": "Fix pnpm install failures when CI refuses to install with an outdated lockfile.",
+    "why_developers_search_it": "Developers often hit this after package.json changes without regenerating pnpm-lock.yaml.",
+    "commercial_value_score": 7,
+    "ranking_difficulty_score": 6,
+    "priority_score": 8,
+    "duplicate_risk": false,
+    "source_urls": ["https://pnpm.io/cli/install"],
+    "evidence_summary": "The pnpm install documentation describes frozen lockfile behavior in CI and why installs fail when the lockfile is not current.",
+    "suggested_related_errors": ["GitHub Actions npm ci lockfile error", "npm ERR! code ERESOLVE"],
+    "notes": "Example only. Validate current SERP and official docs before expansion."
+  },
+  {
+    "error_signature": "Prisma P1001: Can't reach database server",
+    "title": "Prisma P1001 can't reach database server",
+    "technology": "Prisma",
+    "recommended_category": "Node.js",
+    "search_intent": "Troubleshoot Prisma connection failures when the app cannot reach the configured database host.",
+    "why_developers_search_it": "The error appears during local development, migrations, and deploy checks when DATABASE_URL or network access is wrong.",
+    "commercial_value_score": 7,
+    "ranking_difficulty_score": 7,
+    "priority_score": 8,
+    "duplicate_risk": false,
+    "source_urls": ["https://www.prisma.io/docs/orm/reference/error-reference"],
+    "evidence_summary": "Prisma documents P1001 as a database reachability error tied to server host and port connectivity.",
+    "suggested_related_errors": ["Docker cannot connect to daemon", "DNS_PROBE_FINISHED_NXDOMAIN"],
+    "notes": "Example only. Confirm Dev Error DB category fit before generating a page."
+  },
+  {
+    "error_signature": "Error: listen EADDRINUSE: address already in use",
+    "title": "Node.js EADDRINUSE address already in use",
+    "technology": "Node.js",
+    "recommended_category": "Node.js",
+    "search_intent": "Resolve Node.js server startup failures when a local port is already in use.",
+    "why_developers_search_it": "Developers need to identify the process occupying a port before restarting a dev server or API.",
+    "commercial_value_score": 8,
+    "ranking_difficulty_score": 5,
+    "priority_score": 8,
+    "duplicate_risk": true,
+    "source_urls": ["https://nodejs.org/api/errors.html"],
+    "evidence_summary": "Node.js documents EADDRINUSE as a system error for an address already in use.",
+    "suggested_related_errors": ["Docker bind: address already in use", "Docker compose port is already allocated"],
+    "notes": "Example duplicate-risk record; importer should reject unless priority is at least 9."
+  }
+]

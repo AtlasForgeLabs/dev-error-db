@@ -8,6 +8,7 @@
     "build": "astro build",
     "preview": "astro preview",
     "discover:errors": "node automation/discovery/discovery-pipeline.mjs",
+    "import:candidates": "node automation/import/import-candidates.mjs",
     "expand:errors": "node automation/expand/expand-errors.mjs",
     "expand:errors:dry": "node automation/expand/expand-errors.mjs --dry-run",
     "expand:errors:commit": "node automation/expand/expand-errors.mjs --commit",
