@@ -1412,5 +1412,62 @@
       "Ollama CUDA driver incompatibility",
       "Ollama model pull fails with connection refused"
     ]
+  },
+  {
+    "slug": "litellm-malicious-litellm-init-pth-in-litellm-1-82-8-credential-stealer",
+    "title": "LiteLLM Supply Chain Attack — Malicious .pth File Steals Credentials",
+    "description": "Fix or investigate malicious code execution from litellm package on Python startup Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "malicious litellm_init.pth in litellm 1.82.8 — credential stealer",
+    "search_intent": "Fix or investigate malicious code execution from litellm package on Python startup",
+    "common_causes": [
+      "The litellm==1.82.8 PyPI package contains a malicious .pth file that auto-executes a credential-stealing script on every Python interpreter start. Developers who installed this version had their API keys, SSH keys, AWS/GCP/Azure credentials, Kubernetes configs, and crypto wallets exfiltrated. Massive developer impact with 487+ comments on the tracking issue.",
+      "The litellm_init.pth file (34,628 bytes) uses double base64-encoded payload to collect system info, environment variables, SSH keys, git credentials, AWS/GCP/Azure/K8s/Docker credentials, crypto wallets, and SSL/TLS private keys. Auto-executes on Python startup — no 'import litellm' needed. Reported 2026-03-24, 487 comments, issue closed."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "litellm pip package compromised",
+      "Python .pth file code execution vulnerability",
+      "supply chain attack developer tools"
+    ]
+  },
+  {
+    "slug": "ollama-ollama-cloud-pro-95-failure-rate-empty-responses-and-timeouts-on-api-chat-for-all-cloud-models",
+    "title": "Ollama Cloud Pro Service Outage — All Cloud Models Unusable",
+    "description": "Fix Ollama Cloud returning empty responses or timeouts for all cloud models on Pro plan Includes evidence for Ollama troubleshooting demand.",
+    "category": "Ollama",
+    "technology": "Ollama",
+    "error_signature": "Ollama Cloud Pro: 95% failure rate — empty responses and timeouts on /api/chat for all cloud models",
+    "search_intent": "Fix Ollama Cloud returning empty responses or timeouts for all cloud models on Pro plan",
+    "common_causes": [
+      "Ollama Cloud Pro subscribers ($20/month) experience a 95% failure rate (5% success) across all cloud models (glm-5.1, kimi-k2.5, qwen3.5, deepseek-v3.2). Both /api/chat and /api/generate endpoints return empty responses or timeouts. No status page, no incident communication, support tickets ignored 2+ weeks. Multiple related issues (#15419, #14673, #15290) document sustained outage.",
+      "Ollama Cloud Pro ($20/mo) has 5% success rate across all 4 cloud models tested. Both /api/chat and /api/generate fail with empty/timeout responses. Local non-cloud models work fine, ruling out client-side issues. Multiple related issues confirm sustained outage with 29.7%+ failure rates documented since early April 2026. 44+ comments on primary issue."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "Ollama cloud 503 Service Unavailable",
+      "Ollama EOF errors on cloud models",
+      "Ollama socket closure on inference"
+    ]
+  },
+  {
+    "slug": "claude-code-claude-ai-usage-limit-reached-please-try-again-after-time",
+    "title": "Claude Max Plan Session Usage Limits Exhausted Abnormally Fast",
+    "description": "Fix Claude Code consuming entire session usage quota in 1-2 hours instead of the normal 5-hour window on Max plan Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Claude AI usage limit reached, please try again after [time]",
+    "search_intent": "Fix Claude Code consuming entire session usage quota in 1-2 hours instead of the normal 5-hour window on Max plan",
+    "common_causes": [
+      "Since March 23, 2026, Claude Max plan users (5x and 20x tiers) report session usage limits exhausting in 1-2 hours instead of the full 5-hour window. Same prompts that previously consumed 20-30% of quota now exhaust 80-100% in a single prompt. Affects paying subscribers ($100-200/month). 719+ comments indicate widespread impact.",
+      "Claude Max plan (5x and 20x) users report drastic increase in usage consumption rate since March 23, 2026. Session window exhausts in 1-2 hours vs. normal 5 hours. Some users report jumps from 21% to 100% on a single prompt. Reddit reports corroborate the issue. No specific CLI error beyond the rate limit cutoff message."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "Claude Code rate limit error",
+      "Claude API quota exceeded",
+      "Claude subscription usage calculation bug"
+    ]
   }
 ]
