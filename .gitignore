@@ -6,6 +6,7 @@ dist/
 automation/discovery/output/
 automation/expand/output/
 automation/import/output/
+automation/publish/output/
 automation/runtime/*.json
 !automation/runtime/.gitkeep
 !automation/runtime/README.md

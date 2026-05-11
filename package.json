@@ -21,6 +21,7 @@
     "generate:errors": "node scripts/generate-error-pages.mjs",
     "pipeline:health": "node automation/pipeline/health.mjs",
     "pipeline:validate": "node automation/pipeline/validate.mjs",
+    "publish:safe": "node automation/publish/safe-publish.mjs",
     "report": "node scripts/report.mjs"
   },
   "dependencies": {

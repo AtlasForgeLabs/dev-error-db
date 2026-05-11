@@ -1,5 +1,5 @@
 {
-  "auto_publish_enabled": false,
+  "auto_publish_enabled": true,
   "max_pages_per_day": 10,
   "max_pages_per_run": 5,
   "min_priority_score": 7,
