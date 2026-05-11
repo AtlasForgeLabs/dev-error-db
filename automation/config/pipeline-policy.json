@@ -1,0 +1,18 @@
+{
+  "auto_publish_enabled": false,
+  "max_pages_per_day": 10,
+  "max_pages_per_run": 5,
+  "min_priority_score": 7,
+  "min_commercial_value_score": 6,
+  "max_ranking_difficulty_score": 8,
+  "unknown_category_action": "review",
+  "duplicate_similarity_threshold": 0.86,
+  "allow_new_taxonomy_categories": false,
+  "stop_publish_on_build_failure": true,
+  "min_markdown_body_chars": 1500,
+  "min_faq_items": 2,
+  "require_source_urls": true,
+  "require_evidence_summary": true,
+  "require_quick_fix": true,
+  "pause_after_consecutive_failures": 3
+}

@@ -2,6 +2,14 @@ import { mkdir, readFile, readdir, writeFile } from 'node:fs/promises';
 import { existsSync } from 'node:fs';
 import path from 'node:path';
 import process from 'node:process';
+import {
+  candidateSummary,
+  enforcePublishLimits,
+  recordPipelineFailure,
+  recordPipelineSuccess,
+  validateCandidates,
+  writeValidationReport,
+} from '../lib/pipeline-guardrails.mjs';
 
 const projectRoot = path.resolve(new URL('../..', import.meta.url).pathname);
 const importPath = path.join(projectRoot, 'automation', 'import', 'output', 'latest-import.json');
@@ -115,7 +123,46 @@ async function main() {
   await writeFile(previewPath, `${JSON.stringify(report, null, 2)}\n`);
 
   if (writeMode) {
+    const selectedForValidation = selected
+      .map((preview) => accepted.find((item) => normalizeSlug(item.slug) === preview.slug || item.slug === preview.slug))
+      .filter(Boolean)
+      .map(normalizeCandidate);
+    const guardrailResults = await validateCandidates(selectedForValidation);
+    const rejectedByGuardrails = guardrailResults.filter((result) => result.status === 'rejected');
+    const limitCheck = await enforcePublishLimits({ requestedCount: selected.length, mode: 'write' });
+
+    await writeValidationReport({
+      generated_at: new Date().toISOString(),
+      mode: 'pre-write',
+      source: 'automation/import/output/latest-import.json',
+      summary: {
+        selected: selected.length,
+        accepted: guardrailResults.length - rejectedByGuardrails.length,
+        rejected: rejectedByGuardrails.length,
+        duplicate_rejections: rejectedByGuardrails.filter((result) =>
+          result.errors.some((error) => error.includes('duplicate'))
+        ).length,
+        publish_limits_ok: limitCheck.allowed,
+      },
+      publish_limit_check: {
+        allowed: limitCheck.allowed,
+        errors: limitCheck.errors,
+        pages_today: limitCheck.pagesToday,
+      },
+      candidates: guardrailResults.map(candidateSummary),
+    });
+
+    if (!limitCheck.allowed || rejectedByGuardrails.length > 0) {
+      const message = [
+        ...limitCheck.errors,
+        ...rejectedByGuardrails.map((result) => `${result.slug}: ${result.errors.join('; ')}`),
+      ].join(' | ');
+      await recordPipelineFailure(message);
+      throw new Error(`guardrail validation blocked write mode: ${message}`);
+    }
+
     await writeMarkdownPages(selected, existing);
+    await recordPipelineSuccess({ pagesPublished: selected.length });
   }
 
   console.log(`[expand:imported] mode: ${report.mode}`);
@@ -418,4 +465,3 @@ function cleanText(value) {
 function relativePath(filePath) {
   return path.relative(projectRoot, filePath) || '.';
 }
-

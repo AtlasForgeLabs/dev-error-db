@@ -4,6 +4,12 @@ import { execFile } from 'node:child_process';
 import path from 'node:path';
 import process from 'node:process';
 import { promisify } from 'node:util';
+import {
+  enforcePublishLimits,
+  recordPipelineFailure,
+  recordPipelineSuccess,
+  verifyBuildOutputs,
+} from '../lib/pipeline-guardrails.mjs';
 
 const execFileAsync = promisify(execFile);
 const projectRoot = path.resolve(new URL('../..', import.meta.url).pathname);
@@ -132,6 +138,15 @@ async function main() {
     return;
   }
 
+  const limitCheck = await enforcePublishLimits({ requestedCount: seedsToAppend.length, mode: 'write' });
+  if (!limitCheck.allowed) {
+    report.actions.guardrail_blocked = true;
+    report.actions.guardrail_errors = limitCheck.errors;
+    await writeReport(report);
+    await recordPipelineFailure(limitCheck.errors.join(' | '));
+    throw new Error(`guardrail publish limits blocked expansion: ${limitCheck.errors.join('; ')}`);
+  }
+
   await appendSeeds(seedsToAppend);
   report.actions.wrote_seeds = true;
 
@@ -143,6 +158,16 @@ async function main() {
 
   await runCommand('npm', ['run', 'report']);
   report.actions.ran_report = true;
+
+  const buildVerification = await verifyBuildOutputs(selectedCandidates.map((candidate) => candidate.slug));
+  report.actions.build_verification_ok = buildVerification.ok;
+  report.actions.build_verification = buildVerification;
+  if (!buildVerification.ok) {
+    await writeReport(report);
+    await recordPipelineFailure('build output verification failed after expansion build');
+    throw new Error('build output verification failed after expansion build');
+  }
+  await recordPipelineSuccess({ pagesPublished: selectedCandidates.length });
 
   if (shouldCommit) {
     const branchName = `auto/error-expansion-${timestampForBranch()}`;
