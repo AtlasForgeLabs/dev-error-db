@@ -187,13 +187,22 @@ async function writeReport() {
 }
 
 async function preservePreviousPublishMetadata() {
-  if (!existsSync(reportPath)) return;
+  if (existsSync(reportPath)) {
+    try {
+      const previous = JSON.parse(await readFile(reportPath, 'utf8'));
+      if (previous.commit_hash) report.commit_hash = previous.commit_hash;
+      if (previous.pushed_at) report.pushed_at = previous.pushed_at;
+    } catch {
+      // A malformed previous report should not block a safe no-op publish.
+    }
+  }
 
-  try {
-    const previous = JSON.parse(await readFile(reportPath, 'utf8'));
-    if (previous.commit_hash) report.commit_hash = previous.commit_hash;
-    if (previous.pushed_at) report.pushed_at = previous.pushed_at;
-  } catch {
-    // A malformed previous report should not block a safe no-op publish.
+  if (!report.commit_hash) {
+    try {
+      const latestPublishCommit = runGit(['log', '-1', '--format=%H', '--grep=^Publish Dev Error DB generated pages$']).stdout.trim();
+      if (latestPublishCommit) report.commit_hash = latestPublishCommit;
+    } catch {
+      // Best-effort fallback only.
+    }
   }
 }
