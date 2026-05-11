@@ -65,9 +65,11 @@ Default behavior:
 2. Read all `.json` files from the Data Hub inbox.
 3. Reject unreadable files, invalid JSON, malformed candidate arrays, and files larger than 5MB.
 4. Validate individual candidates and deduplicate across all loaded files.
-5. Write `automation/import/output/imported-candidates.json`.
-6. Move valid input files to `processed/` with a timestamp suffix.
-7. Move invalid or unreadable input files to `rejected/` with a timestamp suffix.
+5. Write timestamped import history under `automation/import/output/import-history/`.
+6. Write `automation/import/output/latest-import.json`.
+7. Write compatibility output `automation/import/output/imported-candidates.json`.
+8. Move valid input files to `processed/` with a timestamp suffix.
+9. Move invalid or unreadable input files to `rejected/` with a timestamp suffix.
 
 If individual candidates are rejected but the source file is valid, the file still moves to `processed/`. Candidate-level rejections are recorded in the output report.
 
@@ -77,6 +79,15 @@ If the inbox is empty, the importer exits successfully and prints:
 No candidate files found in data hub inbox.
 ```
 
+Empty inbox runs do not overwrite the latest valid import. They may write an `empty-YYYYMMDD-HHMMSS.json` record under `automation/import/output/import-history/`, but they preserve:
+
+```text
+automation/import/output/latest-import.json
+automation/import/output/imported-candidates.json
+```
+
+`latest-import.json` is the preferred latest output for automation. `imported-candidates.json` is kept as a compatibility file for older scripts.
+
 ## CLI Options
 
 ```bash
@@ -85,6 +96,7 @@ node automation/import/import-candidates.mjs --input-dir /path/to/inbox
 node automation/import/import-candidates.mjs --output /path/to/output.json
 node automation/import/import-candidates.mjs --no-move
 node automation/import/import-candidates.mjs --dry-run
+node automation/import/import-candidates.mjs --reprocess-latest-processed
 ```
 
 - `--input`: import one JSON file.
@@ -92,6 +104,13 @@ node automation/import/import-candidates.mjs --dry-run
 - `--output`: write the import report to a custom path.
 - `--no-move`: leave source files in place.
 - `--dry-run`: write the report without moving source files.
+- `--reprocess-latest-processed`: find the newest `.json` file in Data Hub `processed/`, process it again, do not move it, and refresh latest/imported/history output.
+
+To recover the latest processed OpenClaw batch:
+
+```bash
+npm run import:candidates:reprocess-latest
+```
 
 ## Validation Rules
 
@@ -121,6 +140,19 @@ The importer writes:
 
 ```text
 automation/import/output/imported-candidates.json
+```
+
+Preferred latest output:
+
+```text
+automation/import/output/latest-import.json
+```
+
+Timestamped history:
+
+```text
+automation/import/output/import-history/import-YYYYMMDD-HHMMSS.json
+automation/import/output/import-history/empty-YYYYMMDD-HHMMSS.json
 ```
 
 Output includes:

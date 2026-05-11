@@ -10,6 +10,7 @@
     "discover:errors": "node automation/discovery/discovery-pipeline.mjs",
     "import:candidates": "node automation/import/import-candidates.mjs",
     "import:candidates:datahub": "node automation/import/import-candidates.mjs",
+    "import:candidates:reprocess-latest": "node automation/import/import-candidates.mjs --reprocess-latest-processed",
     "datahub:cleanup": "node automation/data-hub/cleanup-data-hub.mjs",
     "datahub:cleanup:dry": "node automation/data-hub/cleanup-data-hub.mjs --dry-run",
     "expand:errors": "node automation/expand/expand-errors.mjs",

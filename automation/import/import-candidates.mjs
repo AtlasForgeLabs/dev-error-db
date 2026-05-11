@@ -7,6 +7,8 @@ const homeDir = process.env.HOME || process.env.USERPROFILE || '';
 const dataHubRoot = path.join(homeDir, 'AtlasForge', 'prod-env', 'atlasforge-data-hub', 'openclaw', 'dev-error-db');
 const defaultInputDir = path.join(dataHubRoot, 'inbox');
 const outputPathDefault = path.join(projectRoot, 'automation', 'import', 'output', 'imported-candidates.json');
+const latestOutputPath = path.join(projectRoot, 'automation', 'import', 'output', 'latest-import.json');
+const importHistoryDir = path.join(projectRoot, 'automation', 'import', 'output', 'import-history');
 const maxInputBytes = 5 * 1024 * 1024;
 const qualityGateVersion = 'openclaw-high-potential-v1-datahub';
 
@@ -35,6 +37,15 @@ const categoryAliases = new Map([
   ['containers', 'Docker'],
   ['docker compose', 'Docker'],
   ['github actions', 'GitHub Actions'],
+  ['vercel', 'GitHub Actions'],
+  ['anthropic api', 'OpenAI API'],
+  ['claude code', 'OpenAI API'],
+  ['cursor', 'OpenAI API'],
+  ['github copilot', 'OpenAI API'],
+  ['litellm', 'OpenAI API'],
+  ['ollama', 'OpenAI API'],
+  ['opencode', 'OpenAI API'],
+  ['openclaw', 'OpenAI API'],
   ['javascript', 'Node.js'],
   ['networking', 'DNS'],
   ['node', 'Node.js'],
@@ -51,7 +62,8 @@ const args = parseArgs(process.argv.slice(2));
 const inputFile = args.input ? path.resolve(args.input) : null;
 const inputDir = path.resolve(args.inputDir ?? defaultInputDir);
 const outputPath = path.resolve(args.output ?? outputPathDefault);
-const noMove = Boolean(args.noMove || args.dryRun);
+const reprocessLatestProcessed = Boolean(args.reprocessLatestProcessed);
+const noMove = Boolean(args.noMove || args.dryRun || reprocessLatestProcessed);
 const dryRun = Boolean(args.dryRun);
 
 main().catch((error) => {
@@ -61,16 +73,18 @@ main().catch((error) => {
 
 async function main() {
   await ensureDataHubDirs();
+  await ensureOutputDirs();
 
-  const files = inputFile ? [inputFile] : await listJsonFiles(inputDir);
   const importedAt = new Date().toISOString();
+  const mode = reprocessLatestProcessed ? 'reprocess-latest-processed' : dryRun ? 'dry-run' : noMove ? 'no-move' : 'import';
+  const files = await resolveInputFiles();
 
   if (files.length === 0) {
     const output = emptyOutput(importedAt);
-    await writeOutput(output);
+    await writeHistoryOutput(output, 'empty');
     await writeLog(importedAt, '[import] No candidate files found in data hub inbox.');
     console.log('No candidate files found in data hub inbox.');
-    console.log(`[import] wrote ${displayPath(outputPath)}`);
+    console.log('[import] latest valid import outputs were preserved.');
     return;
   }
 
@@ -95,6 +109,11 @@ async function main() {
     generated_at: importedAt,
     source: 'openclaw-data-hub',
     data_hub_root: dataHubRoot,
+    input_files: files.map(displayPath),
+    processed_files: fileResults.filter((file) => file.status === 'processed').map((file) => file.file),
+    moved_files: fileResults.map((file) => file.moved_to).filter(Boolean),
+    mode,
+    empty_input: false,
     dry_run: dryRun,
     summary: {
       files_found: files.length,
@@ -112,13 +131,28 @@ async function main() {
     rejected_candidates: rejectedCandidates,
   };
 
-  await writeOutput(output);
+  await writeSuccessfulOutputs(output);
   await writeLog(importedAt, `[import] processed ${files.length} file(s), accepted ${acceptedCandidates.length}, rejected ${rejectedCandidates.length}`);
 
   console.log(`[import] loaded ${files.length} candidate file(s)`);
   console.log(`[import] accepted ${acceptedCandidates.length} candidate(s)`);
   console.log(`[import] rejected ${rejectedCandidates.length} candidate(s)`);
+  if (reprocessLatestProcessed) {
+    console.log(`[import] reprocessed ${displayPath(files[0])}`);
+  }
+  console.log(`[import] wrote ${displayPath(latestOutputPath)}`);
   console.log(`[import] wrote ${displayPath(outputPath)}`);
+}
+
+async function resolveInputFiles() {
+  if (reprocessLatestProcessed) {
+    const latestProcessed = await findLatestProcessedFile();
+    if (!latestProcessed) return [];
+    return [latestProcessed];
+  }
+
+  if (inputFile) return [inputFile];
+  return listJsonFiles(inputDir);
 }
 
 async function processInputFile(filePath, context) {
@@ -396,9 +430,22 @@ async function moveInputFile(filePath, destinationName) {
   return destination;
 }
 
-async function writeOutput(output) {
+async function ensureOutputDirs() {
   await mkdir(path.dirname(outputPath), { recursive: true });
+  await mkdir(importHistoryDir, { recursive: true });
+}
+
+async function writeSuccessfulOutputs(output) {
+  const historyPath = await writeHistoryOutput(output, 'import');
+  await writeFile(latestOutputPath, `${JSON.stringify(output, null, 2)}\n`, 'utf8');
   await writeFile(outputPath, `${JSON.stringify(output, null, 2)}\n`, 'utf8');
+  return historyPath;
+}
+
+async function writeHistoryOutput(output, prefix) {
+  const historyPath = path.join(importHistoryDir, `${prefix}-${timestampForFile(output.generated_at)}.json`);
+  await writeFile(historyPath, `${JSON.stringify(output, null, 2)}\n`, 'utf8');
+  return historyPath;
 }
 
 async function writeLog(importedAt, message) {
@@ -411,6 +458,11 @@ function emptyOutput(importedAt) {
     generated_at: importedAt,
     source: 'openclaw-data-hub',
     data_hub_root: dataHubRoot,
+    input_files: [],
+    processed_files: [],
+    moved_files: [],
+    mode: reprocessLatestProcessed ? 'reprocess-latest-processed' : dryRun ? 'dry-run' : 'import',
+    empty_input: true,
     dry_run: dryRun,
     summary: {
       files_found: 0,
@@ -425,6 +477,20 @@ function emptyOutput(importedAt) {
     accepted_candidates: [],
     rejected_candidates: [],
   };
+}
+
+async function findLatestProcessedFile() {
+  const processedDir = path.join(dataHubRoot, 'processed');
+  await mkdir(processedDir, { recursive: true });
+  const files = await listJsonFiles(processedDir);
+  const stats = await Promise.all(
+    files.map(async (filePath) => ({
+      filePath,
+      mtimeMs: (await stat(filePath)).mtimeMs,
+    })),
+  );
+
+  return stats.sort((a, b) => b.mtimeMs - a.mtimeMs)[0]?.filePath ?? null;
 }
 
 function normalizeCategory(value) {
