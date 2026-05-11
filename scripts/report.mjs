@@ -17,6 +17,7 @@ const sitemapExists = existsSync(path.join(rootDir, 'dist', 'sitemap-0.xml'));
 const sitemapStats = await inspectSitemaps();
 const seoHealth = buildSeoHealth(parsedPages);
 const monetizationStats = await inspectMonetization();
+const analyticsStats = await inspectAnalytics();
 
 const runtimeDir = path.join(rootDir, 'automation', 'runtime');
 mkdirSync(runtimeDir, { recursive: true });
@@ -57,6 +58,12 @@ print('ads.txt expected line', monetizationStats.adsTxtValid ? 'yes' : 'no');
 print('dist/ads.txt exists', monetizationStats.distAdsTxtExists ? 'yes' : 'no');
 print('dist/index.html AdSense script', monetizationStats.indexHasAdSense ? 'yes' : 'no');
 print('sample error page AdSense script', monetizationStats.sampleErrorHasAdSense ? `yes (${monetizationStats.sampleErrorPage})` : 'no');
+
+console.log('\nAnalytics:');
+print('provider', analyticsStats.provider);
+print('measurement id', analyticsStats.measurementId);
+print('dist/index.html GA4 tag', analyticsStats.indexHasGa4 ? 'yes' : 'no');
+print('sample error page GA4 tag', analyticsStats.sampleErrorHasGa4 ? `yes (${analyticsStats.sampleErrorPage})` : 'no');
 
 console.log('\nSEO health snapshot:');
 print('internal_link_density', String(seoHealth.internal_link_density));
@@ -212,6 +219,23 @@ async function inspectMonetization() {
     indexHasAdSense: existsSync(indexPath) && readFileSync(indexPath, 'utf8').includes(adsScriptNeedle),
     sampleErrorPage,
     sampleErrorHasAdSense: Boolean(sampleErrorPath && existsSync(sampleErrorPath) && readFileSync(sampleErrorPath, 'utf8').includes(adsScriptNeedle)),
+  };
+}
+
+async function inspectAnalytics() {
+  const measurementId = 'G-91G3P935N5';
+  const ga4ScriptNeedle = `googletagmanager.com/gtag/js?id=${measurementId}`;
+  const indexPath = path.join(rootDir, 'dist', 'index.html');
+  const firstErrorFile = errorFiles[0] ? path.basename(errorFiles[0], '.md') : null;
+  const sampleErrorPage = firstErrorFile ? `dist/errors/${firstErrorFile}/index.html` : null;
+  const sampleErrorPath = firstErrorFile ? path.join(rootDir, 'dist', 'errors', firstErrorFile, 'index.html') : null;
+
+  return {
+    provider: 'Google Analytics 4',
+    measurementId,
+    indexHasGa4: existsSync(indexPath) && readFileSync(indexPath, 'utf8').includes(ga4ScriptNeedle),
+    sampleErrorPage,
+    sampleErrorHasGa4: Boolean(sampleErrorPath && existsSync(sampleErrorPath) && readFileSync(sampleErrorPath, 'utf8').includes(ga4ScriptNeedle)),
   };
 }
 
