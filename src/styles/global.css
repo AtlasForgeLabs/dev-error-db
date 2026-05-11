@@ -82,7 +82,7 @@ nav {
 }
 
 .hero {
-  padding: 72px 0 48px;
+  padding: 36px 0 28px;
   max-width: 760px;
 }
 
@@ -459,6 +459,6 @@ li + li {
   }
 
   .hero {
-    padding-top: 46px;
+    padding: 28px 0 22px;
   }
 }
