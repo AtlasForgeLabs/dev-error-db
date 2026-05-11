@@ -1204,5 +1204,137 @@
       "OpenRouter API timeout in reactive applications",
       "Spring AI model configuration error"
     ]
+  },
+  {
+    "slug": "claude-code-no-spend-visibility-or-spend-cap-for-orchestrated-workloads-in-claude-p-headless-mode",
+    "title": "Claude Code Headless Mode Has No Spend Cap — $313 Burned in 8.5 Hours",
+    "description": "Set spend cap or cost limit for Claude Code headless/orchestrated workloads to prevent runaway costs Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "No spend visibility or spend cap for orchestrated workloads in claude -p headless mode",
+    "search_intent": "Set spend cap or cost limit for Claude Code headless/orchestrated workloads to prevent runaway costs",
+    "common_causes": [
+      "Developers running Claude Code in headless mode (claude -p) via Python daemons or CI pipelines have no visibility into spending and no way to set cost caps. One user reported $313 burned in 8.5 hours on a single retry-stuck workload. This is critical for teams using Claude Code programmatically where cost control is essential.",
+      "GitHub issue 57719 (2026-05-10) details a user who built a Python daemon orchestrating Claude Code in headless mode. No spend cap or visibility existed. $313 burned in 8.5h. Support gave 3 contradictory answers. Highlights a major gap in Claude Code's enterprise readiness for automated workloads."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "Claude Code max_tokens_per_request not enforced in headless mode",
+      "Claude Code retry loop causes infinite token consumption",
+      "Claude Code billing notification settings missing for API mode"
+    ]
+  },
+  {
+    "slug": "claude-code-claude-pro-max-upgrade-bug-forced-unwanted-extra-credit-charges-587",
+    "title": "Claude Pro to Max Upgrade Bug Causes Unexpected Extra Charges of ~$587",
+    "description": "Fix unexpected extra charges after upgrading Claude subscription from Pro to Max plan Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Claude Pro → Max upgrade bug forced unwanted extra credit charges (~$587)",
+    "search_intent": "Fix unexpected extra charges after upgrading Claude subscription from Pro to Max plan",
+    "common_causes": [
+      "Users upgrading from Claude Pro to Max plan are being charged unexpected extra credits (~$587) due to a server-side billing failure. This directly impacts paid subscribers and creates significant financial damage. High emotional intensity and search demand expected.",
+      "GitHub issue 57977 (2026-05-11) reports ~$587 in unwanted charges caused by Anthropic's server-side billing failure during Pro→Max plan upgrade. Includes screenshot evidence. Direct financial damage to paid subscribers."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Claude Code subscription downgrade still charges full amount",
+      "Claude Pro message counter not resetting at billing cycle",
+      "Anthropic API billing discrepancy between dashboard and actual usage"
+    ]
+  },
+  {
+    "slug": "litellm-budgetexceedederror-http-429-phantom-budget-exceeded-despite-actual-spend-near-0",
+    "title": "LiteLLM Proxy Phantom BudgetExceededError After Redis Spend Counter Leak",
+    "description": "Fix LiteLLM proxy randomly returning BudgetExceededError 429 despite zero actual spend after upgrade Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "BudgetExceededError (HTTP 429) — phantom budget exceeded despite actual spend near $0",
+    "search_intent": "Fix LiteLLM proxy randomly returning BudgetExceededError 429 despite zero actual spend after upgrade",
+    "common_causes": [
+      "After upgrading LiteLLM proxy, end users randomly receive BudgetExceededError (HTTP 429) despite their actual database spend being near $0. The Redis atomic counter spend:end_user:<id> accumulates phantom reservations that are never properly cleaned up, causing requests to cycle between success and failure approximately every 4 minutes. This breaks production API gateways.",
+      "GitHub issue 27639 (2026-05-11) reports that reserve_budget_for_request() leaks Redis spend counters after upgrade to LiteLLM v1.83.10.dev.2. Users get phantom BudgetExceededError (HTTP 429) despite near-zero actual spend. Requests cycle between success and failure every ~4 minutes. Affects production LiteLLM proxy deployments."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "LiteLLM Redis counter not resetting after request completion",
+      "LiteLLM proxy rate limit false positives after upgrade",
+      "LiteLLM spend tracking discrepancy between Redis and database"
+    ]
+  },
+  {
+    "slug": "litellm-virtual-key-mcp-access-ignores-team-access-groups-discovery-and-enforcement-failure",
+    "title": "LiteLLM Virtual Key MCP Access Bypasses Team Access Group Controls",
+    "description": "Fix LiteLLM virtual key MCP endpoints ignoring team access group restrictions Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "Virtual key MCP access ignores team access groups — discovery and enforcement failure",
+    "search_intent": "Fix LiteLLM virtual key MCP endpoints ignoring team access group restrictions",
+    "common_causes": [
+      "Enterprise teams using LiteLLM proxy rely on team access groups to control which tools/API keys each team can access. Virtual keys are completely bypassing these controls on MCP endpoints (GET /v1/mcp/server, GET /v1/mcp/toolset, POST /mcp-rest/tools/call). This is a security access control failure that undermines LiteLLM's enterprise team management features.",
+      "GitHub issue 27657 (2026-05-11) reports that virtual key MCP access completely ignores team access groups. Both discovery and enforcement are broken. Severity: High. Confirmed on v1.83.14-stable.patch.3. Affects GET /v1/mcp/server, GET /v1/mcp/toolset, POST /mcp-rest/tools/call endpoints. Not fixed in latest stable."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "LiteLLM virtual key permissions not enforced on custom endpoints",
+      "LiteLLM team access group rules bypassed in API v1",
+      "LiteLLM RBAC not applied to MCP protocol endpoints"
+    ]
+  },
+  {
+    "slug": "claude-code-typeerror-the-argument-filename-must-be-a-file-url-object-file-url-string-or-absolute-path-string-received-file-home-runner-work-claude-cli-internal-claude-cli-internal-build-agent-sdk-sdk-mjs",
+    "title": "Claude Code VS Code Extension Fails to Activate on Windows — Hardcoded Linux Path",
+    "description": "Fix Claude Code VS Code extension that fails to activate with a TypeError about filename path on Windows Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "TypeError: The argument 'filename' must be a file URL object, file URL string, or absolute path string. Received 'file:///home/runner/work/claude-cli-internal/claude-cli-internal/build-agent-sdk/sdk.mjs'",
+    "search_intent": "Fix Claude Code VS Code extension that fails to activate with a TypeError about filename path on Windows",
+    "common_causes": [
+      "Developers installing Claude Code v2.1.136+ in VS Code on Windows get an immediate activation failure due to a hardcoded Linux build path (file:///home/runner/work/...) embedded in extension.js. The extension becomes completely unusable, blocking paid subscribers from using the tool in their IDE.",
+      "Multiple GitHub issues (57503, 57495) report the same activation failure on Windows since v2.1.136. Error traces show hardcoded Linux CI build path leaking into the Windows extension bundle. Multiple users confirm the issue started around 2026-05-08."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Claude Code extension shows 'Claude Model None' after activation failure",
+      "Claude Code VS Code extension Ctrl-Shift-P 'Open in New Tab' does nothing"
+    ]
+  },
+  {
+    "slug": "claude-code-unhandled-node-type-string",
+    "title": "Claude Code Permission Allowlist Over-Escapes Bash Patterns with 'unhandled node type: string'",
+    "description": "Fix 'unhandled node type: string' error when Claude Code permission allowlist processes commands with shell metacharacters Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "unhandled node type: string",
+    "search_intent": "Fix 'unhandled node type: string' error when Claude Code permission allowlist processes commands with shell metacharacters",
+    "common_causes": [
+      "When developers add Bash() commands to Claude Code's 'always allow' permission list, commands containing shell metacharacters (parentheses, quotes, dollar signs) get over-escaped during persistence. This causes 'unhandled node type: string' prompts mid-session, breaking workflow and requiring manual re-authorization of previously allowed commands.",
+      "GitHub issue 57784 (2026-05-10) documents that Claude Code's permission allowlist over-escapes Bash() patterns containing shell metacharacters like (), ', \", or $. The stored pattern becomes unmatchable, producing 'unhandled node type: string' prompts mid-session. Affects developer workflow for command allowlisting."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Claude Code always allow list not persisting across sessions",
+      "Claude Code permission prompt loops on complex shell commands",
+      "Claude Code Bash() regex pattern matching fails for glob patterns"
+    ]
+  },
+  {
+    "slug": "litellm-model-info-cost-override-input-cost-per-token-output-cost-per-token-ignored-when-using-litellm-proxy-prefix",
+    "title": "LiteLLM Proxy Cost Override Ignored in Upstream Proxy Chaining",
+    "description": "Fix LiteLLM model_info cost_per_token override being ignored when calling upstream LiteLLM proxy Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "model_info cost override (input_cost_per_token/output_cost_per_token) ignored when using litellm_proxy/ prefix",
+    "search_intent": "Fix LiteLLM model_info cost_per_token override being ignored when calling upstream LiteLLM proxy",
+    "common_causes": [
+      "When chaining LiteLLM proxy instances (Y calls X via litellm_proxy/ prefix), setting input_cost_per_token: 0 or output_cost_per_token: 0 in model_info has no effect. The upstream proxy's costs are always used instead. This breaks cost tracking accuracy for organizations running multi-layer LiteLLM proxy setups, making budget monitoring unreliable.",
+      "GitHub issue 27656 (2026-05-11) reports that when a LiteLLM proxy (Y) calls another LiteLLM proxy (X) using litellm_proxy/ model prefix, cost overrides in model_info (input_cost_per_token, output_cost_per_token) are completely ignored. Upstream proxy costs are always used, breaking cost tracking for multi-layer proxy deployments."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "LiteLLM cost tracking inaccurate with model routing",
+      "LiteLLM proxy chain double-counts token costs",
+      "LiteLLM custom model pricing not applied to routed requests"
+    ]
   }
 ]
