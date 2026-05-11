@@ -9,64 +9,15 @@ const defaultInputDir = path.join(dataHubRoot, 'inbox');
 const outputPathDefault = path.join(projectRoot, 'automation', 'import', 'output', 'imported-candidates.json');
 const latestOutputPath = path.join(projectRoot, 'automation', 'import', 'output', 'latest-import.json');
 const importHistoryDir = path.join(projectRoot, 'automation', 'import', 'output', 'import-history');
+const importReportsDir = path.join(projectRoot, 'automation', 'import', 'output', 'import-reports');
 const maxInputBytes = 5 * 1024 * 1024;
 const qualityGateVersion = 'openclaw-high-potential-v1-datahub';
 
 const dataHubDirs = ['inbox', 'processed', 'rejected', 'archive', 'logs'];
-const approvedCategories = new Set([
-  'AI Coding Tools',
-  'Anthropic API',
-  'Cloudflare',
-  'Cloud Platforms',
-  'Cursor',
-  'Deployment',
-  'DNS',
-  'Docker',
-  'Git',
-  'GitHub Actions',
-  'GitHub Copilot',
-  'LiteLLM',
-  'Node.js',
-  'npm',
-  'Ollama',
-  'OpenAI API',
-  'Python',
-  'SSL/TLS',
-]);
 
-const categoryAliases = new Map([
-  ['ai coding tools', 'AI Coding Tools'],
-  ['api', 'OpenAI API'],
-  ['apis', 'OpenAI API'],
-  ['anthropic api', 'Anthropic API'],
-  ['certificates', 'SSL/TLS'],
-  ['ci', 'GitHub Actions'],
-  ['ci/cd', 'GitHub Actions'],
-  ['claude code', 'AI Coding Tools'],
-  ['cloudflare', 'Cloudflare'],
-  ['cloud platforms', 'Cloud Platforms'],
-  ['containers', 'Docker'],
-  ['cursor', 'Cursor'],
-  ['docker compose', 'Docker'],
-  ['github actions', 'GitHub Actions'],
-  ['github copilot', 'GitHub Copilot'],
-  ['litellm', 'LiteLLM'],
-  ['ollama', 'Ollama'],
-  ['opencode', 'AI Coding Tools'],
-  ['openclaw', 'AI Coding Tools'],
-  ['deployment', 'Deployment'],
-  ['vercel', 'Deployment'],
-  ['javascript', 'Node.js'],
-  ['networking', 'DNS'],
-  ['node', 'Node.js'],
-  ['nodejs', 'Node.js'],
-  ['package manager', 'npm'],
-  ['package managers', 'npm'],
-  ['ssl', 'SSL/TLS'],
-  ['ssl-tls', 'SSL/TLS'],
-  ['tls', 'SSL/TLS'],
-  ['version control', 'Git'],
-]);
+const categoryConfig = await loadCategoryConfig();
+const approvedCategories = categoryConfig.approvedCategories;
+const categoryAliases = categoryConfig.aliases;
 
 const args = parseArgs(process.argv.slice(2));
 const inputFile = args.input ? path.resolve(args.input) : null;
@@ -75,6 +26,23 @@ const outputPath = path.resolve(args.output ?? outputPathDefault);
 const reprocessLatestProcessed = Boolean(args.reprocessLatestProcessed);
 const noMove = Boolean(args.noMove || args.dryRun || reprocessLatestProcessed);
 const dryRun = Boolean(args.dryRun);
+
+async function loadCategoryConfig() {
+  const configPath = path.join(projectRoot, 'automation', 'config', 'approved-categories.json');
+  try {
+    const raw = JSON.parse(await readFile(configPath, 'utf8'));
+    const approvedSet = new Set(raw.approved_categories || []);
+    const aliasMap = new Map();
+    for (const [key, value] of Object.entries(raw.aliases || {})) {
+      aliasMap.set(key.toLowerCase(), value);
+    }
+    return { approvedCategories: approvedSet, aliases: aliasMap, source: configPath };
+  } catch (error) {
+    console.error(`[import] warning: could not load ${configPath}: ${error.message}`);
+    console.error('[import] falling back to empty category config');
+    return { approvedCategories: new Set(), aliases: new Map(), source: null };
+  }
+}
 
 main().catch((error) => {
   console.error(`[import] ${error.message}`);
@@ -93,6 +61,7 @@ async function main() {
     const output = emptyOutput(importedAt);
     await writeHistoryOutput(output, 'empty');
     await writeLog(importedAt, '[import] No candidate files found in data hub inbox.');
+    await writeRunReport(importedAt, output, { categoryConfig });
     console.log('No candidate files found in data hub inbox.');
     console.log('[import] latest valid import outputs were preserved.');
     return;
@@ -103,6 +72,7 @@ async function main() {
   const acceptedCandidates = [];
   const rejectedCandidates = [];
   const fileResults = [];
+  const schemaWarnings = [];
 
   for (const filePath of files) {
     const fileResult = await processInputFile(filePath, {
@@ -111,6 +81,7 @@ async function main() {
       seen,
       acceptedCandidates,
       rejectedCandidates,
+      schemaWarnings,
     });
     fileResults.push(fileResult);
   }
@@ -142,6 +113,7 @@ async function main() {
   };
 
   await writeSuccessfulOutputs(output);
+  await writeRunReport(importedAt, output, { categoryConfig, schemaWarnings });
   await writeLog(importedAt, `[import] processed ${files.length} file(s), accepted ${acceptedCandidates.length}, rejected ${rejectedCandidates.length}`);
 
   console.log(`[import] loaded ${files.length} candidate file(s)`);
@@ -152,6 +124,7 @@ async function main() {
   }
   console.log(`[import] wrote ${displayPath(latestOutputPath)}`);
   console.log(`[import] wrote ${displayPath(outputPath)}`);
+  console.log(`[import] wrote run report to ${importReportsDir}`);
 }
 
 async function resolveInputFiles() {
@@ -179,6 +152,9 @@ async function processInputFile(filePath, context) {
     const rejectedBefore = context.rejectedCandidates.length;
 
     for (const [index, rawCandidate] of rawCandidates.entries()) {
+      const warnings = detectSchemaWarnings(rawCandidate, index, baseName);
+      context.schemaWarnings.push(...warnings);
+
       const candidate = normalizeOpenClawCandidate(rawCandidate);
       const duplicateMatch = findDuplicate(candidate, context.existing, context.seen);
       const rejectionReasons = validateCandidate(candidate, duplicateMatch);
@@ -238,8 +214,12 @@ function normalizeOpenClawCandidate(candidate) {
   const technology = cleanText(candidate.technology);
   const errorSignature = cleanText(candidate.error_signature);
   const title = cleanText(candidate.title) || buildTitle(technology, errorSignature);
-  const category = normalizeCategory(candidate.recommended_category || candidate.category || technology);
+  const rawCategory = candidate.recommended_category || candidate.category;
+  const category = normalizeCategory(rawCategory, technology);
   const slug = normalizeSlug(candidate.slug || `${technology}-${errorSignature || title}`);
+
+  const commercialValueScore = candidate.commercial_value_score ?? candidate.commercial_value;
+  const rankingDifficultyScore = candidate.ranking_difficulty_score ?? candidate.ranking_difficulty;
 
   return {
     slug,
@@ -250,8 +230,8 @@ function normalizeOpenClawCandidate(candidate) {
     error_signature: errorSignature,
     search_intent: cleanText(candidate.search_intent),
     why_developers_search_it: cleanText(candidate.why_developers_search_it),
-    commercial_value_score: toScore(candidate.commercial_value_score),
-    ranking_difficulty_score: toScore(candidate.ranking_difficulty_score),
+    commercial_value_score: toScore(commercialValueScore),
+    ranking_difficulty_score: toScore(rankingDifficultyScore),
     priority_score: toScore(candidate.priority_score),
     duplicate_risk: candidate.duplicate_risk === true,
     source_urls: uniqueStrings(candidate.source_urls),
@@ -281,6 +261,48 @@ function validateCandidate(candidate, duplicateMatch) {
   if (!candidate.slug) reasons.push('unable to normalize slug');
 
   return reasons;
+}
+
+function detectSchemaWarnings(rawCandidate, index, fileName) {
+  const warnings = [];
+  const prefix = `candidate[${index}] in ${fileName}`;
+
+  if ('commercial_value' in rawCandidate && !('commercial_value_score' in rawCandidate)) {
+    warnings.push({ field: 'commercial_value', message: `${prefix}: has 'commercial_value' instead of 'commercial_value_score' (auto-mapped)` });
+  }
+  if ('ranking_difficulty' in rawCandidate && !('ranking_difficulty_score' in rawCandidate)) {
+    warnings.push({ field: 'ranking_difficulty', message: `${prefix}: has 'ranking_difficulty' instead of 'ranking_difficulty_score' (auto-mapped)` });
+  }
+  if ('source' in rawCandidate && !('source_urls' in rawCandidate)) {
+    warnings.push({ field: 'source', message: `${prefix}: has 'source' as string instead of 'source_urls' array` });
+  }
+  if (!rawCandidate.search_intent && !rawCandidate.title) {
+    warnings.push({ field: 'search_intent', message: `${prefix}: missing search_intent and title` });
+  }
+  if (!rawCandidate.evidence_summary) {
+    warnings.push({ field: 'evidence_summary', message: `${prefix}: missing evidence_summary` });
+  }
+  if (!rawCandidate.source_urls || (Array.isArray(rawCandidate.source_urls) && rawCandidate.source_urls.length === 0)) {
+    warnings.push({ field: 'source_urls', message: `${prefix}: missing or empty source_urls` });
+  }
+  if ('duplicate_risk' in rawCandidate && rawCandidate.duplicate_risk !== undefined && rawCandidate.duplicate_risk !== true && rawCandidate.duplicate_risk !== false) {
+    warnings.push({ field: 'duplicate_risk', message: `${prefix}: duplicate_risk is not boolean (got ${typeof rawCandidate.duplicate_risk})` });
+  }
+
+  const knownFields = new Set([
+    'error_signature', 'title', 'technology', 'recommended_category', 'category',
+    'search_intent', 'why_developers_search_it', 'commercial_value_score',
+    'commercial_value', 'ranking_difficulty_score', 'ranking_difficulty',
+    'priority_score', 'duplicate_risk', 'source_urls', 'source', 'source_url',
+    'evidence_summary', 'suggested_related_errors', 'notes', 'slug',
+  ]);
+  for (const key of Object.keys(rawCandidate)) {
+    if (!knownFields.has(key)) {
+      warnings.push({ field: key, message: `${prefix}: unknown field '${key}'` });
+    }
+  }
+
+  return warnings;
 }
 
 function buildImportedCandidate({ candidate, duplicateMatch, importedAt, importStatus, rejectionReasons, sourceIndex, sourceFile }) {
@@ -443,6 +465,7 @@ async function moveInputFile(filePath, destinationName) {
 async function ensureOutputDirs() {
   await mkdir(path.dirname(outputPath), { recursive: true });
   await mkdir(importHistoryDir, { recursive: true });
+  await mkdir(importReportsDir, { recursive: true });
 }
 
 async function writeSuccessfulOutputs(output) {
@@ -461,6 +484,73 @@ async function writeHistoryOutput(output, prefix) {
 async function writeLog(importedAt, message) {
   const logPath = path.join(dataHubRoot, 'logs', `import-${timestampForFile(importedAt)}.log`);
   await writeFile(logPath, `${message}\n`, 'utf8');
+}
+
+async function writeRunReport(importedAt, output, context) {
+  const { categoryConfig, schemaWarnings } = context;
+  const rejected = output.rejected_candidates || [];
+  const accepted = output.accepted_candidates || [];
+
+  const rejectionReasonsGrouped = {};
+  for (const candidate of rejected) {
+    const reasons = candidate.import_metadata?.rejection_reasons || [];
+    for (const reason of reasons) {
+      const category = reason.startsWith('unapproved category:') ? 'unapproved category' :
+        reason.startsWith('duplicate match:') ? 'duplicate match' :
+        reason.includes('below') ? reason.replace(/\s*\(.*\)/, '') :
+        reason;
+      if (!rejectionReasonsGrouped[category]) {
+        rejectionReasonsGrouped[category] = { count: 0, candidates: [] };
+      }
+      rejectionReasonsGrouped[category].count += 1;
+      rejectionReasonsGrouped[category].candidates.push({
+        title: candidate.title,
+        slug: candidate.slug,
+        technology: candidate.technology,
+        category: candidate.category,
+        full_reason: reason,
+      });
+    }
+  }
+
+  const unapprovedCategories = {};
+  for (const candidate of rejected) {
+    const reasons = candidate.import_metadata?.rejection_reasons || [];
+    for (const reason of reasons) {
+      if (reason.startsWith('unapproved category:')) {
+        const cat = reason.replace('unapproved category: ', '');
+        if (!unapprovedCategories[cat]) unapprovedCategories[cat] = 0;
+        unapprovedCategories[cat] += 1;
+      }
+    }
+  }
+
+  const report = {
+    generated_at: importedAt,
+    report_version: '1.0.0',
+    quality_gate_version: output.summary ? qualityGateVersion : 'unknown',
+    mode: output.mode,
+    category_config_source: categoryConfig.source,
+    summary: output.summary,
+    rejection_reasons_grouped: rejectionReasonsGrouped,
+    unapproved_categories: unapprovedCategories,
+    schema_warnings: schemaWarnings || [],
+    accepted_titles: accepted.map((c) => ({ title: c.title, slug: c.slug, category: c.category })),
+    rejected_titles: rejected.map((c) => ({
+      title: c.title,
+      slug: c.slug,
+      category: c.category,
+      reasons: c.import_metadata?.rejection_reasons || [],
+    })),
+    approved_categories: [...categoryConfig.approvedCategories].sort(),
+    alias_count: categoryConfig.aliases.size,
+  };
+
+  const reportPath = path.join(importReportsDir, `run-${timestampForFile(importedAt)}.json`);
+  await writeFile(reportPath, `${JSON.stringify(report, null, 2)}\n`, 'utf8');
+
+  const latestReportPath = path.join(importReportsDir, 'latest-run-report.json');
+  await writeFile(latestReportPath, `${JSON.stringify(report, null, 2)}\n`, 'utf8');
 }
 
 function emptyOutput(importedAt) {
@@ -503,11 +593,19 @@ async function findLatestProcessedFile() {
   return stats.sort((a, b) => b.mtimeMs - a.mtimeMs)[0]?.filePath ?? null;
 }
 
-function normalizeCategory(value) {
+function normalizeCategory(value, technologyFallback) {
   const cleaned = cleanText(value);
   if (approvedCategories.has(cleaned)) return cleaned;
   const alias = categoryAliases.get(cleaned.toLowerCase());
   if (alias) return alias;
+
+  if (technologyFallback) {
+    const techCleaned = cleanText(technologyFallback);
+    if (approvedCategories.has(techCleaned)) return techCleaned;
+    const techAlias = categoryAliases.get(techCleaned.toLowerCase());
+    if (techAlias) return techAlias;
+  }
+
   return cleaned;
 }
 
