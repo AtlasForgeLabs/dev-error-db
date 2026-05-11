@@ -1830,5 +1830,100 @@
       "Copilot agent sandbox escape",
       "GitHub Copilot security hooks bypassed"
     ]
+  },
+  {
+    "slug": "ollama-ollama-cloud-pro-empty-responses-or-timeout-for-all-cloud-models-glm-5-1-cloud-kimi-k2-5-cloud-qwen3-5-cloud-deepseek-v3-2-cloud",
+    "title": "Ollama Cloud Pro 95% Failure Rate — All Cloud Models Timeout",
+    "description": "Fix Ollama Cloud Pro models returning empty/timeout responses on /api/chat and /api/generate endpoints Includes evidence for Ollama troubleshooting demand.",
+    "category": "Ollama",
+    "technology": "Ollama",
+    "error_signature": "Ollama Cloud Pro: empty responses or timeout for all cloud models (glm-5.1:cloud, kimi-k2.5:cloud, qwen3.5:cloud, deepseek-v3.2:cloud)",
+    "search_intent": "Fix Ollama Cloud Pro models returning empty/timeout responses on /api/chat and /api/generate endpoints",
+    "common_causes": [
+      "Paying Pro subscribers ($20/month) experience a near-total service outage across all cloud models, with 95% request failure rate. Both /api/chat and /api/generate affected, making the service unusable for production workloads.",
+      "Open GitHub issue with 45 comments. Pro subscriber reports 1/20 (5%) success rate across 4 cloud models. Both API endpoints affected. Issue remains open as of 2026-05-11. Community reports confirm widespread impact."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "Ollama Cloud Pro connection refused",
+      "Ollama cloud model not found after subscription",
+      "Ollama /api/chat timeout error"
+    ]
+  },
+  {
+    "slug": "claude-code-oauth-error-timeout-of-15000ms-exceeded-auth-anthropic-com-non-existent-domain",
+    "title": "Claude Code OAuth Login Fails — auth.anthropic.com DNS Resolution Error",
+    "description": "Fix Claude Code OAuth login timeout when auth.anthropic.com fails to resolve via DNS Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "OAuth error: timeout of 15000ms exceeded — auth.anthropic.com: Non-existent domain",
+    "search_intent": "Fix Claude Code OAuth login timeout when auth.anthropic.com fails to resolve via DNS",
+    "common_causes": [
+      "Complete authentication outage for Claude Code users in certain regions (e.g., Southeast Asia). The auth.anthropic.com subdomain does not resolve even via public DNS (8.8.8.8), making login impossible. api.anthropic.com resolves fine, so this is specific to the auth subdomain. No API key workaround available for all users.",
+      "Open GitHub issue with 149 comments. Users in Malaysia and other regions cannot authenticate. DNS investigation confirms auth.anthropic.com is non-existent from multiple DNS resolvers. Affects Claude Code 2.1.72+. Regional authentication outage preventing all paid usage."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "Claude Code auth.anthropic.com connection refused",
+      "Claude Code login timeout error",
+      "Claude Code OAuth callback failed"
+    ]
+  },
+  {
+    "slug": "claude-code-claude-ai-usage-limit-reached-max-plan-session-limits-exhausted-abnormally-fast",
+    "title": "Claude Max Plan Usage Limits Exhausted Too Fast — Session Window Bug",
+    "description": "Fix Claude Max plan hitting usage limits within 1-2 hours instead of the full 5-hour session window Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Claude AI usage limit reached — Max plan session limits exhausted abnormally fast",
+    "search_intent": "Fix Claude Max plan hitting usage limits within 1-2 hours instead of the full 5-hour session window",
+    "common_causes": [
+      "Since March 23, 2026, Claude Max subscribers (5x and 20x plans) report session limits being consumed 3-5x faster than normal. Tasks that previously used 20-30% of quota now exhaust 80-100% in a single prompt. Direct billing and quota impact on highest-tier paying customers.",
+      "Open GitHub issue with 719 comments. Users report jumps from 21% to 100% usage on a single prompt. Same workloads as before now exhausting limits in 1-2 hours. Correlated reports on Reddit (r/ClaudeCode, r/Anthropic). Issue since March 23, 2026."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Claude Code rate limit hit unexpectedly",
+      "Claude Max plan quota consumption bug",
+      "Claude API usage limit error"
+    ]
+  },
+  {
+    "slug": "claude-code-api-error-stream-idle-timeout-partial-response-received",
+    "title": "Claude Code Stream Idle Timeout Error with Opus Model",
+    "description": "Fix Claude Code 'Stream idle timeout — partial response received' error during tool calls and code generation Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "API Error: Stream idle timeout — partial response received",
+    "search_intent": "Fix Claude Code 'Stream idle timeout — partial response received' error during tool calls and code generation",
+    "common_causes": [
+      "Claude Code with Opus model intermittently fails mid-conversation with stream idle timeout errors, losing partial responses. This disrupts active development workflows, especially during multi-step agentic tasks. A regression since version 2.1.90. 183+ comments confirm widespread impact.",
+      "Open GitHub issue with 183 comments. Error occurs between tool calls when requesting code plans. Affects Opus model on Claude Code 2.1.92+. Regression from 2.1.90. Exact error string available for SEO targeting."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Claude Code SSE connection dropped",
+      "Claude Code partial response lost",
+      "Claude Code streaming timeout error"
+    ]
+  },
+  {
+    "slug": "claude-code-claude-code-hangs-freezing-stuck-on-thinking-for-5-20-minutes-with-no-token-usage",
+    "title": "Claude Code Hanging Freezing on Opus 4.6 — SSE Events Not Flowing",
+    "description": "Fix Claude Code hanging/freezing for 5-20+ minutes during prompts with Opus 4.6 model Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Claude Code hangs freezing — stuck on thinking for 5-20 minutes with no token usage",
+    "search_intent": "Fix Claude Code hanging/freezing for 5-20+ minutes during prompts with Opus 4.6 model",
+    "common_causes": [
+      "Claude Code with Opus 4.6 model frequently hangs during prompts — token usage stays flat, SSE events stop flowing from Anthropic's end. Packet inspection confirms it's waiting on Anthropic's side, not local processing. Sometimes unfreezes after 5-20 minutes, sometimes requires follow-up prompts. Affects WSL2/Linux/macOS users.",
+      "Open GitHub issue with 100 comments. Regression since Opus 4.6 release. Verified via packet inspection that SSE events stop from Anthropic's end. Not a local issue — fresh install with no MCPs/skills reproduces. Affects multiple platforms."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Claude Code no response from API",
+      "Claude Code SSE stream stopped",
+      "Claude Opus model hanging issue"
+    ]
   }
 ]
