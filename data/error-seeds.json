@@ -1469,5 +1469,100 @@
       "Claude API quota exceeded",
       "Claude subscription usage calculation bug"
     ]
+  },
+  {
+    "slug": "openrouter-authenticationerror-http-401-api-call-failed-despite-valid-api-key-and-available-credits",
+    "title": "OpenRouter API 401 AuthenticationError — Valid Key but Authentication Fails",
+    "description": "Fix OpenRouter API returning 401 error even when API key is valid and has credits Includes evidence for OpenRouter troubleshooting demand.",
+    "category": "Cloud Platforms",
+    "technology": "OpenRouter",
+    "error_signature": "AuthenticationError [HTTP 401] - API call failed despite valid API key and available credits",
+    "search_intent": "Fix OpenRouter API returning 401 error even when API key is valid and has credits",
+    "common_causes": [
+      "OpenRouter is a paid AI model aggregation service. When 401 errors occur despite valid keys, developers cannot use any downstream tools (Cline, Aider, Home Assistant, OpenClaw) that depend on OpenRouter. The intermittent nature (alternating between 401 and working) makes it especially frustrating.",
+      "Multiple GitHub issues report OpenRouter returning 401 AuthenticationError despite verified valid API keys with credits. Affected tools include hermes-agent, Cline, Aider, and Home Assistant. One user reported creating a dozen API keys without resolution, with errors randomly alternating between 401 and 'Provider returned error'."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "OpenRouter 429 rate limit exceeded",
+      "OpenRouter insufficient credits quota exceeded",
+      "OpenRouter model not available error"
+    ]
+  },
+  {
+    "slug": "claude-code-claude-code-authenticates-to-console-instead-of-claude-ai-max-subscription-oauth-url-always-uses-client-id-9d1c250a-with-platform-claude-com-redirect",
+    "title": "Claude Code OAuth Always Routes to Console Billing Instead of claude.ai Max",
+    "description": "Fix Claude Code ignoring claude.ai Max subscription and forcing Console API billing Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Claude Code authenticates to Console instead of claude.ai Max subscription — OAuth URL always uses client_id=9d1c250a with platform.claude.com redirect",
+    "search_intent": "Fix Claude Code ignoring claude.ai Max subscription and forcing Console API billing",
+    "common_causes": [
+      "Claude Code offers two billing modes: claude.ai Max subscription (flat rate) and Console API (pay-per-use). Users paying for Max expect free access, but the OAuth flow always routes to Console billing, causing unexpected charges. This is a regression that worked in previous versions.",
+      "Claude Code always authenticates via Console (API billing) instead of claude.ai Max subscription, even when using 'claude auth login --claudeai'. The OAuth URL always contains client_id=9d1c250a-e61b-44d9-88ed-5944d1962f5e and redirect_uri pointing to platform.claude.com, regardless of OS or installation method. Multiple duplicate issues filed."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "Claude Code unable to connect to API ConnectionRefused",
+      "Claude Code API Usage Billing instead of claude.ai subscription",
+      "Claude Code auth login --claudeai not working"
+    ]
+  },
+  {
+    "slug": "cursor-cursor-sandbox-blocks-all-access-to-files-matching-git-patterns-uv-run-fails-because-uv-recreates-git-marker-files-every-time",
+    "title": "Cursor Sandbox Blocks .git* File Access — uv run Fails with Git Operation Error",
+    "description": "Fix Cursor sandbox blocking uv run commands due to .git* file pattern restrictions Includes evidence for Cursor troubleshooting demand.",
+    "category": "Cursor",
+    "technology": "Cursor",
+    "error_signature": "Cursor sandbox blocks all access to files matching .git* patterns — uv run fails because uv recreates .git marker files every time",
+    "search_intent": "Fix Cursor sandbox blocking uv run commands due to .git* file pattern restrictions",
+    "common_causes": [
+      "Cursor's sandbox mode treats .git* file access as git operations and blocks them. Python developers using uv (fast package manager) find that uv recreates .git marker files on every run, causing repeated failures. This is a sandbox design conflict with legitimate development workflows.",
+      "The Cursor sandbox blocks all access to files matching .git* patterns, treating them as git operations. uv recreates .git marker files every time it runs, causing consistent failures. Removing the files doesn't work because uv recreates them. This is a Cursor sandbox design issue, not a uv bug."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Cursor sandbox permission denied",
+      "Cursor fatal sandbox error on initialization",
+      "Cursor agent mode git operation blocked"
+    ]
+  },
+  {
+    "slug": "claude-code-error-claude-code-process-exited-with-code-1",
+    "title": "Claude Code VS Code Extension Crashes with 'Process Exited with Code 1' After 2.0.0 Update",
+    "description": "Fix Claude Code VS Code extension crash after updating to version 2.0.0 Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Error: Claude Code process exited with code 1",
+    "search_intent": "Fix Claude Code VS Code extension crash after updating to version 2.0.0",
+    "common_causes": [
+      "After the Claude Code 2.0.0 VS Code extension update, users see a banner 'Error: Claude Code process exited with code 1' and all prompts spin endlessly. Downgrading to 1.0.127 resolves the issue but loses the new UI features.",
+      "Since updating to the 2.0.0 Claude Code extension for VSCode, the tool cannot load. Displays banner 'Error: Claude Code process exited with code 1' and all prompts spin endlessly. Downgrading to 1.0.127 restores functionality but loses new UI. Exact error signature available."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Claude Code VS Code extension fails to activate",
+      "Claude Code command not found claude-vscode.editor.openLast",
+      "Claude Code version rollback downgrade guide"
+    ]
+  },
+  {
+    "slug": "claude-code-claude-code-2-1-0-crashes-on-startup-invalid-version-semver-parsing-error",
+    "title": "Claude Code 2.1.0 Startup Crash — Invalid Version Semver Parsing Error",
+    "description": "Fix Claude Code 2.1.0 crashing immediately on startup due to semver version parsing failure Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Claude Code 2.1.0 crashes on startup — Invalid Version: semver parsing error",
+    "search_intent": "Fix Claude Code 2.1.0 crashing immediately on startup due to semver version parsing failure",
+    "common_causes": [
+      "Claude Code 2.1.0 crashes on startup with a semver parsing error ('Invalid Version'). This blocks all usage of the tool and affects all users on this version. The error is in version string handling, not user configuration.",
+      "Claude Code 2.1.0 crashes on startup with 'Invalid Version' semver parsing error. This is a version string parsing bug in the new release that prevents the tool from launching at all. Filed against the official anthropics/claude-code repository."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Claude Code version compatibility issues",
+      "Claude Code semver version check failed",
+      "Claude Code downgrade to previous version"
+    ]
   }
 ]
