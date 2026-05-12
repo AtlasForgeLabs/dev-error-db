@@ -4362,5 +4362,131 @@
       "Claude Code TUI unresponsive after context compaction",
       "Claude Code terminal input not displaying"
     ]
+  },
+  {
+    "slug": "claude-code-this-background-session-hasn-t-isolated-its-changes-yet-call-enterworktree-first-so-edits-land-in-a-worktree-instead-of-the-shared-checkout",
+    "title": "Claude Code Background Session Edit-Gate Misfires on External Git Worktrees",
+    "description": "Fix Claude Code blocking file edits when cwd is already a git worktree created outside Claude Code's own .claude/worktrees/ directory Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "This background session hasn't isolated its changes yet. Call EnterWorktree first so edits land in a worktree instead of the shared checkout",
+    "search_intent": "Fix Claude Code blocking file edits when cwd is already a git worktree created outside Claude Code's own .claude/worktrees/ directory",
+    "common_causes": [
+      "Developers using standard git worktree add layouts (e.g., .worktrees/<branch>/) hit this error in background Claude Code sessions. The harness only recognizes paths under .claude/worktrees/ as isolated, causing a catch-22 where the session is blocked from making edits despite already being in a worktree.",
+      "GitHub issue #58507 (May 2026, labels: bug, has repro, area:agents). Background Claude Code sessions block Edit/Write/Bash mutations when cwd is an external git worktree, even though the session is already isolated from the main checkout."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Claude Code EnterWorktree not found",
+      "Claude Code background session worktree path"
+    ]
+  },
+  {
+    "slug": "claude-code-spawn-npx-enoent",
+    "title": "Claude Code Windows: Plugin-Shipped MCP Servers Fail with spawn ENOENT on bare npx Command",
+    "description": "Fix Claude Code MCP server plugins failing with spawn ENOENT on Windows when command is set to bare npx Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "spawn npx ENOENT",
+    "search_intent": "Fix Claude Code MCP server plugins failing with spawn ENOENT on Windows when command is set to bare npx",
+    "common_causes": [
+      "On Windows, plugin-shipped stdio MCP servers that use bare npx as their command fail to connect. The LSP spawn fix from a prior release did not extend to the MCP spawn path, leaving all official MCP plugins broken until users manually wrap commands with cmd /c.",
+      "GitHub issue #58510 (May 2026, labels: bug, has repro, platform:windows, area:mcp). Every official plugin using bare npx command fails with spawn ENOENT on Windows. Workaround requires manually wrapping with cmd /c."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Claude Code MCP server failed to connect Windows",
+      "Claude Code plugin npx not found"
+    ]
+  },
+  {
+    "slug": "claude-code-claude-cli-subprocess-produces-zero-stdout-bytes-for-3-plus-minutes-intermittent-silent-hang-on-windows",
+    "title": "Claude Code CLI Subprocess Silent Hang on Windows — Zero Output for 3+ Minutes",
+    "description": "Fix Claude Code (claude.exe) subprocess silently hanging with no stdout output for 3+ minutes on Windows 11 Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Claude CLI subprocess produces zero stdout bytes for 3+ minutes (intermittent silent hang on Windows)",
+    "search_intent": "Fix Claude Code (claude.exe) subprocess silently hanging with no stdout output for 3+ minutes on Windows 11",
+    "common_causes": [
+      "Developers invoking claude.exe as a subprocess from PowerShell automation frameworks experience intermittent silent hangs where the process produces zero stdout bytes for 3+ minutes. This breaks CI/CD pipelines and automated workflows that depend on Claude Code's CLI output for orchestration.",
+      "Claude Code issue #58503 (May 2026, labels: bug, platform:windows, area:cli). claude.exe subprocess produces zero stdout for 3+ minutes intermittently on Windows 11, affecting automation frameworks."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Claude Code CLI hang Windows",
+      "Claude subprocess timeout"
+    ]
+  },
+  {
+    "slug": "claude-code-acceptedits-permission-mode-is-not-honored-at-runtime-every-edit-write-tool-call-still-triggers-the-make-changes-approval-prompt",
+    "title": "Claude Code VSCode: acceptEdits / Edit Automatically Mode Still Prompts for Approval (Regression)",
+    "description": "Fix Claude Code VSCode extension ignoring the 'Edit automatically' permission mode setting and still prompting for every edit approval Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "acceptEdits permission mode is not honored at runtime. Every Edit / Write tool call still triggers the 'Make changes?' approval prompt",
+    "search_intent": "Fix Claude Code VSCode extension ignoring the 'Edit automatically' permission mode setting and still prompting for every edit approval",
+    "common_causes": [
+      "Developers configure the VSCode extension dropdown to 'Edit automatically' (acceptEdits mode) to streamline their workflow, but every Edit/Write tool call still triggers an approval prompt. This regression has persisted since v2.1.79, defeating the purpose of the setting for users relying on auto-mode for productivity.",
+      "GitHub issue #58504 (May 2026, labels: bug, regression, area:permissions). The acceptEdits permission mode selected in VSCode extension is not honored at runtime. Regression persists since v2.1.79."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Claude Code permission mode not working VSCode",
+      "Claude Code auto-edit prompt still showing"
+    ]
+  },
+  {
+    "slug": "github-copilot-copilot-chat-paused-forever-over-remote-ssh-or-devcontainer-works-fine-locally",
+    "title": "GitHub Copilot Chat Not Working Over Remote SSH / DevContainer in VSCode",
+    "description": "Fix GitHub Copilot chat that stops working when connected via SSH remote or devcontainer in VSCode Includes evidence for GitHub Copilot troubleshooting demand.",
+    "category": "GitHub Copilot",
+    "technology": "GitHub Copilot",
+    "error_signature": "Copilot chat paused forever over remote (SSH or devcontainer). Works fine locally.",
+    "search_intent": "Fix GitHub Copilot chat that stops working when connected via SSH remote or devcontainer in VSCode",
+    "common_causes": [
+      "Copilot chat works locally but pauses indefinitely when the user is on a remote dev session via SSH or a devcontainer. The AI appears to attempt file read/edit operations but nothing shows in the chat debug tab. This blocks remote development workflows that rely on Copilot assistance.",
+      "VSCode issue #316127 (May 2026, Bug). Copilot chat pauses forever on remote dev sessions (SSH/devcontainer) while working locally. User suspects file read/edit failures in remote context."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Copilot chat remote SSH timeout",
+      "Copilot devcontainer not responding"
+    ]
+  },
+  {
+    "slug": "ollama-ollama-cloud-streaming-request-times-out-after-120-145s-on-long-responses-with-large-context",
+    "title": "Ollama Cloud Streaming Timeout on Long Responses with Large Context Window",
+    "description": "Fix Ollama Cloud streaming requests timing out after approximately 2 minutes during long generation or tool composition Includes evidence for Ollama troubleshooting demand.",
+    "category": "Ollama",
+    "technology": "Ollama",
+    "error_signature": "Ollama Cloud streaming request times out after ~120-145s on long responses with large context",
+    "search_intent": "Fix Ollama Cloud streaming requests timing out after approximately 2 minutes during long generation or tool composition",
+    "common_causes": [
+      "Developers using Ollama Cloud's proxy for model inference hit intermittent stream timeouts on long responses, particularly when using large context windows or tool composition. The timeout occurs at ~120-145s with no ping/keepalive during streaming, breaking production applications that rely on longer generation cycles.",
+      "Ollama issue #16108 (May 2026). Intermittent stream timeouts on Ollama Cloud at ~120-145s during long generation. No ping/keepalive during tool composition or long generation. Affects ollama.com cloud proxy."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Ollama streaming timeout",
+      "Ollama Cloud keepalive"
+    ]
+  },
+  {
+    "slug": "claude-code-completed-state-subagents-remain-resumable-enabling-zombie-reactivation-across-session-turns",
+    "title": "Claude Code: Completed Subagents Remain Resumable Causing Zombie Reactivation",
+    "description": "Fix Claude Code bug where subagents that reached completed state can still be reactivated, causing zombie agent behavior across session turns Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Completed-state subagents remain resumable, enabling zombie reactivation across session turns",
+    "search_intent": "Fix Claude Code bug where subagents that reached completed state can still be reactivated, causing zombie agent behavior across session turns",
+    "common_causes": [
+      "Claude Code's subagent lifecycle has a bug where completed subagents remain in a resumable pool. This allows subsequent session turns to reactivate agents that should be finalized, causing unexpected behavior and potential data corruption in multi-agent workflows.",
+      "Claude Code issue #58511 (May 2026, labels: bug, area:security, area:agents). Completed subagents remain in resumable pool, enabling zombie reactivation across session turns. Security-relevant issue."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Claude Code subagent lifecycle",
+      "Claude Code zombie agent"
+    ]
   }
 ]
