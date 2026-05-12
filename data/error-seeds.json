@@ -3060,5 +3060,149 @@
       "Ollama qwen model compatibility",
       "Ollama model pull 500 error"
     ]
+  },
+  {
+    "slug": "litellm-budgetexceedederror",
+    "title": "LiteLLM Virtual Key BudgetExceededError with Stale Spend Data",
+    "description": "Fix LiteLLM BudgetExceededError falsely rejecting requests when key spend is below max_budget Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "BudgetExceededError",
+    "search_intent": "Fix LiteLLM BudgetExceededError falsely rejecting requests when key spend is below max_budget",
+    "common_causes": [
+      "LiteLLM proxy rejects requests with BudgetExceededError even though /key/info API shows the key/team spend is still below the configured max_budget. This blocks all API traffic through the proxy for team-scoped virtual keys, causing production outages.",
+      "LiteLLM 1.84.0 proxy with Postgres DB + Redis cache. Team-scoped virtual keys get BudgetExceededError on failed proxy requests while management APIs show spend below max_budget. Related to budget tracking staleness in virtual key checks. Created 2026-05-12."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "LiteLLM key budget not resetting",
+      "LiteLLM team budget mismatch error"
+    ]
+  },
+  {
+    "slug": "ollama-95-failure-rate-across-all-cloud-models-service-is-unusable",
+    "title": "Ollama Cloud Pro 95% Failure Rate — All Cloud Models Unusable",
+    "description": "Fix Ollama Cloud Pro subscription with 95% failure rate across all cloud models Includes evidence for Ollama troubleshooting demand.",
+    "category": "Ollama",
+    "technology": "Ollama",
+    "error_signature": "95% failure rate across all cloud models — service is unusable",
+    "search_intent": "Fix Ollama Cloud Pro subscription with 95% failure rate across all cloud models",
+    "common_causes": [
+      "Ollama Cloud Pro subscribers ($20/month) experience 95% failure rate across all cloud models. Despite stable internet and zero packet loss, cloud model requests consistently fail. This makes the paid subscription completely unusable.",
+      "Ollama Pro plan ($20/month) subscribers report 95% failure rate on all cloud models. macOS, stable internet, 0% packet loss. Service described as 'unusable'. Affects paid subscribers who expect reliable cloud inference."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "Ollama cloud connection timeout",
+      "Ollama Pro plan model loading failed"
+    ]
+  },
+  {
+    "slug": "cursor-usage-limit-reached-displayed-when-extra-usage-is-available",
+    "title": "Claude Code 'Usage Limit Reached' Error Despite Extra Usage Available",
+    "description": "Fix Claude Code showing 'Usage limit reached' when extra usage is available on Business/Premium account Includes evidence for Cursor troubleshooting demand.",
+    "category": "Cursor",
+    "technology": "Cursor",
+    "error_signature": "'Usage limit reached' displayed when extra usage is available",
+    "search_intent": "Fix Claude Code showing 'Usage limit reached' when extra usage is available on Business/Premium account",
+    "common_causes": [
+      "Claude Code (the desktop app) blocks users with 'Usage limit reached - resets at 6:00pm' even when they have sufficient extra usage allocated on their Business Premium account. This completely blocks the coding workflow — no input box, no chat capability.",
+      "Business account with Premium tier. Sufficient extra usage allocated but sessions blocked with 'Usage limit reached - resets at 6:00pm'. Weekly usage of plan tokens blocks access despite available extra usage. Created 2026-05-12."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Claude Code extra usage not recognized",
+      "Claude Code weekly limit locked"
+    ]
+  },
+  {
+    "slug": "cursor-error-connecting-to-streamablehttp-server-falling-back-to-sse",
+    "title": "Cursor MCP Error Connecting to streamableHttp Server (SSE Fallback Fails)",
+    "description": "Fix Cursor IDE MCP client unable to connect to streamableHttp MCP servers Includes evidence for Cursor troubleshooting demand.",
+    "category": "Cursor",
+    "technology": "Cursor",
+    "error_signature": "Error connecting to streamableHttp server, falling back to SSE",
+    "search_intent": "Fix Cursor IDE MCP client unable to connect to streamableHttp MCP servers",
+    "common_causes": [
+      "Cursor IDE's MCP client attempts HTTP transport first, encounters a validation error, then falls back to SSE which returns 400 Bad Request. Developers using custom MCP servers in Cursor need this fix urgently as it blocks all MCP tool usage.",
+      "Multiple users report Cursor MCP client cannot connect to MCP servers via streamableHttp protocol. After HTTP transport validation failure, SSE fallback also returns 400 Bad Request. Affects deployed MCP containers and blocks all MCP tool integrations in Cursor."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Cursor MCP timeout error",
+      "Cursor SSE connection failed 400 Bad Request"
+    ]
+  },
+  {
+    "slug": "cursor-error-no-server-info-found",
+    "title": "Cursor MCP 'No server info found' After Restart — Tools Not Loading",
+    "description": "Fix Cursor MCP servers not loading tools after restart with 'No server info found' errors Includes evidence for Cursor troubleshooting demand.",
+    "category": "Cursor",
+    "technology": "Cursor",
+    "error_signature": "[error] No server info found",
+    "search_intent": "Fix Cursor MCP servers not loading tools after restart with 'No server info found' errors",
+    "common_causes": [
+      "After restarting Cursor, MCP tools stop loading with repeated 'No server info found' errors in the log. Developers using Atlassian or other MCP integrations lose productivity until this is resolved.",
+      "After Cursor restart, MCP tools stop loading. Log shows repeated 'Handling GetInstructions action' followed by '[error] No server info found'. Affects Atlassian MCP server and potentially other MCP integrations."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Cursor MCP connection refused",
+      "Cursor MCP tools disappeared after update"
+    ]
+  },
+  {
+    "slug": "ollama-streaming-times-out-after-120-145s-on-long-responses-with-large-context",
+    "title": "Ollama Cloud Streaming Timeout on Long Responses (~120-145s)",
+    "description": "Fix Ollama Cloud streaming timeout after 120-145 seconds on long generation requests Includes evidence for Ollama troubleshooting demand.",
+    "category": "Ollama",
+    "technology": "Ollama",
+    "error_signature": "Streaming times out after ~120-145s on long responses with large context",
+    "search_intent": "Fix Ollama Cloud streaming timeout after 120-145 seconds on long generation requests",
+    "common_causes": [
+      "Ollama Cloud proxy causes streaming requests to timeout after approximately 2 minutes when generating long responses with large context windows. No ping/keepalive during tool composition or long generation causes silent failures. Affects developers building agents and long-form content tools.",
+      "Intermittent streaming timeouts on Ollama Cloud models. Timeout occurs after ~120-145s on long generation requests. No ping/keepalive during tool composition. Affects ollama.com cloud proxy users building agents with long context."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Ollama streaming connection dropped",
+      "Ollama cloud keepalive timeout"
+    ]
+  },
+  {
+    "slug": "cursor-failed-to-patch-code-sh-launcher-error-enoent-no-such-file-or-directory-open-c-program-files-cursor-resources-app-bin-code",
+    "title": "Cursor Server Install Failed — ENOENT on WSL code.sh Launcher",
+    "description": "Fix Cursor IDE WSL remote server installation failing with ENOENT on code.sh launcher patch Includes evidence for Cursor troubleshooting demand.",
+    "category": "Cursor",
+    "technology": "Cursor",
+    "error_signature": "Failed to patch code.sh launcher: Error: ENOENT: no such file or directory, open 'c:\\Program Files\\cursor\\resources\\app\\bin\\code'",
+    "search_intent": "Fix Cursor IDE WSL remote server installation failing with ENOENT on code.sh launcher patch",
+    "common_causes": [
+      "Cursor IDE crashes when trying to install the WSL remote server. The error 'Failed to patch code.sh launcher: ENOENT' indicates the installer cannot find the code binary. Developers using WSL cannot use Cursor for remote development.",
+      "Cursor crashes during WSL remote server installation. Error: 'Failed to patch code.sh launcher: Error: ENOENT: no such file or directory, open c:\\Program Files\\cursor\\resources\\app\\bin\\code'. Program works briefly then crashes. Affects WSL Ubuntu users."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Cursor WSL remote connection failed",
+      "Cursor code-server installation error"
+    ]
+  },
+  {
+    "slug": "ollama-memory-calculation-error-incorrectly-calculates-available-system-memory",
+    "title": "Ollama Incorrect System Memory Calculation for Large Models",
+    "description": "Fix Ollama failing to load large models due to incorrect available system memory calculation Includes evidence for Ollama troubleshooting demand.",
+    "category": "Ollama",
+    "technology": "Ollama",
+    "error_signature": "Memory calculation error — incorrectly calculates available system memory",
+    "search_intent": "Fix Ollama failing to load large models due to incorrect available system memory calculation",
+    "common_causes": [
+      "Ollama fails to load large models (e.g., qwen3.6:35b-a3b) with a memory error despite sufficient RAM being available. The system memory calculation is incorrect or overly conservative, preventing developers from using large models on machines that should support them.",
+      "Ollama fails to load qwen3.6:35b-a3b with memory error despite sufficient RAM. The memory calculation logic appears incorrect or overly conservative. Affects developers with high-RAM machines trying to run large local models."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Ollama model loading out of memory",
+      "Ollama GPU memory allocation error"
+    ]
   }
 ]
