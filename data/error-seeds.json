@@ -2946,5 +2946,119 @@
       "Docker containerd mount failure on AWS EC2",
       "Docker build fails with large layers"
     ]
+  },
+  {
+    "slug": "litellm-security-litellm-pypi-package-v1-82-7-plus-v1-82-8-compromised",
+    "title": "LiteLLM PyPI Package Supply Chain Attack v1.82.7/v1.82.8",
+    "description": "Check if LiteLLM package is compromised / fix compromised LiteLLM installation Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "[Security]: litellm PyPI package (v1.82.7 + v1.82.8) compromised",
+    "search_intent": "Check if LiteLLM package is compromised / fix compromised LiteLLM installation",
+    "common_causes": [
+      "A supply chain attack on the LiteLLM PyPI package affects all developers who installed versions 1.82.7 or 1.82.8. This is a critical security event impacting thousands of projects using LiteLLM as an LLM proxy. Developers urgently need to verify their installations and upgrade to safe versions.",
+      "Official GitHub issue documenting a supply chain compromise of LiteLLM PyPI package versions v1.82.7 and v1.82.8. The issue has 116+ comments indicating high community engagement and widespread impact."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "LiteLLM compromised package detection",
+      "LiteLLM safe version verification",
+      "PyPI package supply chain attack mitigation"
+    ]
+  },
+  {
+    "slug": "github-copilot-bug-instantly-hitting-usage-limits-with-max-subscription",
+    "title": "GitHub Copilot Usage Limits Hit Instantly with Max Subscription",
+    "description": "Fix GitHub Copilot instantly hitting usage limits despite Max subscription Includes evidence for GitHub Copilot troubleshooting demand.",
+    "category": "GitHub Copilot",
+    "technology": "GitHub Copilot",
+    "error_signature": "[BUG] Instantly hitting usage limits with Max subscription",
+    "search_intent": "Fix GitHub Copilot instantly hitting usage limits despite Max subscription",
+    "common_causes": [
+      "GitHub Copilot Max subscribers report hitting usage limits immediately despite paying for the highest tier. This is a paid service billing/availability issue affecting enterprise and individual developers. The issue has 1,466 comments, indicating it's one of the most discussed Copilot issues.",
+      "GitHub issue with 1,466+ comments about instantly hitting usage limits with Max subscription. This is the most commented issue in the claude-code repository, indicating massive developer frustration with paid tier limits."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Claude Code Max plan usage limit reset",
+      "Claude Code quota calculation bug",
+      "Claude Code subscription tier not recognized"
+    ]
+  },
+  {
+    "slug": "claude-code-bug-claude-max-plan-session-limits-exhausted-abnormally-fast-since-march-23-2026-cli-usage",
+    "title": "Claude Code Max Plan Session Limits Exhausted Abnormally Fast",
+    "description": "Fix Claude Code session limits being used up too quickly Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "[BUG] Claude Max plan session limits exhausted abnormally fast since March 23, 2026 (CLI usage)",
+    "search_intent": "Fix Claude Code session limits being used up too quickly",
+    "common_causes": [
+      "Claude Code Max plan subscribers report that their session limits are being consumed abnormally fast since a March 23, 2026 update. This directly impacts paid subscribers of a $200/month plan, causing service disruption and billing concerns. The issue has 719 comments, indicating widespread impact.",
+      "GitHub issue with 719+ comments reporting abnormally fast session limit exhaustion for Claude Max plan users since March 23, 2026. Affects Claude CLI usage with paid subscription."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Claude Code session limit calculation error",
+      "Claude Code API usage tracking incorrect",
+      "Claude Code Max plan token consumption rate"
+    ]
+  },
+  {
+    "slug": "ollama-apple-m5-plus-macos-26-3-1-500-internal-server-error-metal-compiler-failed-to-build-request-even-with-ollama-num-gpu-0",
+    "title": "Ollama Metal Compiler Failed on Apple M5 with macOS 26.3.1",
+    "description": "Fix Ollama Metal compiler failure on Apple M5 Mac Includes evidence for Ollama troubleshooting demand.",
+    "category": "Ollama",
+    "technology": "Ollama",
+    "error_signature": "Apple M5 + macOS 26.3.1: 500 Internal Server Error, Metal compiler failed to build request even with OLLAMA_NUM_GPU=0",
+    "search_intent": "Fix Ollama Metal compiler failure on Apple M5 Mac",
+    "common_causes": [
+      "Apple M5 chip users running macOS 26.3.1 cannot run any models in Ollama due to Metal backend compiler failures. Even with OLLAMA_NUM_GPU=0 (CPU-only mode), the error persists. This is a hardware-specific issue affecting the latest Apple silicon with a clear error signature. The issue has 24+ comments.",
+      "GitHub issue reporting 500 Internal Server Error with Metal compiler failure on Apple M5 + macOS 26.3.1. Affects all model execution, not GPU-specific (persists with OLLAMA_NUM_GPU=0)."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Ollama Apple Silicon Metal error",
+      "Ollama macOS compatibility issue",
+      "Ollama OLLAMA_NUM_GPU=0 not working"
+    ]
+  },
+  {
+    "slug": "anthropic-api-mid-stream-sse-errors-get-status-code-200-instead-of-the-actual-error-code",
+    "title": "Anthropic Python SDK Mid-Stream SSE Errors Return Incorrect status_code=200",
+    "description": "Fix Anthropic SDK returning 200 status code for mid-stream streaming errors Includes evidence for Anthropic API troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Anthropic API",
+    "error_signature": "Mid-stream SSE errors get status_code=200 instead of the actual error code",
+    "search_intent": "Fix Anthropic SDK returning 200 status code for mid-stream streaming errors",
+    "common_causes": [
+      "The official Anthropic Python SDK incorrectly returns HTTP 200 status code when mid-stream SSE errors occur during Claude API streaming responses. This prevents proper error handling in production applications. A fix was merged (PR #1269) but many developers still encounter this bug and search for workarounds.",
+      "GitHub issue and fix PR documenting that mid-stream SSE errors during Claude API streaming return status_code=200 instead of the actual error code, breaking error handling logic."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Anthropic SDK streaming error handling",
+      "Claude API SSE connection dropped",
+      "Anthropic SDK status code incorrect"
+    ]
+  },
+  {
+    "slug": "ollama-qwen3-5-35b-error-500-internal-server-error",
+    "title": "Ollama qwen3.5:35b Model Returns 500 Internal Server Error",
+    "description": "Fix Ollama qwen3.5:35b 500 Internal Server Error Includes evidence for Ollama troubleshooting demand.",
+    "category": "Ollama",
+    "technology": "Ollama",
+    "error_signature": "qwen3.5:35b Error: 500 Internal Server Error",
+    "search_intent": "Fix Ollama qwen3.5:35b 500 Internal Server Error",
+    "common_causes": [
+      "Developers running the popular qwen3.5:35b model in Ollama encounter persistent 500 Internal Server Error responses. This is a concrete, searchable error signature affecting a widely-used open-source model. The issue has 52 comments and is marked as closed but the problem persists for many users.",
+      "GitHub issue with 52+ comments reporting 500 Internal Server Error when running qwen3.5:35b model in Ollama. The model is one of the most popular models available through Ollama's model library."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Ollama 500 error model loading",
+      "Ollama qwen model compatibility",
+      "Ollama model pull 500 error"
+    ]
   }
 ]
