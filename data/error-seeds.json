@@ -3337,5 +3337,59 @@
       "Anthropic streaming crash on error event",
       "Bedrock cross-region inference error"
     ]
+  },
+  {
+    "slug": "claude-code-claude-is-currently-experiencing-a-temporary-service-disruption-error-code-08xn6tz",
+    "title": "Claude Code Authentication Failed Temporary Service Disruption Error Fix",
+    "description": "Fix Claude Code CLI login showing temporary service disruption page preventing authentication Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Claude is currently experiencing a temporary service disruption (Error code: 08XN6TZ)",
+    "search_intent": "Fix Claude Code CLI login showing temporary service disruption page preventing authentication",
+    "common_causes": [
+      "All CLI authentication methods (claude login, claude setup-token) fail with a service disruption page, blocking developers from using Claude Code entirely. The error includes a unique error code (08XN6TZ) that developers search for directly.",
+      "All CLI auth methods fail with 'temporary service disruption' page while Claude Desktop works fine on same machine. Specific error code 08XN6TZ.1022592012. Affects claude login and claude setup-token. Issue is now resolved/closed."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "Claude Code login redirect loop",
+      "Claude Code setup-token authentication failed"
+    ]
+  },
+  {
+    "slug": "gemini-api-429-resource-exhausted",
+    "title": "Gemini API 429 RESOURCE_EXHAUSTED Despite Paid Tier Limit Fix",
+    "description": "Fix Gemini API returning 429 Resource Exhausted errors despite being within paid tier limits Includes evidence for Gemini API troubleshooting demand.",
+    "category": "Cloud Platforms",
+    "technology": "Gemini API",
+    "error_signature": "429 RESOURCE_EXHAUSTED",
+    "search_intent": "Fix Gemini API returning 429 Resource Exhausted errors despite being within paid tier limits",
+    "common_causes": [
+      "Developers on paid Gemini API tiers suddenly hit 429 RESOURCE_EXHAUSTED errors for Gemini 3 model, both through API and AI Studio. This is unexpected behavior for paid users who have not exceeded their quota limits. Affects production applications relying on Gemini API.",
+      "Users on paid tier getting 429 RESOURCE_EXHAUSTED for Gemini 3 model via API and AI Studio. Was working fine for weeks then suddenly stopped. No quota exceeded on their end. Google developer forum discussion thread."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Gemini API quota exceeded false positive",
+      "Google AI Studio 429 error"
+    ]
+  },
+  {
+    "slug": "ollama-ollama-cloud-stream-drop-readtimeout-after-120-145s",
+    "title": "Ollama Cloud Streaming Timeout After 120 Seconds Fix",
+    "description": "Fix Ollama Cloud streaming requests timing out after approximately 2 minutes on long generation tasks Includes evidence for Ollama troubleshooting demand.",
+    "category": "Ollama",
+    "technology": "Ollama",
+    "error_signature": "ollama-cloud stream drop (ReadTimeout) after ~120-145s",
+    "search_intent": "Fix Ollama Cloud streaming requests timing out after approximately 2 minutes on long generation tasks",
+    "common_causes": [
+      "Ollama Cloud proxy causes streaming requests to timeout after 120-145 seconds even when the model is still processing. No ping/keepalive during tool composition or long generation. Affects any developer using Ollama Cloud for extended generation tasks.",
+      "Streaming timeout after ~120-145s on Ollama Cloud. Log shows: 'ollama-cloud stream drop (ReadTimeout) after 144.6s — reconnecting, retry 2/3'. No keepalive during tool composition. Endpoint: https://ollama.com/v1."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Ollama Cloud keepalive timeout",
+      "Ollama streaming connection lost"
+    ]
   }
 ]
