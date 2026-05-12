@@ -2820,5 +2820,131 @@
       "LiteLLM proxy database migration failed",
       "LiteLLM PostgreSQL connection timeout"
     ]
+  },
+  {
+    "slug": "ollama-api-error-model-name-400-the-provided-model-identifier-is-invalid",
+    "title": "Ollama Launch Claude — API Error 400 with CLAUDE_CODE_USE_BEDROCK Conflict",
+    "description": "Fix ollama launch claude failing with 400 error when CLAUDE_CODE_USE_BEDROCK is set Includes evidence for Ollama troubleshooting demand.",
+    "category": "Ollama",
+    "technology": "Ollama",
+    "error_signature": "API Error (model_name): 400 The provided model identifier is invalid.",
+    "search_intent": "Fix ollama launch claude failing with 400 error when CLAUDE_CODE_USE_BEDROCK is set",
+    "common_causes": [
+      "Developers trying to use `ollama launch claude` with local models hit a 400 error because Claude Code's Bedrock routing overrides the Ollama model name. This is a cross-tool integration failure affecting users of both Ollama and Claude Code simultaneously.",
+      "Official Ollama issue #16097 (2026-05-11) documents that `ollama launch claude` fails with 400 API Error when user has CLAUDE_CODE_USE_BEDROCK=1 in Claude Code settings.json. Bedrock rejects the local Ollama model name."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Ollama model not recognized by Claude Code",
+      "Claude Code Bedrock routing override conflicts"
+    ]
+  },
+  {
+    "slug": "claude-code-all-subagent-types-fail-on-cowork-model-routing-hardcoded-to-claude-haiku-4-5-20251001-anthropic-api-format-rejected-before-consuming-any-tokens",
+    "title": "Claude Code Subagents Fail on Vertex AI (Cowork) — Model Routing Hardcoded to Anthropic API Format",
+    "description": "Fix Claude Code subagents failing on Vertex AI / Cowork deployment with Anthropic API format error Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "All subagent types fail on Cowork — model routing hardcoded to claude-haiku-4-5-20251001 (Anthropic API format), rejected before consuming any tokens",
+    "search_intent": "Fix Claude Code subagents failing on Vertex AI / Cowork deployment with Anthropic API format error",
+    "common_causes": [
+      "Enterprise users deploying Claude Code via Vertex AI (3P) find all subagent types completely non-functional. The main session works but every subagent attempt fails before token consumption. Critical for enterprise adopters paying for Vertex AI integration.",
+      "Official Claude Code issue #58274 (2026-05-12) reports all subagent types fail on Cowork/Vertex AI (3P) deployment. Subagents hardcoded to Anthropic API format model `claude-haiku-4-5-20251001` are rejected. Main session with Opus 4.6 works fine."
+    ],
+    "quick_fix": "Check the build output, project root, and deployment platform configuration before redeploying.",
+    "related_errors": [
+      "Claude Code Vertex AI subagent configuration",
+      "Claude Code Cowork model routing override"
+    ]
+  },
+  {
+    "slug": "litellm-team-2-can-do-rud-on-the-key-team-1-test-without-any-authorization",
+    "title": "LiteLLM Proxy Security Vulnerability — Cross-Team Key Access on /v1/memory CRUD Endpoints",
+    "description": "Fix LiteLLM proxy cross-team authorization bypass on memory CRUD endpoints Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "Team 2 can do RUD on the key team-1:test without any authorization",
+    "search_intent": "Fix LiteLLM proxy cross-team authorization bypass on memory CRUD endpoints",
+    "common_causes": [
+      "Security teams and LiteLLM proxy administrators discover that Team 2 can read, update, and delete Team 1's API keys without authorization. This is a multi-tenant isolation failure in a production proxy handling paid API traffic.",
+      "Official LiteLLM issue #27722 (2026-05-12) reports security vulnerability: Team 2 can perform RUD operations on Team 1's API keys created via /v1/memory endpoints without authorization. Multi-tenant isolation failure."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "LiteLLM team isolation configuration",
+      "LiteLLM API key permission scoping"
+    ]
+  },
+  {
+    "slug": "claude-code-non-fatal-lock-acquisition-failed-for-users-local-share-claude-versions-version-expected-in-multi-process-scenarios",
+    "title": "Claude Code Lock Acquisition Failed — Multi-Process Version Directory Conflict",
+    "description": "Fix Claude Code lock acquisition failed error during multi-process version updates Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "NON-FATAL: Lock acquisition failed for /Users/.../.local/share/claude/versions/<version> (expected in multi-process scenarios)",
+    "search_intent": "Fix Claude Code lock acquisition failed error during multi-process version updates",
+    "common_causes": [
+      "Developers using Claude Code encounter this lock error when multiple processes try to access the version directory simultaneously, causing failed updates or startup failures. Very common on macOS with homebrew-installed versions.",
+      "Official Claude Code issue #58282 reports lock acquisition failure in version directory during multi-process scenarios, affecting Claude Code v2.1.139 on macOS with WarpTerminal."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Claude Code version update fails with permission denied",
+      "Claude Code multi-process conflicts on shared config"
+    ]
+  },
+  {
+    "slug": "gemini-cli-gemini-list-sessions-ignores-saved-auth-state-and-strictly-requires-gemini-api-key-env-var",
+    "title": "Gemini CLI — --list-sessions Ignores Saved OAuth Auth State, Requires GEMINI_API_KEY",
+    "description": "Fix gemini --list-sessions crashing when GEMINI_API_KEY is not set despite saved OAuth auth Includes evidence for Gemini CLI troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Gemini CLI",
+    "error_signature": "gemini --list-sessions ignores saved /auth state and strictly requires GEMINI_API_KEY env var",
+    "search_intent": "Fix gemini --list-sessions crashing when GEMINI_API_KEY is not set despite saved OAuth auth",
+    "common_causes": [
+      "Developers who authenticated Gemini CLI via OAuth (`/auth` command) find that `--list-sessions` ignores the saved auth state and crashes unless GEMINI_API_KEY is explicitly set in the shell. This breaks the core workflow of session management after OAuth login.",
+      "Official Gemini CLI issue #26906 (2026-05-12) reports `--list-sessions` ignores internally saved OAuth authentication state and crashes without GEMINI_API_KEY env var. Main `gemini` command works fine with saved auth, but --list-sessions uses different auth resolution logic."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "Gemini CLI OAuth authentication state not persisting",
+      "Gemini CLI env var required after OAuth login"
+    ]
+  },
+  {
+    "slug": "litellm-websearch-interception-silently-truncates-streaming-response-on-v1-messages-follow-up-call-always-uses-stream-false",
+    "title": "LiteLLM Proxy — Websearch Interception Silently Truncates Streaming Response via Claude Code /v1/messages",
+    "description": "Fix LiteLLM websearch_interception truncating Claude Code streaming responses with no error logs Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "websearch_interception silently truncates streaming response on /v1/messages — follow-up call always uses stream=False",
+    "search_intent": "Fix LiteLLM websearch_interception truncating Claude Code streaming responses with no error logs",
+    "common_causes": [
+      "Developers using LiteLLM proxy with Claude Code via `/v1/messages` find that websearch_interception causes the final LLM output to be silently truncated mid-response with no error logs. The follow-up call defaults to stream=False, breaking Claude Code's streaming workflow entirely.",
+      "Official LiteLLM issue #27721 (2026-05-12) reports websearch_interception with Tavily via Claude Code using /v1/messages with stream=True causes final LLM output to be silently truncated mid-response with no error logs. Follow-up call always uses stream=False."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "LiteLLM streaming response truncation",
+      "LiteLLM websearch_interception tool call failures"
+    ]
+  },
+  {
+    "slug": "docker-mount-callback-failed-or-failed-to-remove-mount-temp-dir-with-docker-29-4-1-containerd-2-2-3",
+    "title": "Docker Build Crashes — Mount Callback Failed with Docker 29.4.1 and Containerd 2.2.3",
+    "description": "Fix Docker build mount callback failed error with containerd 2.2.3 on AWS EC2 Includes evidence for Docker troubleshooting demand.",
+    "category": "Docker",
+    "technology": "Docker",
+    "error_signature": "mount callback failed (or failed to remove mount temp dir) with docker 29.4.1, containerd 2.2.3",
+    "search_intent": "Fix Docker build mount callback failed error with containerd 2.2.3 on AWS EC2",
+    "common_causes": [
+      "Developers building Docker images with large layers (e.g., nvidia/cuda base images) on AWS EC2 instances experience consistent build crashes due to containerd mount failures. Critical for ML/AI workloads depending on GPU base images.",
+      "Official moby/moby issue #52607 (2026-05-11) reports Docker build consistently crashes with 'mount callback failed' on AWS EC2 c5 instances using Docker 29.4.1 + containerd 2.2.3. Triggered by large layer builds from nvidia/cuda base images."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Docker containerd mount failure on AWS EC2",
+      "Docker build fails with large layers"
+    ]
   }
 ]
