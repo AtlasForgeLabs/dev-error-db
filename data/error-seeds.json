@@ -3562,5 +3562,131 @@
       "Ollama keepalive configuration for long responses",
       "Ollama Cloud SSE connection timeout"
     ]
+  },
+  {
+    "slug": "litellm-database-connection-failed-when-running-in-database-mode-on-windows",
+    "title": "LiteLLM Database Connection Failed on Windows (v1.83.11+)",
+    "description": "Fix LiteLLM proxy database connection failure on Windows Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "Database connection failed when running in database mode on Windows",
+    "search_intent": "Fix LiteLLM proxy database connection failure on Windows",
+    "common_causes": [
+      "LiteLLM is widely used as a unified LLM proxy. When running in database mode (for spend tracking, key management), Windows deployments fail with connection errors, blocking self-hosted usage on Windows servers.",
+      "GitHub issue reported on 2026-05-11. User encounters database connection failure when running LiteLLM in database mode on Windows with v1.83.11. Affects self-hosted deployments on Windows."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "LiteLLM PostgreSQL connection timeout",
+      "LiteLLM key management database locked"
+    ]
+  },
+  {
+    "slug": "ollama-model-runner-has-unexpectedly-stopped-llama-runner-process-has-terminated",
+    "title": "Ollama Runner Crash Under Sustained Multi-Turn Tool-Calling on macOS Apple Silicon",
+    "description": "Fix Ollama crash during multi-turn tool-calling on macOS Apple Silicon Includes evidence for Ollama troubleshooting demand.",
+    "category": "Ollama",
+    "technology": "Ollama",
+    "error_signature": "model runner has unexpectedly stopped / llama runner process has terminated",
+    "search_intent": "Fix Ollama crash during multi-turn tool-calling on macOS Apple Silicon",
+    "common_causes": [
+      "Ollama users on Apple Silicon experience reliable crashes during sustained multi-turn tool-calling conversations. The crash occurs mid-conversation with error 'model runner has unexpectedly stopped', disrupting agent workflows and MCP integrations.",
+      "GitHub issue (updated 2026-05-04). Ollama 0.20.5 on macOS Apple Silicon crashes reliably under sustained multi-turn tool-calling. Crash rate 72% across 7 tested models. Error: 'model runner has unexpectedly stopped'. Critical for agentic AI workflows."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Ollama llama runner process has terminated",
+      "Ollama MCP tool-calling crash"
+    ]
+  },
+  {
+    "slug": "ollama-ggml-cuda-cpy-unsupported-type-combination-q4-k-to-q4-k",
+    "title": "Ollama CUDA Backend Crash on RTX 50-Series (Blackwell) with Q4_K_M Models",
+    "description": "Fix Ollama ggml_cuda_cpy crash on RTX 50-series Blackwell GPUs Includes evidence for Ollama troubleshooting demand.",
+    "category": "Ollama",
+    "technology": "Ollama",
+    "error_signature": "ggml_cuda_cpy: unsupported type combination (q4_K to q4_K)",
+    "search_intent": "Fix Ollama ggml_cuda_cpy crash on RTX 50-series Blackwell GPUs",
+    "common_causes": [
+      "Users with RTX 50-series (Blackwell, compute 12.0) GPUs cannot run any Q4_K_M GGUF models in Ollama. The CUDA backend fails immediately with 'unsupported type combination' error. Affects the latest GPU generation with no workaround except forcing Vulkan backend.",
+      "GitHub issue (updated 2026-05-03). Loading any Q4_K_M GGUF model crashes on RTX 50-series (Blackwell, compute 12.0). ggml_cuda_cpy unsupported type combination. Runner exits with 500. Workaround: force Vulkan backend via OLLAMA_LLM_LIBRARY."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Ollama GGML_ASSERT failed on CUDA",
+      "Ollama Blackwell GPU compatibility"
+    ]
+  },
+  {
+    "slug": "anthropic-api-cloudflare-520-502-on-beta-skills-create-endpoint",
+    "title": "Anthropic beta.skills.create Fails with Cloudflare 520/502 Errors",
+    "description": "Fix Anthropic beta.skills.create Cloudflare gateway errors Includes evidence for Anthropic API troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Anthropic API",
+    "error_signature": "Cloudflare 520 / 502 on beta.skills.create endpoint",
+    "search_intent": "Fix Anthropic beta.skills.create Cloudflare gateway errors",
+    "common_causes": [
+      "Developers using the Anthropic Skills API encounter intermittent Cloudflare gateway errors (520/502) on skills.create while skills.list works fine. This blocks automated skill provisioning in production pipelines.",
+      "GitHub issue on anthropic-sdk-python (updated 2026-03-26). skills.create consistently fails with Cloudflare 520/502 while skills.list succeeds. SDK version anthropic==0.86.0. Indicates backend routing or CDN misconfiguration."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Anthropic API 502 Bad Gateway",
+      "Anthropic beta endpoints timeout"
+    ]
+  },
+  {
+    "slug": "vercel-an-unexpected-error-occurred-when-running-this-build-deploying-outputs-stage-failure-with-middleware-ts-in-services-mode",
+    "title": "Vercel Services-Mode Deploy Fails with Middleware Routes in Deploying Outputs Stage",
+    "description": "Fix Vercel deploy failing at 'Deploying outputs' with middleware and services-mode Includes evidence for Vercel troubleshooting demand.",
+    "category": "Deployment",
+    "technology": "Vercel",
+    "error_signature": "An unexpected error occurred when running this build — Deploying outputs stage failure with middleware.ts in services-mode",
+    "search_intent": "Fix Vercel deploy failing at 'Deploying outputs' with middleware and services-mode",
+    "common_causes": [
+      "Vercel users with experimentalServices (services-mode) experience build failures at the 'Deploying outputs' stage when middleware.ts is present. The error message is generic ('unexpected error'), making debugging difficult.",
+      "GitHub issue reported 2026-05-11. When experimentalServices is used with middleware.ts in the web service, deploys fail at 'Deploying outputs' stage with generic error. Affects Next.js monorepo deployments on Vercel."
+    ],
+    "quick_fix": "Check the build output, project root, and deployment platform configuration before redeploying.",
+    "related_errors": [
+      "Vercel build command failed with Next.js middleware",
+      "Vercel services-mode deployment error"
+    ]
+  },
+  {
+    "slug": "litellm-spend-log-cleanup-py-153-error-during-cleanup",
+    "title": "LiteLLM Spendlog Cleanup Silently Fails with Unhelpful Error Message",
+    "description": "Fix LiteLLM spend_log_cleanup silent failure on Kubernetes Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "spend_log_cleanup.py:153 - Error during cleanup",
+    "search_intent": "Fix LiteLLM spend_log_cleanup silent failure on Kubernetes",
+    "common_causes": [
+      "LiteLLM users who set up spendlog retention for cost tracking find that old records are not being cleaned up. The error log shows 'spend_log_cleanup.py:153 - Error during cleanup' with no additional context, making debugging impossible in Kubernetes deployments.",
+      "GitHub issue (updated 2026-05-07). Spendlog retention configured but old records not removed. Error message provides no diagnostic information. Affects Kubernetes deployments with 2 replicas. Directly impacts cost tracking and billing for LiteLLM proxy users."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "LiteLLM spend log retention not working",
+      "LiteLLM database cleanup fails"
+    ]
+  },
+  {
+    "slug": "vercel-vercel-env-add-api-key-silently-invalid-due-to-trailing-newline",
+    "title": "Vercel Environment Variables with Trailing Newlines Cause Silent Auth Failures",
+    "description": "Fix Vercel env add trailing newline causing API key authentication errors Includes evidence for Vercel troubleshooting demand.",
+    "category": "Deployment",
+    "technology": "Vercel",
+    "error_signature": "vercel env add: API key silently invalid due to trailing newline",
+    "search_intent": "Fix Vercel env add trailing newline causing API key authentication errors",
+    "common_causes": [
+      "When using `vercel env add` with piped input (e.g., echo instead of printf), trailing newlines are silently included in environment variable values. This causes API keys and secrets to be subtly invalid, leading to frustrating debugging sessions.",
+      "GitHub issue (updated 2026-04-17). `vercel env add` with piped input accidentally includes trailing newlines in values. Causes API keys to appear correct but silently fail authentication. Frustrating to debug since the key looks correct in the dashboard."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "Vercel env add whitespace trimming",
+      "Vercel environment variable encoding issues"
+    ]
   }
 ]
