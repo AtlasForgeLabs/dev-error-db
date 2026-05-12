@@ -3204,5 +3204,138 @@
       "Ollama model loading out of memory",
       "Ollama GPU memory allocation error"
     ]
+  },
+  {
+    "slug": "claude-code-severe-native-memory-leak-738-gb-h-cli-fully-unresponsive-slash-commands-frozen",
+    "title": "Claude Code Severe Memory Leak Causing CLI Freeze on macOS",
+    "description": "Fix Claude Code freezing due to severe native memory leak on macOS Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Severe native memory leak (~738 GB/h) — CLI fully unresponsive, slash commands frozen",
+    "search_intent": "Fix Claude Code freezing due to severe native memory leak on macOS",
+    "common_causes": [
+      "Claude Code is Anthropic's AI coding CLI tool. A severe memory leak (~738 GB/hour) causes the CLI to become completely unresponsive — even slash commands freeze. This destroys developer productivity and can crash the host system. Daily users of Claude Code are directly impacted.",
+      "Claude Code daily user on macOS reports severe native memory leak consuming ~738 GB/hour. CLI becomes fully unresponsive — slash commands frozen mid-task. Uses latest Claude Code version. Pattern: freezes during specific task types after extended use."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Claude Code high memory usage",
+      "Claude Code unresponsive / frozen",
+      "Claude Code crash on macOS"
+    ]
+  },
+  {
+    "slug": "ollama-ollama-cloud-empty-response-timeout-for-all-cloud-models-service-unusable",
+    "title": "Ollama Cloud Pro 95% Failure Rate — Empty Responses and Timeouts on All Cloud Models",
+    "description": "Fix Ollama Cloud returning empty responses or timing out for all cloud models Includes evidence for Ollama troubleshooting demand.",
+    "category": "Ollama",
+    "technology": "Ollama",
+    "error_signature": "Ollama Cloud: empty response / timeout for all cloud models — service unusable",
+    "search_intent": "Fix Ollama Cloud returning empty responses or timing out for all cloud models",
+    "common_causes": [
+      "Ollama Pro is a $20/month paid service. When all cloud models (glm-5.1, kimi-k2.5, qwen3.5, deepseek-v3.2) simultaneously return empty responses or timeout, paying users lose access to cloud inference entirely. High commercial pain point.",
+      "Ollama Pro subscriber ($20/mo) reports 95% failure rate across all cloud models via /api/chat and /api/generate endpoints. Not model-specific — every cloud model tested returns empty responses or timeout. Stable internet, 0% packet loss to ollama.com."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "Ollama Cloud streaming timeout on long responses",
+      "Ollama Cloud connection refused error",
+      "Ollama model pull failed error"
+    ]
+  },
+  {
+    "slug": "litellm-budgetexceedederror-stale-spend-reported-while-key-info-shows-spend-below-max-budget",
+    "title": "LiteLLM Virtual Key BudgetExceededError Using Stale Spend Data",
+    "description": "Fix LiteLLM BudgetExceededError rejecting requests when actual spend is below budget limit Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "BudgetExceededError: stale spend reported while /key/info shows spend below max_budget",
+    "search_intent": "Fix LiteLLM BudgetExceededError rejecting requests when actual spend is below budget limit",
+    "common_causes": [
+      "LiteLLM is a paid proxy service used by enterprises to manage AI API budgets. When virtual keys falsely report BudgetExceededError despite actual spend being under budget, it blocks legitimate API traffic and causes production outages. Directly impacts billing and access control.",
+      "Team-scoped virtual key gets rejected with BudgetExceededError while management APIs (/key/info) report spend still below configured max_budget. Issue affects LiteLLM v1.84.0 with Redis cache. Related to stale spend calculation in multi-key environments."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "LiteLLM deployment TPM enforcement per-pod not cross-pod",
+      "LiteLLM budget reset not applying",
+      "LiteLLM key budget exceeded false positive"
+    ]
+  },
+  {
+    "slug": "codex-browser-use-broken-no-node-repl-js-or-no-codex-iab-backend-discovered",
+    "title": "Codex Desktop Browser Use Broken After Update — Node REPL Not Discovered",
+    "description": "Fix Codex Desktop Browser Use not working after update — Node REPL execution tool not exposed Includes evidence for Codex troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Codex",
+    "error_signature": "Browser Use broken: no node_repl/js or no Codex IAB backend discovered",
+    "search_intent": "Fix Codex Desktop Browser Use not working after update — Node REPL execution tool not exposed",
+    "common_causes": [
+      "Codex Desktop is OpenAI's AI coding IDE. Browser Use is a key feature for web automation tasks. After an update, the main thread can no longer discover the Node REPL execution tool (mcp__node_repl), breaking browser automation workflows that developers rely on for testing and scraping.",
+      "After Codex Desktop update on macOS, Browser Use feature broken. In-app browser open on local dev server, but Browser Use commands fail because Node REPL execution tool not exposed. Tool discovery for mcp__node_repl fails. Affects macOS users specifically."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Codex Desktop tool discovery failure",
+      "Codex MCP backend not starting",
+      "Codex browser automation not working"
+    ]
+  },
+  {
+    "slug": "ollama-ollama-cloud-stream-drop-timeout-after-120-145s-on-long-generation",
+    "title": "Ollama Cloud Streaming Timeout After 120-145 Seconds on Long Responses with Large Context",
+    "description": "Fix streaming timeout when using Ollama Cloud models for long generation tasks Includes evidence for Ollama troubleshooting demand.",
+    "category": "Ollama",
+    "technology": "Ollama",
+    "error_signature": "ollama-cloud stream drop / timeout after ~120-145s on long generation",
+    "search_intent": "Fix streaming timeout when using Ollama Cloud models for long generation tasks",
+    "common_causes": [
+      "Ollama Cloud proxy drops streaming connections after ~2 minutes on long generation tasks, even when the model is still actively processing. This breaks tool composition workflows and long-context reasoning that are core use cases for cloud LLMs.",
+      "Intermittent stream timeouts on Ollama Cloud models when using ollama.com cloud proxy. Occurs after ~120-145s on long generation tasks. No ping/keepalive during tool composition or long generation. Affects production workflows using Hermes Agent with Ollama Cloud on Ubuntu 24.04."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Ollama Cloud empty response error",
+      "Ollama Cloud connection timeout",
+      "Ollama stream interrupted error"
+    ]
+  },
+  {
+    "slug": "anthropic-api-bedrock-sse-stream-internalserverexception-unexpected-error-during-processing",
+    "title": "Anthropic Bedrock Streaming SSE Errors Not Handled Gracefully in Python SDK",
+    "description": "Fix Anthropic Python SDK not handling Bedrock streaming SSE error events gracefully Includes evidence for Anthropic API troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Anthropic API",
+    "error_signature": "Bedrock SSE stream internalServerException — unexpected error during processing",
+    "search_intent": "Fix Anthropic Python SDK not handling Bedrock streaming SSE error events gracefully",
+    "common_causes": [
+      "Amazon Bedrock is AWS's managed Anthropic Claude service. When Bedrock returns error SSE events (internalServerException), the Anthropic Python SDK crashes instead of handling them gracefully. This causes unexpected failures in production streaming workflows using Bedrock cross-region inference profiles.",
+      "Bedrock SSE stream produces error events with status_code 400 and internalServerException. The Anthropic Python SDK does not handle these error SSE events gracefully, causing crashes in production streaming calls via Bedrock cross-region inference profiles."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Anthropic Bedrock streaming connection dropped",
+      "Anthropic SDK RemoteProtocolError on streaming",
+      "Bedrock Claude service error handling"
+    ]
+  },
+  {
+    "slug": "anthropic-api-attributeerror-nonetype-object-has-no-attribute-model-on-streaming-error-sse-event",
+    "title": "Anthropic SDK Streaming AttributeError on Bedrock Error Events",
+    "description": "Fix AttributeError when Anthropic Bedrock streaming returns error SSE event as first event Includes evidence for Anthropic API troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Anthropic API",
+    "error_signature": "AttributeError: 'NoneType' object has no attribute 'model' on streaming error SSE event",
+    "search_intent": "Fix AttributeError when Anthropic Bedrock streaming returns error SSE event as first event",
+    "common_causes": [
+      "Production streaming calls to Bedrock cross-region inference profiles (global.anthropic.claude-opus-4-7) crash on the very first event with AttributeError when the server returns an error SSE event. This breaks all streaming integrations using AsyncAnthropicBedrock client.",
+      "In production, AsyncAnthropicBedrock streaming requests crash on first event with AttributeError: 'NoneType' object has no attribute 'model'. Occurs when Bedrock cross-region inference returns an error SSE event instead of a normal streaming event. Affects Opus-4-7 via global endpoint."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Anthropic Bedrock SSE error handling",
+      "Anthropic streaming crash on error event",
+      "Bedrock cross-region inference error"
+    ]
   }
 ]
