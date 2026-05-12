@@ -102,6 +102,7 @@ async function main() {
   const report = {
     generated_at: new Date().toISOString(),
     mode: dryRun ? 'dry-run' : 'write',
+    status: 'preview',
     source: 'latest-import',
     input: 'automation/import/output/latest-import.json',
     criteria: {
@@ -115,6 +116,7 @@ async function main() {
       accepted_candidates_in_import: accepted.length,
       selected: selected.length,
       skipped: skipped.length,
+      written: 0,
       write_mode_recommended: selected.length > 0 && selected.every((candidate) => candidate.warnings.length === 0),
     },
     selected_candidates: selected,
@@ -125,12 +127,39 @@ async function main() {
   await writeFile(previewPath, `${JSON.stringify(report, null, 2)}\n`);
 
   if (writeMode) {
+    if (selected.length === 0) {
+      report.status = 'skipped';
+      report.summary.noop_reason = accepted.length === 0 ? 'no accepted candidates in import' : 'no eligible candidates after preflight filters';
+      report.summary.write_mode_recommended = false;
+      await writeValidationReport({
+        generated_at: new Date().toISOString(),
+        mode: 'pre-write',
+        source: 'automation/import/output/latest-import.json',
+        status: 'skipped',
+        summary: {
+          selected: 0,
+          accepted: 0,
+          rejected: 0,
+          duplicate_rejections: 0,
+          publish_limits_ok: true,
+          noop_reason: report.summary.noop_reason,
+        },
+        publish_limit_check: null,
+        candidates: [],
+      });
+      await writeFile(previewPath, `${JSON.stringify(report, null, 2)}\n`);
+      await recordPipelineSuccess({ pagesPublished: 0 });
+      printSummary(report);
+      return;
+    }
+
     const selectedForValidation = selected
       .map((preview) => accepted.find((item) => normalizeSlug(item.slug) === preview.slug || item.slug === preview.slug))
       .filter(Boolean)
       .map(normalizeCandidate);
     const guardrailResults = await validateCandidates(selectedForValidation);
     const rejectedByGuardrails = guardrailResults.filter((result) => result.status === 'rejected');
+    const acceptedByGuardrails = guardrailResults.filter((result) => result.status === 'accepted');
     const limitCheck = await enforcePublishLimits({ requestedCount: selected.length, mode: 'write' });
 
     await writeValidationReport({
@@ -139,7 +168,7 @@ async function main() {
       source: 'automation/import/output/latest-import.json',
       summary: {
         selected: selected.length,
-        accepted: guardrailResults.length - rejectedByGuardrails.length,
+        accepted: acceptedByGuardrails.length,
         rejected: rejectedByGuardrails.length,
         duplicate_rejections: rejectedByGuardrails.filter((result) =>
           result.errors.some((error) => error.includes('duplicate'))
@@ -154,23 +183,114 @@ async function main() {
       candidates: guardrailResults.map(candidateSummary),
     });
 
-    if (!limitCheck.allowed || rejectedByGuardrails.length > 0) {
-      const message = [
-        ...limitCheck.errors,
-        ...rejectedByGuardrails.map((result) => `${result.slug}: ${result.errors.join('; ')}`),
-      ].join(' | ');
-      await recordPipelineFailure(message);
-      throw new Error(`guardrail validation blocked write mode: ${message}`);
+    for (const result of rejectedByGuardrails) {
+      const preview = selected.find((candidate) => candidate.slug === result.slug);
+      skipped.push({
+        ...(preview ?? {
+          slug: result.slug,
+          title: result.title,
+          normalized_category: result.category,
+          technology: result.technology,
+          error_signature: result.error_signature,
+          source_urls: [],
+          evidence_summary: '',
+          warnings: [],
+        }),
+        reasons: result.errors,
+        guardrail_status: 'rejected',
+      });
     }
 
-    await writeMarkdownPages(selected, existing);
-    await recordPipelineSuccess({ pagesPublished: selected.length });
+    const expectedBlocks = [
+      ...limitCheck.errors,
+      ...rejectedByGuardrails.flatMap((result) => result.errors),
+    ];
+    const blockedByExpectedGuardrails = expectedBlocks.length > 0 && expectedBlocks.every(isExpectedNoopReason);
+
+    if (!limitCheck.allowed) {
+      if (blockedByExpectedGuardrails) {
+        report.status = 'skipped';
+        report.summary.noop_reason = `publish limit blocked write: ${limitCheck.errors.join('; ')}`;
+        report.summary.selected = selected.length;
+        report.summary.skipped = skipped.length;
+        report.summary.write_mode_recommended = false;
+        report.selected_candidates = [];
+        report.skipped_candidates = skipped;
+        await writeFile(previewPath, `${JSON.stringify(report, null, 2)}\n`);
+        printSummary(report);
+        return;
+      }
+
+      const message = limitCheck.errors.join(' | ');
+      await recordPipelineFailure(message);
+      throw new Error(`publish limit check failed unexpectedly: ${message}`);
+    }
+
+    if (rejectedByGuardrails.length > 0 && !blockedByExpectedGuardrails) {
+      const message = rejectedByGuardrails.map((result) => `${result.slug}: ${result.errors.join('; ')}`).join(' | ');
+      await recordPipelineFailure(message);
+      throw new Error(`guardrail validation failed unexpectedly: ${message}`);
+    }
+
+    const writableSelected = selected.filter((candidate) =>
+      acceptedByGuardrails.some((result) => result.slug === candidate.slug)
+    );
+
+    if (writableSelected.length === 0) {
+      report.status = 'skipped';
+      report.summary.noop_reason = `all selected candidates were rejected by quality guardrails: ${expectedBlocks.join('; ')}`;
+      report.summary.selected = selected.length;
+      report.summary.skipped = skipped.length;
+      report.summary.write_mode_recommended = false;
+      report.selected_candidates = [];
+      report.skipped_candidates = skipped;
+      await writeFile(previewPath, `${JSON.stringify(report, null, 2)}\n`);
+      await recordPipelineSuccess({ pagesPublished: 0 });
+      printSummary(report);
+      return;
+    }
+
+    report.status = rejectedByGuardrails.length > 0 ? 'partial-write' : 'write';
+    report.summary.selected = writableSelected.length;
+    report.summary.skipped = skipped.length;
+    report.summary.written = writableSelected.length;
+    report.summary.write_mode_recommended = rejectedByGuardrails.length === 0;
+    report.selected_candidates = writableSelected;
+    report.skipped_candidates = skipped;
+    await writeFile(previewPath, `${JSON.stringify(report, null, 2)}\n`);
+
+    await writeMarkdownPages(writableSelected, existing);
+    await recordPipelineSuccess({ pagesPublished: writableSelected.length });
   }
 
+  printSummary(report);
+}
+
+function printSummary(report) {
   console.log(`[expand:imported] mode: ${report.mode}`);
-  console.log(`[expand:imported] selected ${selected.length} candidate(s)`);
-  console.log(`[expand:imported] skipped ${skipped.length} candidate(s)`);
+  console.log(`[expand:imported] status: ${report.status}`);
+  if (report.summary.noop_reason) console.log(`[expand:imported] no-op: ${report.summary.noop_reason}`);
+  console.log(`[expand:imported] selected ${report.summary.selected} candidate(s)`);
+  console.log(`[expand:imported] skipped ${report.summary.skipped} candidate(s)`);
+  console.log(`[expand:imported] written ${report.summary.written ?? 0} page(s)`);
   console.log(`[expand:imported] wrote ${relativePath(previewPath)}`);
+}
+
+function isExpectedNoopReason(reason) {
+  return [
+    /duplicate/i,
+    /near-duplicate/i,
+    /priority_score below/i,
+    /commercial_value_score below/i,
+    /low score/i,
+    /invalid taxonomy category/i,
+    /category cannot be normalized/i,
+    /unapproved category/i,
+    /max_pages_per_run exceeded/i,
+    /max_pages_per_day exceeded/i,
+    /publish limit/i,
+    /no eligible candidates/i,
+  ].some((pattern) => pattern.test(String(reason)));
 }
 
 function candidateSort(a, b) {
