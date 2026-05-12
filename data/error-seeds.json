@@ -2730,5 +2730,95 @@
       "ADK max_llm_calls budget exhaustion",
       "Google ADK skill resource path not found"
     ]
+  },
+  {
+    "slug": "litellm-litellm-v1-messages-passes-context-management-to-bedrock-without-compact-2026-01-12-beta-header",
+    "title": "LiteLLM Bedrock /v1/messages Fails — Missing compact-2026-01-12 Beta Header for Anthropic on Bedrock",
+    "description": "Fix LiteLLM /v1/messages endpoint failing with Bedrock InvokeModel due to missing compact beta header Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "LiteLLM /v1/messages passes context_management to Bedrock without compact-2026-01-12 beta header",
+    "search_intent": "Fix LiteLLM /v1/messages endpoint failing with Bedrock InvokeModel due to missing compact beta header",
+    "common_causes": [
+      "LiteLLM's /v1/messages passthrough to Bedrock InvokeModel fails because it passes context_management through to Bedrock but does not inject the required compact-2026-01-12 beta header. This breaks Anthropic Claude models on AWS Bedrock when using LiteLLM proxy.",
+      "GitHub issue #27532: Root cause identified — LiteLLM /v1/messages endpoint passes context_management to Bedrock InvokeModel without injecting required compact-2026-01-12 beta header into anthropic_beta array. Affects Anthropic Claude models on AWS Bedrock via LiteLLM."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "LiteLLM Bedrock Anthropic model not found",
+      "AWS Bedrock InvokeModel 400 error"
+    ]
+  },
+  {
+    "slug": "claude-code-activating-extension-anthropic-claude-code-failed-due-to-an-error-typeerror-the-argument-filename-must-be-a-file-url-object-file-url-string-or-absolute-path-string",
+    "title": "Claude Code VSCode Extension Fails to Activate — TypeError filename must be file URL",
+    "description": "Fix Claude Code VSCode extension activation failure with TypeError about filename argument Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Activating extension Anthropic.claude-code failed due to an error: TypeError: The argument 'filename' must be a file URL object, file URL string, or absolute path string",
+    "search_intent": "Fix Claude Code VSCode extension activation failure with TypeError about filename argument",
+    "common_causes": [
+      "Developers using Claude Code via VSCode extension see this activation error after updates (v2.1.136+). The extension becomes unusable in VSCode, blocking their AI coding workflow. Multiple users report it simultaneously, suggesting a widespread regression.",
+      "GitHub issue #57495 (2026-05-08): Multiple users report Claude Code VSCode extension v2.1.136 fails to activate with TypeError. Error timestamp: 2026-05-08 19:55:10. Affects VSCode sidebar integration."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Claude Code for VS Code extension fails to work since 2.1.73",
+      "Claude Code crashes on startup with Invalid Version"
+    ]
+  },
+  {
+    "slug": "claude-code-claude-model-none",
+    "title": "Claude Code for VS Code Extension Fails — Model Shows as None Since Version 2.1.73",
+    "description": "Fix Claude Code VSCode extension showing Model as None and failing to work since update 2.1.73 Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Claude Model None",
+    "search_intent": "Fix Claude Code VSCode extension showing Model as None and failing to work since update 2.1.73",
+    "common_causes": [
+      "After updating to Claude Code v2.1.73+, the VSCode extension sidebar shows 'Claude Model None' and the tool becomes non-functional. This is a regression from v2.1.72. Affects Windows users using PowerShell terminal.",
+      "GitHub issue #34678: Claude Code for VS Code extension fails since v2.1.73. Claude Model field shows 'None'. Regression from v2.1.72. Platform: Windows, Terminal: PowerShell. Affects all Claude Code operations via VSCode."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Claude Code VSCode extension activation failure",
+      "Claude Code model selection error"
+    ]
+  },
+  {
+    "slug": "litellm-codex-cli-does-not-respond-correctly-when-using-gpt-5-codex-model-with-tool-calls-via-litellm-proxy",
+    "title": "LiteLLM Proxy Codex CLI Tool Calls Fail — gpt-5-codex Model Returns No Response",
+    "description": "Fix LiteLLM proxy failing with OpenAI Codex CLI when using gpt-5-codex model with tool/function calls Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "Codex CLI does not respond correctly when using gpt-5-codex model with tool calls via LiteLLM proxy",
+    "search_intent": "Fix LiteLLM proxy failing with OpenAI Codex CLI when using gpt-5-codex model with tool/function calls",
+    "common_causes": [
+      "When using LiteLLM proxy with OpenAI Codex CLI and gpt-5-codex model, tool call requests fail while simple prompts work. This indicates a LiteLLM proxy issue with tool/function call routing for the Codex model. Developers need to use LiteLLM as a unified gateway but this blocks Codex CLI workflows.",
+      "GitHub issue #14846: Codex CLI does not respond correctly with gpt-5-codex model via LiteLLM proxy. Simple prompts (e.g., 'Tell me a poem') work, but tool call requests (e.g., 'Explore this repository') fail. Video evidence provided showing both success and failure cases."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "LiteLLM tool call routing error",
+      "OpenAI Codex CLI proxy configuration error"
+    ]
+  },
+  {
+    "slug": "litellm-litellm-proxy-fails-to-start-prisma-notconnectederror",
+    "title": "LiteLLM Proxy Fails to Start — Prisma NotConnectedError Database Connection Failed",
+    "description": "Fix LiteLLM proxy server startup failure caused by Prisma NotConnectedError database connection issue Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "LiteLLM Proxy fails to start: Prisma NotConnectedError",
+    "search_intent": "Fix LiteLLM proxy server startup failure caused by Prisma NotConnectedError database connection issue",
+    "common_causes": [
+      "LiteLLM proxy (AI Gateway) fails to start with Prisma NotConnectedError. Users report spending days troubleshooting with no resolution. This blocks the entire AI routing infrastructure for teams using LiteLLM as their unified LLM gateway.",
+      "GitHub issue #17093: LiteLLM proxy fails to start with Prisma NotConnectedError. User reports 3+ days of troubleshooting with no fix. Docker deployment context. Affects teams using LiteLLM as centralized AI gateway for 100+ LLM providers."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "LiteLLM proxy database migration failed",
+      "LiteLLM PostgreSQL connection timeout"
+    ]
   }
 ]
