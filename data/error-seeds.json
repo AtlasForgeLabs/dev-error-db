@@ -2057,5 +2057,131 @@
       "VS Code WSL extension host authentication error",
       "Copilot Chat connection refused WSL"
     ]
+  },
+  {
+    "slug": "claude-code-github-repo-access-denied",
+    "title": "Claude Code Remote Routine github_repo_access_denied Error — Fix",
+    "description": "Fix Claude Code remote routines (CCR) failing with github_repo_access_denied error Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "github_repo_access_denied",
+    "search_intent": "Fix Claude Code remote routines (CCR) failing with github_repo_access_denied error",
+    "common_causes": [
+      "Developers using Claude Code's remote routines encounter persistent github_repo_access_denied errors even after installing the Claude GitHub App at organization level and reconnecting. The error blocks automated code workflows and requires troubleshooting GitHub auth resolution at the platform level.",
+      "Remote routines fail with github_repo_access_denied every time despite Claude GitHub App installed at org level. Disconnecting and reconnecting GitHub in claude.ai settings has no effect. Error persists regardless of source configuration."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Claude Code GitHub authentication failed",
+      "Claude Code CCR routine permission denied"
+    ]
+  },
+  {
+    "slug": "claude-code-createsession-400-github-repository-access-check-failed-re-authorize-github-in-settings",
+    "title": "Claude Code Free Tier Quota Exceeded Despite No Usage — Fix",
+    "description": "Fix Claude Code free tier quota exceeded error when user has not used their quota, combined with GitHub repository access check failure Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "CreateSession 400 GitHub repository access check failed re-authorize GitHub in settings",
+    "search_intent": "Fix Claude Code free tier quota exceeded error when user has not used their quota, combined with GitHub repository access check failure",
+    "common_causes": [
+      "Developers report Claude Code ultrareview feature crashing and showing quota exceeded errors despite no active usage, leading to unexpected billing. Additionally, GitHub repository access check failures compound the issue with session creation errors.",
+      "ultrareview crashes, user never used free quota but is being billed. Error chain includes Request was aborted, CreateSession 400 with GitHub repository access check failed. Direct billing impact from quota error."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "Claude Code unexpected billing charge",
+      "Claude Code ultrareview crash"
+    ]
+  },
+  {
+    "slug": "claude-code-unexpected-value-s-prompt-caching-scope-2026-01-05-for-the-anthropic-beta-header",
+    "title": "Claude Code prompt-caching-scope Beta Header Error on Custom API Endpoints — Fix",
+    "description": "Fix Claude Code sending prompt-caching-scope beta header to custom API endpoints that don't support it Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Unexpected value(s) prompt-caching-scope-2026-01-05 for the anthropic-beta header",
+    "search_intent": "Fix Claude Code sending prompt-caching-scope beta header to custom API endpoints that don't support it",
+    "common_causes": [
+      "When Claude Code is configured with ANTHROPIC_BASE_URL pointing to a custom endpoint (proxy, mock server, or alternative provider), it injects the prompt-caching-scope-2026-01-05 beta header even when prompt caching is disabled, causing 400 errors. Developers using custom API gateways encounter this incompatibility.",
+      "Claude Code extension v2.1.23 sends prompt-caching-scope-2026-01-05 beta header to custom API endpoints (via ANTHROPIC_BASE_URL) even when enablePromptCaching and useAnthropicBetaHeaders are both set to false. Results in API error on incompatible endpoints."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Claude Code effort-2025-11-24 beta header error",
+      "Claude Code custom API endpoint incompatible"
+    ]
+  },
+  {
+    "slug": "claude-code-typeerror-failed-to-listen-at-named-pipe-claude-mcp-browser-bridge",
+    "title": "Claude Code claude-in-chrome Extension Fails to Connect on Windows — Fix",
+    "description": "Fix claude-in-chrome extension connection failure on Windows when Claude Desktop is also installed Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "TypeError: Failed to listen at named pipe claude-mcp-browser-bridge",
+    "search_intent": "Fix claude-in-chrome extension connection failure on Windows when Claude Desktop is also installed",
+    "common_causes": [
+      "Windows users running both Claude Desktop and the claude-in-chrome browser extension encounter named pipe binding errors. The pipe path fails with ERR_INVALID_ARG_TYPE instead of the more helpful EADDRINUSE, making debugging difficult.",
+      "claude-in-chrome extension fails to connect on Windows when Claude Desktop is also installed. Socket server error on Windows named pipe. The ERR_INVALID_ARG_TYPE error masks the actual EADDRINUSE pipe conflict."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Claude Code Windows named pipe error",
+      "Claude Desktop MCP browser bridge conflict"
+    ]
+  },
+  {
+    "slug": "openrouter-openrouter-image-response-parse-error-expected-string-but-got-object-with-image-url",
+    "title": "OpenRouter Image Response Parsing Error — Fix",
+    "description": "Fix OpenRouter API returning image responses in inconsistent formats causing parsing errors Includes evidence for OpenRouter troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenRouter",
+    "error_signature": "OpenRouter image response parse error expected string but got object with image_url",
+    "search_intent": "Fix OpenRouter API returning image responses in inconsistent formats causing parsing errors",
+    "common_causes": [
+      "OpenRouter returns image responses in two incompatible formats: as plain strings or as objects shaped with image_url url. Integrations expecting one format crash when receiving the other, requiring defensive parsing logic.",
+      "OpenRouter image responses must be parsed as either strings or object-shaped entries with image_url url. Integration libraries need defensive parsing to handle both formats. Fix implemented in generate.ts and edit.ts with shared parser."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "OpenRouter API inconsistent response format",
+      "AI API image response parsing"
+    ]
+  },
+  {
+    "slug": "claude-code-npm-error-ebusy-resource-busy-or-locked-copyfile-claude-exe",
+    "title": "Claude Code Windows npm EBUSY Error During GitHub MCP Server Setup — Fix",
+    "description": "Fix npm EBUSY resource busy error when Claude Code tries to install or update GitHub MCP server on Windows Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "npm error EBUSY resource busy or locked copyfile claude.exe",
+    "search_intent": "Fix npm EBUSY resource busy error when Claude Code tries to install or update GitHub MCP server on Windows",
+    "common_causes": [
+      "Windows developers encounter npm EBUSY errors when Claude Code attempts to spawn the GitHub MCP server. The npm install fails because claude.exe is locked by a running process, preventing the copyfile operation. This blocks MCP server connectivity and related workflows.",
+      "GitHub MCP server connection fails on Windows when spawned by Claude Code. npm error EBUSY resource busy or locked, copyfile fails on claude.exe because it is in use. Full stack trace from AppData Roaming npm node_modules."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "npm EBUSY windows locked file",
+      "Claude Code MCP server installation failed"
+    ]
+  },
+  {
+    "slug": "github-actions-github-actions-cancel-workflow-leaves-dependent-matrix-jobs-permanently-queued",
+    "title": "GitHub Actions Cancel Workflow Leaves Matrix Jobs Permanently Queued — Fix",
+    "description": "Fix GitHub Actions where canceling a workflow from the runs list leaves dependent matrix jobs stuck in queued or pending state Includes evidence for GitHub Actions troubleshooting demand.",
+    "category": "GitHub Actions",
+    "technology": "GitHub Actions",
+    "error_signature": "GitHub Actions Cancel workflow leaves dependent matrix jobs permanently queued",
+    "search_intent": "Fix GitHub Actions where canceling a workflow from the runs list leaves dependent matrix jobs stuck in queued or pending state",
+    "common_causes": [
+      "When canceling a workflow from the main Actions runs list page, dependent jobs in matrix workflows with needs and if always conditions are not properly canceled. Jobs remain stuck in queued state, consuming runner capacity and requiring manual intervention to clear.",
+      "Canceling a workflow from the main Actions runs list page does not fully cancel all queued dependent jobs in workflows with large matrices and needs dependencies. Workflow appears canceled but dependent jobs remain queued until manually canceled from inside the run page."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "GitHub Actions job stuck queued",
+      "GitHub Actions cancel not working"
+    ]
   }
 ]
