@@ -2597,5 +2597,138 @@
       "Ollama image generation not working",
       "Ollama z-image model error"
     ]
+  },
+  {
+    "slug": "claude-code-claude-code-usage-limit-reached-max-subscription-quota-exhausted-after-short-session",
+    "title": "Claude Code Max Subscription Usage Limit Reached Instantly",
+    "description": "Fix Claude Code hitting usage limits unexpectedly on Max/Pro Max subscription Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Claude Code usage limit reached — Max subscription quota exhausted after short session",
+    "search_intent": "Fix Claude Code hitting usage limits unexpectedly on Max/Pro Max subscription",
+    "common_causes": [
+      "Paid subscribers on Claude Code Max plan report hitting usage limits within 1-2 hours despite moderate usage, including after days of inactivity. This directly impacts billing value perception and is the #1 complaint in the official repo (1466+ comments).",
+      "Two high-engagement GitHub issues: #16157 (1466 comments) reports Max plan hitting usage limits after 2 hours; #45756 (59 comments) reports Pro Max 5x quota exhausted in 1.5 hours despite moderate usage. Both are active bugs on latest Claude Code versions."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "Claude Code quota reset timing issues",
+      "Claude Code Pro Max token consumption rate too fast",
+      "Claude Code session usage tracking bug"
+    ]
+  },
+  {
+    "slug": "claude-code-api-error-400-context-management-extra-inputs-are-not-permitted",
+    "title": "Claude Code API Error 400 context_management Extra Inputs Not Permitted",
+    "description": "Fix Claude Code failing immediately with API Error 400 context_management extra inputs Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "API Error 400: context_management: Extra inputs are not permitted",
+    "search_intent": "Fix Claude Code failing immediately with API Error 400 context_management extra inputs",
+    "common_causes": [
+      "Claude Code fails immediately on session start with this specific error. Exact error signature makes it highly searchable. Affects developers trying to use Claude Code for their workflow (35+ comments).",
+      "GitHub issue #21612 (35 comments) reports Claude Code failing immediately with 'API Error 400: context_management: Extra inputs are not permitted'. Exact, specific error signature. Active on latest Claude Code version."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Claude Code session initialization failure",
+      "Anthropic API context management parameter error",
+      "Claude Code model context window configuration error"
+    ]
+  },
+  {
+    "slug": "openai-codex-cli-ignored-unsupported-project-local-config-keys-in-codex-config-toml-model-provider-model-providers",
+    "title": "OpenAI Codex CLI Ignores Project-Local model_provider Config After PR #20098",
+    "description": "Fix Codex CLI ignoring project-level model_provider and model_providers configuration Includes evidence for OpenAI Codex CLI troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "OpenAI Codex CLI",
+    "error_signature": "Ignored unsupported project-local config keys in .codex/config.toml: model_provider, model_providers",
+    "search_intent": "Fix Codex CLI ignoring project-level model_provider and model_providers configuration",
+    "common_causes": [
+      "After PR #20098, Codex CLI ignores project-local config.toml settings for model_provider and model_providers, breaking multi-company workflows where developers need repo-specific LiteLLM provider configurations. Affects API & Pro subscribers.",
+      "GitHub issue #22222 reports Codex CLI 0.130.0 ignoring .codex/config.toml model_provider settings after PR #20098. Falls back to default OpenAI route. Exact warning message: 'Ignored unsupported project-local config keys'. Affects WSL/Linux developers with API & Pro subscriptions."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Codex CLI config.toml configuration ignored",
+      "Codex CLI LiteLLM provider fallback error",
+      "Codex CLI user-level vs project-level config conflict"
+    ]
+  },
+  {
+    "slug": "claude-code-claude-code-hangs-freezes-on-thinking-for-5-20-plus-minutes-sse-events-not-received-from-anthropic-endpoint",
+    "title": "Claude Code Hanging on Thinking Prompts After Opus 4.6",
+    "description": "Fix Claude Code freezing or getting stuck on thinking prompts for extended periods Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Claude Code hangs/freezes on 'thinking' for 5-20+ minutes; SSE events not received from Anthropic endpoint",
+    "search_intent": "Fix Claude Code freezing or getting stuck on thinking prompts for extended periods",
+    "common_causes": [
+      "Since Opus 4.6 release, Claude Code frequently hangs for 5-20 minutes on prompts with no token usage increase. Packet inspection shows SSE events are not arriving from Anthropic. Affects large number of paid users (100+ comments).",
+      "GitHub issue #26224 (100 comments) reports Claude Code stuck 'thinking' for 5-20+ minutes with no token usage. Packet inspection confirms SSE events are not being received from Anthropic endpoint. Triggered since Opus 4.6 release."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Claude Code SSE connection timeout",
+      "Claude Code Opus 4.6 performance regression",
+      "Anthropic API streaming timeout errors"
+    ]
+  },
+  {
+    "slug": "github-copilot-unknown-tokenizer-undefined-copilot-agent-mode-fails-for-custom-openai-compatible-models",
+    "title": "GitHub Copilot Agent Mode Unknown Tokenizer Error for Custom OpenAI-Compatible Models",
+    "description": "Fix GitHub Copilot Agent Mode failing with 'Unknown tokenizer: undefined' for custom OpenAI-compatible models Includes evidence for GitHub Copilot troubleshooting demand.",
+    "category": "GitHub Copilot",
+    "technology": "GitHub Copilot",
+    "error_signature": "Unknown tokenizer: undefined — Copilot Agent Mode fails for custom OpenAI-compatible models",
+    "search_intent": "Fix GitHub Copilot Agent Mode failing with 'Unknown tokenizer: undefined' for custom OpenAI-compatible models",
+    "common_causes": [
+      "GitHub Copilot Agent Mode fails with 'Unknown tokenizer: undefined' when using custom OpenAI-compatible models (configured via chatLanguageModels.json), while normal chat completions work fine. Affects VS Code Insiders 1.120.0 users running custom LLM providers through local proxies.",
+      "GitHub issue #314419 (37 comments) on microsoft/vscode reports Copilot Agent Mode failing with 'Unknown tokenizer: undefined' for custom OpenAI-compatible models via customoai provider. Normal chat completions succeed — issue is specific to Agent Mode. Affects VS Code Insiders 1.120.0 + Copilot 0.48.x."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Copilot Agent Mode custom model configuration error",
+      "VS Code custom OpenAI provider tokenizer issue",
+      "GitHub Copilot chatLanguageModels.json Agent Mode bug"
+    ]
+  },
+  {
+    "slug": "openrouter-message-user-not-found-code-401-returned-for-expired-api-keys",
+    "title": "OpenRouter Expired API Key Returns Misleading 401 User Not Found",
+    "description": "Fix OpenRouter API returning 'User not found' instead of 'Key expired' for expired API keys Includes evidence for OpenRouter troubleshooting demand.",
+    "category": "Cloud Platforms",
+    "technology": "OpenRouter",
+    "error_signature": "{\"message\": \"User not found.\", \"code\": 401} — returned for expired API keys",
+    "search_intent": "Fix OpenRouter API returning 'User not found' instead of 'Key expired' for expired API keys",
+    "common_causes": [
+      "OpenRouter returns a misleading 401 'User not found' error when an API key has expired, instead of the expected 'Key expired'. This sends developers on a wild goose chase debugging account issues instead of simply refreshing their key. Reported on official OpenRouter docs repo.",
+      "GitHub issue on OpenRouterTeam/docs reports that expired API keys return {'message': 'User not found.', 'code': 401} instead of {'message': 'Key expired.', 'code': 401}. This misleads developers into thinking their account doesn't exist rather than their key being expired."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "OpenRouter API key expiration handling",
+      "OpenRouter 401 authentication error meanings",
+      "API key vs account error distinction"
+    ]
+  },
+  {
+    "slug": "google-adk-python-resource-not-found-loadskillresourcetool-retries-indefinitely-until-max-llm-calls-default-500-exhausted",
+    "title": "Google ADK Python LoadSkillResourceTool Infinite Retry Loop Consumes Call Budget",
+    "description": "Fix Google ADK Python LoadSkillResourceTool retry loop consuming entire call budget on RESOURCE_NOT_FOUND Includes evidence for Google ADK Python troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Google ADK Python",
+    "error_signature": "RESOURCE_NOT_FOUND — LoadSkillResourceTool retries indefinitely until max_llm_calls (default 500) exhausted",
+    "search_intent": "Fix Google ADK Python LoadSkillResourceTool retry loop consuming entire call budget on RESOURCE_NOT_FOUND",
+    "common_causes": [
+      "When an LLM passes a hallucinated path to LoadSkillResourceTool in Google ADK Python, the tool returns RESOURCE_NOT_FOUND as a soft-error string. The LLM treats this as recoverable and retries indefinitely until max_llm_calls (default 500) is exhausted — silently consuming the entire call budget on a single failing tool.",
+      "GitHub issue #5652 reports LoadSkillResourceTool returning RESOURCE_NOT_FOUND as structured soft-error, causing LLM to retry same path until RunConfig.max_llm_calls (default 500) is exhausted. Single hallucinated path silently consumes entire per-invocation call budget."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Google ADK Python tool retry loop bug",
+      "ADK max_llm_calls budget exhaustion",
+      "Google ADK skill resource path not found"
+    ]
   }
 ]
