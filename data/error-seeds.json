@@ -4140,5 +4140,113 @@
       "Firebase MCP configuration error",
       "Windsurf MCP server zero tools"
     ]
+  },
+  {
+    "slug": "claude-code-html-403-block-from-cloudflare-waf-on-anthropic-com-mcp-relay-path",
+    "title": "Claude Code MCP Relay Cloudflare WAF 403 on Tool Calls",
+    "description": "Fix Claude Code MCP tool calls being blocked by Cloudflare WAF returning 403 errors Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "HTML 403 block from Cloudflare WAF on anthropic.com MCP relay path",
+    "search_intent": "Fix Claude Code MCP tool calls being blocked by Cloudflare WAF returning 403 errors",
+    "common_causes": [
+      "When MCP tool call request bodies contain the literal string 'oauth' (e.g., debugging OAuth-protected MCP integrations), the Cloudflare WAF on anthropic.com blocks the request with an opaque HTML 403 page. This prevents developers from using Claude Code to debug OAuth MCP integrations, a common enterprise workflow.",
+      "Cloudflare WAF on anthropic.com (MCP relay path) returns HTML 403 when tool call body contains 'oauth' string. Reported May 12, 2026, open issue in official anthropics/claude-code repo. Affects debugging of OAuth-protected MCP integrations (RFC 9728 / RFC 8414)."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "MCP tool calls blocked by Cloudflare WAF SQL injection false positive",
+      "Claude Code MCP relay timeout errors"
+    ]
+  },
+  {
+    "slug": "claude-code-cloudflare-waf-blocks-mcp-tool-calls-with-sql-shaped-patterns-returns-opaque-html-error-page",
+    "title": "Claude Code MCP Tool Calls Blocked by Cloudflare WAF SQL Injection False Positive",
+    "description": "Fix Claude Code MCP POST requests being blocked by Cloudflare WAF SQL injection rules Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Cloudflare WAF blocks MCP tool calls with SQL-shaped patterns, returns opaque HTML error page",
+    "search_intent": "Fix Claude Code MCP POST requests being blocked by Cloudflare WAF SQL injection rules",
+    "common_causes": [
+      "MCP tool calls POSTing through api.anthropic.com are blocked by Cloudflare WAF when the request body contains SQL-shaped patterns (e.g., 'DELETE FROM a; DROP TABLE b;'). The block returns an opaque HTML error page with no actionable failure signal, making debugging impossible.",
+      "MCP tool calls to api.anthropic.com blocked by Cloudflare WAF SQL injection false positive. Returns opaque HTML error page. Minimal repro with 28-byte payload: 'DELETE FROM a; DROP TABLE b;'. Reported May 12, 2026 in official repo."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "MCP relay WAF blocks tool calls with 'oauth' string",
+      "Cloudflare WAF false positives for API POST requests"
+    ]
+  },
+  {
+    "slug": "claude-code-http-403-forbidden-from-git-proxy-on-git-receive-pack",
+    "title": "Claude Code Git Proxy 403 Forbidden on git push",
+    "description": "Fix Claude Code git push failing with HTTP 403 from internal git proxy Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "HTTP 403 Forbidden from git proxy on git-receive-pack",
+    "search_intent": "Fix Claude Code git push failing with HTTP 403 from internal git proxy",
+    "common_causes": [
+      "Claude Code's internal git proxy returns HTTP 403 Forbidden on git-receive-pack during git push operations in the web sandbox. Multiple users report this across many issues (57356, 57689, 57829, 58141, 58342), indicating a systemic problem that blocks a core developer workflow.",
+      "Multiple open issues in anthropics/claude-code repo reporting HTTP 403 from internal git proxy on git push/receive-pack. Affects web sandbox environment. Users forced to use GitHub-MCP fallback causing content drift."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Claude Code git push content drift via MCP fallback",
+      "Claude Code sandbox git proxy branch push restrictions"
+    ]
+  },
+  {
+    "slug": "claude-code-the-session-stopped-responding-send-your-message-again-to-resume-with-a-fresh-process",
+    "title": "Claude Code Session Stopped Responding on Long MCP Tool Calls",
+    "description": "Fix Claude Code UI watchdog killing sessions on long-running synchronous MCP tool calls Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "The session stopped responding. Send your message again to resume with a fresh process.",
+    "search_intent": "Fix Claude Code UI watchdog killing sessions on long-running synchronous MCP tool calls",
+    "common_causes": [
+      "When a synchronous MCP tool call blocks Claude Code's worker for ~10-15 minutes, the UI watchdog declares the session dead and shows 'The session stopped responding' — even though the MCP call may still be processing. This orphans MCP server processes and breaks long-running workflows.",
+      "Long-running synchronous MCP tool calls (>10-12 min) trigger UI watchdog with message 'The session stopped responding. Send your message again to resume with a fresh process.' Not an API timeout (API_TIMEOUT_MS=900000), but a UI-level health check. Reported May 12, 2026."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Claude Code MCP tool call timeout configuration",
+      "Claude Code orphaned MCP server processes"
+    ]
+  },
+  {
+    "slug": "litellm-x-ratelimit-headers-dropped-on-streaming-and-plain-dict-responses-v3-parallel-request-limiter",
+    "title": "LiteLLM Proxy Drops Rate Limit Headers on Streaming Responses",
+    "description": "Fix missing x-ratelimit headers on LiteLLM proxy streaming responses Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "x-ratelimit-* headers dropped on streaming and plain-dict responses (v3 parallel_request_limiter)",
+    "search_intent": "Fix missing x-ratelimit headers on LiteLLM proxy streaming responses",
+    "common_causes": [
+      "LiteLLM proxy v3 parallel_request_limiter populates x-ratelimit headers but they are silently dropped on streaming (SSE) and plain-dict responses. This breaks rate limit tracking for applications that rely on these headers to manage API consumption, especially with the popular LiteLLM proxy.",
+      "v3 parallel_request_limiter drops x-ratelimit-{remaining,limit}-{requests,tokens} headers on streaming responses because SSE headers are flushed before async_post_call_success_hook runs. Also affects plain-dict responses. Active PR exists (27747). Reported May 12, 2026."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "LiteLLM proxy rate limiting not working",
+      "LiteLLM streaming response header issues"
+    ]
+  },
+  {
+    "slug": "claude-code-request-was-aborted-at-makerequest-entrypoints-cli-js-51-6192",
+    "title": "Claude Code Request Aborted Error on Windows",
+    "description": "Fix Claude Code 'Request was aborted' errors in cli.js Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Request was aborted. at makeRequest (entrypoints/cli.js:51:6192)",
+    "search_intent": "Fix Claude Code 'Request was aborted' errors in cli.js",
+    "common_causes": [
+      "Claude Code on Windows fails with 'Error: Request was aborted' in cli.js makeRequest. Users report significant performance regression, poor instruction following, and quality degradation. Affects developers using Claude Code on Windows platforms, a major user segment.",
+      "Error: Request was aborted at makeRequest (cli.js:51:6192) on Windows (win32). User reports 'significant performance regression in quality and instruction following'. Version 2.1.139. Reported May 12, 2026 with concrete stack trace."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Claude Code performance regression on Windows",
+      "Claude Code instruction following degradation"
+    ]
   }
 ]
