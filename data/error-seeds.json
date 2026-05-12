@@ -4007,5 +4007,138 @@
       "Netlify CLI authentication error",
       "Netlify build failed exit code 1"
     ]
+  },
+  {
+    "slug": "anthropic-api-toolrunner-drops-defaultheaders-on-follow-up-requests-breaks-proxy-gateway-setups",
+    "title": "Anthropic SDK toolRunner drops defaultHeaders on follow-up requests — breaks proxy/gateway setups",
+    "description": "Fix custom headers (e.g. Cloudflare AI Gateway auth) being dropped during Anthropic SDK tool-use loop Includes evidence for Anthropic API troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Anthropic API",
+    "error_signature": "toolRunner drops defaultHeaders on follow-up requests (breaks proxy/gateway setups)",
+    "search_intent": "Fix custom headers (e.g. Cloudflare AI Gateway auth) being dropped during Anthropic SDK tool-use loop",
+    "common_causes": [
+      "Developers using the Anthropic TypeScript SDK with proxy/gateway setups (Cloudflare AI Gateway, custom auth proxies) lose custom headers after the first API call in the tool-use loop, causing authentication failures and broken billing tracking",
+      "GitHub issue #922 (created 2026-02-22, 5 comments). client.messages.toolRunner does not forward defaultHeaders on subsequent API calls during the tool-use loop. Breaks Cloudflare AI Gateway's unified billing (cf-aig-authorization header lost). First call works, follow-ups fail."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "Anthropic API 401 Unauthorized during tool-use loop",
+      "Cloudflare AI Gateway not tracking Anthropic API usage",
+      "Anthropic SDK proxy authentication failed"
+    ]
+  },
+  {
+    "slug": "anthropic-api-streaming-responses-interrupted-mid-transmission-connection-closes-without-message-stop-event",
+    "title": "Anthropic API streaming connection closes without message_stop event during tool_use",
+    "description": "Fix Anthropic API streaming responses that end abruptly without message_stop event when using tool_use with large JSON payloads Includes evidence for Anthropic API troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Anthropic API",
+    "error_signature": "Streaming responses interrupted mid-transmission — connection closes without message_stop event",
+    "search_intent": "Fix Anthropic API streaming responses that end abruptly without message_stop event when using tool_use with large JSON payloads",
+    "common_causes": [
+      "Developers building apps with Anthropic's streaming API + tool_use experience incomplete responses — the connection closes mid-stream without a message_stop event, leaving the application in an inconsistent state. Particularly affects NestJS and large JSON payload scenarios",
+      "GitHub issue #842 (created 2025-11-11, 12 comments). Streaming from Anthropic API is prematurely terminated without message_stop event. Happens specifically with tool_use and large JSON payloads. SDK v0.68.0, Node.js/NestJS. Affects claude-3-5-haiku-latest and other models."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Anthropic streaming response incomplete",
+      "Anthropic API stream disconnects unexpectedly",
+      "message_stop event not received Anthropic"
+    ]
+  },
+  {
+    "slug": "anthropic-api-400-invalid-request-error-skills-versions-create-requires-skill-md-inside-top-level-directory",
+    "title": "Anthropic SDK strips directory paths from filenames breaking skills.versions.create() API",
+    "description": "Fix Anthropic SDK stripping directory paths from filenames during multipart file uploads, causing 400 errors with skills.versions.create() Includes evidence for Anthropic API troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Anthropic API",
+    "error_signature": "400 invalid_request_error — skills.versions.create() requires SKILL.md inside top-level directory",
+    "search_intent": "Fix Anthropic SDK stripping directory paths from filenames during multipart file uploads, causing 400 errors with skills.versions.create()",
+    "common_causes": [
+      "The Anthropic SDK's getName function strips directory paths from filenames by default (stripPath=true), turning my-skill/SKILL.md into just SKILL.md. This breaks client.beta.skills.versions.create() which requires files in a top-level directory structure",
+      "GitHub issue #968 (created 2026-03-31, 4 comments). SDK's internal/uploads.js calls getName with stripPath=true, stripping paths. API returns 400 invalid_request_error. Affects skills.versions.create() and any multipart upload requiring directory structure."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Anthropic API file upload 400 error",
+      "Anthropic SDK multipart upload path stripped",
+      "Anthropic skills API upload failed"
+    ]
+  },
+  {
+    "slug": "ollama-readtimeout-after-144-6s-ollama-cloud-stream-drop-on-long-responses-with-large-context",
+    "title": "Ollama Cloud streaming timeout after 120-145s on long generation tasks",
+    "description": "Fix Ollama Cloud streaming requests timing out after ~2 minutes on long generation with large context windows Includes evidence for Ollama troubleshooting demand.",
+    "category": "Ollama",
+    "technology": "Ollama",
+    "error_signature": "ReadTimeout after 144.6s — ollama-cloud stream drop on long responses with large context",
+    "search_intent": "Fix Ollama Cloud streaming requests timing out after ~2 minutes on long generation with large context windows",
+    "common_causes": [
+      "Ollama Cloud (paid Pro plan) streaming requests timeout after ~120-145 seconds even when the model is still processing. No ping/keepalive during tool composition or long generation causes ReadTimeout errors, forcing developers to implement retry logic",
+      "GitHub issue #16108 (created 2026-05-12, very recent). Using ollama.com cloud proxy, streaming requests timeout after ~2 minutes on long generation tasks. Log shows: 'ollama-cloud stream drop (ReadTimeout) after 144.6s — reconnecting, retry 2/3'. No keepalive during tool composition."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Ollama Cloud connection timeout",
+      "Ollama streaming response cut off",
+      "Ollama proxy timeout configuration"
+    ]
+  },
+  {
+    "slug": "litellm-400-bad-request-litellm-passes-unsupported-parameters-to-chinese-models-for-codex-cli",
+    "title": "LiteLLM Codex CLI returns 400 error with Chinese models due to unsupported protocol parameters",
+    "description": "Fix LiteLLM returning 400 errors when using OpenAI Codex CLI with Chinese domestic models via protocol translation Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "400 Bad Request — LiteLLM passes unsupported parameters to Chinese models for Codex CLI",
+    "search_intent": "Fix LiteLLM returning 400 errors when using OpenAI Codex CLI with Chinese domestic models via protocol translation",
+    "common_causes": [
+      "OpenAI Codex CLI uses the Responses API protocol, but Chinese domestic models only support Chat Completions API. LiteLLM's protocol translation layer passes parameters that domestic models don't support (client_metadata, reasoning_effort, parallel_tool_calls, etc.), causing 400 errors",
+      "LiteLLM PR #27604 (created 2026-05-10, 5 comments). Codex CLI 0.130.0 passes unsupported fields to Chinese models via LiteLLM's protocol translation: client_metadata, reasoning_effort, reasoning, coding_plan, parallel_tool_calls, stream_options, modalities, prediction, audio, store, include. Results in 400 Bad Request."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "LiteLLM 400 error with Chinese models",
+      "Codex CLI not working with non-OpenAI models",
+      "LiteLLM Responses API compatibility issue"
+    ]
+  },
+  {
+    "slug": "openrouter-model-settings-thinking-false-silently-dropped-reasoning-field-missing-from-openrouter-request-body",
+    "title": "Pydantic AI thinking=False silently dropped for OpenRouter and other reasoning models",
+    "description": "Fix Pydantic AI silently dropping thinking=False setting when routing through OpenRouter, xAI, or Bedrock reasoning models Includes evidence for OpenRouter troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "OpenRouter",
+    "error_signature": "model_settings thinking=False silently dropped — reasoning field missing from OpenRouter request body",
+    "search_intent": "Fix Pydantic AI silently dropping thinking=False setting when routing through OpenRouter, xAI, or Bedrock reasoning models",
+    "common_causes": [
+      "Pydantic AI developers set model_settings={'thinking': False} to disable reasoning mode, but the setting is silently dropped — no exception, no warning. The HTTP body sent to OpenRouter contains no reasoning field at all. Affects cost control and response behavior for paid API usage",
+      "Pydantic AI issue #5379 (created 2026-05-12, 3 comments). thinking=False silently dropped for reasoning models routed through OpenRouterModel, xAI, Bedrock. HTTP body contains no reasoning field. No exception or warning thrown — completely silent failure."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Pydantic AI reasoning mode not working",
+      "OpenRouter thinking parameter ignored",
+      "Pydantic AI model_settings silently ignored"
+    ]
+  },
+  {
+    "slug": "cursor-firebase-mcp-server-shows-zero-tools-available-in-cursor-and-windsurf-despite-valid-config-and-auth",
+    "title": "Firebase MCP server shows zero tools available in Cursor/Windsurf AI editors",
+    "description": "Fix Firebase MCP server returning no tools available in Cursor and Windsurf AI code editors despite valid configuration and authentication Includes evidence for Cursor troubleshooting demand.",
+    "category": "Cursor",
+    "technology": "Cursor",
+    "error_signature": "Firebase MCP server shows zero tools available in Cursor and Windsurf despite valid config and auth",
+    "search_intent": "Fix Firebase MCP server returning no tools available in Cursor and Windsurf AI code editors despite valid configuration and authentication",
+    "common_causes": [
+      "Developers configuring Firebase MCP server in Cursor/Windsurf get 'No tools available' even after following official docs, authenticating with firebase-tools login, and configuring .cursor/mcp.json correctly. Blocks Firebase integration in AI coding workflows",
+      "Stack Overflow question (2025-06-30). Firebase MCP server consistently returns 'No tools available' in Cursor and Windsurf despite: valid Node.js/npm, successful firebase-tools login, correct .cursor/mcp.json configuration. Affects MCP server integration with AI coding tools."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "Cursor MCP server not loading tools",
+      "Firebase MCP configuration error",
+      "Windsurf MCP server zero tools"
+    ]
   }
 ]
