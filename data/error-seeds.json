@@ -2411,5 +2411,77 @@
       "Ollama port blocked by firewall",
       "Ollama Docker network issue"
     ]
+  },
+  {
+    "slug": "claude-code-claude-code-vs-code-claude-model-none",
+    "title": "Claude Code VS Code Extension Model Shows None — Cannot Select Model",
+    "description": "Fix Claude Code VSCode extension showing 'Claude Model None' and unable to select a model Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Claude Code VS Code: Claude Model None",
+    "search_intent": "Fix Claude Code VSCode extension showing 'Claude Model None' and unable to select a model",
+    "common_causes": [
+      "Since version 2.1.73, Claude Code VSCode extension shows 'Model None' and users cannot select or use any Claude model. This is a regression that completely breaks the extension's core functionality.",
+      "Claude Code VS Code extension fails since version 2.1.73. Model selector shows 'None' and no models are available. Confirmed regression from version 2.1.72. Affects Windows users using Anthropic API platform."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Claude Code VSCode extension activation failure",
+      "Claude Code model not available error"
+    ]
+  },
+  {
+    "slug": "claude-code-claude-code-persistent-json-parse-error-on-windows",
+    "title": "Claude Code Persistent JSON Parse Error on Windows — stream-json Output Failure",
+    "description": "Fix persistent JSON parse errors in Claude Code on Windows when using stream-json output format Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Claude Code Persistent JSON Parse Error on Windows",
+    "search_intent": "Fix persistent JSON parse errors in Claude Code on Windows when using stream-json output format",
+    "common_causes": [
+      "Claude Code on Windows experiences persistent JSON parse errors when the native binary outputs stream-json format. This prevents Claude Code from functioning on Windows, a major developer platform.",
+      "Persistent JSON parse errors reported on Windows when Claude Code spawns native binary with --output-format stream-json. Affects claude.exe process communication with VSCode extension."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Claude Code Windows installation issues",
+      "Claude Code native binary crashes on Windows"
+    ]
+  },
+  {
+    "slug": "litellm-typeerror-in-check-view-exists-during-litellm-proxy-startup",
+    "title": "LiteLLM Proxy Startup TypeError in check_view_exists() — Quick Start Guide Failure",
+    "description": "Fix TypeError in check_view_exists() when starting LiteLLM proxy server Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "TypeError in check_view_exists() during LiteLLM Proxy startup",
+    "search_intent": "Fix TypeError in check_view_exists() when starting LiteLLM proxy server",
+    "common_causes": [
+      "New LiteLLM users following the quick start guide encounter a TypeError in check_view_exists() during proxy server startup, preventing them from getting started with the AI gateway.",
+      "TypeError occurs in check_view_exists() function during LiteLLM proxy application startup when following the official quick start guide. Related to view handling in the proxy server UI."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "LiteLLM proxy 'No module named proxy_server' error",
+      "LiteLLM proxy Prisma migration failures"
+    ]
+  },
+  {
+    "slug": "litellm-no-module-named-proxy-server",
+    "title": "LiteLLM Proxy 'No module named proxy_server' Error After Update",
+    "description": "Fix 'No module named proxy_server' error after updating LiteLLM to 1.72.x Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "No module named 'proxy_server'",
+    "search_intent": "Fix 'No module named proxy_server' error after updating LiteLLM to 1.72.x",
+    "common_causes": [
+      "After updating LiteLLM to versions 1.72.7 or 1.72.8, users encounter 'No module named proxy_server' on startup and LiteLLM proxy crashes. Fix requires pip install litellm[proxy] but many users don't know this.",
+      "After updating to LiteLLM 1.72.7 or 1.72.8, proxy server fails with 'No module named proxy_server'. Workaround: pip install litellm[proxy]. Affects enterprise users running LiteLLM as AI gateway for 100+ LLM APIs."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "LiteLLM proxy fails to start with Prisma NotConnectedError",
+      "LiteLLM proxy startup TypeError in check_view_exists"
+    ]
   }
 ]
