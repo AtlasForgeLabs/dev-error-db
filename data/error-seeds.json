@@ -2483,5 +2483,119 @@
       "LiteLLM proxy fails to start with Prisma NotConnectedError",
       "LiteLLM proxy startup TypeError in check_view_exists"
     ]
+  },
+  {
+    "slug": "ollama-95-failure-rate-across-all-cloud-models-empty-responses-or-timeout",
+    "title": "Ollama Cloud Pro Service Unusable — 95% Failure Rate on All Cloud Models",
+    "description": "Fix Ollama Cloud Pro returning empty responses or timeouts on all cloud models Includes evidence for Ollama troubleshooting demand.",
+    "category": "Ollama",
+    "technology": "Ollama",
+    "error_signature": "95% failure rate across all cloud models — empty responses or timeout",
+    "search_intent": "Fix Ollama Cloud Pro returning empty responses or timeouts on all cloud models",
+    "common_causes": [
+      "Ollama Pro is a paid $20/month plan. Users report 95% failure rate on all cloud models (glm-5.1, kimi-k2.5, qwen3.5, deepseek-v3.2), making the service completely unusable despite payment. 45 comments indicate widespread impact.",
+      "Paying Ollama Pro subscribers ($20/month) report 95% failure rate across all cloud models. Both /api/chat and /api/generate return empty responses or timeout. Issue affects multiple models simultaneously with 45 comments showing broad user impact."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "Ollama Cloud 503 Service Unavailable",
+      "Ollama Cloud model download fails",
+      "Ollama Cloud API authentication error 401"
+    ]
+  },
+  {
+    "slug": "claude-code-api-error-400-invalid-user-id-string-does-not-match-pattern-expected-a-string-that-matches-the-pattern-a-za-z0-9-plus",
+    "title": "Claude Code Agent API Error 400 — Invalid user_id Pattern Validation Failure",
+    "description": "Fix Claude Code agent API 400 error when user_id contains invalid characters Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "API Error: 400 Invalid 'user_id': string does not match pattern. Expected a string that matches the pattern '^[a-zA-Z0-9_-]+$'",
+    "search_intent": "Fix Claude Code agent API 400 error when user_id contains invalid characters",
+    "common_causes": [
+      "Developers using Claude Agent (Claude Code's agent mode) get a 400 error when their user_id doesn't match the expected pattern. This blocks agent workflows and affects teams with non-standard naming conventions.",
+      "Claude Code Agent returns 400 API error when user_id doesn't match pattern ^[a-zA-Z0-9_-]+$. 16 comments indicate multiple affected users. Clear error signature from Anthropic API validation layer."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Claude Code agent permission denied",
+      "Claude Code API rate limit 429",
+      "Claude Code invalid API key error"
+    ]
+  },
+  {
+    "slug": "ollama-responseerror-unauthorized-status-code-401",
+    "title": "Ollama Cloud API Returns 401 Unauthorized — ollama signin Does Not Fix",
+    "description": "Fix Ollama 401 unauthorized error when creating models with ollama-python API Includes evidence for Ollama troubleshooting demand.",
+    "category": "Ollama",
+    "technology": "Ollama",
+    "error_signature": "ResponseError: unauthorized (status code: 401)",
+    "search_intent": "Fix Ollama 401 unauthorized error when creating models with ollama-python API",
+    "common_causes": [
+      "Developers using Ollama's cloud API get 401 errors when creating models, even after signing out and back in via CLI. Authentication broken for cloud model creation via the Python API.",
+      "Ollama cloud model creation returns 401 unauthorized via ollama-python Client.create(). Sign-out + sign-in via CLI does not resolve. Similar issue #15074 reports same 401 on cloud pull and 'ollama login' on Windows 11."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "Ollama login command fails on Windows",
+      "Ollama cloud pull 401 unauthorized",
+      "Ollama API key authentication error"
+    ]
+  },
+  {
+    "slug": "ollama-cloud-api-hard-timeout-at-182-seconds",
+    "title": "Ollama Cloud API 182-Second Hard Timeout Kills Agent Workflows",
+    "description": "Fix Ollama Cloud API cutting off requests at exactly 182 seconds during long agent turns Includes evidence for Ollama troubleshooting demand.",
+    "category": "Ollama",
+    "technology": "Ollama",
+    "error_signature": "Cloud API hard timeout at ~182 seconds",
+    "search_intent": "Fix Ollama Cloud API cutting off requests at exactly 182 seconds during long agent turns",
+    "common_causes": [
+      "Paying Ollama Cloud subscribers hit a hard 182-second timeout on LLM requests. Agent workflows with tool calls get killed mid-generation, making Ollama Cloud unusable for production agent use cases.",
+      "Ollama Cloud terminates LLM requests at exactly ~182 seconds regardless of model or whether generation is in progress. Affects glm-5.1:cloud, qwen3.5:cloud, deepseek-v4-pro:cloud. Makes tool-heavy agent workflows impossible for paying subscribers."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Ollama Cloud request timeout configuration",
+      "Ollama API timeout settings",
+      "Ollama Cloud agent workflow limit"
+    ]
+  },
+  {
+    "slug": "litellm-bedrockexception-message-this-model-doesn-t-support-tool-use",
+    "title": "LiteLLM Bedrock Converse Injects Tools Into Payload — Unsupported Model Error",
+    "description": "Fix LiteLLM Bedrock Converse injecting tools into requests for non-tool-supporting models Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "BedrockException - {\"message\":\"This model doesn't support tool use.\"}",
+    "search_intent": "Fix LiteLLM Bedrock Converse injecting tools into requests for non-tool-supporting models",
+    "common_causes": [
+      "LiteLLM proxy users routing to AWS Bedrock get errors when LiteLLM injects tool definitions into models that don't support tool use. Setting drop_params=True does not resolve the issue.",
+      "LiteLLM Bedrock Converse handler injects tools into payload even when caller sends none. Models like meta.llama3-2-3b-instruct-v1:0 fail with BedrockException. drop_params=True does not help. Clear error message and reproduction steps provided."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "LiteLLM proxy tool use configuration error",
+      "Bedrock model unsupported tool use error",
+      "LiteLLM drop_params not working"
+    ]
+  },
+  {
+    "slug": "ollama-panic-runtime-error-index-out-of-range-0-with-length-0",
+    "title": "Ollama Image Generation Panics on macOS 0.23.1 — Z-Image MLX Runner Bug",
+    "description": "Fix Ollama image generation panic and segfault after upgrading to 0.23.1 on macOS Includes evidence for Ollama troubleshooting demand.",
+    "category": "Ollama",
+    "technology": "Ollama",
+    "error_signature": "panic: runtime error: index out of range [0] with length 0",
+    "search_intent": "Fix Ollama image generation panic and segfault after upgrading to 0.23.1 on macOS",
+    "common_causes": [
+      "Ollama's experimental image generation feature crashes with panic and segfault after 0.23.1 upgrade. Users upgrading from 0.22.1 (where it worked) lose image generation capability entirely.",
+      "Ollama image generation on macOS broken in 0.23.1. Panic: 'index out of range [0] with length 0' in GroupNormLayer.Forward (zimage/vae.go:48), followed by segfault in ArrayToImage/EncodeImageBase64. Worked in 0.22.1. 5 comments confirm."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Ollama MLX runner crash",
+      "Ollama image generation not working",
+      "Ollama z-image model error"
+    ]
   }
 ]
