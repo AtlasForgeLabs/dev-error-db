@@ -3893,5 +3893,119 @@
       "Ollama Flux model crash after update",
       "Ollama v0.23 breaking changes"
     ]
+  },
+  {
+    "slug": "ollama-error-500-internal-server-error-model-failed-to-load-this-may-be-due-to-resource-constraints",
+    "title": "Ollama Model Failed to Load — 500 Internal Server Error",
+    "description": "Fix Ollama model loading failure with 500 error on Apple Silicon Includes evidence for Ollama troubleshooting demand.",
+    "category": "Ollama",
+    "technology": "Ollama",
+    "error_signature": "Error: 500 Internal Server Error: model failed to load, this may be due to resource constraints",
+    "search_intent": "Fix Ollama model loading failure with 500 error on Apple Silicon",
+    "common_causes": [
+      "Developers using Ollama on Apple M-series chips encounter model load failures with specific models (e.g., gemma4:e2b, gemma4:e4b) causing a 500 Internal Server Error. The error blocks local LLM usage and has no clear resolution path.",
+      "Ollama v0.23.0 on Apple M5 (macOS 15.0): gemma4:e2b and gemma4:e4b models fail to load with '500 Internal Server Error: model failed to load, this may be due to resource constraints'. Workarounds (OLLAMA_NUM_GPU=0, OLLAMA_FLASH_ATTENTION=0) do not resolve. gemma3:4b works fine, suggesting model-specific resource allocation bug."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Ollama model download fails with insufficient disk space",
+      "Ollama GPU memory allocation error",
+      "Ollama context length exceeded on Apple Silicon"
+    ]
+  },
+  {
+    "slug": "litellm-enable-javascript-and-cookies-to-continue",
+    "title": "LiteLLM ChatGPT Image Generation Blocked — 403 Cloudflare Challenge",
+    "description": "Fix LiteLLM ChatGPT image generation returning 403 Cloudflare challenge page Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "Enable JavaScript and cookies to continue",
+    "search_intent": "Fix LiteLLM ChatGPT image generation returning 403 Cloudflare challenge page",
+    "common_causes": [
+      "Developers using LiteLLM proxy with ChatGPT (OpenAI) subscriptions for image generation receive a 403 response with 'Enable JavaScript and cookies to continue' — a Cloudflare bot challenge that blocks API access. This is a recurring issue (see #27175).",
+      "LiteLLM proxy users with ChatGPT subscriptions get 'Enable JavaScript and cookies to continue' and '403 cloudflare' errors when attempting image generation via models like gpt-5.4. Same error pattern as issue #27175. Affects all LiteLLM users proxying through ChatGPT API."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "OpenAI API 403 Forbidden error",
+      "Cloudflare 403 challenge blocking API requests",
+      "LiteLLM model not found error"
+    ]
+  },
+  {
+    "slug": "litellm-400-bad-request-unsupported-parameter-passed-to-model-api",
+    "title": "LiteLLM 400 Error with Codex CLI and Domestic LLM Models",
+    "description": "Fix 400 error when using LiteLLM with Codex CLI and Chinese/domestic LLM models Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "400 Bad Request — unsupported parameter passed to model API",
+    "search_intent": "Fix 400 error when using LiteLLM with Codex CLI and Chinese/domestic LLM models",
+    "common_causes": [
+      "Developers using OpenAI Codex CLI (v0.130.0) with LiteLLM proxy and Chinese/domestic LLM models get 400 errors because LiteLLM's protocol translation layer passes Codex-specific parameters (client_metadata, reasoning_effort, coding_plan, parallel_tool_calls) that domestic models don't support.",
+      "OpenAI Codex CLI uses Responses API protocol; domestic Chinese models only support Chat Completions API. LiteLLM's protocol translation passes unsupported fields (client_metadata, reasoning_effort, reasoning, coding_plan, parallel_tool_calls, stream_options, modalities, prediction, audio, store, include, prompt_cache_key), causing 400 errors. Fix requires parameter filtering per model type."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "OpenAI API invalid parameter error",
+      "LiteLLM model routing error",
+      "Codex CLI API compatibility issue"
+    ]
+  },
+  {
+    "slug": "ollama-processes-crash-out-almost-immediately",
+    "title": "Ollama Flux Image Generation Crash in v0.23.x — Goroutine Crash After Upgrade",
+    "description": "Fix Ollama Flux image generation crash after upgrading to v0.23.x Includes evidence for Ollama troubleshooting demand.",
+    "category": "Ollama",
+    "technology": "Ollama",
+    "error_signature": "processes crash out almost immediately",
+    "search_intent": "Fix Ollama Flux image generation crash after upgrading to v0.23.x",
+    "common_causes": [
+      "Developers who upgraded Ollama from v0.22.1 to v0.23.x find that Flux image generation crashes immediately for any prompt. Both CLI and API are affected. Downgrading to v0.22.1 resolves the issue, indicating a regression.",
+      "Ollama v0.23.1: Flux image generation crashes immediately with 'processes crash out almost immediately'. Log shows goroutine crash in server.go:135 with MLX runner. Affects all prompts (e.g., 'A red apple'). Downgrade to v0.22.1 resolves. Both CLI and API affected."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Ollama MLX runner crash on Apple Silicon",
+      "Ollama image generation not working",
+      "Ollama version compatibility issue"
+    ]
+  },
+  {
+    "slug": "openrouter-openrouter-throwing-error-as-anthropic-despite-logout-and-re-login",
+    "title": "OpenRouter Authentication Error — Stuck on Anthropic Provider",
+    "description": "Fix OpenRouter authentication error where system continues using Anthropic instead of OpenRouter Includes evidence for OpenRouter troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "OpenRouter",
+    "error_signature": "OpenRouter throwing error as Anthropic despite logout and re-login",
+    "search_intent": "Fix OpenRouter authentication error where system continues using Anthropic instead of OpenRouter",
+    "common_causes": [
+      "Developers who switched from Anthropic direct API to OpenRouter as their LLM provider find that their applications continue throwing Anthropic-specific errors despite logging out of Anthropic and re-authenticating with OpenRouter. The provider switch fails silently.",
+      "User logged out of Anthropic and authenticated with OpenRouter, but the system continues throwing Anthropic errors. Screenshots show OpenRouter configured but error messages reference Anthropic. Affects Rust-based agent applications using OpenRouter as LLM provider."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "OpenRouter API key not working",
+      "OpenRouter model not found error",
+      "OpenRouter rate limit exceeded"
+    ]
+  },
+  {
+    "slug": "netlify-no-teams-available",
+    "title": "Netlify CLI 'No Teams Available' Error After Login for AI Agent Deploys",
+    "description": "Fix Netlify CLI 'No teams available' error when deploying after login Includes evidence for Netlify troubleshooting demand.",
+    "category": "Deployment",
+    "technology": "Netlify",
+    "error_signature": "No teams available",
+    "search_intent": "Fix Netlify CLI 'No teams available' error when deploying after login",
+    "common_causes": [
+      "AI agents and developers running automated Netlify deploy workflows encounter a 'No teams available' error after authentication. The CLI provides misleading error messages that cause agents to get stuck during the full deploy workflow.",
+      "Netlify CLI v8.0.x: 'No teams available' error occurs after login when no teams are associated with the account. The error is misleading for AI agents attempting full deploy workflows. Multiple issues cause agents to get stuck or receive misleading errors during deployment."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "Netlify deploy failed site not found",
+      "Netlify CLI authentication error",
+      "Netlify build failed exit code 1"
+    ]
   }
 ]
