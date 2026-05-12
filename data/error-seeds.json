@@ -2278,5 +2278,138 @@
       "Anthropic tool use zod schema error",
       "Anthropic SDK zod version mismatch"
     ]
+  },
+  {
+    "slug": "claude-code-login-failed-please-check-your-authentication-credentials",
+    "title": "Claude Code CLI Login Failed — Authentication Credentials Error",
+    "description": "Fix Claude Code CLI login/authentication failure Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Login failed: please check your authentication credentials",
+    "search_intent": "Fix Claude Code CLI login/authentication failure",
+    "common_causes": [
+      "Claude Code is a paid developer tool; login failures block all AI coding workflows. Developers need immediate resolution to restore access.",
+      "Official Claude Code repo issue #58223 reports CLI login failure with authentication credentials error. High-visibility bug in the paid AI coding tool."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "Claude Code session expired",
+      "Claude Code OAuth callback failed",
+      "Claude Code token refresh failure"
+    ]
+  },
+  {
+    "slug": "openclaw-billingbackoffhours-entire-provider-disabled-due-to-402-from-one-model",
+    "title": "OpenClaw Billing Cooldown Disables Entire Provider — Breaks LiteLLM Proxy Setups",
+    "description": "Fix billing cooldown disabling entire provider when only one upstream model has 402 error Includes evidence for OpenClaw troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "OpenClaw",
+    "error_signature": "billingBackoffHours: entire provider disabled due to 402 from one model",
+    "search_intent": "Fix billing cooldown disabling entire provider when only one upstream model has 402 error",
+    "common_causes": [
+      "When using LiteLLM as a single provider aggregating multiple upstreams, a 402 billing error from one model disables all models sharing the same auth profile, breaking entire AI workflows.",
+      "402 billing error from one upstream model causes OpenClaw to disable entire provider via billingBackoffHours. All models sharing the same auth profile are affected, breaking multi-model proxy setups."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "OpenClaw provider timeout",
+      "OpenClaw model fallback failure",
+      "LiteLLM provider disabled"
+    ]
+  },
+  {
+    "slug": "openrouter-model-has-a-context-window-of-x-tokens-which-is-below-the-minimum-64-000-required",
+    "title": "OpenRouter All Models Rejected — Context Window Below Minimum 64000 Tokens",
+    "description": "Fix OpenRouter model rejection due to insufficient context window Includes evidence for OpenRouter troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "OpenRouter",
+    "error_signature": "Model has a context window of X tokens, which is below the minimum 64,000 required",
+    "search_intent": "Fix OpenRouter model rejection due to insufficient context window",
+    "common_causes": [
+      "OpenRouter is a paid API proxy aggregating multiple model providers. When all models are rejected for context window limits, entire AI workflows break.",
+      "All models on OpenRouter went down on Telegram with 'context window below minimum 64,000 tokens' error. Complete service disruption affecting all users simultaneously."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "OpenRouter model not found",
+      "OpenRouter API key invalid",
+      "OpenRouter rate limit exceeded"
+    ]
+  },
+  {
+    "slug": "litellm-presidio-guardrail-pii-masked-on-input-but-never-unmasked-in-responses-400-error-with-tools",
+    "title": "LiteLLM Presidio Guardrail PII Masking Broken with Anthropic Native API",
+    "description": "Fix LiteLLM Presidio PII guardrail not working with Anthropic native API path Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "Presidio guardrail: PII masked on input but never unmasked in responses, 400 error with tools",
+    "search_intent": "Fix LiteLLM Presidio PII guardrail not working with Anthropic native API path",
+    "common_causes": [
+      "PII masking is a critical security/compliance feature for enterprise users of LiteLLM proxy. When it silently fails, sensitive data leaks — a severe compliance risk.",
+      "When using Anthropic native API path with Presidio guardrail and output_parse_pii=true, PII is masked on input but never unmasked in responses. Using tools (e.g. via Claude Code) causes 400 error."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "LiteLLM guardrail bypass",
+      "LiteLLM PII leak",
+      "LiteLLM Anthropic 400 error"
+    ]
+  },
+  {
+    "slug": "litellm-v1-responses-compact-fails-during-router-settings-fallbacks-unknown-parameter-metadata",
+    "title": "LiteLLM /v1/responses/compact Fails During Fallback with 'Unknown parameter: metadata'",
+    "description": "Fix LiteLLM fallback failure when /v1/responses/compact endpoint returns 400 Unknown parameter metadata Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "/v1/responses/compact fails during router_settings.fallbacks — Unknown parameter: metadata",
+    "search_intent": "Fix LiteLLM fallback failure when /v1/responses/compact endpoint returns 400 Unknown parameter metadata",
+    "common_causes": [
+      "LiteLLM is a widely used API proxy for routing between multiple LLM providers. Fallback failures mean production AI services degrade without proper error handling.",
+      "/v1/responses/compact fails during router_settings.fallbacks failover from primary to fallback model, with Azure returning 400 'Unknown parameter: metadata'. Hardcoded metadata key in run_async_fallback causes the error."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "LiteLLM Azure fallback error",
+      "LiteLLM router_settings failed",
+      "LiteLLM metadata parameter error"
+    ]
+  },
+  {
+    "slug": "gemini-cli-codebase-investigator-agent-fails-schema-validation-quota-consumed-in-loop-without-launching-agent",
+    "title": "Gemini CLI codebase_investigator Agent Fails to Initialize — Schema Validation Error",
+    "description": "Fix Gemini CLI codebase_investigator agent schema validation failure and quota waste loop Includes evidence for Gemini CLI troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Gemini CLI",
+    "error_signature": "codebase_investigator agent fails schema validation — quota consumed in loop without launching agent",
+    "search_intent": "Fix Gemini CLI codebase_investigator agent schema validation failure and quota waste loop",
+    "common_causes": [
+      "Gemini CLI is Google's free AI coding tool. Agent delegation failures consume quota in a retry loop without producing results — wasting API quota and blocking development.",
+      "Gemini CLI v0.25.2: delegating tasks to codebase_investigator agent repeatedly fails schema validation. CLI consumes quota in a loop without successfully launching the agent."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "Gemini CLI agent delegation failed",
+      "Gemini CLI schema validation error",
+      "Gemini CLI quota waste"
+    ]
+  },
+  {
+    "slug": "ollama-runtimeerror-cannot-connect-to-ollama-api-connecterror-errno-111-connection-refused",
+    "title": "Cannot Connect to Ollama API — Connection Refused Error [Errno 111]",
+    "description": "Fix Ollama API connection refused error (Errno 111) Includes evidence for Ollama troubleshooting demand.",
+    "category": "Ollama",
+    "technology": "Ollama",
+    "error_signature": "RuntimeError: Cannot connect to Ollama API — ConnectError: [Errno 111] Connection refused",
+    "search_intent": "Fix Ollama API connection refused error (Errno 111)",
+    "common_causes": [
+      "Ollama is a widely used local LLM platform. Connection refused errors block all local AI inference, affecting developers running self-hosted models for cost savings or privacy.",
+      "Sentry-reported production issue: ConnectError [Errno 111] Connection refused when connecting to Ollama API. Multiple instances traced to httpcore connection failure."
+    ],
+    "quick_fix": "Confirm the local service is running on the expected host and port, then retry the smallest request.",
+    "related_errors": [
+      "Ollama service not started",
+      "Ollama port blocked by firewall",
+      "Ollama Docker network issue"
+    ]
   }
 ]
