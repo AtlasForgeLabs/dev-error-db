@@ -3391,5 +3391,176 @@
       "Ollama Cloud keepalive timeout",
       "Ollama streaming connection lost"
     ]
+  },
+  {
+    "slug": "ollama-ollama-cloud-empty-response-or-timeout-on-api-chat-and-api-generate-for-all-cloud-models",
+    "title": "Ollama Cloud Pro 95% Failure Rate — All Cloud Models Return Empty Responses or Timeout",
+    "description": "Fix Ollama Cloud Pro service returning empty responses or timeouts across all cloud models including glm-5.1, kimi-k2.5, qwen3.5, and deepseek-v3.2 Includes evidence for Ollama troubleshooting demand.",
+    "category": "Ollama",
+    "technology": "Ollama",
+    "error_signature": "Ollama Cloud: empty response or timeout on /api/chat and /api/generate for all cloud models",
+    "search_intent": "Fix Ollama Cloud Pro service returning empty responses or timeouts across all cloud models including glm-5.1, kimi-k2.5, qwen3.5, and deepseek-v3.2",
+    "common_causes": [
+      "Ollama Cloud Pro is a paid subscription service ($20/month). When all cloud models fail with 95% failure rate, paying customers cannot access any cloud inference and need immediate troubleshooting or alternatives.",
+      "Ollama Pro subscriber ($20/mo) reports 95% failure rate across ALL cloud models — glm-5.1:cloud, kimi-k2.5:cloud, qwen3.5:cloud, deepseek-v3.2:cloud. Both /api/chat and /api/generate return empty responses or timeout. Stable internet confirmed. Paid service effectively unusable."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "Ollama Cloud API timeout",
+      "Ollama Pro subscription not working",
+      "Ollama cloud model empty response"
+    ]
+  },
+  {
+    "slug": "litellm-budgetexceedederror-spend-exceeds-max-budget-for-virtual-key",
+    "title": "LiteLLM BudgetExceededError — Virtual Key Reports Stale Spend While Budget Not Actually Exceeded",
+    "description": "Fix LiteLLM virtual key incorrectly rejecting requests with BudgetExceededError despite /key/info showing spend below max_budget Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "BudgetExceededError: spend exceeds max_budget for virtual key",
+    "search_intent": "Fix LiteLLM virtual key incorrectly rejecting requests with BudgetExceededError despite /key/info showing spend below max_budget",
+    "common_causes": [
+      "LiteLLM is used as a paid enterprise proxy gateway for multi-model AI routing. When virtual keys incorrectly reject valid requests, API traffic is silently dropped and teams cannot serve their customers. Engineers need a reliable fix or workaround.",
+      "LiteLLM v1.84.0: team-scoped virtual keys reject requests with BudgetExceededError while /key/info management API reports spend still below configured max_budget. Affects enterprise proxy deployments with virtual key budget controls."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "LiteLLM team budget exceeded false positive",
+      "LiteLLM /key/info spend calculation discrepancy",
+      "LiteLLM virtual key rate limit not resetting"
+    ]
+  },
+  {
+    "slug": "litellm-x-ratelimit-remaining-x-ratelimit-limit-headers-missing-on-streaming-responses",
+    "title": "LiteLLM Drops x-ratelimit-* Headers on Streaming Responses — v3 parallel_request_limiter Bug",
+    "description": "Fix missing rate limit headers on LiteLLM streaming API responses so clients can properly throttle requests Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "x-ratelimit-remaining / x-ratelimit-limit headers missing on streaming responses",
+    "search_intent": "Fix missing rate limit headers on LiteLLM streaming API responses so clients can properly throttle requests",
+    "common_causes": [
+      "LiteLLM proxy users depend on x-ratelimit-* headers for client-side throttling. When these headers are silently dropped on streaming responses, downstream services cannot implement proper backoff strategies, leading to cascading rate limit violations.",
+      "v3 parallel_request_limiter drops x-ratelimit-{remaining,limit}-{requests,tokens} headers on SSE streaming responses because headers are flushed before async_post_call_success_hook runs. Also affects plain-dict responses. Default since v3 rewrite."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "LiteLLM streaming response headers missing",
+      "LiteLLM rate limit headers not working",
+      "LiteLLM SSE response header loss"
+    ]
+  },
+  {
+    "slug": "claude-code-bg-is-not-enabled-if-this-is-unexpected-retry-in-a-moment",
+    "title": "Claude Code --bg Flag Not Enabled Error — Background Mode Fails Intermittently",
+    "description": "Fix Claude Code background mode '--bg' flag showing 'not enabled' error and failing to resume sessions Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "--bg is not enabled. If this is unexpected, retry in a moment.",
+    "search_intent": "Fix Claude Code background mode '--bg' flag showing 'not enabled' error and failing to resume sessions",
+    "common_causes": [
+      "Claude Code's background mode is critical for CI/CD automation and long-running coding tasks. When '--bg' intermittently fails with 'not enabled', developers cannot automate agent workflows or resume background sessions.",
+      "Running 'claude --resume xxx --bg' returns '--bg is not enabled. If this is unexpected, retry in a moment.' — a non-deterministic failure that blocks background agent workflows. Reported against latest version."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Claude Code background session not resuming",
+      "Claude Code --bg flag not working",
+      "Claude Code agent mode session timeout"
+    ]
+  },
+  {
+    "slug": "claude-code-background-full-checkout-fails-with-not-a-git-repo-when-worktree-mode-is-on-for-a-repo-with-submodules",
+    "title": "Claude Code Background Checkout Fails with 'not-a-git-repo' Error in Repos with Submodules",
+    "description": "Fix Claude Code background session failing with 'not-a-git-repo' error when worktree mode is enabled for repositories containing git submodules Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Background full checkout fails with not-a-git-repo when worktree mode is on for a repo with submodules",
+    "search_intent": "Fix Claude Code background session failing with 'not-a-git-repo' error when worktree mode is enabled for repositories containing git submodules",
+    "common_causes": [
+      "Many enterprise codebases use git submodules. When Claude Code's worktree mode is enabled (common for session isolation), background checkout completely fails for these repos, blocking automated coding workflows.",
+      "With 'Use worktrees for sessions' enabled, opening a background session in a repo with submodules fails before session begins. Error: 'not-a-git-repo'. Worktree mode is a recommended Claude Code feature for session isolation, making this a widespread issue for monorepo users."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Claude Code worktree mode submodule error",
+      "Claude Code git submodule background session",
+      "Claude Code not-a-git-repo worktree fix"
+    ]
+  },
+  {
+    "slug": "claude-code-claude-code-unexpected-api-usage-increase-5-overnight-with-zero-user-interaction",
+    "title": "Claude Code Phantom API Usage — Weekly Consumption Increases Overnight with No Active Sessions",
+    "description": "Investigate and stop Claude Code consuming API tokens during idle periods when no user sessions are active Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Claude Code unexpected API usage increase ~5% overnight with zero user interaction",
+    "search_intent": "Investigate and stop Claude Code consuming API tokens during idle periods when no user sessions are active",
+    "common_causes": [
+      "Claude Code is a paid product with usage-based billing. Unexpected API consumption during idle periods directly increases costs. Engineers need to identify the source (background processes, auto-updates, telemetry) and prevent further phantom charges.",
+      "User reports ~5% weekly API usage increase overnight (16:30 to 10:00) with zero active sessions. Confirmed via claude-usage tool scanning local Claude Code logs. Last session ended at 16:19, no sessions until next morning. Directly impacts paid subscription costs."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Claude Code background API consumption",
+      "Claude Code idle usage charges",
+      "Claude Code phantom token usage fix"
+    ]
+  },
+  {
+    "slug": "litellm-deployment-level-tpm-limit-enforced-per-pod-not-cross-pod-effective-limit-tpm-limit-n-replicas",
+    "title": "LiteLLM Multi-Replica Deployments Bypass TPM Limits — Per-Pod Enforcement Instead of Cross-Pod",
+    "description": "Fix LiteLLM deployment-level TPM rate limit being enforced per-pod instead of across all replicas in multi-replica Kubernetes deployments Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "Deployment-level TPM limit enforced per-pod, not cross-pod — effective limit = tpm_limit × N_replicas",
+    "search_intent": "Fix LiteLLM deployment-level TPM rate limit being enforced per-pod instead of across all replicas in multi-replica Kubernetes deployments",
+    "common_causes": [
+      "Enterprise LiteLLM deployments on Kubernetes rely on deployment-level TPM limits to control costs. When limits are per-pod instead of cross-pod, the effective rate limit scales with replica count, defeating cost controls and potentially causing unexpected API overages.",
+      "In multi-replica LiteLLM proxy with usage-based-routing-v2, deployment-level TPM limit (litellm_params.tpm in model_list) is enforced against each replica's local in-memory counter. Effective per-deployment ceiling becomes tpm_limit × N_replica. Traffic up to that inflated ceiling passes without rate limiting."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "LiteLLM Kubernetes TPM rate limit scaling",
+      "LiteLLM distributed rate limiting Redis",
+      "LiteLLM multi-replica deployment rate limit"
+    ]
+  },
+  {
+    "slug": "litellm-typeerror-async-for-requires-an-object-with-aiter-method-got-nonetype",
+    "title": "LiteLLM TypeError — Streaming Crashes with NoneType When Provider Returns Reasoning Field in Delta",
+    "description": "Fix LiteLLM crash with TypeError 'async for requires an object with aiter method' when streaming from models with reasoning/thinking output Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "TypeError: 'async for' requires an object with __aiter__ method, got NoneType",
+    "search_intent": "Fix LiteLLM crash with TypeError 'async for requires an object with aiter method' when streaming from models with reasoning/thinking output",
+    "common_causes": [
+      "As more providers (Scaleway, Anthropic via proxy) return reasoning/thinking fields in streaming delta, LiteLLM crashes with TypeError. This breaks any application using streamed reasoning output through LiteLLM.",
+      "When stream=True with providers returning reasoning field in delta (e.g., Scaleway), LiteLLM streaming parser crashes with TypeError because the response object becomes None. Affects any reasoning/thinking model streamed through LiteLLM proxy."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "LiteLLM streaming reasoning field error",
+      "LiteLLM async streaming NoneType crash",
+      "LiteLLM Chain of Thought streaming broken"
+    ]
+  },
+  {
+    "slug": "ollama-readtimeout-ollama-cloud-stream-drop-after-120-145s-on-long-responses",
+    "title": "Ollama Cloud Streaming Timeout After 120-145 Seconds on Long Generation Tasks",
+    "description": "Fix Ollama Cloud streaming read timeout after ~2 minutes on long generation tasks with large context Includes evidence for Ollama troubleshooting demand.",
+    "category": "Ollama",
+    "technology": "Ollama",
+    "error_signature": "ReadTimeout: ollama-cloud stream drop after ~120-145s on long responses",
+    "search_intent": "Fix Ollama Cloud streaming read timeout after ~2 minutes on long generation tasks with large context",
+    "common_causes": [
+      "Developers using Ollama Cloud for long-form code generation hit streaming timeouts mid-task. Without ping/keepalive support, connections drop during tool composition or extended generation, causing lost work and failed retries.",
+      "Ollama Cloud proxy drops streaming connections after 120-145s during long generation with large context. No ping/keepalive during tool composition. Log shows: 'ollama-cloud stream drop (ReadTimeout) after 144.6s — reconnecting, retry 2/3'. Reported 2026-05-12."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Ollama Cloud streaming timeout workaround",
+      "Ollama keepalive configuration for long responses",
+      "Ollama Cloud SSE connection timeout"
+    ]
   }
 ]
