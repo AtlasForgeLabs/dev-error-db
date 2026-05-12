@@ -3688,5 +3688,77 @@
       "Vercel env add whitespace trimming",
       "Vercel environment variable encoding issues"
     ]
+  },
+  {
+    "slug": "claude-code-450-consumed-in-under-24-hours-50-exhausted-creating-4-5-markdown-files-in-a-clean-empty-workspace",
+    "title": "Claude Code Excessive Token Consumption Bug (v2.1.139)",
+    "description": "Fix Claude Code consuming excessive tokens/cost for simple tasks Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "€450 consumed in under 24 hours — €50 exhausted creating 4-5 markdown files in a clean empty workspace",
+    "search_intent": "Fix Claude Code consuming excessive tokens/cost for simple tasks",
+    "common_causes": [
+      "Developers on Claude Code Max plan report unexpectedly high token consumption — €450 in 24 hours for minimal work. This is a paid product billing issue with direct financial impact, driving urgent searches.",
+      "User on Claude Code v2.1.139 (Max plan + Extra Usage) consumed €450 in 24h. Third charge of €50 nearly exhausted in a brand-new empty workspace by creating 4-5 small markdown files. Related issues #42272, #17740, #13569, #11716 report similar regressions."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Claude Code background processes cause infinite token exhaustion",
+      "Claude Code token consumption spiked after version update"
+    ]
+  },
+  {
+    "slug": "claude-code-claude-desktop-co-work-not-functioning-collaborative-session-fails-to-connect",
+    "title": "Claude Desktop Co-Work Feature Not Functioning",
+    "description": "Fix Claude Desktop Co-Work feature not connecting or working Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Claude Desktop Co-Work not functioning — collaborative session fails to connect",
+    "search_intent": "Fix Claude Desktop Co-Work feature not connecting or working",
+    "common_causes": [
+      "Claude Desktop's Co-Work (collaborative coding) feature fails to function for users. This is a paid feature on Claude Max plans, making it a high-commercial-value error for paying subscribers.",
+      "Claude Desktop users report Co-Work feature is not functioning. Reported on the official anthropics/claude-code repository as a bug affecting collaborative coding sessions."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Claude Desktop collaboration not working",
+      "Claude Code pair programming error"
+    ]
+  },
+  {
+    "slug": "ollama-model-alias-kimi-k2-6-incorrectly-maps-to-k2-5-both-endpoints-return-same-model-in-cloud",
+    "title": "Ollama Cloud Model Alias Bug: kimi-k2.6 Incorrectly Maps to K2.5",
+    "description": "Fix Ollama cloud model kimi-k2.6 returning wrong model (K2.5 instead of K2.6) Includes evidence for Ollama troubleshooting demand.",
+    "category": "Ollama",
+    "technology": "Ollama",
+    "error_signature": "Model alias kimi-k2.6 incorrectly maps to K2.5 — both endpoints return same model in cloud",
+    "search_intent": "Fix Ollama cloud model kimi-k2.6 returning wrong model (K2.5 instead of K2.6)",
+    "common_causes": [
+      "Developers expecting Kimi K2.6 model get K2.5 instead. Both kimi-k2.6 and kimi-k2.5 endpoints return identical model output. This affects API consumers who rely on specific model versions for their applications.",
+      "The kimi-k2.6 cloud model endpoint returns Kimi K2.5 instead of K2.6. Both kimi-k2.6 and kimi-k2.5 endpoints return the same underlying model. Reproducible via curl to https://ollama.com/api/generate with model parameter."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Ollama cloud model version mismatch",
+      "Ollama wrong model returned"
+    ]
+  },
+  {
+    "slug": "litellm-enable-javascript-and-cookies-to-continue-403-cloudflare-challenge-on-image-generation",
+    "title": "LiteLLM Image Generation Blocked by Cloudflare 403 Challenge (ChatGPT Subscription)",
+    "description": "Fix LiteLLM image generation failing with Cloudflare 403 challenge for ChatGPT subscriptions Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "Enable JavaScript and cookies to continue — 403 Cloudflare challenge on image generation",
+    "search_intent": "Fix LiteLLM image generation failing with Cloudflare 403 challenge for ChatGPT subscriptions",
+    "common_causes": [
+      "Developers using LiteLLM proxy with ChatGPT subscription for image generation receive Cloudflare 403 challenges ('Enable JavaScript and cookies to continue'). The LiteLLM proxy cannot handle browser-based JS challenges, blocking image generation entirely.",
+      "LiteLLM users with ChatGPT subscription get 403 Cloudflare challenge when attempting image generation. Error message: 'Enable JavaScript and cookies to continue'. Related issue #27175 confirms this is a recurring pattern. The LiteLLM proxy cannot solve JS-based Cloudflare challenges."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "LiteLLM Cloudflare 403 bypass",
+      "LiteLLM image generation failed"
+    ]
   }
 ]
