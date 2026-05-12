@@ -3,14 +3,17 @@ import { getCollection } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import {
   DEFAULT_PAGE_SIZE,
+  categoryPathFor,
   entrySlug,
   getCategoryGroups,
+  getEntriesBySearchSignals,
   getRelatedCategoryGroups,
   getTrendingEntries,
   paginateEntries,
   sortEntriesByUpdated,
 } from '../../lib/taxonomy';
 import { formatPublicDate, getUpdatedTimestamp, sortByUpdatedTimestamp } from '../../lib/dates';
+import { SITE_URL } from '../../lib/seo';
 
 function countBy(values: string[]) {
   const counts = new Map<string, number>();
@@ -42,13 +45,49 @@ const technologyCounts = countBy(group.entries.map((entry) => entry.data.technol
 const sortedEntries = sortEntriesByUpdated(group.entries);
 const latestEntries = sortedEntries.slice(0, 6);
 const popularEntries = getTrendingEntries(group.entries, 6);
+const topFixes = getEntriesBySearchSignals(group.entries, ['how to fix', 'failed', 'permission denied', 'timeout', 'quota', 'rate limit', 'not found'], 8);
 const pagination = paginateEntries(sortedEntries, 1, DEFAULT_PAGE_SIZE);
 const relatedCategories = getRelatedCategoryGroups(group, allGroups, 5);
 const oldestDate = sortByUpdatedTimestamp(sortedEntries).at(-1);
 const newestDate = latestEntries[0];
+const commonCauses = countBy(group.entries.flatMap((entry) => entry.data.common_causes)).slice(0, 6);
+const highIntentTopics = [
+  `how to fix ${group.label} errors`,
+  `${group.label} error fix`,
+  `${group.label} troubleshooting`,
+  `${group.label} authentication failed`,
+  `${group.label} timeout`,
+  `${group.label} permission denied`,
+  `${group.label} deployment failed`,
+].filter((topic, index, topics) => topics.indexOf(topic) === index);
+const structuredData = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'CollectionPage',
+    name: pageTitle,
+    description: pageDescription,
+    url: `${SITE_URL}${categoryPathFor(group.label)}`,
+    isPartOf: {
+      '@type': 'WebSite',
+      name: 'Dev Error DB',
+      url: SITE_URL,
+    },
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'ItemList',
+    name: `${group.label} troubleshooting pages`,
+    itemListElement: sortedEntries.slice(0, 30).map((entry, index) => ({
+      '@type': 'ListItem',
+      position: index + 1,
+      name: entry.data.title,
+      url: `${SITE_URL}/errors/${entrySlug(entry)}/`,
+    })),
+  },
+];
 ---
 
-<BaseLayout title={pageTitle} description={pageDescription}>
+<BaseLayout title={pageTitle} description={pageDescription} structuredData={structuredData}>
   <section class="category-page">
     <nav class="breadcrumbs" aria-label="Breadcrumb">
       <a href="/">Home</a>
@@ -60,8 +99,8 @@ const newestDate = latestEntries[0];
     <h1>{group.label} errors</h1>
     <p>{group.description}</p>
     <p>
-      This topic cluster focuses on recurring {group.label} failure signatures, practical fixes, and diagnostic patterns that
-      help teams resolve incidents faster and improve long-term operational reliability.
+      This {group.label} troubleshooting hub collects real error signatures, quick fixes, common causes, and
+      step-by-step debugging paths for developers who need a practical answer instead of a broad overview.
     </p>
     <p class="count-line">{group.entries.length} article{group.entries.length === 1 ? '' : 's'} in this category.</p>
     <ul class="stats-list">
@@ -69,6 +108,33 @@ const newestDate = latestEntries[0];
       <li><strong>Date range:</strong> {oldestDate ? formatPublicDate(getUpdatedTimestamp(oldestDate)) : 'n/a'} to {newestDate ? formatPublicDate(getUpdatedTimestamp(newestDate)) : 'n/a'}</li>
       <li><strong>Latest updates:</strong> {latestEntries.length}</li>
     </ul>
+
+    <section class="latest-pages" aria-labelledby="overview-heading">
+      <h2 id="overview-heading">Troubleshooting overview</h2>
+      <p>
+        Start by matching the exact error message, then check the technology, environment, credentials, network path,
+        and deployment context. The pages below are grouped so you can move from broad {group.label} symptoms to
+        specific root-cause families without relying on client-side search.
+      </p>
+    </section>
+
+    <section class="latest-pages" aria-labelledby="common-causes-heading">
+      <h2 id="common-causes-heading">Common causes</h2>
+      <ul>
+        {commonCauses.map(([cause, count]) => (
+          <li>{cause} ({count} page{count === 1 ? '' : 's'})</li>
+        ))}
+      </ul>
+    </section>
+
+    <section class="latest-pages" aria-labelledby="technology-heading">
+      <h2 id="technology-heading">Common related technologies</h2>
+      <ul>
+        {technologyCounts.slice(0, 8).map(([technology, count]) => (
+          <li>{technology} ({count} page{count === 1 ? '' : 's'})</li>
+        ))}
+      </ul>
+    </section>
 
     <section class="latest-pages" aria-labelledby="latest-pages-heading">
       <h2 id="latest-pages-heading">Latest pages in this category</h2>
@@ -83,12 +149,32 @@ const newestDate = latestEntries[0];
     </section>
 
     <section class="latest-pages" aria-labelledby="popular-pages-heading">
-      <h2 id="popular-pages-heading">Popular pages in this category</h2>
+      <h2 id="popular-pages-heading">Trending errors</h2>
       <ul>
         {popularEntries.map((entry) => (
           <li>
             <a href={`/errors/${entrySlug(entry)}/`}>{entry.data.title}</a>
           </li>
+        ))}
+      </ul>
+    </section>
+
+    <section class="latest-pages" aria-labelledby="top-fixes-heading">
+      <h2 id="top-fixes-heading">Top fixes</h2>
+      <ul>
+        {topFixes.map((entry) => (
+          <li>
+            <a href={`/errors/${entrySlug(entry)}/`}>{entry.data.title}</a>
+          </li>
+        ))}
+      </ul>
+    </section>
+
+    <section class="latest-pages" aria-labelledby="intent-topics-heading">
+      <h2 id="intent-topics-heading">High-intent troubleshooting topics</h2>
+      <ul>
+        {highIntentTopics.map((topic) => (
+          <li>{topic}</li>
         ))}
       </ul>
     </section>

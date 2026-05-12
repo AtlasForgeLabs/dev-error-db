@@ -16,6 +16,7 @@ const sitemapIndexExists = existsSync(path.join(rootDir, 'dist', 'sitemap-index.
 const sitemapExists = existsSync(path.join(rootDir, 'dist', 'sitemap-0.xml'));
 const sitemapStats = await inspectSitemaps();
 const seoHealth = buildSeoHealth(parsedPages);
+const crawlStats = await inspectBuiltHtml();
 const monetizationStats = await inspectMonetization();
 const analyticsStats = await inspectAnalytics();
 
@@ -74,6 +75,16 @@ print('category_distribution categories', String(Object.keys(seoHealth.category_
 print('pages_without_related_links', String(seoHealth.pages_without_related_links.length));
 print('pages_without_faq', String(seoHealth.pages_without_faq.length));
 print('pages_without_structured_data', String(seoHealth.pages_without_structured_data.length));
+print('average_links_per_built_page', String(crawlStats.averageLinksPerPage));
+print('orphan_error_pages', String(crawlStats.orphanErrorPages.length));
+print('homepage_has_website_schema', crawlStats.homepageHasWebsiteSchema ? 'yes' : 'no');
+print('category_pages_with_collection_schema', String(crawlStats.categoryPagesWithCollectionSchema));
+print('pages_with_evidence_section', String(crawlStats.pagesWithEvidenceSection));
+print('pages_with_raw_intent_score', String(crawlStats.pagesWithRawIntentScore));
+print('category_intro_coverage', `${crawlStats.categoryPagesWithIntro}/${crawlStats.categoryPages}`);
+print('faq_unique_question_ratio', String(crawlStats.faqUniqueQuestionRatio));
+print('error_page_relevant_link_density', String(crawlStats.errorPageRelevantLinkDensity));
+print('schema_counts', JSON.stringify(crawlStats.schemaCounts));
 
 console.log('\nRecent pages by effective updated timestamp:');
 for (const page of seoHealth.timestamp_health.recent_pages_by_updated_at.slice(0, 5)) {
@@ -266,6 +277,117 @@ async function inspectMonetization() {
     sampleErrorPage,
     sampleErrorHasAdSense: Boolean(sampleErrorPath && existsSync(sampleErrorPath) && readFileSync(sampleErrorPath, 'utf8').includes(adsScriptNeedle)),
   };
+}
+
+async function inspectBuiltHtml() {
+  if (!distExists) {
+    return {
+      averageLinksPerPage: 0,
+      orphanErrorPages: errorFiles.map((file) => `/errors/${path.basename(file, '.md')}/`),
+      homepageHasWebsiteSchema: false,
+      categoryPagesWithCollectionSchema: 0,
+      pagesWithEvidenceSection: 0,
+      pagesWithRawIntentScore: 0,
+      categoryPagesWithIntro: 0,
+      categoryPages: 0,
+      faqUniqueQuestionRatio: 0,
+    };
+  }
+
+  const htmlFiles = await listHtmlFiles(path.join(rootDir, 'dist'));
+  const inbound = new Map();
+  let totalLinks = 0;
+  let homepageHasWebsiteSchema = false;
+  let categoryPagesWithCollectionSchema = 0;
+  let pagesWithEvidenceSection = 0;
+  let pagesWithRawIntentScore = 0;
+  let categoryPagesWithIntro = 0;
+  let categoryPages = 0;
+  let errorPageRelevantLinks = 0;
+  let errorPageCount = 0;
+  const schemaCounts = {};
+  const faqQuestions = [];
+
+  for (const filePath of htmlFiles) {
+    const raw = await readFile(filePath, 'utf8');
+    const route = htmlRoute(filePath);
+    const links = [...raw.matchAll(/<a\s+[^>]*href="([^"]+)"/g)]
+      .map((match) => match[1])
+      .filter((href) => href.startsWith('/') && !href.startsWith('//') && !href.includes('#'));
+    totalLinks += links.length;
+
+    for (const href of links) {
+      const normalized = normalizeRoute(href);
+      inbound.set(normalized, (inbound.get(normalized) ?? 0) + 1);
+    }
+
+    if (route === '/' && raw.includes('"@type":"WebSite"')) homepageHasWebsiteSchema = true;
+    if (route.startsWith('/categories/') && raw.includes('"@type":"CollectionPage"')) categoryPagesWithCollectionSchema += 1;
+    if (route.startsWith('/categories/') && !route.includes('/page/')) {
+      categoryPages += 1;
+      if (raw.includes('Troubleshooting overview') && raw.includes('Common causes')) categoryPagesWithIntro += 1;
+    }
+    if (route.startsWith('/errors/') && raw.includes('Evidence and references')) pagesWithEvidenceSection += 1;
+    if (route.startsWith('/errors/')) {
+      errorPageCount += 1;
+      errorPageRelevantLinks += links.filter((href) => href.startsWith('/errors/') || href.startsWith('/categories/')).length;
+    }
+    if (raw.includes('Intent score')) pagesWithRawIntentScore += 1;
+    for (const match of raw.matchAll(/"@type":"([^"]+)"/g)) {
+      schemaCounts[match[1]] = (schemaCounts[match[1]] ?? 0) + 1;
+    }
+
+    for (const match of raw.matchAll(/<h3[^>]*>(.*?)<\/h3>/g)) {
+      const question = match[1].replace(/<[^>]+>/g, '').trim();
+      if (question.endsWith('?')) faqQuestions.push(question);
+    }
+  }
+
+  const expectedErrorRoutes = errorFiles.map((file) => `/errors/${path.basename(file, '.md')}/`);
+  const orphanErrorPages = expectedErrorRoutes.filter((route) => (inbound.get(route) ?? 0) === 0);
+  const uniqueFaq = new Set(faqQuestions);
+
+  return {
+    averageLinksPerPage: htmlFiles.length ? Number((totalLinks / htmlFiles.length).toFixed(2)) : 0,
+    orphanErrorPages,
+    homepageHasWebsiteSchema,
+    categoryPagesWithCollectionSchema,
+    pagesWithEvidenceSection,
+    pagesWithRawIntentScore,
+    categoryPagesWithIntro,
+    categoryPages,
+    faqUniqueQuestionRatio: faqQuestions.length ? Number((uniqueFaq.size / faqQuestions.length).toFixed(2)) : 0,
+    errorPageRelevantLinkDensity: errorPageCount ? Number((errorPageRelevantLinks / errorPageCount).toFixed(2)) : 0,
+    schemaCounts,
+  };
+}
+
+async function listHtmlFiles(directory) {
+  const entries = await readdir(directory, { withFileTypes: true });
+  const files = [];
+
+  for (const entry of entries) {
+    const fullPath = path.join(directory, entry.name);
+    if (entry.isDirectory()) {
+      files.push(...(await listHtmlFiles(fullPath)));
+    } else if (entry.name.endsWith('.html')) {
+      files.push(fullPath);
+    }
+  }
+
+  return files;
+}
+
+function htmlRoute(filePath) {
+  const relative = path.relative(path.join(rootDir, 'dist'), filePath);
+  if (relative === 'index.html') return '/';
+  return `/${relative.replace(/\/index\.html$/, '/').replace(/\.html$/, '/')}`;
+}
+
+function normalizeRoute(href) {
+  const clean = href.split('?')[0].replace(/#.*$/, '');
+  if (clean === '') return '/';
+  return clean.endsWith('/') ? clean : `${clean}/`;
 }
 
 async function inspectAnalytics() {

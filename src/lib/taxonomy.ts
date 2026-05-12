@@ -3,6 +3,7 @@ import { parsePageTimestamp, sortByUpdatedTimestamp } from './dates';
 
 type ErrorEntry = CollectionEntry<'errors'>;
 export const DEFAULT_PAGE_SIZE = 20;
+export const ARCHIVE_PAGE_SIZE = 40;
 
 const categoryDescriptions: Record<string, string> = {
   'AI Coding Tools':
@@ -193,6 +194,31 @@ export function getTrendingEntries(entries: ErrorEntry[], limit = 12) {
     .slice(0, limit);
 }
 
+export function getEntriesBySearchSignals(entries: ErrorEntry[], signals: string[], limit = 12) {
+  const normalizedSignals = signals.map((signal) => signal.toLowerCase());
+
+  return [...entries]
+    .map((entry) => {
+      const haystack = `${entry.data.title} ${entry.data.description} ${entry.data.error_signature} ${entry.data.technology} ${entry.data.category}`
+        .toLowerCase();
+      const score = normalizedSignals.reduce((sum, signal) => sum + (haystack.includes(signal) ? 10 : 0), 0);
+      return { entry, score: score + lightweightIntentScore(entry) };
+    })
+    .filter((item) => item.score > 0)
+    .sort((a, b) => b.score - a.score || a.entry.data.title.localeCompare(b.entry.data.title))
+    .slice(0, limit)
+    .map((item) => item.entry);
+}
+
+export function getEntriesByCategories(entries: ErrorEntry[], labels: string[], limit = 12) {
+  const targets = new Set(labels);
+
+  return getTrendingEntries(
+    entries.filter((entry) => targets.has(categoryLabelFor(entry)) || targets.has(entry.data.technology)),
+    limit
+  );
+}
+
 export function paginateEntries(entries: ErrorEntry[], page: number, pageSize = DEFAULT_PAGE_SIZE) {
   const safePage = Math.max(1, page);
   const totalItems = entries.length;
@@ -233,7 +259,7 @@ export function getRelatedCategoryGroups(
     .map((item) => item.group);
 }
 
-export function findRelatedEntries(entry: ErrorEntry, allEntries: ErrorEntry[], limit = 4) {
+export function findRelatedEntries(entry: ErrorEntry, allEntries: ErrorEntry[], limit = 12) {
   const currentSlug = entrySlug(entry);
   const explicitRelated = entry.data.related_errors ?? [];
   const matches: ErrorEntry[] = [];
@@ -315,6 +341,8 @@ function relatedScore(entry: ErrorEntry, candidate: ErrorEntry) {
   const sameCategory = categoryLabelFor(candidate) === categoryLabelFor(entry);
   const sameRawCategory = candidate.data.category === entry.data.category;
   const sameTechnology = candidate.data.technology === entry.data.technology;
+  const sourceText = searchableText(entry);
+  const candidateText = searchableText(candidate);
 
   if (sameCategory) {
     score += 60;
@@ -325,7 +353,13 @@ function relatedScore(entry: ErrorEntry, candidate: ErrorEntry) {
   }
 
   if (sameTechnology) {
-    score += 10;
+    score += 35;
+  }
+
+  for (const family of issueFamilies) {
+    if (family.match(sourceText) && family.match(candidateText)) {
+      score += family.weight;
+    }
   }
 
   const sourceTokens = buildSignatureTokens(entry);
@@ -336,6 +370,137 @@ function relatedScore(entry: ErrorEntry, candidate: ErrorEntry) {
 
   return score;
 }
+
+export function buildRelatedClusters(entry: ErrorEntry, allEntries: ErrorEntry[]) {
+  const currentSlug = entrySlug(entry);
+  const candidates = allEntries.filter((candidate) => entrySlug(candidate) !== currentSlug);
+  const sourceText = searchableText(entry);
+  const clusters = [
+    {
+      heading: `More ${entry.data.technology} failures`,
+      entries: candidates.filter((candidate) => candidate.data.technology === entry.data.technology),
+    },
+    {
+      heading: `More ${categoryLabelFor(entry)} troubleshooting`,
+      entries: candidates.filter((candidate) => categoryLabelFor(candidate) === categoryLabelFor(entry)),
+    },
+    ...issueFamilies
+      .filter((family) => family.match(sourceText))
+      .map((family) => ({
+        heading: family.heading(entry),
+        entries: candidates.filter((candidate) => family.match(searchableText(candidate))),
+      })),
+  ];
+
+  const used = new Set<string>();
+
+  return clusters
+    .map((cluster) => ({
+      heading: cluster.heading,
+      entries: [...cluster.entries]
+        .map((candidate) => ({ candidate, score: relatedScore(entry, candidate) }))
+        .filter((item) => item.score > 0)
+        .sort((a, b) => b.score - a.score || a.candidate.data.title.localeCompare(b.candidate.data.title))
+        .map((item) => item.candidate)
+        .filter((candidate) => {
+          const slug = entrySlug(candidate);
+          if (used.has(slug)) return false;
+          used.add(slug);
+          return true;
+        })
+        .slice(0, 4),
+    }))
+    .filter((cluster) => cluster.entries.length > 0)
+    .slice(0, 3);
+}
+
+export function referenceLinksFor(entry: ErrorEntry) {
+  const label = categoryLabelFor(entry);
+  const technology = entry.data.technology;
+  const links = new Map<string, string>();
+
+  const add = (name: string, url: string) => links.set(name, url);
+
+  if (label === 'Docker' || /docker/i.test(technology)) {
+    add('Docker troubleshooting documentation', 'https://docs.docker.com/engine/daemon/troubleshoot/');
+  }
+  if (label === 'OpenAI API' || /openai/i.test(technology)) {
+    add('OpenAI API error codes', 'https://platform.openai.com/docs/guides/error-codes');
+  }
+  if (label === 'Anthropic API' || /anthropic/i.test(technology)) {
+    add('Anthropic API errors', 'https://docs.anthropic.com/en/api/errors');
+  }
+  if (label === 'GitHub Actions' || /github actions/i.test(technology)) {
+    add('GitHub Actions workflow troubleshooting', 'https://docs.github.com/en/actions/monitoring-and-troubleshooting-workflows');
+  }
+  if (label === 'npm' || /npm/i.test(technology)) {
+    add('npm CLI troubleshooting', 'https://docs.npmjs.com/common-errors');
+  }
+  if (label === 'Python' || /python|pip/i.test(technology)) {
+    add('pip user guide', 'https://pip.pypa.io/en/stable/user_guide/');
+  }
+  if (label === 'Cloudflare' || /cloudflare/i.test(technology)) {
+    add('Cloudflare support documentation', 'https://developers.cloudflare.com/support/');
+  }
+  if (label === 'Deployment' || /vercel/i.test(technology)) {
+    add('Vercel build troubleshooting', 'https://vercel.com/docs/deployments/troubleshoot-a-build');
+  }
+  if (label === 'Git' || /\bgit\b/i.test(technology)) {
+    add('Git documentation', 'https://git-scm.com/docs');
+  }
+
+  add('Dev Error DB category hub', categoryPathFor(label));
+
+  return [...links.entries()].map(([label, url]) => ({ label, url }));
+}
+
+function searchableText(entry: ErrorEntry) {
+  return `${entry.data.title} ${entry.data.description} ${entry.data.error_signature} ${entry.data.category} ${entry.data.technology} ${entry.data.common_causes.join(' ')}`
+    .toLowerCase();
+}
+
+const issueFamilies = [
+  {
+    heading: () => 'Similar authentication errors',
+    weight: 42,
+    match: (text: string) => /auth|unauthorized|401|api key|token|login|credential/.test(text),
+  },
+  {
+    heading: () => 'Related deployment failures',
+    weight: 40,
+    match: (text: string) => /deploy|build failed|vercel|github actions|ci|workflow|release/.test(text),
+  },
+  {
+    heading: () => 'More Docker daemon issues',
+    weight: 38,
+    match: (text: string) => /docker|daemon|compose|container|port|volume/.test(text),
+  },
+  {
+    heading: () => 'More OpenAI API failures',
+    weight: 38,
+    match: (text: string) => /openai|model not found|rate limit|quota|context length|api error/.test(text),
+  },
+  {
+    heading: () => 'Similar timeout and connection errors',
+    weight: 34,
+    match: (text: string) => /timeout|connection|econnreset|connection refused|network|522|503|525/.test(text),
+  },
+  {
+    heading: () => 'Related permission denied fixes',
+    weight: 34,
+    match: (text: string) => /permission denied|403|publickey|access denied|forbidden/.test(text),
+  },
+  {
+    heading: () => 'Similar quota and rate limit errors',
+    weight: 34,
+    match: (text: string) => /rate limit|quota|429|budget|usage limit|too many requests/.test(text),
+  },
+  {
+    heading: () => 'Related model routing errors',
+    weight: 30,
+    match: (text: string) => /model|provider|litellm|ollama|openrouter|anthropic|claude/.test(text),
+  },
+];
 
 function buildSignatureTokens(entry: ErrorEntry) {
   return new Set(

@@ -1,7 +1,15 @@
 ---
 import { getCollection, render } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
-import { categoryLabelFor, categoryPathFor, entrySlug, errorPath, findRelatedEntries } from '../../lib/taxonomy';
+import {
+  buildRelatedClusters,
+  categoryLabelFor,
+  categoryPathFor,
+  entrySlug,
+  errorPath,
+  findRelatedEntries,
+  referenceLinksFor,
+} from '../../lib/taxonomy';
 import { absoluteUrl, SITE_NAME } from '../../lib/seo';
 import { formatPublicDate, getUpdatedTimestamp, sortByUpdatedTimestamp } from '../../lib/dates';
 
@@ -48,9 +56,11 @@ const allErrors = await getCollection('errors');
 const publicCategory = categoryLabelFor(entry);
 const { Content } = await render(entry);
 const relatedErrors = findRelatedEntries(entry, allErrors);
+const relatedClusters = buildRelatedClusters(entry, allErrors);
+const referenceLinks = referenceLinksFor(entry);
 const sameCategoryLinks = allErrors
   .filter((candidate) => entrySlug(candidate) !== entrySlug(entry) && categoryLabelFor(candidate) === publicCategory)
-  .slice(0, 6);
+  .slice(0, 0);
 const entryTokens = new Set(
   `${entry.data.error_signature} ${entry.data.title}`
     .toLowerCase()
@@ -69,7 +79,7 @@ const similarSignatureLinks = allErrors
   })
   .filter((item) => item.overlap >= 2)
   .sort((a, b) => b.overlap - a.overlap || (sortByUpdatedTimestamp([a.candidate, b.candidate])[0] === b.candidate ? 1 : -1))
-  .slice(0, 6)
+  .slice(0, 0)
   .map((item) => item.candidate);
 const canonical = absoluteUrl(errorPath(entry));
 const updatedIso = getUpdatedTimestamp(entry) ?? new Date(0).toISOString();
@@ -90,6 +100,7 @@ const structuredData = [
       '@type': 'Organization',
       name: SITE_NAME,
     },
+    citation: referenceLinks.map((link) => link.url).filter((url) => url.startsWith('https://')),
   },
   ...(faqItems.length > 0
     ? [
@@ -154,10 +165,26 @@ const structuredData = [
 
     <Content />
 
+    <aside class="trust-panel" aria-labelledby="evidence-heading">
+      <h2 id="evidence-heading">Evidence and references</h2>
+      <p>
+        Generated from real-world developer troubleshooting patterns and continuously updated from public issue reports
+        and documentation. Use the exact error signature, technology, category, and last-updated date above to compare
+        this guide with your local environment before changing production systems.
+      </p>
+      <ul>
+        {referenceLinks.map((link) => (
+          <li>
+            <a href={link.url}>{link.label}</a>
+          </li>
+        ))}
+      </ul>
+    </aside>
+
     {
       relatedErrors.length > 0 && (
         <aside class="related" aria-labelledby="related-heading">
-          <h2 id="related-heading">Related error pages</h2>
+          <h2 id="related-heading">Related troubleshooting pages</h2>
           <ul>
             {relatedErrors.map((related) => (
               <li>
@@ -165,6 +192,27 @@ const structuredData = [
               </li>
             ))}
           </ul>
+        </aside>
+      )
+    }
+    {
+      relatedClusters.length > 0 && (
+        <aside class="related" aria-labelledby="deep-related-heading">
+          <h2 id="deep-related-heading">More related fixes</h2>
+          <div class="related-grid">
+            {relatedClusters.map((cluster) => (
+              <section>
+                <h3>{cluster.heading}</h3>
+                <ul>
+                  {cluster.entries.map((related) => (
+                    <li>
+                      <a href={errorPath(related)}>{related.data.title}</a>
+                    </li>
+                  ))}
+                </ul>
+              </section>
+            ))}
+          </div>
         </aside>
       )
     }

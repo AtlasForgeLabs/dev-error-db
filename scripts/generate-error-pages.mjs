@@ -117,16 +117,17 @@ ${sections.join('\n\n')}
 
 function buildSections(seed, profile) {
   const variants = [
-    ['meaning', 'why', 'causes', 'quick', 'commands', 'platform', 'realWorld', 'troubleshooting', 'prevention', 'related', 'faq'],
-    ['meaning', 'causes', 'commands', 'quick', 'troubleshooting', 'platform', 'realWorld', 'prevention', 'related', 'faq'],
-    ['meaning', 'why', 'causes', 'quick', 'commands', 'realWorld', 'troubleshooting', 'platform', 'prevention', 'related', 'faq'],
+    ['meaning', 'how', 'why', 'causes', 'quick', 'commands', 'platform', 'realWorld', 'troubleshooting', 'prevention', 'related', 'faq'],
+    ['meaning', 'causes', 'how', 'commands', 'quick', 'troubleshooting', 'platform', 'realWorld', 'prevention', 'related', 'faq'],
+    ['meaning', 'why', 'causes', 'quick', 'commands', 'realWorld', 'troubleshooting', 'platform', 'how', 'prevention', 'related', 'faq'],
   ];
   const order = variants[hash(seed.slug) % variants.length];
   const registry = {
     meaning: () => section('What this error means', profile.meaning(seed)),
+    how: () => section(`How to fix ${seed.error_signature}`, numberedList(profile.quickFixes(seed).slice(0, 4))),
     why: () => section('Why this happens', paragraphList(profile.why(seed))),
     causes: () => section('Common causes', bulletList(seed.common_causes)),
-    quick: () => section('Quick fixes', numberedList(profile.quickFixes(seed))),
+    quick: () => section('Quick fix', numberedList(profile.quickFixes(seed))),
     commands: () => commandSection(profile.commands(seed)),
     platform: () => platformSection(profile.platform(seed)),
     realWorld: () => section('Real-world fixes', bulletList(profile.realWorld(seed))),

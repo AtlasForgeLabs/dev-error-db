@@ -154,7 +154,7 @@ export async function validateMarkdownPages(options = {}) {
     const errors = [];
     const warnings = [];
     const faqCount = (body.match(/^###\s+/gm) ?? []).length;
-    const quickFixCount = (body.match(/^##\s+Quick fixes\b/im) ?? []).length;
+    const quickFixCount = (body.match(/^##\s+Quick fixes?\b/im) ?? []).length;
 
     if (body.length < Number(policy.min_markdown_body_chars ?? 0)) {
       errors.push(`low content length: ${body.length} chars`);

@@ -4,12 +4,14 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import {
   categoryPathFor,
   entrySlug,
+  getEntriesByCategories,
+  getEntriesBySearchSignals,
   getCategoryGroups,
   getTrendingEntries,
-  lightweightIntentScore,
   sortEntriesByUpdated,
 } from '../lib/taxonomy';
 import { formatPublicDate, getUpdatedTimestamp } from '../lib/dates';
+import { SITE_URL } from '../lib/seo';
 
 const errors = await getCollection('errors');
 const categoryGroups = getCategoryGroups(errors);
@@ -17,18 +19,54 @@ const sortedByUpdated = sortEntriesByUpdated(errors);
 const latestPages = sortedByUpdated.slice(0, 20);
 const recentlyUpdatedPages = sortedByUpdated.slice(0, 10);
 const trendingPages = getTrendingEntries(errors, 12);
+const mostSearchedFixes = getEntriesBySearchSignals(errors, ['how to fix', 'failed', 'not found', 'permission denied', 'timeout', 'quota', 'rate limit'], 12);
+const apiFailures = getEntriesByCategories(errors, ['OpenAI API', 'Anthropic API', 'LiteLLM', 'Ollama'], 10);
+const deploymentFailures = getEntriesByCategories(errors, ['Deployment', 'GitHub Actions', 'Cloud Platforms', 'Cloudflare'], 10);
+const aiCodingErrors = getEntriesByCategories(errors, ['AI Coding Tools', 'GitHub Copilot', 'Cursor'], 10);
 const topCategories = [...categoryGroups].sort((a, b) => b.entries.length - a.entries.length).slice(0, 12);
 const totalCategories = categoryGroups.length;
 const totalErrors = errors.length;
 const totalTechnologies = new Set(errors.map((entry) => entry.data.technology)).size;
+const structuredData = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    name: 'Dev Error DB',
+    url: SITE_URL,
+    description:
+      'Static troubleshooting hub for developer error messages, API failures, Docker issues, deployment errors, npm failures, Python errors, AI coding tools, and GitHub Actions.',
+    potentialAction: {
+      '@type': 'SearchAction',
+      target: `${SITE_URL}/errors/?q={search_term_string}`,
+      'query-input': 'required name=search_term_string',
+    },
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'ItemList',
+    name: 'Popular developer troubleshooting topics',
+    itemListElement: topCategories.map((group, index) => ({
+      '@type': 'ListItem',
+      position: index + 1,
+      name: group.label,
+      url: `${SITE_URL}${categoryPathFor(group.label)}`,
+    })),
+  },
+];
 ---
 
 <BaseLayout
   title="Dev Error DB"
-  description="Search concise troubleshooting pages for common developer error messages across npm, Docker, Python, Git, APIs, and more."
+  description="Find practical fixes for developer error messages across API errors, deployment failures, Docker, npm, Python, AI coding tools, and GitHub Actions."
+  structuredData={structuredData}
 >
   <section class="hero hero--compact">
-    <h1>Developer error search architecture for long-tail troubleshooting.</h1>
+    <p class="eyebrow">Developer troubleshooting hub</p>
+    <h1>Fix developer errors faster</h1>
+    <p>
+      Find concise troubleshooting guides for developer error fixes, API errors, deployment issues, Docker daemon failures,
+      npm install problems, Python environment errors, AI coding tools, and GitHub Actions failures.
+    </p>
   </section>
 
   <section class="stats-strip" aria-label="Site statistics">
@@ -46,8 +84,30 @@ const totalTechnologies = new Set(errors.map((entry) => entry.data.technology)).
     </article>
   </section>
 
+  <section class="intent-grid" aria-labelledby="why-developers-heading">
+    <h2 id="why-developers-heading">Why developers use Dev Error DB</h2>
+    <div class="feature-grid">
+      <article>
+        <h3>Fast error meaning</h3>
+        <p>Start with what the message usually means, then move into the quickest safe checks before deeper debugging.</p>
+      </article>
+      <article>
+        <h3>Practical fix paths</h3>
+        <p>Pages prioritize quick fixes, common causes, step-by-step troubleshooting, and prevention notes for real workflows.</p>
+      </article>
+      <article>
+        <h3>Crawlable topic depth</h3>
+        <p>Category hubs connect API errors, Docker issues, cloud platform problems, deployment failures, and AI coding assistant errors.</p>
+      </article>
+    </div>
+  </section>
+
   <section class="filters" aria-labelledby="top-categories-heading">
-    <h2 id="top-categories-heading">Top categories</h2>
+    <h2 id="top-categories-heading">Popular troubleshooting topics</h2>
+    <p>
+      Browse common developer error categories including API errors, deployment failures, Docker issues, AI coding tools,
+      cloud platform problems, npm, Python, GitHub Actions, SSL, Git, and DNS.
+    </p>
     <div class="category-grid">
       {
         topCategories.map((group) => (
@@ -61,15 +121,15 @@ const totalTechnologies = new Set(errors.map((entry) => entry.data.technology)).
   </section>
 
   <section class="topic-nav" aria-labelledby="topic-nav-heading">
-    <h2 id="topic-nav-heading">Topic cluster navigation</h2>
-    <p>Use category hubs for deep troubleshooting exploration and internal link discovery.</p>
+    <h2 id="topic-nav-heading">Common error categories</h2>
+    <p>Use these crawlable category hubs to move from a broad failure mode to specific error signatures and fixes.</p>
     <div class="tag-list">
       {categoryGroups.map((group) => <a href={categoryPathFor(group.label)}>{group.label}</a>)}
     </div>
   </section>
 
   <section id="trending" class="error-list" aria-labelledby="trending-heading">
-    <h2 id="trending-heading">Trending and high-intent pages</h2>
+    <h2 id="trending-heading">Recently trending developer errors</h2>
     <div class="cards">
       {
         trendingPages.map((entry) => (
@@ -77,7 +137,7 @@ const totalTechnologies = new Set(errors.map((entry) => entry.data.technology)).
             <div class="meta-row">
               <span>{entry.data.technology}</span>
               <span>{entry.data.category}</span>
-              <span>Intent score {lightweightIntentScore(entry)}</span>
+              <span>Updated {formatPublicDate(getUpdatedTimestamp(entry))}</span>
             </div>
             <h3>
               <a href={`/errors/${entrySlug(entry)}/`}>{entry.data.title}</a>
@@ -88,6 +148,38 @@ const totalTechnologies = new Set(errors.map((entry) => entry.data.technology)).
         ))
       }
     </div>
+  </section>
+
+  <section class="link-columns" aria-labelledby="most-searched-heading">
+    <h2 id="most-searched-heading">Most searched fixes</h2>
+    <ul>
+      {mostSearchedFixes.map((entry) => <li><a href={`/errors/${entrySlug(entry)}/`}>{entry.data.title}</a></li>)}
+    </ul>
+    <p><a href="/trending/">Browse the trending troubleshooting archive</a></p>
+  </section>
+
+  <section class="link-columns" aria-labelledby="api-failures-heading">
+    <h2 id="api-failures-heading">Common API failures</h2>
+    <p>Authentication failed, rate limit, quota exceeded, model not found, context length, timeout, and provider routing errors.</p>
+    <ul>
+      {apiFailures.map((entry) => <li><a href={`/errors/${entrySlug(entry)}/`}>{entry.data.title}</a></li>)}
+    </ul>
+  </section>
+
+  <section class="link-columns" aria-labelledby="deployment-heading">
+    <h2 id="deployment-heading">Deployment troubleshooting</h2>
+    <p>Vercel build failed, GitHub Actions failed, permission denied, missing modules, SSL handshake, DNS, and cloud origin failures.</p>
+    <ul>
+      {deploymentFailures.map((entry) => <li><a href={`/errors/${entrySlug(entry)}/`}>{entry.data.title}</a></li>)}
+    </ul>
+  </section>
+
+  <section class="link-columns" aria-labelledby="ai-coding-heading">
+    <h2 id="ai-coding-heading">AI coding assistant errors</h2>
+    <p>Claude Code, Cursor, GitHub Copilot, OpenRouter, Ollama, LiteLLM, and model-routing failures in coding workflows.</p>
+    <ul>
+      {aiCodingErrors.map((entry) => <li><a href={`/errors/${entrySlug(entry)}/`}>{entry.data.title}</a></li>)}
+    </ul>
   </section>
 
   <section class="error-list" aria-labelledby="latest-value-heading">
@@ -110,7 +202,7 @@ const totalTechnologies = new Set(errors.map((entry) => entry.data.technology)).
         ))
       }
     </div>
-    <p><a href="/errors/">Browse all error pages with pagination</a></p>
+    <p><a href="/errors/">Browse all error pages with pagination</a> or <a href="/latest/">open the latest troubleshooting archive</a>.</p>
   </section>
 
   <section class="error-list" aria-labelledby="recently-updated-heading">

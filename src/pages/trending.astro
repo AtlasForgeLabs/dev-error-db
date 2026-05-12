@@ -1,0 +1,51 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { ARCHIVE_PAGE_SIZE, entrySlug, getTrendingEntries } from '../lib/taxonomy';
+import { formatPublicDate, getUpdatedTimestamp } from '../lib/dates';
+import { SITE_URL } from '../lib/seo';
+
+const trendingErrors = getTrendingEntries(await getCollection('errors'), ARCHIVE_PAGE_SIZE);
+const structuredData = {
+  '@context': 'https://schema.org',
+  '@type': 'ItemList',
+  name: 'Trending developer errors',
+  itemListElement: trendingErrors.map((entry, index) => ({
+    '@type': 'ListItem',
+    position: index + 1,
+    name: entry.data.title,
+    url: `${SITE_URL}/errors/${entrySlug(entry)}/`,
+  })),
+};
+---
+
+<BaseLayout
+  title="Trending developer errors"
+  description="Trending troubleshooting pages for high-intent developer errors including API errors, deployment failures, authentication errors, Docker issues, quota problems, and model routing failures."
+  structuredData={structuredData}
+>
+  <section class="category-page">
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <a href="/">Home</a>
+      <span aria-hidden="true">/</span>
+      <span>Trending</span>
+    </nav>
+    <p class="eyebrow">Trending archive</p>
+    <h1>Trending developer errors</h1>
+    <p>High-intent troubleshooting pages selected from recency, failure language, and commercial developer search patterns.</p>
+    <div class="cards">
+      {trendingErrors.map((entry) => (
+        <article class="card">
+          <div class="meta-row">
+            <span>{entry.data.technology}</span>
+            <span>{entry.data.category}</span>
+            <span>Updated {formatPublicDate(getUpdatedTimestamp(entry))}</span>
+          </div>
+          <h2><a href={`/errors/${entrySlug(entry)}/`}>{entry.data.title}</a></h2>
+          <p>{entry.data.description}</p>
+          <code>{entry.data.error_signature}</code>
+        </article>
+      ))}
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,52 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { ARCHIVE_PAGE_SIZE, entrySlug, paginateEntries, sortEntriesByUpdated } from '../lib/taxonomy';
+import { formatPublicDate, getUpdatedTimestamp } from '../lib/dates';
+import { SITE_URL } from '../lib/seo';
+
+const allErrors = sortEntriesByUpdated(await getCollection('errors'));
+const pagination = paginateEntries(allErrors, 1, ARCHIVE_PAGE_SIZE);
+const structuredData = {
+  '@context': 'https://schema.org',
+  '@type': 'ItemList',
+  name: 'Latest developer troubleshooting pages',
+  itemListElement: pagination.pageItems.map((entry, index) => ({
+    '@type': 'ListItem',
+    position: index + 1,
+    name: entry.data.title,
+    url: `${SITE_URL}/errors/${entrySlug(entry)}/`,
+  })),
+};
+---
+
+<BaseLayout
+  title="Latest developer error fixes"
+  description="Latest Dev Error DB troubleshooting pages for developer error messages, API failures, deployment issues, Docker, npm, Python, AI coding tools, and GitHub Actions."
+  structuredData={structuredData}
+>
+  <section class="category-page">
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <a href="/">Home</a>
+      <span aria-hidden="true">/</span>
+      <span>Latest</span>
+    </nav>
+    <p class="eyebrow">Latest archive</p>
+    <h1>Latest developer error fixes</h1>
+    <p>Recently updated troubleshooting pages, kept as a crawlable archive so new and refreshed fixes stay easy to discover.</p>
+    <div class="cards">
+      {pagination.pageItems.map((entry) => (
+        <article class="card">
+          <div class="meta-row">
+            <span>{entry.data.technology}</span>
+            <span>{entry.data.category}</span>
+            <span>Updated {formatPublicDate(getUpdatedTimestamp(entry))}</span>
+          </div>
+          <h2><a href={`/errors/${entrySlug(entry)}/`}>{entry.data.title}</a></h2>
+          <p>{entry.data.description}</p>
+          <code>{entry.data.error_signature}</code>
+        </article>
+      ))}
+    </div>
+  </section>
+</BaseLayout>
