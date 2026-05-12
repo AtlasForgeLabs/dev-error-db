@@ -4248,5 +4248,119 @@
       "Claude Code performance regression on Windows",
       "Claude Code instruction following degradation"
     ]
+  },
+  {
+    "slug": "claude-code-claude-code-process-exited-with-code-127",
+    "title": "Claude Code Cowork process exited with code 127 on macOS Intel",
+    "description": "Fix Claude Code Cowork tasks failing immediately with exit code 127 Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Claude Code process exited with code 127",
+    "search_intent": "Fix Claude Code Cowork tasks failing immediately with exit code 127",
+    "common_causes": [
+      "Claude Max and Pro subscribers experience immediate Cowork task failures on macOS Intel with App Store Claude Desktop, blocking all AI-assisted coding workflows. The exit code 127 indicates a command-not-found error in the Claude Code binary launch path, making it impossible to use a paid service.",
+      "Official GitHub issue on anthropics/claude-code repo (May 2026). Every Cowork task in Claude Desktop fails immediately with 'Claude Code process exited with code 127' on macOS Intel with App Store sandboxed Claude Desktop and native CLI 2.1.139. Affects Pro plan subscribers."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Claude Code Desktop app fails to launch on macOS",
+      "Claude Code App Store sandbox permission denied",
+      "Claude Code native CLI path not found"
+    ]
+  },
+  {
+    "slug": "claude-code-claude-code-rate-limit-error-usage-below-allocated-quota",
+    "title": "Claude Code and Chat rate limit errors for Max plan subscribers with normal usage",
+    "description": "Fix unexpected Claude Code rate limit errors when usage is well below plan quota Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Claude Code rate limit error — usage below allocated quota",
+    "search_intent": "Fix unexpected Claude Code rate limit errors when usage is well below plan quota",
+    "common_causes": [
+      "Claude Max subscribers are being rate-limited despite usage counters showing well below their allocated quota. The enforcement logic misfires against actual usage, blocking both Cowork and Chat access unless users purchase additional tokens. This directly impacts paying customers' ability to use a premium service they're already subscribed to.",
+      "Official GitHub issue on anthropics/claude-code repo (May 2026). Max plan subscriber blocked from Cowork and Chat twice in two days despite usage well below allocated quota. References related issues #37856, #41788, #41212 describing identical pattern. In-app error reports did not resolve the issue."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "Claude Max plan rate limit bypassed",
+      "Anthropic usage counter not updating correctly",
+      "Claude Code quota enforcement bug"
+    ]
+  },
+  {
+    "slug": "claude-code-sessionstart-startup-hook-error-failed-with-non-blocking-status-code-bin-sh-claude-plugin-root-hooks-run-hook-cmd-no-such-file-or-directory",
+    "title": "Claude Code SessionStart hook fails due to single quotes blocking shell variable expansion",
+    "description": "Fix Claude Code hooks not running due to shell variable expansion failure in hooks.json Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "SessionStart:startup hook error Failed with non-blocking status code: /bin/sh: ${CLAUDE_PLUGIN_ROOT}/hooks/run-hook.cmd: No such file or directory",
+    "search_intent": "Fix Claude Code hooks not running due to shell variable expansion failure in hooks.json",
+    "common_causes": [
+      "Claude Code's hooks.json wraps hook commands in single quotes, which prevents /bin/sh from expanding ${CLAUDE_PLUGIN_ROOT} on macOS and Linux. This silently disables all hooks (session-start, pre-tool-scope-guard, record-activity, etc.) — a critical issue for developers relying on hook-based workflows for compliance, logging, or custom tool policies.",
+      "GitHub issue documenting that single quotes around ${CLAUDE_PLUGIN_ROOT} in hooks/hooks.json prevent shell variable expansion on macOS/Linux. All hooks (SessionStart, PreToolUse, PostToolUse, UserPromptSubmit, Stop, SubagentStop, PreCompact) silently fail to execute."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Claude Code hooks not triggering on macOS",
+      "Claude Code CLAUDE_PLUGIN_ROOT not set",
+      "Claude Code pre-tool-use hook error"
+    ]
+  },
+  {
+    "slug": "anthropic-api-claude-api-400-bad-request-service-tier-rewritten-to-deprecated-speed-field",
+    "title": "Portkey Gateway rewrites service_tier to deprecated Anthropic 'speed' field causing 400 errors",
+    "description": "Fix Anthropic API 400 error when using service_tier through Portkey gateway Includes evidence for Anthropic API troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Anthropic API",
+    "error_signature": "Claude API 400 Bad Request — service_tier rewritten to deprecated 'speed' field",
+    "search_intent": "Fix Anthropic API 400 error when using service_tier through Portkey gateway",
+    "common_causes": [
+      "Developers using Portkey as an LLM gateway to route requests to the Anthropic API receive HTTP 400 errors because Portkey incorrectly translates OpenAI-style service_tier to Anthropic's deprecated 'speed' field. This makes Priority Tier (fast mode) completely unreachable through the gateway, blocking production workloads that depend on reduced latency.",
+      "Official Portkey-AI/gateway GitHub issue. Portkey gateway translates OpenAI-style service_tier to Anthropic's deprecated 'speed' field per docs-core #869, but Anthropic's Messages API no longer accepts 'speed' — it uses service_tier natively. Result: any request with service_tier set returns HTTP 400. Priority Tier unreachable through gateway."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Anthropic API 400 error through proxy",
+      "Portkey gateway Anthropic routing error",
+      "Anthropic service_tier not working with OpenAI SDK"
+    ]
+  },
+  {
+    "slug": "litellm-litellm-badrequesterror-llm-provider-not-provided-pass-in-the-llm-provider-you-are-trying-to-call",
+    "title": "LiteLLM BadRequestError when using llm_as_a_judge guardrail with self-hosted vLLM model",
+    "description": "Fix LiteLLM llm_as_a_judge guardrail failing with BadRequestError when using vLLM self-hosted model Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "litellm.BadRequestError: LLM Provider NOT provided. Pass in the LLM provider you are trying to call.",
+    "search_intent": "Fix LiteLLM llm_as_a_judge guardrail failing with BadRequestError when using vLLM self-hosted model",
+    "common_causes": [
+      "Developers running self-hosted LLMs via vLLM through LiteLLM proxy encounter a BadRequestError when using the llm_as_a_judge guardrail feature. The model works fine for normal queries but fails specifically in guardrail evaluation, blocking AI safety/quality pipelines in production Kubernetes deployments.",
+      "Official BerriAI/litellm GitHub issue (v1.83.14). Self-hosted vLLM model (google/gemma-4-31B-it) works in LiteLLM playground but fails with litellm.BadRequestError in llm_as_a_judge guardrail. Both vllm and OpenAI compatible endpoint providers affected. Kubernetes helm chart deployment."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "LiteLLM guardrail vLLM provider error",
+      "LiteLLM llm_as_a_judge fails with custom endpoint",
+      "LiteLLM provider not detected for self-hosted model"
+    ]
+  },
+  {
+    "slug": "claude-code-claude-code-input-invisible-cursor-frozen-for-up-to-20s-after-compact",
+    "title": "Claude Code TUI input frozen for 20 seconds after /compact command completes",
+    "description": "Fix Claude Code terminal input freezing after running /compact command Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Claude Code input invisible / cursor frozen for up to 20s after /compact",
+    "search_intent": "Fix Claude Code terminal input freezing after running /compact command",
+    "common_causes": [
+      "After Claude Code's /compact command finishes, the TUI input appears responsive but typed characters are not rendered for up to 20 seconds. Keystrokes are buffered but not displayed until the TUI unblocks, then the entire buffer appears at once. This disrupts the interactive coding experience for developers who rely on /compact to manage context window size.",
+      "Official GitHub issue on anthropics/claude-code repo (May 2026). Immediately after /compact finishes, input prompt appears responsive but typing produces no visible cursor movement or echoed characters for ~20s. Keystrokes buffered, not lost — entire typed buffer appears at once when TUI unblocks. Distinct from context-full lag (issue #18943); stall is tied to post-compact transition."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Claude Code /compact command causes lag",
+      "Claude Code TUI unresponsive after context compaction",
+      "Claude Code terminal input not displaying"
+    ]
   }
 ]
