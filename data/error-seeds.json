@@ -1925,5 +1925,137 @@
       "Claude Code SSE stream stopped",
       "Claude Opus model hanging issue"
     ]
+  },
+  {
+    "slug": "ollama-api-error-model-name-400-bad-request-bedrock-rejects-ollama-model-name",
+    "title": "Ollama Launch Claude Fails with API Error 400 When CLAUDE_CODE_USE_BEDROCK Is Set",
+    "description": "Fix ollama launch claude 400 error when CLAUDE_CODE_USE_BEDROCK is enabled in settings Includes evidence for Ollama troubleshooting demand.",
+    "category": "Ollama",
+    "technology": "Ollama",
+    "error_signature": "API Error (model_name): 400 Bad Request — Bedrock rejects Ollama model name",
+    "search_intent": "Fix ollama launch claude 400 error when CLAUDE_CODE_USE_BEDROCK is enabled in settings",
+    "common_causes": [
+      "When developers run `ollama launch claude` to use a local Ollama model with Claude Code, but have `CLAUDE_CODE_USE_BEDROCK=1` set in `~/.claude/settings.json`, Claude Code routes requests to AWS Bedrock instead of Ollama. Bedrock rejects the local model name (e.g., 'gemma4') with a 400 error. This is a subtle configuration conflict that's hard to diagnose without knowing both tools' settings interactions.",
+      "Active GitHub issue on ollama/ollama (May 2026). `ollama launch claude` sets the model name to the pulled local model (e.g., gemma4) but does not override backend routing. When CLAUDE_CODE_USE_BEDROCK=1 is in Claude Code settings.json, requests route to AWS Bedrock which rejects the model name with 'API Error (gemma4): 400'."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Claude Code model routing not respecting local provider",
+      "AWS Bedrock model name not found error",
+      "CLAUDE_CODE_USE_BEDROCK environment variable conflicts"
+    ]
+  },
+  {
+    "slug": "ollama-sigsegv-addr-0x0-during-vae-decode-after-diffusion-steps",
+    "title": "Ollama SIGSEGV Crash in MLX VAE Decode on M4 Pro macOS",
+    "description": "Fix Ollama SIGSEGV crash during image generation VAE decode on Apple Silicon Includes evidence for Ollama troubleshooting demand.",
+    "category": "Ollama",
+    "technology": "Ollama",
+    "error_signature": "SIGSEGV addr=0x0 during VAE decode after diffusion steps",
+    "search_intent": "Fix Ollama SIGSEGV crash during image generation VAE decode on Apple Silicon",
+    "common_causes": [
+      "Ollama users running diffusion models on M-series Macs experience reproducible SIGSEGV crashes after all diffusion steps complete, during the VAE decode phase. The error message is opaque ('signal: segmentation fault') and developers need specific workarounds for MLX backend on macOS.",
+      "Active GitHub issue on ollama/ollama (May 2026). x/z-image-turbo model completes 9/9 diffusion steps then crashes with SIGSEGV addr=0x0 during VAE decode on M4 Pro 64GB macOS 26.4.1 with Ollama 0.23.2. Logs show mlx runner subprocess termination after the crash."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Ollama MLX backend out of memory on Apple Silicon",
+      "Ollama diffusion model crash exit code 139"
+    ]
+  },
+  {
+    "slug": "openai-api-unknown-beta-requested-realtime-invalid-beta-error-on-openai-realtime-api",
+    "title": "OpenAI Realtime API invalid_beta Error After OpenAI-Beta Header Deprecation",
+    "description": "Fix OpenAI Realtime API invalid_beta error after OpenAI-Beta realtime header deprecation Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "Unknown beta requested: 'realtime' — invalid_beta error on OpenAI Realtime API",
+    "search_intent": "Fix OpenAI Realtime API invalid_beta error after OpenAI-Beta realtime header deprecation",
+    "common_causes": [
+      "OpenAI deprecated the `OpenAI-Beta: realtime=v1` header on the live Realtime API. Applications still sending this header receive `{'error': {'code': 'invalid_beta', 'message': \"Unknown beta requested: 'realtime'.\"}}` followed by a TimeoutError waiting for 'session.created'. This breaks CI/CD pipelines and production integrations that haven't been updated.",
+      "LiteLLM PR #27690 (May 2026) documents the OpenAI API deprecation. realtime_translation_testing CircleCI job fails on every PR with: {\"error\": {\"code\": \"invalid_beta\", \"message\": \"Unknown beta requested: 'realtime'.\"}} followed by TimeoutError: Timed out waiting for 'session.created'. OpenAI deprecated the OpenAI-Beta: realtime=v1 header."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "OpenAI API deprecated header error",
+      "OpenAI Realtime API session.created timeout",
+      "OpenAI-Beta header removed 2026"
+    ]
+  },
+  {
+    "slug": "ollama-error-500-internal-server-error-llama-runner-process-has-terminated-signal-arrived-during-cgo-execution",
+    "title": "Ollama Qwen2.5 14B Models Crash llama_runner with Signal Error on NVIDIA GPU",
+    "description": "Fix Ollama llama runner crash with signal arrived during cgo execution on NVIDIA GPU Includes evidence for Ollama troubleshooting demand.",
+    "category": "Ollama",
+    "technology": "Ollama",
+    "error_signature": "Error: 500 Internal Server Error: llama runner process has terminated: signal arrived during cgo execution",
+    "search_intent": "Fix Ollama llama runner crash with signal arrived during cgo execution on NVIDIA GPU",
+    "common_causes": [
+      "Specific NVIDIA GPU models (e.g., GTX TITAN X with CUDA 13) experience llama_runner crashes when loading Qwen2.5 14B models in Ollama, while smaller 7B models work fine. The error 'signal arrived during cgo execution' provides little diagnostic information, and the GPU memory never fully loads (only ~1 GB vs expected 12 GB), making this difficult to troubleshoot.",
+      "Active GitHub issue on ollama/ollama (May 2026). Qwen2.5 14B models crash llama_runner with 'Error: 500 Internal Server Error: llama runner process has terminated: signal arrived during cgo execution' on NVIDIA GTX TITAN X with CUDA 13 driver. GPU memory only reaches ~1 GB before crash. 7B models work fine on same hardware."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Ollama CUDA out of memory error on NVIDIA GPU",
+      "Ollama llama_runner cgo execution signal crash",
+      "Ollama model size too large for GPU VRAM"
+    ]
+  },
+  {
+    "slug": "litellm-openai-ratelimiterror-with-large-pydantic-error-payload-12-mb-spend-log-entry",
+    "title": "LiteLLM Spend Logs Overflow from Verbose RateLimitError Error Payloads",
+    "description": "Fix LiteLLM spend logs too large from verbose OpenAI RateLimitError payloads Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "OpenAI RateLimitError with large pydantic error payload (>12 MB spend log entry)",
+    "search_intent": "Fix LiteLLM spend logs too large from verbose OpenAI RateLimitError payloads",
+    "common_causes": [
+      "When OpenAI returns RateLimitError responses containing large pydantic validation error arrays (178+ errors with full 'input'/'messages' values), LiteLLM stores the entire exception verbatim in spend logs via str(original_exception). This produces individual log rows exceeding 12 MB, causing database bloat and performance issues for teams using LiteLLM as an API gateway.",
+      "LiteLLM PR #27689 (May 2026). Provider validation errors (e.g., OpenAI RateLimitError carrying 178 pydantic errors each with their own 'input' array) were stored verbatim in LiteLLM_SpendLogs.metadata.error_information.error_message via str(original_exception), producing rows >12 MB."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "LiteLLM spend logs database too large",
+      "OpenAI RateLimitError verbose response",
+      "LiteLLM error_information truncation"
+    ]
+  },
+  {
+    "slug": "docker-anthropic-api-key-is-not-set-web-container-missing-environment-variable-in-docker-compose",
+    "title": "Docker Compose ANTHROPIC_API_KEY Not Forwarded to Web Container",
+    "description": "Fix ANTHROPIC_API_KEY not set error in Docker Compose web container Includes evidence for Docker troubleshooting demand.",
+    "category": "Docker",
+    "technology": "Docker",
+    "error_signature": "ANTHROPIC_API_KEY is not set — web container missing environment variable in Docker Compose",
+    "search_intent": "Fix ANTHROPIC_API_KEY not set error in Docker Compose web container",
+    "common_causes": [
+      "Developers running LLM-integrated applications in Docker Compose find that the web container fails with 'ANTHROPIC_API_KEY is not set' even though the host has the variable configured. The docker-compose.yml environment block doesn't forward ANTHROPIC_API_KEY from the host, causing all LLM calls (prep brief, clinical analysis, protocol generation) to fail silently.",
+      "PR #199 (May 2026) fixes a Docker Compose issue where the web service's environment block didn't forward ANTHROPIC_API_KEY from the host. The web container had no Anthropic key, causing all LLM calls to fail with 'ANTHROPIC_API_KEY is not set'. Surfaced during May 11 smoke test."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Docker environment variable not passed to container",
+      "Docker Compose secrets not forwarded",
+      "Container missing API key environment variable"
+    ]
+  },
+  {
+    "slug": "github-copilot-github-copilot-chat-fetch-failed-in-wsl-authentication-context-mismatch",
+    "title": "GitHub Copilot Chat Fetch Failed Error in WSL Due to Separate Authentication Context",
+    "description": "Fix GitHub Copilot Chat fetch failed error when using WSL in VS Code Includes evidence for GitHub Copilot troubleshooting demand.",
+    "category": "GitHub Copilot",
+    "technology": "GitHub Copilot",
+    "error_signature": "GitHub Copilot Chat fetch failed in WSL — authentication context mismatch",
+    "search_intent": "Fix GitHub Copilot Chat fetch failed error when using WSL in VS Code",
+    "common_causes": [
+      "GitHub Copilot Chat shows 'fetch failed' errors when running inside WSL on Windows because WSL maintains its own GitHub authentication context, separate from Windows. Even if Copilot is enabled on Windows, Chat fails in WSL unless the extension is also enabled within the WSL context and GitHub is re-authenticated from within WSL.",
+      "Published article on dev.to (2026). GitHub Copilot Chat in WSL fails with 'fetch failed' errors when the extension is only enabled locally on Windows but not in WSL. WSL maintains separate GitHub authentication context. Fix requires reinstalling/enabling Copilot within WSL context and re-authenticating GitHub from WSL."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "GitHub Copilot not working in remote WSL",
+      "VS Code WSL extension host authentication error",
+      "Copilot Chat connection refused WSL"
+    ]
   }
 ]
