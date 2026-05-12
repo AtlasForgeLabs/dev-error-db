@@ -2183,5 +2183,100 @@
       "GitHub Actions job stuck queued",
       "GitHub Actions cancel not working"
     ]
+  },
+  {
+    "slug": "openai-api-openaierror-missing-credentials-asyncopenai-api-key-raises-error-in-v2-34-0",
+    "title": "OpenAI Python SDK v2.34 breaks OpenAI-compatible local servers with empty API key",
+    "description": "Fix OpenAIError Missing credentials after upgrading openai-python SDK to v2.34 Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "OpenAIError: Missing credentials — AsyncOpenAI(api_key=\"\") raises error in v2.34.0",
+    "search_intent": "Fix OpenAIError Missing credentials after upgrading openai-python SDK to v2.34",
+    "common_causes": [
+      "Breaking change in openai-python v2.34 rejects empty API keys, breaking workflows that use local LLM servers (llama.cpp, LM Studio, vLLM) which don't require authentication",
+      "GitHub Issue #3224 (open): v2.34.0 now validates api_key and rejects empty strings, breaking OpenAI-compatible local server integrations. Previous versions (v2.33.0 and earlier) silently accepted api_key=\"\""
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "OpenAI API invalid API key",
+      "OpenAI SDK connection refused localhost",
+      "OpenAI SDK compatibility mode error"
+    ]
+  },
+  {
+    "slug": "claude-code-failed-to-create-shell-snapshot-claude-code-hangs-when-calling-mcp-servers",
+    "title": "Claude Code hangs when calling MCP servers due to shell snapshot failure",
+    "description": "Fix Claude Code hanging when using MCP tool calls Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Failed to create shell snapshot — Claude Code hangs when calling MCP servers",
+    "search_intent": "Fix Claude Code hanging when using MCP tool calls",
+    "common_causes": [
+      "Claude Code users relying on MCP servers experience complete hangs during tool invocation, blocking development workflows",
+      "GitHub Issue #58209 (open): Claude Code hangs during MCP server calls on Windows. Root cause: shell snapshot creation fails with git/bash path resolution error. Feedback ID da9a7874-6e1d-4044-937d-8b4b73c374. Platform: win32, Version: 2.1.139"
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Claude Code MCP tool timeout",
+      "Claude Code shell snapshot error Windows",
+      "Claude Code MCP server connection refused"
+    ]
+  },
+  {
+    "slug": "ollama-error-500-internal-server-error-llama-runner-process-has-terminated-exit-status-2",
+    "title": "Ollama llama runner crashes with exit status 2 when loading Qwen2.5 14B models on GPU",
+    "description": "Fix Ollama llama runner exit status 2 crash when loading large models Includes evidence for Ollama troubleshooting demand.",
+    "category": "Ollama",
+    "technology": "Ollama",
+    "error_signature": "Error: 500 Internal Server Error: llama runner process has terminated: exit status 2",
+    "search_intent": "Fix Ollama llama runner exit status 2 crash when loading large models",
+    "common_causes": [
+      "Developers using Ollama for local LLM inference experience crashes with specific model sizes on certain GPU hardware, breaking their development and testing workflows",
+      "GitHub Issue #16102 (closed, 4 comments): Qwen2.5 14B models crash llama runner on GTX TITAN X (12GB VRAM, CUDA 13). Error: 'llama runner process has terminated: signal arrived during cgo execution'. GPU memory only reaches ~1GB before crash. 7B models work fine on same hardware"
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Ollama model loading failed GPU",
+      "Ollama llama runner terminated signal",
+      "Ollama CUDA out of memory error"
+    ]
+  },
+  {
+    "slug": "cursor-renderer-crash-during-session-hydration-exitcode-5-sigtrap-claude-desktop",
+    "title": "Claude Desktop renderer crashes on Code tab with SIGTRAP during session hydration",
+    "description": "Fix Claude Desktop Code tab renderer crash exitCode 5 SIGTRAP Includes evidence for Cursor troubleshooting demand.",
+    "category": "Cursor",
+    "technology": "Cursor",
+    "error_signature": "Renderer crash during session hydration (exitCode 5 / SIGTRAP) — Claude Desktop",
+    "search_intent": "Fix Claude Desktop Code tab renderer crash exitCode 5 SIGTRAP",
+    "common_causes": [
+      "Paid Claude Desktop users experience crashes when opening certain sessions in the Code tab, losing work and productivity",
+      "GitHub Issue #58210 (open): Claude Desktop 1.6608.2 on macOS 26.4.1 — main webview renderer crashes during session warm phase before user input. App silently reloads to blank state. Reproducible on sessions with long context history. exitCode 5 / SIGTRAP"
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Claude Desktop webview crash",
+      "Claude Desktop blank screen on startup",
+      "Claude Code session loading error"
+    ]
+  },
+  {
+    "slug": "anthropic-api-zodoutputformat-throws-when-called-with-zod3-schema",
+    "title": "Anthropic SDK zodOutputFormat fails with zod3 compatibility error",
+    "description": "Fix zodOutputFormat compatibility error with zod3 in Anthropic SDK Includes evidence for Anthropic API troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Anthropic API",
+    "error_signature": "zodOutputFormat throws when called with zod3 schema",
+    "search_intent": "Fix zodOutputFormat compatibility error with zod3 in Anthropic SDK",
+    "common_causes": [
+      "Developers using the Anthropic TypeScript SDK with zod3 (still widely used) encounter runtime errors when using the structured output helper, blocking structured API responses",
+      "GitHub Issue #1035 (open): zodOutputFormat from @anthropic-ai/sdk/helpers/zod fails when project uses zod3 instead of zod4. StackBlitz repro confirms zod3 schema throws, zod4 works. Affects structured output / tool use patterns"
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Anthropic SDK structured output error",
+      "Anthropic tool use zod schema error",
+      "Anthropic SDK zod version mismatch"
+    ]
   }
 ]
