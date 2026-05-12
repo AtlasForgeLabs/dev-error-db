@@ -4488,5 +4488,138 @@
       "Claude Code subagent lifecycle",
       "Claude Code zombie agent"
     ]
+  },
+  {
+    "slug": "litellm-litellm-pypi-package-v1-82-7-plus-v1-82-8-compromised-credential-theft-via-malicious-code-in-proxy-server-py-and-litellm-init-pth",
+    "title": "LiteLLM PyPI Supply Chain Compromise — v1.82.7/v1.82.8 Steal Credentials via Malicious Code",
+    "description": "Check if LiteLLM package is safe / recover from compromised PyPI install Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "litellm PyPI package (v1.82.7 + v1.82.8) compromised — credential theft via malicious code in proxy_server.py and litellm_init.pth",
+    "search_intent": "Check if LiteLLM package is safe / recover from compromised PyPI install",
+    "common_causes": [
+      "LiteLLM is a widely-used AI gateway/proxy. The PyPI package was hijacked, publishing malicious versions that steal SSH keys, API keys, AWS/GCP/Azure credentials, and crypto wallets. Developers using pip install litellm during the compromise window were infected.",
+      "116 comments on GitHub issue. Compromised versions published by attacker who hijacked maintainer PyPI account. Malicious code exfiltrates credentials to attacker-controlled litellm.cloud domain. PyPI package suspended, current releases clean. Engaged Mandiant for investigation."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "litellm proxy Docker image supply chain verification",
+      "PyPI account hijacking detection for Python packages",
+      "CI/CD pipeline compromise indicators"
+    ]
+  },
+  {
+    "slug": "anthropic-api-claude-opus-4-6-sonnet-4-6-only-calls-1-tool-in-batch-api-with-46-tools-while-opus-4-5-correctly-calls-39-plus-tools-in-parallel",
+    "title": "Claude Opus 4.6 and Sonnet 4.6 Fail to Make Parallel Tool Calls in Batch API — Regression from Opus 4.5",
+    "description": "Fix Claude Opus 4.6 / Sonnet 4.6 not making parallel tool calls in Message Batches API Includes evidence for Anthropic API troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Anthropic API",
+    "error_signature": "Claude Opus 4.6 / Sonnet 4.6 only calls 1 tool in Batch API with 46 tools, while Opus 4.5 correctly calls 39+ tools in parallel",
+    "search_intent": "Fix Claude Opus 4.6 / Sonnet 4.6 not making parallel tool calls in Message Batches API",
+    "common_causes": [
+      "Opus 4.6 and Sonnet 4.6 only produce 1 tool call per response in Batch API despite having 46 tool definitions, while Opus 4.5 correctly makes 39+ parallel tool calls. Breaks production document extraction pipelines.",
+      "Regression in 4.6 models' parallel tool calling in batch mode. Verified with same request structure, tools, and document. Opus 4.5 works correctly with 64K max_tokens. Affects medical document extraction pipelines and other high-throughput workflows."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Anthropic Batch API tool_choice ignored",
+      "Claude 4.6 tool calling regression",
+      "Anthropic messages.batches.create parallel tool calls"
+    ]
+  },
+  {
+    "slug": "anthropic-api-anthropic-sdk-typescript-async-apikey-function-silently-discarded-all-requests-sent-without-x-api-key-header-401-errors",
+    "title": "Anthropic TypeScript SDK Silently Discards Async API Key Functions — Requests Sent Without Authentication",
+    "description": "Fix Anthropic TypeScript SDK ignoring async apiKey function for dynamic key rotation Includes evidence for Anthropic API troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Anthropic API",
+    "error_signature": "Anthropic SDK TypeScript: async apiKey function silently discarded — all requests sent without X-Api-Key header → 401 errors",
+    "search_intent": "Fix Anthropic TypeScript SDK ignoring async apiKey function for dynamic key rotation",
+    "common_causes": [
+      "The SDK's ClientOptions.apiKey accepts async functions (ApiKeySetter) per JSDoc documentation, but the constructor silently discards them (type check only stores strings). All requests are sent without X-Api-Key header, causing 401 errors with no diagnostic message.",
+      "Documented API feature (async apiKey for key rotation) was never implemented. Constructor stores only strings, discarding functions. Silent failure — no error thrown. Requests lack authentication header. Affects enterprise key rotation workflows using vault integrations."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "Anthropic SDK 401 with valid API key",
+      "Dynamic API key rotation not working Anthropic SDK",
+      "Anthropic TypeScript SDK apiKey function ignored"
+    ]
+  },
+  {
+    "slug": "ollama-ollama-cloud-pro-95-failure-rate-api-chat-and-api-generate-return-empty-responses-or-timeout-for-all-cloud-models",
+    "title": "Ollama Cloud Pro 95% Failure Rate — All Cloud Models Returning Empty Responses or Timeout",
+    "description": "Fix Ollama Cloud Pro models returning empty/timeout responses Includes evidence for Ollama troubleshooting demand.",
+    "category": "Ollama",
+    "technology": "Ollama",
+    "error_signature": "Ollama Cloud Pro: 95% failure rate — /api/chat and /api/generate return empty responses or timeout for all cloud models",
+    "search_intent": "Fix Ollama Cloud Pro models returning empty/timeout responses",
+    "common_causes": [
+      "Paying Ollama Pro subscribers ($20/month) experience 95% failure rate across all cloud models (glm-5.1, kimi-k2.5, qwen3.5, deepseek-v3.2). Both /api/chat and /api/generate endpoints affected. Developers searching for workaround or refund.",
+      "48 comments. Pro subscriber tested 20 requests across 4 cloud models, only 1 succeeded. All models affected. Both chat and generate endpoints. Rules out local Ollama issues. Service effectively unusable."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "Ollama Cloud connection refused",
+      "Ollama Cloud model loading timeout",
+      "Ollama Cloud Pro refund process"
+    ]
+  },
+  {
+    "slug": "anthropic-api-anthropic-sdk-strips-directory-paths-from-filenames-in-multipart-uploads-my-skill-skill-md-becomes-skill-md-breaking-skills-versions-create",
+    "title": "Anthropic TypeScript SDK Strips Directory Paths from File Uploads — Breaks Skills API",
+    "description": "Fix Anthropic SDK stripping file paths during multipart upload for skills API Includes evidence for Anthropic API troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Anthropic API",
+    "error_signature": "Anthropic SDK strips directory paths from filenames in multipart uploads — my-skill/SKILL.md becomes SKILL.md, breaking skills.versions.create()",
+    "search_intent": "Fix Anthropic SDK stripping file paths during multipart upload for skills API",
+    "common_causes": [
+      "The SDK's internal uploads.js getName function strips directory paths by default (stripPath=true). This breaks client.beta.skills.versions.create() which requires files to maintain their directory structure (e.g., my-skill/SKILL.md). Developers get API errors with no obvious cause.",
+      "4 comments. SDK's getName() does val.split(/[\\\\/]/).pop() with stripPath=true default. Transforms my-skill/SKILL.md → SKILL.md. Breaks beta.skills.versions.create() API which requires top-level directory structure. Affects skill/agent development workflows."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Anthropic skills API file upload error",
+      "Anthropic beta.skills.versions.create fails",
+      "Anthropic SDK multipart form filename handling"
+    ]
+  },
+  {
+    "slug": "ollama-gemma4-tool-call-parsing-failed-error-invalid-character-looking-for-beginning-of-value-in-ollama-0-20-1",
+    "title": "Ollama Gemma4 Tool Call Parsing Failed — Invalid Character in JSON After v0.20.1 Fix",
+    "description": "Fix gemma4 tool call parsing failed invalid character error in Ollama 0.20.1 Includes evidence for Ollama troubleshooting demand.",
+    "category": "Ollama",
+    "technology": "Ollama",
+    "error_signature": "gemma4 tool call parsing failed — error=\"invalid character looking for beginning of value\" in ollama 0.20.1",
+    "search_intent": "Fix gemma4 tool call parsing failed invalid character error in Ollama 0.20.1",
+    "common_causes": [
+      "After updating to Ollama 0.20.1 (which was supposed to fix gemma4 tool parsing), gemma4:e4b still fails tool calling with 'invalid character looking for beginning of value' error. Affects users of opencode and other AI coding tools that rely on Ollama tool calling.",
+      "48 comments. Log shows: gemma4.go:293 'gemma4 tool call parsing failed' with error parsing malformed tool call syntax. Specific error: invalid character '`' or '\\''. Affects gemma4:e4b with opencode and oh-my-opencode. Follow-up issue to #15254."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Ollama tool calling fails with gemma models",
+      "Ollama function calling JSON parse error",
+      "gemma4 tool_use response format"
+    ]
+  },
+  {
+    "slug": "openai-api-beta-chat-completions-parse-raises-raw-pydantic-validationerror-when-api-returns-malformed-or-truncated-json-with-finish-reason-stop",
+    "title": "OpenAI Python SDK beta.chat.completions.parse Raises Raw pydantic.ValidationError on Malformed API Responses",
+    "description": "Fix pydantic.ValidationError in OpenAI beta.chat.completions.parse on malformed responses Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "beta.chat.completions.parse raises raw pydantic.ValidationError when API returns malformed or truncated JSON with finish_reason: stop",
+    "search_intent": "Fix pydantic.ValidationError in OpenAI beta.chat.completions.parse on malformed responses",
+    "common_causes": [
+      "When the OpenAI API returns malformed or truncated JSON (with finish_reason: 'stop'), beta.chat.completions.parse() raises a raw pydantic.ValidationError with no context about what went wrong or the original content. Error doesn't indicate it came from parsing the API response.",
+      "10 comments. Raw pydantic.ValidationError exposed to users with no wrapping context. Doesn't indicate error came from parsing API response. Original failed content not accessible. Affects structured output parsing workflows using beta.chat.completions.parse()."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "OpenAI structured output parsing error",
+      "pydantic validation error OpenAI API response",
+      "OpenAI API truncated JSON response handling"
+    ]
   }
 ]
