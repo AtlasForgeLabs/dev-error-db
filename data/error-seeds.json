@@ -3760,5 +3760,138 @@
       "LiteLLM Cloudflare 403 bypass",
       "LiteLLM image generation failed"
     ]
+  },
+  {
+    "slug": "ollama-billing-discrepancy-account-stuck-on-free-tier-after-successful-ollama-cloud-pro-payment",
+    "title": "Ollama Cloud Pro Payment Processed But Account Remains on Free Tier",
+    "description": "Fix Ollama Cloud account not upgrading to Pro after successful payment Includes evidence for Ollama troubleshooting demand.",
+    "category": "Ollama",
+    "technology": "Ollama",
+    "error_signature": "Billing Discrepancy: Account stuck on \"Free\" tier after successful \"Ollama Cloud Pro\" payment",
+    "search_intent": "Fix Ollama Cloud account not upgrading to Pro after successful payment",
+    "common_causes": [
+      "Users report paying for Ollama Cloud Pro ($20/month) but their account remains on the Free tier with restricted access. This is a critical billing/delivery failure that directly impacts paying customers who cannot access features they paid for.",
+      "Bug report on ollama/ollama (issue #16114, created 2026-05-12). User paid $20 for Ollama Cloud Pro on May 11, 2026, but account remains restricted to Free tier. This is a billing/provisioning failure — payment went through but service was not activated."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Ollama subscription not activated after payment",
+      "Ollama Cloud Pro upgrade not applied",
+      "Ollama billing error free tier"
+    ]
+  },
+  {
+    "slug": "ollama-ollama-cloud-pro-95-failure-rate-service-is-unusable",
+    "title": "Ollama Cloud Pro High Failure Rate and Service Unavailable",
+    "description": "Fix Ollama Cloud Pro 95% failure rate on all cloud models Includes evidence for Ollama troubleshooting demand.",
+    "category": "Ollama",
+    "technology": "Ollama",
+    "error_signature": "Ollama Cloud Pro: 95% failure rate — service is unusable",
+    "search_intent": "Fix Ollama Cloud Pro 95% failure rate on all cloud models",
+    "common_causes": [
+      "Ollama Cloud Pro subscribers ($20/month) report near-total service failure with 95% of API requests failing across all cloud models (glm-5.1, kimi-k2.5, qwen3.5, deepseek-v3.2). Both /api/chat and /api/generate endpoints are affected. Developers paying for the service are getting no value and searching for fixes, refunds, or alternatives.",
+      "Detailed bug report on ollama/ollama (issue #15453, created 2026-04-09). Ollama Pro subscriber reports 95% failure rate across all cloud models on macOS. Both /api/chat and /api/generate endpoints fail with stable internet connection. Indicates a systemic cloud infrastructure issue affecting paying customers."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "Ollama Cloud API timeout error",
+      "Ollama Cloud Pro subscription not working",
+      "Ollama cloud model request failed"
+    ]
+  },
+  {
+    "slug": "claude-code-remote-agent-runs-stuck-on-setting-up-a-cloud-container-cannot-cancel",
+    "title": "Claude Code Remote Agent Cloud Container Stuck Error",
+    "description": "Fix Claude Code remote agent stuck waiting for cloud container setup Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Remote agent runs stuck on \"Setting up a cloud container\" — cannot cancel",
+    "search_intent": "Fix Claude Code remote agent stuck waiting for cloud container setup",
+    "common_causes": [
+      "Claude Code's remote agent feature uses cloud containers for isolated execution. When the container provisioning hangs, developers cannot proceed with their work and cannot cancel the stuck run. This blocks productivity and affects paid users who rely on remote agent capabilities.",
+      "Active bug report on anthropics/claude-code repo (issue #54528, created 2026-04-29, still open). Users report scheduled and manual remote agent runs get stuck on 'Setting up a cloud container' phase with no cancellation option available. Affects paid Claude Code users who use remote agent runs for background tasks."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Claude Code remote agent timeout error",
+      "Claude Code cloud container provisioning failed",
+      "Claude Code agent session hang"
+    ]
+  },
+  {
+    "slug": "github-copilot-github-copilot-login-the-client-id-and-or-client-secret-passed-are-incorrect",
+    "title": "GitHub Copilot Authentication Failed — Invalid Client ID or Secret",
+    "description": "Fix GitHub Copilot login error with incorrect client_id or client_secret Includes evidence for GitHub Copilot troubleshooting demand.",
+    "category": "GitHub Copilot",
+    "technology": "GitHub Copilot",
+    "error_signature": "GitHub Copilot Login: The client_id and/or client_secret passed are incorrect",
+    "search_intent": "Fix GitHub Copilot login error with incorrect client_id or client_secret",
+    "common_causes": [
+      "Developers installing Windows Terminal Canary or similar tools that integrate GitHub Copilot Chat encounter an OAuth authentication failure during GitHub login. The error 'The client_id and/or client_secret passed are incorrect' blocks access to Copilot features entirely.",
+      "Bug report on microsoft/terminal (issue #20198, created 2026-05-07). After fresh install of Windows Terminal Canary, GitHub Copilot authentication fails with 'The client_id and/or client_secret passed are incorrect' error during OAuth flow. Affects developers trying to use Copilot Chat integration."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "GitHub Copilot OAuth error",
+      "GitHub Copilot authentication failed",
+      "Windows Terminal Copilot not working"
+    ]
+  },
+  {
+    "slug": "claude-code-tool-result-missing-due-to-internal-error",
+    "title": "Claude Code Skill Tool Internal Error",
+    "description": "Fix Claude Code Skill tool returning internal error instead of executing Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "[Tool result missing due to internal error]",
+    "search_intent": "Fix Claude Code Skill tool returning internal error instead of executing",
+    "common_causes": [
+      "In long-running Claude Code sessions, the Skill tool intermittently returns '[Tool result missing due to internal error]' instead of executing the requested skill. This disrupts automated workflows and is unpredictable, making it hard to diagnose. Developers search for workarounds and root cause.",
+      "Bug filed on anthropics/claude-code (issue #58413, created 2026-05-12). The Skill tool occasionally returns '[Tool result missing due to internal error]' in long-running sessions. Retrying with nearly identical arguments succeeds. Labeled as bug + platform:windows. Reporter filed to leave a trace for others hitting the same issue."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Claude Code tool execution failed",
+      "Claude Code skill not found error",
+      "Claude Code internal server error"
+    ]
+  },
+  {
+    "slug": "claude-code-unable-to-connect-error-persists-until-model-is-toggled",
+    "title": "Claude Code Unable to Connect Error Persists Until Model Toggle",
+    "description": "Fix persistent 'Unable to connect' error in Claude Code that requires switching models Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "\"Unable to connect\" error persists until model is toggled",
+    "search_intent": "Fix persistent 'Unable to connect' error in Claude Code that requires switching models",
+    "common_causes": [
+      "Claude Code users encounter an 'Unable to connect' error that does not resolve with normal retry. The only known workaround is toggling the model selection, which disrupts workflow and context. This is a recurring issue that wastes developer time.",
+      "Bug report on anthropics/claude-code (issue #58408, created 2026-05-12). 'Unable to connect' error persists across retries until the user manually toggles the model. Affects latest version of Claude Code. Clear error signature and reproducible pattern."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Claude Code connection refused",
+      "Claude Code API connection timeout",
+      "Claude Code model switching workaround"
+    ]
+  },
+  {
+    "slug": "ollama-flux-image-generation-crash-on-ollama-v0-23-x-processes-crash-immediately",
+    "title": "Ollama Flux Image Generation Crashed After v0.23 Update",
+    "description": "Fix Ollama Flux image generation crashing after update to v0.23 Includes evidence for Ollama troubleshooting demand.",
+    "category": "Ollama",
+    "technology": "Ollama",
+    "error_signature": "Flux image generation crash on Ollama v0.23.x — processes crash immediately",
+    "search_intent": "Fix Ollama Flux image generation crashing after update to v0.23",
+    "common_causes": [
+      "After upgrading from Ollama v0.22.1 to v0.23.x, Flux image generation breaks completely — processes crash immediately on any prompt. Users who relied on this feature are forced to downgrade. This is a regression affecting a specific, popular use case.",
+      "Bug report on ollama/ollama (issue #15999, created 2026-05-06). Image generation with Flux worked in v0.22.1 but crashes immediately after updating to v0.23.x. Same behavior on both CLI and API. Downgrading to v0.22.1 resolves the issue. Clear regression with version-specific trigger."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Ollama image generation not working",
+      "Ollama Flux model crash after update",
+      "Ollama v0.23 breaking changes"
+    ]
   }
 ]
