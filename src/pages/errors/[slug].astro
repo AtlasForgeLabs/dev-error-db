@@ -3,6 +3,7 @@ import { getCollection, render } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { categoryLabelFor, categoryPathFor, entrySlug, errorPath, findRelatedEntries } from '../../lib/taxonomy';
 import { absoluteUrl, SITE_NAME } from '../../lib/seo';
+import { formatPublicDate, getUpdatedTimestamp, sortByUpdatedTimestamp } from '../../lib/dates';
 
 function extractFaqItems(markdownBody: string) {
   const faqStart = markdownBody.indexOf('\n## FAQ');
@@ -67,11 +68,12 @@ const similarSignatureLinks = allErrors
     return { candidate, overlap };
   })
   .filter((item) => item.overlap >= 2)
-  .sort((a, b) => b.overlap - a.overlap || b.candidate.data.updated.localeCompare(a.candidate.data.updated))
+  .sort((a, b) => b.overlap - a.overlap || (sortByUpdatedTimestamp([a.candidate, b.candidate])[0] === b.candidate ? 1 : -1))
   .slice(0, 6)
   .map((item) => item.candidate);
 const canonical = absoluteUrl(errorPath(entry));
-const updatedIso = new Date(`${entry.data.updated}T00:00:00.000Z`).toISOString();
+const updatedIso = getUpdatedTimestamp(entry) ?? new Date(0).toISOString();
+const publishedIso = entry.data.published_at ? (getUpdatedTimestamp({ data: { updated_at: entry.data.published_at } }) ?? updatedIso) : updatedIso;
 const faqItems = extractFaqItems(entry.body);
 const structuredData = [
   {
@@ -81,7 +83,7 @@ const structuredData = [
     description: entry.data.description,
     mainEntityOfPage: canonical,
     dateModified: updatedIso,
-    datePublished: updatedIso,
+    datePublished: publishedIso,
     about: [entry.data.technology, publicCategory],
     articleSection: publicCategory,
     author: {
@@ -113,7 +115,7 @@ const structuredData = [
   description={entry.data.description}
   canonical={canonical}
   ogType="article"
-  publishedTime={updatedIso}
+  publishedTime={publishedIso}
   modifiedTime={updatedIso}
   structuredData={structuredData}
 >
@@ -145,7 +147,7 @@ const structuredData = [
         </div>
         <div>
           <dt>Updated</dt>
-          <dd><time datetime={entry.data.updated}>{entry.data.updated}</time></dd>
+          <dd><time datetime={updatedIso}>{formatPublicDate(updatedIso)}</time></dd>
         </div>
       </dl>
     </header>

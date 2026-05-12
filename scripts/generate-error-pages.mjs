@@ -9,7 +9,8 @@ const seedsPath = path.join(rootDir, 'data', 'error-seeds.json');
 const outputDir = path.join(rootDir, 'src', 'content', 'errors');
 const force = process.argv.includes('--force');
 const onlySlugs = new Set(parseOnlySlugs(process.argv));
-const updated = new Date().toISOString().slice(0, 10);
+const generatedAt = new Date().toISOString();
+const updated = generatedAt.slice(0, 10);
 
 const seeds = JSON.parse(await readFile(seedsPath, 'utf8'));
 
@@ -106,6 +107,8 @@ quick_fix: ${yamlString(seed.quick_fix)}
 related_errors:
 ${seed.related_errors.map((related) => `  - ${yamlString(related)}`).join('\n')}
 updated: ${yamlString(updated)}
+published_at: ${yamlString(generatedAt)}
+updated_at: ${yamlString(generatedAt)}
 ---
 
 ${sections.join('\n\n')}

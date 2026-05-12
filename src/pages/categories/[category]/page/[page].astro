@@ -9,6 +9,7 @@ import {
   paginateEntries,
   sortEntriesByUpdated,
 } from '../../../../lib/taxonomy';
+import { formatPublicDate, getUpdatedTimestamp } from '../../../../lib/dates';
 
 export async function getStaticPaths() {
   const groups = getCategoryGroups(await getCollection('errors'));
@@ -58,7 +59,7 @@ const popularEntries = getTrendingEntries(group.entries, 5);
           <div class="meta-row">
             <span>{entry.data.category}</span>
             <span>{entry.data.technology}</span>
-            <span>{entry.data.updated}</span>
+            <span>Updated {formatPublicDate(getUpdatedTimestamp(entry))}</span>
           </div>
           <h2>
             <a href={`/errors/${entrySlug(entry)}/`}>{entry.data.title}</a>

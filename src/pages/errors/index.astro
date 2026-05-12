@@ -2,6 +2,7 @@
 import { getCollection } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { DEFAULT_PAGE_SIZE, entrySlug, paginateEntries, sortEntriesByUpdated } from '../../lib/taxonomy';
+import { formatPublicDate, getUpdatedTimestamp } from '../../lib/dates';
 
 const allErrors = sortEntriesByUpdated(await getCollection('errors'));
 const pagination = paginateEntries(allErrors, 1, DEFAULT_PAGE_SIZE);
@@ -26,7 +27,7 @@ const pagination = paginateEntries(allErrors, 1, DEFAULT_PAGE_SIZE);
           <div class="meta-row">
             <span>{entry.data.category}</span>
             <span>{entry.data.technology}</span>
-            <span>{entry.data.updated}</span>
+            <span>Updated {formatPublicDate(getUpdatedTimestamp(entry))}</span>
           </div>
           <h2>
             <a href={`/errors/${entrySlug(entry)}/`}>{entry.data.title}</a>

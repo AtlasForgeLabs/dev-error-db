@@ -1,4 +1,5 @@
 import type { CollectionEntry } from 'astro:content';
+import { parsePageTimestamp, sortByUpdatedTimestamp } from './dates';
 
 type ErrorEntry = CollectionEntry<'errors'>;
 export const DEFAULT_PAGE_SIZE = 20;
@@ -151,15 +152,13 @@ export function getCategoryGroups(entries: ErrorEntry[]) {
 }
 
 export function sortEntriesByUpdated(entries: ErrorEntry[]) {
-  return [...entries].sort(
-    (a, b) => b.data.updated.localeCompare(a.data.updated) || a.data.title.localeCompare(b.data.title)
-  );
+  return sortByUpdatedTimestamp(entries);
 }
 
 export function lightweightIntentScore(entry: ErrorEntry, now = new Date()) {
   const recencyDays = Math.max(
     0,
-    Math.floor((now.getTime() - new Date(`${entry.data.updated}T00:00:00.000Z`).getTime()) / 86_400_000)
+    Math.floor((now.getTime() - (parsePageTimestamp(entry)?.getTime() ?? 0)) / 86_400_000)
   );
   const recencyScore = Math.max(0, 40 - Math.min(40, recencyDays));
   const highIntentSignal = `${entry.data.title} ${entry.data.error_signature} ${entry.data.description}`.toLowerCase();
@@ -188,7 +187,8 @@ export function getTrendingEntries(entries: ErrorEntry[], limit = 12) {
   return [...entries]
     .sort((a, b) => {
       const diff = lightweightIntentScore(b) - lightweightIntentScore(a);
-      return diff || b.data.updated.localeCompare(a.data.updated);
+      if (diff) return diff;
+      return sortByUpdatedTimestamp([a, b])[0] === b ? 1 : -1;
     })
     .slice(0, limit);
 }

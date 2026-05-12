@@ -66,11 +66,19 @@ print('dist/index.html GA4 tag', analyticsStats.indexHasGa4 ? 'yes' : 'no');
 print('sample error page GA4 tag', analyticsStats.sampleErrorHasGa4 ? `yes (${analyticsStats.sampleErrorPage})` : 'no');
 
 console.log('\nSEO health snapshot:');
+print('pages_with_updated_at', String(seoHealth.timestamp_health.pages_with_updated_at));
+print('legacy_only_pages', String(seoHealth.timestamp_health.legacy_only_pages));
+print('invalid_timestamp_count', String(seoHealth.timestamp_health.invalid_timestamp_count));
 print('internal_link_density', String(seoHealth.internal_link_density));
 print('category_distribution categories', String(Object.keys(seoHealth.category_distribution).length));
 print('pages_without_related_links', String(seoHealth.pages_without_related_links.length));
 print('pages_without_faq', String(seoHealth.pages_without_faq.length));
 print('pages_without_structured_data', String(seoHealth.pages_without_structured_data.length));
+
+console.log('\nRecent pages by effective updated timestamp:');
+for (const page of seoHealth.timestamp_health.recent_pages_by_updated_at.slice(0, 5)) {
+  console.log(`- ${page.slug} (${page.effective_updated_at})`);
+}
 
 async function readJson(relativePath) {
   return JSON.parse(await readFile(path.join(rootDir, relativePath), 'utf8'));
@@ -122,6 +130,9 @@ async function parseErrorPage(filePath) {
     hasFaq,
     hasStructuredData,
     updated: frontmatter.updated || stats.mtime.toISOString().slice(0, 10),
+    published_at: frontmatter.published_at || null,
+    updated_at: frontmatter.updated_at || null,
+    effective_updated_at: parsePageTimestamp(frontmatter) ?? stats.mtime.toISOString(),
     mtime: stats.mtime.toISOString(),
   };
 }
@@ -136,13 +147,15 @@ function parseFrontmatter(content) {
   const frontmatter = match[1];
   const category = frontmatter.match(/^category:\s*["']?(.+?)["']?\s*$/m)?.[1]?.trim();
   const updated = frontmatter.match(/^updated:\s*["']?(.+?)["']?\s*$/m)?.[1]?.trim();
+  const published_at = frontmatter.match(/^published_at:\s*["']?(.+?)["']?\s*$/m)?.[1]?.trim();
+  const updated_at = frontmatter.match(/^updated_at:\s*["']?(.+?)["']?\s*$/m)?.[1]?.trim();
   const relatedBlock = frontmatter.match(/^related_errors:\s*\n((?:\s*-\s*.*\n?)*)/m)?.[1] ?? '';
   const relatedCount = relatedBlock
     .split('\n')
     .map((line) => line.trim())
     .filter((line) => line.startsWith('- ')).length;
 
-  return { category, updated, relatedCount };
+  return { category, updated, published_at, updated_at, relatedCount };
 }
 
 function buildSeoHealth(pages) {
@@ -158,12 +171,45 @@ function buildSeoHealth(pages) {
 
   return {
     generated_at: new Date().toISOString(),
+    timestamp_health: buildTimestampHealth(pages),
     internal_link_density: Number((totalRelatedLinks / totalPages).toFixed(2)),
     category_distribution: categoryDistribution,
     pages_without_related_links: pages.filter((page) => page.relatedLinks === 0).map((page) => page.urlPath),
     pages_without_faq: pages.filter((page) => !page.hasFaq).map((page) => page.urlPath),
     pages_without_structured_data: pages.filter((page) => !page.hasStructuredData).map((page) => page.urlPath),
   };
+}
+
+function buildTimestampHealth(pages) {
+  const invalidPages = pages.filter((page) => !parsePageTimestamp(page));
+  const recent = [...pages]
+    .sort((a, b) => new Date(b.effective_updated_at).getTime() - new Date(a.effective_updated_at).getTime())
+    .slice(0, 10)
+    .map((page) => ({
+      slug: page.slug,
+      updated_at: page.updated_at,
+      published_at: page.published_at,
+      updated: page.updated,
+      effective_updated_at: page.effective_updated_at,
+    }));
+
+  return {
+    pages_with_updated_at: pages.filter((page) => Boolean(page.updated_at)).length,
+    legacy_only_pages: pages.filter((page) => !page.updated_at && Boolean(page.updated)).length,
+    invalid_timestamp_count: invalidPages.length,
+    invalid_pages: invalidPages.map((page) => page.urlPath),
+    recent_pages_by_updated_at: recent,
+  };
+}
+
+function parsePageTimestamp(page) {
+  for (const value of [page.updated_at, page.published_at, page.updated]) {
+    if (!value) continue;
+    const normalized = /^\d{4}-\d{2}-\d{2}$/.test(value) ? `${value}T00:00:00.000Z` : value;
+    const parsed = new Date(normalized);
+    if (!Number.isNaN(parsed.getTime())) return parsed.toISOString();
+  }
+  return null;
 }
 
 async function inspectSitemaps() {

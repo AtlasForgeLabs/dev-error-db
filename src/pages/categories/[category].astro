@@ -10,6 +10,7 @@ import {
   paginateEntries,
   sortEntriesByUpdated,
 } from '../../lib/taxonomy';
+import { formatPublicDate, getUpdatedTimestamp, sortByUpdatedTimestamp } from '../../lib/dates';
 
 function countBy(values: string[]) {
   const counts = new Map<string, number>();
@@ -43,8 +44,8 @@ const latestEntries = sortedEntries.slice(0, 6);
 const popularEntries = getTrendingEntries(group.entries, 6);
 const pagination = paginateEntries(sortedEntries, 1, DEFAULT_PAGE_SIZE);
 const relatedCategories = getRelatedCategoryGroups(group, allGroups, 5);
-const oldestDate = [...sortedEntries].sort((a, b) => a.data.updated.localeCompare(b.data.updated))[0]?.data.updated;
-const newestDate = latestEntries[0]?.data.updated;
+const oldestDate = sortByUpdatedTimestamp(sortedEntries).at(-1);
+const newestDate = latestEntries[0];
 ---
 
 <BaseLayout title={pageTitle} description={pageDescription}>
@@ -65,7 +66,7 @@ const newestDate = latestEntries[0]?.data.updated;
     <p class="count-line">{group.entries.length} article{group.entries.length === 1 ? '' : 's'} in this category.</p>
     <ul class="stats-list">
       <li><strong>Technologies covered:</strong> {technologyCounts.length}</li>
-      <li><strong>Date range:</strong> {oldestDate ?? 'n/a'} to {newestDate ?? 'n/a'}</li>
+      <li><strong>Date range:</strong> {oldestDate ? formatPublicDate(getUpdatedTimestamp(oldestDate)) : 'n/a'} to {newestDate ? formatPublicDate(getUpdatedTimestamp(newestDate)) : 'n/a'}</li>
       <li><strong>Latest updates:</strong> {latestEntries.length}</li>
     </ul>
 
@@ -75,7 +76,7 @@ const newestDate = latestEntries[0]?.data.updated;
         {latestEntries.map((entry) => (
           <li>
             <a href={`/errors/${entrySlug(entry)}/`}>{entry.data.title}</a>
-            <span> ({entry.data.updated})</span>
+            <span> ({formatPublicDate(getUpdatedTimestamp(entry))})</span>
           </li>
         ))}
       </ul>

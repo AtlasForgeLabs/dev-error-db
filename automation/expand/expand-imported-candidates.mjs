@@ -16,7 +16,8 @@ const importPath = path.join(projectRoot, 'automation', 'import', 'output', 'lat
 const previewPath = path.join(projectRoot, 'automation', 'expand', 'output', 'imported-expansion-preview.json');
 const errorsDir = path.join(projectRoot, 'src', 'content', 'errors');
 const seedsPath = path.join(projectRoot, 'data', 'error-seeds.json');
-const today = new Date().toISOString().slice(0, 10);
+const generatedAt = new Date().toISOString();
+const today = generatedAt.slice(0, 10);
 
 const approvedCategories = new Set([
   'AI Coding Tools',
@@ -297,6 +298,8 @@ quick_fix: ${JSON.stringify(candidate.quick_fix)}
 related_errors:
 ${related.map((item) => `  - ${JSON.stringify(item)}`).join('\n')}
 updated: ${JSON.stringify(today)}
+published_at: ${JSON.stringify(generatedAt)}
+updated_at: ${JSON.stringify(generatedAt)}
 ---
 
 ## What this error means

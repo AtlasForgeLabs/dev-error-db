@@ -9,6 +9,7 @@ import {
   lightweightIntentScore,
   sortEntriesByUpdated,
 } from '../lib/taxonomy';
+import { formatPublicDate, getUpdatedTimestamp } from '../lib/dates';
 
 const errors = await getCollection('errors');
 const categoryGroups = getCategoryGroups(errors);
@@ -98,7 +99,7 @@ const totalTechnologies = new Set(errors.map((entry) => entry.data.technology)).
             <div class="meta-row">
               <span>{entry.data.technology}</span>
               <span>{entry.data.category}</span>
-              <span>Updated {entry.data.updated}</span>
+              <span>Updated {formatPublicDate(getUpdatedTimestamp(entry))}</span>
             </div>
             <h3>
               <a href={`/errors/${entrySlug(entry)}/`}>{entry.data.title}</a>
@@ -115,7 +116,7 @@ const totalTechnologies = new Set(errors.map((entry) => entry.data.technology)).
   <section class="error-list" aria-labelledby="recently-updated-heading">
     <h2 id="recently-updated-heading">Recently updated pages</h2>
     <ul>
-      {recentlyUpdatedPages.map((entry) => <li><a href={`/errors/${entrySlug(entry)}/`}>{entry.data.title}</a> ({entry.data.updated})</li>)}
+      {recentlyUpdatedPages.map((entry) => <li><a href={`/errors/${entrySlug(entry)}/`}>{entry.data.title}</a> ({formatPublicDate(getUpdatedTimestamp(entry))})</li>)}
     </ul>
   </section>
 </BaseLayout>
