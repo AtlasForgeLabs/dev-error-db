@@ -5834,5 +5834,149 @@
       "Ollama function calling parse error",
       "gemma4 tool use invalid JSON"
     ]
+  },
+  {
+    "slug": "claude-code-every-bash-tool-invocation-returns-exit-code-1-with-zero-output-no-stdout-no-stderr",
+    "title": "Claude Code Bash Tool Returns Exit Code 1 with No Output",
+    "description": "Fix Claude Code Bash tool returning exit code 1 with empty output for all commands Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Every Bash tool invocation returns Exit code 1 with zero output (no stdout, no stderr)",
+    "search_intent": "Fix Claude Code Bash tool returning exit code 1 with empty output for all commands",
+    "common_causes": [
+      "The Bash tool is core to Claude Code's coding workflow. When every command fails silently with exit code 1, developers cannot complete any coding task, forcing them to abandon the tool or seek workarounds.",
+      "Active GitHub issue (May 2026) reports every Bash tool invocation returns exit code 1 with zero stdout/stderr regardless of command or shell configuration. Core functionality broken."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Claude Code process exited with code 3",
+      "Claude Code bridged process stops responding mid-turn"
+    ]
+  },
+  {
+    "slug": "claude-code-error-claude-code-process-exited-with-code-3",
+    "title": "Claude Code Process Exited with Code 3 in VS Code and Windows Desktop",
+    "description": "Fix Claude Code process crashing with exit code 3 in VS Code or Claude Desktop Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Error: Claude Code process exited with code 3",
+    "search_intent": "Fix Claude Code process crashing with exit code 3 in VS Code or Claude Desktop",
+    "common_causes": [
+      "Claude Code is a paid AI coding tool ($20-100+/month). Exit code 3 crashes block all coding work and affect both VS Code and Windows Desktop users, making this a high-urgency search for paying subscribers.",
+      "Multiple active GitHub issues (May 2026) report 'Claude Code process exited with code 3' on both Claude Desktop Windows 11 and VS Code plugin. Affects version 1.7196.0+, blocking all coding sessions."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Claude Code bridged process stops responding mid-turn",
+      "Claude Code Cowork Linux sandbox fails to start on Windows"
+    ]
+  },
+  {
+    "slug": "litellm-internalservererror-hosted-vllmexception-header-value-must-be-str-or-bytes-not-float",
+    "title": "LiteLLM Proxy Throws 'Header value must be str or bytes, not float' Internal Server Error",
+    "description": "Fix LiteLLM proxy InternalServerError when extra headers contain float values Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "InternalServerError: Hosted_vllmException — Header value must be str or bytes, not float",
+    "search_intent": "Fix LiteLLM proxy InternalServerError when extra headers contain float values",
+    "common_causes": [
+      "LiteLLM is a critical infrastructure proxy for LLM routing. When extra headers with float values cause the proxy to crash with 'Header value must be str or bytes, not float', it blocks all traffic through the proxy, affecting entire teams.",
+      "Active GitHub issue (May 2026) reports LiteLLM proxy throws 'InternalServerError: Hosted_vllmException — Header value must be str or bytes, not float' when certain extra headers are present. Affects the latest stable version. Exact error signature is highly specific."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "LiteLLM 'No deployments available' misleading rate limit error",
+      "LiteLLM RouterRateLimitError missing Retry-After header"
+    ]
+  },
+  {
+    "slug": "litellm-ratelimiterror-error-code-429-error-message-no-deployments-available-for-selected-model-type-none-param-none-code-429",
+    "title": "LiteLLM Reports 'No deployments available' Instead of Clear Rate Limit Error on 429",
+    "description": "Fix LiteLLM confusing rate limit error message showing 'No deployments available' instead of clear 429 rate limit Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "RateLimitError: Error code: 429 - {'error': {'message': 'No deployments available for selected model.', 'type': 'None', 'param': 'None', 'code': '429'}}",
+    "search_intent": "Fix LiteLLM confusing rate limit error message showing 'No deployments available' instead of clear 429 rate limit",
+    "common_causes": [
+      "LiteLLM is a widely-used LLM proxy. When rate limits are hit, the misleading error message 'No deployments available for selected model' prevents developers from understanding the actual cause, leading to wasted debugging time.",
+      "Active GitHub issue reports that LiteLLM proxy returns 'No deployments available for selected model' when a rate limit is actually hit, with error code 429. The exception class is correct but the message is misleading, causing confusion for developers managing rate-limited models."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "LiteLLM RouterRateLimitError missing Retry-After header",
+      "LiteLLM APIConnectionError prevents failover to healthy deployments"
+    ]
+  },
+  {
+    "slug": "ollama-ollama-cloud-95-failure-rate-across-all-cloud-models-service-is-unusable-empty-responses-or-timeout",
+    "title": "Ollama Cloud Pro Service Unusable with 95% Failure Rate Across All Cloud Models",
+    "description": "Fix Ollama Cloud Pro returning empty responses or timeouts for all cloud models Includes evidence for Ollama troubleshooting demand.",
+    "category": "Ollama",
+    "technology": "Ollama",
+    "error_signature": "Ollama Cloud: 95% failure rate across all cloud models — service is unusable (empty responses or timeout)",
+    "search_intent": "Fix Ollama Cloud Pro returning empty responses or timeouts for all cloud models",
+    "common_causes": [
+      "Ollama Cloud Pro is a $20/month paid service. When 95% of requests fail with empty responses or timeouts across ALL cloud models (glm-5.1, kimi-k2.5, qwen3.5, deepseek-v3.2), paying subscribers have no working alternative and urgently search for fixes.",
+      "Active GitHub issues (May 2026) report Ollama Cloud Pro ($20/month) has 95% failure rate with empty responses or timeouts on /api/chat and /api/generate for all cloud models. Related issue reports frequent 503 Service Unavailable errors making cloud models unreliable for production autonomous agents."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "Ollama Cloud streaming timeout after 120-145s on long responses",
+      "Ollama billing discrepancy — account stuck on Free tier after successful payment"
+    ]
+  },
+  {
+    "slug": "ollama-ollama-cloud-stream-drop-readtimeout-after-144s-reconnecting-retry-2-3",
+    "title": "Ollama Cloud Streaming Times Out After 120-145 Seconds on Long Responses",
+    "description": "Fix Ollama Cloud streaming timeout on long responses with large context windows Includes evidence for Ollama troubleshooting demand.",
+    "category": "Ollama",
+    "technology": "Ollama",
+    "error_signature": "ollama-cloud stream drop (ReadTimeout) after ~144s — reconnecting, retry 2/3",
+    "search_intent": "Fix Ollama Cloud streaming timeout on long responses with large context windows",
+    "common_causes": [
+      "Ollama Cloud streaming timeouts break long-form code generation and tool composition workflows. Developers using Ollama Cloud for autonomous agents need reliable streaming for responses that exceed 2 minutes.",
+      "Active GitHub issue (May 2026) reports Ollama Cloud streaming requests time out after ~120-145 seconds on long generation tasks, even when the underlying model is still processing. No ping/keepalive during tool composition or long generation. Affects Ubuntu 24.04 with Hermes Agent."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Ollama Cloud 95% failure rate across all cloud models",
+      "Ollama Cloud 503 Service Unavailable errors"
+    ]
+  },
+  {
+    "slug": "ollama-bge-m3-returns-http-500-with-json-unsupported-value-nan-when-embedding-certain-markdown-files",
+    "title": "Ollama bge-m3 Embedding Returns HTTP 500 with NaN JSON Error",
+    "description": "Fix Ollama bge-m3 embedding model returning HTTP 500 with NaN JSON serialization error Includes evidence for Ollama troubleshooting demand.",
+    "category": "Ollama",
+    "technology": "Ollama",
+    "error_signature": "bge-m3 returns HTTP 500 with 'json: unsupported value: NaN' when embedding certain markdown files",
+    "search_intent": "Fix Ollama bge-m3 embedding model returning HTTP 500 with NaN JSON serialization error",
+    "common_causes": [
+      "Embedding models are critical for RAG pipelines. When bge-m3 produces NaN values that the JSON serializer cannot encode, it breaks the entire embedding pipeline for specific files deterministically.",
+      "Active GitHub issue (May 2026) reports bge-m3 model returns HTTP 500 with 'json: unsupported value: NaN' for specific markdown files. The error is deterministic — the same file consistently triggers it across restarts. Other files in the same corpus embed without issue."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Ollama model failed to load with 500 Internal Server Error",
+      "Ollama image generation failed with v0.23.x"
+    ]
+  },
+  {
+    "slug": "ollama-ollama-pull-model-fails-with-error-eof",
+    "title": "Ollama Pull Fails with EOF Error on Large Models (aarch64)",
+    "description": "Fix Ollama pull command failing with EOF error when downloading large models Includes evidence for Ollama troubleshooting demand.",
+    "category": "Ollama",
+    "technology": "Ollama",
+    "error_signature": "ollama pull [model] fails with 'Error: EOF'",
+    "search_intent": "Fix Ollama pull command failing with EOF error when downloading large models",
+    "common_causes": [
+      "Model downloads are the first step in using Ollama. When pull fails with EOF on specific large models (like gpt-oss-safeguard:120b), developers cannot access the models they need. The error is specific to model size and architecture, making it hard to diagnose.",
+      "Active GitHub issue (May 2026) reports 'ollama pull gpt-oss-safeguard:120b' fails with 'Error: EOF' on aarch64 (NVIDIA DGX Spark/GB10). Reproduces on both 0.23.2 stable and 0.23.3-rc1. The 20 GB sibling model pulls normally, confirming the issue is specific to large model downloads."
+    ],
+    "quick_fix": "Verify the model name, local service connectivity, and network access before retrying the model pull.",
+    "related_errors": [
+      "Ollama model failed to load with resource constraints",
+      "Ollama Cloud 503 Service Unavailable errors"
+    ]
   }
 ]
