@@ -6487,5 +6487,271 @@
       "Docker Compose build failed Next.js",
       "Turbopack module not found error"
     ]
+  },
+  {
+    "slug": "litellm-routerratelimiterror-no-deployments-available-for-selected-model-try-again-in-x-seconds-no-retry-after-header",
+    "title": "LiteLLM RouterRateLimitError Missing Retry-After Header Fix",
+    "description": "Fix missing Retry-After header in LiteLLM RouterRateLimitError so downstream clients can properly handle rate limit cooldown Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "RouterRateLimitError: No deployments available for selected model, Try again in X seconds (no Retry-After header)",
+    "search_intent": "Fix missing Retry-After header in LiteLLM RouterRateLimitError so downstream clients can properly handle rate limit cooldown",
+    "common_causes": [
+      "LiteLLM is widely used as an AI model gateway. When all deployments are in cooldown, the lack of Retry-After header means downstream clients (OpenAI SDK, custom agents) can't programmatically retry, causing cascading failures.",
+      "Open issue on BerriAI/litellm with associated PR. RouterRateLimitError raised without Retry-After header when all model deployments are in cooldown after upstream 429s. Affects automated retry logic in production systems."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "LiteLLM 429 rate limit handling",
+      "LiteLLM model cooldown configuration",
+      "LiteLLM retry-after header missing"
+    ]
+  },
+  {
+    "slug": "claude-code-api-error-extra-usage-is-required-for-1m-context-enable-extra-usage-at-claude-ai-settings-usage-or-use-model-to-switch-to-standard-context",
+    "title": "Claude Code Extra Usage Required for 1M Context Error Fix",
+    "description": "Fix the 'extra usage is required for 1M context' error when using Claude Code with long context windows Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "API Error: Extra usage is required for 1M context · enable extra usage at claude.ai/settings/usage, or use --model to switch to standard context",
+    "search_intent": "Fix the 'extra usage is required for 1M context' error when using Claude Code with long context windows",
+    "common_causes": [
+      "Claude Code users hitting the 1M context limit see this error when they haven't enabled extra usage. This blocks long-context workflows and forces users to upgrade or switch models. High search volume from frustrated paid users.",
+      "Open issue on anthropics/claude-code repo. Users report getting API error requiring extra usage purchase to access 1M context window in Claude Code. Direct billing/quota escalation path."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Claude Code context window exceeded",
+      "Claude Code upgrade to Max plan",
+      "claude-code --model flag not recognized"
+    ]
+  },
+  {
+    "slug": "openai-api-chatgpt-plus-oauth-succeeds-but-third-party-codex-calls-return-429-quota-exceeded",
+    "title": "ChatGPT Plus OAuth Works but Third-Party Codex Returns 429 Quota Exceeded",
+    "description": "Fix 429 quota exceeded error on third-party Codex calls when ChatGPT Plus OAuth login succeeds Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "ChatGPT Plus OAuth succeeds but third-party Codex calls return 429 quota exceeded",
+    "search_intent": "Fix 429 quota exceeded error on third-party Codex calls when ChatGPT Plus OAuth login succeeds",
+    "common_causes": [
+      "Developers with ChatGPT Plus subscriptions expect API access through OAuth, but third-party tools get quota errors. This creates confusion between Plus subscription limits and actual API quotas.",
+      "Open issue on openai/openai-python. ChatGPT Plus OAuth authentication succeeds, but subsequent Codex API calls return 429 quota exceeded. Not an OAuth failure — quota mismatch between Plus plan and third-party usage."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "ChatGPT Plus API quota limit",
+      "OpenAI OAuth 429 third-party",
+      "ChatGPT Plus Codex access denied"
+    ]
+  },
+  {
+    "slug": "litellm-litellm-badrequesterror-openaiexception-178-validation-errors-input-should-be-a-valid-string",
+    "title": "Claude Code Multi-turn Conversation Hangs via LiteLLM Gateway with 178 Validation Errors",
+    "description": "Fix Claude Code hanging on multi-turn conversations when using LiteLLM as API gateway with 178 validation errors Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "litellm.BadRequestError: OpenAIException - 178 validation errors: Input should be a valid string",
+    "search_intent": "Fix Claude Code hanging on multi-turn conversations when using LiteLLM as API gateway with 178 validation errors",
+    "common_causes": [
+      "Claude Code users routing through LiteLLM gateway experience complete conversation hangs. The 178 validation errors suggest deep schema mismatch between Claude Code's expected format and LiteLLM's proxy translation.",
+      "Open issue on BerriAI/litellm. Chinese-language report of Claude Code calls to LiteLLM gateway hanging on multi-turn conversations. Error: 178 validation errors with 'Input should be a valid string' — schema format mismatch."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "LiteLLM Claude Code compatibility",
+      "LiteLLM validation error multi-turn",
+      "Claude Code gateway proxy error"
+    ]
+  },
+  {
+    "slug": "openai-api-connectionreseterror-batch-api-result-file-download-fails-for-large-outputs-200mb",
+    "title": "OpenAI Batch API Large Result File Download ConnectionResetError Fix",
+    "description": "Fix ConnectionResetError when downloading large batch API result files exceeding 200-300MB Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "ConnectionResetError: Batch API result file download fails for large outputs (>200MB)",
+    "search_intent": "Fix ConnectionResetError when downloading large batch API result files exceeding 200-300MB",
+    "common_causes": [
+      "Enterprise users running large-scale batch processing (50k+ embeddings) can't retrieve results due to connection resets. This blocks critical data pipeline completion.",
+      "Open issue on openai/openai-python. Batch API result file downloads fail with ConnectionResetError when output .jsonl exceeds ~200-300MB (e.g., 50k embeddings). Blocks large-scale batch processing workflows."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "OpenAI batch API download timeout",
+      "OpenAI large file download error",
+      "OpenAI batch result file truncation"
+    ]
+  },
+  {
+    "slug": "litellm-bedrockexception-the-model-returned-the-following-errors-output-config-format-extra-inputs-are-not-permitted",
+    "title": "LiteLLM Structured Output Fails for Anthropic Models on Bedrock Converse",
+    "description": "Fix structured output JSON schema errors when using Anthropic models via LiteLLM on AWS Bedrock Converse API Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "BedrockException - The model returned the following errors: output_config.format: Extra inputs are not permitted",
+    "search_intent": "Fix structured output JSON schema errors when using Anthropic models via LiteLLM on AWS Bedrock Converse API",
+    "common_causes": [
+      "Structured output is critical for AI app development. When LiteLLM's bedrock/converse integration fails with Anthropic models, developers lose JSON schema enforcement — a core feature for production AI pipelines.",
+      "Open issue on BerriAI/litellm. Responses API structured output fails on Bedrock Converse for Anthropic models with 'Extra inputs are not permitted' error. Affects production AI pipelines using LiteLLM as gateway."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "LiteLLM bedrock structured output",
+      "Anthropic bedrock converse JSON schema error",
+      "LiteLLM output_config.format error"
+    ]
+  },
+  {
+    "slug": "github-actions-registration-token-endpoint-returns-502-bad-gateway-ephemeral-runners-die-before-registering",
+    "title": "GitHub Actions Runner Registration Token 502 Bad Gateway Fix",
+    "description": "Fix GitHub Actions runner registration failing with 502 Bad Gateway during autoscaler bursts Includes evidence for GitHub Actions troubleshooting demand.",
+    "category": "GitHub Actions",
+    "technology": "GitHub Actions",
+    "error_signature": "Registration token endpoint returns 502 Bad Gateway — ephemeral runners die before registering",
+    "search_intent": "Fix GitHub Actions runner registration failing with 502 Bad Gateway during autoscaler bursts",
+    "common_causes": [
+      "Teams using autoscalers for ephemeral GHA runners hit 502 errors during burst registration. Without proper retry logic, runners die and CI/CD pipelines stall. Affects all organizations using self-hosted runners at scale.",
+      "Open issue on actions/runner repo. POST to registration-token endpoint returns 502 Bad Gateway under concurrent bursts. Ephemeral runners from autoscalers (e.g., Modal-hosted) fail to register, stalling CI/CD."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "GitHub Actions runner registration timeout",
+      "GitHub Actions 502 error self-hosted",
+      "GitHub Actions autoscaler runner setup failed"
+    ]
+  },
+  {
+    "slug": "github-actions-bash-script-handler-doesn-t-quote-script-path-word-splitting-in-directories-with-spaces",
+    "title": "GitHub Actions Runner Bash Script Path Word Splitting with Spaces in Directory Names",
+    "description": "Fix GitHub Actions runner bash script handler failing when script path contains spaces due to unquoted path placeholder Includes evidence for GitHub Actions troubleshooting demand.",
+    "category": "GitHub Actions",
+    "technology": "GitHub Actions",
+    "error_signature": "Bash script handler doesn't quote script path — word splitting in directories with spaces",
+    "search_intent": "Fix GitHub Actions runner bash script handler failing when script path contains spaces due to unquoted path placeholder",
+    "common_causes": [
+      "GitHub Actions self-hosted runners fail silently when project paths contain spaces. The unquoted {0} placeholder in ScriptHandlerHelpers.cs causes word splitting, breaking CI/CD for teams with spaces in directory names.",
+      "Open issue on actions/runner. Bash script handler template doesn't quote {0} placeholder, causing word splitting when script path contains spaces. Affects self-hosted runners on Windows/macOS with space-containing paths."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "GitHub Actions runner spaces in path",
+      "GitHub Actions bash script path quoting",
+      "GitHub Actions self-hosted runner error"
+    ]
+  },
+  {
+    "slug": "openai-api-openaiexception-max-tokens-or-model-output-limit-reached-badrequesterror-400",
+    "title": "OpenAI Python max_tokens or Model Output Limit Reached Error Fix",
+    "description": "Fix BadRequestError 400 max_tokens or model output limit reached when using beta.chat.completions.parse Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "OpenAIException: max_tokens or model output limit reached (BadRequestError: 400)",
+    "search_intent": "Fix BadRequestError 400 max_tokens or model output limit reached when using beta.chat.completions.parse",
+    "common_causes": [
+      "Developers using structured outputs or function calling hit model output limits that aren't well-documented. The 400 error doesn't clearly indicate whether to reduce max_tokens or switch models.",
+      "Open PR on openai/openai-python. BadRequestError 400 with 'max_tokens or model output limit reached' when using beta.chat.completions.parse(). Affects structured output workflows."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "OpenAI structured output token limit",
+      "OpenAI max_tokens exceeded",
+      "OpenAI model output limit workaround"
+    ]
+  },
+  {
+    "slug": "litellm-fireworks-ai-rejects-tool-schemas-with-default-null-and-title-in-json-schema-properties",
+    "title": "Fireworks AI Tool Schema Rejection with drop_params Not Sanitizing Nested Schemas",
+    "description": "Fix Fireworks AI tool call failures when JSON Schema properties contain default:null and title fields that drop_params doesn't sanitize Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "Fireworks AI rejects tool schemas with 'default': null and 'title' in JSON Schema properties",
+    "search_intent": "Fix Fireworks AI tool call failures when JSON Schema properties contain default:null and title fields that drop_params doesn't sanitize",
+    "common_causes": [
+      "Developers using Claude Code with Kimi K2 via Fireworks AI through LiteLLM get tool call failures. The drop_params setting doesn't sanitize nested schema properties, breaking tool-using workflows.",
+      "Open issue on BerriAI/litellm. Fireworks AI rejects tool schemas containing 'default': null and 'title' in JSON Schema properties. drop_params: true doesn't sanitize nested schemas. Affects Claude Code + Kimi K2 workflows."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "LiteLLM drop_params nested schema",
+      "Fireworks AI tool schema validation",
+      "LiteLLM JSON Schema sanitization"
+    ]
+  },
+  {
+    "slug": "claude-code-bug-concurrent-write-race-on-shared-memory-md-across-concurrent-claude-code-sessions",
+    "title": "Claude Code Concurrent Session MEMORY.md Write Race Condition Fix",
+    "description": "Fix data corruption from concurrent Claude Code sessions writing to shared MEMORY.md file in same git repo Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "[Bug] Concurrent-write race on shared MEMORY.md across concurrent Claude Code sessions",
+    "search_intent": "Fix data corruption from concurrent Claude Code sessions writing to shared MEMORY.md file in same git repo",
+    "common_causes": [
+      "Teams running multiple Claude Code sessions in the same repo experience MEMORY.md corruption from concurrent writes. This is a data integrity issue affecting multi-developer workflows.",
+      "Open issue on anthropics/claude-code. Concurrent Claude Code sessions in same git repo cause write race on shared MEMORY.md file. Data integrity concern for team workflows."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Claude Code file locking",
+      "Claude Code concurrent session conflict",
+      "Claude Code git repo shared state"
+    ]
+  },
+  {
+    "slug": "claude-code-error-400-redirect-uri-mismatch-when-authenticating-google-mcp-servers",
+    "title": "Claude Code Google MCP redirect_uri_mismatch Error Fix",
+    "description": "Fix redirect_uri_mismatch OAuth error when connecting Google MCP servers to Claude Code Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Error 400: redirect_uri_mismatch when authenticating Google MCP servers",
+    "search_intent": "Fix redirect_uri_mismatch OAuth error when connecting Google MCP servers to Claude Code",
+    "common_causes": [
+      "OAuth misconfiguration is a common enterprise blocker. Developers setting up Google MCP integrations get stuck at authentication with no clear guidance on redirect URI setup.",
+      "Open issue on anthropics/claude-code repo. Error 400 redirect_uri_mismatch when authenticating Google MCP servers. OAuth flow failure blocks enterprise integrations."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "Claude Code MCP OAuth setup guide",
+      "Google MCP server authentication failed",
+      "Claude Code OAuth callback URL configuration"
+    ]
+  },
+  {
+    "slug": "claude-code-scheduled-routine-stuck-on-setting-up-a-cloud-container-indefinitely",
+    "title": "Claude Code Scheduled Routine Stuck on Cloud Container Setup",
+    "description": "Fix Claude Code scheduled routine stuck indefinitely on 'Setting up a cloud container' step Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Scheduled routine stuck on 'Setting up a cloud container' indefinitely",
+    "search_intent": "Fix Claude Code scheduled routine stuck indefinitely on 'Setting up a cloud container' step",
+    "common_causes": [
+      "Claude Code users relying on scheduled routines for automated tasks find them stuck in cloud container provisioning. This blocks automation workflows that developers depend on.",
+      "Open issue on anthropics/claude-code. Scheduled routines hang indefinitely on cloud container setup. Blocks automated Claude Code workflows. Fresh issue (May 2026)."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Claude Code cloud container timeout",
+      "Claude Code scheduled tasks failed",
+      "Claude Code routine automation stuck"
+    ]
+  },
+  {
+    "slug": "continue-truncated-wrong-prefix-and-suffix-on-large-file-autocompletion",
+    "title": "Continue IDE Autocompletion Truncated on Large Files Fix",
+    "description": "Fix truncated or incorrect autocompletion prefix/suffix in Continue IDE extension when working with large files Includes evidence for Continue troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Continue",
+    "error_signature": "Truncated / wrong prefix & suffix on large file Autocompletion",
+    "search_intent": "Fix truncated or incorrect autocompletion prefix/suffix in Continue IDE extension when working with large files",
+    "common_causes": [
+      "Continue is a popular open-source AI coding assistant. When autocompletion breaks on large files, developers lose their AI workflow. The truncation issue is specific and searchable.",
+      "Open issue on continuedev/continue. Large file autocompletion returns truncated or wrong prefix/suffix content. Core functionality broken for large codebases."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Continue IDE large file support",
+      "Continue autocomplete context window",
+      "Continue IDE context truncation"
+    ]
   }
 ]
