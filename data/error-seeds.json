@@ -5722,5 +5722,41 @@
       "MCP server streamableHttp protocol error",
       "Cursor MCP handshake failed"
     ]
+  },
+  {
+    "slug": "claude-code-all-sessions-disappeared-from-desktop-app-sidebar-after-silent-background-update",
+    "title": "Claude Code Windows All Sessions Silently Deleted After Background Update",
+    "description": "Recover Claude Code sessions deleted after silent background update on Windows Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "All sessions disappeared from Desktop app sidebar after silent background update",
+    "search_intent": "Recover Claude Code sessions deleted after silent background update on Windows",
+    "common_causes": [
+      "After a silent background update, all Claude Code sessions are permanently deleted from the Desktop app sidebar, causing loss of ongoing development context and conversation history.",
+      "After silent background update on 2026-05-13 (~08:52 local time Berlin), all Claude Code sessions disappeared from Desktop app sidebar on Windows. Users lost all conversation history and project context. Issue is brand new (same day as discovery)."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Claude Code session data corruption after update",
+      "Claude Code Desktop local storage cleared on update"
+    ]
+  },
+  {
+    "slug": "github-copilot-github-copilot-chat-fails-to-send-message-in-intellij-idea",
+    "title": "GitHub Copilot Not Working in IntelliJ IDEA — Chat Message Send Fails",
+    "description": "Fix GitHub Copilot chat not working in IntelliJ IDEA after sending a message Includes evidence for GitHub Copilot troubleshooting demand.",
+    "category": "GitHub Copilot",
+    "technology": "GitHub Copilot",
+    "error_signature": "GitHub Copilot chat fails to send message in IntelliJ IDEA",
+    "search_intent": "Fix GitHub Copilot chat not working in IntelliJ IDEA after sending a message",
+    "common_causes": [
+      "Developers using IntelliJ IDEA with GitHub Copilot plugin encounter chat failure where messages cannot be sent, blocking the AI pair programming workflow in the most popular JetBrains IDE.",
+      "GitHub Copilot plugin v1.9.0-251 on IntelliJ IDEA 2025.3.3 (Windows 11) fails when sending messages in Copilot chat. Users report the chat interface becomes unresponsive after the first message attempt. Affects paid Copilot subscription on JetBrains IDEs."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "GitHub Copilot JetBrains plugin activation error",
+      "GitHub Copilot chat connection timeout IntelliJ"
+    ]
   }
 ]
