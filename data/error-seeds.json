@@ -5758,5 +5758,81 @@
       "GitHub Copilot JetBrains plugin activation error",
       "GitHub Copilot chat connection timeout IntelliJ"
     ]
+  },
+  {
+    "slug": "litellm-critical-malicious-litellm-init-pth-in-litellm-1-82-8-credential-stealer-supply-chain-compromise",
+    "title": "LiteLLM PyPI Package Compromised — Supply Chain Attack via Malicious .pth File (v1.82.7/v1.82.8)",
+    "description": "Check if installed LiteLLM version is compromised, understand scope of credential theft, and remediate Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "CRITICAL: Malicious litellm_init.pth in litellm 1.82.8 — credential stealer (supply chain compromise)",
+    "search_intent": "Check if installed LiteLLM version is compromised, understand scope of credential theft, and remediate",
+    "common_causes": [
+      "LiteLLM is a widely-used LLM proxy. Versions 1.82.7 and 1.82.8 on PyPI contained a malicious litellm_init.pth file that executed a credential-stealing script on every Python interpreter startup — stealing SSH keys, AWS credentials, Kubernetes configs, API keys, and environment variables. Developers using these versions need immediate remediation guidance.",
+      "487+ comments on the primary security issue. The malicious .pth file (34,628 bytes) was double base64-encoded, exfiltrating SSH keys, AWS credentials, kube configs, git credentials, and all environment variables to attacker-controlled server. Compromise originated from trivy security scan dependency. Packages deleted, Mandiant engaged."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "How to check if my system was affected by LiteLLM supply chain attack",
+      "Rotate credentials after LiteLLM compromise",
+      "litellm credential stealer IOC indicators of compromise"
+    ]
+  },
+  {
+    "slug": "anthropic-api-api-error-400-due-to-tool-use-concurrency-issues-run-rewind-to-recover-the-conversation",
+    "title": "Anthropic API 400 Bad Request — Tool Use Concurrency Error in Claude Code",
+    "description": "Fix Anthropic API returning unexpected 400 Bad Request during tool use concurrency in Claude Code Includes evidence for Anthropic API troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Anthropic API",
+    "error_signature": "API Error: 400 due to tool use concurrency issues. Run /rewind to recover the conversation.",
+    "search_intent": "Fix Anthropic API returning unexpected 400 Bad Request during tool use concurrency in Claude Code",
+    "common_causes": [
+      "Claude Code users encounter a 400 error with tool use concurrency, receiving a misleading 'Bad Request' response with invalid JSON parsing errors in the CLI. The error forces users to run /rewind to recover conversations, losing context. Affects Claude Code v2.0.2+ on macOS.",
+      "270+ comments. Error shows as 'SyntaxError: Unexpected token' in CLI, wrapping an underlying 400 Bad Request from the Anthropic API. The root cause is tool use concurrency limits, but the error message is misleading. Forces conversation recovery via /rewind."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Claude Code tool use concurrency limit",
+      "Anthropic API 400 bad request tool calls",
+      "Claude Code /rewind command not working"
+    ]
+  },
+  {
+    "slug": "ollama-ollama-cloud-pro-95-failure-rate-empty-responses-or-timeout-on-api-chat-and-api-generate",
+    "title": "Ollama Cloud Pro Service Unusable — All Cloud Models Return Empty Responses or Timeout",
+    "description": "Fix Ollama Cloud Pro returning empty responses or timeouts for all cloud models despite stable internet connection Includes evidence for Ollama troubleshooting demand.",
+    "category": "Ollama",
+    "technology": "Ollama",
+    "error_signature": "Ollama Cloud Pro: 95% failure rate — empty responses or timeout on /api/chat and /api/generate",
+    "search_intent": "Fix Ollama Cloud Pro returning empty responses or timeouts for all cloud models despite stable internet connection",
+    "common_causes": [
+      "Ollama Cloud Pro ($20/month) subscribers experience 95% failure rate across all cloud models (glm-5.1, kimi-k2.5, qwen3.5, deepseek-v3.2). Both /api/chat and /api/generate endpoints return empty responses or timeout with 20-second timeout. Affects paying subscribers who expect reliable cloud inference.",
+      "49 comments. Detailed reproduction with 20 sequential requests showing 1/20 (5%) success rate across 4 cloud models. Not model-specific — all cloud models exhibit same behavior. Stable internet, 0% packet loss. Paid service failure."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "Ollama cloud model timeout",
+      "Ollama Pro plan not working",
+      "Ollama /api/chat returns empty response"
+    ]
+  },
+  {
+    "slug": "ollama-gemma4-tool-call-parsing-failed-invalid-character-looking-for-beginning-of-value",
+    "title": "Ollama gemma4 Tool Call Parsing Failure — Invalid Character in Tool Calling Output",
+    "description": "Fix gemma4 model tool call parsing errors when using Ollama with code agents and tool calling Includes evidence for Ollama troubleshooting demand.",
+    "category": "Ollama",
+    "technology": "Ollama",
+    "error_signature": "gemma4 tool call parsing failed: invalid character '`' looking for beginning of value",
+    "search_intent": "Fix gemma4 model tool call parsing errors when using Ollama with code agents and tool calling",
+    "common_causes": [
+      "The gemma4:e4b model on Ollama 0.20.1 continues to fail tool call parsing despite a prior fix (#15254). The error 'invalid character looking for beginning of value' occurs when gemma4 generates tool calls with backticks or special characters. Affects multiple code agents (opencode, oh-my-opencode) using Ollama for agentic workflows.",
+      "48 comments. Specific error from gemma4.go:293 with WARN-level log. Persists after 0.20.1 fix attempt. Affects tool calling with multiple agent frameworks (opencode, oh-my-opencode). Clear error signature with specific character causes."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Ollama gemma4 tool calling not working",
+      "Ollama function calling parse error",
+      "gemma4 tool use invalid JSON"
+    ]
   }
 ]
