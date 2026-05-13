@@ -6271,5 +6271,221 @@
       "Ollama pull fails on ARM",
       "Ollama model download EOF error"
     ]
+  },
+  {
+    "slug": "litellm-fix-mcp-surface-upstream-401-for-token-forwarding-mcp-servers",
+    "title": "LiteLLM MCP Server Returns Opaque Error Instead of Upstream 401",
+    "description": "Fix LiteLLM MCP server returning opaque error when upstream rejects forwarded Bearer token with 401 Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "fix(mcp): surface upstream 401 for token-forwarding MCP servers",
+    "search_intent": "Fix LiteLLM MCP server returning opaque error when upstream rejects forwarded Bearer token with 401",
+    "common_causes": [
+      "Developers using LiteLLM as a gateway for MCP servers with OAuth pass-through see unhelpful errors instead of the actual upstream 401, making authentication debugging extremely difficult",
+      "LiteLLM PR #27847 fixes MCP gateway to surface upstream 401 errors for token-forwarding MCP servers configured with extra_headers: [Authorization]. Previously the gateway swallowed the actual error and returned an opaque response."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "LiteLLM MCP server connection refused",
+      "LiteLLM MCP server 500 internal error"
+    ]
+  },
+  {
+    "slug": "litellm-bedrockexception-structured-output-json-schema-does-not-work-correctly-for-anthropic-models-on-bedrock-converse",
+    "title": "LiteLLM Structured Output Fails for Anthropic Models on AWS Bedrock",
+    "description": "Fix structured output / JSON schema responses failing when using Anthropic models via AWS Bedrock through LiteLLM Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "BedrockException - structured output (JSON schema) does not work correctly for Anthropic models on Bedrock/converse",
+    "search_intent": "Fix structured output / JSON schema responses failing when using Anthropic models via AWS Bedrock through LiteLLM",
+    "common_causes": [
+      "Developers using LiteLLM's Responses API with Anthropic Claude models on AWS Bedrock expect structured JSON output but get BedrockException. This breaks production pipelines relying on typed responses.",
+      "LiteLLM issue #27846 reports structured output (JSON schema) failing on Converse API for Anthropic models on Bedrock. Users get BedrockException instead of valid structured responses."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "AWS Bedrock Anthropic model invocation error",
+      "LiteLLM Bedrock Converse API timeout"
+    ]
+  },
+  {
+    "slug": "litellm-api-error-400-litellm-bad-request-claude-code-multi-turn-conversation-hangs-via-litellm-gateway",
+    "title": "Claude Code Multi-Turn Conversation Hangs with LiteLLM Gateway 400 Error",
+    "description": "Fix Claude Code getting stuck/hanging during multi-turn conversations when routed through LiteLLM gateway Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "API Error: 400 litellm bad request — Claude Code multi-turn conversation hangs via LiteLLM gateway",
+    "search_intent": "Fix Claude Code getting stuck/hanging during multi-turn conversations when routed through LiteLLM gateway",
+    "common_causes": [
+      "Developers using Claude Code with LiteLLM as a proxy experience multi-turn conversations that hang with a 400 bad request error. This breaks the core coding workflow and wastes paid API credits.",
+      "LiteLLM issue #27839 reports Claude Code hanging during multi-turn conversations when routed through LiteLLM gateway. Error: API Error: 400 with litellm bad request message. Affects Chinese developer community using proxy setups."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Claude Code conversation history limit error",
+      "LiteLLM streaming response timeout"
+    ]
+  },
+  {
+    "slug": "claude-code-claude-code-context-reports-200k-context-for-claude-sonnet-4-6-instead-of-1m-registry-stale-bug",
+    "title": "Claude Code Shows Wrong Context Window for Claude Sonnet 4.6 — Registry Stale Bug",
+    "description": "Fix Claude Code /context command showing 200K instead of 1M context window for claude-sonnet-4-6 Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Claude Code /context reports 200K context for claude-sonnet-4-6 instead of 1M (registry-stale bug)",
+    "search_intent": "Fix Claude Code /context command showing 200K instead of 1M context window for claude-sonnet-4-6",
+    "common_causes": [
+      "Claude Code users paying for Max plan expect 1M context with Sonnet 4.6 (per changelog 2.1.49), but /context shows only 200K. This is a registry-stale bug previously fixed for Opus 4.7 in v2.1.117 but not for Sonnet 4.6.",
+      "anthropics/claude-code issue #58710: Claude Code v2.1.140 shows /context reporting 200K for claude-sonnet-4-6 instead of expected 1M. Same registry-stale bug previously fixed for Opus 4.7. Affects Windows native build."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Claude Code wrong model context window",
+      "Claude Code model registry not updating"
+    ]
+  },
+  {
+    "slug": "litellm-litellm-bulk-invite-api-keys-missing-sk-prefix-tokens-rejected-on-api-calls",
+    "title": "LiteLLM Bulk Invite Creates API Keys Without sk- Prefix That Get Rejected",
+    "description": "Fix LiteLLM bulk user invite generating API tokens without sk- prefix that are rejected on API calls Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "LiteLLM bulk invite API keys missing sk- prefix — tokens rejected on API calls",
+    "search_intent": "Fix LiteLLM bulk user invite generating API tokens without sk- prefix that are rejected on API calls",
+    "common_causes": [
+      "Admins using LiteLLM's bulk invite feature get access tokens without the standard sk- prefix, causing all API calls to fail with authentication errors. This blocks team onboarding workflows.",
+      "LiteLLM issue #27849: Bulk invite response CSV generates access tokens without sk- prefix. These tokens are rejected on any API call, breaking team setup workflows."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "LiteLLM API key authentication failed",
+      "LiteLLM virtual key creation error"
+    ]
+  },
+  {
+    "slug": "librechat-librechat-code-interpreter-api-broken-x-api-key-no-longer-sent-after-jwt-minting-refactor",
+    "title": "LibreChat Code Interpreter API Key Not Sent After JWT Minting Refactor",
+    "description": "Fix LibreChat Code Interpreter API not sending x-api-key after JWT minting refactor broke authentication Includes evidence for LibreChat troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "LibreChat",
+    "error_signature": "LibreChat Code Interpreter API broken — x-api-key no longer sent after JWT minting refactor",
+    "search_intent": "Fix LibreChat Code Interpreter API not sending x-api-key after JWT minting refactor broke authentication",
+    "common_causes": [
+      "Paying LibreChat Code Interpreter API subscribers find code execution broken after a JWT minting refactor (commit c67e2b5). The x-api-key header is no longer sent, causing all code execution requests to fail authentication.",
+      "LibreChat issue #13113: Code Interpreter API regression after JWT minting refactor (commit c67e2b54dca13028). x-api-key header no longer sent to code execution endpoint. Affects paying subscribers on main branch."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "LibreChat API authentication failed",
+      "LibreChat JWT token refresh error"
+    ]
+  },
+  {
+    "slug": "node-js-bun-serve-missing-idletimeout-slow-llm-streams-cut-at-10s-default-retry-loop-burns-300s-run-timeout",
+    "title": "Bun.serve Default idleTimeout Cuts LLM Streaming Responses at 10 Seconds",
+    "description": "Fix Bun.serve cutting off LLM streaming responses due to missing idleTimeout configuration Includes evidence for Node.js troubleshooting demand.",
+    "category": "Node.js",
+    "technology": "Node.js",
+    "error_signature": "Bun.serve missing idleTimeout — slow LLM streams cut at 10s default, retry loop burns 300s run timeout",
+    "search_intent": "Fix Bun.serve cutting off LLM streaming responses due to missing idleTimeout configuration",
+    "common_causes": [
+      "Developers building AI agent sidecars with Bun.serve find that LLM streams get cut off during reasoning phases or parallel tool-call generation when there's a >10s pause. The default 10s idleTimeout triggers a retry loop that burns through the run timeout.",
+      "appstrate/appstrate issue #426: Bun.serve uses 10s default idleTimeout. LLM streams pause during reasoning phase (>10s) → connection cut → retry loop → burns 300s run timeout. Fix: set explicit idleTimeout on Bun.serve."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Bun.serve connection timeout LLM",
+      "SSE stream timeout Node.js"
+    ]
+  },
+  {
+    "slug": "openai-api-error-from-provider-deepseek-the-reasoning-content-in-the-thinking-mode-must-be-passed-back-to-the-api",
+    "title": "OpenAI-Compatible API Fails: reasoning_content Must Be Passed Back for Thinking Mode",
+    "description": "Fix OpenAI-compatible API error requiring reasoning_content to be passed back when using thinking/reasoning mode Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "Error from provider (DeepSeek): The reasoning_content in the thinking mode must be passed back to the API",
+    "search_intent": "Fix OpenAI-compatible API error requiring reasoning_content to be passed back when using thinking/reasoning mode",
+    "common_causes": [
+      "Developers using DeepSeek models (like deepseek-v4-pro) through OpenAI-compatible API endpoints in IDEs like Zed get invalid_request_error when the thinking mode's reasoning_content is not properly forwarded. This breaks AI coding tool integrations.",
+      "Zed IDE issue #56639: DeepSeek-v4-pro tool calling fails via Open Code API with error 'The reasoning_content in the thinking mode must be passed back to the API.' Affects AI coding workflows using reasoning-capable models."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "DeepSeek API extended thinking mode error",
+      "OpenAI-compatible API tool calling with reasoning"
+    ]
+  },
+  {
+    "slug": "ollama-run-error-llm-request-failed-network-connection-error",
+    "title": "Ollama LLM Request Failed: Network Connection Error with OpenClaw",
+    "description": "Fix Ollama network connection error when running AI agents that make LLM requests Includes evidence for Ollama troubleshooting demand.",
+    "category": "Ollama",
+    "technology": "Ollama",
+    "error_signature": "run error: LLM request failed: network connection error",
+    "search_intent": "Fix Ollama network connection error when running AI agents that make LLM requests",
+    "common_causes": [
+      "Developers running local LLM agents (like OpenClaw) via Ollama on Windows encounter network connection errors that halt the entire agent loop. This is a common setup issue for local AI development.",
+      "openkaiden/kaiden issue #1875: Ollama v0.2.2 on Windows 11 throws 'LLM request failed: network connection error' when trying to communicate with OpenClaw agent. Affects local AI agent setups."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Ollama connection refused localhost:11434",
+      "Ollama model download network timeout"
+    ]
+  },
+  {
+    "slug": "github-actions-github-actions-javascript-actions-forced-to-node-js-24-node-js-20-deprecation-warning",
+    "title": "GitHub Actions Node.js 20 Deprecation — JavaScript Actions Must Upgrade to Node.js 24",
+    "description": "Upgrade GitHub Actions JavaScript workflows from Node.js 20 to Node.js 24 before deprecation deadline Includes evidence for GitHub Actions troubleshooting demand.",
+    "category": "GitHub Actions",
+    "technology": "GitHub Actions",
+    "error_signature": "GitHub Actions JavaScript actions forced to Node.js 24 — Node.js 20 deprecation warning",
+    "search_intent": "Upgrade GitHub Actions JavaScript workflows from Node.js 20 to Node.js 24 before deprecation deadline",
+    "common_causes": [
+      "GitHub Actions is deprecating Node.js 20 for JavaScript actions (forced to Node.js 24 on June 2, 2026; fully removed September 16, 2026). Every job emits deprecation warnings and will break after the deadline. Developers need to upgrade their pinned actions (checkout, setup-node, etc.).",
+      "Multiple repos reporting GitHub Actions Node.js 20 deprecation. June 2, 2026: actions forced to Node.js 24. September 16, 2026: Node.js 20 removed from runners entirely. Pinned actions (checkout@v4, setup-python@v5, cache@v4) need major version bumps."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "GitHub Actions Node.js 20 removed",
+      "actions/checkout Node.js 24 upgrade"
+    ]
+  },
+  {
+    "slug": "netlify-netlify-deploy-job-fails-with-401-unauthorized-network-connection-error-during-build",
+    "title": "Netlify Deployment Fails with 401 Unauthorized During GitHub Actions CI",
+    "description": "Fix Netlify deploy returning 401 unauthorized error during automated CI/CD builds Includes evidence for Netlify troubleshooting demand.",
+    "category": "Deployment",
+    "technology": "Netlify",
+    "error_signature": "Netlify deploy job fails with 401 unauthorized — network connection error during build",
+    "search_intent": "Fix Netlify deploy returning 401 unauthorized error during automated CI/CD builds",
+    "common_causes": [
+      "Developers running CI/CD pipelines that deploy to Netlify encounter 401 unauthorized errors mid-build, causing deployment failures. Common when Netlify auth tokens expire or are misconfigured in CI environments.",
+      "facebookincubator/velox issue #17499: Netlify CI deploy jobs fail with 401 unauthorized. Log shows 'There appears to be trouble with your network connection. Retrying...' before authentication failure. Affects production CI pipelines."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "Netlify deploy key expired",
+      "Netlify CI/CD authentication error"
+    ]
+  },
+  {
+    "slug": "docker-next-js-16-2-x-plus-turbopack-build-failure-blocks-docker-compose-build-web",
+    "title": "Next.js Turbopack Build Failure in Docker Compose with Version 16.2.x",
+    "description": "Fix Next.js 16.2.x Turbopack build failure blocking Docker Compose production frontend rebuild Includes evidence for Docker troubleshooting demand.",
+    "category": "Docker",
+    "technology": "Docker",
+    "error_signature": "Next.js 16.2.x + Turbopack build failure blocks docker compose build web",
+    "search_intent": "Fix Next.js 16.2.x Turbopack build failure blocking Docker Compose production frontend rebuild",
+    "common_causes": [
+      "Developers deploying Next.js apps in Docker containers encounter build failures with Next.js 16.2.x + Turbopack. Different errors on each environment make debugging difficult, blocking production deployments.",
+      "kagura-ai/memory-cloud issue #643: Production frontend rebuild via docker compose fails with Next.js 16.2.x + Turbopack errors. Different errors on each environment, not attributable to specific PR. Blocks production deployment."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Docker Compose build failed Next.js",
+      "Turbopack module not found error"
+    ]
   }
 ]
