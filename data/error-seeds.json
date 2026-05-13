@@ -5120,5 +5120,157 @@
       "VS Code unresponsive during AI code editing",
       "Copilot Agent stuck in evaluating state"
     ]
+  },
+  {
+    "slug": "claude-code-you-re-out-of-extra-usage-resets-date",
+    "title": "Claude Code Max Plan Usage Limits Exhausted Abnormally Fast",
+    "description": "Fix Claude Code hitting usage limits prematurely on Max/Team subscription Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "You're out of extra usage · resets [date]",
+    "search_intent": "Fix Claude Code hitting usage limits prematurely on Max/Team subscription",
+    "common_causes": [
+      "Paid Claude Code Max and Team plan users report hitting usage limits far earlier than expected (e.g., after 2 hours of use). 1,400+ comments on main issue show this is a widespread, high-friction problem affecting paying customers.",
+      "Issue #16157 reports 'Instantly hitting usage limits with Max subscription' with 1,466 comments. Issue #38335 reports 'Claude Max plan session limits exhausted abnormally fast since March 23, 2026' with 719 comments. Both affect paying subscribers."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Claude Code free tier quota exceeded",
+      "Claude Code Team plan usage limits discrepancy",
+      "Claude Code ultrareview credit consumed with no output"
+    ]
+  },
+  {
+    "slug": "claude-code-compaction-irreversibly-discards-context-when-summary-api-call-fails-401-429-500",
+    "title": "Claude Code Compaction Loses All Context When Summary API Fails",
+    "description": "Prevent losing entire conversation context when Claude Code /compact API call fails Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Compaction irreversibly discards context when summary API call fails (401, 429, 500)",
+    "search_intent": "Prevent losing entire conversation context when Claude Code /compact API call fails",
+    "common_causes": [
+      "When developers run /compact in long sessions and the summary API returns 401/429/500, the original conversation is irreversibly lost and replaced with the raw error message. This is a data-loss bug unique to Claude Code.",
+      "Issue #57636 reports that manual /compact discards original conversation before confirming summary API success. When API returns 401, 429, or 500, context is lost and replaced with raw error message as continuation."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "Claude Code API key expired during long session",
+      "Claude Code context window exceeded with compaction",
+      "Claude Code session restoration after crash"
+    ]
+  },
+  {
+    "slug": "claude-code-429-rate-limit-error-rate-limited-ultrareview-credit-consumed-with-no-output",
+    "title": "Claude Code Ultrareview Credit Consumed But Produces No Output",
+    "description": "Fix Claude Code ultrareview consuming credits while returning 429 rate limit errors with zero output Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "429 rate_limit_error: Rate limited (ultrareview credit consumed with no output)",
+    "search_intent": "Fix Claude Code ultrareview consuming credits while returning 429 rate limit errors with zero output",
+    "common_causes": [
+      "Developers using Claude Code's ultrareview feature report that their free review credits are consumed even when the API returns a 429 rate limit error and produces zero output. Users are charged for nothing.",
+      "Issue #57655 shows exact error: 'Error: 429 {\"type\":\"error\",\"error\":{\"type\":\"rate_limit_error\",\"message\":\"Rate limited\"},\"request_id\":\"req_011CasMZv8mEC1SrEdPbMniv\"}'. Ultrareview credit claimed but produced zero output. User billed for failed requests."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "Claude Code ultrareview billing errors",
+      "Claude Code credit consumption without usage",
+      "Claude Code 429 during review operations"
+    ]
+  },
+  {
+    "slug": "github-copilot-error-interacting-with-language-model-failed-to-connect-to-api-429-too-many-requests-rate-limit-exceeded",
+    "title": "GitHub Copilot 429 Rate Limit Exceeded in Zed Agent Panel",
+    "description": "Fix GitHub Copilot 429 rate limit errors when using Copilot models in Zed editor Agent Panel Includes evidence for GitHub Copilot troubleshooting demand.",
+    "category": "GitHub Copilot",
+    "technology": "GitHub Copilot",
+    "error_signature": "Error interacting with language model: Failed to connect to API: 429 Too Many Requests rate limit exceeded",
+    "search_intent": "Fix GitHub Copilot 429 rate limit errors when using Copilot models in Zed editor Agent Panel",
+    "common_causes": [
+      "Developers using GitHub Copilot's Claude Sonnet models through Zed's Agent Panel hit 429 rate limits after 30 minutes to 2 hours of normal usage. The error makes Copilot completely unusable in Zed despite working fine in VS Code.",
+      "Zed issue #31849: Users get '429 Too Many Requests rate limit exceeded' after 30 min - 2 hours of using GitHub Copilot's Claude Sonnet 3.7/4 models in Zed Agent Panel. Copilot stops working entirely in Zed despite working in VS Code."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "GitHub Copilot rate limits in third-party editors",
+      "Copilot API usage tracking discrepancies",
+      "Copilot model availability in non-VS Code editors"
+    ]
+  },
+  {
+    "slug": "claude-code-error-request-was-aborted-free-tier-quota-exceeded-despite-no-usage-in-ultrareview",
+    "title": "Claude Code Free Tier Quota Exceeded With No Usage",
+    "description": "Fix Claude Code showing 'quota exceeded' error on free tier despite zero ultrareview usage Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Error: Request was aborted — Free tier quota exceeded despite no usage in ultrareview",
+    "search_intent": "Fix Claude Code showing 'quota exceeded' error on free tier despite zero ultrareview usage",
+    "common_causes": [
+      "Free tier Claude Code users report ultrareview crashes with 'Request was aborted' error, then they are shown as having exceeded quota despite never successfully using the free quota. Users are effectively locked out of a feature they never used.",
+      "Issue #58016: 'ultrareview crashed and I never got to use the free quota, and am now being billed'. Error: 'Request was aborted'. User on free tier locked out after failed attempt."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "Claude Code free tier access denied",
+      "Claude Code quota tracking errors",
+      "Claude Code ultrareview crash recovery"
+    ]
+  },
+  {
+    "slug": "litellm-openai-inference-broken-in-sdk-on-v1-81-x-completions-api-failure-with-gpt-models",
+    "title": "LiteLLM OpenAI Inference Broken After v1.81.x Upgrade",
+    "description": "Fix LiteLLM OpenAI completions API failures after upgrading to v1.81.x Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "OpenAI inference broken in SDK on v1.81.x — completions API failure with GPT models",
+    "search_intent": "Fix LiteLLM OpenAI completions API failures after upgrading to v1.81.x",
+    "common_causes": [
+      "After upgrading LiteLLM from v1.80.5 to v1.81.x, OpenAI GPT model inference breaks completely. This is a regression affecting production deployments that auto-upgrade dependencies. 22+ comments indicate widespread impact.",
+      "Issue #19608: OpenAI GPT 5.2 completions fail on LiteLLM v1.81.1 (latest PyPI). Prior versions work. Issue #19921: 'Significant performance regression after upgrading from 1.80.5 to 1.81.x (UI + API slowness)' with 44 comments."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "LiteLLM version compatibility issues",
+      "LiteLLM OpenAI provider regression",
+      "LiteLLM dependency update failures"
+    ]
+  },
+  {
+    "slug": "ollama-openai-sdk-structured-output-parsing-fails-with-gpt-oss-via-ollama",
+    "title": "Ollama Structured Output Not Working with OpenAI SDK",
+    "description": "Fix Ollama structured output incompatibility with OpenAI SDK's beta.chat.completions.parse() Includes evidence for Ollama troubleshooting demand.",
+    "category": "Ollama",
+    "technology": "Ollama",
+    "error_signature": "OpenAI SDK structured output parsing fails with gpt-oss via Ollama",
+    "search_intent": "Fix Ollama structured output incompatibility with OpenAI SDK's beta.chat.completions.parse()",
+    "common_causes": [
+      "Ollama claims OpenAI SDK compatibility for structured outputs, but developers find that using client.beta.chat.completions.parse() with local Ollama models (e.g., gpt-oss:20b) fails to parse structured output. This breaks code relying on typed responses.",
+      "Ollama issue #11691 with 87 comments reports OpenAI SDK unable to parse structured output from gpt-oss:20b. Ollama blog claims OpenAI SDK structured output compatibility but actual implementation fails. Provides exact reproducer code."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Ollama OpenAI compatibility layer limitations",
+      "Ollama function calling not working",
+      "Ollama JSON mode vs structured output"
+    ]
+  },
+  {
+    "slug": "litellm-exceededbudget-api-blocks-free-no-cost-models-when-budget-is-exceeded",
+    "title": "LiteLLM Blocks Free Models When User Budget Is Exceeded",
+    "description": "Fix LiteLLM blocking self-hosted free models when user exceeds budget for paid models Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "ExceededBudget: API blocks free (no cost) models when budget is exceeded",
+    "search_intent": "Fix LiteLLM blocking self-hosted free models when user exceeds budget for paid models",
+    "common_causes": [
+      "LiteLLM users who exceed their budget find that even free, self-hosted, on-premises models with zero cost become unavailable. The ExceededBudget error blocks all model access regardless of individual model cost, breaking mixed free/paid deployments.",
+      "LiteLLM issue #14004: When user exceeds budget, 'ExceededBudget' error raised even for on-premises models with no configured costs. API becomes unavailable for ALL models including free ones. 19 comments."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "LiteLLM budget management best practices",
+      "LiteLLM per-model budget limits",
+      "LiteLLM cost tracking errors"
+    ]
   }
 ]
