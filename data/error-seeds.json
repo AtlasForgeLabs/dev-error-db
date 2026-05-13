@@ -4754,5 +4754,149 @@
       "esm.sh package not found or unavailable",
       "CDN TypeScript definition fetch failures"
     ]
+  },
+  {
+    "slug": "anthropic-python-sdk-httpx-remoteprotocolerror-peer-closed-connection-without-sending-complete-message-body-incomplete-chunked-read",
+    "title": "Anthropic API Streaming Drops Mid-Stream with RemoteProtocolError on Long Code Execution Runs — Fix",
+    "description": "Fix RemoteProtocolError peer closed connection during Anthropic streaming with code_execution and skills Includes evidence for Anthropic Python SDK troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Anthropic Python SDK",
+    "error_signature": "httpx.RemoteProtocolError: peer closed connection without sending complete message body (incomplete chunked read)",
+    "search_intent": "Fix RemoteProtocolError peer closed connection during Anthropic streaming with code_execution and skills",
+    "common_causes": [
+      "Streaming requests to /v1/messages using code_execution + skills consistently drop mid-stream with RemoteProtocolError. Each retry costs full input tokens plus previously-billed partial output tokens, making this a significant cost issue for developers running long agentic workflows.",
+      "Open issue on official repo. Server closes connection mid-stream during active content_block_delta events. Confirmed not an idle timeout issue. Each retry burns full input tokens and partial output tokens. High cost impact for agentic workflows."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Anthropic API streaming timeout error",
+      "Anthropic API code_execution response truncated"
+    ]
+  },
+  {
+    "slug": "anthropic-api-notfounderror-404-on-batch-api",
+    "title": "Anthropic API Batch API Intermittent 404 Not Found — Server-Side Propagation Delay",
+    "description": "Fix intermittent 404 Not Found errors on Anthropic Batch API retrieve and results calls Includes evidence for Anthropic API troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Anthropic API",
+    "error_signature": "NotFoundError (404) on Batch API",
+    "search_intent": "Fix intermittent 404 Not Found errors on Anthropic Batch API retrieve and results calls",
+    "common_causes": [
+      "After successfully creating a message batch, subsequent batches.retrieve() and batches.results() calls intermittently return 404. This is a server-side propagation delay across Anthropic infrastructure nodes, not a client error. All affected batches eventually complete, but automated workflows fail without retry logic.",
+      "Open issue on official repo. Three distinct failure cases observed within ~15-minute window. Batches created successfully but retrieve() returns 404 seconds later. Infrastructure-level propagation delay. All batches eventually completed. Specific timestamps and request IDs documented."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Anthropic API batch job stuck processing",
+      "Anthropic API batch results not available"
+    ]
+  },
+  {
+    "slug": "openai-python-sdk-openaierror-missing-credentials",
+    "title": "OpenAI Python SDK AsyncOpenAI(api_key='') raises MissingCredentials Error — Fix for Local LLM Servers",
+    "description": "Fix OpenAIError MissingCredentials when using api_key empty string with local LLM servers Includes evidence for OpenAI Python SDK troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI Python SDK",
+    "error_signature": "OpenAIError: Missing credentials",
+    "search_intent": "Fix OpenAIError MissingCredentials when using api_key empty string with local LLM servers",
+    "common_causes": [
+      "After v2.34.0, passing api_key='' to AsyncOpenAI raises OpenAIError, breaking compatibility with local servers (llama.cpp, vLLM, LM Studio) that don't require authentication. Developers using OpenAI-compatible APIs for local inference hit this immediately after upgrading.",
+      "Open issue on official openai/openai-python repo. Breaking change in v2.34.0 introduced credential validation that rejects empty api_key strings. Affects all users of OpenAI-compatible local servers. 1 comment, confirmed reproducible."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "OpenAI API invalid API key error",
+      "OpenAI API workload identity authentication failed"
+    ]
+  },
+  {
+    "slug": "anthropic-python-sdk-attributeerror-nonetype-object-has-no-attribute-model",
+    "title": "Anthropic API Streaming AttributeError on Bedrock Cross-Region Inference — Rate Limit Error Handling Bug",
+    "description": "Fix AttributeError NoneType has no attribute model during Anthropic Bedrock streaming requests Includes evidence for Anthropic Python SDK troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Anthropic Python SDK",
+    "error_signature": "AttributeError: 'NoneType' object has no attribute 'model'",
+    "search_intent": "Fix AttributeError NoneType has no attribute model during Anthropic Bedrock streaming requests",
+    "common_causes": [
+      "When using AsyncAnthropicBedrock with cross-region inference profiles, Bedrock returns an error payload as the first SSE frame, but the SDK crashes trying to access .model and .usage on None. This is a production-impacting bug that wastes tokens and blocks error recovery.",
+      "Open issue on official anthropics/anthropic-sdk-python repo. Production-impacting bug in Bedrock cross-region inference streaming. SDK doesn't properly handle error payload as first SSE frame, causing AttributeError crash instead of proper error propagation."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "Anthropic API streaming connection dropped",
+      "Anthropic Bedrock cross-region inference timeout"
+    ]
+  },
+  {
+    "slug": "claude-code-unexpectedtoken-parsererror-in-powershell-when-running-ps1-files-created-by-claude-code-write-tool",
+    "title": "Claude Code Write Tool Produces PowerShell UTF-8 Without BOM Caarsing UnexpectedToken Errors on Windows",
+    "description": "Fix Claude Code Write tool PowerShell UTF-8 BOM issue causing UnexpectedToken errors on Windows Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "UnexpectedToken / ParserError in PowerShell when running .ps1 files created by Claude Code Write tool",
+    "search_intent": "Fix Claude Code Write tool PowerShell UTF-8 BOM issue causing UnexpectedToken errors on Windows",
+    "common_causes": [
+      "Claude Code's Write tool creates .ps1 files as UTF-8 without BOM. PowerShell 5.1 on Windows interprets these as ANSI, causing ParserError at non-ASCII characters (emojis, em dash, umlauts). Affects Windows developers using Claude Code for automation scripts.",
+      "Open issue on official anthropics/claude-code repo. Clear repro steps documented. Write tool creates .ps1 files without BOM, PowerShell 5.1 throws UnexpectedToken at Unicode characters. Affects Windows developers with non-ASCII content in scripts."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Claude Code PowerShell encoding issue",
+      "Claude Code Windows path error"
+    ]
+  },
+  {
+    "slug": "litellm-litellm-router-aspeech-bypasses-async-function-with-fallbacks-tts-requests-have-no-retry-or-failover",
+    "title": "LiteLLM Router.aspeech() Bypasses Fallback Mechanism — No Retry on TTS Deployment Failure",
+    "description": "Fix LiteLLM Router.aspeech no retry failover for TTS requests Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "LiteLLM Router.aspeech() bypasses async_function_with_fallbacks — TTS requests have no retry or failover",
+    "search_intent": "Fix LiteLLM Router.aspeech no retry failover for TTS requests",
+    "common_causes": [
+      "LiteLLM's Router.aspeech() bypasses the async_function_with_fallbacks mechanism, calling litellm.aspeech directly. This means TTS requests have no retry on failure and no failover to other deployments — inconsistent with how other model types are routed. Developers with multi-deployment TTS setups get hard failures.",
+      "Open issue on official BerriAI/litellm repo. Confirmed bug: Router.aspeech() calls litellm.aspeech directly, bypassing retry/failover. Inconsistent with routing behavior for other model types. Affects multi-deployment TTS configurations."
+    ],
+    "quick_fix": "Check the build output, project root, and deployment platform configuration before redeploying.",
+    "related_errors": [
+      "LiteLLM router retry not working",
+      "LiteLLM TTS deployment failover failed"
+    ]
+  },
+  {
+    "slug": "litellm-litellm-user-daily-activity-overstates-totals-for-single-day-window-in-non-utc-timezones",
+    "title": "LiteLLM Proxy Daily Activity API Overcounts Totals in Non-UTC Timezones — Timezone Edge Bug",
+    "description": "Fix LiteLLM daily activity API timezone counting bug overstates totals Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "LiteLLM /user/daily/activity overstates totals for single-day window in non-UTC timezones",
+    "search_intent": "Fix LiteLLM daily activity API timezone counting bug overstates totals",
+    "common_causes": [
+      "The /user/daily/activity endpoint in LiteLLM proxy overstates usage totals when queried with a single-day window in non-UTC timezones. This affects billing accuracy and usage monitoring for teams using LiteLLM as an API gateway across different timezone regions.",
+      "Open issue on official repo. Bug confirmed in timezone edge case for daily activity aggregation. Affects billing and monitoring accuracy for LiteLLM proxy users in non-UTC regions."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "LiteLLM usage tracking timezone issue",
+      "LiteLLM proxy billing incorrect"
+    ]
+  },
+  {
+    "slug": "claude-code-ocorreu-um-erro-ao-carregar-o-modo-de-exibi-o-claudevscodesidebar-claude-code-extension-fails-on-unc-paths",
+    "title": "Claude Code VS Code Extension Fails to Load on Network UNC Paths — Windows Corporate Network Fix",
+    "description": "Fix Claude Code VS Code extension fails to load on UNC network paths Windows Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Ocorreu um erro ao carregar o modo de exibição: claudeVSCodeSidebar (Claude Code Extension fails on UNC paths)",
+    "search_intent": "Fix Claude Code VS Code extension fails to load on UNC network paths Windows",
+    "common_causes": [
+      "Claude Code extension for VS Code fails to load when opening a folder from a UNC network path (e.g., \\\\server\\share\\project). Displays 'Ocorreu um erro ao carregar o modo de exibição: claudeVSCodeSidebar'. Affects enterprise developers working on network-shared drives.",
+      "Open issue reported against anthropics/anthropic-sdk-python repo. Claude Code extension 2.1.131 on Windows fails when project folder is on UNC network path. Enterprise impact — common setup in corporate environments with shared drives."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "Claude Code Windows path not found",
+      "Claude Code network drive access denied"
+    ]
   }
 ]
