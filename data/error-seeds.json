@@ -4621,5 +4621,138 @@
       "pydantic validation error OpenAI API response",
       "OpenAI API truncated JSON response handling"
     ]
+  },
+  {
+    "slug": "anthropic-api-404-not-found-post-v1-messages-count-tokens",
+    "title": "Anthropic API /v1/messages/count_tokens Returns 404 — Causes RPM Quota Exhaustion",
+    "description": "Fix 404 error when calling Anthropic count_tokens endpoint, or resolve unexpected rate limiting caused by SDK fallback behavior Includes evidence for Anthropic API troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Anthropic API",
+    "error_signature": "404 Not Found — POST /v1/messages/count_tokens",
+    "search_intent": "Fix 404 error when calling Anthropic count_tokens endpoint, or resolve unexpected rate limiting caused by SDK fallback behavior",
+    "common_causes": [
+      "When the /v1/messages/count_tokens endpoint returns 404, Claude SDK/CLI falls back to sending max_tokens=1 probe requests to estimate token count. A single session can fire 250+ such probes per minute (each ~53KB with tool schema), exhausting the RPM quota and causing 429 errors for all users on the same API channel.",
+      "New-api PR #4441 documents a real production incident: a single Claude Code Desktop session sends 250 count_tokens probe requests per minute when the endpoint returns 404, each request ~53KB with full tool schema but max_tokens=1, exhausting upstream RPM quota and causing 429 for all users on the channel for ~2 minutes."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "Anthropic API 429 Too Many Requests",
+      "Claude Code SDK fallback behavior max_tokens=1",
+      "Anthropic API token estimation methods"
+    ]
+  },
+  {
+    "slug": "litellm-tpm-limit-n-replica-tpm-enforcement-per-pod-instead-of-cross-pod-in-multi-replica-deployments",
+    "title": "LiteLLM Proxy Multi-Replica TPM Limit Enforcement Bug — Effective Limit Multiplied by Replica Count",
+    "description": "Fix LiteLLM proxy TPM limit not being enforced correctly across multiple replicas in production deployments Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "tpm_limit × N_replica — TPM enforcement per-pod instead of cross-pod in multi-replica deployments",
+    "search_intent": "Fix LiteLLM proxy TPM limit not being enforced correctly across multiple replicas in production deployments",
+    "common_causes": [
+      "In multi-replica LiteLLM proxy deployments with usage-based-routing-v2, the deployment-level TPM limit is enforced per-replica instead of cross-replica. The effective limit becomes tpm_limit × N_replica, allowing up to 5x the intended throughput (in a 5-replica setup) without any 429 responses. This breaks cost control and quota management for teams running LiteLLM in production.",
+      "LiteLLM issue #27736 documents a production bug: 5-replica deployment with tpm_limit=1,500,000 observed 40-minute window where effective throughput was 7,500,000 tokens (5x configured). Root cause: TPM keys are not batch-synced across replicas via Redis (unlike RPM keys), so each replica enforces limits against its local in-memory counter only."
+    ],
+    "quick_fix": "Check the build output, project root, and deployment platform configuration before redeploying.",
+    "related_errors": [
+      "LiteLLM RPM limit not enforced across replicas",
+      "LiteLLM usage-based-routing-v2 multi-replica bug",
+      "LiteLLM DualCache TPM vs RPM sync difference"
+    ]
+  },
+  {
+    "slug": "github-copilot-you-ve-hit-your-global-rate-limit-please-upgrade-your-plan-or-wait-for-your-limit-to-reset",
+    "title": "VS Code GitHub Copilot Global Rate Limit Error Despite Remaining Quota",
+    "description": "Fix VS Code Copilot hitting global rate limit when premium request quota is not yet exhausted Includes evidence for GitHub Copilot troubleshooting demand.",
+    "category": "GitHub Copilot",
+    "technology": "GitHub Copilot",
+    "error_signature": "You've hit your global rate limit. Please upgrade your plan or wait for your limit to reset",
+    "search_intent": "Fix VS Code Copilot hitting global rate limit when premium request quota is not yet exhausted",
+    "common_causes": [
+      "VS Code Copilot users see 'global rate limit' errors even when their premium request quota shows 71% remaining (not yet exceeded). This indicates a mismatch between per-user quota tracking and global rate limit enforcement, causing unexpected interruptions during active development sessions.",
+      "VS Code GitHub issue #305466 reports receiving 'You've hit your global rate limit. Please upgrade your plan or wait for your limit to reset' despite Premium requests quota being at 71.3% (not exhausted). Extension version 0.41.1, VS Code 1.113.0. The error involves both Copilot and Claude integration within VS Code."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "GitHub Copilot rate limit not matching quota",
+      "VS Code Copilot quota vs rate limit discrepancy",
+      "Copilot premium requests exhausted prematurely"
+    ]
+  },
+  {
+    "slug": "gemini-cli-429-too-many-requests-gemini-api-quota-exceeded-after-30-messages",
+    "title": "Gemini CLI Hits 429 Rate Limit After Only 30 Messages Despite 60/hour Advertised Limit",
+    "description": "Fix Gemini CLI 429 rate limiting that triggers far below the advertised 60 messages per hour limit Includes evidence for Gemini CLI troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Gemini CLI",
+    "error_signature": "429 Too Many Requests — Gemini API quota exceeded after ~30 messages",
+    "search_intent": "Fix Gemini CLI 429 rate limiting that triggers far below the advertised 60 messages per hour limit",
+    "common_causes": [
+      "Google Gemini CLI advertises 60 messages per hour for free tier users, but developers report hitting 429 Too Many Requests after only ~30 messages. The quota doesn't reset even after 2+ hours, making the CLI unusable for extended coding sessions. This is a critical blocker for developers relying on Gemini CLI as their primary AI coding assistant.",
+      "GitHub issue #2305 on google-gemini/gemini-cli reports 429 Too Many Requests after ~30 messages (expected 60/hour). The error persists for 2+ hours without reset. Uses gemini-2.5-flash model, CLI version 0.1.5. 11 comments indicate community interest."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "Gemini API quota not resetting after timeout",
+      "Gemini CLI message count lower than advertised",
+      "Gemini API 429 quota management"
+    ]
+  },
+  {
+    "slug": "vs-code-claude-code-error-during-execution-claude-haiku-model-fails-in-vs-code-copilot-chat-extension",
+    "title": "VS Code Claude Haiku Integration Fails with 'Error during execution'",
+    "description": "Fix Claude Haiku model showing 'Error during execution' in VS Code Copilot Chat extension Includes evidence for VS Code / Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "VS Code / Claude Code",
+    "error_signature": "Error during execution — Claude Haiku model fails in VS Code Copilot Chat extension",
+    "search_intent": "Fix Claude Haiku model showing 'Error during execution' in VS Code Copilot Chat extension",
+    "common_causes": [
+      "VS Code's integrated Claude agent support (via the Copilot Chat extension, v0.41.1) fails when using the Claude Haiku 4.5 model, showing a generic 'Error during execution' message. The session initializes and connects to Claude Code SDK, but the actual query execution fails. This blocks developers who prefer Haiku for its speed and lower cost within the VS Code environment.",
+      "VS Code issue #305440: Claude Haiku 4.5 model returns 'Error: Error during execution' in VS Code Copilot Chat extension (v0.41.1). The ClaudeAgentManager initializes the session successfully, Claude Code SDK starts query processing, but execution fails. The logs show session reuse and CLAUDE.md tracking working correctly before the failure."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "VS Code Claude agent execution failure",
+      "Claude Haiku model not working in VS Code",
+      "Copilot Chat extension Claude integration error"
+    ]
+  },
+  {
+    "slug": "vertex-ai-claude-stage-1-failed-to-produce-valid-concerns-array-after-3-attempts-aborting-review",
+    "title": "Vertex AI Claude Provider Drops response_format — Structured Output Always Fails",
+    "description": "Fix Vertex AI Claude provider silently dropping response_format field, causing structured JSON output failures Includes evidence for Vertex AI / Claude troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Vertex AI / Claude",
+    "error_signature": "Stage 1 failed to produce valid 'concerns' array after 3 attempts — aborting review",
+    "search_intent": "Fix Vertex AI Claude provider silently dropping response_format field, causing structured JSON output failures",
+    "common_causes": [
+      "When using Claude models through Google Vertex AI (not direct Anthropic API), the response_format field is silently dropped from requests. This causes any tool or application that expects structured JSON output (via response_format) to fail with parsing errors. The Vertex API endpoint itself works fine for free-form responses, making this a subtle integration bug that only surfaces with structured output requirements.",
+      "Sashiko issue #171: Vertex AI Claude provider (claude-sonnet-4-6 and claude-opus-4-6 in us-east5) drops response_format field in generate_claude(), causing Stage 1 AI review to always fail with 'failed to produce valid concerns array after 3 attempts'. Direct rawPredict calls with same credentials work fine — the bug is in the SDK layer not forwarding response_format to Vertex ClaudeRequest. 12 comments."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Vertex AI Claude response_format not supported",
+      "Claude structured output via Vertex AI fails",
+      "Vertex Claude rawPredict vs Anthropic API differences"
+    ]
+  },
+  {
+    "slug": "esm-sh-storage-error-please-try-again-dial-tcp-172-64-66-1-443-i-o-timeout",
+    "title": "esm.sh CDN Storage Errors and Cloudflare R2 Timeouts Breaking Package Downloads",
+    "description": "Fix esm.sh CDN returning storage errors and R2 timeout when fetching TypeScript definition files Includes evidence for esm.sh troubleshooting demand.",
+    "category": "Cloud Platforms",
+    "technology": "esm.sh",
+    "error_signature": "Storage error, please try again — dial tcp 172.64.66.1:443: i/o timeout",
+    "search_intent": "Fix esm.sh CDN returning storage errors and R2 timeout when fetching TypeScript definition files",
+    "common_causes": [
+      "esm.sh is a popular CDN for npm packages used by Deno and modern JS toolchains. When esm.sh's Cloudflare R2 backend experiences storage errors or timeouts, developers cannot import or resolve package types (.d.ts files), breaking builds and type checking. The error affects all /dist/ files for affected packages, making entire package versions unusable through the CDN.",
+      "esm.sh issue #1358: Fetching vitest@4.1.6/dist/index.d.ts returns 'Storage error, please try again'. JS files return 'dial tcp 172.64.66.1:443: i/o timeout' from Cloudflare R2 storage backend (d5197bc43c609ab3101c8fc931edb5e7.r2.cloudflarestorage.com). All /dist/ files affected. Reported 2026-05-12."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Cloudflare R2 storage timeout errors",
+      "esm.sh package not found or unavailable",
+      "CDN TypeScript definition fetch failures"
+    ]
   }
 ]
