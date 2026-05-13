@@ -5012,5 +5012,113 @@
       "OpenHands compatible LLM models list",
       "OpenHands ALLOW_SHORT_CONTEXT_WINDOWS override"
     ]
+  },
+  {
+    "slug": "litellm-apiconnectionerror",
+    "title": "LiteLLM Proxy Failover Fails Due to APIConnectionError in cooldown_handlers",
+    "description": "Fix LiteLLM proxy failover not working when a deployment host is unreachable Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "APIConnectionError",
+    "search_intent": "Fix LiteLLM proxy failover not working when a deployment host is unreachable",
+    "common_causes": [
+      "LiteLLM is a paid proxy/router for multi-model LLM deployments. When failover doesn't work due to hardcoded APIConnectionError exclusion, all requests to dead hosts fail without routing to healthy deployments — causing production outages.",
+      "Bug report (2026-05-07) identifies root cause: cooldown_handlers.py line 57 has hardcoded ignored_strings=['APIConnectionError'], causing _is_cooldown_required() to return False, preventing failover to healthy deployments in the same model group."
+    ],
+    "quick_fix": "Check the build output, project root, and deployment platform configuration before redeploying.",
+    "related_errors": [
+      "LiteLLM router cooldown not triggered for connection errors",
+      "LiteLLM deployment failover not working"
+    ]
+  },
+  {
+    "slug": "litellm-unsupported-parameter-max-tokens-is-not-supported",
+    "title": "LiteLLM OCI GPT-5 max_completion_tokens Parameter Mapping Error",
+    "description": "Fix LiteLLM OCI adapter incorrectly mapping max_completion_tokens to maxTokens for GPT-5 models Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "Unsupported parameter: 'max_tokens' is not supported",
+    "search_intent": "Fix LiteLLM OCI adapter incorrectly mapping max_completion_tokens to maxTokens for GPT-5 models",
+    "common_causes": [
+      "When calling OCI OpenAI GPT-5 models through LiteLLM, requests fail because LiteLLM maps the standard max_completion_tokens to OCI's unsupported maxTokens field. This breaks production LLM integrations using OCI GPT-5.",
+      "Bug report (2026-05-07) shows LiteLLM OCI adapter translates max_completion_tokens=100 into legacy camelCase maxTokens, which OCI GPT-5 models reject with 'Unsupported parameter: max_tokens is not supported'."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "OCI OpenAI API parameter compatibility errors",
+      "LiteLLM adapter parameter mapping issues"
+    ]
+  },
+  {
+    "slug": "claude-code-error-permission-denied-write-to-home-node-mulmoclaude-claude-skills-error-permission-denied-edit-home-node-mulmoclaude-claude-skills",
+    "title": "Claude Code Skills Directory Write/Edit Silently Denied",
+    "description": "Fix Claude Code refusing to write or edit files in .claude/skills/ directory without showing permission prompt Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Error: Permission denied: Write to /home/node/mulmoclaude/.claude/skills/... Error: Permission denied: Edit /home/node/mulmoclaude/.claude/skills/...",
+    "search_intent": "Fix Claude Code refusing to write or edit files in .claude/skills/ directory without showing permission prompt",
+    "common_causes": [
+      "Claude Code is a paid AI coding tool. After v2.1.79, Write/Edit operations on .claude/skills/** files are silently denied without permission dialog, breaking skill management workflows. Developers need to understand why and how to fix it.",
+      "Issue (2026-05-13) reports Claude Code ~2.1.79+ silently denies Write/Edit to .claude/skills/** files without permission dialog. Bash tool workaround (Python heredoc) still works. SkipAutoPermissionPrompt toggle doesn't help."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Claude Code permission denied for hidden directories",
+      "Claude Code permission prompt not showing"
+    ]
+  },
+  {
+    "slug": "github-copilot-remote-write-access-to-repository-not-granted-fatal-unable-to-access-https-github-com-the-requested-url-returned-error-403",
+    "title": "GitHub Copilot Cloud Agent Access Denied Error (403)",
+    "description": "Fix Copilot Cloud Agent failing to push code with access denied / 403 errors Includes evidence for GitHub Copilot troubleshooting demand.",
+    "category": "GitHub Copilot",
+    "technology": "GitHub Copilot",
+    "error_signature": "remote: Write access to repository not granted. fatal: unable to access 'https://github.com/...': The requested URL returned error: 403",
+    "search_intent": "Fix Copilot Cloud Agent failing to push code with access denied / 403 errors",
+    "common_causes": [
+      "Copilot Cloud Agent is a paid GitHub feature. When it gets intermittent 403 access denied errors during code pushes, developers lose productivity and need immediate fixes for repository permission issues.",
+      "Open GitHub issue (2026-04-30) reports Copilot Cloud Agent gets intermittent 'Write access to repository not granted' 403 errors even after successful pushes in the same session. Both git push and GitHub API routes fail with permission errors."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "GitHub Copilot agent authentication token expired",
+      "GITHUB_TOKEN insufficient write permissions for Copilot agent"
+    ]
+  },
+  {
+    "slug": "litellm-aembedding-missing-num-retries-kwarg-no-failover-for-embedding-model-groups",
+    "title": "LiteLLM Embedding Failover Missing num_retries Parameter",
+    "description": "Fix LiteLLM embedding router not retrying or failing over when embedding host is unreachable Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "aembedding() missing num_retries kwarg — no failover for embedding model groups",
+    "search_intent": "Fix LiteLLM embedding router not retrying or failing over when embedding host is unreachable",
+    "common_causes": [
+      "LiteLLM proxy users with multiple embedding deployments expect automatic failover when a host goes down. The aembedding() method skips num_retries, causing single-attempt failures with no fallback — breaking production RAG/embedding pipelines.",
+      "Bug report (2026-05-07) identifies aembedding() in router.py doesn't set num_retries before calling async completion, causing zero retries and no failover for embedding model groups when a host is unreachable."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "LiteLLM embedding retry not working",
+      "LiteLLM router embedding deployment failover"
+    ]
+  },
+  {
+    "slug": "github-copilot-vs-code-freezes-at-evaluating-replace-string-in-file-during-copilot-chat-agent-editing",
+    "title": "Copilot Chat Agent Freezes VS Code During Replace String in File",
+    "description": "Fix VS Code freezing when Copilot Chat Agent gets stuck during Replace String in File operation Includes evidence for GitHub Copilot troubleshooting demand.",
+    "category": "GitHub Copilot",
+    "technology": "GitHub Copilot",
+    "error_signature": "VS Code freezes at 'Evaluating' / 'Replace String in File' during Copilot Chat Agent editing",
+    "search_intent": "Fix VS Code freezing when Copilot Chat Agent gets stuck during Replace String in File operation",
+    "common_causes": [
+      "Copilot Chat Agent (paid) with Claude Sonnet 4.6 freezes VS Code during multi-file editing operations. The editor becomes completely unresponsive, requiring a restart and losing unsaved work.",
+      "Issue (2026-05-12) reports Copilot Chat Agent in VS Code 1.119.1 freezes the editor during 'Replace String in File' / 'Evaluating' phase. Editor becomes completely unresponsive; logs unavailable due to freeze. Using Claude Sonnet 4.6 model."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "VS Code unresponsive during AI code editing",
+      "Copilot Agent stuck in evaluating state"
+    ]
   }
 ]
