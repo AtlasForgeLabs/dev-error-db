@@ -4898,5 +4898,119 @@
       "Claude Code Windows path not found",
       "Claude Code network drive access denied"
     ]
+  },
+  {
+    "slug": "claude-code-weekly-limit-consumption-doubled-after-may-6-2026-changes",
+    "title": "Claude Code Weekly Usage Limit Doubled — How to Fix Excessive Quota Consumption",
+    "description": "Fix Claude Code consuming twice the weekly usage limit than expected after May 2026 pricing changes Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "weekly limit consumption doubled after May 6, 2026 changes",
+    "search_intent": "Fix Claude Code consuming twice the weekly usage limit than expected after May 2026 pricing changes",
+    "common_causes": [
+      "Claude Code Pro plan users noticed their 5-hour sessions consuming ~25% of weekly limit instead of the expected ~12%, effectively cutting available sessions from 8 to 4 per week. This directly impacts paid subscription value and billing expectations.",
+      "GitHub issue #58557 filed 2026-05-13 reports that after May 6, 2026 changes, Claude Code in VS Code consumes approximately 2x the weekly limit compared to April 2026. Support confirmed sessions should count at half rate but consumption doubled instead. Affects Pro plan users directly."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "Claude Code Pro plan quota exceeded",
+      "Claude Code session limit reached too quickly",
+      "Claude Code VS Code usage tracking wrong"
+    ]
+  },
+  {
+    "slug": "claude-code-write-tool-truncates-files-on-virtiofs-mounts-null-pad-and-tail-chop",
+    "title": "Claude Code Write/Edit Tools Truncate Files on virtiofs — Data Corruption Fix",
+    "description": "Fix Claude Code Write and Edit tools silently truncating or corrupting files on virtiofs/FUSE mounts Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Write tool truncates files on virtiofs mounts — null-pad and tail-chop",
+    "search_intent": "Fix Claude Code Write and Edit tools silently truncating or corrupting files on virtiofs/FUSE mounts",
+    "common_causes": [
+      "Claude Code's Write and Edit tools silently corrupt files on virtiofs mounts (Windows 11 with Linux containers via FUSE). Three failure modes: (1) null-pad — writes new content then pads with null bytes to original file size, (2) tail-chop — truncates content beyond some boundary, (3) silent append failure — tool reports success but content is never persisted. Files corrupted without any error returned, causing data loss and broken code pushed to git.",
+      "GitHub issue #58551 filed 2026-05-13 reports three silent file corruption modes on virtiofs mounts. 4 distinct files corrupted in one workday. Tool reports success while leaving files broken. Includes verification helper workaround (verify_file_integrity.py). ~30-60 min recovery work per incident. Broken version pushed to git before caught."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Claude Code file corruption WSL",
+      "Claude Code Edit tool data loss",
+      "Claude Code Write tool null bytes"
+    ]
+  },
+  {
+    "slug": "claude-code-browser-extension-is-not-connected",
+    "title": "Claude Code MCP Browser Extension 'Not Connected' Error — Fix Native Messaging Handshake",
+    "description": "Fix Claude Code MCP browser extension showing 'Browser extension is not connected' despite being installed and running Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Browser extension is not connected",
+    "search_intent": "Fix Claude Code MCP browser extension showing 'Browser extension is not connected' despite being installed and running",
+    "common_causes": [
+      "Claude Code's built-in claude-in-chrome MCP server reports 20 tools connected, but every tool call returns 'Browser extension is not connected' error. The failure occurs in an internal handshake between the native host and Chrome extension, with no debug log output. Users have the extension installed, correct permissions, matching accounts, and valid native messaging manifests — yet the connection fails silently.",
+      "GitHub issue #58553 filed 2026-05-13. MCP server shows 'connected · 20 tools' but all tool calls fail with 'Browser extension is not connected'. Native host process running, named pipe present, manifest correct, registry key correct, extension permissions 'On all sites'. Internal handshake layer fails without debug log output."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Claude Code MCP server tool calls failing",
+      "Claude Code Chrome extension native messaging broken",
+      "Claude Code browser integration not working"
+    ]
+  },
+  {
+    "slug": "claude-code-stop-hook-error-json-validation-failed",
+    "title": "Claude Code /goal Stop Hook JSON Validation Failed — Fix Goal Auto-Clear",
+    "description": "Fix Claude Code /goal Stop hook failing with JSON validation error preventing auto-goal clearance Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Stop hook error: JSON validation failed",
+    "search_intent": "Fix Claude Code /goal Stop hook failing with JSON validation error preventing auto-goal clearance",
+    "common_causes": [
+      "The /goal feature's Stop hook rejects valid JSON output wrapped in markdown code fences, showing 'Stop hook error: JSON validation failed' every turn end. Goals never auto-clear, forcing manual /goal clear commands. This breaks the documented auto-complete workflow for task-oriented sessions.",
+      "GitHub issue #58558 filed 2026-05-13 documents the /goal Stop hook rejecting markdown-fenced JSON output. The hook runs Claude as subprocess, which outputs JSON in code fences. Validator rejects it despite structurally valid JSON. Results in: (1) error shown every turn, (2) goal never auto-cleared, (3) requires manual /goal clear."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Claude Code /goal not clearing automatically",
+      "Claude Code hook JSON parse error",
+      "Claude Code stop hook exit code 1"
+    ]
+  },
+  {
+    "slug": "docker-429-too-many-requests-toomanyrequests-you-have-reached-your-pull-rate-limit",
+    "title": "Docker Hub Pull Rate Limit Exceeded (429) in CI/CD — Fix ImagePullBackOff",
+    "description": "Fix Docker Hub 429 pull rate limit errors causing ImagePullBackOff in CI/CD pipelines and Kubernetes clusters Includes evidence for Docker troubleshooting demand.",
+    "category": "Docker",
+    "technology": "Docker",
+    "error_signature": "429 Too Many Requests — toomanyrequests: You have reached your pull rate limit",
+    "search_intent": "Fix Docker Hub 429 pull rate limit errors causing ImagePullBackOff in CI/CD pipelines and Kubernetes clusters",
+    "common_causes": [
+      "Docker Hub enforces pull rate limits on unauthenticated requests (100 pulls/6h for anonymous, 200 pulls/6h for free accounts). CI/CD pipelines and Kubernetes clusters exceeding these limits get '429 Too Many Requests' errors, causing pods stuck in ImagePullBackOff state and CI jobs failing intermittently. This is a persistent problem for teams scaling CI without Docker Hub Pro authentication.",
+      "Multiple GitHub issues (2026-04) report Docker Hub rate limit errors. kruize-operator issue #87: optimizer pod stuck in ImagePullBackOff due to unauthenticated pull limits. grove issue #538: CI pipeline fails intermittently with 'toomanyrequests: You have reached your pull rate limit' when pulling without authentication. Both resolved by adding Docker Hub authentication."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "Docker Hub authentication in GitHub Actions",
+      "Kubernetes ImagePullBackOff Docker rate limit",
+      "Docker pull rate limit CI/CD fix"
+    ]
+  },
+  {
+    "slug": "openhands-context-window-of-x-tokens-is-below-the-minimum-of-y-tokens-required-for-openhands-to-function-properly",
+    "title": "OpenHands Workers AI Context Window Too Small Error — Fix Minimum Token Requirement",
+    "description": "Fix OpenHands error when configured model's context window is below the required 16,384 token minimum Includes evidence for OpenHands troubleshooting demand.",
+    "category": "Cloud Platforms",
+    "technology": "OpenHands",
+    "error_signature": "context window of X tokens is below the minimum of Y tokens required for OpenHands to function properly",
+    "search_intent": "Fix OpenHands error when configured model's context window is below the required 16,384 token minimum",
+    "common_causes": [
+      "OpenHands (app.all-hands.dev) rejects model configurations with context windows below 16,384 tokens, showing an error about minimum requirements. Developers using Hugging Face models like codellama-7b-instruct-awq (4,096 token context) get blocked. The error suggests setting ALLOW_SHORT_CONTEXT_WINDOWS=true as a workaround but warns against it. Users need guidance on compatible models and proper configuration.",
+      "GitHub issue #14398 filed 2026-05-13. User trying @hf/thebloke/codellama-7b-instruct-awq gets blocked with error: 'The configured model has a context window of 4,096 tokens, which is below the minimum of 16,384 tokens required for OpenHands to function properly.' Using OpenHands Cloud. User reports configuration is correct per docs but still fails."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "OpenHands minimum context window requirement",
+      "OpenHands compatible LLM models list",
+      "OpenHands ALLOW_SHORT_CONTEXT_WINDOWS override"
+    ]
   }
 ]
