@@ -5272,5 +5272,99 @@
       "LiteLLM per-model budget limits",
       "LiteLLM cost tracking errors"
     ]
+  },
+  {
+    "slug": "openrouter-openrouter-401-unauthorized-provider-returned-error",
+    "title": "OpenRouter 401 Unauthorized Error — Fix Authentication Failures",
+    "description": "Fix OpenRouter returning 401 Unauthorized despite having a valid API key with credits Includes evidence for OpenRouter troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenRouter",
+    "error_signature": "OpenRouter 401 Unauthorized — Provider returned error",
+    "search_intent": "Fix OpenRouter returning 401 Unauthorized despite having a valid API key with credits",
+    "common_causes": [
+      "Developers using Cline, Hermes Agent, and other AI coding tools with OpenRouter as the provider frequently encounter intermittent 401 errors even after verifying their API key and credit balance. The error appears randomly alongside 'Provider returned error' messages, making it difficult to diagnose whether it's a client-side request formatting issue or an OpenRouter server-side authentication bug.",
+      "Multiple GitHub issues report OpenRouter returning HTTP 401 despite verified API keys with available credits. Users report the error randomly alternates between 'Provider returned error' and '401 unauthorized'. Direct curl requests work fine, suggesting a malformed request from the client side."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "OpenRouter Error 1002 endpoint not supporting tool use",
+      "OpenRouter 404 model not available"
+    ]
+  },
+  {
+    "slug": "openrouter-openrouter-ai-apicallerror-user-not-found",
+    "title": "OpenRouter AI_APICallError User Not Found — Fix API Call Failures",
+    "description": "Fix OpenRouter returning AI_APICallError 'User not found' despite valid API key configuration Includes evidence for OpenRouter troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenRouter",
+    "error_signature": "OpenRouter AI_APICallError: User not found",
+    "search_intent": "Fix OpenRouter returning AI_APICallError 'User not found' despite valid API key configuration",
+    "common_causes": [
+      "Developers using OpenCode and similar AI development tools encounter this specific error when OpenRouter fails to authenticate valid API keys. The error 'User not found' is confusing because the user account exists and the API key is valid. This suggests a routing or endpoint compatibility issue on OpenRouter's side.",
+      "GitHub issue reports AI_APICallError with OpenRouter returning 'User not found' despite a valid API key. The issue also references related Error #1002 about endpoints not supporting tool use, indicating multiple failure modes in OpenRouter's API handling."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "OpenRouter 401 Unauthorized",
+      "OpenRouter 404 model not available",
+      "OpenRouter Error 1002 tool use not supported"
+    ]
+  },
+  {
+    "slug": "claude-code-claude-code-529-503-timeout-api-connection-failed",
+    "title": "Claude Code 529 503 Timeout Error — Fix API Connection Failures",
+    "description": "Fix Claude Code returning 529 or 503 timeout errors during API communication Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Claude Code 529/503 timeout — API connection failed",
+    "search_intent": "Fix Claude Code returning 529 or 503 timeout errors during API communication",
+    "common_causes": [
+      "Claude Code users encounter 529 and 503 timeout errors when the CLI fails to connect to Anthropic's API servers. These errors block coding sessions entirely and are particularly frustrating because they occur unpredictably during active development. Troubleshooting guides identify five common checks that resolve 90% of these problems, indicating high search demand for this specific error pattern.",
+      "Claude Code troubleshooting guides specifically call out 529/503 timeouts as one of the most common error patterns. The official Claude Code docs have a dedicated troubleshooting page. Multiple third-party guides identify these timeout errors as a primary pain point for Claude Code users."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "Claude Code API key not working",
+      "Claude Code model not available",
+      "Claude Code command not found"
+    ]
+  },
+  {
+    "slug": "gemini-api-gemini-api-404-not-found-model-not-found",
+    "title": "Gemini API 404 NOT_FOUND Error — Fix Model Not Found",
+    "description": "Fix Gemini API returning 404 NOT_FOUND when calling model endpoints Includes evidence for Gemini API troubleshooting demand.",
+    "category": "Cloud Platforms",
+    "technology": "Gemini API",
+    "error_signature": "Gemini API 404 NOT_FOUND — model not found",
+    "search_intent": "Fix Gemini API returning 404 NOT_FOUND when calling model endpoints",
+    "common_causes": [
+      "Developers calling the Gemini API (particularly for image generation models like gemini-2.0-flash-exp-image-generation) receive persistent 404 NOT_FOUND errors across multiple projects and API keys. The error occurs in both direct API calls and through the Gemini CLI, suggesting it may be related to model availability, regional restrictions, or API version deprecation.",
+      "Multiple GitHub issues report persistent 404 NOT_FOUND errors when calling Gemini API endpoints. The error occurs across multiple projects and API keys, affecting both direct API calls and the Gemini CLI. One issue specifically mentions the gemini-2.0-flash-exp-image-generation model returning 404."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Gemini API authentication error",
+      "Gemini API quota exceeded",
+      "Gemini API rate limit error"
+    ]
+  },
+  {
+    "slug": "litellm-litellm-apiconnectionerror-cannot-connect-to-host-127-0-0-1-11434",
+    "title": "LiteLLM APIConnectionError Cannot Connect to Host 11434 — Fix Ollama Connection",
+    "description": "Fix LiteLLM failing to connect to local Ollama instance at 127.0.0.1:11434 Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "LiteLLM APIConnectionError: Cannot connect to host 127.0.0.1:11434",
+    "search_intent": "Fix LiteLLM failing to connect to local Ollama instance at 127.0.0.1:11434",
+    "common_causes": [
+      "Developers using LiteLLM as a unified API gateway to route requests to local Ollama instances encounter connection refused errors on port 11434. The error is confusing because the Ollama port is confirmed running and accessible via direct API calls. The issue specifically occurs when LiteLLM tries to proxy requests over HTTPS to the local Ollama instance, suggesting a protocol mismatch or LiteLLM configuration issue.",
+      "GitHub issue reports LiteLLM APIConnectionError when connecting to localhost:11434 (Ollama). The user confirms the port is running and direct Ollama APIs are accessible. The issue occurs specifically when accessing via LiteLLM over HTTPS, indicating a LiteLLM proxy configuration or protocol handling problem."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "LiteLLM APIConnectionError general",
+      "LiteLLM unknown parameter extra_body",
+      "Ollama connection refused"
+    ]
   }
 ]
