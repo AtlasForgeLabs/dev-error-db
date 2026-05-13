@@ -7522,5 +7522,275 @@
       "npm ci strict mode vs npm install optional packages",
       "esbuild platform-specific package install error"
     ]
+  },
+  {
+    "slug": "ollama-ollama-cloud-503-service-unavailable",
+    "title": "Ollama Cloud Pro 503 Service Unavailable — All Cloud Models Failing",
+    "description": "Fix Ollama Cloud 503 errors when all cloud models return Service Unavailable Includes evidence for Ollama troubleshooting demand.",
+    "category": "Ollama",
+    "technology": "Ollama",
+    "error_signature": "Ollama Cloud 503 Service Unavailable",
+    "search_intent": "Fix Ollama Cloud 503 errors when all cloud models return Service Unavailable",
+    "common_causes": [
+      "Ollama Cloud Pro ($20/month) has ~95% failure rate across all cloud models, making the paid service essentially unusable for production agents",
+      "Multiple users report 95%+ failure rate on Ollama Cloud Pro with glm-5.1:cloud, kimi-k2.5:cloud, qwen3.5:cloud, deepseek-v3.2:cloud all returning 503. Issue open, high commercial value as paid subscription ($20/mo)."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Ollama pull EOF error",
+      "Ollama Cloud authentication failed"
+    ]
+  },
+  {
+    "slug": "claude-code-mcp-tool-timeout-not-respected-for-http-mcp-tool-calls",
+    "title": "Claude Code MCP_TOOL_TIMEOUT Ignored — HTTP Transport Hardcodes 60s Timeout",
+    "description": "Fix Claude Code MCP_TOOL_TIMEOUT environment variable being ignored for HTTP MCP servers Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "MCP_TOOL_TIMEOUT not respected for HTTP MCP tool calls",
+    "search_intent": "Fix Claude Code MCP_TOOL_TIMEOUT environment variable being ignored for HTTP MCP servers",
+    "common_causes": [
+      "HTTP MCP tool calls silently timeout at 60s despite MCP_TOOL_TIMEOUT being set, returning empty {} responses with no error — impossible to debug long-running tools",
+      "Claude Code 2.1.5+ hardcodes 60s AbortSignal.timeout() on HTTP fetch, ignoring MCP_TOOL_TIMEOUT env var. Long-running MCP tools return empty {} silently. Multiple issues filed, fix needed for version 2.1.113+."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Claude Code .mcp.json timeout not honored",
+      "Claude Code MCP server connection timeout"
+    ]
+  },
+  {
+    "slug": "cloudflare-wrangler-silently-fails-in-ci-deployment-exits-0-but-worker-not-deployed",
+    "title": "Wrangler Silently Fails in CI/CD — Worker Not Deployed Despite Exit Code 0",
+    "description": "Fix Cloudflare wrangler silently failing in CI/CD pipelines with no error output Includes evidence for Cloudflare troubleshooting demand.",
+    "category": "Cloudflare",
+    "technology": "Cloudflare",
+    "error_signature": "wrangler silently fails in CI — deployment exits 0 but worker not deployed",
+    "search_intent": "Fix Cloudflare wrangler silently failing in CI/CD pipelines with no error output",
+    "common_causes": [
+      "Wrangler 4.90.1 in CI (Woodpecker, Docker) exits with code 0 but worker is never deployed — no error messages, no stack trace, completely silent failure",
+      "wrangler 4.90.1 on Ubuntu Bun Docker image silently fails deployment in CI — exits 0, no error output, worker never deployed. Critical for CI/CD reliability on paid Cloudflare Workers plans."
+    ],
+    "quick_fix": "Check the build output, project root, and deployment platform configuration before redeploying.",
+    "related_errors": [
+      "Wrangler deployment failed silently",
+      "Cloudflare Workers CI deployment error"
+    ]
+  },
+  {
+    "slug": "claude-code-claude-code-session-could-not-be-found-cli-running-but-web-ui-shows-missing-session",
+    "title": "Claude Code Session State Mismatch — CLI Reports Running But Web Shows Session Not Found",
+    "description": "Fix Claude Code session state mismatch where CLI shows running but browser shows session not found Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Claude Code session could not be found — CLI running but web UI shows missing session",
+    "search_intent": "Fix Claude Code session state mismatch where CLI shows running but browser shows session not found",
+    "common_causes": [
+      "Claude Code CLI reports session as running but browser UI shows 'session could not be found' — developers lose work and can't reconnect",
+      "CLI says session is running, web UI says 'This session could not be found'. Error includes 'File does not exist' — session state desync between CLI and cloud backend. Affects paid users."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Claude Code remote control connection drops",
+      "Claude Code session persistence"
+    ]
+  },
+  {
+    "slug": "claude-code-claude-code-disabled-plugins-still-spawn-mcp-servers-and-open-browser-tabs",
+    "title": "Claude Code Disabled Plugins Still Spawn MCP Servers and Open Browser Tabs",
+    "description": "Fix Claude Code disabled marketplace plugins still spawning MCP servers despite enabledPlugins set to false Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Claude Code disabled plugins still spawn MCP servers and open browser tabs",
+    "search_intent": "Fix Claude Code disabled marketplace plugins still spawning MCP servers despite enabledPlugins set to false",
+    "common_causes": [
+      "Disabling marketplace plugins (nimble/wix/serena) in Claude Code settings.json doesn't stop them from spawning MCP servers and opening browser tabs — browser pollution and unwanted network activity",
+      "Setting enabledPlugins['nimble@claude-plugins-official']: false in ~/.claude/settings.json doesn't prevent MCP server spawning. Browser tabs accumulate without consent. Privacy and performance impact for paid users."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Claude Code MCP plugin management",
+      "Claude Code unwanted browser tabs"
+    ]
+  },
+  {
+    "slug": "claude-code-claude-code-remote-control-connection-drops-silently-with-no-recovery",
+    "title": "Claude Code Remote Control — Automatic Reconnection Fails, Connection Drops Silently",
+    "description": "Fix Claude Code remote control silent disconnection and failed auto-reconnect Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Claude Code Remote Control connection drops silently with no recovery",
+    "search_intent": "Fix Claude Code remote control silent disconnection and failed auto-reconnect",
+    "common_causes": [
+      "Remote control feature (/remote-control) silently drops connections without recovery — developers lose session state during long coding sessions",
+      "Claude Code remote control (/remote-control) silently drops connections with no automatic recovery. Critical for developers using remote development workflows with paid Claude Code."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Claude Code session timeout",
+      "Claude Code WebSocket reconnection"
+    ]
+  },
+  {
+    "slug": "claude-code-claude-code-prompt-is-too-long-error-makes-sessions-complicated",
+    "title": "Claude Code Prompt Too Long Error — Session Complexity from Oversized Issue Prompts",
+    "description": "Fix Claude Code 'prompt is too long' error when working with large issue descriptions Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Claude Code 'Prompt is too long' error makes sessions complicated",
+    "search_intent": "Fix Claude Code 'prompt is too long' error when working with large issue descriptions",
+    "common_causes": [
+      "Claude Code fails with 'prompt is too long' when given large GitHub issue prompts or complex codebases — developers need workarounds for context limits",
+      "Claude Code 'Prompt is too long' error when sessions receive oversized context from GitHub issue prompts. Affects developer productivity with paid Claude Code Pro subscriptions."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Claude Code context window exceeded",
+      "Claude Code max tokens error"
+    ]
+  },
+  {
+    "slug": "litellm-litellm-returns-200-tools-for-401-upstream-oauth-errors",
+    "title": "LiteLLM Proxy Swallows 401 Errors — Returns Empty Tools List Instead of Authentication Failure",
+    "description": "Fix LiteLLM returning empty tools list when upstream MCP server returns 401 Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "LiteLLM returns 200 {tools:[]} for 401 upstream OAuth errors",
+    "search_intent": "Fix LiteLLM returning empty tools list when upstream MCP server returns 401",
+    "common_causes": [
+      "OAuth2 MCP servers behind LiteLLM fail silently — LiteLLM returns 200 with empty tools instead of surfacing the 401 auth error, making debugging impossible",
+      "MCP servers with extra_headers Authorization forwarding return 200 {tools:[]} instead of 401 when token is expired/invalid. Root cause: MCP SDK StreamableHTTPSessionManager silently converts error to success."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "LiteLLM MCP OAuth2 token refresh",
+      "LiteLLM proxy authentication error"
+    ]
+  },
+  {
+    "slug": "litellm-litellm-asyncio-cancellederror-listing-tools-for-mcp-server-with-http-plus-oauth2",
+    "title": "LiteLLM asyncio.CancelledError — MCP Tool Discovery Fails with HTTP Transport and OAuth2",
+    "description": "Fix LiteLLM asyncio.CancelledError when listing tools for MCP server with HTTP transport and OAuth2 Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "LiteLLM asyncio.CancelledError listing tools for MCP server with HTTP + OAuth2",
+    "search_intent": "Fix LiteLLM asyncio.CancelledError when listing tools for MCP server with HTTP transport and OAuth2",
+    "common_causes": [
+      "MCP servers registered via REST API with Streamable HTTP + OAuth2 always fail tool discovery with asyncio.CancelledError — silent failure mode for enterprise MCP deployments",
+      "MCP server with transport:http + auth_type:oauth2 registered via POST /v1/mcp/server always fails tool discovery with asyncio.CancelledError. Server creates successfully (201) but tool listing fails silently."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "LiteLLM MCP server connection timeout",
+      "LiteLLM OAuth2 MCP authentication"
+    ]
+  },
+  {
+    "slug": "cloudflare-wrangler-refresh-token-401-from-sibling-process-rotation",
+    "title": "Wrangler OAuth 401 — Refresh Token Rotated by Sibling Process, Re-read from Disk Needed",
+    "description": "Fix wrangler OAuth 401 errors when refresh token is rotated by parallel wrangler processes Includes evidence for Cloudflare troubleshooting demand.",
+    "category": "Cloudflare",
+    "technology": "Cloudflare",
+    "error_signature": "wrangler refresh_token 401 from sibling-process rotation",
+    "search_intent": "Fix wrangler OAuth 401 errors when refresh token is rotated by parallel wrangler processes",
+    "common_causes": [
+      "Running multiple wrangler processes (parallel CI jobs, multiple repos) causes OAuth token rotation conflicts — one process invalidates another's token",
+      "wrangler caches refresh_token in module-level localState, never re-reads from disk. OAuth tokens are single-use: sibling process rotation causes 401. Fixed in recent PR by re-reading from disk."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "wrangler OAuth token expired",
+      "Cloudflare Workers parallel deployment conflict"
+    ]
+  },
+  {
+    "slug": "cloudflare-d1-migrations-dir-recursive-sql-file-search-not-supported",
+    "title": "Cloudflare D1 migrations_dir Does Not Support Recursive SQL File Search",
+    "description": "Fix Cloudflare D1 wrangler not finding migration SQL files in subdirectories Includes evidence for Cloudflare troubleshooting demand.",
+    "category": "Cloudflare",
+    "technology": "Cloudflare",
+    "error_signature": "D1 migrations_dir recursive SQL file search not supported",
+    "search_intent": "Fix Cloudflare D1 wrangler not finding migration SQL files in subdirectories",
+    "common_causes": [
+      "Drizzle ORM v1+ stores migrations in individual subdirectories, but wrangler only reads flat migration directories — breaks modern ORM migration workflows",
+      "wrangler D1 migrations only reads flat directories, not recursive. Drizzle ORM v1 uses per-migration subdirectories. Blocks Cloudflare D1 adoption for projects using modern ORMs."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "D1 migration not found",
+      "wrangler D1 SQL file missing"
+    ]
+  },
+  {
+    "slug": "vercel-vercel-cli-whoami-fails-when-linked-team-scope-is-inaccessible",
+    "title": "Vercel CLI whoami Fails With Authorization Error When Linked Team Is Inaccessible",
+    "description": "Fix Vercel CLI whoami failing when local project links to a team the token can no longer access Includes evidence for Vercel troubleshooting demand.",
+    "category": "Deployment",
+    "technology": "Vercel",
+    "error_signature": "Vercel CLI whoami fails when linked team scope is inaccessible",
+    "search_intent": "Fix Vercel CLI whoami failing when local project links to a team the token can no longer access",
+    "common_causes": [
+      "When a developer loses access to a team (left org, token expired), Vercel CLI whoami fails with authorization error instead of falling back — blocks all CLI operations",
+      "vc whoami crashes when linked project points to inaccessible team. Fixed by catching auth errors and falling back to global scope. Common scenario when devs switch teams or leave orgs."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "Vercel CLI team access denied",
+      "Vercel CLI authorization error"
+    ]
+  },
+  {
+    "slug": "cloudflare-websocket-connection-failed-with-code-1006-cloudflare-workers",
+    "title": "Cloudflare Workers WebSocket Connection Failed Code 1006",
+    "description": "Fix WebSocket code 1006 connection failure on Cloudflare Workers Includes evidence for Cloudflare troubleshooting demand.",
+    "category": "Cloudflare",
+    "technology": "Cloudflare",
+    "error_signature": "WebSocket connection failed with code 1006 — Cloudflare Workers",
+    "search_intent": "Fix WebSocket code 1006 connection failure on Cloudflare Workers",
+    "common_causes": [
+      "Developers building real-time apps on Cloudflare Workers encounter persistent WebSocket 1006 (abnormal closure) errors that are hard to diagnose",
+      "WebSocket connection to Cloudflare Workers fails with code 1006 persistently for 5+ days. Paid Cloudflare Workers with Durable Objects context. High search demand for real-time app developers."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Cloudflare Durable Objects WebSocket error",
+      "Workers WebSocket upgrade failed"
+    ]
+  },
+  {
+    "slug": "github-actions-github-actions-workflow-cancellation-leaves-downstream-jobs-stuck-queued",
+    "title": "GitHub Actions Cancel Workflow Leaves Dependent Jobs Stuck in Queued State",
+    "description": "Fix GitHub Actions stuck queued jobs after workflow cancellation with matrix and needs dependencies Includes evidence for GitHub Actions troubleshooting demand.",
+    "category": "GitHub Actions",
+    "technology": "GitHub Actions",
+    "error_signature": "GitHub Actions workflow cancellation leaves downstream jobs stuck queued",
+    "search_intent": "Fix GitHub Actions stuck queued jobs after workflow cancellation with matrix and needs dependencies",
+    "common_causes": [
+      "Canceling a workflow from the Actions runs list page leaves dependent jobs stuck queued/pending — requires manual cancellation from inside run page, wasting CI minutes",
+      "Canceling workflow from runs list doesn't fully cancel queued/dependent jobs in matrix+needs workflows. Jobs appear canceled but remain queued, consuming CI minutes on paid GitHub plans."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "GitHub Actions stuck jobs",
+      "GitHub Actions matrix cancellation"
+    ]
+  },
+  {
+    "slug": "github-actions-github-actions-runner-segmentation-fault-on-rocky-linux-9-7",
+    "title": "GitHub Actions Runner Segmentation Fault on Rocky Linux 9.7",
+    "description": "Fix GitHub Actions runner segfault on Rocky Linux 9.7 self-hosted runners Includes evidence for GitHub Actions troubleshooting demand.",
+    "category": "GitHub Actions",
+    "technology": "GitHub Actions",
+    "error_signature": "GitHub Actions runner segmentation fault on Rocky Linux 9.7",
+    "search_intent": "Fix GitHub Actions runner segfault on Rocky Linux 9.7 self-hosted runners",
+    "common_causes": [
+      "Self-hosted GitHub Actions runners crash with segmentation fault on Rocky Linux 9.7 — breaks CI/CD for enterprise Linux environments",
+      "actions-runner 2.331.0 segfaults on Rocky Linux 9.7 self-hosted runners. Enterprise Linux CI/CD impact. Open issue affecting production self-hosted runner deployments."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "GitHub Actions runner crash",
+      "Self-hosted runner segfault Linux"
+    ]
   }
 ]
