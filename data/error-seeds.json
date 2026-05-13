@@ -5366,5 +5366,119 @@
       "LiteLLM unknown parameter extra_body",
       "Ollama connection refused"
     ]
+  },
+  {
+    "slug": "gemini-api-gemini-api-rpd-limit-not-resetting-after-upgrading-to-paid-tier",
+    "title": "Gemini API Rate Limit (RPD) Not Resetting After Upgrading to Paid Tier",
+    "description": "Fix Gemini API requests-per-day rate limit that remains stuck after upgrading from free tier to a paid Google Cloud plan Includes evidence for Gemini API troubleshooting demand.",
+    "category": "Cloud Platforms",
+    "technology": "Gemini API",
+    "error_signature": "Gemini API RPD limit not resetting after upgrading to paid tier",
+    "search_intent": "Fix Gemini API requests-per-day rate limit that remains stuck after upgrading from free tier to a paid Google Cloud plan",
+    "common_causes": [
+      "Paying customers who upgrade from free to paid Gemini API tiers find their rate limits unchanged — a billing/upgrade issue that directly impacts paid service experience and drives urgent support searches",
+      "Stack Overflow question tagged python/google-cloud-platform/rate-limiting/google-cloud-billing/google-cloud-api-keys. RPD limit stuck after paid tier upgrade — a billing-related API rate limit issue."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "Gemini API ResourceExhausted 429 limit: 0",
+      "Google Cloud API quota not updating after billing change",
+      "Gemini API free tier daily request limit"
+    ]
+  },
+  {
+    "slug": "gemini-api-resourceexhausted-429-with-limit-0",
+    "title": "Gemini API ResourceExhausted 429 Error — 'limit: 0' on Free Tier Even with New Project",
+    "description": "Fix Gemini API ResourceExhausted 429 error showing 'limit: 0' on the free tier, even after creating a new Google Cloud project Includes evidence for Gemini API troubleshooting demand.",
+    "category": "Cloud Platforms",
+    "technology": "Gemini API",
+    "error_signature": "ResourceExhausted: 429 with limit: 0",
+    "search_intent": "Fix Gemini API ResourceExhausted 429 error showing 'limit: 0' on the free tier, even after creating a new Google Cloud project",
+    "common_causes": [
+      "Google's Gemini API free tier unexpectedly blocks all requests with a 'limit: 0' quota error. Developers create new projects to work around it, but the limit persists, causing frustration for anyone building with Google's AI API",
+      "Stack Overflow question with score 6, 2 answers. Tagged python/google-cloud-platform/google-api/langchain/google-gemini. ResourceExhausted 429 error with 'limit: 0' on Gemini API free tier, persists even with new project."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Gemini API RPD limit not resetting after paid tier upgrade",
+      "Gemini API quota exceeded error",
+      "Google Cloud API key rate limiting"
+    ]
+  },
+  {
+    "slug": "github-copilot-failed-to-sign-in-to-github-copilot-in-vs-code",
+    "title": "GitHub Copilot Sign-In Failed — How to Fix Authentication Errors",
+    "description": "Fix GitHub Copilot authentication/sign-in failure in VS Code on a Pro account Includes evidence for GitHub Copilot troubleshooting demand.",
+    "category": "GitHub Copilot",
+    "technology": "GitHub Copilot",
+    "error_signature": "Failed to sign in to GitHub Copilot in VS Code",
+    "search_intent": "Fix GitHub Copilot authentication/sign-in failure in VS Code on a Pro account",
+    "common_causes": [
+      "Pro subscribers frequently encounter sign-in failures when GitHub Copilot cannot authenticate through VS Code, blocking access to a paid AI coding tool they rely on daily",
+      "Stack Overflow question with score 1, tagged windows/authentication/visual-studio-code/github/github-copilot. Pro account user unable to sign in to GitHub Copilot in VS Code."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "GitHub Copilot language model unavailable",
+      "GitHub Copilot proposed API and signature verification issues",
+      "GitHub Copilot extension affecting other extensions"
+    ]
+  },
+  {
+    "slug": "github-actions-checkout-fails-with-not-found-error-for-sso-protected-enterprise-repository",
+    "title": "GitHub Actions Checkout Fails with 'Not Found' on SSO-Protected Enterprise Repository",
+    "description": "Fix GitHub Actions checkout 'Not Found' error when accessing SSO-protected enterprise repositories despite having a valid PAT Includes evidence for GitHub Actions troubleshooting demand.",
+    "category": "GitHub Actions",
+    "technology": "GitHub Actions",
+    "error_signature": "checkout fails with 'Not Found' error for SSO-protected enterprise repository",
+    "search_intent": "Fix GitHub Actions checkout 'Not Found' error when accessing SSO-protected enterprise repositories despite having a valid PAT",
+    "common_causes": [
+      "Enterprise developers using GitHub Actions with SAML SSO encounter checkout failures even with valid personal access tokens. This blocks CI/CD pipelines for organizations using enterprise GitHub with SSO requirements",
+      "Stack Overflow question with 1 answer. Tagged authentication/github-actions/single-sign-on/github-api/github-enterprise. Checkout fails with 'Not Found' for SSO-protected enterprise repo despite valid PAT."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "GitHub Actions authentication failed for pushing",
+      "GitHub Actions permission denied workflow",
+      "GitHub Actions PAT expired or insufficient scopes"
+    ]
+  },
+  {
+    "slug": "openrouter-ai-apicallerror-not-found",
+    "title": "Vercel AI SDK streamText with OpenRouter — AI_APICallError: Not Found",
+    "description": "Fix AI_APICallError 'Not Found' when using streamText from Vercel AI SDK with OpenRouter as the model provider Includes evidence for OpenRouter troubleshooting demand.",
+    "category": "Cloud Platforms",
+    "technology": "OpenRouter",
+    "error_signature": "AI_APICallError: Not Found",
+    "search_intent": "Fix AI_APICallError 'Not Found' when using streamText from Vercel AI SDK with OpenRouter as the model provider",
+    "common_causes": [
+      "Developers using Vercel's AI SDK with OpenRouter encounter model routing failures. The 'Not Found' error indicates model ID or routing misconfiguration in a paid AI API aggregation service",
+      "Stack Overflow question with score 1, 1 answer. Tagged next.js/chatbot/vercel/ai-sdk. Issue with streamText in OpenRouter AI SDK on Vercel — AI_APICallError: Not Found."
+    ],
+    "quick_fix": "Check the build output, project root, and deployment platform configuration before redeploying.",
+    "related_errors": [
+      "OpenRouter model not found error",
+      "Vercel AI SDK provider configuration error",
+      "OpenRouter API key invalid or expired"
+    ]
+  },
+  {
+    "slug": "vercel-vite-permission-denied-exit-code-126",
+    "title": "Vercel Deployment Failed with 'vite: Permission denied' (Exit Code 126)",
+    "description": "Fix Vercel deployment failing with vite permission denied error and exit code 126 Includes evidence for Vercel troubleshooting demand.",
+    "category": "Deployment",
+    "technology": "Vercel",
+    "error_signature": "vite: Permission denied (exit code 126)",
+    "search_intent": "Fix Vercel deployment failing with vite permission denied error and exit code 126",
+    "common_causes": [
+      "Vercel is a primary deployment platform for frontend developers. Permission errors during build block production deployments and cause immediate revenue impact",
+      "Stack Overflow question tagged node.js/vite/vercel. Deployment failing with 'vite: Permission denied' error (exit code 126) on Vercel platform."
+    ],
+    "quick_fix": "Check the build output, project root, and deployment platform configuration before redeploying.",
+    "related_errors": [
+      "Vercel module not found during build",
+      "Vercel build command failed",
+      "Vercel environment variables not set in deployment"
+    ]
   }
 ]
