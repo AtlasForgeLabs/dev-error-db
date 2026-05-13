@@ -6943,5 +6943,185 @@
       "Anthropic Messages API tool_use replay failures",
       "Anthropic-compatible endpoint 400 errors with agentic workflows"
     ]
+  },
+  {
+    "slug": "litellm-litellm-returns-200-tools-instead-of-upstream-401-for-token-forwarding-mcp-servers",
+    "title": "LiteLLM MCP Token Forwarding Silently Swallows Upstream 401 Unauthorized Errors",
+    "description": "Fix LiteLLM MCP gateway returning empty tools instead of propagating upstream 401 authentication errors Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "LiteLLM returns 200 {\"tools\":[]} instead of upstream 401 for token-forwarding MCP servers",
+    "search_intent": "Fix LiteLLM MCP gateway returning empty tools instead of propagating upstream 401 authentication errors",
+    "common_causes": [
+      "When LiteLLM forwards client Bearer tokens to upstream OAuth2 MCP servers, expired or invalid tokens should return 401 — but LiteLLM silently swallows the error and returns 200 with empty tools. This makes debugging authentication failures extremely difficult in production MCP deployments.",
+      "LiteLLM PR #27847 fixes MCP SDK StreamableHTTPSessionManager silently swallowing 401 errors. For MCP servers configured with extra_headers: [Authorization], the gateway was returning 200 {tools:[]} instead of propagating upstream 401. This is a critical debugging blocker for OAuth passthrough setups."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "LiteLLM API key rotation breaks MCP server connections",
+      "LiteLLM OAuth2 token refresh failure"
+    ]
+  },
+  {
+    "slug": "litellm-deleted-models-persist-in-other-workers-local-cache-when-running-litellm-with-num-workers-1",
+    "title": "LiteLLM Ghost Models with Multiple Workers — Redis Pub/Sub Cache Invalidation Failure",
+    "description": "Fix LiteLLM proxy where deleted models remain available on some workers after deletion via /model/delete API Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "Deleted models persist in other workers' local cache when running LiteLLM with --num_workers > 1",
+    "search_intent": "Fix LiteLLM proxy where deleted models remain available on some workers after deletion via /model/delete API",
+    "common_causes": [
+      "Multi-worker LiteLLM deployments using Redis cache experience ghost models — models deleted via API continue to serve requests on some workers because Redis Pub/Sub doesn't invalidate local in-memory caches across all workers. This causes inconsistent behavior and stale model serving.",
+      "LiteLLM issue #27852 reports that with --num_workers 4 and Redis cache, deleting a model added via /model/new API does not invalidate the local in-memory cache of other workers. Ghost models continue serving requests, creating inconsistent API behavior."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "LiteLLM model routing fails after hot reload",
+      "LiteLLM Redis cache key collision"
+    ]
+  },
+  {
+    "slug": "vercel-ai-sdk-invalid-schema-for-function-functionname-schema-must-be-a-json-schema-of-type-object-got-type-null",
+    "title": "Vercel AI SDK OpenAI-Compatible Provider Tool Calls Fail with Missing type object in JSON Schema",
+    "description": "Fix tool call failures when using DeepSeek or other OpenAI-compatible providers with Vercel AI SDK Includes evidence for Vercel AI SDK troubleshooting demand.",
+    "category": "Cloud Platforms",
+    "technology": "Vercel AI SDK",
+    "error_signature": "Invalid schema for function 'functionName': schema must be a JSON Schema of 'type: \"object\"', got 'type: null'",
+    "search_intent": "Fix tool call failures when using DeepSeek or other OpenAI-compatible providers with Vercel AI SDK",
+    "common_causes": [
+      "Developers using Vercel AI SDK with non-OpenAI providers (DeepSeek, local LLMs) encounter tool call failures because the SDK generates tool schemas without explicit type: object. This blocks production AI app deployments that rely on cost-effective alternative providers.",
+      "Official Vercel AI SDK issue #7924 with 10+ comments. Root cause identified in provider-utils/schema.ts — asSchema() produces schemas without type: object. Multiple PRs (12283, 15163, 15249) attempted fixes. Affects all OpenAI-compatible providers that strictly validate JSON Schema."
+    ],
+    "quick_fix": "Check the build output, project root, and deployment platform configuration before redeploying.",
+    "related_errors": [
+      "Vercel AI SDK tool call timeout with self-hosted models",
+      "OpenAI provider JSON response parsing error"
+    ]
+  },
+  {
+    "slug": "litellm-bulk-invite-api-keys-missing-sk-prefix-rejected-on-any-call",
+    "title": "LiteLLM Bulk Invite Virtual Keys Missing sk- Prefix Cause API Call Rejections",
+    "description": "Fix LiteLLM bulk invite generated API keys that don't have sk- prefix and get rejected Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "Bulk invite API keys missing sk- prefix, rejected on any call",
+    "search_intent": "Fix LiteLLM bulk invite generated API keys that don't have sk- prefix and get rejected",
+    "common_causes": [
+      "When creating users via bulk invite CSV upload in LiteLLM, the generated access tokens in the response CSV are missing the required sk- prefix. Any API call with these tokens gets rejected, blocking team onboarding workflows.",
+      "LiteLLM issue #27849 reports that virtual keys generated by bulk invite CSV upload don't include the sk- prefix. These tokens are rejected on any API call, breaking the bulk user onboarding workflow entirely."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "LiteLLM API key format validation error",
+      "LiteLLM virtual key permission denied"
+    ]
+  },
+  {
+    "slug": "litellm-llm-requests-hanging-alert-fires-continuously-for-requests-below-600s-threshold",
+    "title": "LiteLLM Continuous False-Positive Slack Alerts for LLM Hanging Requests",
+    "description": "Fix LiteLLM llm_requests_hanging alert spam when requests are not actually hanging Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "llm_requests_hanging alert fires continuously for requests below 600s threshold",
+    "search_intent": "Fix LiteLLM llm_requests_hanging alert spam when requests are not actually hanging",
+    "common_causes": [
+      "The llm_requests_hanging Slack alert fires continuously reporting 600s+ request time even when actual request times are well below the threshold. This causes alert fatigue in production monitoring and wastes engineering time investigating false positives.",
+      "LiteLLM issue #27855 reports continuous false-positive Slack alerts for llm_requests_hanging. Alert fires for multiple models even though request times are below the 600s threshold. Affects production monitoring reliability."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "LiteLLM monitoring alert threshold misconfiguration",
+      "LiteLLM request timeout handling bug"
+    ]
+  },
+  {
+    "slug": "cursor-code-command-opens-cursor-ide-instead-of-vs-code",
+    "title": "Terminal code Command Opens Cursor Instead of VS Code After Cursor Installation",
+    "description": "Fix terminal code command launching Cursor instead of VS Code Includes evidence for Cursor troubleshooting demand.",
+    "category": "Cursor",
+    "technology": "Cursor",
+    "error_signature": "code . command opens Cursor IDE instead of VS Code",
+    "search_intent": "Fix terminal code command launching Cursor instead of VS Code",
+    "common_causes": [
+      "After installing Cursor IDE, the code . terminal command (expected to open VS Code) now launches Cursor instead. Cursor hijacks the code command during installation. Developers who use both editors lose the ability to quickly open projects in VS Code from terminal.",
+      "StackOverflow question (score: 12, 2 answers) confirms this is a widely encountered issue. Cursor takes over the 'code' shell command during installation, breaking VS Code's terminal workflow. High engagement (12 upvotes) indicates broad developer impact."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Cursor shell command override configuration",
+      "VS Code code command not working after Cursor install"
+    ]
+  },
+  {
+    "slug": "litellm-litellm-badrequesterror-when-using-llm-as-a-judge-guardrail-with-self-hosted-vllm-model",
+    "title": "LiteLLM llm_as_a_judge Guardrail Fails with Self-Hosted vLLM Models",
+    "description": "Fix LiteLLM guardrail evaluation errors when using self-hosted vLLM models like Gemma Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "litellm.BadRequestError when using llm_as_a_judge guardrail with self-hosted vllm model",
+    "search_intent": "Fix LiteLLM guardrail evaluation errors when using self-hosted vLLM models like Gemma",
+    "common_causes": [
+      "Developers using LiteLLM's llm_as_a_judge guardrail with self-hosted vLLM models (e.g., google/gemma-4-31B-it) get BadRequestError. Both vllm and openai-compatible provider configurations fail. This blocks AI safety/evaluation pipelines that rely on guardrails.",
+      "LiteLLM issue #27767 reports BadRequestError when using llm_as_a_judge guardrail with self-hosted vLLM model (google/gemma-4-31B-it). Both vllm provider and OpenAI compatible endpoint provider fail. Affects AI safety evaluation workflows."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "LiteLLM guardrail configuration for local models",
+      "vLLM model compatibility with LiteLLM providers"
+    ]
+  },
+  {
+    "slug": "github-copilot-plus-ollama-vs-code-copilot-chat-does-not-show-local-ollama-models-in-selection-menu-despite-detection-in-language-models-tab",
+    "title": "VS Code GitHub Copilot Chat Cannot Select Local Ollama Models Despite Being Detected",
+    "description": "Fix VS Code Copilot Chat not listing local Ollama models in the model picker Includes evidence for GitHub Copilot + Ollama troubleshooting demand.",
+    "category": "GitHub Copilot",
+    "technology": "GitHub Copilot + Ollama",
+    "error_signature": "VS Code Copilot Chat does not show local Ollama models in selection menu despite detection in Language Models tab",
+    "search_intent": "Fix VS Code Copilot Chat not listing local Ollama models in the model picker",
+    "common_causes": [
+      "VS Code detects local Ollama models in the Language Models tab but they don't appear in Copilot Chat's model selection dropdown. Developers using local LLMs with Copilot Chat are blocked from selecting their preferred models, defeating the purpose of local AI integration.",
+      "StackOverflow question (score: 6, 3 answers) confirms this is a real, recurring issue. Models are detected by VS Code's Language Models infrastructure but not surfaced in Copilot Chat's picker. Affects the growing developer trend of local LLM + Copilot integration."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Ollama model not found in VS Code language model list",
+      "Copilot Chat custom model provider configuration"
+    ]
+  },
+  {
+    "slug": "github-actions-github-actions-scheduled-cron-task-does-not-trigger-on-self-hosted-runner",
+    "title": "GitHub Actions Scheduled Cron Workflows Not Triggering on Self-Hosted Runners",
+    "description": "Fix GitHub Actions cron-scheduled workflows that don't run on self-hosted runners Includes evidence for GitHub Actions troubleshooting demand.",
+    "category": "GitHub Actions",
+    "technology": "GitHub Actions",
+    "error_signature": "GitHub Actions scheduled cron task does not trigger on self-hosted runner",
+    "search_intent": "Fix GitHub Actions cron-scheduled workflows that don't run on self-hosted runners",
+    "common_causes": [
+      "Self-hosted GitHub Actions runners don't trigger scheduled cron workflows even though the workflow YAML is correctly configured. Multiple developers report this on GitHub Discussions. This breaks automated tasks like nightly builds, cleanup jobs, and periodic deployments.",
+      "GitHub Actions runner issue #4210 confirms scheduled cron tasks don't trigger on self-hosted runners. Multiple people report the same problem on community discussions forum (#185024). Affects automated CI/CD pipelines relying on self-hosted infrastructure."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "GitHub Actions self-hosted runner offline after cron timeout",
+      "GitHub Actions schedule trigger not working"
+    ]
+  },
+  {
+    "slug": "ollama-vulkan-output-unrelated-to-prompt-when-using-gemma4-models-with-amd-ryzen-igpu",
+    "title": "Ollama Vulkan Backend Produces Unrelated Output with Gemma4 Models on AMD Ryzen iGPU",
+    "description": "Fix Ollama Vulkan backend returning wrong or unrelated responses with Gemma4 models on AMD integrated graphics Includes evidence for Ollama troubleshooting demand.",
+    "category": "Ollama",
+    "technology": "Ollama",
+    "error_signature": "Vulkan output unrelated to prompt when using gemma4 models with AMD Ryzen iGPU",
+    "search_intent": "Fix Ollama Vulkan backend returning wrong or unrelated responses with Gemma4 models on AMD integrated graphics",
+    "common_causes": [
+      "Running Gemma4 models (e4b, e2b) on Ollama with Vulkan backend on AMD Ryzen iGPU produces strange/unrelated responses. The model also skips the thinking output entirely. This blocks developers using AMD hardware for local AI inference.",
+      "Ollama issue #15261 reports Vulkan backend producing unrelated output with gemma4:e4b and gemma4:e2b on AMD Ryzen CPU/iGPU. Model also skips thinking part. Logs provided showing Vulkan loading behavior. Affects AMD developer segment."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "Ollama AMD GPU model loading error",
+      "Ollama Vulkan backend compatibility issues"
+    ]
   }
 ]
