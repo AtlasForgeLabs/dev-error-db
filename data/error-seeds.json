@@ -5575,5 +5575,95 @@
       "Ollama MLX backend error",
       "Ollama model memory requirements"
     ]
+  },
+  {
+    "slug": "claude-code-your-organization-has-disabled-claude-subscription-access-for-claude-code-use-an-anthropic-api-key-instead-or-ask-your-admin-to-enable-access",
+    "title": "Claude Code Misleading Billing Error on Expired Credit Card",
+    "description": "Fix misleading 'organization disabled' error when Claude Code actually failed due to expired billing/payment Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Your organization has disabled Claude subscription access for Claude Code · Use an Anthropic API key instead, or ask your admin to enable access",
+    "search_intent": "Fix misleading 'organization disabled' error when Claude Code actually failed due to expired billing/payment",
+    "common_causes": [
+      "When a Claude Code subscription payment fails (expired credit card), users see a misleading error about organization access being disabled rather than a billing error. This confuses developers who don't realize the root cause is a payment failure, leading to wasted troubleshooting time.",
+      "GitHub issue #58598 reports that expired credit card billing failures show 'organization has disabled Claude subscription access' instead of indicating a billing/payment failure. User confirmed with steps to reproduce on Windows."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Claude Code subscription not activated after payment",
+      "Claude Code payment declined error"
+    ]
+  },
+  {
+    "slug": "claude-code-redirect-uri-mismatch-sent-as-callback-but-local-listener-is-at-oauth-callback",
+    "title": "Claude Code MCP OAuth redirect_uri_mismatch Error",
+    "description": "Fix redirect_uri_mismatch error when connecting MCP servers via OAuth in Claude Code Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "redirect_uri_mismatch — sent as /callback but local listener is at /oauth/callback",
+    "search_intent": "Fix redirect_uri_mismatch error when connecting MCP servers via OAuth in Claude Code",
+    "common_causes": [
+      "Claude Code sends /callback as the OAuth redirect_uri but the local listener binds at /oauth/callback, causing redirect_uri_mismatch errors with any MCP server using PKCE OAuth. Affects enterprise integrations (Salesforce, etc.) using http-type MCP servers.",
+      "GitHub issue #58595 details an OAuth 2.0 PKCE flow bug where Claude Code's outbound redirect_uri uses /callback but the local listener is at /oauth/callback, causing IdP-side redirect_uri_mismatch. Reproduced with Salesforce Hosted MCP."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "Claude Code MCP server authentication failure",
+      "MCP OAuth callback URL not working"
+    ]
+  },
+  {
+    "slug": "ollama-readtimeout-after-120-145s-connection-to-provider-failed-after-3-attempts",
+    "title": "Ollama Cloud Streaming Timeout on Long Responses",
+    "description": "Fix Ollama Cloud streaming timeout during long generation tasks with large context Includes evidence for Ollama troubleshooting demand.",
+    "category": "Ollama",
+    "technology": "Ollama",
+    "error_signature": "ReadTimeout after ~120-145s — Connection to provider failed after 3 attempts",
+    "search_intent": "Fix Ollama Cloud streaming timeout during long generation tasks with large context",
+    "common_causes": [
+      "Ollama Cloud proxy streaming requests time out after approximately 120-145 seconds during long generation tasks or tool composition, even when the model is still actively processing. No ping/keepalive is sent during this time. Developers lose context and results mid-generation.",
+      "GitHub issue #16108 reports Ollama Cloud streaming drops with ReadTimeout after 120-145s on long responses. Retries exhaust after 3 attempts. Affects minimax-m2.7 and likely other models. No keepalive during tool composition or long generation."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Ollama Cloud API timeout error",
+      "Ollama streaming connection dropped"
+    ]
+  },
+  {
+    "slug": "claude-code-panic-main-thread-segmentation-fault-at-address-0x40fe0",
+    "title": "Claude Code Desktop Crashes with Bun Runtime Segfault (Exit Code 3)",
+    "description": "Fix Claude Code desktop crash with segmentation fault in Bun runtime on Windows Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "panic(main thread): Segmentation fault at address 0x40FE0",
+    "search_intent": "Fix Claude Code desktop crash with segmentation fault in Bun runtime on Windows",
+    "common_causes": [
+      "Claude Code desktop app (v2.1.138) on Windows crashes with a segmentation fault inside Bun v1.3.14 runtime, returning exit code 3. The crash occurs before the app can do anything useful. Developers need a workaround or fix to use the tool at all.",
+      "GitHub issue #58586 reports Claude Code desktop crashing on Windows 11 with 'panic(main thread): Segmentation fault at address 0x40FE0' in Bun v1.3.14. Exit code 3 on every launch. System: Intel i7-12850HX, 32GB RAM."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Claude Code exit code 3 Windows",
+      "Bun runtime crash Claude Code"
+    ]
+  },
+  {
+    "slug": "claude-code-api-error-400-deepseek-reasoner-does-not-support-this-tool-choice",
+    "title": "Claude Code WebSearch Fails with tool_choice Error on deepseek-reasoner",
+    "description": "Fix WebSearch tool returning 400 tool_choice error when using deepseek-reasoner model in Claude Code Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "API Error: 400 deepseek-reasoner does not support this tool_choice",
+    "search_intent": "Fix WebSearch tool returning 400 tool_choice error when using deepseek-reasoner model in Claude Code",
+    "common_causes": [
+      "When using deepseek-reasoner model in Claude Code, the WebSearch tool consistently fails with a 400 error about unsupported tool_choice. Affects both Chinese and English queries. Regression issue — previously worked. Developers searching because a core tool (web search) becomes unusable.",
+      "GitHub issue #58590 reports WebSearch tool universally fails with 'API Error: 400 deepseek-reasoner does not support this tool_choice' on Claude Code v2.1.140. Confirmed as regression affecting all query types."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Claude Code tool_choice error with reasoning models",
+      "WebSearch tool not working with custom models"
+    ]
   }
 ]
