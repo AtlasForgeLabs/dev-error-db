@@ -6073,5 +6073,203 @@
       "LiteLLM /v1/messages endpoint limitations",
       "LiteLLM tool use configuration for Anthropic models"
     ]
+  },
+  {
+    "slug": "github-copilot-proxiedresponseerror-fetchresponseerror-http-200-response-does-not-appear-to-originate-from-github",
+    "title": "GitHub Copilot ProxiedResponseError After npx Upgrade — Fix Guide",
+    "description": "Resolve GitHub Copilot ProxiedResponseError that appears after upgrading npx via Homebrew Includes evidence for GitHub Copilot troubleshooting demand.",
+    "category": "GitHub Copilot",
+    "technology": "GitHub Copilot",
+    "error_signature": "ProxiedResponseError [FetchResponseError]: HTTP 200 response does not appear to originate from GitHub",
+    "search_intent": "Resolve GitHub Copilot ProxiedResponseError that appears after upgrading npx via Homebrew",
+    "common_causes": [
+      "After a routine `npx` upgrade via Homebrew (to v11.12.1), copilot.vim throws a ProxiedResponseError on initialization, breaking the Copilot language server. Developers search for the exact error string to find a quick fix.",
+      "GitHub issue (2026-05-08) with exact error signature triggered by npx upgrade. Clear causal relationship between package manager update and Copilot failure. Exact error string is highly searchable."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Copilot language server not starting",
+      "npx copilot-language-server version mismatch"
+    ]
+  },
+  {
+    "slug": "cloudflare-cannot-start-local-dev-403-forbidden-due-to-challenge-wrangler-dev",
+    "title": "Cloudflare Wrangler Dev 403 Forbidden Challenge — Local Development Blocked",
+    "description": "Fix wrangler dev returning 403 Forbidden with HTML challenge page instead of JSON, blocking local development Includes evidence for Cloudflare troubleshooting demand.",
+    "category": "Cloudflare",
+    "technology": "Cloudflare",
+    "error_signature": "Cannot start local dev [403 Forbidden] due to challenge — wrangler dev",
+    "search_intent": "Fix wrangler dev returning 403 Forbidden with HTML challenge page instead of JSON, blocking local development",
+    "common_causes": [
+      "wrangler dev was working fine until Cloudflare's bot fight mode started serving challenge pages to the local dev tool. The response body is HTML instead of JSON, completely breaking local development workflow. Developers urgently search for how to clear the challenge or configure bot settings.",
+      "GitHub issue (2026-05-07) with exact error logs. Cloudflare's own bot fight mode interferes with wrangler dev local development. The error message 'The body of the response was HTML rather than JSON' is distinctive and searchable."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "wrangler dev HTML response instead of JSON",
+      "Cloudflare bot mode blocks local development"
+    ]
+  },
+  {
+    "slug": "claude-code-ocorreu-um-erro-ao-carregar-modo-de-exibi-o-claudevscodes-claude-code-extension-fails-to-load-on-unc-paths",
+    "title": "Claude Code Extension Fails to Load on Network UNC Paths — Fix Guide",
+    "description": "Fix Claude Code VS Code extension that fails to load when project folder is on a network UNC path Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Ocorreu um erro ao carregar modo de exibição: claudeVSCodeS (Claude Code Extension fails to load on UNC paths)",
+    "search_intent": "Fix Claude Code VS Code extension that fails to load when project folder is on a network UNC path",
+    "common_causes": [
+      "Claude Code extension (v2.1.131) fails to load on Windows when the project is on a corporate UNC network path (e.g., \\\\server\\share\\project). This is a common enterprise setup, and the error message appears in Portuguese even on English systems. Corporate developers need a fix to continue using Claude Code for their work.",
+      "GitHub issue (2026-05-06) reports Claude Code VS Code extension failing on UNC network paths in corporate environments. Affects Anthropic's paid Claude Code product. Enterprise-relevant scenario."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Claude Code network path error",
+      "VS Code extension UNC path not supported"
+    ]
+  },
+  {
+    "slug": "cloudflare-error-a-request-to-the-cloudflare-api-memberships-failed",
+    "title": "Cloudflare Wrangler API Memberships Request Failed — Troubleshooting",
+    "description": "Fix wrangler deployment failure where the Cloudflare API /memberships endpoint returns an error despite valid API token Includes evidence for Cloudflare troubleshooting demand.",
+    "category": "Cloudflare",
+    "technology": "Cloudflare",
+    "error_signature": "[ERROR] A request to the Cloudflare API (/memberships) failed",
+    "search_intent": "Fix wrangler deployment failure where the Cloudflare API /memberships endpoint returns an error despite valid API token",
+    "common_causes": [
+      "Cloudflare Workers is a paid cloud service. When wrangler fails to authenticate against the /memberships API during deployment — even with updated tokens — developers are blocked from deploying. The error occurs in CI/CD (GitHub Actions) contexts too.",
+      "Active GitHub issue (2026-05-07) with full wrangler logs showing the /memberships API request failure. Affects CI/CD deployments. Cloudflare Workers has strong commercial value."
+    ],
+    "quick_fix": "Check the build output, project root, and deployment platform configuration before redeploying.",
+    "related_errors": [
+      "Cloudflare wrangler authentication error",
+      "Cloudflare API token permissions insufficient"
+    ]
+  },
+  {
+    "slug": "docker-panic-crypto-requested-hash-function-sharp-0-is-unavailable",
+    "title": "Docker Daemon Panic: Crypto Hash Function Unavailable — Docker 29.4.1 Fix",
+    "description": "Fix Docker daemon crash with panic: crypto: requested hash function #0 is unavailable in Docker 29.4.1 Includes evidence for Docker troubleshooting demand.",
+    "category": "Docker",
+    "technology": "Docker",
+    "error_signature": "panic: crypto: requested hash function #0 is unavailable",
+    "search_intent": "Fix Docker daemon crash with panic: crypto: requested hash function #0 is unavailable in Docker 29.4.1",
+    "common_causes": [
+      "Docker daemon dies unexpectedly with a Go crypto panic in version 29.4.1, making containers completely unavailable. This is a critical infrastructure failure that blocks all Docker operations. The exact error string is highly specific and searchable.",
+      "GitHub issue (2026-05-07) with full panic stack trace. Docker 29.4.1-specific regression. Exact error signature is the Go crypto panic message — highly distinctive and searchable."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Docker daemon crash on startup",
+      "Docker 29.4.1 regression"
+    ]
+  },
+  {
+    "slug": "gemini-api-google-genai-errors-clienterror-404-not-found-requested-entity-was-not-found",
+    "title": "Gemini API 404 NOT_FOUND Error with High Input Tokens — Fix Guide",
+    "description": "Fix Gemini image models returning 404 NOT_FOUND when input token count exceeds ~15k tokens Includes evidence for Gemini API troubleshooting demand.",
+    "category": "Cloud Platforms",
+    "technology": "Gemini API",
+    "error_signature": "google.genai.errors.ClientError: 404 NOT_FOUND — Requested entity was not found",
+    "search_intent": "Fix Gemini image models returning 404 NOT_FOUND when input token count exceeds ~15k tokens",
+    "common_causes": [
+      "Gemini 3 image models (gemini-3.1-flash-image-preview, gemini-3-pro-image-preview) return a misleading 404 NOT_FOUND error when the input token count exceeds ~15k — well below the documented model card maximums. Developers are confused by the 404 error when the model actually exists; the real issue is a server-side token limit.",
+      "Active GitHub issue (2026-05-08) reports 404 NOT_FOUND error for Gemini image models with high input tokens. The error message is misleading (entity not found vs. token limit exceeded), making this a high-value troubleshooting target."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Gemini API token limit exceeded",
+      "Gemini image model context length error"
+    ]
+  },
+  {
+    "slug": "github-copilot-github-copilot-authentication-fails-across-multiple-editors-on-macos",
+    "title": "GitHub Copilot Authentication Failure on macOS — Fixes & Troubleshooting",
+    "description": "Fix GitHub Copilot authentication that fails across all editors on a macOS machine Includes evidence for GitHub Copilot troubleshooting demand.",
+    "category": "GitHub Copilot",
+    "technology": "GitHub Copilot",
+    "error_signature": "GitHub Copilot authentication fails across multiple editors on macOS",
+    "search_intent": "Fix GitHub Copilot authentication that fails across all editors on a macOS machine",
+    "common_causes": [
+      "Copilot is a paid subscription ($10-19/mo). When auth fails on one Mac despite valid credentials, network, and certificates, developers urgently search for workarounds — especially since it affects all editors simultaneously (Neovim, Zed, VS Code).",
+      "Active GitHub issue (2026-05-10) reports Copilot auth failure on Apple Silicon M4 Max MacBook Pro across Neovim and Zed, with valid TLS, no proxy, and hotspot testing — issue is machine-specific but unresolved."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "GitHub Copilot sign-in timeout",
+      "GitHub Copilot E-32603 signIn failed"
+    ]
+  },
+  {
+    "slug": "gemini-api-gemini-3-1-pro-can-t-return-structured-output-with-empty-arrays-when-using-web-search",
+    "title": "Gemini API Structured Output Empty Array Failure with Web Search",
+    "description": "Fix Gemini 3.1 Pro failing to return structured output with empty array fields when web search tool is enabled Includes evidence for Gemini API troubleshooting demand.",
+    "category": "Cloud Platforms",
+    "technology": "Gemini API",
+    "error_signature": "Gemini 3.1 Pro can't return structured output with empty arrays when using web search",
+    "search_intent": "Fix Gemini 3.1 Pro failing to return structured output with empty array fields when web search tool is enabled",
+    "common_causes": [
+      "A specific combination of features — structured output with optional list fields, web search tool, and Gemini 3.1 Pro — causes the model to fail returning empty arrays in structured responses. This is a subtle but critical bug for developers using Gemini's function calling with web search for data extraction tasks.",
+      "GitHub issue (2026-05-08) with reproducible Python code showing structured output failure when combining web search + empty array fields. Specific feature combination makes this a niche but high-value search target."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Gemini structured output not working",
+      "Gemini web search tool breaks function calling"
+    ]
+  },
+  {
+    "slug": "anthropic-api-zodoutputformat-fails-when-project-uses-zod-v3",
+    "title": "Anthropic SDK TypeScript zodOutputFormat Compatibility Error with Zod v3",
+    "description": "Fix zodOutputFormat error when using Anthropic TypeScript SDK with zod version 3 Includes evidence for Anthropic API troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Anthropic API",
+    "error_signature": "zodOutputFormat fails when project uses zod v3",
+    "search_intent": "Fix zodOutputFormat error when using Anthropic TypeScript SDK with zod version 3",
+    "common_causes": [
+      "The Anthropic TypeScript SDK's zodOutputFormat feature fails when the project uses zod v3, causing type errors in structured output handling. Many projects still use zod v3, and migrating is non-trivial. Developers search for compatibility workarounds or version pinning guidance.",
+      "GitHub issues and PRs (2026-05-11/2026-05-12) show active development around zod v3 compatibility. The error affects structured output — a core Claude API feature. Multiple related issues indicate widespread impact."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Anthropic SDK structured output error",
+      "Claude API zod schema compatibility"
+    ]
+  },
+  {
+    "slug": "ollama-mac-mlx-mlx-runner-killed-by-10s-watchdog-timeout-during-large-context-prefill",
+    "title": "Ollama MLX Runner 10s Watchdog Timeout on Mac with Large Context — Fix Guide",
+    "description": "Fix Ollama MLX runner being killed by 10-second watchdog timeout when processing large context windows on Apple Silicon Mac Includes evidence for Ollama troubleshooting demand.",
+    "category": "Ollama",
+    "technology": "Ollama",
+    "error_signature": "[Mac/MLX] MLX Runner killed by 10s watchdog timeout during large context prefill",
+    "search_intent": "Fix Ollama MLX runner being killed by 10-second watchdog timeout when processing large context windows on Apple Silicon Mac",
+    "common_causes": [
+      "Since Ollama v0.23.1/v0.23.2, the MLX runner on Apple Silicon Macs is terminated by a strict 10-second heartbeat timeout during large context prefill (32k+ tokens) or slow-prefill MoE models. This causes 500 Internal Server Error, completely blocking long-context operations. v0.22.1 works fine — this is a regression.",
+      "GitHub issue (2026-05-10) with detailed logs showing watchdog timeout regression. Specific to Apple Silicon MLX runner with large context windows. Affects popular use case (long-context LLM inference)."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Ollama 500 Internal Server Error Mac",
+      "Ollama MLX context window timeout"
+    ]
+  },
+  {
+    "slug": "ollama-pull-gpt-oss-safeguard-120b-fails-with-error-eof-on-aarch64",
+    "title": "Ollama Pull Error EOF on aarch64 — Model Download Fix",
+    "description": "Fix Ollama model pull failing with Error: EOF on ARM64/aarch64 architecture Includes evidence for Ollama troubleshooting demand.",
+    "category": "Ollama",
+    "technology": "Ollama",
+    "error_signature": "pull gpt-oss-safeguard:120b fails with Error: EOF on aarch64",
+    "search_intent": "Fix Ollama model pull failing with Error: EOF on ARM64/aarch64 architecture",
+    "common_causes": [
+      "Ollama model downloads fail with `Error: EOF` on aarch64 (NVIDIA DGX Spark / GB10) for specific large models like gpt-oss-safeguard:120b, while smaller models work fine. This is an architecture-specific regression that blocks AI model deployment on ARM servers.",
+      "GitHub issue (2026-05-12) with reproducible steps on aarch64. Specific model and architecture combination. Affects server-grade AI deployment (DGX Spark)."
+    ],
+    "quick_fix": "Verify the model name, local service connectivity, and network access before retrying the model pull.",
+    "related_errors": [
+      "Ollama pull fails on ARM",
+      "Ollama model download EOF error"
+    ]
   }
 ]
