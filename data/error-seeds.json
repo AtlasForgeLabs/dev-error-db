@@ -7123,5 +7123,214 @@
       "Ollama AMD GPU model loading error",
       "Ollama Vulkan backend compatibility issues"
     ]
+  },
+  {
+    "slug": "anthropic-api-compiled-grammar-is-too-large",
+    "title": "Anthropic API Structured Output 'compiled grammar is too large' Error",
+    "description": "Fix Anthropic API structured output error when using complex JSON schemas Includes evidence for Anthropic API troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Anthropic API",
+    "error_signature": "compiled grammar is too large",
+    "search_intent": "Fix Anthropic API structured output error when using complex JSON schemas",
+    "common_causes": [
+      "Developers using Claude's structured output feature with complex schemas hit this error; it blocks production AI agent deployments that require structured JSON responses",
+      "Open issue (11 comments) on official Anthropic SDK repo. Error occurs when using complex schemas with structured outputs; needs better documentation and higher limits. Directly impacts AI agent and tool-use workflows."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Anthropic API structured output JSON schema validation error",
+      "Claude 3.5 structured output tool_use format error",
+      "Anthropic API max_tokens exceeded in structured output"
+    ]
+  },
+  {
+    "slug": "anthropic-api-extra-caller-field-in-request-breaks-computer-use-between-v0-74-1-and-v0-75-0",
+    "title": "Anthropic SDK computer-use Broken by Extra 'caller' Field in v0.75.0",
+    "description": "Fix Anthropic SDK computer-use feature broken after upgrading to v0.75.0 Includes evidence for Anthropic API troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Anthropic API",
+    "error_signature": "Extra 'caller' Field in Request Breaks computer-use Between v0.74.1 and v0.75.0",
+    "search_intent": "Fix Anthropic SDK computer-use feature broken after upgrading to v0.75.0",
+    "common_causes": [
+      "Computer-use is a premium Anthropic API feature; breaking changes between SDK versions block automated desktop agents and RPA workflows",
+      "Closed issue (11 comments) on official Anthropic SDK repo. Extra 'caller' field in API requests broke computer-use functionality between SDK v0.74.1 and v0.75.0. Breaking change affects production agents."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Anthropic API computer-use browser tool error",
+      "Claude computer-use screenshot failed",
+      "Anthropic SDK version compatibility computer-use"
+    ]
+  },
+  {
+    "slug": "anthropic-api-prompt-caching-for-claude-sonnet-appears-to-start-at-2048-tokens-instead-of-documented-1024",
+    "title": "Anthropic API Prompt Caching Minimum Token Threshold Mismatch",
+    "description": "Fix Anthropic API prompt caching not working for prompts under 2048 tokens Includes evidence for Anthropic API troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Anthropic API",
+    "error_signature": "Prompt caching for Claude Sonnet appears to start at 2048 tokens instead of documented 1024",
+    "search_intent": "Fix Anthropic API prompt caching not working for prompts under 2048 tokens",
+    "common_causes": [
+      "Prompt caching is a cost-saving feature; if the documented 1024-token minimum doesn't match actual 2048-token behavior, developers overpay for API calls without caching benefits",
+      "Open issue (5 comments) on official Anthropic SDK repo. Prompt caching minimum threshold appears to be 2048 tokens vs. documented 1024. Directly impacts API costs for developers relying on caching."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Anthropic API prompt caching not working",
+      "Claude API cache hit rate zero",
+      "Anthropic API prompt caching beta limitations"
+    ]
+  },
+  {
+    "slug": "ollama-out-of-memory-errors-when-running-gemma3",
+    "title": "Ollama Out of Memory Error Running Gemma3 Models",
+    "description": "Fix Ollama out of memory when loading Gemma3 or other large language models Includes evidence for Ollama troubleshooting demand.",
+    "category": "Ollama",
+    "technology": "Ollama",
+    "error_signature": "Out of memory errors when running gemma3",
+    "search_intent": "Fix Ollama out of memory when loading Gemma3 or other large language models",
+    "common_causes": [
+      "Gemma3 is a popular open-source model; OOM errors prevent developers from running it locally, which is the primary use case for Ollama users",
+      "Closed issue (75 comments) on official Ollama repo. Specific to Gemma3 models causing OOM errors. High engagement indicates widespread impact across developers running local LLMs."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Ollama model offloading to GPU fails",
+      "Ollama VRAM insufficient for model size",
+      "Ollama context_length exceeds GPU memory"
+    ]
+  },
+  {
+    "slug": "anthropic-api-sdk-returns-empty-text-blocks-but-does-not-accept-them",
+    "title": "Anthropic SDK Empty Text Blocks Validation Error",
+    "description": "Fix Anthropic SDK error where API returns empty text blocks that the SDK rejects Includes evidence for Anthropic API troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Anthropic API",
+    "error_signature": "SDK returns empty text blocks, but does not accept them",
+    "search_intent": "Fix Anthropic SDK error where API returns empty text blocks that the SDK rejects",
+    "common_causes": [
+      "Inconsistent SDK behavior — returning data it won't accept — causes unpredictable failures in Claude API integrations and agent frameworks",
+      "Closed issue (8 comments) on official Anthropic SDK repo. SDK inconsistency: API returns empty text blocks but SDK validation rejects them. Causes unexpected crashes in Claude API consumers."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Anthropic API empty response handling",
+      "Claude SDK text block validation error",
+      "Anthropic API streaming empty chunk error"
+    ]
+  },
+  {
+    "slug": "litellm-heavy-ram-usage-over-time",
+    "title": "LiteLLM Proxy Memory Leak — Heavy RAM Usage Over Time",
+    "description": "Fix LiteLLM proxy memory leak causing high RAM usage over extended operation Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "Heavy RAM Usage over time",
+    "search_intent": "Fix LiteLLM proxy memory leak causing high RAM usage over extended operation",
+    "common_causes": [
+      "Memory leaks in LiteLLM proxy crash production AI gateway deployments, requiring frequent restarts and causing API downtime",
+      "Closed issue (58 comments) on official LiteLLM repo. Progressive RAM consumption over time requires frequent proxy restarts. Critical for production AI gateway deployments."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "LiteLLM proxy crash out of memory",
+      "LiteLLM memory leak streaming mode",
+      "LiteLLM high CPU usage under load"
+    ]
+  },
+  {
+    "slug": "litellm-significant-performance-regression-after-upgrading-from-1-80-5-to-1-81-x-ui-plus-api-slowness",
+    "title": "LiteLLM Performance Regression v1.81.x — UI and API Slowness",
+    "description": "Fix LiteLLM performance degradation after upgrading to v1.81.x Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "Significant performance regression after upgrading from 1.80.5 to 1.81.x (UI + API slowness)",
+    "search_intent": "Fix LiteLLM performance degradation after upgrading to v1.81.x",
+    "common_causes": [
+      "Major performance regression between versions causes slow API responses and sluggish admin UI, degrading production AI routing performance",
+      "Open issue (44 comments) on official LiteLLM repo. Significant UI and API performance regression after upgrading from v1.80.5 to v1.81.x. Affects production proxy latency."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "LiteLLM slow response time",
+      "LiteLLM timeout after upgrade",
+      "LiteLLM connection pool exhaustion"
+    ]
+  },
+  {
+    "slug": "next-js-err-package-path-not-exported-package-subpath-server-edge-is-not-defined-by-exports",
+    "title": "Next.js ERR_PACKAGE_PATH_NOT_EXPORTED Edge Runtime Error",
+    "description": "Fix Next.js edge runtime package export error in server components Includes evidence for Next.js troubleshooting demand.",
+    "category": "Deployment",
+    "technology": "Next.js",
+    "error_signature": "ERR_PACKAGE_PATH_NOT_EXPORTED: Package subpath './server.edge' is not defined by \"exports\"",
+    "search_intent": "Fix Next.js edge runtime package export error in server components",
+    "common_causes": [
+      "Edge runtime is critical for Vercel deployments; this error blocks server-side components from importing edge-compatible modules",
+      "Closed issue (174 comments) on official Next.js repo. Error occurs when importing edge-specific subpaths in Next.js server components. High engagement shows significant developer pain."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Next.js edge runtime module resolution error",
+      "Next.js server component import error",
+      "Vercel edge middleware package import failed"
+    ]
+  },
+  {
+    "slug": "github-actions-self-hosted-runner-stuck-on-waiting-for-a-runner-to-pick-up-this-job",
+    "title": "GitHub Actions Self-Hosted Runner Stuck Waiting for Job",
+    "description": "Fix GitHub Actions self-hosted runner stuck waiting to pick up jobs Includes evidence for GitHub Actions troubleshooting demand.",
+    "category": "GitHub Actions",
+    "technology": "GitHub Actions",
+    "error_signature": "Self-hosted runner stuck on 'Waiting for a runner to pick up this job...'",
+    "search_intent": "Fix GitHub Actions self-hosted runner stuck waiting to pick up jobs",
+    "common_causes": [
+      "Self-hosted runners are essential for enterprise CI/CD; jobs stuck in 'waiting' state block entire deployment pipelines and waste developer time",
+      "Open issue (141 comments) on official GitHub Actions runner repo. Multi-step jobs cause runner to hang in 'waiting' state, blocking CI/CD pipelines. High enterprise impact."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "GitHub Actions runner connection lost",
+      "GitHub Actions self-hosted runner offline",
+      "GitHub Actions job timeout on self-hosted runner"
+    ]
+  },
+  {
+    "slug": "docker-failed-to-compute-cache-key-in-newer-version",
+    "title": "Docker BuildKit Failed to Compute Cache Key Error",
+    "description": "Fix Docker BuildKit 'failed to compute cache key' error in newer Docker versions Includes evidence for Docker troubleshooting demand.",
+    "category": "Docker",
+    "technology": "Docker",
+    "error_signature": "Failed to compute cache key in newer version",
+    "search_intent": "Fix Docker BuildKit 'failed to compute cache key' error in newer Docker versions",
+    "common_causes": [
+      "BuildKit cache failures break Docker layer caching, causing full rebuilds and slow CI/CD; affects all developers using Docker for builds",
+      "Closed issue (61 comments) on official Moby/BuildKit repo. Cache key computation fails in newer BuildKit versions, causing CI/CD performance degradation. Docker is essential for modern development."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Docker BuildKit cache mount error",
+      "Docker build cache invalidation issue",
+      "Docker Compose build failed exit code"
+    ]
+  },
+  {
+    "slug": "pnpm-err-pnpm-fetch-429",
+    "title": "pnpm ERR_PNPM_FETCH_429 Rate Limit Error During Install",
+    "description": "Fix pnpm ERR_PNPM_FETCH_429 rate limit error when installing dependencies Includes evidence for pnpm troubleshooting demand.",
+    "category": "npm",
+    "technology": "pnpm",
+    "error_signature": "ERR_PNPM_FETCH_429",
+    "search_intent": "Fix pnpm ERR_PNPM_FETCH_429 rate limit error when installing dependencies",
+    "common_causes": [
+      "pnpm is the fastest Node.js package manager; ERR_PNPM_FETCH_429 blocks CI/CD pipelines and local development when npm registry rate limits are hit",
+      "Open issue (79 comments) on official pnpm repo. ERR_PNPM_FETCH_429 occurs in certain environments during dependency installation. High community engagement, affecting CI/CD and monorepo setups."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "pnpm registry timeout error",
+      "pnpm ECONNRESET during install",
+      "pnpm lockfile conflict error"
+    ]
   }
 ]
