@@ -7332,5 +7332,195 @@
       "pnpm ECONNRESET during install",
       "pnpm lockfile conflict error"
     ]
+  },
+  {
+    "slug": "anthropic-api-api-error-400-type-error-error-type-invalid-request-error-message-output-blocked-by-content-filtering-policy",
+    "title": "Anthropic API Output Blocked by Content Filtering Policy",
+    "description": "Fix Anthropic Claude API content filtering policy blocking output Includes evidence for Anthropic API troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Anthropic API",
+    "error_signature": "API Error: 400 {\"type\":\"error\",\"error\":{\"type\":\"invalid_request_error\",\"message\":\"Output blocked by content filtering policy\"}}",
+    "search_intent": "Fix Anthropic Claude API content filtering policy blocking output",
+    "common_causes": [
+      "Developers using Claude API hit unexpected content filtering errors when processing sensitive text, historical documents, or edge-case prompts. The opaque error message gives no guidance on what triggered the filter or how to adjust the prompt.",
+      "Multiple real issues on anthropics/claude-code repo (May 2026) reporting 400 errors with 'Output blocked by content filtering policy' when adapting texts or processing content with potentially sensitive terms."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Anthropic API prompt blocked by content filtering policy",
+      "Anthropic API content policy violation error handling",
+      "Claude API safety filter false positive"
+    ]
+  },
+  {
+    "slug": "anthropic-api-http-400-each-tool-use-must-have-a-single-result-found-multiple-tool-result-blocks-with-id",
+    "title": "Anthropic API 400 — Duplicate tool_result Blocks for Same tool_use",
+    "description": "Fix duplicate tool_result blocks error in Anthropic Claude API agent loops Includes evidence for Anthropic API troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Anthropic API",
+    "error_signature": "HTTP 400: each tool_use must have a single result. Found multiple tool_result blocks with id",
+    "search_intent": "Fix duplicate tool_result blocks error in Anthropic Claude API agent loops",
+    "common_causes": [
+      "Long-running agent sessions with many tool calls accumulate duplicate tool_result blocks, causing the API to reject the entire message history. Developers struggle to deduplicate without losing conversation context.",
+      "Goose agent project hit this error with Databricks provider and direct Anthropic — long sessions with many tool calls fail because multiple tool_result blocks share the same tool_use ID."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Anthropic API tool_result deduplication",
+      "Claude API conversation history management for agents",
+      "tool_use tool_result pairing best practices"
+    ]
+  },
+  {
+    "slug": "litellm-litellm-authenticationerror-401-proxy-virtual-key-expired-or-budget-exhausted",
+    "title": "LiteLLM Proxy Authentication Error — Virtual Key Expired or Budget Exhausted",
+    "description": "Fix LiteLLM proxy 401 authentication error when virtual API key expires or budget is exhausted Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "litellm.AuthenticationError: 401 — Proxy virtual key expired or budget exhausted",
+    "search_intent": "Fix LiteLLM proxy 401 authentication error when virtual API key expires or budget is exhausted",
+    "common_causes": [
+      "LiteLLM proxy is widely used as an LLM routing layer. When virtual keys expire or team budgets are depleted, developers get confusing 401/403/429 errors. The proxy maps different conditions to different status codes, making debugging non-obvious.",
+      "Recent LiteLLM PR (May 2026) fixed three proxy auth error status code mappings: budget exhaustion→429, model allowlist denial→403, expired virtual keys→401. OpenHands SDK also added typed exception mapping for 401/403."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "LiteLLM proxy budget exceeded 429 error",
+      "LiteLLM model allowlist denied 403 error",
+      "LiteLLM virtual key expiry handling"
+    ]
+  },
+  {
+    "slug": "anthropic-api-messages-2-tool-use-ids-were-found-without-tool-result-blocks-immediately-after",
+    "title": "Anthropic API 400 — tool_use Without Matching tool_result",
+    "description": "Fix Anthropic API 400 error when tool_use blocks lack corresponding tool_result blocks Includes evidence for Anthropic API troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Anthropic API",
+    "error_signature": "messages.2: `tool_use` ids were found without `tool_result` blocks immediately after",
+    "search_intent": "Fix Anthropic API 400 error when tool_use blocks lack corresponding tool_result blocks",
+    "common_causes": [
+      "When building multi-turn agent conversations with tool use, developers frequently mismatch tool_use and tool_result block ordering. The API returns a cryptic 400 error pointing to message indices but not explaining the exact fix.",
+      "Real production issue where second master chat turn returned 400 from Anthropic API because tool_use blocks were not immediately followed by tool_result blocks in the conversation history."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Anthropic API tool use conversation history format",
+      "Claude API tool_call without tool_result error",
+      "Anthropic messages API tool sequence validation"
+    ]
+  },
+  {
+    "slug": "cursor-invalid-request-code-invalid-type-expected-array-received-undefined-path-messages-message-required",
+    "title": "Cursor API Invalid Request — messages Field Required",
+    "description": "Fix Cursor IDE API invalid request error when messages field is undefined Includes evidence for Cursor troubleshooting demand.",
+    "category": "Cursor",
+    "technology": "Cursor",
+    "error_signature": "Invalid request: [{\"code\":\"invalid_type\",\"expected\":\"array\",\"received\":\"undefined\",\"path\":[\"messages\"],\"message\":\"Required\"}]",
+    "search_intent": "Fix Cursor IDE API invalid request error when messages field is undefined",
+    "common_causes": [
+      "Developers integrating Cursor with custom API proxies or custom LLM backends encounter this validation error when the proxy fails to properly forward the messages array. The Zod validation error is technical and unhelpful for IDE users.",
+      "Real error log from Cursor IDE showing Zod validation failure when messages array is undefined in API request. Affects developers using proxy setups with Cursor."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Cursor custom API proxy configuration",
+      "Cursor IDE OpenAI API compatibility error",
+      "Cursor model endpoint connection error"
+    ]
+  },
+  {
+    "slug": "vercel-function-invocation-timeout-http-504-on-vercel-serverless-functions",
+    "title": "Vercel FUNCTION_INVOCATION_TIMEOUT — Serverless Function Timeout Error",
+    "description": "Fix Vercel serverless function timeout FUNCTION_INVOCATION_TIMEOUT 504 error Includes evidence for Vercel troubleshooting demand.",
+    "category": "Deployment",
+    "technology": "Vercel",
+    "error_signature": "FUNCTION_INVOCATION_TIMEOUT — HTTP 504 on Vercel serverless functions",
+    "search_intent": "Fix Vercel serverless function timeout FUNCTION_INVOCATION_TIMEOUT 504 error",
+    "common_causes": [
+      "Vercel's default 10s (hobby) or 60s (pro) function timeout catches developers off guard when AI API calls, database operations, or batch processing exceed the limit. The error surface is opaque — just a 504 with minimal debug info.",
+      "Multiple repos hitting FUNCTION_INVOCATION_TIMEOUT in 2026 — SharePoint sync (30s→300s fix), recipe generation (120s exceeded by reasoning model output), crypto portfolio API (gpt-oss-120b too slow for 5 trades)."
+    ],
+    "quick_fix": "Check the build output, project root, and deployment platform configuration before redeploying.",
+    "related_errors": [
+      "Vercel maxDuration configuration serverless functions",
+      "Vercel edge function timeout vs serverless function timeout",
+      "Vercel cold start timeout error"
+    ]
+  },
+  {
+    "slug": "ollama-econnrefused-ollama-connection-refused-on-localhost-11434",
+    "title": "Ollama Connection Refused — ECONNREFUSED Error on localhost:11434",
+    "description": "Fix Ollama connection refused ECONNREFUSED error when Ollama service is not running Includes evidence for Ollama troubleshooting demand.",
+    "category": "Ollama",
+    "technology": "Ollama",
+    "error_signature": "ECONNREFUSED — Ollama connection refused on localhost:11434",
+    "search_intent": "Fix Ollama connection refused ECONNREFUSED error when Ollama service is not running",
+    "common_causes": [
+      "Ollama must be running as a background daemon. When it crashes, is killed, or hasn't been started, any application trying to connect gets ECONNREFUSED. The error is confusing because there's no indication that Ollama itself needs restarting.",
+      "Multiple projects reporting ECONNREFUSED errors when Ollama is offline. One project (openhuman) saw 226 Sentry events/day from this error noise. Another project added explicit OLLAMA-DOWN error categorization."
+    ],
+    "quick_fix": "Confirm the local service is running on the expected host and port, then retry the smallest request.",
+    "related_errors": [
+      "Ollama service not starting on macOS",
+      "Ollama ETIMEDOUT timeout error",
+      "Ollama model not found 404 error"
+    ]
+  },
+  {
+    "slug": "docker-container-exits-with-code-137-oomkilled",
+    "title": "Docker Container OOM Killed — Exit Code 137 Out of Memory",
+    "description": "Fix Docker container exit code 137 OOM killed out of memory error Includes evidence for Docker troubleshooting demand.",
+    "category": "Docker",
+    "technology": "Docker",
+    "error_signature": "Container exits with code 137 (OOMKilled)",
+    "search_intent": "Fix Docker container exit code 137 OOM killed out of memory error",
+    "common_causes": [
+      "Docker containers with insufficient memory limits crash silently with exit code 137. The lack of explicit error logs makes diagnosis difficult — developers see the container restarting but don't know it's an OOM issue without checking system logs.",
+      "Real production issues: simcraft-backend crashes with code 137 on 8GB RAM system with multiple containers. Trading platform feature-engine OOM-crashes every ~30 min with 'Fatal JavaScript out of memory: Ineffective mark-compacts near heap limit'."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Docker memory limit configuration best practices",
+      "Node.js heap size limit Docker container",
+      "Container memory monitoring OOM detection"
+    ]
+  },
+  {
+    "slug": "docker-pull-access-denied-for-repository-repository-does-not-exist-or-may-require-docker-login",
+    "title": "Docker Pull Access Denied — Repository Not Found or Requires Authentication",
+    "description": "Fix Docker pull access denied error when pulling images from private or GHCR registries Includes evidence for Docker troubleshooting demand.",
+    "category": "Docker",
+    "technology": "Docker",
+    "error_signature": "pull access denied for <repository>, repository does not exist or may require 'docker login'",
+    "search_intent": "Fix Docker pull access denied error when pulling images from private or GHCR registries",
+    "common_causes": [
+      "Developers hit this when pulling images from GHCR, private Docker Hub repos, or misconfigured registries. The error conflates 'doesn't exist' and 'not authenticated', making debugging difficult. Common in CI/CD and compose setups.",
+      "Multiple repos hit pull access denied on GHCR images and Docker Compose setups. The error appears during docker-compose up, CI builds, and manual image pulls from private registries."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "Docker GHCR authentication in GitHub Actions",
+      "Docker manifest unknown error",
+      "Docker toomanyrequests rate limit error"
+    ]
+  },
+  {
+    "slug": "npm-npm-err-code-ebadplatform",
+    "title": "npm EBADPLATFORM Error — Platform-Specific Package Install Failure",
+    "description": "Fix npm EBADPLATFORM error when installing platform-specific packages Includes evidence for npm troubleshooting demand.",
+    "category": "npm",
+    "technology": "npm",
+    "error_signature": "npm ERR! code EBADPLATFORM",
+    "search_intent": "Fix npm EBADPLATFORM error when installing platform-specific packages",
+    "common_causes": [
+      "When packages declare os/cpu restrictions (e.g., @esbuild packages), npm install fails on incompatible platforms. This commonly breaks CI pipelines when moving between darwin-arm64 and linux-x64 runners, blocking deployments.",
+      "EBADPLATFORM blocks CI on multiple repos: monorepo publish workflow (darwin packages on ubuntu runner), WASM packages (cpu:wasm32 on arm64/x64), esbuild optional platform packages in CI runners."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "npm optionalDependencies EBADPLATFORM CI fix",
+      "npm ci strict mode vs npm install optional packages",
+      "esbuild platform-specific package install error"
+    ]
   }
 ]
