@@ -5978,5 +5978,100 @@
       "Ollama model failed to load with resource constraints",
       "Ollama Cloud 503 Service Unavailable errors"
     ]
+  },
+  {
+    "slug": "claude-code-npm-package-sourcemap-exposes-full-claude-code-source-code-on-registry",
+    "title": "Claude Code Source Code Leaked via npm Sourcemap — How to Check Your Packages",
+    "description": "Find out if my npm packages are leaking source code via sourcemaps, understand the Claude Code source leak incident Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "npm package sourcemap exposes full Claude Code source code on registry",
+    "search_intent": "Find out if my npm packages are leaking source code via sourcemaps, understand the Claude Code source leak incident",
+    "common_causes": [
+      "On March 31, 2026, the entire source code of Claude Code was discovered publicly accessible via a sourcemap file in the published npm package. Developers search to understand what was exposed, whether their own packages have similar vulnerabilities, and how to audit npm packages for sourcemap leaks. This is a landmark supply-chain security event affecting all npm publishers.",
+      "On March 31, 2026, Chaofan Shou (@Fried_rice) discovered the entire source code of Claude Code accessible via sourcemap on the npm registry. A community backup repo was created (github.com/yasasbanukaofficial/claude-code) and a comprehensive analysis synthesized from 26 articles and 7 Hacker News threads (github.com/pankaj28843/understanding-claude-code)."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "npm sourcemap leak prevention best practices",
+      "How to audit npm packages for exposed source code",
+      "Webpack sourcemap production build security"
+    ]
+  },
+  {
+    "slug": "claude-code-api-error-400-the-provider-claude-4-5-opus-does-not-support-the-advanced-tool-use-2025-11-20-beta-header",
+    "title": "Claude Code 2.1.69 Sends Unsupported Beta Header — API 400 Error Fix",
+    "description": "Fix Claude Code API 400 error after upgrading to v2.1.69 caused by unsupported advanced-tool-use beta header Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "API error 400: The provider claude-4.5-opus does not support the advanced-tool-use-2025-11-20 beta header",
+    "search_intent": "Fix Claude Code API 400 error after upgrading to v2.1.69 caused by unsupported advanced-tool-use beta header",
+    "common_causes": [
+      "Upgrading Claude Code from v2.1.68 to v2.1.69 causes an immediate API 400 error because the extension sends the 'advanced-tool-use-2025-11-20' beta header to models/endpoints that don't support it. This completely breaks the tool for affected users and forces them to downgrade or wait for a patch.",
+      "GitHub issue #30926 in anthropics/claude-code: Upgrading from v2.1.68 to v2.1.69 causes immediate API 400 error. The extension sends 'advanced-tool-use-2025-11-20' beta flag to endpoints that don't support it. Reported as a single bug with preflight checklist completed."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Claude Code API 400 invalid beta header",
+      "Claude Code version rollback guide",
+      "Anthropic API beta header compatibility"
+    ]
+  },
+  {
+    "slug": "claude-code-api-error-400-the-provider-does-not-support-the-prompt-caching-scope-2026-01-05-beta-header",
+    "title": "Claude Code Sends Prompt-Caching Beta Header to Custom Endpoints Even When Disabled",
+    "description": "Fix Claude Code sending prompt-caching beta header to custom API endpoints (ANTHROPIC_BASE_URL) when caching is disabled Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "API error 400: The provider does not support the prompt-caching-scope-2026-01-05 beta header",
+    "search_intent": "Fix Claude Code sending prompt-caching beta header to custom API endpoints (ANTHROPIC_BASE_URL) when caching is disabled",
+    "common_causes": [
+      "Even when users explicitly disable prompt caching in VS Code settings (claudeCode.enablePromptCaching: false) and unset beta headers (claudeCode.useAnthropicBetaHeaders: false), Claude Code v2.1.23 still sends the 'prompt-caching-scope-2026-01-05' beta header to custom API endpoints. This breaks integration with self-hosted or proxy API servers that don't support the beta.",
+      "GitHub issue #21644 in anthropics/claude-code: With enablePromptCaching=false and useAnthropicBetaHeaders=false set in VS Code settings.json, and a custom ANTHROPIC_BASE_URL that doesn't support prompt-caching-scope-2026-01-05, the beta header is still sent, causing API errors when using claude-4.5-opus model."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Claude Code ANTHROPIC_BASE_URL custom endpoint errors",
+      "Claude Code prompt caching header ignored settings",
+      "Custom Claude API proxy beta header issues"
+    ]
+  },
+  {
+    "slug": "litellm-routerratelimiterror-retry-after-header-missing-from-litellm-proxy-responses",
+    "title": "LiteLLM Proxy RouterRateLimitError Missing Retry-After Header Causes Cascading Failures",
+    "description": "Fix LiteLLM RouterRateLimitError without Retry-After header causing clients to retry immediately without backoff Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "RouterRateLimitError — Retry-After header missing from LiteLLM proxy responses",
+    "search_intent": "Fix LiteLLM RouterRateLimitError without Retry-After header causing clients to retry immediately without backoff",
+    "common_causes": [
+      "When LiteLLM proxy returns a rate limit error without the Retry-After header, client applications have no guidance on when to retry. This causes immediate retry storms, wasted API calls, and potential account suspension. Developers using LiteLLM as an API gateway across multiple LLM providers need this header for proper rate-limit handling.",
+      "LiteLLM GitHub PR #27826 adds Retry-After header on RouterRateLimitError. Before this fix, LiteLLM proxy returned rate limit errors without the standard Retry-After header, causing clients to retry immediately without any backoff strategy. This is a fix PR confirming the bug existed in production."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "LiteLLM rate limit configuration across providers",
+      "LiteLLM proxy 429 error handling",
+      "LLM API gateway rate limit best practices"
+    ]
+  },
+  {
+    "slug": "litellm-tool-registry-litellm-tooltable-litellm-spendlogtoolindex-not-populated-for-v1-messages-anthropic-messages-path",
+    "title": "LiteLLM Tool Registry Empty for Anthropic Messages Endpoint — Tool Calling Fails",
+    "description": "Fix LiteLLM tool registry not populating for /v1/messages anthropic_messages endpoint, causing tool/function calling failures Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "Tool registry (LiteLLM_ToolTable / LiteLLM_SpendLogToolIndex) not populated for /v1/messages (anthropic_messages) path",
+    "search_intent": "Fix LiteLLM tool registry not populating for /v1/messages anthropic_messages endpoint, causing tool/function calling failures",
+    "common_causes": [
+      "The LiteLLM tool registry (LiteLLM_ToolTable / LiteLLM_SpendLogToolIndex) is not populated for the /v1/messages endpoint with anthropic_messages format. This means tool/function calling fails silently when routing Claude models through LiteLLM, causing developers' agentic workflows to break without clear error messages.",
+      "LiteLLM GitHub issue #27840 reports that the tool registry tables (LiteLLM_ToolTable / LiteLLM_SpendLogToolIndex) are not populated for the /v1/messages endpoint when using anthropic_messages format. This causes tool calling to fail for Claude models routed through LiteLLM gateway, affecting agentic workflows."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "LiteLLM function calling not working Claude",
+      "LiteLLM /v1/messages endpoint limitations",
+      "LiteLLM tool use configuration for Anthropic models"
+    ]
   }
 ]
