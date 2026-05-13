@@ -5665,5 +5665,62 @@
       "Claude Code tool_choice error with reasoning models",
       "WebSearch tool not working with custom models"
     ]
+  },
+  {
+    "slug": "anthropic-api-api-error-500-claude-model-none",
+    "title": "Anthropic API Error 500 in Claude Code — Claude Model None Regression",
+    "description": "Fix Anthropic API 500 error with Claude Model None in Claude Code Includes evidence for Anthropic API troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Anthropic API",
+    "error_signature": "API Error 500 — Claude Model None",
+    "search_intent": "Fix Anthropic API 500 error with Claude Model None in Claude Code",
+    "common_causes": [
+      "Every prompt in Claude Code triggers a 500 API error showing 'Claude Model None'. This is a confirmed regression that was working in a previous version. Developers using the paid Claude Code service cannot complete any tasks. High commercial value because it blocks all usage of a paid product.",
+      "Official GitHub issue from anthropics/claude-code repo. Bug report: API Error 500 on every prompt. Confirmed regression (worked in previous version). Claude Code Version 1.0.100. Platform: Anthropic API. macOS Terminal.app."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Anthropic API 500 Internal Server Error",
+      "Claude Code model not found after update",
+      "Claude Code all prompts failing 500 error"
+    ]
+  },
+  {
+    "slug": "gemini-api-overloaded-gemini-api-key-authentication-returns-overloaded-error-while-google-auth-works",
+    "title": "Gemini CLI Overloaded Error with API Key — Google Auth Works Fine",
+    "description": "Fix Gemini CLI overloaded error when using API key while Google account auth works normally Includes evidence for Gemini API troubleshooting demand.",
+    "category": "Cloud Platforms",
+    "technology": "Gemini API",
+    "error_signature": "Overloaded — Gemini API Key authentication returns overloaded error while Google Auth works",
+    "search_intent": "Fix Gemini CLI overloaded error when using API key while Google account auth works normally",
+    "common_causes": [
+      "Gemini CLI frequently encounters overloaded errors when using an API key, but authentication via Google account works fine. This differential behavior confuses developers and creates strong search intent — they want to understand why one auth method works while the other fails. Affects paid API key users specifically.",
+      "Official GitHub issue from google-gemini/gemini-cli repo. Gemini CLI encounters overloaded errors specifically when using API key authentication, while Google account authentication works normally. Issue from official repo with detailed client information."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "Gemini API key rate limit vs quota difference",
+      "Gemini authentication method affects rate limits",
+      "Google Cloud API key overloaded but OAuth works"
+    ]
+  },
+  {
+    "slug": "cursor-error-connecting-to-streamablehttp-server",
+    "title": "Cursor MCP Server Connection Error — Streamable HTTP Connection Failed",
+    "description": "Fix Cursor MCP server streamable HTTP connection error Includes evidence for Cursor troubleshooting demand.",
+    "category": "Cursor",
+    "technology": "Cursor",
+    "error_signature": "Error connecting to streamableHttp server",
+    "search_intent": "Fix Cursor MCP server streamable HTTP connection error",
+    "common_causes": [
+      "Multiple third-party projects (Home Assistant, Atlassian, Laravel) report Cursor MCP connection failures with streamableHttp server errors. Tools fail to load in Cursor after restart. This affects developers integrating MCP servers with Cursor, a growing use case as MCP becomes the standard protocol for AI tool integrations.",
+      "Cross-project pattern: Home Assistant MCP (issue #375) reports streamableHttp server connection errors; Atlassian MCP server (issue #56) shows tools not loading in Cursor after restart with 'No server info found'; Laravel Boost (issue #495) reports MCP server error in Cursor 2.3.41. Multiple independent reports across different MCP server implementations."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Cursor MCP tools not loading after restart",
+      "MCP server streamableHttp protocol error",
+      "Cursor MCP handshake failed"
+    ]
   }
 ]
