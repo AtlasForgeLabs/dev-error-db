@@ -6753,5 +6753,195 @@
       "Continue autocomplete context window",
       "Continue IDE context truncation"
     ]
+  },
+  {
+    "slug": "claude-code-api-error-400-diagnostics-previous-message-id-must-be-the-id-from-a-prior-v1-messages-response-starts-with-msg",
+    "title": "Claude Code Session Resume Fails with API 400 Invalid previous_message_id",
+    "description": "Fix Claude Code session resume failing with API 400 error about invalid previous_message_id Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "API Error: 400 diagnostics.previous_message_id: must be the `id` from a prior /v1/messages response (starts with `msg_`)",
+    "search_intent": "Fix Claude Code session resume failing with API 400 error about invalid previous_message_id",
+    "common_causes": [
+      "When a Claude Code session contains synthetic assistant entries (UUID-style message IDs), resuming the session causes a hard API 400 error. The resume path picks the last assistant message.id without filtering out synthetic entries, breaking workflow continuity. Affects paid Claude Code users.",
+      "Exact API error message documented. Reproducible with Claude Code 2.1.131 on Linux. Triggered when subagent hits weekly limit mid-flight and session JSONL contains synthetic entries. Labeled as bug with repro."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Claude Code subagent weekly limit hit during tool_use",
+      "Claude Code session JSONL synthetic message handling",
+      "Claude Code session persistence and resume errors"
+    ]
+  },
+  {
+    "slug": "claude-code-askuserquestion-card-never-reaches-renderer-yellow-dot-badge-shows-pending-but-no-ui",
+    "title": "Claude Code Cowork Desktop macOS: AskUserQuestion Tool Call UI Never Renders",
+    "description": "Fix Claude Code Cowork mode on macOS Desktop where AskUserQuestion card never appears in the renderer Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "AskUserQuestion card never reaches renderer; yellow-dot badge shows pending but no UI",
+    "search_intent": "Fix Claude Code Cowork mode on macOS Desktop where AskUserQuestion card never appears in the renderer",
+    "common_causes": [
+      "In Claude Code Cowork mode on macOS Desktop, AskUserQuestion tool calls fire on the main process and light up the yellow-dot needs-input badge, but the question card never reaches the renderer. Users wait 10-50+ minutes with no UI, no text fallback, and no way to answer. Silently resolves as Dismissed on app quit.",
+      "Detailed bug report with reproduction steps on macOS Apple Silicon. Labeled bug, has repro, platform:macos, area:cowork, area:desktop. Question card never renders, pending tool permission sits unanswered, app quit silently resolves as Dismissed."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Claude Code Cowork mode tool permission rendering issues",
+      "Claude Desktop renderer process communication failures",
+      "Claude Code tool_use callback timeout errors"
+    ]
+  },
+  {
+    "slug": "github-copilot-chatagenterror-auto-mode-failed-no-available-model-found-in-known-endpoints",
+    "title": "VS Code Copilot Chat Auto Mode Failed: No Available Model Found in Known Endpoints",
+    "description": "Fix VS Code Copilot Chat auto mode failing because no model endpoint is available Includes evidence for GitHub Copilot troubleshooting demand.",
+    "category": "GitHub Copilot",
+    "technology": "GitHub Copilot",
+    "error_signature": "chatagenterror-Auto mode failed: no available model found in known endpoints.",
+    "search_intent": "Fix VS Code Copilot Chat auto mode failing because no model endpoint is available",
+    "common_causes": [
+      "Developers using VS Code Copilot Chat in auto mode encounter a complete failure when the endpoint selection cannot find any configured model, blocking all AI-assisted coding sessions. This is a recent regression in VS Code with 5 comments and labeled stable-anomaly.",
+      "Exact error with full stack trace from VS Code source (automodeService.ts:374). Labeled as bug, recent-regression, stable-anomaly. Closed issue with 5 comments. Error occurs in Copilot Chat auto mode endpoint selection."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "chatagenterror-No auto mode endpoints provided",
+      "AWS Bedrock shows in Language Models but not in chat picker",
+      "VS Code Copilot model configuration errors"
+    ]
+  },
+  {
+    "slug": "ollama-503-service-unavailable-on-ollama-cloud-models-glm-5-cloud-kimi-k2-5-cloud-minimax-m2-7-cloud",
+    "title": "Ollama Cloud: Frequent 503 Service Unavailable Errors Making Cloud Models Unreliable",
+    "description": "Fix Ollama Cloud models returning frequent 503 Service Unavailable errors Includes evidence for Ollama troubleshooting demand.",
+    "category": "Ollama",
+    "technology": "Ollama",
+    "error_signature": "503 Service Unavailable on Ollama Cloud models (glm-5:cloud, kimi-k2.5:cloud, minimax-m2.7:cloud)",
+    "search_intent": "Fix Ollama Cloud models returning frequent 503 Service Unavailable errors",
+    "common_causes": [
+      "Developers running autonomous agents with Ollama Cloud models experience frequent 503 errors multiple times per hour. Affects glm-5:cloud, glm-5.1:cloud, minimax-m2.7:cloud, and kimi-k2.5:cloud. Makes Ollama Cloud unreliable for production agent workloads.",
+      "Multiple cloud models affected with 503 errors occurring multiple times per hour. Affects production agent workflows. Labeled as cloud issue. Users report intermittent failures — one request works, next fails with 503."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Ollama Cloud Pro 95% failure rate across all cloud models",
+      "Ollama Cloud model timeout errors",
+      "Ollama Cloud billing and subscription issues"
+    ]
+  },
+  {
+    "slug": "github-copilot-chatagenterror-no-auto-mode-endpoints-provided",
+    "title": "VS Code Copilot Chat: No Auto Mode Endpoints Provided Error",
+    "description": "Fix VS Code Copilot Chat error when no auto mode endpoints are configured Includes evidence for GitHub Copilot troubleshooting demand.",
+    "category": "GitHub Copilot",
+    "technology": "GitHub Copilot",
+    "error_signature": "chatagenterror-No auto mode endpoints provided.",
+    "search_intent": "Fix VS Code Copilot Chat error when no auto mode endpoints are configured",
+    "common_causes": [
+      "VS Code Copilot Chat users encounter an error when the auto mode endpoint resolution fails because no endpoints are provided. This blocks Copilot Chat functionality and is a distinct variant of the broader auto mode configuration failure, labeled as recent-regression and stable-anomaly.",
+      "Exact error with stack trace from VS Code source (automodeService.ts:178). Labeled bug, error-telemetry, recent-regression, stable-anomaly. Distinct from the 'no available model found' error — this one means no endpoints configured at all."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "chatagenterror-Auto mode failed: no available model found in known endpoints",
+      "VS Code Copilot custom model configuration errors",
+      "VS Code BYOK model endpoint failures"
+    ]
+  },
+  {
+    "slug": "ollama-error-eof-during-ollama-pull-gpt-oss-safeguard-120b-on-aarch64",
+    "title": "Ollama: Pull Fails with EOF Error for Large Models on aarch64 (DGX Spark / GB10)",
+    "description": "Fix Ollama pull failing with EOF error when downloading large models on ARM64/aarch64 systems Includes evidence for Ollama troubleshooting demand.",
+    "category": "Ollama",
+    "technology": "Ollama",
+    "error_signature": "Error: EOF during ollama pull gpt-oss-safeguard:120b on aarch64",
+    "search_intent": "Fix Ollama pull failing with EOF error when downloading large models on ARM64/aarch64 systems",
+    "common_causes": [
+      "On NVIDIA DGX Spark / GB10 (aarch64), pulling the 20GB gpt-oss-safeguard:120b model fails with Error: EOF. The smaller 20b sibling and unrelated models pull normally on the same host. Affects enterprise AI/ML engineers using DGX hardware with Ollama.",
+      "Reproduces on Ollama 0.23.2 and 0.23.3-rc1, including official Docker images. Issue is model-specific (120b variant), not registry/network. aarch64 enterprise hardware (DGX Spark) audience with high commercial intent."
+    ],
+    "quick_fix": "Verify the model name, local service connectivity, and network access before retrying the model pull.",
+    "related_errors": [
+      "Ollama large model pull failures on ARM64",
+      "Ollama Docker container pull errors",
+      "Ollama registry download timeout errors"
+    ]
+  },
+  {
+    "slug": "github-copilot-chatagenterror-copilotclisession-unexpected-generated-prompt-structure",
+    "title": "VS Code Copilot CLI Session: Unexpected Generated Prompt Structure Regression",
+    "description": "Fix VS Code Copilot CLI session failing with unexpected generated prompt structure error Includes evidence for GitHub Copilot troubleshooting demand.",
+    "category": "GitHub Copilot",
+    "technology": "GitHub Copilot",
+    "error_signature": "chatagenterror-[CopilotCLISession] Unexpected generated prompt structure.",
+    "search_intent": "Fix VS Code Copilot CLI session failing with unexpected generated prompt structure error",
+    "common_causes": [
+      "Developers using VS Code's Copilot CLI session encounter an error when the generated prompt structure doesn't match expected format. This is labeled as a regression affecting the CopilotCLI prompt resolution path in copilotCLIPrompt.tsx.",
+      "Exact error with stack trace from copilotCLIPrompt.tsx:129. Labeled bug, error-telemetry, recent-regression, agents. Affects the Copilot CLI chat session contribution path."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "VS Code Copilot CLI session initialization failures",
+      "Copilot prompt template rendering errors",
+      "VS Code Copilot chat session contribution errors"
+    ]
+  },
+  {
+    "slug": "github-copilot-aws-bedrock-model-shows-in-language-models-ui-but-not-in-copilot-chat-picker",
+    "title": "VS Code: AWS Bedrock Model Configured but Not Selectable in GitHub Copilot Chat Picker",
+    "description": "Fix AWS Bedrock model appearing in VS Code Language Models but not selectable in Copilot chat dropdown Includes evidence for GitHub Copilot troubleshooting demand.",
+    "category": "GitHub Copilot",
+    "technology": "GitHub Copilot",
+    "error_signature": "AWS Bedrock model shows in Language Models UI but not in Copilot chat picker",
+    "search_intent": "Fix AWS Bedrock model appearing in VS Code Language Models but not selectable in Copilot chat dropdown",
+    "common_causes": [
+      "Enterprise users who configure AWS Bedrock as a custom model for GitHub Copilot see it in the Language Models settings UI, but it doesn't appear in the chat model picker dropdown. This blocks the entire BYOK (Bring Your Own Key) workflow for enterprise Bedrock deployments.",
+      "Enterprise user report with screenshots. Model loads in settings but not in chat picker. Labeled info-needed and model-byok. AWS Bedrock is enterprise-priced cloud AI service with high commercial intent."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "VS Code BYOK model configuration errors",
+      "AWS Bedrock VS Code integration issues",
+      "VS Code Copilot custom model endpoint failures"
+    ]
+  },
+  {
+    "slug": "warp-warp-automatic-model-fallback-silently-swaps-model-without-user-opt-out",
+    "title": "Warp Agent: Automatic Model Fallback Silently Swaps Models Without Opt-Out Setting",
+    "description": "Disable or opt out of Warp terminal agent's automatic model fallback when selected model is unavailable Includes evidence for Warp troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Warp",
+    "error_signature": "Warp automatic model fallback silently swaps model without user opt-out",
+    "search_intent": "Disable or opt out of Warp terminal agent's automatic model fallback when selected model is unavailable",
+    "common_causes": [
+      "Warp's agent platform silently swaps the selected model for a different provider's model when the primary is unavailable, with no opt-out setting. Users who deliberately chose a specific model (e.g., Claude Opus for code quality) get routed to a different model without warning, affecting prompt behavior, output quality, and cost/credit consumption.",
+      "Feature request with high repro label (repro:high). Warp is a paid terminal product. Model fallback behavior documented but no opt-out exists. Users concerned about cost, quality, and prompt-style compatibility when silently swapped."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Warp agent model availability errors",
+      "Warp terminal AI agent connection failures",
+      "Warp model selection configuration errors"
+    ]
+  },
+  {
+    "slug": "anthropic-api-mimo-token-plan-anthropic-compatible-endpoint-returns-400-when-thinking-plus-tool-use-history-is-replayed",
+    "title": "Xiaomi MiMo Token Plan Anthropic-Compatible Endpoint: 400 Error with Thinking and Tool Use Replay",
+    "description": "Fix 400 error when using Xiaomi MiMo Token Plan Anthropic-compatible endpoint with thinking mode and tool_use message replay Includes evidence for Anthropic API troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Anthropic API",
+    "error_signature": "MiMo Token Plan Anthropic-compatible endpoint returns 400 when thinking + tool_use history is replayed",
+    "search_intent": "Fix 400 error when using Xiaomi MiMo Token Plan Anthropic-compatible endpoint with thinking mode and tool_use message replay",
+    "common_causes": [
+      "Developers using Xiaomi MiMo Token Plan's Anthropic-compatible API endpoint encounter 400 errors when the conversation history contains both thinking blocks and tool_use messages. The endpoint implements a subset of the Anthropic Messages API but fails to handle the thinking + tool_use combination correctly, breaking multi-turn agentic workflows.",
+      "Reproducible on macOS Apple Silicon with Craft Agents 0.9.2. MiMo Token Plan is a paid Xiaomi AI service. The endpoint at token-plan-cn.xiaomimimo.com/anthropic implements a subset of Anthropic Messages API. Thinking + tool_use replay triggers 400."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Anthropic API thinking block compatibility errors",
+      "Anthropic Messages API tool_use replay failures",
+      "Anthropic-compatible endpoint 400 errors with agentic workflows"
+    ]
   }
 ]
