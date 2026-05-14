@@ -10276,5 +10276,214 @@
       "GitHub Actions permission denied publickey",
       "GitHub Actions npm ci lockfile error"
     ]
+  },
+  {
+    "slug": "anthropic-api-anthropic-api-error-429-rate-limit-error-counter-decremented-and-charged-despite-failed-request",
+    "title": "Claude Code Charges for Failed API Requests — Rate Limit Counter Not Reversed",
+    "description": "Fix Anthropic API rate limit counter not being reversed when requests fail, causing unexpected charges Includes evidence for Anthropic API troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Anthropic API",
+    "error_signature": "Anthropic API Error: 429 rate_limit_error — counter decremented and charged despite failed request",
+    "search_intent": "Fix Anthropic API rate limit counter not being reversed when requests fail, causing unexpected charges",
+    "common_causes": [
+      "Users are being charged for API calls that fail with 429 rate limit errors. The counter decrements from 3 to 2 even when the ultrareview crashes with server-side rate-limit error before producing findings. This means users pay for failed work.",
+      "Rate limit counter decremented and charged despite failed ultrareview. Error: 429 rate_limit_error. User paid for request that produced no output. Billing accuracy issue on paid API service."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "Anthropic API 429 rate limit exceeded",
+      "Anthropic API billing discrepancy",
+      "Claude Code token usage metering incorrect"
+    ]
+  },
+  {
+    "slug": "claude-code-claude-code-v2-1-141-windows-cli-tool-result-delivery-failures-phantom-user-rejected-and-infinite-hang-on-tool-result-missing-due-to-internal-error",
+    "title": "Claude Code Windows CLI Tool Result Delivery Failures — Phantom Rejection & Infinite Hang",
+    "description": "Fix Claude Code tool results not being delivered on Windows causing sessions to hang or show false rejections Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Claude Code v2.1.141 Windows CLI: tool result delivery failures — phantom 'user rejected' and infinite hang on '[Tool result missing due to internal error]'",
+    "search_intent": "Fix Claude Code tool results not being delivered on Windows causing sessions to hang or show false rejections",
+    "common_causes": [
+      "Claude Code v2.1.141 on Windows has a critical regression where tool results fail to reach the model loop. Users see phantom 'user rejected' messages (no prompt shown) or infinite hangs with no error indicator. Both manifestations leave sessions dead with Ctrl+C as only escape.",
+      "Two distinct failure modes on Windows: (1) tool returns 'rejected' without any permission prompt shown, (2) tool result arrives as '[Tool result missing due to internal error]' causing infinite hang. Both leave sessions unrecoverable. v2.1.141 regression."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Claude Code permission prompt not showing",
+      "Claude Code tool use hangs on macOS",
+      "Claude Code session stuck after tool execution"
+    ]
+  },
+  {
+    "slug": "bifrost-bifrost-v1-5-2-openai-anthropic-tool-payload-translation-breaks-all-tool-using-requests-routed-to-anthropic-gatewayclientrequesterror-failovererror",
+    "title": "Bifrost Proxy Breaks Tool-Using Requests When Routing OpenAI Format to Anthropic Models",
+    "description": "Fix Bifrost proxy failing to translate OpenAI tool specs to Anthropic format Includes evidence for Bifrost troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Bifrost",
+    "error_signature": "Bifrost v1.5.2: OpenAI→Anthropic tool-payload translation breaks all tool-using requests routed to Anthropic — GatewayClientRequestError: FailoverError",
+    "search_intent": "Fix Bifrost proxy failing to translate OpenAI tool specs to Anthropic format",
+    "common_causes": [
+      "Bifrost v1.5.2 breaks all tool-using clients (OpenClaw, OpenAI SDK) when routing to Anthropic models. The OpenAI→Anthropic tool-payload translation produces invalid schema. Same request works fine to OpenAI, Gemini, xAI, Ollama.",
+      "v1.5.2 regression. OpenAI-format tool specs routed to Anthropic produce schema validation error 400. Same payload works for all other providers. Breaks every tool-using client through Bifrost."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Bifrost Anthropic model routing failure",
+      "OpenAI SDK tool call format error",
+      "LiteLLM Anthropic tool translation"
+    ]
+  },
+  {
+    "slug": "claude-code-claude-code-webview-stuck-on-thinking-sessionid-discarded-on-restore-v2-1-141-regression-of-sharp-35004",
+    "title": "Claude Code VSCode Extension Stuck on Thinking — Session ID Lost on Webview Restore",
+    "description": "Fix Claude Code VSCode extension showing Thinking forever without displaying response Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Claude Code webview stuck on 'Thinking' — sessionID discarded on restore (v2.1.141, regression of #35004)",
+    "search_intent": "Fix Claude Code VSCode extension showing Thinking forever without displaying response",
+    "common_causes": [
+      "v2.1.141 regression causes the webview chat panel to get stuck on 'Thinking' indicator indefinitely. The response is generated on backend and persisted to disk, but the live UI never receives streaming updates. Users must close and reopen the tab to see responses.",
+      "Regression of #35004 in v2.1.141. Webview-to-extension binding breaks during streaming. Response exists on disk but UI stays on Thinking. Triggered by lifecycle events during streaming."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Claude Code VSCode webview not loading",
+      "Claude Code session data lost",
+      "Claude Code streaming stops mid-response"
+    ]
+  },
+  {
+    "slug": "claude-code-claude-code-vscode-v2-1-141-renders-unhandled-case-object-object-instead-of-mcp-server-error-messages",
+    "title": "Claude Code VSCode Shows 'Unhandled case: [object Object]' for All MCP Errors",
+    "description": "Fix Claude Code VSCode extension showing [object Object] instead of actual error messages Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Claude Code VSCode v2.1.141 renders 'Unhandled case: [object Object]' instead of MCP server error messages",
+    "search_intent": "Fix Claude Code VSCode extension showing [object Object] instead of actual error messages",
+    "common_causes": [
+      "v2.1.141 regression in the webview exhaustiveness handler. When any MCP server fails to start (misconfigured path, missing env var, OAuth error), the UI shows 'Unhandled case: [object Object]' instead of the actual error. Affects all MCP configurations.",
+      "v2.1.141 exhaustiveness handler in webview/index.js QB1() function throws with object instead of string. Affects MCP servers: excalidraw, github, W&B, Figma connectors. Multiple duplicate reports."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Claude Code MCP server connection failed",
+      "Claude Code plugin load error",
+      "Claude Code webview crash"
+    ]
+  },
+  {
+    "slug": "claude-code-claude-in-chrome-extension-csp-blocking-inline-script-executing-inline-script-violates-content-security-policy-directive-script-src-self",
+    "title": "Claude Chrome Extension CSP Blocking Inline Script — MCP Bridge Connection Fails Silently",
+    "description": "Fix Claude Chrome extension not connecting to Claude Desktop MCP bridge due to CSP violation Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Claude in Chrome extension: CSP blocking inline script — 'Executing inline script violates Content Security Policy directive script-src self'",
+    "search_intent": "Fix Claude Chrome extension not connecting to Claude Desktop MCP bridge due to CSP violation",
+    "common_causes": [
+      "Claude in Chrome extension cannot connect to Claude Desktop MCP bridge. The Content Security Policy of claude.ai blocks the inline script required for reconnect flow. Connection fails silently with no user-visible error, leaving extension non-functional.",
+      "CSP violation: 'script-src self' blocks inline script for reconnect flow. Extension shows as installed and enabled but list_connected_browsers returns 'not connected'. 24+ hours of troubleshooting by reporter."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Claude Chrome extension authentication failed",
+      "Claude MCP bridge connection timeout",
+      "Chrome extension CSP policy error"
+    ]
+  },
+  {
+    "slug": "claude-code-claude-code-mcp-auth-not-automatically-launching-browser-on-windows-regression-from-v2-1-139-to-v2-1-141",
+    "title": "Claude Code v2.1.141 MCP Auth Browser Launch Broken on Windows — Regression from v2.1.139",
+    "description": "Fix Claude Code not launching browser for MCP authentication on Windows after v2.1.141 update Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Claude Code MCP auth not automatically launching browser on Windows — regression from v2.1.139 to v2.1.141",
+    "search_intent": "Fix Claude Code not launching browser for MCP authentication on Windows after v2.1.141 update",
+    "common_causes": [
+      "v2.1.141 broke all browser-open flows (OAuth, MCP authentication) on Windows with Git Bash/MSYS2. Users must manually open browser. First MCP server (LucidChart) works, subsequent ones silently fail. Regression from v2.1.139.",
+      "Regression in v2.1.141 on Windows. BROWSER env var unset, DISPLAY unset in Git Bash via PLink/SSH. First MCP auth works, subsequent ones silently fail. No error messages, just no activity."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "Claude Code OAuth browser not opening",
+      "Claude Code MCP server connection timeout",
+      "Claude Code Windows Git Bash compatibility"
+    ]
+  },
+  {
+    "slug": "netlify-netlify-deploys-succeed-but-only-2-files-uploaded-live-site-returns-404-on-all-routes",
+    "title": "Netlify Deploy Succeeds But Only 2 Files Uploaded — Site Returns 404 on All Routes",
+    "description": "Fix Netlify deployment showing success but site returning 404 because only partial files uploaded Includes evidence for Netlify troubleshooting demand.",
+    "category": "Deployment",
+    "technology": "Netlify",
+    "error_signature": "Netlify deploys succeed but only 2 files uploaded — live site returns 404 on all routes",
+    "search_intent": "Fix Netlify deployment showing success but site returning 404 because only partial files uploaded",
+    "common_causes": [
+      "Netlify reports deploy as 'ready' but only uploads 2 files instead of 1027. Site returns 404 on all routes including root. Long-lived CDN cache (1-year TTL) may have hidden the issue for days. Breaking production sites silently.",
+      "Deploy summary shows 2 files uploaded vs 1027 on prior successful deploys. Build state says 'ready' but site returns 404. Long-lived Netlify Durable CDN cache (1-year TTL) returned stale 200 to visitors hiding the broken state."
+    ],
+    "quick_fix": "Check the build output, project root, and deployment platform configuration before redeploying.",
+    "related_errors": [
+      "Netlify deploy incomplete file upload",
+      "Netlify CDN cache stale serving old content",
+      "Netlify build command succeeding but output wrong"
+    ]
+  },
+  {
+    "slug": "litellm-litellm-ollama-reasoning-content-always-null-api-generate-doesn-t-return-thinking-field",
+    "title": "LiteLLM Ollama Reasoning Content Always Null — /api/generate Missing Thinking Field",
+    "description": "Fix LiteLLM not capturing reasoning/thinking content from Ollama models like Qwen3 and DeepSeek-R1 Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "LiteLLM Ollama reasoning_content always null — /api/generate doesn't return thinking field",
+    "search_intent": "Fix LiteLLM not capturing reasoning/thinking content from Ollama models like Qwen3 and DeepSeek-R1",
+    "common_causes": [
+      "LiteLLM always calls Ollama's /api/generate which doesn't return a thinking field. Reasoning models (Qwen3, DeepSeek-R1) generate internal reasoning that is lost. /api/chat returns thinking correctly but LiteLLM uses /api/generate.",
+      "LiteLLM 1.83.10 hardcodes /api/generate endpoint for Ollama. /api/generate returns {response: '...', context: [...]} without thinking field. /api/chat returns thinking correctly. reasoning_content always None."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "Ollama thinking field not returned",
+      "LiteLLM Ollama reasoning model support",
+      "Ollama /api/chat vs /api/generate difference"
+    ]
+  },
+  {
+    "slug": "claude-code-claude-code-figma-connector-loaded-by-vscode-extension-despite-being-disabled-in-web-plus-desktop-plus-mcp-ui",
+    "title": "Claude Code Figma Connector Loads Despite Being Disabled in All UIs — Requires Manual JSON Edit",
+    "description": "Fix Claude Code VSCode extension loading disabled MCP connectors like Figma Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Claude Code Figma connector loaded by VSCode extension despite being disabled in web + Desktop + /mcp UI",
+    "search_intent": "Fix Claude Code VSCode extension loading disabled MCP connectors like Figma",
+    "common_causes": [
+      "Figma connector still loads and attempts JSON-RPC handshake even after being disabled in claude.ai web, Claude Desktop, and extension /mcp UI. Handshake fails with '-32600 Invalid content from server' causing the [object Object] toast. Only manual edit to disabledMcpServers in ~/.claude.json works.",
+      "Three official UI toggles (web, Desktop, /mcp) do not propagate disabled state. Extension still attempts handshake with disabled connector. Fails with -32600. Only manual JSON edit silences it. Max plan subscriber affected."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Claude Code MCP server not disabling",
+      "Claude Code connector handshake failure",
+      "Claude Code disabledMcpServers not working"
+    ]
+  },
+  {
+    "slug": "claude-code-claude-code-sessions-panel-hides-conversations-when-session-started-in-parent-child-directory-of-workspace",
+    "title": "Claude Code Sessions Panel Missing Conversations From Parent/Child Directories",
+    "description": "Fix Claude Code sessions panel not showing conversations started from different working directories Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Claude Code sessions panel hides conversations when session started in parent/child directory of workspace",
+    "search_intent": "Fix Claude Code sessions panel not showing conversations started from different working directories",
+    "common_causes": [
+      "Claude Code sessions panel only shows transcripts matching the exact current workspace path. Sessions started from parent directories and later cd'd into the project are filed under the parent's project folder and never appear. Makes the sessions panel unreliable.",
+      "Transcripts stored under ~/.claude/projects/<encoded-cwd>/ are only matched by exact path. Sessions started from parent/child directories are filed elsewhere. Not data loss but makes sessions panel unreliable for finding past conversations."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Claude Code session not found",
+      "Claude Code workspace detection wrong",
+      "Claude Code project folder encoding mismatch"
+    ]
   }
 ]
