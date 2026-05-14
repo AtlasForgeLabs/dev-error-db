@@ -10580,5 +10580,157 @@
       "Ollama structured output not working",
       "Ollama gemma4 think mode format bug"
     ]
+  },
+  {
+    "slug": "anthropic-api-429-type-error-error-type-rate-limit-error-message-rate-limited",
+    "title": "Anthropic API 429 Rate Limit Error in Claude Code — counter decremented and charged despite failed request",
+    "description": "Fix Anthropic API 429 rate limit error where billing counter is decremented even when the request fails Includes evidence for Anthropic API troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Anthropic API",
+    "error_signature": "429 {\"type\":\"error\",\"error\":{\"type\":\"rate_limit_error\",\"message\":\"Rate limited\"}}",
+    "search_intent": "Fix Anthropic API 429 rate limit error where billing counter is decremented even when the request fails",
+    "common_causes": [
+      "Developers using Claude Code hit rate limits and get charged for failed requests, causing unexpected billing and workflow interruption. The error message is generic and hard to debug.",
+      "GitHub issue reports Anthropic API returning 429 rate_limit_error during Claude Code ultrareview session. Counter decremented from 3 to 2 and user charged despite failed request. Error occurs at generate() in cli.js. Affects paid Anthropic API users."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "Anthropic API 401 Unauthorized",
+      "Anthropic API 500 Internal Server Error",
+      "Claude Code context limit exceeded"
+    ]
+  },
+  {
+    "slug": "claude-code-context-limit-reached-compact-or-clear-to-continue-hard-stop-at-30-of-1m-window",
+    "title": "Claude Code context limit hard-stop miscalibrated at ~30% of 1M window on Opus 4.7",
+    "description": "Fix Claude Code context limit reaching hard-stop prematurely at 30% of reported 1M token window Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Context limit reached · /compact or /clear to continue (hard-stop at ~30% of 1M window)",
+    "search_intent": "Fix Claude Code context limit reaching hard-stop prematurely at 30% of reported 1M token window",
+    "common_causes": [
+      "Claude Code shows 'Context limit reached' at ~300K tokens when the model supports 1M context. Users on Max plan paying for extended context get blocked unexpectedly during long sessions.",
+      "Bug report with reproduction steps: Claude Code 2.1.141, model claude-opus-4-7[1m], DISABLE_AUTO_COMPACT=1. Context hard-stops at ~300K tokens instead of expected ~870K. Distinct from auto-compact trigger fixed in 2.1.117."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "Claude Code auto-compact triggering too early",
+      "Claude Code /compact command not working",
+      "OpenAI API context length exceeded"
+    ]
+  },
+  {
+    "slug": "claude-code-terminal-display-becomes-garbled-and-unreadable-after-using-claude-code",
+    "title": "Claude Code terminal display becomes garbled and unreadable — characters render as fragmented glyphs",
+    "description": "Fix Claude Code causing terminal display corruption with garbled/unreadable characters after session Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Terminal display becomes garbled and unreadable after using Claude Code",
+    "search_intent": "Fix Claude Code causing terminal display corruption with garbled/unreadable characters after session",
+    "common_causes": [
+      "After using Claude Code, terminal output becomes visually corrupted with fragmented glyphs. Terminal state remains dirty even after exit, requiring restart. Regression from previous working version.",
+      "Bug report on Claude Code 2.1.141, macOS. Terminal characters render as fragmented/garbled glyphs during and after session. Confirmed as regression. Affects zsh on macOS Terminal.app."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Claude Code TUI rendering issues",
+      "Terminal emulator compatibility with Claude Code",
+      "Claude Code ANSI escape sequence corruption"
+    ]
+  },
+  {
+    "slug": "claude-code-vs-code-side-panel-shows-unhandled-case-object-object-after-task-completes",
+    "title": "Claude Code VS Code extension shows 'Unhandled case: [object Object]' error in side panel",
+    "description": "Fix Claude Code VS Code extension side panel displaying 'Unhandled case: [object Object]' instead of task results Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "VS Code side panel shows 'Unhandled case: [object Object]' after task completes",
+    "search_intent": "Fix Claude Code VS Code extension side panel displaying 'Unhandled case: [object Object]' instead of task results",
+    "common_causes": [
+      "VS Code extension side panel intermittently shows generic error message after task completes. User cannot see assistant output. Happens repeatedly across different tasks/sessions.",
+      "Bug report on Claude Code extension 2.1.141, VS Code 1.120.0, Windows 11. Task runs to completion (running→idle with hasUnseenCompletion:true) but webview fails to render result, showing generic error. Not deterministic but happens regularly."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "VS Code extension not showing output",
+      "Claude Code webview rendering failure",
+      "Unhandled case error in VS Code extensions"
+    ]
+  },
+  {
+    "slug": "vercel-sh-line-1-vercel-path0-node-modules-bin-vite-permission-denied-exit-code-126",
+    "title": "Vercel deployment failing with vite Permission denied error (exit code 126)",
+    "description": "Fix Vercel build failure with vite Permission denied error when deploying Vite + React projects Includes evidence for Vercel troubleshooting demand.",
+    "category": "Deployment",
+    "technology": "Vercel",
+    "error_signature": "sh: line 1: /vercel/path0/node_modules/.bin/vite: Permission denied (exit code 126)",
+    "search_intent": "Fix Vercel build failure with vite Permission denied error when deploying Vite + React projects",
+    "common_causes": [
+      "Vite binary loses execute permission during Vercel build. Common after docker system prune or fresh installs. Build works locally but fails on Vercel with exit code 126.",
+      "Stack Overflow question: Vite 6.3.5, Node 18.x. Error: '/vercel/path0/node_modules/.bin/vite: Permission denied'. User tried deleting node_modules, package-lock.json, clearing cache, changing build script. Works locally, fails on Vercel."
+    ],
+    "quick_fix": "Check the build output, project root, and deployment platform configuration before redeploying.",
+    "related_errors": [
+      "Vercel build command failed",
+      "Vercel module not found",
+      "npm permission denied on Vercel"
+    ]
+  },
+  {
+    "slug": "claude-code-inbound-channel-notifications-silently-dropped-notifications-claude-channel-never-injected-as-user-turns",
+    "title": "Claude Code MCP channel notifications silently dropped — regression in CLI 2.1.119–2.1.142",
+    "description": "Fix Claude Code MCP channel plugin notifications being silently dropped and never injected into session Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Inbound channel notifications silently dropped — notifications/claude/channel never injected as user turns",
+    "search_intent": "Fix Claude Code MCP channel plugin notifications being silently dropped and never injected into session",
+    "common_causes": [
+      "MCP channel plugins (e.g., iMessage) emit notifications correctly but Claude Code runtime never acts on them. Regression from working in 2.1.114. Breaks notification-driven workflows.",
+      "Regression bug: worked in 2.1.114, broken in 2.1.119–2.1.142. Official imessage channel plugin (v0.1.0) emits notifications but runtime never injects <channel> user turns. MCP server runs correctly; failure is on runtime side."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Claude Code MCP server connection failed",
+      "Claude Code plugin not loading",
+      "MCP notification not received"
+    ]
+  },
+  {
+    "slug": "vercel-nextauth-prismaadapter-linkaccount-hangs-indefinitely-on-vercel-account-insert-never-completes",
+    "title": "NextAuth PrismaAdapter linkAccount() hangs on Vercel production but works locally",
+    "description": "Fix NextAuth PrismaAdapter linkAccount() hanging indefinitely on Vercel serverless functions Includes evidence for Vercel troubleshooting demand.",
+    "category": "Deployment",
+    "technology": "Vercel",
+    "error_signature": "NextAuth PrismaAdapter linkAccount() hangs indefinitely on Vercel — Account INSERT never completes",
+    "search_intent": "Fix NextAuth PrismaAdapter linkAccount() hanging indefinitely on Vercel serverless functions",
+    "common_causes": [
+      "OAuth login flow works locally but hangs on Vercel production during account linking. Database record created but linkAccount() never completes. Common in Next.js + NextAuth + Prisma stack.",
+      "Stack Overflow question: Next.js 15.1.6, NextAuth 4.24.13, @auth/prisma-adapter 2.7.4, PostgreSQL. Google OAuth completes, user record created in ~240ms, but Account INSERT hangs until timeout (5-10s). Works locally, fails on Vercel serverless."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "NextAuth session callback timeout",
+      "Prisma connection pool exhausted on Vercel",
+      "Vercel serverless function timeout"
+    ]
+  },
+  {
+    "slug": "ollama-failed-to-connect-to-ollama-please-check-that-ollama-is-downloaded-running-and-accessible",
+    "title": "Ollama connection refused error — cron job fails with ConnectionError when Ollama service is not running",
+    "description": "Fix Ollama ConnectionError: Failed to connect to Ollama when service is stopped or model not installed Includes evidence for Ollama troubleshooting demand.",
+    "category": "Ollama",
+    "technology": "Ollama",
+    "error_signature": "Failed to connect to Ollama. Please check that Ollama is downloaded, running and accessible.",
+    "search_intent": "Fix Ollama ConnectionError: Failed to connect to Ollama when service is stopped or model not installed",
+    "common_causes": [
+      "Ollama service crashes or stops running, causing scheduled tasks and applications to fail with generic connection error. Common in automated pipelines and cron jobs.",
+      "Cron job failing for 5 consecutive runs. Root cause: ollama.service stopped since 2026-02-19, cron ran 2026-04-06. Secondary cause: mistral-small model not installed. Error at ollama._client.py:135. All 3 retry attempts fail with same ConnectionError."
+    ],
+    "quick_fix": "Confirm the local service is running on the expected host and port, then retry the smallest request.",
+    "related_errors": [
+      "Ollama model not found error",
+      "Ollama pull manifest error",
+      "Ollama service not starting on boot"
+    ]
   }
 ]
