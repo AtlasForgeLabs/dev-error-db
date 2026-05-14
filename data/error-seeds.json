@@ -9984,5 +9984,81 @@
       "Gemini CLI 403 PERMISSION_DENIED",
       "Gemini CLI extremely slow / stuck"
     ]
+  },
+  {
+    "slug": "litellm-litellm-authenticationerror-azureexception-authenticationerror-the-api-key-client-option-must-be-set-either-by-passing-api-key-to-the-client-or-by-setting-the-openai-api-key-environment-variable",
+    "title": "LiteLLM Azure OpenAI Authentication Broken in v1.84.0 with enable_azure_ad_token_refresh",
+    "description": "Fix LiteLLM Azure OAI authentication error after upgrading to 1.84.0 when using enable_azure_ad_token_refresh Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "LiteLLM AuthenticationError: AzureException AuthenticationError - The api_key client option must be set either by passing api_key to the client or by setting the OPENAI_API_KEY environment variable",
+    "search_intent": "Fix LiteLLM Azure OAI authentication error after upgrading to 1.84.0 when using enable_azure_ad_token_refresh",
+    "common_causes": [
+      "Upgrading LiteLLM from 1.84.0rc1 to 1.84.0 breaks Azure AD token refresh for Azure OpenAI models. The error indicates api_key is missing even though Azure AD token provider is configured. This is a regression in a paid proxy service used in production environments.",
+      "Issue #27945 on BerriAI/litellm: regression in v1.84.0 breaks Azure AD token refresh. Logs show AuthenticationError despite enable_azure_ad_token_refresh=true. Worked in 1.84.0rc1. Affects production deployments using Azure OpenAI with AD auth."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "LiteLLM Azure AD token provider not working",
+      "LiteLLM Azure OpenAI api_key missing after upgrade",
+      "LiteLLM enable_azure_ad_token_refresh regression"
+    ]
+  },
+  {
+    "slug": "claude-code-context-limit-reached",
+    "title": "Claude Code Slash Command Blocked by False Positive Context Limit Check on Opus 4.7 1M",
+    "description": "Fix Claude Code slash commands failing with 'Context limit reached' false positive on 1M context models when context is far below actual limit Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Context limit reached",
+    "search_intent": "Fix Claude Code slash commands failing with 'Context limit reached' false positive on 1M context models when context is far below actual limit",
+    "common_causes": [
+      "On Opus 4.7 1M-token context model, invoking a bare slash command fails with 'Context limit reached' even when context usage is well below 1M (e.g., ~200k). The slash-command loader appears to check against a stale 200k cap instead of the model's actual 1M limit. Workaround: prefix the slash command with any text.",
+      "Issue #59143: user on claude-opus-4-7[1m] with ~200k context gets 'Context limit reached' on bare slash commands. Same skill works when prefixed with text. The error message provides no hint about which cap was tripped or the workaround."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Claude Code context limit false positive on 1M models",
+      "Claude Code slash command context check uses wrong cap",
+      "Claude Code context limit check ignoring model's actual window"
+    ]
+  },
+  {
+    "slug": "litellm-set-global-max-parallel-requests-not-work",
+    "title": "LiteLLM global_max_parallel_requests Setting Does Not Limit Concurrent Requests",
+    "description": "Fix LiteLLM global_max_parallel_requests not enforcing the configured limit, allowing unlimited concurrent requests through Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "set global_max_parallel_requests not work",
+    "search_intent": "Fix LiteLLM global_max_parallel_requests not enforcing the configured limit, allowing unlimited concurrent requests through",
+    "common_causes": [
+      "Setting global_max_parallel_requests in litellm_settings is expected to limit total concurrent requests across all models, but the setting appears to have no effect. Requests continue to flow through without limit, potentially overloading the server. This is a production reliability concern.",
+      "Issue #27900: user on LiteLLM v1.82.6 set global_max_parallel_requests but concurrent requests still exceed the limit. Screenshots show the config and the unlimited requests hitting the server."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "LiteLLM parallel request limit not enforced",
+      "LiteLLM global_max_parallel_requests ignored",
+      "LiteLLM concurrent request throttling not working"
+    ]
+  },
+  {
+    "slug": "ollama-error-post-http-127-0-0-1-11434-api-show-dial-tcp-127-0-0-1-11434-connectex-no-connection-could-be-made-because-the-target-machine-actively-refused-it",
+    "title": "Ollama Model Pull Terminated When Chat GUI Closed — Download Progress Lost",
+    "description": "Fix Ollama model pull being killed when Chat GUI is closed, and download not resuming from last checkpoint Includes evidence for Ollama troubleshooting demand.",
+    "category": "Ollama",
+    "technology": "Ollama",
+    "error_signature": "Error: Post \"http://127.0.0.1:11434/api/show\": dial tcp 127.0.0.1:11434: connectex: No connection could be made because the target machine actively refused it.",
+    "search_intent": "Fix Ollama model pull being killed when Chat GUI is closed, and download not resuming from last checkpoint",
+    "common_causes": [
+      "Closing the Ollama Chat GUI during an active model pull terminates the entire download process. The error shows 'connection refused' because the server shuts down. Download progress is completely lost — re-running starts from 0%. This is a data loss issue for users pulling large models (18GB+).",
+      "Issue #11742 on ollama/ollama: user pulling qwen3-coder (18GB), closed Chat GUI at 33%, download terminated and restarted from 0%. Error: connection refused to localhost:11434. Ollama v0.11.2 on Windows."
+    ],
+    "quick_fix": "Verify the model name, local service connectivity, and network access before retrying the model pull.",
+    "related_errors": [
+      "Ollama model download not resuming after interruption",
+      "Ollama server shutdown kills active model pull",
+      "Ollama download progress lost on restart"
+    ]
   }
 ]
