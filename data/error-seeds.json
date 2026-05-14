@@ -10485,5 +10485,100 @@
       "Claude Code workspace detection wrong",
       "Claude Code project folder encoding mismatch"
     ]
+  },
+  {
+    "slug": "litellm-litellm-authenticationerror-azureexception-authenticationerror-the-api-key-client-option-must-be-set",
+    "title": "LiteLLM 1.84.0 Breaks Azure OpenAI Authentication with enable_azure_ad_token_refresh",
+    "description": "Fix LiteLLM Azure OpenAI auth broken after upgrade to 1.84.0 Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "litellm.AuthenticationError: AzureException AuthenticationError - The api_key client option must be set",
+    "search_intent": "Fix LiteLLM Azure OpenAI auth broken after upgrade to 1.84.0",
+    "common_causes": [
+      "LiteLLM is a paid proxy service used by enterprises to manage multiple LLM providers. A breaking change in 1.84.0 broke Azure AD token refresh, which is a common enterprise authentication pattern. Users upgrading from rc.1 hit this immediately.",
+      "Clear error: AuthenticationError after upgrading to 1.84.0. Works in 1.84.0.rc.1. Affects Azure AD token provider flow. Enterprise users relying on Azure integration are blocked."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "LiteLLM Azure AD token refresh error",
+      "LiteLLM AuthenticationError api_key not set",
+      "LiteLLM proxy fallback authentication failure"
+    ]
+  },
+  {
+    "slug": "litellm-max-parallel-requests-current-limit-n-remaining-0",
+    "title": "LiteLLM max_parallel_requests Counter Leaks When Claude Code Cancels Streaming Requests",
+    "description": "Fix LiteLLM max_parallel_requests counter not decrementing on cancelled streams Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "max_parallel_requests Current limit: N, Remaining: 0",
+    "search_intent": "Fix LiteLLM max_parallel_requests counter not decrementing on cancelled streams",
+    "common_causes": [
+      "LiteLLM's parallel request limiter has a counter leak when Claude Code's dual-POST pattern cancels mid-stream. Eventually all requests hit 429 Budget Exceeded. Affects production deployments using Claude Code through LiteLLM proxy.",
+      "Detailed root cause analysis in issue. Claude Code sends 2 HTTP POSTs per turn (speculative + confirmation), cancels POST A when POST B starts. CancelledError skips the decrement path. Counter grows by 1 per turn. Workaround provided (try/finally with async_log_failure_event)."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "LiteLLM 429 Budget Exceeded",
+      "LiteLLM parallel request limiter stuck",
+      "LiteLLM Redis counter leak streaming"
+    ]
+  },
+  {
+    "slug": "codex-unknown-parameter-prompt-cache-retention",
+    "title": "Codex Context Compaction Fails with Unknown Parameter 'prompt_cache_retention'",
+    "description": "Fix Codex context compaction error unknown parameter prompt_cache_retention Includes evidence for Codex troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Codex",
+    "error_signature": "Unknown parameter: 'prompt_cache_retention'",
+    "search_intent": "Fix Codex context compaction error unknown parameter prompt_cache_retention",
+    "common_causes": [
+      "Codex is OpenAI's paid coding tool (ChatGPT Pro/Plus). Context compaction is a core feature that breaks on all threads, preventing long sessions. The error is an API-level incompatibility that users cannot fix themselves.",
+      "38 comments on #17809. Error occurs in both macOS app and CLI. API returns invalid_request_error with code 'unknown_parameter' for prompt_cache_retention. Also affects third-party proxies (new-api #4462). Affects ChatGPT Pro users."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Codex Error running remote compact task",
+      "Codex stream disconnected before completion",
+      "Codex Unknown parameter client_metadata"
+    ]
+  },
+  {
+    "slug": "ollama-500-internal-server-error-llama-runner-process-has-terminated-w-nil",
+    "title": "Ollama 500 Internal Server Error on Apple M5 — Metal Compiler Failed to Build Request",
+    "description": "Fix Ollama 500 Internal Server Error Metal compiler failed on Apple M5 Includes evidence for Ollama troubleshooting demand.",
+    "category": "Ollama",
+    "technology": "Ollama",
+    "error_signature": "500 Internal Server Error: llama runner process has terminated: %!w(<nil>)",
+    "search_intent": "Fix Ollama 500 Internal Server Error Metal compiler failed on Apple M5",
+    "common_causes": [
+      "Ollama is the most popular local LLM runner. Apple M5 is a new chip. Users hitting this error cannot run any model, even in CPU-only mode. The error message is cryptic (llama runner process terminated: %!w(<nil>)) and doesn't point to the Metal compiler root cause.",
+      "24 comments. Clear reproduction on MacBook Pro M5 + macOS 26.3.1 + Ollama 0.20.4. System logs show Metal shader compilation failure. Affects both GPU and CPU-only modes. Multiple users confirm."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Ollama Metal shader compilation failure",
+      "Ollama llama runner process terminated",
+      "Ollama 500 Internal Server Error"
+    ]
+  },
+  {
+    "slug": "ollama-think-false-breaks-format-structured-output-for-gemma4-format-constraint-silently-ignored",
+    "title": "Ollama think=false Silently Ignores format Parameter for gemma4 Models",
+    "description": "Fix Ollama think=false breaking JSON structured output format for gemma4 Includes evidence for Ollama troubleshooting demand.",
+    "category": "Ollama",
+    "technology": "Ollama",
+    "error_signature": "think=false breaks format (structured output) for gemma4 — format constraint silently ignored",
+    "search_intent": "Fix Ollama think=false breaking JSON structured output format for gemma4",
+    "common_causes": [
+      "Developers using gemma4 with structured output (JSON schema) in production pipelines get silently ignored format constraints when think=false is set. The model returns plain text instead of JSON, breaking downstream parsers. Same bug as qwen3.5 (#14645).",
+      "14 comments. Clear reproduction with curl. think=false + format → format silently ignored. If think is omitted, format works but model defaults to thinking mode with latency penalty. Affects production structured output pipelines."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Ollama qwen3.5 format ignored with think=false",
+      "Ollama structured output not working",
+      "Ollama gemma4 think mode format bug"
+    ]
   }
 ]
