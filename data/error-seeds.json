@@ -8483,5 +8483,138 @@
       "Claude Desktop won't install Windows",
       "MSIX AddPackage failed"
     ]
+  },
+  {
+    "slug": "litellm-duplicate-usage-aggregation-across-billing-cycles-april-usage-data-double-counted-in-may-budget",
+    "title": "LiteLLM Duplicate Usage Aggregation Across Billing Cycles Causes Pre-exhausted Balances",
+    "description": "Fix LiteLLM budget tracking double-counting usage from previous month in current month Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "Duplicate Usage Aggregation Across Billing Cycles — April usage data double-counted in May budget",
+    "search_intent": "Fix LiteLLM budget tracking double-counting usage from previous month in current month",
+    "common_causes": [
+      "Billing dashboard shows previous month's final day usage included in current month totals, causing premature budget exhaustion. Direct financial impact for teams using LiteLLM cost tracking.",
+      "LiteLLM v1.83.7 budget tracking fails to reset MTD counter at billing cycle start. April 30th usage carries over into May totals. Affects all users relying on month-to-date budget limits."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "LiteLLM budget limit exceeded",
+      "LiteLLM cost tracking dashboard",
+      "LiteLLM billing cycle reset"
+    ]
+  },
+  {
+    "slug": "openai-api-gpt-5-4-mini-returns-500-internal-errors-95-of-the-time-when-providing-input-files-or-images-as-parameters",
+    "title": "OpenAI GPT-5.4-Mini Returns 500 Internal Errors with File/Image Inputs",
+    "description": "Fix OpenAI GPT-5.4-Mini API 500 errors when sending files or images in requests Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "GPT-5.4-Mini returns 500 internal errors 95% of the time when providing input files or images as parameters",
+    "search_intent": "Fix OpenAI GPT-5.4-Mini API 500 errors when sending files or images in requests",
+    "common_causes": [
+      "GPT-5.4-Mini model returns 500 internal server errors approximately 95% of the time when input files or images are provided as parameters. Only plain text prompts work reliably.",
+      "When sending EasyInputMessageParam with file/image content to GPT-5.4-Mini, the API returns 500 internal errors ~95% of the time. Text-only prompts work fine. Affects production deployments using multimodal inputs."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "OpenAI API 500 error",
+      "GPT model file upload error",
+      "OpenAI multimodal input error"
+    ]
+  },
+  {
+    "slug": "claude-code-typeerror-undefined-is-not-an-object-evaluating-k-length-agent-tool-crash-with-pretooluse-hook-returning-partial-updatedinput",
+    "title": "Claude Code Agent Tool Crashes with K.length Error When PreToolUse Hook Returns Partial updatedInput",
+    "description": "Fix Claude Code Agent tool crash when PreToolUse hook returns updatedInput with only model field Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "TypeError: undefined is not an object (evaluating 'K.length') — Agent tool crash with PreToolUse hook returning partial updatedInput",
+    "search_intent": "Fix Claude Code Agent tool crash when PreToolUse hook returns updatedInput with only model field",
+    "common_causes": [
+      "PreToolUse hooks are a key Claude Code customization feature. When a hook returns partial updatedInput (e.g. only {model: 'opus'}), the Agent dispatcher crashes with an uncaught minified runtime exception instead of a clear error.",
+      "Claude Code v2.1.141 PreToolUse hook with matcher 'Agent' returning updatedInput: {model: 'opus'} causes Agent dispatch crash. Error is TypeError: undefined is not an object (evaluating 'K.length'). Removing hook restores functionality."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Claude Code hook configuration",
+      "Claude Code Agent tool settings",
+      "Claude Code ZodError validation"
+    ]
+  },
+  {
+    "slug": "ollama-ollama-committing-520gb-of-memory-on-windows-11-after-update-0-23-3-without-calling-any-model",
+    "title": "Ollama 520GB Memory Leak on Windows 11 After Update 0.23.3",
+    "description": "Fix Ollama consuming extreme memory (520GB) on Windows 11 after recent update Includes evidence for Ollama troubleshooting demand.",
+    "category": "Ollama",
+    "technology": "Ollama",
+    "error_signature": "Ollama committing 520GB of memory on Windows 11 after update 0.23.3 without calling any model",
+    "search_intent": "Fix Ollama consuming extreme memory (520GB) on Windows 11 after recent update",
+    "common_causes": [
+      "Critical stability issue: Ollama update 0.23.3 causes the application to consume 520GB of memory on Windows 11 even without loading any models. System freezes entirely, making Ollama completely unusable.",
+      "After updating to Ollama 0.23.3 on Windows 11, the application consumes 520GB of memory immediately after reboot, without any model being loaded. System becomes unstable and freezes."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Ollama high memory usage",
+      "Ollama Windows crash",
+      "Ollama update regression"
+    ]
+  },
+  {
+    "slug": "openai-api-streaming-tool-call-deltas-with-duplicate-indexes-in-first-chunk-are-accumulated-incorrectly-openai-python-accumulate-delta-bug",
+    "title": "OpenAI Python SDK Streaming Tool Call Duplicates Accumulated Incorrectly",
+    "description": "Fix openai-python SDK streaming tool_call delta duplication bug in first chunk Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "Streaming tool_call deltas with duplicate indexes in first chunk are accumulated incorrectly — openai-python accumulate_delta bug",
+    "search_intent": "Fix openai-python SDK streaming tool_call delta duplication bug in first chunk",
+    "common_causes": [
+      "The openai-python SDK's accumulate_delta function incorrectly handles duplicate indexes in the first streaming chunk of tool_call deltas. This causes malformed tool call arguments in AI agent applications.",
+      "openai-python accumulate_delta assumes unique indexes per chunk. When the first streaming chunk contains duplicate tool_call indexes, the delta accumulation produces incorrect tool call arguments. Affects all AI agent frameworks using streaming tool calls."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "OpenAI streaming response parsing",
+      "OpenAI tool_call argument corruption",
+      "openai-python SSE parsing error"
+    ]
+  },
+  {
+    "slug": "ollama-500-internal-server-error-timed-out-waiting-for-llama-server-to-start-ollama-0-30-0-rc15-rocm-docker",
+    "title": "Ollama Internal Server Error Timed Out Waiting for llama-server to Start",
+    "description": "Fix Ollama 500 Internal Server Error timeout waiting for llama-server to start after Docker update Includes evidence for Ollama troubleshooting demand.",
+    "category": "Ollama",
+    "technology": "Ollama",
+    "error_signature": "500 Internal Server Error: timed out waiting for llama-server to start — Ollama 0.30.0-rc15-rocm Docker",
+    "search_intent": "Fix Ollama 500 Internal Server Error timeout waiting for llama-server to start after Docker update",
+    "common_causes": [
+      "After updating Ollama Docker container to 0.30.0-rc15-rocm, model execution fails with 500 timeout error. Previously loaded in seconds, now takes 5+ minutes then fails.",
+      "Upgrading from ollama/ollama:0.21.1-rocm to 0.30.0-rc15-rocm causes '500 Internal Server Error: timed out waiting for llama-server to start' after 5 minute timeout. Affects AMD ROCm Docker users."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Ollama Docker setup",
+      "Ollama ROCm configuration",
+      "Ollama model loading timeout"
+    ]
+  },
+  {
+    "slug": "github-actions-tempdirectorymanager-race-condition-cancelled-worker-wipes-temp-directory-used-by-concurrently-spawned-new-worker",
+    "title": "GitHub Actions TempDirectoryManager Race Condition Wipes Active Worker Temp Directory",
+    "description": "Fix GitHub Actions race condition where cancelled Worker deletes temp directory used by new Worker Includes evidence for GitHub Actions troubleshooting demand.",
+    "category": "GitHub Actions",
+    "technology": "GitHub Actions",
+    "error_signature": "TempDirectoryManager race condition: cancelled Worker wipes _temp directory used by concurrently spawned new Worker",
+    "search_intent": "Fix GitHub Actions race condition where cancelled Worker deletes temp directory used by new Worker",
+    "common_causes": [
+      "When GitHub Actions runner receives a new job while previous worker is still running, the cancelled worker's cleanup wipes the shared _temp directory, corrupting the new worker's environment. Causes mysterious CI failures.",
+      "GitHub Actions runner shares _temp directory between old (cancelled) and new worker processes. Cancelled worker's TempDirectoryManager cleanup deletes files being used by the new worker, causing intermittent CI failures that are hard to reproduce."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "GitHub Actions workflow failure",
+      "GitHub Actions runner temp directory",
+      "GitHub Actions concurrent job race condition"
+    ]
   }
 ]
