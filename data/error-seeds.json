@@ -9102,5 +9102,149 @@
       "OpenAI streaming tool_calls parsing error",
       "OpenAI SDK tool_calls index mismatch"
     ]
+  },
+  {
+    "slug": "cloudflare-apierror-forbidden-error-authentication-error-on-containers-deploy",
+    "title": "Cloudflare Containers Deploy Gives Opaque 403 'Authentication error' on Free Plan",
+    "description": "Fix Cloudflare Containers deploy 403 Authentication error on Free plan Includes evidence for Cloudflare troubleshooting demand.",
+    "category": "Cloudflare",
+    "technology": "Cloudflare",
+    "error_signature": "ApiError: Forbidden { error: 'Authentication error' } on containers deploy",
+    "search_intent": "Fix Cloudflare Containers deploy 403 Authentication error on Free plan",
+    "common_causes": [
+      "wrangler deploy with [[containers]] config returns generic 403 'Authentication error' after Docker image builds. Actual issue: account needs Workers Paid plan, but error message gives no indication. Opaque error wastes developer time.",
+      "Free plan account, wrangler deploy with [[containers]] block. Docker builds succeed, then 403 with generic Authentication error. No indication that Workers Paid plan is required."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "Cloudflare Wrangler deploy workflows 500",
+      "Wrangler permission denied deployment"
+    ]
+  },
+  {
+    "slug": "claude-code-stream-stall-plus-sdk-stream-ended-no-result-after-update-to-2-1-141",
+    "title": "Claude Code v2.1.141 Regression: Stream Stall and sdk_stream_ended_no_result in Long Sessions",
+    "description": "Fix Claude Code streaming stall and no result delivered after v2.1.141 update Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Stream stall + sdk_stream_ended_no_result after update to 2.1.141",
+    "search_intent": "Fix Claude Code streaming stall and no result delivered after v2.1.141 update",
+    "common_causes": [
+      "After auto-updating to v2.1.141, long sessions fail with streaming stalls — API completes successfully but no result is delivered to the extension. Rolling back resolves the issue, confirming regression.",
+      "Confirmed regression in v2.1.141. Stream stalls for 15s then had_error: true. Multiple reports across macOS, Windows, Linux. Rolling back to previous version fixes it immediately."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Claude Code Unhandled case object Object",
+      "Claude Code desktop app hangs on new messages"
+    ]
+  },
+  {
+    "slug": "ollama-tool-call-function-arguments-truncated-or-502-bad-gateway",
+    "title": "Ollama Cloud Models: Tool Call Arguments Truncated or 502 on Large Outputs",
+    "description": "Fix Ollama cloud model tool_call function arguments truncated or 502 error Includes evidence for Ollama troubleshooting demand.",
+    "category": "Ollama",
+    "technology": "Ollama",
+    "error_signature": "tool_call.function.arguments truncated or 502 Bad Gateway",
+    "search_intent": "Fix Ollama cloud model tool_call function arguments truncated or 502 error",
+    "common_causes": [
+      "When using Ollama Cloud models with tool definitions, tool_call.function.arguments is truncated or returns 502 Bad Gateway on large outputs. Makes agent workflows that rely on tool calls unreliable or completely broken. Affects both cloud API and local proxy.",
+      "Affects kimi-k2.6:cloud, glm-5.1:cloud, qwen3.5:397b. Both https://ollama.com/v1 and localhost:11434/v1 endpoints affected. Server-side issue on Ollama cloud infrastructure."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Ollama cloud proxy unexpected EOF",
+      "Ollama 500 Internal Server Error"
+    ]
+  },
+  {
+    "slug": "anthropic-api-attributeerror-nonetype-object-has-no-attribute-model",
+    "title": "Anthropic SDK Bedrock Streaming Crashes on Rate Limit Error SSE Event",
+    "description": "Fix Anthropic SDK AttributeError NoneType on Bedrock streaming rate limit errors Includes evidence for Anthropic API troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Anthropic API",
+    "error_signature": "AttributeError: 'NoneType' object has no attribute 'model'",
+    "search_intent": "Fix Anthropic SDK AttributeError NoneType on Bedrock streaming rate limit errors",
+    "common_causes": [
+      "Bedrock cross-region inference returns HTTP 200 with error payload in first SSE frame. SDK crashes with AttributeError because it expects model/usage attributes on None. Production workloads affected.",
+      "Bedrock returns HTTP 200 with error SSE frame containing rate_limit_error. SDK's _parse_message_from_event raises ValueError or AttributeError on NoneType. Fixed in PR #1488 but users on older versions hit it."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "Anthropic SDK Bedrock 413 529 not mapped",
+      "Anthropic API rate_limit_error"
+    ]
+  },
+  {
+    "slug": "ollama-v1-chat-completions-returns-400-unexpected-eof-intermittently",
+    "title": "Ollama Cloud Proxy Returns 400 'unexpected EOF' Intermittently on /v1/chat/completions",
+    "description": "Fix Ollama cloud model 400 unexpected EOF error on chat completions endpoint Includes evidence for Ollama troubleshooting demand.",
+    "category": "Ollama",
+    "technology": "Ollama",
+    "error_signature": "/v1/chat/completions returns 400 \"unexpected EOF\" intermittently",
+    "search_intent": "Fix Ollama cloud model 400 unexpected EOF error on chat completions endpoint",
+    "common_causes": [
+      "Ollama cloud proxy models (glm-5.1:cloud, deepseek-v4-pro:cloud) return 400 unexpected EOF non-deterministically. Same request can succeed or fail. Second variant: 400 'cannot parse request body'. Local models work fine.",
+      "Ollama 0.23.2 on WSL2 with RTX 4080 SUPER. Cloud proxy models affected, local models fine. /v1/chat/completions only. Non-deterministic — same request can succeed or fail."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Ollama cloud tool_call arguments truncated",
+      "Ollama web_search empty body on quota"
+    ]
+  },
+  {
+    "slug": "litellm-177-validation-errors-input-should-be-a-valid-string",
+    "title": "LiteLLM Proxy Returns 400 Validation Errors on Claude Code Multi-Turn Conversations",
+    "description": "Fix LiteLLM proxy 400 validation error when Claude Code sends multi-turn conversations Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "177 validation errors: Input should be a valid string",
+    "search_intent": "Fix LiteLLM proxy 400 validation error when Claude Code sends multi-turn conversations",
+    "common_causes": [
+      "Claude Code calls LiteLLM gateway and gets 400 with 177 validation errors about input types. LiteLLM proxy doesn't correctly translate Claude Code's message format. Multi-turn conversations get stuck.",
+      "Error: litellm.BadRequestError with 177 validation errors. Input should be a valid string but receiving complex message objects. Specific to Claude Code → LiteLLM proxy path."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "LiteLLM Bedrock structured output failure",
+      "Claude Code Unhandled case object Object"
+    ]
+  },
+  {
+    "slug": "anthropic-api-bedrockexception-message-the-model-returned-the-following-errors-output-config-format-extra-inputs-are-not-permitted",
+    "title": "Anthropic SDK Structured Output Fails for Anthropic Models on Bedrock Converse API",
+    "description": "Fix Anthropic Bedrock structured output JSON schema validation error on Converse API Includes evidence for Anthropic API troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Anthropic API",
+    "error_signature": "BedrockException: {\"message\":\"The model returned the following errors: output_config.format: Extra inputs are not permitted\"}",
+    "search_intent": "Fix Anthropic Bedrock structured output JSON schema validation error on Converse API",
+    "common_causes": [
+      "When using responses API with structured output (JSON schema) on Bedrock Converse API for Anthropic models, Bedrock rejects with 'Extra inputs are not permitted'. Works for Nova models and Invoke API — specific to Anthropic + Converse combination.",
+      "BedrockException on Converse API for Anthropic models with structured output. output_config.format: Extra inputs not permitted. Works with Nova models and Invoke API."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Bedrock streaming SSE error handling",
+      "Anthropic API structured output"
+    ]
+  },
+  {
+    "slug": "ollama-web-search-web-fetch-return-200-ok-with-empty-body-when-cloud-usage-is-exhausted",
+    "title": "Ollama Cloud Returns 200 OK Empty Body Instead of 429 When Usage Exhausted",
+    "description": "Fix Ollama cloud API returning empty response on quota exhaustion instead of proper error Includes evidence for Ollama troubleshooting demand.",
+    "category": "Ollama",
+    "technology": "Ollama",
+    "error_signature": "web_search/web_fetch return 200 OK with empty body when Cloud usage is exhausted",
+    "search_intent": "Fix Ollama cloud API returning empty response on quota exhaustion instead of proper error",
+    "common_causes": [
+      "When Ollama Cloud weekly usage is exhausted, web_search/web_fetch APIs return HTTP 200 with empty body. Clients expecting JSON fail with 'Unexpected end of JSON input'. Should return 429 or 402 with error body.",
+      "HTTP/2 200 with content-length: 0 returned when cloud usage exhausted. Both local proxy and direct cloud API affected. Client JSON parse errors follow."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "Ollama cloud proxy unexpected EOF",
+      "API rate limit exceeded empty response"
+    ]
   }
 ]
