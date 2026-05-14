@@ -9876,5 +9876,113 @@
       "LiteLLM model list API access denied",
       "LiteLLM spending limit configuration"
     ]
+  },
+  {
+    "slug": "claude-code-cache-ttl-silently-regressed-from-1h-to-5m-causing-quota-and-cost-inflation",
+    "title": "Claude Code Cache TTL Regression — 1 Hour to 5 Minutes Causing Cost Spike",
+    "description": "Diagnose why Claude Code cache expires faster than expected, increasing API costs Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Cache TTL silently regressed from 1h to 5m, causing quota and cost inflation",
+    "search_intent": "Diagnose why Claude Code cache expires faster than expected, increasing API costs",
+    "common_causes": [
+      "Developers analyzing session JSONL data discovered prompt cache TTL dropped from 1 hour to 5 minutes, dramatically increasing token costs and quota consumption. Direct financial impact on heavy users.",
+      "336 reactions on #46829, 56 comments. Analysis of session JSONL spanning Jan–Apr 2026 shows cache TTL change. Issue #46917 (217 reactions) confirms cache_creation inflation by ~20K tokens in v2.1.100+. Both issues point to server-side regression."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "Claude Code cache_creation inflated tokens",
+      "Claude Code session limits exhausted fast"
+    ]
+  },
+  {
+    "slug": "gemini-cli-403-permission-denied-for-google-one-ai-premium-subscriber",
+    "title": "Gemini CLI 403 PERMISSION_DENIED for Paying Google One AI Premium Users",
+    "description": "Fix Gemini CLI 403 permission denied despite active Google One AI Premium subscription Includes evidence for Gemini CLI troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Gemini CLI",
+    "error_signature": "403 PERMISSION_DENIED for Google One AI Premium subscriber",
+    "search_intent": "Fix Gemini CLI 403 permission denied despite active Google One AI Premium subscription",
+    "common_causes": [
+      "Paying subscribers to Google One AI Premium plan get 403 PERMISSION_DENIED when using Gemini CLI. Account is correctly identified but API access is blocked. Frustrating billing/service disconnect.",
+      "63 reactions, 165 comments. User has active Google One AI Premium subscription. Account correctly identified by API but access blocked. Multiple users confirm same issue after account reset."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Gemini CLI 429 RESOURCE_EXHAUSTED",
+      "Google AI API billing not reflecting subscription"
+    ]
+  },
+  {
+    "slug": "litellm-only-proxy-admin-can-be-used-to-generate-delete-update-info-for-new-keys-users-teams-route-v1-models-model",
+    "title": "LiteLLM 401 Unauthorized on /v1/models/{model} — Admin-Only Route Error",
+    "description": "Fix LiteLLM 401 Unauthorized when querying single model info via /v1/models/{model} Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "Only proxy admin can be used to generate, delete, update info for new keys/users/teams. Route=/v1/models/{model}",
+    "search_intent": "Fix LiteLLM 401 Unauthorized when querying single model info via /v1/models/{model}",
+    "common_causes": [
+      "Developers using LiteLLM proxy with AI agents (Hermes, OpenClaw, custom tools) get 401 errors on /v1/models/{model} endpoint because LiteLLM gates it behind admin auth. The endpoint shares path with model mutation operations (PUT/DELETE), so regular API keys are rejected.",
+      "Detailed bug report with exact error traceback. Every agent turn produces 401 error on LiteLLM logs. Root cause: /v1/models/{model} is classified admin-only in LiteLLM route_checks.py. Affects all agents probing context length via this endpoint."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "LiteLLM proxy admin-only route exceptions",
+      "Ollama model not found nomic-embed-text"
+    ]
+  },
+  {
+    "slug": "codex-cli-codex-cli-hangs-indefinitely-on-all-prompts-no-response-generated",
+    "title": "Codex CLI Hangs Indefinitely — No Response on Any Prompt",
+    "description": "Fix Codex CLI hanging forever without generating any response Includes evidence for Codex CLI troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Codex CLI",
+    "error_signature": "Codex CLI hangs indefinitely on all prompts, no response generated",
+    "search_intent": "Fix Codex CLI hanging forever without generating any response",
+    "common_causes": [
+      "Codex CLI on Business plan stops responding to all prompts — hangs indefinitely with no error message or timeout. Users must force-kill the process. Affects paid Business tier subscribers on VS Code.",
+      "79 reactions, 131 comments. Reproduced on VS Code extension v26.311.21342 with Business subscription. Multiple users report same behavior — CLI accepts input but never produces output. No error displayed."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "Codex CLI burning tokens very fast",
+      "Codex CLI context compaction hanging"
+    ]
+  },
+  {
+    "slug": "claude-code-provider-api-request-failed-request-id-req",
+    "title": "Claude Code Provider API Request Failed Despite Proxy 200 OK Response",
+    "description": "Fix Claude Code 'Provider API request failed' error when proxy returns 200 OK Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Provider API request failed. (request_id=req_...)",
+    "search_intent": "Fix Claude Code 'Provider API request failed' error when proxy returns 200 OK",
+    "common_causes": [
+      "Developers using Claude Code with proxy setups (OpenRouter, NVIDIA NIM, custom backends) see 'Provider API request failed' even though proxy logs show successful 200 OK responses. Confusing mismatch between proxy logs and CLI error.",
+      "Reproduced on v2.1.141 with Windows WSL2 + proxy v2.0.0. Proxy logs show 200 OK, CLI shows error. User tested both OpenRouter and NVIDIA NIM configurations. Clean sessions, verified handshake via curl — still fails."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Claude Code connection refused to proxy",
+      "Claude Code custom provider configuration"
+    ]
+  },
+  {
+    "slug": "gemini-cli-429-resource-exhausted-on-google-ai-pro-account-after-full-local-reset",
+    "title": "Gemini CLI 429 RESOURCE_EXHAUSTED on Google AI Free/Pro Account",
+    "description": "Fix Gemini CLI 429 rate limit error on free or Pro accounts Includes evidence for Gemini CLI troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Gemini CLI",
+    "error_signature": "429 RESOURCE_EXHAUSTED on Google AI Pro account after full local reset",
+    "search_intent": "Fix Gemini CLI 429 rate limit error on free or Pro accounts",
+    "common_causes": [
+      "Gemini CLI users hit 429 RESOURCE_EXHAUSTED immediately after fresh install or local reset, even on accounts with available quota. Error persists across model selections and configuration changes.",
+      "21 reactions, 22 comments. Reproduced after full local reset (cleared config, re-authenticated). Users report error appears immediately on first prompt, suggesting server-side quota tracking issue rather than actual usage."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "Gemini CLI 403 PERMISSION_DENIED",
+      "Gemini CLI extremely slow / stuck"
+    ]
   }
 ]
