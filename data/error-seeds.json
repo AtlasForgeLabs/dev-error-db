@@ -9413,5 +9413,176 @@
       "LiteLLM Cerebras provider auth failure",
       "CEREBRAS_API_KEY environment variable"
     ]
+  },
+  {
+    "slug": "claude-code-unhandled-case-object-object",
+    "title": "Claude Code 'Unhandled case: [object Object]' Toast Error in VSCode Extension",
+    "description": "Fix the 'Unhandled case: [object Object]' banner/toast in Claude Code VSCode extension when API stream fails Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Unhandled case: [object Object]",
+    "search_intent": "Fix the 'Unhandled case: [object Object]' banner/toast in Claude Code VSCode extension when API stream fails",
+    "common_causes": [
+      "Claude Code VSCode extension shows a cryptic 'Unhandled case: [object Object]' toast when the streaming connection stalls or the server emits an unknown event type. Affects multiple users on macOS and Bedrock integrations, blocking productive work.",
+      "Multiple GitHub issues (59054, 52151, 58897, 59047) report the same 'Unhandled case: [object Object]' error in Claude Code VSCode extension. The assertNever helper interpolates the entire event object instead of its .type field. Reproducible on Bedrock Opus 4.7 1M context and standard streaming."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Claude Code Bedrock streaming 0 events",
+      "Claude Code stream stall timeout",
+      "Claude Code assertNever unknown event type"
+    ]
+  },
+  {
+    "slug": "claude-code-apikeyhelper-403-from-expired-token-not-retried-first-prompt-after-idle-always-fails",
+    "title": "Claude Code apiKeyHelper 403 Expired Token Not Retried After Idle",
+    "description": "Fix Claude Code 403 error from expired API token after idle period with apiKeyHelper Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "apiKeyHelper: 403 from expired token not retried — first prompt after idle always fails",
+    "search_intent": "Fix Claude Code 403 error from expired API token after idle period with apiKeyHelper",
+    "common_causes": [
+      "When using apiKeyHelper with a token provider that issues time-limited tokens, the first request after idle always fails with 403. Claude Code does not retry the expired token, forcing manual intervention.",
+      "Bug report shows apiKeyHelper returns 403 from expired token after idle. First prompt always fails. Affects paid Claude Code + API integration users with rotating tokens."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Claude Code API key refresh failure",
+      "Claude Code authentication retry logic",
+      "Anthropic API 401 expired key"
+    ]
+  },
+  {
+    "slug": "ollama-ollama-cloud-503-service-unavailable-on-cloud-models",
+    "title": "Ollama Cloud Frequent 503 Errors Making Cloud Models Unreliable",
+    "description": "Fix Ollama Cloud 503 Service Unavailable errors on cloud models Includes evidence for Ollama troubleshooting demand.",
+    "category": "Ollama",
+    "technology": "Ollama",
+    "error_signature": "Ollama Cloud: 503 Service Unavailable on cloud models",
+    "search_intent": "Fix Ollama Cloud 503 Service Unavailable errors on cloud models",
+    "common_causes": [
+      "Ollama Cloud models randomly fail with 503 Service Unavailable. Affects glm-5, glm-5.1, minimax-m2.7, kimi-k2.5. Makes paid cloud models unreliable for production use.",
+      "Frequent 503 errors on Ollama Cloud models. User running autonomous agents hits random failures. Affects multiple cloud models. Makes $20/month Pro plan unreliable."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Ollama Cloud 503 error",
+      "Ollama cloud model availability",
+      "Ollama Cloud service reliability"
+    ]
+  },
+  {
+    "slug": "cline-error-unknown-or-disabled-provider-openai",
+    "title": "Cline CLI 'Unknown or disabled provider openai' with OpenAI-Compatible Endpoint",
+    "description": "Fix Cline CLI error 'Unknown or disabled provider openai' when using OpenAI-compatible endpoint Includes evidence for Cline troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Cline",
+    "error_signature": "Error: Unknown or disabled provider \"openai\"",
+    "search_intent": "Fix Cline CLI error 'Unknown or disabled provider openai' when using OpenAI-compatible endpoint",
+    "common_causes": [
+      "Cline CLI reports 'Unknown or disabled provider openai' even though the same endpoint works fine in the VSCode plugin. Configuration difference between CLI and extension causes confusion.",
+      "Cline CLI v3.0.0 reports 'Error: Unknown or disabled provider openai' when configured with an OpenAI-compatible endpoint. Works in VSCode extension but fails in CLI. Configuration mismatch issue."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Cline CLI provider configuration",
+      "Cline OpenAI-compatible endpoint setup",
+      "Cline CLI vs extension config difference"
+    ]
+  },
+  {
+    "slug": "cline-invalid-api-response-the-provider-returned-an-empty-or-unparsable-response",
+    "title": "Cline 'Invalid API Response: empty or unparsable response' on Large Files",
+    "description": "Fix Cline returning 'Invalid API Response: The provider returned an empty or unparsable response' when processing large files Includes evidence for Cline troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Cline",
+    "error_signature": "Invalid API Response: The provider returned an empty or unparsable response",
+    "search_intent": "Fix Cline returning 'Invalid API Response: The provider returned an empty or unparsable response' when processing large files",
+    "common_causes": [
+      "Cline repeatedly returns this error when writing large files (>500 lines) or parsing large PDFs (50+ pages). The API response is truncated or empty, blocking the entire workflow.",
+      "User reports repeated 'Invalid API Response: empty or unparsable response' when Cline processes large files. The provider returns empty content, and Cline cannot recover. Tagged with Linear (internal tracking)."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Cline context window overflow",
+      "Cline API response truncation",
+      "Cline large file handling error"
+    ]
+  },
+  {
+    "slug": "netlify-netlify-cli-has-terminated-unexpectedly",
+    "title": "Netlify CLI 'Terminated Unexpectedly' Infinite Error Loop After Update",
+    "description": "Fix Netlify CLI 'terminated unexpectedly' infinite loop when running ntl dev Includes evidence for Netlify troubleshooting demand.",
+    "category": "Deployment",
+    "technology": "Netlify",
+    "error_signature": "Netlify CLI has terminated unexpectedly",
+    "search_intent": "Fix Netlify CLI 'terminated unexpectedly' infinite loop when running ntl dev",
+    "common_causes": [
+      "After updating to netlify-cli v26, running 'ntl dev' starts successfully but then enters an infinite loop printing 'terminated unexpectedly' with no actual error details. Completely unusable.",
+      "Multiple users report infinite 'terminated unexpectedly' loop in netlify-cli v26. Dev server starts (Astro on port 3000, edge functions load) but CLI immediately enters crash loop. No error details provided."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Netlify CLI crash loop",
+      "Netlify dev server terminated",
+      "Netlify CLI update regression"
+    ]
+  },
+  {
+    "slug": "litellm-litellm-metrics-endpoint-returning-401-after-upgrade-to-1-84-0",
+    "title": "LiteLLM /Metrics Endpoint Requires Authentication After Upgrade",
+    "description": "Fix LiteLLM /metrics endpoint returning 401 unauthorized after upgrading to 1.84.0 Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "LiteLLM /metrics endpoint returning 401 after upgrade to 1.84.0",
+    "search_intent": "Fix LiteLLM /metrics endpoint returning 401 unauthorized after upgrading to 1.84.0",
+    "common_causes": [
+      "After upgrading LiteLLM to 1.84.0, the /metrics endpoint that was previously accessible for Prometheus scraping now requires authentication. Breaks monitoring dashboards.",
+      "After upgrading to 1.84.0, /metrics endpoint returns 401. User has LiteLLM behind reverse proxy for Prometheus metrics. Previously unauthenticated access worked."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "LiteLLM metrics authentication",
+      "LiteLLM upgrade breaking changes",
+      "LiteLLM Prometheus metrics access"
+    ]
+  },
+  {
+    "slug": "litellm-incorrect-tpm-limiting-for-virtual-keys-rate-limit-not-enforced-correctly",
+    "title": "LiteLLM Incorrect TPM Rate Limiting for Virtual Keys",
+    "description": "Fix LiteLLM virtual keys not enforcing TPM rate limits correctly Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "Incorrect TPM limiting for virtual keys — rate limit not enforced correctly",
+    "search_intent": "Fix LiteLLM virtual keys not enforcing TPM rate limits correctly",
+    "common_causes": [
+      "LiteLLM virtual keys have incorrect TPM (tokens per minute) limiting. Rate limit enforcement is inconsistent, allowing overuse or blocking legitimate requests. Reported in v1.80.0, still present in v1.82.3.",
+      "TPM rate limiting for virtual keys is incorrect. Originally reported in v1.80.0, marked solved, but still present in v1.82.3. Affects production rate limiting for LiteLLM proxy users."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "LiteLLM virtual key rate limit",
+      "LiteLLM TPM enforcement",
+      "LiteLLM proxy rate limiting bug"
+    ]
+  },
+  {
+    "slug": "ollama-error-pull-model-manifest-412-this-model-requires-macos",
+    "title": "Ollama Pull Model Manifest 412 'This Model Requires macOS' on Linux",
+    "description": "Fix Ollama 'pull model manifest: 412: this model requires macOS' error when running on Linux Includes evidence for Ollama troubleshooting demand.",
+    "category": "Ollama",
+    "technology": "Ollama",
+    "error_signature": "Error: pull model manifest: 412: this model requires macOS",
+    "search_intent": "Fix Ollama 'pull model manifest: 412: this model requires macOS' error when running on Linux",
+    "common_causes": [
+      "Ollama returns 412 error 'this model requires macOS' when trying to pull platform-specific models on Linux/ARM. Users don't understand why a model is platform-locked.",
+      "User on Linux/Nvidia/Intel gets 'pull model manifest: 412: this model requires macOS' when trying qwen3.6:27b-coding-nvfp4. The model has platform restrictions not clearly communicated."
+    ],
+    "quick_fix": "Verify the model name, local service connectivity, and network access before retrying the model pull.",
+    "related_errors": [
+      "Ollama model platform compatibility",
+      "Ollama 412 error model not available",
+      "Ollama pull manifest error"
+    ]
   }
 ]
