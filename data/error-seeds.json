@@ -8940,5 +8940,167 @@
       "Ollama Cloud Pro 95% failure rate",
       "Ollama deepseek-v4-pro:cloud HTTP 500"
     ]
+  },
+  {
+    "slug": "claude-code-cache-control-cannot-be-set-for-empty-text-blocks",
+    "title": "Claude Code API 400 'cache_control cannot be set for empty text blocks' Bricks Sessions",
+    "description": "Fix Claude Code session crash caused by 400 error on cache_control with empty text blocks Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "cache_control cannot be set for empty text blocks",
+    "search_intent": "Fix Claude Code session crash caused by 400 error on cache_control with empty text blocks",
+    "common_causes": [
+      "Claude Code sessions become permanently unusable once this error occurs. The agent constructs request payloads with empty text content blocks that have cache_control markers, which the Anthropic API rejects. Users on paid Max tier plans lose active coding sessions with no recovery path.",
+      "Multiple users report Claude Code Cloud sessions crashing with API Error 400 messages.248.content.3.text: cache_control cannot be set for empty text blocks. Sessions become unrecoverable. Happens in both long (>200 messages) and new (~25 messages) sessions, triggered by pasting screenshots."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Claude Code API 400 text content blocks must be non-empty",
+      "Claude Code session recovery after API errors"
+    ]
+  },
+  {
+    "slug": "openai-api-openai-batch-api-returns-404-with-gpt-5-x-models-model-not-found-gpt-5-mini-2025-08-07-batch",
+    "title": "OpenAI Batch API Returns 404 'model_not_found' for GPT-5.x Models",
+    "description": "Fix OpenAI Batch API 404 error when using GPT-5.x models Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "OpenAI Batch API returns 404 with GPT-5.x models: model_not_found gpt-5-mini-2025-08-07-batch",
+    "search_intent": "Fix OpenAI Batch API 404 error when using GPT-5.x models",
+    "common_causes": [
+      "The Batch API automatically appends -batch suffix to model names, but GPT-5.x batch variants do not exist. This breaks batch processing workflows for developers who upgraded from GPT-4.x to GPT-5.x. The /v1/responses endpoint works fine, only /v1/chat/completions batch is affected.",
+      "OpenAI Batch API returns 404 with model_not_found for gpt-5-mini-2025-08-07-batch. Users confirm token has access to GPT-5-mini. /v1/responses works but /v1/chat/completions batch fails. OpenAI docs list GPT-5.x as supporting batch API."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "OpenAI API model not found GPT-5",
+      "OpenAI Batch API status_code 404"
+    ]
+  },
+  {
+    "slug": "litellm-litellm-http-429-budget-exceeded-on-get-v1-models",
+    "title": "LiteLLM Proxy Returns 429 Budget Exceeded on /v1/models Breaking All OpenAI Clients",
+    "description": "Fix LiteLLM budget exceeded blocking model discovery endpoints Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "LiteLLM HTTP 429 Budget Exceeded on GET /v1/models",
+    "search_intent": "Fix LiteLLM budget exceeded blocking model discovery endpoints",
+    "common_causes": [
+      "When team/org budget is exhausted, LiteLLM returns 429 on /v1/models endpoint, making ALL models invisible to clients including free models. This breaks Open WebUI, Cursor, Aider, Continue.dev, LibreChat and every OpenAI-compatible client. No workaround exists.",
+      "Budget check inconsistency: _global_proxy_budget_check correctly excludes /v1/models but _team_max_budget_check does not. All OpenAI-compatible clients break when budget exceeded. Affects LiteLLM v1.83.3. No viable workaround."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "LiteLLM BudgetExceededError 429",
+      "LiteLLM /v1/models empty model list"
+    ]
+  },
+  {
+    "slug": "openai-api-gpt-5-4-mini-returns-500-internal-errors-with-responseinputimageparam",
+    "title": "GPT-5.4-Mini Returns 500 Internal Errors 95% of the Time When Providing Images",
+    "description": "Fix GPT-5.4-Mini 500 internal server error when sending images Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "GPT-5.4-Mini returns 500 internal errors with ResponseInputImageParam",
+    "search_intent": "Fix GPT-5.4-Mini 500 internal server error when sending images",
+    "common_causes": [
+      "GPT-5.4-Mini consistently returns HTTP 500 when provided with image inputs via ResponseInputImageParam, while GPT-5.4 (full) works perfectly with the same input. This blocks developers from using the cheaper Mini model for vision tasks.",
+      "95% failure rate on GPT-5.4-Mini with image inputs. Same request on GPT-5.4 works fine. Affects openai-python SDK v2.31.0 on macOS. Error occurs with ResponseInputImageParam using valid image URLs."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "OpenAI API 500 internal server error",
+      "GPT-5.4-Mini vision API error"
+    ]
+  },
+  {
+    "slug": "claude-code-claude-code-sdk-stream-ended-no-result-had-error-true",
+    "title": "Claude Code Stream Stall + sdk_stream_ended_no_result After v2.1.141 Update",
+    "description": "Fix Claude Code streaming stalls and no result after update Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Claude Code: sdk_stream_ended_no_result had_error: true",
+    "search_intent": "Fix Claude Code streaming stalls and no result after update",
+    "common_causes": [
+      "After Claude Code auto-updated to v2.1.141, all prompts fail with streaming stalls (50s+ gaps) followed by sdk_stream_ended_no_result. Rolling back to v2.1.140 resolves immediately. Affects all prompts, not just long sessions.",
+      "v2.1.141 regression. Slow first byte (~30s), streaming stall (~50s gap), sdk_stream_ended_no_result with had_error: true. Fast mode unavailable logged 4 times per request. Rolling back to v2.1.140 fixes immediately."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Claude Code slow first byte timeout",
+      "Claude Code streaming stall recovery"
+    ]
+  },
+  {
+    "slug": "claude-code-anthropic-api-400-messages-text-content-blocks-must-be-non-empty",
+    "title": "Claude Code Desktop App Hangs on New Messages in Long Sessions",
+    "description": "Fix Claude Code desktop app hanging on messages in long sessions Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Anthropic API 400 messages: text content blocks must be non-empty",
+    "search_intent": "Fix Claude Code desktop app hanging on messages in long sessions",
+    "common_causes": [
+      "New messages sent to long-running Claude Code desktop sessions hang indefinitely with no response, no error, and no timeout. The loading indicator appears but nothing streams back. Fresh sessions work normally. Affects Max tier users paying premium prices.",
+      "Desktop app on macOS, Opus 4.7 model, Max tier. Loading indicator appears but nothing streams. No error message, no timeout. Reproduces on every new message in affected sessions. Fresh sessions on same repos work normally."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Claude Code session timeout no response",
+      "Claude Code context limit hang"
+    ]
+  },
+  {
+    "slug": "claude-code-claude-code-webview-streaming-parser-unhandled-case-object-object",
+    "title": "Claude Code Webview Streaming Parser Throws 'Unhandled case: [object Object]' on New Event Types",
+    "description": "Fix Claude Code webview Unhandled case streaming parser error Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Claude Code Webview streaming parser: Unhandled case: [object Object]",
+    "search_intent": "Fix Claude Code webview Unhandled case streaming parser error",
+    "common_causes": [
+      "The VS Code extension's webview parser crashes with Unhandled case: [object Object] when the API introduces new streaming event types. The throwing default branch makes the extension non-forward-compatible. Full VS Code restart and extension reinstall do not help.",
+      "VS Code extension v2.1.141, Windows 11. Streaming parser switch statements use throwing default branch. Breaks on any unrecognized stream event or content_block_delta type. Agent process stays healthy but webview crashes. Unrecoverable without full restart."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Claude Code Unhandled stream event type",
+      "Claude Code webview parser error"
+    ]
+  },
+  {
+    "slug": "claude-code-claude-code-mcp-servers-from-claude-settings-json-missing-in-desktop-app",
+    "title": "Claude Code Desktop App Ignores MCP Servers from ~/.claude/settings.json",
+    "description": "Fix Claude Code desktop app not loading MCP servers from settings.json Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Claude Code MCP servers from ~/.claude/settings.json missing in desktop app",
+    "search_intent": "Fix Claude Code desktop app not loading MCP servers from settings.json",
+    "common_causes": [
+      "MCP servers configured in ~/.claude/settings.json are not started or made available in Claude Code desktop app local sessions. Only built-in app-level connectors load. The same config works perfectly in CLI sessions. Users cannot use their configured tools in the desktop app.",
+      "main.log shows replaceRemoteMcpServers only loads 7 app-level connectors. settings.json MCP servers (ado, sql-server, figma) completely absent. CLI sessions load all MCP servers correctly. Desktop app v2.1.138 on Windows."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Claude Code MCP server not starting",
+      "Claude Code settings.json MCP config ignored"
+    ]
+  },
+  {
+    "slug": "openai-api-openai-python-accumulate-delta-tool-calls-duplicate-index-incorrect-merging",
+    "title": "OpenAI Python SDK: Streaming tool_call Duplicates Index Causes Invalid JSON",
+    "description": "Fix OpenAI streaming tool_calls duplicate index accumulated incorrectly Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "OpenAI Python accumulate_delta tool_calls duplicate index incorrect merging",
+    "search_intent": "Fix OpenAI streaming tool_calls duplicate index accumulated incorrectly",
+    "common_causes": [
+      "When the first streamed chunk contains multiple tool_calls with the same index, accumulate_delta merges them incorrectly, stranding part of the tool call arguments and producing invalid final JSON. This breaks all tool-calling workflows using streaming.",
+      "accumulate_delta assumes index field matches physical list position. First chunk with duplicate index:0 entries causes second entry to be stranded. Later chunks merge into acc_value[0] leaving second entry with partial arguments. Produces invalid JSON."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "OpenAI streaming tool_calls parsing error",
+      "OpenAI SDK tool_calls index mismatch"
+    ]
   }
 ]
