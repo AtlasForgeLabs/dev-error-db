@@ -9800,5 +9800,81 @@
       "Claude Code image size limit exceeded",
       "Anthropic API multimodal image validation error"
     ]
+  },
+  {
+    "slug": "litellm-32603-internal-error-stream-consumed",
+    "title": "LiteLLM A2A Endpoint Returns 'Stream Consumed' Error on JSON-RPC POST",
+    "description": "Fix LiteLLM A2A /a2a/{id}/message/send returning -32603 Stream consumed error Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "-32603 Internal error: Stream consumed",
+    "search_intent": "Fix LiteLLM A2A /a2a/{id}/message/send returning -32603 Stream consumed error",
+    "common_causes": [
+      "LiteLLM's A2A (Agent-to-Agent) endpoints return a JSON-RPC 2.0 error 'Stream consumed' when invoked via raw HTTP POST. This blocks developers building multi-agent systems that rely on the A2A protocol through LiteLLM proxy.",
+      "Bug report on BerriAI/litellm repo: POST /a2a/{agent_id}/message/send returns {\"jsonrpc\":\"2.0\",\"id\":null,\"error\":{\"code\":-32603,\"message\":\"Internal error: Stream consumed\"}}. Affects LiteLLM main branch as of 2026-05-13 on Docker image ghcr.io/berriai/litellm-non_root:main-stable."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "LiteLLM A2A agent registration fails",
+      "LiteLLM streaming response drops tool_use arguments",
+      "LiteLLM JSON-RPC error handling"
+    ]
+  },
+  {
+    "slug": "litellm-no-retry-after-header-on-routerratelimiterror-all-deployments-in-cooldown",
+    "title": "LiteLLM Missing Retry-After Header on Rate Limit Errors",
+    "description": "Fix LiteLLM not returning Retry-After header when all deployments are in cooldown Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "No Retry-After header on RouterRateLimitError (all deployments in cooldown)",
+    "search_intent": "Fix LiteLLM not returning Retry-After header when all deployments are in cooldown",
+    "common_causes": [
+      "When LiteLLM's router hits rate limits and puts all deployments in cooldown, the 429 response doesn't include a Retry-After header. Clients implementing proper retry logic depend on this header to know when to retry, and its absence causes either immediate retry storms or excessive backoff.",
+      "Bug report with comment: RouterRateLimitError responses lack Retry-After header when all deployments are in cooldown. Affects clients implementing standard HTTP retry-after semantics."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "LiteLLM rate limit cooldown period",
+      "LiteLLM 429 response format",
+      "LiteLLM router retry logic"
+    ]
+  },
+  {
+    "slug": "litellm-ghost-models-with-num-workers-1-deleted-models-not-cleared-from-other-workers-local-cache",
+    "title": "LiteLLM Ghost Models Persist After Deletion When Using Multiple Workers",
+    "description": "Fix LiteLLM ghost models not being cleared when using --num_workers > 1 Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "Ghost models with --num_workers > 1: Deleted models not cleared from other workers' local cache",
+    "search_intent": "Fix LiteLLM ghost models not being cleared when using --num_workers > 1",
+    "common_causes": [
+      "When running LiteLLM with --num_workers > 1, deleted models are not cleared from other workers' local cache due to a Redis Pub/Sub sync issue. This creates 'ghost models' that appear in model listings but fail when called, confusing users and breaking deployments.",
+      "Bug: with --num_workers > 1, Redis Pub/Sub sync issue means deleted models persist as ghost entries in other workers' local cache. Models appear in listings but fail on invocation."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "LiteLLM model discovery inconsistency",
+      "LiteLLM Redis Pub/Sub sync failure",
+      "LiteLLM multi-worker deployment issues"
+    ]
+  },
+  {
+    "slug": "litellm-budget-enforcement-blocks-model-discovery-endpoints-allow-accessing-free-models",
+    "title": "LiteLLM Budget Enforcement Prevents Accessing Free Model Discovery Endpoints",
+    "description": "Fix LiteLLM budget enforcement blocking free model discovery API access Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "Budget enforcement blocks model discovery endpoints (allow accessing free models)",
+    "search_intent": "Fix LiteLLM budget enforcement blocking free model discovery API access",
+    "common_causes": [
+      "LiteLLM's budget enforcement system blocks access to model discovery endpoints even for free models. Users who set spending limits find they can't list available models, breaking their ability to discover what's available before making paid requests.",
+      "Bug: budget enforcement blocks model discovery endpoints even for free models. Users with spending limits enabled cannot access /models or similar discovery endpoints."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "LiteLLM budget limit exceeded error",
+      "LiteLLM model list API access denied",
+      "LiteLLM spending limit configuration"
+    ]
   }
 ]
