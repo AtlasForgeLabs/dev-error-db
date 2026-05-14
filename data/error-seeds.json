@@ -8302,5 +8302,77 @@
       "ollama launch claude wrong backend",
       "CLAUDE_CODE_USE_BEDROCK override needed"
     ]
+  },
+  {
+    "slug": "claude-code-http-error-431-mcp-server-authentication",
+    "title": "Fix Claude Code MCP Server Authentication HTTP 431 Error",
+    "description": "Fix MCP server auth returning HTTP 431 in Claude Code Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "HTTP ERROR 431 (MCP server authentication)",
+    "search_intent": "Fix MCP server auth returning HTTP 431 in Claude Code",
+    "common_causes": [
+      "Claude Code users connecting MCP servers encounter HTTP 431 errors during OAuth authentication, blocking all MCP integrations. The error is cryptic with no actionable guidance.",
+      "Claude Code 2.1.141 on Linux returns HTTP 431 during MCP server OAuth auth. Browser shows 'This page isn't working'. No fix documented. Affects all MCP server connections."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "Claude Code MCP server authentication timeout",
+      "Claude Code OAuth redirect URI mismatch"
+    ]
+  },
+  {
+    "slug": "claude-code-does-not-support-dynamic-client-registration-slack-mcp-server-auth-regression",
+    "title": "Fix Claude Code Slack MCP Server Auth 'Dynamic Client Registration' Regression",
+    "description": "Fix Slack MCP server authentication broken after Claude Code update Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "does not support dynamic client registration (Slack MCP server auth regression)",
+    "search_intent": "Fix Slack MCP server authentication broken after Claude Code update",
+    "common_causes": [
+      "Recent Claude Code update broke Slack MCP server OAuth authentication. The error 'does not support dynamic client registration' appears when trying to connect to https://mcp.slack.com/mcp. A regression that blocks Slack integration.",
+      "Claude Code 2.1.141 regression: Slack remote MCP server authentication fails with 'does not support dynamic client registration'. Was working before update. Verified on macOS with zsh."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "Claude Code MCP OAuth redirect mismatch",
+      "Slack MCP server token expiration"
+    ]
+  },
+  {
+    "slug": "claude-code-header-has-invalid-value-x-claude-code-agent-id-with-non-ascii-characters",
+    "title": "Fix Claude Code Agent Teams Non-ASCII Name API Header Error",
+    "description": "Fix 'Header has invalid value' error when using non-ASCII names in Claude Code Agent Teams Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Header has invalid value (x-claude-code-agent-id with non-ASCII characters)",
+    "search_intent": "Fix 'Header has invalid value' error when using non-ASCII names in Claude Code Agent Teams",
+    "common_causes": [
+      "Using non-ASCII characters (CJK, emoji, accented Latin) in team_name or teammate name causes API rejection. The x-claude-code-agent-id header cannot handle UTF-8 characters, breaking international teams.",
+      "Claude Code Agent Teams feature rejects non-ASCII characters in team_name or name parameters. The x-claude-code-agent-id header only accepts ASCII, causing 'Header has invalid value' API error."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Claude Code agent team creation fails",
+      "x-claude-code-agent-id invalid characters"
+    ]
+  },
+  {
+    "slug": "claude-code-ejsonparse-unexpected-non-whitespace-character-after-json-at-position-claude-code-plugin-cache",
+    "title": "Fix Claude Code Plugin Install EJSONPARSE Error from Corrupted Cache File",
+    "description": "Fix EJSONPARSE error when installing or updating Claude Code plugins Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "EJSONPARSE: Unexpected non-whitespace character after JSON at position (Claude Code plugin cache)",
+    "search_intent": "Fix EJSONPARSE error when installing or updating Claude Code plugins",
+    "common_causes": [
+      "Claude Code plugin install/update writes ~/.claude/plugins/npm-cache/package.json without truncating, leaving trailing bytes from previous content. Subsequent operations fail with EJSONPARSE, locking users out of plugin management.",
+      "File write bug: package.json cache file not truncated before write, causing JSON parse errors. Users must manually delete the file to recover. Affects all plugin install/update operations."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Claude Code plugin install fails",
+      "npm cache corruption Claude Code"
+    ]
   }
 ]
