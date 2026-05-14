@@ -10060,5 +10060,221 @@
       "Ollama server shutdown kills active model pull",
       "Ollama download progress lost on restart"
     ]
+  },
+  {
+    "slug": "anthropic-api-aws-bedrock-claude-opus-4-7-prepends-literal-sentinel-n-to-every-string-value-in-tool-input-json",
+    "title": "Claude Opus 4-7 on Bedrock Prepends <<<SENTINEL\\n to Tool Input JSON Values",
+    "description": "Fix Claude Opus 4-7 on Bedrock adding <<<SENTINEL prefix to tool call arguments Includes evidence for Anthropic API / AWS Bedrock troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Anthropic API / AWS Bedrock",
+    "error_signature": "claude-opus-4-7 prepends literal <<<SENTINEL\\n to every string value in tool input_json",
+    "search_intent": "Fix Claude Opus 4-7 on Bedrock adding <<<SENTINEL prefix to tool call arguments",
+    "common_causes": [
+      "Model regression on Bedrock prepends garbage bytes to tool input JSON, corrupting file writes and code generation. Affects production deployments using Bedrock cross-region inference.",
+      "Confirmed across 5+ separate Bedrock inference calls in same thread. Affects claude-opus-4-7 global model. Every string value in tool input_json starts with literal <<<SENTINEL\\n bytes. Not present in user prompts, system prompts, or codebase. Appears to be model-side training regression."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Anthropic API Bedrock model not found",
+      "Anthropic API rate limit Bedrock"
+    ]
+  },
+  {
+    "slug": "litellm-anthropic-api-litellm-responses-api-silently-drops-cache-control-on-input-text-content-blocks-during-transformation",
+    "title": "LiteLLM Responses API Drops cache_control on input_text Content Blocks",
+    "description": "Fix LiteLLM cache_control not forwarding to Anthropic when using Responses API Includes evidence for LiteLLM / Anthropic API troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM / Anthropic API",
+    "error_signature": "LiteLLM Responses API silently drops cache_control on input_text content blocks during transformation",
+    "search_intent": "Fix LiteLLM cache_control not forwarding to Anthropic when using Responses API",
+    "common_causes": [
+      "Prompt caching directives sent via Responses API are silently lost, causing higher API costs and slower responses. Tools correctly preserve cache_control but text content does not.",
+      "Bug confirmed in litellm v1.83.14. In _transform_responses_api_content_to_chat_completion_content(), input_text handler builds output dict with only type and text, ignoring cache_control. Tools correctly preserve cache_control at lines ~1400-1401."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "LiteLLM cache_control on input_image dropped",
+      "Anthropic API prompt cache miss"
+    ]
+  },
+  {
+    "slug": "vercel-next-js-vercel-deploy-fails-with-an-unexpected-error-occurred-when-running-this-build-with-middleware-plus-experimentalservices",
+    "title": "Vercel Deploy Fails with Middleware in Services-Mode (experimentalServices)",
+    "description": "Fix Vercel deploy error 'An unexpected error occurred when running this build' with middleware Includes evidence for Vercel / Next.js troubleshooting demand.",
+    "category": "Deployment",
+    "technology": "Vercel / Next.js",
+    "error_signature": "Vercel deploy fails with 'An unexpected error occurred when running this build' with middleware + experimentalServices",
+    "search_intent": "Fix Vercel deploy error 'An unexpected error occurred when running this build' with middleware",
+    "common_causes": [
+      "Deterministic deploy failure when combining Next.js middleware with Vercel services-mode. Removing middleware.ts is the only workaround. Breaks multi-service deployments.",
+      "Isolation matrix confirms: middleware.ts is the trigger regardless of content. 5-file minimal repro provided. Suspected root cause in scopeRouteSourceToOwnership() prepending ownership guard to middleware routes."
+    ],
+    "quick_fix": "Check the build output, project root, and deployment platform configuration before redeploying.",
+    "related_errors": [
+      "Vercel build command failed",
+      "Next.js middleware not found"
+    ]
+  },
+  {
+    "slug": "cloudflare-workers-wrangler-workflows-api-error-internal-server-code-10001",
+    "title": "Cloudflare Wrangler Deploy Fails with workflows.api.error.internal_server [code: 10001]",
+    "description": "Fix Cloudflare Workflows deploy error workflows.api.error.internal_server code 10001 Includes evidence for Cloudflare Workers / Wrangler troubleshooting demand.",
+    "category": "Cloudflare",
+    "technology": "Cloudflare Workers / Wrangler",
+    "error_signature": "workflows.api.error.internal_server [code: 10001]",
+    "search_intent": "Fix Cloudflare Workflows deploy error workflows.api.error.internal_server code 10001",
+    "common_causes": [
+      "Persistent 500 error during workflow registration on new Free accounts. Worker uploads fine, D1 and R2 work, only workflow registration fails. Not transient - persists 24+ hours.",
+      "100% failure rate over 10+ attempts spanning 24+ hours. Fails on both GitHub Actions and local. Multiple wrangler versions affected (4.77.0, 4.90.1). Cloudflare engineer assigned."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Cloudflare Error 522",
+      "Cloudflare Workers deploy failed"
+    ]
+  },
+  {
+    "slug": "openai-api-python-asyncopenai-api-key-raises-openaierror-in-v2-34-0",
+    "title": "OpenAI Python SDK v2.34.0 AsyncOpenAI(api_key=\"\") Raises OpenAIError Breaking Local Servers",
+    "description": "Fix AsyncOpenAI empty api_key error breaking OpenAI-compatible local servers Includes evidence for OpenAI API / Python troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API / Python",
+    "error_signature": "AsyncOpenAI(api_key=\"\") raises OpenAIError in v2.34.0",
+    "search_intent": "Fix AsyncOpenAI empty api_key error breaking OpenAI-compatible local servers",
+    "common_causes": [
+      "Breaking change in v2.34.0 rejects empty api_key strings, breaking OpenAI-compatible local servers (Ollama, vLLM, LM Studio) that don't require real keys.",
+      "Regression in openai-python v2.34.0. Previously empty string api_key was accepted for local servers. Now raises OpenAIError."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "OpenAI API invalid API key",
+      "OpenAI API 401 Unauthorized"
+    ]
+  },
+  {
+    "slug": "claude-code-vscode-claude-code-vscode-extension-client-side-stream-timeout-fires-before-backend-completion-sdk-stream-ended-no-result",
+    "title": "Claude Code VSCode Extension Stream Timeout Causes Silent Success on Long Generations",
+    "description": "Fix Claude Code VSCode extension stream timeout killing sessions before completion Includes evidence for Claude Code / VSCode troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code / VSCode",
+    "error_signature": "Claude Code VSCode Extension Client-Side Stream Timeout Fires Before Backend Completion: sdk_stream_ended_no_result",
+    "search_intent": "Fix Claude Code VSCode extension stream timeout killing sessions before completion",
+    "common_causes": [
+      "VSCode extension fires sdk_stream_ended_no_result with had_error: true while backend is still running. Large responses (>10KB) trigger premature timeout, leaving UI hung with no output.",
+      "Reproduced with ~13KB embedded C# P/Invoke code in PowerShell script. Backend completed 23 seconds after client timeout. Write tool succeeded but UI showed hung state."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Claude Code model not available",
+      "Claude Code OpenAI API key not working"
+    ]
+  },
+  {
+    "slug": "anthropic-api-vertex-ai-anthropic-vertex-sdk-document-url-sources-rejected-with-incorrect-error-path-messages-0-content-0-image-source-base64-data-url-sources-are-not-supported",
+    "title": "Anthropic Vertex SDK Rejects URL Sources with Misleading Error Path",
+    "description": "Fix Anthropic Vertex AI document URL source rejected with wrong error message Includes evidence for Anthropic API / Vertex AI troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Anthropic API / Vertex AI",
+    "error_signature": "Anthropic Vertex SDK document URL sources rejected with incorrect error path: messages.0.content.0.image.source.base64.data: URL sources are not supported",
+    "search_intent": "Fix Anthropic Vertex AI document URL source rejected with wrong error message",
+    "common_causes": [
+      "URL sources documented as supported but Vertex AI rejects them. Error path references image.source.base64.data instead of document.source.url, making debugging extremely confusing.",
+      "Reproduced with @anthropic-ai/vertex-sdk v0.16.0. Document block with source type 'url' triggers error referencing wrong field path. Anthropic docs list URL sources as supported on Vertex."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Anthropic API document source type not supported",
+      "Vertex AI model not found"
+    ]
+  },
+  {
+    "slug": "claude-code-vscode-claude-code-vscode-extension-typeerror-the-argument-filename-must-be-a-file-url-object-file-url-string-or-absolute-path-string",
+    "title": "Claude Code VSCode Extension 2.1.129 Fails to Activate with TypeError on file URL",
+    "description": "Fix Claude Code extension activation TypeError after updating to version 2.1.129 Includes evidence for Claude Code / VSCode troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code / VSCode",
+    "error_signature": "Claude Code VSCode extension TypeError: The argument 'filename' must be a file URL object, file URL string, or absolute path string",
+    "search_intent": "Fix Claude Code extension activation TypeError after updating to version 2.1.129",
+    "common_causes": [
+      "Version 2.1.129 breaks extension activation on Windows with hardcoded Linux path reference. Users forced to downgrade to 2.1.28.",
+      "Extension host logs show: TypeError: The argument 'filename' must be a file URL object. Path references /home/runner/work/claude-cli-internal/claude-cli-internal/build-agent-sdk/sdk.mjs which doesn't exist on Windows."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Claude Code extension not loading",
+      "Claude Code ENOENT"
+    ]
+  },
+  {
+    "slug": "claude-code-claude-code-context-compaction-generates-fabricated-pending-tasks-leading-to-unintended-action-initiation",
+    "title": "Claude Code Context Compaction Hallucinates Pending Tasks and Executes Unintended Actions",
+    "description": "Fix Claude Code compaction summarizing audit findings as actionable tasks Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Claude Code context compaction generates fabricated pending tasks leading to unintended action initiation",
+    "search_intent": "Fix Claude Code compaction summarizing audit findings as actionable tasks",
+    "common_causes": [
+      "Context compaction converts completed audit findings into fabricated pending tasks. Combined with 'resume directly without asking' prompt, causes model to execute work never requested by user.",
+      "Reproduced in long multi-task session. Compaction summary conflated audit findings with user-requested tasks. In sessions with pre-authorized permissions, this would execute without safeguard."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "Claude Code context window exceeded",
+      "Claude Code tool use error"
+    ]
+  },
+  {
+    "slug": "claude-code-anthropic-api-claude-code-spinning-moseying-gitifying-for-many-minutes-on-each-prompt-with-10-minutes-no-output",
+    "title": "Claude Code Extreme Slowness: 10+ Minutes Per Prompt with No Output",
+    "description": "Fix Claude Code extreme slowness and spinning with no token output Includes evidence for Claude Code / Anthropic API troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code / Anthropic API",
+    "error_signature": "Claude Code spinning/moseying/gitifying for MANY MINUTES on each prompt with >10 minutes no output",
+    "search_intent": "Fix Claude Code extreme slowness and spinning with no token output",
+    "common_causes": [
+      "Regression causing Claude Code to take 10+ minutes per prompt with zero token output. Even simple tasks take extremely long. Worked in previous version.",
+      "Reported on 2026-05-14, Claude Code 2.1.141, macOS. User reports 10+ minutes wait for any tokens. Simple Vue page generation took 12 minutes. Previous version worked fine."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Anthropic API rate limit",
+      "Claude Code stream timeout"
+    ]
+  },
+  {
+    "slug": "litellm-anthropic-api-litellm-anthropic-to-openai-conversion-drops-reasoning-content-breaks-multi-turn-with-reasoning-models",
+    "title": "LiteLLM Drops reasoning_content When Converting Anthropic Thinking Blocks to OpenAI Format",
+    "description": "Fix LiteLLM reasoning_content missing after Anthropic to OpenAI format conversion Includes evidence for LiteLLM / Anthropic API troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM / Anthropic API",
+    "error_signature": "LiteLLM Anthropic to OpenAI conversion drops reasoning_content, breaks multi-turn with reasoning models",
+    "search_intent": "Fix LiteLLM reasoning_content missing after Anthropic to OpenAI format conversion",
+    "common_causes": [
+      "When LiteLLM converts Anthropic responses with thinking blocks to OpenAI format, reasoning_content is not populated. Breaks multi-turn conversations with reasoning models.",
+      "Thinking blocks stored in custom thinking_blocks field instead of standard reasoning_content. Breaks multi-turn with reasoning models that expect reasoning_content in subsequent turns."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "LiteLLM cache_control dropped",
+      "Anthropic API thinking blocks error"
+    ]
+  },
+  {
+    "slug": "github-actions-github-actions-self-hosted-runner-runsvc-sh-0-bytes-after-auto-update-from-v2-328-0-to-v2-334-0",
+    "title": "GitHub Actions Self-Hosted Runner runsvc.sh Becomes 0 Bytes After Auto-Update",
+    "description": "Fix GitHub Actions runner runsvc.sh empty file after auto-update breaking service Includes evidence for GitHub Actions troubleshooting demand.",
+    "category": "GitHub Actions",
+    "technology": "GitHub Actions",
+    "error_signature": "GitHub Actions self-hosted runner runsvc.sh 0 bytes after auto-update from v2.328.0 to v2.334.0",
+    "search_intent": "Fix GitHub Actions runner runsvc.sh empty file after auto-update breaking service",
+    "common_causes": [
+      "Auto-update writes 0-byte runsvc.sh. Runner continues from memory but next restart causes systemd Status=203/EXEC failure. Registration eventually removed by GC.",
+      "Observed on 3/3 hosts in fleet within 24h. Affects Ubuntu 24.04 and Linux Mint 22. Workaround: ExecStartPre script to copy non-empty runsvc.sh from sibling bin.* directory."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "GitHub Actions permission denied publickey",
+      "GitHub Actions npm ci lockfile error"
+    ]
   }
 ]
