@@ -9710,5 +9710,95 @@
       "Cloudflare Python Worker Can't serialize top-level variable",
       "Cloudflare wrangler dev truncates deferred chunks"
     ]
+  },
+  {
+    "slug": "claude-code-stream-idle-partial-lastchunkagems-15001-bytestotal-661-sdk-stream-ended-no-result-had-error-true",
+    "title": "Claude Code Opus 4.7 stream stalls at ~660 bytes in every session",
+    "description": "Fix Claude Code Opus 4.7 streaming stall that crashes every session Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "stream_idle_partial lastChunkAgeMs=15001 bytesTotal=661 / sdk_stream_ended_no_result had_error=true",
+    "search_intent": "Fix Claude Code Opus 4.7 streaming stall that crashes every session",
+    "common_causes": [
+      "Premium Opus 4.7 model (1M context) is completely unusable — stream stalls after ~660 bytes then times out. Affects every session with no workaround, blocking developers paying for the highest tier.",
+      "Multiple users report Opus 4.7 (1M context) stream stalls at 660-730 bytes in every session via VS Code extension. Stream emits one chunk then goes idle, fires stream_idle_partial every 15s, ends with had_error=true. Reproduces 100% across fresh sessions."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Claude Code stream timeout on long responses",
+      "Claude Code VS Code extension connection reset"
+    ]
+  },
+  {
+    "slug": "anthropic-api-valueerror-bad-response-code-expected-200-status-code-400-exception-type-internalserverexception",
+    "title": "Anthropic SDK raises ValueError instead of APIStatusError on Bedrock SSE error events",
+    "description": "Handle Bedrock streaming errors gracefully in Anthropic SDK Includes evidence for Anthropic API troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Anthropic API",
+    "error_signature": "ValueError: Bad response code, expected 200: {'status_code': 400, ':exception-type': 'internalServerException'}",
+    "search_intent": "Handle Bedrock streaming errors gracefully in Anthropic SDK",
+    "common_causes": [
+      "When Bedrock returns error SSE events during streaming, the SDK raises a raw ValueError instead of a user-friendly APIStatusError. Developers cannot catch specific error types, making retry logic impossible. Affects all Bedrock streaming users.",
+      "Bedrock SSE stream produces error events with status_code 400 and internalServerException. SDK _stream_decoder.py line 58 raises ValueError instead of propagating to APIStatusError. Developers cannot implement proper error handling or retries."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Anthropic SDK Bedrock AttributeError NoneType streaming",
+      "Bedrock internalServerException retry logic"
+    ]
+  },
+  {
+    "slug": "github-copilot-aborterror-this-operation-was-aborted-github-copilot-chat",
+    "title": "GitHub Copilot Chat extension AbortError regression in VS Code",
+    "description": "Fix GitHub Copilot Chat AbortError operation aborted in VS Code Includes evidence for GitHub Copilot troubleshooting demand.",
+    "category": "GitHub Copilot",
+    "technology": "GitHub Copilot",
+    "error_signature": "AbortError: This operation was aborted [GitHub.copilot-chat]",
+    "search_intent": "Fix GitHub Copilot Chat AbortError operation aborted in VS Code",
+    "common_causes": [
+      "Recent regression in VS Code Copilot Chat extension (v0.48.0) causes AbortError on every request. The extension's SDK timeout triggers AbortController.abort prematurely, killing all Copilot interactions. Affects darwin platform.",
+      "Auto-created from VS Code Errors Dashboard. AbortError in @github/copilot/sdk index.js triggered by Timeout. Extension v0.48.0, darwin platform. Recent regression tag applied by VS Code team."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "GitHub Copilot InstantiationService disposed error",
+      "VS Code Copilot extension crash on startup"
+    ]
+  },
+  {
+    "slug": "claude-code-mcp-server-error-notification-renders-as-object-object-instead-of-error-message",
+    "title": "Claude Code MCP server auth errors show [object Object] in VS Code notifications",
+    "description": "Fix Claude Code MCP server [object Object] notification error Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "MCP server error notification renders as \"[object Object]\" instead of error message",
+    "search_intent": "Fix Claude Code MCP server [object Object] notification error",
+    "common_causes": [
+      "When MCP servers require authentication but no OAuth token is configured, Claude Code shows a notification with literal [object Object] instead of the actual error. This fires every session start, is loud and repetitive, and gives users zero actionable information.",
+      "Extension passes raw error object to vscode.window.showErrorMessage instead of err.message. Default JS coercion produces [object Object]. Errors are correctly logged in output channel. Affects MCP servers requiring OAuth (Google Calendar, Gmail)."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "Claude Code MCP server connection failure",
+      "Claude Code VS Code notification format error"
+    ]
+  },
+  {
+    "slug": "claude-code-api-error-400-could-not-process-image",
+    "title": "Claude Code oversized screenshots crash agent sessions with Could not process image",
+    "description": "Fix Claude Code 400 Could not process image crash on valid screenshots Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "API Error: 400 Could not process image",
+    "search_intent": "Fix Claude Code 400 Could not process image crash on valid screenshots",
+    "common_causes": [
+      "Valid PNG screenshots captured by agents (e.g., via adb screencap) are rejected by the multimodal API with 400 error. The entire agent task crashes ungracefully, partial work is lost, and the agent's result is replaced by the error string. No client-side resize or graceful degradation.",
+      "Valid 1080x2640 PNG screenshots (~250KB) from adb shell screencap cause 400 error when loaded into context. Agent sessions crash, tool_uses counter continues but output replaced by error. Related to issues #47976 and #55767 but different root cause."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Claude Code image size limit exceeded",
+      "Anthropic API multimodal image validation error"
+    ]
   }
 ]
