@@ -8093,5 +8093,214 @@
       "Ollama ROCm Docker setup",
       "llama-server startup timeout"
     ]
+  },
+  {
+    "slug": "claude-code-api-error-401-type-error-error-type-authentication-error-message-invalid-authentication-credentials",
+    "title": "Claude Code 401 Auth Loop — All Commands Fail Including /login on Windows",
+    "description": "Fix Claude Code 401 authentication error that blocks all commands including /login Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "API Error: 401 {\"type\":\"error\",\"error\":{\"type\":\"authentication_error\",\"message\":\"Invalid authentication credentials\"}}",
+    "search_intent": "Fix Claude Code 401 authentication error that blocks all commands including /login",
+    "common_causes": [
+      "Paid Pro subscribers hit a 401 auth loop where every command fails, including re-login. The welcome screen shows valid account but API requests are rejected. Devastating for productivity.",
+      "User on Windows with active Claude Pro subscription (paid May 2026) reports all Claude Code commands return 401 Invalid authentication credentials. Tried /logout, /login, setup-token, deleted ~/.claude, reinstalled v2.1.141. Welcome screen shows correct account but API always returns 401."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "Claude Code login fails",
+      "Claude Code OAuth token expired",
+      "Claude Code authentication_error invalid credentials"
+    ]
+  },
+  {
+    "slug": "litellm-rate-limit-exceeded-for-api-key-sha256-hash-limit-type-parallel-request-limit",
+    "title": "LiteLLM Leaks Full SHA-256 Token Hash in 429 Rate Limit Error Messages",
+    "description": "Fix LiteLLM rate limit error exposing API key hash in response body Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "Rate limit exceeded for api_key: <sha256_hash>. Limit type: parallel_request_limit",
+    "search_intent": "Fix LiteLLM rate limit error exposing API key hash in response body",
+    "common_causes": [
+      "When parallel request limiter returns 429, the error body includes the full 64-character SHA-256 hash of the virtual key. redact_user_api_key_info setting doesn't affect this code path. Security concern for proxy deployments.",
+      "LiteLLM parallel_request_limiter_v3.py line ~1261 includes full token hash in 429 response detail. When descriptor_key is 'api_key', descriptor_value is the SHA-256 hash from /key/generate. Visible to any HTTP client hitting rate limit. redact_user_api_key_info doesn't cover this path."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "LiteLLM 429 response leaks token",
+      "LiteLLM rate limit error message redaction",
+      "LiteLLM parallel request limiter security"
+    ]
+  },
+  {
+    "slug": "anthropic-api-attributeerror-nonetype-object-has-no-attribute-model-from-bedrock-sse-error-event",
+    "title": "Anthropic SDK Streaming Error Causes AttributeError on Bedrock Rate Limit Responses",
+    "description": "Fix Anthropic SDK AttributeError NoneType on Bedrock streaming rate limit errors Includes evidence for Anthropic API troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Anthropic API",
+    "error_signature": "AttributeError: 'NoneType' object has no attribute 'model' — from Bedrock SSE error event",
+    "search_intent": "Fix Anthropic SDK AttributeError NoneType on Bedrock streaming rate limit errors",
+    "common_causes": [
+      "When Bedrock returns HTTP 200 with error SSE frame (rate_limit_error), SDK decodes it as BetaRawMessageStartEvent with message=None. Any access to event.message.* raises AttributeError. Affects production Bedrock cross-region inference.",
+      "AsyncAnthropicBedrock with global.anthropic.claude-opus-4-7 on Bedrock. HTTP 200 response contains error SSE frame with rate_limit_error. SDK creates BetaRawMessageStartEvent with message=None. isinstance check passes but field access crashes."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "Anthropic SDK Bedrock streaming AttributeError",
+      "Anthropic SDK rate_limit_error NoneType",
+      "Bedrock SSE error event handling"
+    ]
+  },
+  {
+    "slug": "anthropic-api-httpx-remoteprotocolerror-peer-closed-connection-without-sending-complete-message-body-incomplete-chunked-read",
+    "title": "Anthropic SDK Streaming Drops Mid-Stream on Long Code Execution Responses",
+    "description": "Fix Anthropic SDK RemoteProtocolError streaming drop on long code_execution responses Includes evidence for Anthropic API troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Anthropic API",
+    "error_signature": "httpx.RemoteProtocolError: peer closed connection without sending complete message body (incomplete chunked read)",
+    "search_intent": "Fix Anthropic SDK RemoteProtocolError streaming drop on long code_execution responses",
+    "common_causes": [
+      "Streaming requests to /v1/messages with code_execution + skills consistently drop mid-stream. Server closes connection while actively sending content_block_delta events. Each retry costs full input + partial output tokens. No idle timeout — server FIN arrives during active data transfer.",
+      "claude-opus-4-6 with code-execution + skills betas. 38 content blocks streamed before drop. Stream died mid-text_editor_code_execution.input_json_delta at 20 bytes. Previous tool_use had ~42KB input. Connection closed by server during active byte transfer."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Anthropic SDK streaming connection drop",
+      "Anthropic API incomplete chunked read",
+      "Claude code_execution streaming timeout"
+    ]
+  },
+  {
+    "slug": "claude-code-mcpservers-mcpservers-does-not-adhere-to-mcp-server-configuration-schema",
+    "title": "Claude Code Corrupts mcpServers Config with Nested Key in ~/.claude.json",
+    "description": "Fix Claude Code MCP server configuration corruption error Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "mcpServers.mcpServers: Does not adhere to MCP server configuration schema",
+    "search_intent": "Fix Claude Code MCP server configuration corruption error",
+    "common_causes": [
+      "Claude Code incorrectly nests mcpServers inside itself when writing ~/.claude.json at session end, breaking all MCP integrations in subsequent sessions. /doctor shows parse error.",
+      "Claude Code 2.1.133 on macOS creates nested mcpServers.mcpServers key inside global mcpServers object when writing ~/.claude.json. Per-project entries with mcpServers: {} cause the serializer to nest incorrectly. /doctor reports schema validation failure."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Claude Code /doctor MCP parse error",
+      "Claude Code ~/.claude.json corrupted",
+      "MCP server config schema validation failed"
+    ]
+  },
+  {
+    "slug": "claude-code-project-scope-mcp-json-silently-skipped-during-startup-no-servers-loaded-no-error-logged",
+    "title": "Claude Code Silently Skips Project .mcp.json on Linux in v2.1.141",
+    "description": "Fix Claude Code not loading project-scope .mcp.json MCP servers Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Project-scope .mcp.json silently skipped during startup — no servers loaded, no error logged",
+    "search_intent": "Fix Claude Code not loading project-scope .mcp.json MCP servers",
+    "common_causes": [
+      "Project-level .mcp.json is silently ignored during Claude Code startup. Debug log shows MCP loader entry/exit but never enumerates the project file. Only user-scope servers appear. Passing --mcp-config explicitly works.",
+      "Claude Code 2.1.141 on Linux (Ubuntu) with JetBrains remote-dev terminal. Project .mcp.json with stdio servers is not auto-loaded. Trust dialog accepted, servers listed in enabledMcpjsonServers. Debug log shows no parse error or skip reason. --mcp-config workaround works."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Claude Code MCP server not loading",
+      "Claude Code .mcp.json ignored",
+      "MCP servers missing from /mcp panel"
+    ]
+  },
+  {
+    "slug": "litellm-cachecodec-deserialize-validation-failed-for-litellm-usertable-1-validation-error-user-id-field-required",
+    "title": "LiteLLM Redis Cache Deserialization Fails Continuously for Team-Scoped Keys",
+    "description": "Fix LiteLLM Redis user_api_key_cache deserialization error for team-scoped virtual keys Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "CacheCodec.deserialize: validation failed for LiteLLM_UserTable (1 validation error: user_id Field required)",
+    "search_intent": "Fix LiteLLM Redis user_api_key_cache deserialization error for team-scoped virtual keys",
+    "common_causes": [
+      "After CacheCodec optimization (PR #26202), Redis-backed user_api_key_cache emits continuous ERROR logs for team-scoped keys. Cache miss falls through to DB (functional) but adds extra round-trip and noisy logs on every request.",
+      "LiteLLM 1.84.0-rc.1. CacheCodec serialize uses model_dump(exclude_none=True) but deserialize expects user_id field. Team-scoped keys have team_alias but no user_id. Every team-scoped request triggers WARNING + ERROR log pair. Functional but noisy."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "LiteLLM Redis cache validation error",
+      "LiteLLM CacheCodec deserialize failure",
+      "LiteLLM team-scoped key cache miss"
+    ]
+  },
+  {
+    "slug": "cloudflare-apierror-forbidden-error-authentication-error-misleading-actually-requires-workers-paid-plan",
+    "title": "Cloudflare Containers Deploy Gives Misleading 403 Authentication Error Instead of Plan Upgrade Message",
+    "description": "Fix Cloudflare Containers deploy 403 Authentication error on Free plan Includes evidence for Cloudflare troubleshooting demand.",
+    "category": "Cloudflare",
+    "technology": "Cloudflare",
+    "error_signature": "ApiError: Forbidden { error: 'Authentication error' } — misleading: actually requires Workers Paid plan",
+    "search_intent": "Fix Cloudflare Containers deploy 403 Authentication error on Free plan",
+    "common_causes": [
+      "Deploying Workers with [[containers]] config on Free plan returns generic 403 'Authentication error'. The real issue is Containers requires Workers Paid plan, but error suggests wrong API token. Wastes time debugging token permissions.",
+      "Free plan account with correct API token (Workers Scripts Edit + Cloudflare Images Edit). Docker image builds successfully. wrangler deploy returns 403 with {error: 'Authentication error'}. Actual issue is plan requirement, not token permissions."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "Cloudflare Containers 403 Forbidden",
+      "wrangler deploy Containers authentication error",
+      "Cloudflare Workers Paid plan required"
+    ]
+  },
+  {
+    "slug": "cloudflare-workflows-api-error-internal-server-code-10001",
+    "title": "Cloudflare Wrangler Deploy Fails Persistently with workflows.api.error.internal_server on Free Plan",
+    "description": "Fix Cloudflare wrangler deploy workflows.api.error.internal_server code 10001 Includes evidence for Cloudflare troubleshooting demand.",
+    "category": "Cloudflare",
+    "technology": "Cloudflare",
+    "error_signature": "workflows.api.error.internal_server [code: 10001]",
+    "search_intent": "Fix Cloudflare wrangler deploy workflows.api.error.internal_server code 10001",
+    "common_causes": [
+      "New Free-plan Cloudflare account hits persistent 500 error on workflow registration. Worker uploads, D1 migrations, R2 binding all succeed — only workflow registration fails. Identical to closed incident #9110 but persistent for this account.",
+      "wrangler 4.90.1 on Free plan. Worker build succeeds, assets upload, D1/R2 bindings work. Final workflow registration POST to /accounts/<id>/workflows/<name> returns 500 with code 10001. Persistent across 24+ hours, multiple environments."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Cloudflare workflows internal_server error",
+      "wrangler deploy workflow registration 500",
+      "Cloudflare Workers workflow 10001"
+    ]
+  },
+  {
+    "slug": "anthropic-api-valueerror-from-anthropic-streaming-on-bedrock-sse-error-events-internalserverexception",
+    "title": "Anthropic SDK Raises ValueError on Bedrock Streaming SSE Error Events",
+    "description": "Fix Anthropic SDK ValueError on Bedrock SSE internalServerException events Includes evidence for Anthropic API troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Anthropic API",
+    "error_signature": "ValueError from anthropic._streaming on Bedrock SSE error events — internalServerException",
+    "search_intent": "Fix Anthropic SDK ValueError on Bedrock SSE internalServerException events",
+    "common_causes": [
+      "Bedrock SSE streams sometimes produce error events with internalServerException type. Anthropic SDK raises unhandled ValueError instead of a typed exception. Affects production Bedrock users with intermittent backend errors.",
+      "Bedrock SSE returns error event with :exception-type: internalServerException and JSON body with message. Anthropic SDK's _stream_decoder raises ValueError instead of handling the error event gracefully. Stack trace points to _streaming.py line 211."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Anthropic SDK Bedrock ValueError streaming",
+      "Bedrock SSE internalServerException handling",
+      "Anthropic SDK streaming error event"
+    ]
+  },
+  {
+    "slug": "ollama-api-error-gemma4-400-the-provided-model-identifier-is-invalid",
+    "title": "Ollama Launch Claude Fails with 400 When CLAUDE_CODE_USE_BEDROCK=1 Is Set",
+    "description": "Fix ollama launch claude API Error 400 invalid model identifier with Bedrock config Includes evidence for Ollama troubleshooting demand.",
+    "category": "Ollama",
+    "technology": "Ollama",
+    "error_signature": "API Error (gemma4): 400 The provided model identifier is invalid",
+    "search_intent": "Fix ollama launch claude API Error 400 invalid model identifier with Bedrock config",
+    "common_causes": [
+      "ollama launch claude sets model name but doesn't override backend routing. If user has CLAUDE_CODE_USE_BEDROCK=1 in settings.json, requests route to Bedrock instead of Ollama, causing 400 error.",
+      "User has CLAUDE_CODE_USE_BEDROCK=1 in ~/.claude/settings.json. ollama pull gemma4 succeeds, ollama launch claude installs gemma4 but doesn't set ANTHROPIC_BASE_URL. All requests route to Bedrock which rejects the local model name."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Ollama Claude Code Bedrock conflict",
+      "ollama launch claude wrong backend",
+      "CLAUDE_CODE_USE_BEDROCK override needed"
+    ]
   }
 ]
