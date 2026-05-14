@@ -8374,5 +8374,114 @@
       "Claude Code plugin install fails",
       "npm cache corruption Claude Code"
     ]
+  },
+  {
+    "slug": "claude-code-claude-code-hangs-on-every-prompt-and-never-produces-a-response",
+    "title": "Claude Code Hangs on Every Prompt — No Response from API",
+    "description": "Fix Claude Code hanging indefinitely on prompts with no response Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Claude Code hangs on every prompt and never produces a response",
+    "search_intent": "Fix Claude Code hanging indefinitely on prompts with no response",
+    "common_causes": [
+      "Claude Code completely unresponsive across all prompts; client retries 10 times then gives up; paid Max subscription unusable",
+      "Claude Code hangs on every prompt including 'hi' in brand new session. Tested across v2.1.120, v2.1.128, v2.1.141. API endpoint verified healthy via curl. Network/API path confirmed working. Issue persists across versions suggesting account-level problem. Reported May 14, 2026."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Claude Code not responding",
+      "Claude Code timeout",
+      "Claude Code API connection failed"
+    ]
+  },
+  {
+    "slug": "claude-code-failed-to-load-config-cache-error-claude-code-process-exited-with-code-3",
+    "title": "Claude Code Process Exits with Code 3 — Config Cache Load Failure",
+    "description": "Fix Claude Code process exiting with code 3 and failing to load config cache Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Failed to load config cache: Error: Claude Code process exited with code 3",
+    "search_intent": "Fix Claude Code process exiting with code 3 and failing to load config cache",
+    "common_causes": [
+      "Process exit code 3 prevents Claude Code from starting; users on paid Max subscription cannot use the tool at all",
+      "Claude Code v2.1.110+ exits with code 3 on startup, failing to load config cache. Authentication status check also fails. Reported May 13, 2026."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Claude Code won't start",
+      "Claude Code authentication failed"
+    ]
+  },
+  {
+    "slug": "litellm-api-error-400-litellm-badrequesterror-178-validation-errors-on-multi-turn-conversation",
+    "title": "Claude Code + LiteLLM Gateway — Multi-turn Conversation Hangs with Validation Errors",
+    "description": "Fix Claude Code multi-turn conversation failing through LiteLLM proxy gateway Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "API Error: 400 litellm.BadRequestError: 178 validation errors on multi-turn conversation",
+    "search_intent": "Fix Claude Code multi-turn conversation failing through LiteLLM proxy gateway",
+    "common_causes": [
+      "Claude Code using LiteLLM as proxy gateway; multi-turn conversations fail with 178 validation errors; blocks entire workflow",
+      "Claude Code calling LiteLLM gateway returns API Error 400 with 178 validation errors. Input type mismatch: string_type validation fails on array input. Affects multi-turn conversations specifically."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Claude Code LiteLLM proxy error",
+      "LiteLLM validation error multi-turn"
+    ]
+  },
+  {
+    "slug": "litellm-vertex-ai-batch-jobs-always-record-spend-0-prompt-tokens-0-completion-tokens-0",
+    "title": "LiteLLM Vertex AI Batch Jobs Zero Cost/Usage — Spend Tracking Broken",
+    "description": "Fix LiteLLM not tracking cost and token usage for Vertex AI batch jobs Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "Vertex AI batch jobs always record spend=0, prompt_tokens=0, completion_tokens=0",
+    "search_intent": "Fix LiteLLM not tracking cost and token usage for Vertex AI batch jobs",
+    "common_causes": [
+      "Vertex AI batch jobs completed successfully but LiteLLM records zero spend and zero tokens; billing and usage tracking completely broken",
+      "After change #25627, Vertex AI batch output format changed to OpenAI-shaped JSONL but _batch_cost_calculator still uses raw Vertex usageMetadata reader. Also, batch_cost_calculator skips global litellm.get_model_info() lookup when model_info dict passed without pricing fields. Both bugs cause zero cost/usage."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "LiteLLM batch cost zero",
+      "Vertex AI cost tracking broken"
+    ]
+  },
+  {
+    "slug": "claude-code-claude-code-freezes-every-time-it-runs-shell-commands-on-windows-find-ls-grep-hang-indefinitely",
+    "title": "Claude Code Freezes on Windows Running Bash Commands — find, ls, grep Hang",
+    "description": "Fix Claude Code hanging when running shell commands (find, ls, grep) on Windows Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Claude Code freezes every time it runs shell commands on Windows — find, ls, grep hang indefinitely",
+    "search_intent": "Fix Claude Code hanging when running shell commands (find, ls, grep) on Windows",
+    "common_causes": [
+      "Claude Code completely unusable on Windows; all shell commands hang indefinitely with no output; only recovery is pressing x to kill",
+      "Claude Code freezes every time it runs shell commands on Windows. Commands like find, ls, grep, and ./gradlew hang indefinitely with no output. Only recovery is pressing x to kill the process. Verified on Windows with PowerShell."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Claude Code Windows shell hang",
+      "Claude Code PowerShell freeze"
+    ]
+  },
+  {
+    "slug": "claude-desktop-msix-installation-failed-addpackage-failed-with-hresult-0x80073cff",
+    "title": "Claude Desktop Installation Failed — HRESULT 0x80073CFF on Windows",
+    "description": "Fix Claude Desktop MSIX installation failure with HRESULT 0x80073CFF on Windows Includes evidence for Claude Desktop troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Desktop",
+    "error_signature": "MSIX installation failed: AddPackage failed with HRESULT 0x80073CFF",
+    "search_intent": "Fix Claude Desktop MSIX installation failure with HRESULT 0x80073CFF on Windows",
+    "common_causes": [
+      "Claude Desktop is Anthropic's official desktop app; installation failure prevents new users from accessing the product; affects Windows 11 users",
+      "Claude Desktop MSIX installation consistently fails with HRESULT 0x80073CFF on Windows 11 (CoreSingleLanguage). User attempted installation 4+ times with same error. Sideloading enabled but installation still fails."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Claude Desktop won't install Windows",
+      "MSIX AddPackage failed"
+    ]
   }
 ]
