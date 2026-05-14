@@ -8616,5 +8616,329 @@
       "GitHub Actions runner temp directory",
       "GitHub Actions concurrent job race condition"
     ]
+  },
+  {
+    "slug": "claude-code-api-error-400-you-re-out-of-extra-usage",
+    "title": "Claude Code HERMES.md in git commit messages causes requests to route to extra usage billing instead of plan quota",
+    "description": "Fix Claude Code routing API requests to extra usage billing instead of Max plan quota Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "API Error: 400 \"You're out of extra usage\"",
+    "search_intent": "Fix Claude Code routing API requests to extra usage billing instead of Max plan quota",
+    "common_causes": [
+      "Git commit messages containing 'HERMES.md' silently trigger extra usage billing on Claude Code Max 20x plan, burning through $200+ while plan quota sits unused",
+      "521 reactions on GitHub. Reproducible with minimal test: commit message containing 'HERMES.md' routes to extra usage billing. Affects Max 20x ($200/month) plan users. Server-side routing triggered by string in commit history."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "Claude Code quota exhaustion",
+      "Claude Code billing discrepancy"
+    ]
+  },
+  {
+    "slug": "claude-code-pro-max-5x-quota-exhausted-in-1-5-hours-despite-moderate-usage",
+    "title": "Claude Code cache_read tokens count at full rate against rate limit, causing rapid quota exhaustion",
+    "description": "Fix Claude Code Pro Max quota being exhausted too quickly despite moderate usage Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Pro Max 5x Quota Exhausted in 1.5 Hours Despite Moderate Usage",
+    "search_intent": "Fix Claude Code Pro Max quota being exhausted too quickly despite moderate usage",
+    "common_causes": [
+      "Users on expensive Pro Max 5x plans find quota exhausted in 1.5 hours of moderate use because cache_read tokens appear to count at full rate against rate limits",
+      "158 reactions. User analyzed JSONL session files showing cache_read tokens counting at full rate. Pro Max 5x plan ($100/month) quota exhausted in 1.5 hours of moderate usage. Heavy development consumed previous window but post-reset moderate use also exhausts."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "Claude Code cache TTL regression",
+      "Claude Code HERMES.md billing bug"
+    ]
+  },
+  {
+    "slug": "claude-code-anthropic-api-error-credit-balance-too-low-despite-sufficient-account-credits",
+    "title": "Claude Code Anthropic API returns credit_balance_too_low despite $105 credit balance",
+    "description": "Fix Anthropic API rejecting requests with credit_balance_too_low when account has sufficient credits Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Anthropic API Error: credit_balance_too_low despite sufficient account credits",
+    "search_intent": "Fix Anthropic API rejecting requests with credit_balance_too_low when account has sufficient credits",
+    "common_causes": [
+      "Paid Anthropic API users cannot make any API calls despite having visible credit balance ($105), blocking all development work",
+      "12 reactions. Workspace shows $105 credit balance ($50 paid + $50 grant + $5 free), $0 of $55 monthly used. API returns 400 credit_balance_too_low on every request including smoke tests. Persisted across 2 API keys and 90+ minutes. Tier-1 support confirmed config looks correct."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Anthropic API 401 Unauthorized",
+      "Claude Code billing discrepancy"
+    ]
+  },
+  {
+    "slug": "claude-code-stripe-payment-intent-unexpected-state-this-paymentintent-s-mandate-data-could-not-be-updated-because-it-has-a-status-of-canceled",
+    "title": "Claude Code plan upgrade payment fails — PaymentIntent voided immediately with void_invoice before confirm",
+    "description": "Fix Claude Code plan upgrade payment failure with Stripe PaymentIntent voided Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Stripe payment_intent_unexpected_state: This PaymentIntent's mandate_data could not be updated because it has a status of canceled",
+    "search_intent": "Fix Claude Code plan upgrade payment failure with Stripe PaymentIntent voided",
+    "common_causes": [
+      "Users attempting to upgrade from Pro ($20) to Max ($100) plan on claude.ai encounter payment failure due to Stripe PaymentIntent being auto-canceled before confirm completes",
+      "18 reactions. PaymentIntent auto-canceled with reason 'void_invoice' within seconds of creation. Stripe error: payment_intent_unexpected_state. Affects Pro to Max upgrade flow on claude.ai billing."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Anthropic API credit_balance_too_low",
+      "Claude Code billing discrepancy"
+    ]
+  },
+  {
+    "slug": "litellm-litellm-budgetexceedederror-current-cost-exceeds-max-budget-due-to-team-key-spend-polluting-personal-spend",
+    "title": "LiteLLM team key spend incorrectly increments user personal spend, causing false BudgetExceededError",
+    "description": "Fix LiteLLM false BudgetExceededError caused by team key spend being attributed to personal user spend Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "LiteLLM BudgetExceededError: Current cost exceeds Max budget due to team key spend polluting personal spend",
+    "search_intent": "Fix LiteLLM false BudgetExceededError caused by team key spend being attributed to personal user spend",
+    "common_causes": [
+      "LiteLLM proxy users on team plans get locked out with BudgetExceededError because team key usage is incorrectly added to personal spend tracking",
+      "Team key spend written to LiteLLM_UserTable.spend unconditionally. When user later calls with personal key, fallback_spend includes team spend, triggering false BudgetExceededError. Root cause: _batch_database_updates() calls _update_user_db() without team_id guard."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "LiteLLM GitHub Copilot auth loop",
+      "Anthropic API credit_balance_too_low"
+    ]
+  },
+  {
+    "slug": "ollama-ollama-cloud-pro-95-failure-rate-across-all-cloud-models",
+    "title": "Ollama Cloud Pro subscription has 95% failure rate across all cloud models — service unusable",
+    "description": "Fix Ollama Cloud Pro paying service having 95% failure rate Includes evidence for Ollama troubleshooting demand.",
+    "category": "Ollama",
+    "technology": "Ollama",
+    "error_signature": "Ollama Cloud Pro: 95% failure rate across all cloud models",
+    "search_intent": "Fix Ollama Cloud Pro paying service having 95% failure rate",
+    "common_causes": [
+      "Paid Ollama Cloud Pro ($20/month) subscription returns empty responses or timeouts for all cloud models with only 5% success rate",
+      "15 reactions. Paid Pro subscription ($20/month). Tested 4 models, 5 requests each: glm-5.1:cloud 0/5, kimi-k2.5:cloud 1/5, qwen3.5:cloud 0/5, deepseek-v3.2:cloud 0/5. Total: 1/20 (5% success)."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "Ollama Cloud 503 errors",
+      "Ollama Cloud billing discrepancy"
+    ]
+  },
+  {
+    "slug": "claude-code-anthropic-api-error-400-unsupported-anthropic-beta-flags-rejected-by-bedrock",
+    "title": "Claude Code 2.1.129 sends unsupported anthropic_beta flags in request body that Bedrock rejects with 400",
+    "description": "Fix Claude Code sending unsupported beta flags to AWS Bedrock causing 400 errors Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Anthropic API Error 400: unsupported anthropic_beta flags rejected by Bedrock",
+    "search_intent": "Fix Claude Code sending unsupported beta flags to AWS Bedrock causing 400 errors",
+    "common_causes": [
+      "Claude Code v2.1.129 regression sends anthropic_beta array (interleaved-thinking, tool-search-tool, extended-cache-ttl) that Bedrock does not recognize, breaking all Bedrock-based Claude Code usage",
+      "10 reactions. Regression in v2.1.129. Bedrock rejects anthropic_beta flags with 400. Flags: interleaved-thinking-2025-05-14, tool-search-tool-2025-10-19, extended-cache-ttl-2025-04-11. Works on v2.1.119 stable."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Claude Code Opus 4.7 Bedrock incompatibility",
+      "LiteLLM additional_drop_params ignored"
+    ]
+  },
+  {
+    "slug": "claude-code-claude-code-401-auth-loop-all-commands-fail-including-login",
+    "title": "Claude Code enters unrecoverable 401 authentication loop on Windows",
+    "description": "Fix Claude Code 401 authentication loop that prevents all commands from working Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Claude Code 401 Auth Loop - All commands fail including /login",
+    "search_intent": "Fix Claude Code 401 authentication loop that prevents all commands from working",
+    "common_causes": [
+      "Claude Code on Windows with active Claude Pro subscription enters 401 auth loop where all commands fail including /login, making the tool completely unusable",
+      "Claude Code v2.1.141 on Windows with active paid Pro subscription. All commands fail with 401. /login also fails. OAuth session appears valid but API requests rejected."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "Claude Code MCP auth OAuth state mismatch",
+      "LiteLLM GitHub Copilot auth loop"
+    ]
+  },
+  {
+    "slug": "claude-code-cache-ttl-silently-regressed-from-1h-to-5m-causing-20-32-cache-creation-cost-increase",
+    "title": "Claude Code cache TTL silently regressed from 1h to 5m around early March 2026, causing quota and cost inflation",
+    "description": "Understand why Claude Code cache TTL changed from 1 hour to 5 minutes and fix cost inflation Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Cache TTL silently regressed from 1h to 5m causing 20-32% cache creation cost increase",
+    "search_intent": "Understand why Claude Code cache TTL changed from 1 hour to 5 minutes and fix cost inflation",
+    "common_causes": [
+      "Analysis of 119,866 API calls shows Anthropic silently changed prompt cache TTL from 1h to 5m, causing 20-32% increase in cache creation costs and quota consumption spikes",
+      "335 reactions. Detailed analysis of JSONL session files across 2 machines totaling 119,866 API calls. Cache TTL changed from 1h to 5m in early March 2026. 20-32% increase in cache creation costs. Both Linux and Windows machines show same behavioral shift."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "Claude Code Pro Max quota exhaustion",
+      "Claude Code disabling telemetry disables cache TTL"
+    ]
+  },
+  {
+    "slug": "claude-code-claude-code-opus-4-7-doesn-t-work-with-bedrock",
+    "title": "Claude Code Opus 4.7 model incompatible with AWS Bedrock deployment",
+    "description": "Fix Claude Code Opus 4.7 not working with AWS Bedrock Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Claude Code Opus 4.7 doesn't work with Bedrock",
+    "search_intent": "Fix Claude Code Opus 4.7 not working with AWS Bedrock",
+    "common_causes": [
+      "Enterprise users on Bedrock cannot use the latest Opus 4.7 model through Claude Code, blocking access to the newest capabilities",
+      "97 reactions. Opus 4.7 does not work with Bedrock deployment. High engagement indicates widespread enterprise impact."
+    ],
+    "quick_fix": "Check the build output, project root, and deployment platform configuration before redeploying.",
+    "related_errors": [
+      "Claude Code Bedrock beta flag 400",
+      "Claude Code VS Code stream ends with 0 events on Bedrock"
+    ]
+  },
+  {
+    "slug": "litellm-litellm-rate-limit-429-response-leaks-full-sha-256-token-hash-in-error-message",
+    "title": "LiteLLM rate limit error message body leaks full SHA-256 token hash on 429 responses",
+    "description": "Fix LiteLLM rate limit response leaking API key hash in error messages Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "LiteLLM rate limit 429 response leaks full SHA-256 token hash in error.message",
+    "search_intent": "Fix LiteLLM rate limit response leaking API key hash in error messages",
+    "common_causes": [
+      "Security issue where LiteLLM 429 responses expose full 64-character SHA-256 hash of virtual keys to any HTTP client including end users",
+      "parallel_request_limiter_v3.py line 1261 includes full token hash in 429 detail message. redact_user_api_key_info setting does not affect this code path. Full SHA-256 hash exposed to end users."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "LiteLLM BudgetExceededError false positive",
+      "Claude Code 401 Auth Loop"
+    ]
+  },
+  {
+    "slug": "litellm-litellm-badrequesterror-reasoning-content-must-be-passed-back-to-the-api-deepseek-v4-pro-multi-turn",
+    "title": "LiteLLM strips reasoning_content from DeepSeek V4 Pro responses, breaking multi-turn conversations",
+    "description": "Fix LiteLLM breaking DeepSeek V4 Pro multi-turn conversations by stripping reasoning_content Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "LiteLLM BadRequestError: reasoning_content must be passed back to the API (DeepSeek V4 Pro multi-turn)",
+    "search_intent": "Fix LiteLLM breaking DeepSeek V4 Pro multi-turn conversations by stripping reasoning_content",
+    "common_causes": [
+      "DeepSeek V4 Pro requires reasoning_content to be passed back in multi-turn conversations, but LiteLLM strips it during serialization (carried over from R1 behavior)",
+      "17 reactions. First turn succeeds, all subsequent turns fail with 400. Root cause: Message.__init__ in litellm/types/utils.py deletes reasoning_content when None. Old R1 behavior (strip) conflicts with V4 Pro requirement (preserve)."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Ollama deepseek-v4-pro:cloud HTTP 500",
+      "LiteLLM Structured Output fails on Bedrock"
+    ]
+  },
+  {
+    "slug": "litellm-litellm-additional-drop-params-ignored-context-management-field-forwarded-to-bedrock-causing-400",
+    "title": "LiteLLM additional_drop_params setting ignored on POST /v1/messages, Bedrock rejects unsupported fields",
+    "description": "Fix LiteLLM additional_drop_params not working on /v1/messages endpoint for Bedrock Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "LiteLLM additional_drop_params ignored: context_management field forwarded to Bedrock causing 400",
+    "search_intent": "Fix LiteLLM additional_drop_params not working on /v1/messages endpoint for Bedrock",
+    "common_causes": [
+      "Claude Code v2.1+ sends context_management beta field that Bedrock rejects, and LiteLLM's additional_drop_params setting has no effect on the /v1/messages code path",
+      "Affects LiteLLM 1.83.9. Claude Code v2.1+ sends context_management field. Bedrock rejects with 'Extra inputs are not permitted'. additional_drop_params and drop_params settings have no effect on /v1/messages pass-through handler."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Claude Code Bedrock beta flag 400",
+      "LiteLLM Vertex AI URL wrong"
+    ]
+  },
+  {
+    "slug": "litellm-litellm-vertex-ai-wrong-base-url-for-us-eu-multi-region-endpoints",
+    "title": "LiteLLM constructs incorrect Vertex AI base URL for us/eu multi-region endpoints",
+    "description": "Fix LiteLLM wrong Vertex AI URL construction for us/eu multi-region endpoints Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "LiteLLM Vertex AI: wrong base URL for us/eu multi-region endpoints",
+    "search_intent": "Fix LiteLLM wrong Vertex AI URL construction for us/eu multi-region endpoints",
+    "common_causes": [
+      "LiteLLM generates wrong URLs (us-aiplatform.googleapis.com instead of aiplatform.us.rep.googleapis.com) for new Vertex AI multi-region endpoints",
+      "Google introduced multi-region endpoints (us, eu) on April 16, 2026. LiteLLM's get_vertex_base_url() constructs wrong URLs. Generated URLs don't exist and return HTML error pages. Fix: use aiplatform.{region}.rep.googleapis.com format."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Claude Code Bedrock beta flag 400",
+      "LiteLLM additional_drop_params ignored"
+    ]
+  },
+  {
+    "slug": "litellm-litellm-github-copilot-authenticator-stale-access-token-causes-unrecoverable-auth-loop",
+    "title": "LiteLLM GitHub Copilot authenticator does not invalidate stale access token on 401, causing auth loop",
+    "description": "Fix LiteLLM GitHub Copilot auth loop when access token becomes stale Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "LiteLLM GitHub Copilot authenticator: stale access token causes unrecoverable auth loop",
+    "search_intent": "Fix LiteLLM GitHub Copilot auth loop when access token becomes stale",
+    "common_causes": [
+      "When GitHub OAuth token expires or is revoked, LiteLLM retries with same stale token 3 times then loops indefinitely without clearing cached token",
+      "3 reactions. _refresh_api_key() reads cached token from ~/.config/litellm/github_copilot/access-token without validation. On 401, retries with same stale token 3 times, then raises RefreshAPIKeyError. No code path to delete stale token and re-run device flow."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "Claude Code 401 Auth Loop",
+      "LiteLLM BudgetExceededError"
+    ]
+  },
+  {
+    "slug": "litellm-litellm-structured-output-fails-for-anthropic-models-on-bedrock-converse-extra-inputs-are-not-permitted",
+    "title": "LiteLLM structured output (JSON schema) fails for Anthropic models on Bedrock Converse API",
+    "description": "Fix LiteLLM structured output not working with Anthropic models on Bedrock Converse API Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "LiteLLM Structured Output fails for Anthropic models on bedrock/converse: Extra inputs are not permitted",
+    "search_intent": "Fix LiteLLM structured output not working with Anthropic models on Bedrock Converse API",
+    "common_causes": [
+      "BedrockException: output_config.format: Extra inputs not permitted when using responses API with Anthropic models on Bedrock Converse",
+      "Works on Converse API for Nova models and Invoke API for both. Fails only on Converse API for Anthropic models. Bedrock rejects output_config.format field."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "LiteLLM Vertex AI URL wrong",
+      "Claude Code Bedrock beta flag 400"
+    ]
+  },
+  {
+    "slug": "ollama-ollama-deepseek-v4-pro-cloud-returns-http-500-on-70-of-requests",
+    "title": "Ollama Cloud deepseek-v4-pro:cloud model returns HTTP 500 on 70% of API requests",
+    "description": "Fix Ollama Cloud deepseek-v4-pro:cloud model returning HTTP 500 errors Includes evidence for Ollama troubleshooting demand.",
+    "category": "Ollama",
+    "technology": "Ollama",
+    "error_signature": "Ollama deepseek-v4-pro:cloud returns HTTP 500 on ~70% of requests",
+    "search_intent": "Fix Ollama Cloud deepseek-v4-pro:cloud model returning HTTP 500 errors",
+    "common_causes": [
+      "Newly added DeepSeek V4 Pro cloud model on Ollama Cloud fails on 70% of requests with HTTP 500, making it unreliable for production use",
+      "36 reactions. 50 diverse prompts tested: only 15/50 (30%) succeeded. Other cloud models (kimi-k2.6:cloud) work reliably. Model released April 24, 2026 — possible infrastructure scaling issue."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Ollama Cloud 503 errors",
+      "Ollama Cloud Pro 95% failure rate"
+    ]
+  },
+  {
+    "slug": "ollama-ollama-cloud-frequent-503-service-unavailable-errors-on-cloud-models",
+    "title": "Ollama Cloud models return frequent 503 Service Unavailable errors breaking agent workflows",
+    "description": "Fix Ollama Cloud 503 errors making cloud models unreliable Includes evidence for Ollama troubleshooting demand.",
+    "category": "Ollama",
+    "technology": "Ollama",
+    "error_signature": "Ollama Cloud: Frequent 503 Service Unavailable errors on cloud models",
+    "search_intent": "Fix Ollama Cloud 503 errors making cloud models unreliable",
+    "common_causes": [
+      "Ollama Cloud models randomly fail with 503 errors multiple times per hour, breaking autonomous agent workflows, cron jobs, and bot integrations",
+      "22 reactions. Affects glm-5:cloud, glm-5.1:cloud, minimax-m2.7:cloud, kimi-k2.5:cloud. Multiple 503s per hour. Intermittent but frequent. No retry-after header provided."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Ollama Cloud Pro 95% failure rate",
+      "Ollama deepseek-v4-pro:cloud HTTP 500"
+    ]
   }
 ]
