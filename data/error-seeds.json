@@ -9246,5 +9246,172 @@
       "Ollama cloud proxy unexpected EOF",
       "API rate limit exceeded empty response"
     ]
+  },
+  {
+    "slug": "claude-code-weekly-all-models-cap-depleting-abnormally-fast-cache-read-input-tokens-counted-at-full-weight",
+    "title": "Claude Code weekly cap depleting 5x faster due to cache_read_input_tokens counted at full weight vs 5h bucket discount",
+    "description": "Understand why Claude Max weekly token cap depletes abnormally fast when using MCP tools with high cache-read volume Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Weekly all-models cap depleting abnormally fast — cache_read_input_tokens counted at full weight",
+    "search_intent": "Understand why Claude Max weekly token cap depletes abnormally fast when using MCP tools with high cache-read volume",
+    "common_causes": [
+      "Claude Max subscribers ($100/mo) report their weekly cap depleting 5x faster than expected. Root cause: cache_read_input_tokens from MCP tools like Serena are counted at full token weight rather than the discounted rate used in 5h session buckets. Direct billing/quota impact.",
+      "Weekly all-models cap depleting ~5x faster than 5h session cap. Observed with Max 5x plan, claude-opus-4-7, and MCP tool (Serena) generating high cache-read volume. cache_read_input_tokens appear to be metered at full weight in weekly cap vs discounted in session cap."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Claude Code token counting cache_read",
+      "Claude Max quota depleting fast",
+      "Claude Code MCP cache billing"
+    ]
+  },
+  {
+    "slug": "claude-code-sdk-stream-ended-no-result-had-error-true-streaming-stalls-on-large-conversations",
+    "title": "Claude Code 2.1.141 regression: streaming stalls with sdk_stream_ended_no_result had_error:true",
+    "description": "Fix Claude Code streaming failure where response stalls and returns error on large conversations after upgrading to version 2.1.141 Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "sdk_stream_ended_no_result had_error:true — streaming stalls on large conversations",
+    "search_intent": "Fix Claude Code streaming failure where response stalls and returns error on large conversations after upgrading to version 2.1.141",
+    "common_causes": [
+      "Version regression breaks core functionality for paying Claude Max subscribers. Users upgrading from 2.1.140 to 2.1.141 hit streaming stalls on large conversations, blocking their workflow entirely.",
+      "Regression in Claude Code v2.1.141 where VS Code extension streaming stalls on large conversations with sdk_stream_ended_no_result had_error:true. Version 2.1.140 works fine. Multiple users confirmed."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Claude Code stream stall AskUserQuestion",
+      "Claude Code streaming timeout large context"
+    ]
+  },
+  {
+    "slug": "github-actions-error-invalid-mcp-configuration-enametoolong-name-too-long-open",
+    "title": "GitHub Actions Claude engine failure: ENAMETOOLONG in MCP config file path across multiple workflows",
+    "description": "Fix GitHub Actions workflow failures where Claude engine terminates with ENAMETOOLONG error when reading MCP configuration Includes evidence for GitHub Actions troubleshooting demand.",
+    "category": "GitHub Actions",
+    "technology": "GitHub Actions",
+    "error_signature": "Error: Invalid MCP configuration: ENAMETOOLONG: name too long, open",
+    "search_intent": "Fix GitHub Actions workflow failures where Claude engine terminates with ENAMETOOLONG error when reading MCP configuration",
+    "common_causes": [
+      "Multiple GitHub Actions workflows fail simultaneously with the same ENAMETOOLONG error when the Claude engine tries to read MCP config. This cascading failure blocks entire CI/CD pipelines.",
+      "At least 5 different GitHub Actions workflows failed with the same error on 2026-05-14: 'Error: Invalid MCP configuration: ENAMETOOLONG: name too long, open'. The Claude engine in GitHub Actions workspace automation terminates unexpectedly when parsing MCP config files with excessively long paths."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "GitHub Actions Claude engine crash",
+      "MCP config validation failed",
+      "GitHub Actions ENAMETOOLONG workspace"
+    ]
+  },
+  {
+    "slug": "claude-code-eacces-permission-denied-mkdir-tmp-claude-code-settings-writes-cache-to-shared-tmp",
+    "title": "Claude Code --settings EACCES permission denied on shared macOS when two user accounts share a Mac",
+    "description": "Fix Claude Code EACCES error when running --settings on macOS with multiple user accounts sharing the same machine Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "EACCES: permission denied, mkdir '/tmp/claude-code-' — --settings writes cache to shared /tmp/",
+    "search_intent": "Fix Claude Code EACCES error when running --settings on macOS with multiple user accounts sharing the same machine",
+    "common_causes": [
+      "Shared Mac environments (labs, CI runners, family machines) trigger permission conflicts when Claude Code writes cache to world-shared /tmp/. Users see cryptic EACCES with no obvious fix.",
+      "Claude Code CLI uses /tmp/ for cache directories. When two macOS user accounts share a machine, the second user gets EACCES because the first user's temp files exist with different ownership. No workaround provided."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Claude Code permission denied macOS",
+      "Claude Code shared environment cache conflict"
+    ]
+  },
+  {
+    "slug": "claude-code-virtualization-is-not-available-hcs-error-0x80370102-despite-hyper-v-fully-enabled",
+    "title": "Claude Code Cowork 'Virtualization is not available' HCS error 0x80370102 on Windows 11 with Hyper-V enabled",
+    "description": "Fix Claude Code Cowork sandbox failing with HCS error 0x80370102 on Windows 11 even when Hyper-V components are fully enabled Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Virtualization is not available — HCS error 0x80370102 despite Hyper-V fully enabled",
+    "search_intent": "Fix Claude Code Cowork sandbox failing with HCS error 0x80370102 on Windows 11 even when Hyper-V components are fully enabled",
+    "common_causes": [
+      "Windows developers using Claude Code's Cowork feature hit a wall when the virtualization sandbox fails despite having Hyper-V properly configured. The error message is misleading — users think they've enabled everything but still can't run.",
+      "Claude Code Cowork mode on Windows 11 throws HCS error 0x80370102 ('Virtualization is not available') even when all Hyper-V components are verified enabled. Likely a WSL2/Hyper-V configuration edge case."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Claude Code Cowork Windows error",
+      "HCS error 0x80370102 Hyper-V"
+    ]
+  },
+  {
+    "slug": "litellm-litellm-proxy-metrics-endpoint-returns-unauthorized-error-after-upgrade-to-1-84-0",
+    "title": "LiteLLM Proxy /metrics endpoint denies unauthenticated access after upgrading to v1.84.0",
+    "description": "Fix LiteLLM Proxy /metrics endpoint returning unauthorized error after upgrading to version 1.84.0 when behind a reverse proxy Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "LiteLLM Proxy /metrics endpoint returns unauthorized error after upgrade to 1.84.0",
+    "search_intent": "Fix LiteLLM Proxy /metrics endpoint returning unauthorized error after upgrading to version 1.84.0 when behind a reverse proxy",
+    "common_causes": [
+      "Prometheus metrics scraping breaks silently after a LiteLLM upgrade. Operators running LiteLLM behind a reverse proxy (the standard production setup) lose monitoring visibility without obvious error messages.",
+      "After upgrading LiteLLM Proxy to v1.84.0, the /metrics endpoint started returning 401 Unauthorized. The operator uses a reverse proxy to secure the endpoint and didn't enable API key auth for metrics. This is a breaking change in the upgrade path."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "LiteLLM metrics endpoint 401",
+      "LiteLLM proxy upgrade breaking change",
+      "LiteLLM prometheus unauthorized"
+    ]
+  },
+  {
+    "slug": "litellm-litellm-v1-messages-passthrough-to-bedrock-invokemodel-fails-missing-compact-2026-01-12-beta-header",
+    "title": "LiteLLM /v1/messages passthrough to Bedrock fails with missing anthropic_beta header for context_management",
+    "description": "Fix LiteLLM passthrough to AWS Bedrock failing when using Anthropic's /v1/messages endpoint with context_management feature Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "LiteLLM /v1/messages passthrough to Bedrock InvokeModel fails — missing compact-2026-01-12 beta header",
+    "search_intent": "Fix LiteLLM passthrough to AWS Bedrock failing when using Anthropic's /v1/messages endpoint with context_management feature",
+    "common_causes": [
+      "Developers using LiteLLM as a proxy to route Anthropic requests through AWS Bedrock hit a silent failure when context_management is enabled. LiteLLM doesn't inject the required beta header, causing Bedrock to reject the request.",
+      "LiteLLM's /v1/messages endpoint passes context_management through to Bedrock InvokeModel but fails to inject the required compact-2026-01-12 beta header into the anthropic_beta array. Bedrock rejects the request."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "LiteLLM Bedrock anthropic_beta missing",
+      "Anthropic context_management Bedrock error"
+    ]
+  },
+  {
+    "slug": "openrouter-conductor-openrouter-exec-produced-empty-final-response-agent-completed-work-but-returned-no-final-message",
+    "title": "OpenRouter empty final response: agent completes work but conductor receives no output, exit code 1",
+    "description": "Debug why OpenRouter returns empty final response after agent completes task successfully in conductor orchestrator Includes evidence for OpenRouter troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "OpenRouter",
+    "error_signature": "conductor: OpenRouter exec produced empty final response — agent completed work but returned no final message",
+    "search_intent": "Debug why OpenRouter returns empty final response after agent completes task successfully in conductor orchestrator",
+    "common_causes": [
+      "OpenRouter occasionally produces empty final responses even when the agent has completed its work. The conductor fails with exit code 1, losing all completed work context. Distinct from timeout or iteration-cap errors.",
+      "conductor exec --with openrouter returned exit code 1 with 'OpenRouter exec produced empty final response'. The agent's work in the worktree was complete but no final message was returned. Not an iter-cap or stall issue."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "OpenRouter empty response",
+      "OpenRouter agent completion no output",
+      "Conductor OpenRouter exit code 1"
+    ]
+  },
+  {
+    "slug": "litellm-cerebrasexception-missing-credentials-please-pass-an-api-key-workload-identity-admin-api-key-or-set-cerebras-api-key",
+    "title": "LiteLLM CerebrasException missing credentials — CI fails when CEREBRAS_API_KEY not set in GitHub Actions",
+    "description": "Fix CerebrasException missing credentials error in CI pipeline when using LiteLLM to route to Cerebras provider Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "CerebrasException - Missing credentials. Please pass an api_key, workload_identity, admin_api_key, or set CEREBRAS_API_KEY",
+    "search_intent": "Fix CerebrasException missing credentials error in CI pipeline when using LiteLLM to route to Cerebras provider",
+    "common_causes": [
+      "CI pipelines using LiteLLM with Cerebras as a provider fail with CerebrasException when API key isn't configured. The error message is generic and doesn't clearly indicate which credential is missing.",
+      "CI fails with: litellm.InternalServerError: CerebrasException - Missing credentials. Please pass an api_key, workload_identity, admin_api_key, or set the CEREBRAS_API_KEY or CEREBRAS_ADMIN_KEY environment variable. The error propagates through LiteLLM's Cerebras integration."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Cerebras API key missing CI",
+      "LiteLLM Cerebras provider auth failure",
+      "CEREBRAS_API_KEY environment variable"
+    ]
   }
 ]
