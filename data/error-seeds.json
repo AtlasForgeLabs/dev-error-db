@@ -9584,5 +9584,131 @@
       "Ollama 412 error model not available",
       "Ollama pull manifest error"
     ]
+  },
+  {
+    "slug": "ollama-ollama-launch-claude-api-error-400-when-claude-code-use-bedrock-1-is-set",
+    "title": "Ollama Launch Claude Fails with API Error 400 When CLAUDE_CODE_USE_BEDROCK=1 Is Set in Claude Code Settings",
+    "description": "Fix ollama launch claude failing with API Error 400 when CLAUDE_CODE_USE_BEDROCK environment variable is set in Claude Code settings Includes evidence for Ollama troubleshooting demand.",
+    "category": "Ollama",
+    "technology": "Ollama",
+    "error_signature": "ollama launch claude: API Error 400 when CLAUDE_CODE_USE_BEDROCK=1 is set",
+    "search_intent": "Fix ollama launch claude failing with API Error 400 when CLAUDE_CODE_USE_BEDROCK environment variable is set in Claude Code settings",
+    "common_causes": [
+      "When users have CLAUDE_CODE_USE_BEDROCK=1 in ~/.claude/settings.json, ollama launch claude routes requests to AWS Bedrock instead of the local Ollama instance, causing Bedrock to reject the model name with API Error 400. This is a confusing configuration conflict.",
+      "Open issue on ollama/ollama. Configuration conflict between Ollama and Claude Code's Bedrock settings. The model name is sent to Bedrock instead of Ollama. Clear reproduction with specific error code."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Claude Code Remote Control fails with custom API keys",
+      "LiteLLM proxy for Codex CLI does not work"
+    ]
+  },
+  {
+    "slug": "litellm-context-management-extra-inputs-are-not-permitted",
+    "title": "LiteLLM /v1/messages Passthrough to Bedrock InvokeModel Fails — Missing compact-2026-01-12 Beta Header",
+    "description": "Fix LiteLLM proxy error 'context_management: Extra inputs are not permitted' when using Claude Code with Bedrock InvokeModel Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "context_management: Extra inputs are not permitted",
+    "search_intent": "Fix LiteLLM proxy error 'context_management: Extra inputs are not permitted' when using Claude Code with Bedrock InvokeModel",
+    "common_causes": [
+      "When using Claude Code via LiteLLM proxy with Bedrock InvokeModel, requests containing context_management (compaction) fail because LiteLLM doesn't inject the required compact-2026-01-12 beta header into the anthropic_beta array. This is a common setup for enterprise deployments.",
+      "Open issue on BerriAI/litellm. Root cause: LiteLLM's /v1/messages endpoint passes context_management through to Bedrock but doesn't inject the required beta header. Clear error message with specific missing header identified."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "LiteLLM Proxy fails to start: Prisma NotConnectedError",
+      "LiteLLM proxy for Codex CLI does not work"
+    ]
+  },
+  {
+    "slug": "claude-code-stream-stall-15-30s-at-start-of-new-session-with-askuserquestion-tool",
+    "title": "Claude Code Stream Stall 15-30 Seconds at Session Start When Using AskUserQuestion Tool",
+    "description": "Fix Claude Code VS Code extension stream freezing for 15-30 seconds at session start with AskUserQuestion tool Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Stream stall ~15-30s at start of new session with AskUserQuestion tool",
+    "search_intent": "Fix Claude Code VS Code extension stream freezing for 15-30 seconds at session start with AskUserQuestion tool",
+    "common_causes": [
+      "The stream freezes at the start of a new session when the model invokes AskUserQuestion tool, causing a 15-30 second delay before any response appears. This affects user experience in the VS Code extension with claude-opus-4-7 model.",
+      "Open issue with 'has repro' label. Specific to VS Code extension with claude-opus-4-7[1m] model. Stream freezes for 15-30s when AskUserQuestion tool is invoked at session start. Clear reproduction steps."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Claude Code SSE streaming hangs indefinitely",
+      "Claude Code Unhandled case [object Object]"
+    ]
+  },
+  {
+    "slug": "ollama-ggml-assert-buffer-failed-during-loading-of-multimodal-model-due-to-cuda-oom",
+    "title": "Ollama GGML_ASSERT(buffer) Failed — CUDA Out of Memory When Loading Multimodal Models like gemma4:26b",
+    "description": "Fix Ollama GGML_ASSERT(buffer) failed crash when loading large multimodal models with CUDA out of memory Includes evidence for Ollama troubleshooting demand.",
+    "category": "Ollama",
+    "technology": "Ollama",
+    "error_signature": "GGML_ASSERT(buffer) failed during loading of multimodal model due to CUDA OOM",
+    "search_intent": "Fix Ollama GGML_ASSERT(buffer) failed crash when loading large multimodal models with CUDA out of memory",
+    "common_causes": [
+      "Loading large multimodal models (e.g., gemma4:26b) crashes with GGML_ASSERT(buffer) failed during vision component initialization. The main LLM layers offload successfully but the CLIP/mmproj component fails with cudaMalloc OOM. Users see cryptic assertion failure instead of clear OOM message.",
+      "Open issue on ollama/ollama. Error occurs during multimodal model loading when CUDA runs out of memory for the vision component. 31/31 LLM layers offload successfully but CLIP/mmproj initialization fails. Clear error signature with specific model name."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Ollama exit status 2 crash loading gemma4 models",
+      "Ollama CUDA OOM errors with gemma3"
+    ]
+  },
+  {
+    "slug": "claude-code-error-write-epipe",
+    "title": "Claude Code Unhandled EPIPE Error Causing Node.js Application Crash",
+    "description": "Fix the 'Error: write EPIPE' crash in Claude Code during bash command execution Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Error: write EPIPE",
+    "search_intent": "Fix the 'Error: write EPIPE' crash in Claude Code during bash command execution",
+    "common_causes": [
+      "EPIPE errors occur when Claude Code tries to write to a pipe that has been closed, crashing the Node.js process. 30 comments on the main issue (#2834), with duplicate reports (#3881, #3891). This is a recurring, frustrating crash that kills the entire session.",
+      "Issue #2834 has 30 comments, #3881 has 23 comments. The error occurs during bash command execution when the child process exits before Claude Code finishes writing. Clear stack trace with EPIPE error. Multiple reports across different OS and versions."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Claude Code bash tool returns empty output for SSH commands",
+      "Claude Code parallel tool calls cascade-fail"
+    ]
+  },
+  {
+    "slug": "cloudflare-can-t-serialize-top-level-variable-native-function",
+    "title": "Cloudflare Python Worker Deploy Fails with Can't serialize top-level variable After Wrangler Update",
+    "description": "Fix Cloudflare Python Worker deployment failure with 'Can't serialize top-level variable' error after wrangler update Includes evidence for Cloudflare troubleshooting demand.",
+    "category": "Cloudflare",
+    "technology": "Cloudflare",
+    "error_signature": "Can't serialize top-level variable (native function)",
+    "search_intent": "Fix Cloudflare Python Worker deployment failure with 'Can't serialize top-level variable' error after wrangler update",
+    "common_causes": [
+      "Python Worker deployments that were working suddenly started failing with no code changes after a Cloudflare backend update on 2026-03-18. The error 'Can't serialize top-level variable (native function)' appears when deploying Python workers with native functions. This is a breaking change that affected many teams.",
+      "Closed issue on cloudflare/workers-sdk with 11 comments. Deployments worked until 2026-03-18 08:00 UTC, then the same code began failing. pyodide-3.13.2-emscripten-wasm32-musl. Clear before/after timeline."
+    ],
+    "quick_fix": "Check the build output, project root, and deployment platform configuration before redeploying.",
+    "related_errors": [
+      "Cloudflare POST requests crash with fetch failed",
+      "Cloudflare wrangler login not giving account selection"
+    ]
+  },
+  {
+    "slug": "cloudflare-post-requests-returning-non-2xx-status-crash-with-fetch-failed",
+    "title": "Cloudflare Vite Plugin: POST Requests Returning Non-2xx Status Crash with 'fetch failed' in Miniflare",
+    "description": "Fix Cloudflare Vite plugin crash when POST request handler returns non-2xx status code in Miniflare dev server Includes evidence for Cloudflare troubleshooting demand.",
+    "category": "Cloudflare",
+    "technology": "Cloudflare",
+    "error_signature": "POST requests returning non-2xx status crash with 'fetch failed'",
+    "search_intent": "Fix Cloudflare Vite plugin crash when POST request handler returns non-2xx status code in Miniflare dev server",
+    "common_causes": [
+      "When using @cloudflare/vite-plugin with Vite dev server, any POST request handler returning non-2xx status (401, 400, 403, 404) crashes the Miniflare proxy with 'fetch failed'. GET requests with same status codes work fine. The actual worker response is lost.",
+      "Closed issue on cloudflare/workers-sdk with 10 comments. Specific to dev mode (vite dev). POST non-2xx crashes Miniflare proxy. GET with same status codes works. Clear reproduction path."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Cloudflare Python Worker Can't serialize top-level variable",
+      "Cloudflare wrangler dev truncates deferred chunks"
+    ]
   }
 ]
