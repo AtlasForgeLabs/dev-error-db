@@ -7792,5 +7792,192 @@
       "GitHub Actions runner crash",
       "Self-hosted runner segfault Linux"
     ]
+  },
+  {
+    "slug": "claude-code-claude-mcp-remove-expands-var-env-var-references-inline-in-mcp-json-leaking-secrets-to-disk",
+    "title": "Claude Code 'claude mcp remove' Expands Environment Variable References, Leaking Secrets",
+    "description": "Fix Claude Code mcp remove command leaking environment variable secrets into .mcp.json file on disk Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "claude mcp remove expands ${VAR} env-var references inline in .mcp.json, leaking secrets to disk",
+    "search_intent": "Fix Claude Code mcp remove command leaking environment variable secrets into .mcp.json file on disk",
+    "common_causes": [
+      "Developers using Claude Code MCP servers store secrets via ${VAR} references. Running 'claude mcp remove' silently expands all env-var placeholders to literal values, baking secrets into the config file on disk. This is a credential leak that violates security best practices and may expose API keys, tokens, and passwords.",
+      "GitHub issue #58850 reports that 'claude mcp remove <name>' correctly deletes the named server entry but expands every ${VAR} env-var placeholder elsewhere in .mcp.json to its literal value. Secrets safely referenced via env vars get baked into the file on disk, visible in plain text. Multiple users confirmed the behavior."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "claude mcp add environment variable not working",
+      "claude code .mcp.json secrets exposed in git"
+    ]
+  },
+  {
+    "slug": "gemini-cli-gemini-cli-silently-consumes-flash-quota-when-configured-for-gemini-3-1-pro-deceptive-model-forcing",
+    "title": "Gemini CLI Silently Consumes Flash Quota When Configured for Pro Model",
+    "description": "Fix Gemini CLI silently switching from Pro to Flash model and consuming wrong quota tier Includes evidence for Gemini CLI troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Gemini CLI",
+    "error_signature": "Gemini CLI silently consumes Flash quota when configured for Gemini 3.1-Pro (Deceptive Model Forcing)",
+    "search_intent": "Fix Gemini CLI silently switching from Pro to Flash model and consuming wrong quota tier",
+    "common_causes": [
+      "Users configure Gemini CLI to use the more expensive Gemini 3.1-Pro model, but the CLI silently routes requests through Flash instead, consuming Flash quota without disclosure. This leads to unexpected costs, rate limit exhaustion, and loss of trust in the tool's resource handling. Users cannot verify which model is actually being used.",
+      "GitHub issue #26619 (P1/P2 priority) reports the CLI silently consumes Flash quota even when explicitly configured for 3.1-Pro. Users describe the behavior as 'deceptive' and strong condemnation of the resource handling. Related to broader quota transparency concerns."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "gemini cli 429 too many requests",
+      "gemini cli quota exhausted unexpectedly",
+      "gemini cli model switching without consent"
+    ]
+  },
+  {
+    "slug": "claude-code-organization-has-been-disabled-error-when-anthropic-api-key-is-set-with-valid-max-pro-subscription",
+    "title": "Claude Code 'Organization has been disabled' Error When API Key Overrides Max/Pro Subscription",
+    "description": "Fix Claude Code billing error where ANTHROPIC_API_KEY overrides valid Max/Pro subscription causing organization disabled error Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Organization has been disabled error when ANTHROPIC_API_KEY is set with valid Max/Pro subscription",
+    "search_intent": "Fix Claude Code billing error where ANTHROPIC_API_KEY overrides valid Max/Pro subscription causing organization disabled error",
+    "common_causes": [
+      "Setting ANTHROPIC_API_KEY as an environment variable causes Claude Code to bypass valid Claude Max/Pro subscriptions and route through API billing instead. Users see 'Organization has been disabled' errors despite having active paid subscriptions. The OAuth response is missing organizationType, causing hasAvailableSubscription to remain false.",
+      "GitHub issue #8327 (114 comments) and #58625 document that setting ANTHROPIC_API_KEY overrides valid subscriptions. The OAuth response is missing organizationType field, causing hasAvailableSubscription to remain false. Users are charged API rates instead of subscription rates. High community frustration with billing confusion."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "claude code ANTHROPIC_API_KEY subscription conflict",
+      "claude code hasAvailableSubscription false"
+    ]
+  },
+  {
+    "slug": "litellm-litellm-rate-limit-error-message-body-leaks-full-sha-256-token-hash-on-429-responses",
+    "title": "LiteLLM 429 Rate Limit Response Leaks SHA-256 Token Hash in Error Body",
+    "description": "Fix LiteLLM 429 error response leaking token hash in rate limit error message Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "LiteLLM rate limit error message body leaks full SHA-256 token hash on 429 responses",
+    "search_intent": "Fix LiteLLM 429 error response leaking token hash in rate limit error message",
+    "common_causes": [
+      "When LiteLLM's parallel request limiter returns a 429 response, the error message body contains the full SHA-256 hash of the API token. This is a credential leak that exposes sensitive token information in logs, error outputs, and monitoring systems. Enterprise users relying on LiteLLM proxy for key management are affected.",
+      "GitHub issue #27884 reports that when the parallel request limiter returns a 429, the full SHA-256 hash of the API token is included in the error message body. This leaks sensitive token information to logs, monitoring, and potentially end users."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "litellm 429 rate limit exceeded",
+      "litellm api key exposed in logs",
+      "litellm token hash in error response"
+    ]
+  },
+  {
+    "slug": "claude-code-heredoc-pipe-bypass-eof-allows-reading-files-denied-in-permission-settings-v2-1-141-regression-of-sharp-48518",
+    "title": "Claude Code Heredoc Pipe Bypass Allows Reading Files Denied in Permission Settings",
+    "description": "Fix Claude Code heredoc marker bypassing file read permission settings Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Heredoc pipe bypass (<<EOF) allows reading files denied in permission settings — v2.1.141 regression of #48518",
+    "search_intent": "Fix Claude Code heredoc marker bypassing file read permission settings",
+    "common_causes": [
+      "A persistent security regression where heredoc markers (<<EOF or <<'EOF') allow Claude Code to read files that are explicitly denied in permission settings. The fix in v2.1.73 only addressed the CPU loop symptom, but the underlying permission bypass remains. Enterprise users relying on file access controls are affected.",
+      "GitHub issue #58904 reports a regression of #48518 on v2.1.141. Heredoc markers allow bypassing permission settings for file reads. The original fix only addressed CPU freeze, not the permission bypass itself. Users confirmed reproduction on latest version."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "claude code permission denied file access",
+      "claude code heredoc CPU loop freeze"
+    ]
+  },
+  {
+    "slug": "openai-codex-model-not-found-gpt-5-2-causes-websocket-reconnection-loop-in-codex-cli",
+    "title": "OpenAI Codex 'Model not found gpt-5.2' Causes WebSocket Reconnection Loop",
+    "description": "Fix OpenAI Codex CLI crash and WebSocket loop when model is not found Includes evidence for OpenAI Codex troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "OpenAI Codex",
+    "error_signature": "Model not found gpt-5.2 causes WebSocket reconnection loop in Codex CLI",
+    "search_intent": "Fix OpenAI Codex CLI crash and WebSocket loop when model is not found",
+    "common_causes": [
+      "When an invalid or unavailable model reference (e.g., gpt-5.2) is used, the Codex CLI enters an infinite WebSocket crash/reconnect loop instead of failing gracefully. This causes the CLI to become unresponsive and requires manual intervention. Backend model availability changes trigger this instability.",
+      "GitHub issue #22368 reports that an invalid model reference causes the CLI to crash and reconnect via WebSocket infinitely rather than failing gracefully. Affects CLI stability when model availability changes on the backend."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "codex cli websocket connection failed",
+      "openai codex model not available",
+      "codex cli unresponsive crash loop"
+    ]
+  },
+  {
+    "slug": "litellm-litellm-redis-user-api-key-cache-deserialization-always-fails-for-team-scoped-keys-litellm-usertable-user-id-required",
+    "title": "LiteLLM Redis Cache Deserialization Fails for Team-Scoped API Keys",
+    "description": "Fix LiteLLM Redis user_api_key_cache deserialization failure for team-scoped keys Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "LiteLLM Redis user_api_key_cache deserialization always fails for team-scoped keys (LiteLLM_UserTable.user_id required)",
+    "search_intent": "Fix LiteLLM Redis user_api_key_cache deserialization failure for team-scoped keys",
+    "common_causes": [
+      "After upgrading to LiteLLM builds including the CacheCodec token-verification changes, Redis user_api_key_cache deserialization always fails for team-scoped keys because LiteLLM_UserTable.user_id is required but missing from cached data. This breaks team-based API key management in enterprise deployments.",
+      "GitHub issue #27874 on litellm/litellm-database:1.84.0-rc.1 reports that Redis user_api_key_cache deserialization always fails for team-scoped keys after the CacheCodec token-verification changes. LiteLLM_UserTable.user_id is required but absent from cached team-scoped key data."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "litellm redis cache miss team keys",
+      "litellm CacheCodec deserialization error",
+      "litellm team api key validation fails"
+    ]
+  },
+  {
+    "slug": "claude-code-vscode-extension-stream-ends-with-0-events-when-using-aws-bedrock-opus-4-7-cli-works-but-gui-unusable",
+    "title": "Claude Code VSCode Extension Stream Ends with 0 Events on AWS Bedrock",
+    "description": "Fix Claude Code VSCode extension stream termination when using AWS Bedrock Opus 4.7 Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "VSCode extension stream ends with 0 events when using AWS Bedrock Opus 4.7 — CLI works but GUI unusable",
+    "search_intent": "Fix Claude Code VSCode extension stream termination when using AWS Bedrock Opus 4.7",
+    "common_causes": [
+      "Users connecting Claude Code to AWS Bedrock (Opus 4.7) experience stream termination in the VSCode extension, rendering the GUI unusable while the CLI remains functional. This breaks the IDE integration for enterprise teams using Bedrock as their inference backend.",
+      "GitHub issue #52151 reports that users on AWS Bedrock (Opus 4.7) experience stream termination in the VSCode extension with 0 events returned. The CLI works fine but the GUI extension is completely unusable. 12 comments confirming the issue."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "claude code bedrock connection failed",
+      "claude code vscode extension no response",
+      "claude code stream interrupted bedrock"
+    ]
+  },
+  {
+    "slug": "gemini-cli-429-too-many-requests-gemini-cli-capacity-exhaustion-p0-tracker-94-plus-comments",
+    "title": "Gemini CLI Persistent 429 Too Many Requests Errors Due to Capacity Constraints",
+    "description": "Fix Gemini CLI 429 rate limit errors and capacity exhaustion issues Includes evidence for Gemini CLI troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Gemini CLI",
+    "error_signature": "429 Too Many Requests — Gemini CLI capacity exhaustion (P0 tracker, 94+ comments)",
+    "search_intent": "Fix Gemini CLI 429 rate limit errors and capacity exhaustion issues",
+    "common_causes": [
+      "Gemini CLI users experience widespread 429 Too Many Requests errors due to backend capacity constraints. The P0 tracker has 94+ comments indicating persistent, widespread impact. Users report significant downtime with no retry logic, making the tool unreliable for production workflows.",
+      "GitHub issue #24937 is a P0 priority tracker for widespread 429 errors. 94+ comments from affected users. Capacity constraints cause significant downtime. Users report lack of retry logic exacerbating the problem."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "gemini cli rate limit exceeded",
+      "gemini api 429 error",
+      "gemini cli retry logic missing"
+    ]
+  },
+  {
+    "slug": "github-copilot-cli-native-addon-runtime-not-found-on-windows-arm64-copilot-cli-v1-0-48-0-ships-x64-binary-instead-of-arm64",
+    "title": "GitHub Copilot CLI 'Native addon runtime not found' Error on Windows ARM64",
+    "description": "Fix GitHub Copilot CLI native addon not found error on Windows ARM64 devices Includes evidence for GitHub Copilot CLI troubleshooting demand.",
+    "category": "GitHub Copilot",
+    "technology": "GitHub Copilot CLI",
+    "error_signature": "Native addon \"runtime\" not found on Windows ARM64 — Copilot CLI v1.0.48-0 ships x64 binary instead of ARM64",
+    "search_intent": "Fix GitHub Copilot CLI native addon not found error on Windows ARM64 devices",
+    "common_causes": [
+      "The latest Copilot CLI release (v1.0.48-0) ships the x64 runtime.node binary instead of ARM64, causing complete CLI failure on Surface Pro X, Windows Dev Kit, and other ARM64 devices. Users see 'Native addon \"runtime\" not found' with no workaround available.",
+      "GitHub issues #3309 and #3307 report that Copilot CLI v1.0.48-0 ships x64 runtime.node instead of ARM64. Complete CLI failure on Windows ARM64 devices. Multiple users confirmed on Surface Pro X and Windows Dev Kit."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "copilot cli native binding not found linux",
+      "copilot cli glibc incompatibility ubuntu",
+      "copilot cli npm optional dependencies bug"
+    ]
   }
 ]
