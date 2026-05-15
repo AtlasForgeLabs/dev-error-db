@@ -13309,5 +13309,133 @@
     "related_errors": [
       "AI Coding Tools"
     ]
+  },
+  {
+    "slug": "anthropic-api-attributeerror-nonetype-object-has-no-attribute-model-usage-when-bedrock-returns-sse-error-events",
+    "title": "Anthropic Bedrock SSE Streaming Error: AttributeError NoneType has no attribute model",
+    "description": "Fix Anthropic Bedrock streaming crash where error envelopes are deserialized as completion events Includes evidence for Anthropic API troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Anthropic API",
+    "error_signature": "AttributeError: 'NoneType' object has no attribute 'model' / 'usage' when Bedrock returns SSE error events",
+    "search_intent": "Fix Anthropic Bedrock streaming crash where error envelopes are deserialized as completion events",
+    "common_causes": [
+      "GitHub issue anthropics/anthropic-sdk-python#1472: Bedrock AWSEventStreamDecoder hardcodes all SSE events as event='completion', causing error payloads (e.g. rate_limit_error) to be deserialized as RawMessageStartEvent with message=None. Intermittent crash in production with cross-region inference profiles. Category mapping: Anthropic API (direct Anthropic SDK error)."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Anthropic API"
+    ]
+  },
+  {
+    "slug": "claude-code-mcp-error-32000-connection-closed-no-such-tool-available",
+    "title": "Claude Code MCP Transport Disconnected After First Tool Call Rejection",
+    "description": "Fix Claude Code MCP server becoming permanently unreachable after first tool call is rejected by user permission prompt Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "MCP error -32000: Connection closed → No such tool available",
+    "search_intent": "Fix Claude Code MCP server becoming permanently unreachable after first tool call is rejected by user permission prompt",
+    "common_causes": [
+      "GitHub issue mlorentedev/hive: When the very first mcp__hive__* tool call is rejected via Claude Code permission prompt, every subsequent MCP call fails with 'Connection closed' then 'No such tool available'. MCP server remains healthy at process level. Category mapping: AI Coding Tools (Claude Code + MCP integration)."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "anthropic-api-400-invalid-request-error-the-compiled-grammar-is-too-large-which-would-cause-performance-issues-simplify-your-tool-schemas-or-reduce-the-number-of-strict-tools",
+    "title": "Anthropic Structured Outputs Error: compiled grammar is too large for complex schemas",
+    "description": "Fix Anthropic structured outputs 400 error when using complex but valid JSON schemas with output_config.format json_schema Includes evidence for Anthropic API troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Anthropic API",
+    "error_signature": "400 invalid_request_error: The compiled grammar is too large, which would cause performance issues. Simplify your tool schemas or reduce the number of strict tools.",
+    "search_intent": "Fix Anthropic structured outputs 400 error when using complex but valid JSON schemas with output_config.format json_schema",
+    "common_causes": [
+      "GitHub issue anthropics/anthropic-sdk-python#1060: Complex but valid JSON schemas trigger a 400 error with 'compiled grammar is too large'. Documentation is insufficient and limits are too low for real-world use cases. Category mapping: Anthropic API (direct API error response)."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Anthropic API"
+    ]
+  },
+  {
+    "slug": "openai-api-tool-choices-other-than-auto-are-not-supported-with-model-gpt-5",
+    "title": "OpenAI GPT-5 Tool Choices Other Than auto Not Supported Error",
+    "description": "Fix OpenAI GPT-5 Responses API rejecting tool_choice values other than 'auto' despite documentation suggesting support Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "tool choices other than 'auto' are not supported with model gpt-5",
+    "search_intent": "Fix OpenAI GPT-5 Responses API rejecting tool_choice values other than 'auto' despite documentation suggesting support",
+    "common_causes": [
+      "GitHub issue openai/openai-python#2498: GPT-5 models in Responses API reject tool_choice values like 'required' or specific function names, returning error. Documentation contradicts actual behavior. 17 comments indicating widespread impact. Category mapping: OpenAI API (direct API behavior error)."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "docker-docker-compose-2-40-3-networking-broken-services-can-t-reach-each-other-or-reach-wrong-service-after-upgrade-from-2-40-2",
+    "title": "Docker Compose 2.40.3 Networking Broken: Services Cannot Reach Each Other",
+    "description": "Fix Docker Compose networking regression in v2.40.3 where inter-service communication fails Includes evidence for Docker troubleshooting demand.",
+    "category": "Docker",
+    "technology": "Docker",
+    "error_signature": "docker compose 2.40.3 networking broken — services can't reach each other or reach wrong service after upgrade from 2.40.2",
+    "search_intent": "Fix Docker Compose networking regression in v2.40.3 where inter-service communication fails",
+    "common_causes": [
+      "GitHub issue docker/compose#12436: After upgrading docker-compose-plugin from 2.40.2 to 2.40.3, networking is completely broken. Services can't reach each other or reach the wrong service. 36 comments confirming widespread impact. Category mapping: Docker (Docker Compose networking)."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Docker"
+    ]
+  },
+  {
+    "slug": "vercel-proxy-ts-does-not-execute-in-production-when-behind-cloudflare-proxy-middleware-ts-works-fine",
+    "title": "Next.js proxy.ts Does Not Execute in Production Behind Cloudflare Proxy",
+    "description": "Fix Next.js proxy.ts route handler not running in production deployment behind Cloudflare reverse proxy Includes evidence for Vercel troubleshooting demand.",
+    "category": "Deployment",
+    "technology": "Vercel",
+    "error_signature": "proxy.ts does not execute in production when behind Cloudflare Proxy (middleware.ts works fine)",
+    "search_intent": "Fix Next.js proxy.ts route handler not running in production deployment behind Cloudflare reverse proxy",
+    "common_causes": [
+      "GitHub issue vercel/next.js#72915: In Next.js 16.0.3+, proxy.ts does not execute in production when deployed behind Cloudflare Proxy, while middleware.ts works correctly. 58 comments. Category mapping: Deployment (Vercel/Next.js deployment + Cloudflare proxy interaction)."
+    ],
+    "quick_fix": "Check the build output, project root, and deployment platform configuration before redeploying.",
+    "related_errors": [
+      "Deployment"
+    ]
+  },
+  {
+    "slug": "litellm-significant-performance-regression-ui-and-api-slowness-after-upgrading-litellm-from-v1-80-5-to-v1-81-x",
+    "title": "LiteLLM Performance Regression After Upgrading from v1.80.5 to v1.81.x",
+    "description": "Fix LiteLLM proxy performance degradation after version upgrade causing UI and API response slowness Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "Significant performance regression — UI and API slowness after upgrading LiteLLM from v1.80.5 to v1.81.x",
+    "search_intent": "Fix LiteLLM proxy performance degradation after version upgrade causing UI and API response slowness",
+    "common_causes": [
+      "GitHub issue BerriAI/litellm#10583: After upgrading from v1.80.5 to v1.81.0/v1.81.3, noticeable and consistent performance degradation across the application. Slowness in both UI and API responses. 44 comments confirming impact. Category mapping: LiteLLM (LiteLLM proxy performance)."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "LiteLLM"
+    ]
+  },
+  {
+    "slug": "anthropic-api-400-invalid-request-error-could-not-process-pdf",
+    "title": "Anthropic API Could not process PDF Intermittent Error",
+    "description": "Fix intermittent Anthropic API error rejecting valid PDF documents provided as base64-encoded document blocks Includes evidence for Anthropic API troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Anthropic API",
+    "error_signature": "400 invalid_request_error: Could not process PDF",
+    "search_intent": "Fix intermittent Anthropic API error rejecting valid PDF documents provided as base64-encoded document blocks",
+    "common_causes": [
+      "GitHub issue anthropics/anthropic-sdk-python#824: Intermittent 400 error 'Could not process PDF' when processing base64-encoded PDF document blocks. Sometimes retries work, sometimes same PDF is rejected repeatedly. Category mapping: Anthropic API (direct API error for document processing)."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Anthropic API"
+    ]
   }
 ]
