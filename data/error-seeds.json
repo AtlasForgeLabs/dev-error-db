@@ -12522,5 +12522,221 @@
       "Cline API rate limit handling",
       "Cline retry logic broken"
     ]
+  },
+  {
+    "slug": "claude-code-sdk-stream-ended-no-result",
+    "title": "Claude Code VS Code Extension: Streams End with sdk_stream_ended_no_result After First Chunk",
+    "description": "Fix Claude Code VS Code extension stream ending prematurely with sdk_stream_ended_no_result error Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "sdk_stream_ended_no_result",
+    "search_intent": "Fix Claude Code VS Code extension stream ending prematurely with sdk_stream_ended_no_result error",
+    "common_causes": [
+      "Claude Code is a paid AI coding tool; when streams silently die after the first chunk, developers lose work context and must retry repeatedly. This is a blocking issue for daily workflows.",
+      "Multiple reports of Claude Code VS Code extension ending streams prematurely on specific machines. The request reaches the API, first chunk arrives, then stream terminates with sdk_stream_ended_no_result. Reproducible on Windows 11."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Claude Code API connection timeout",
+      "Claude Code stream interrupted mid-response"
+    ]
+  },
+  {
+    "slug": "claude-code-tools-153-custom-input-schema-json-schema-is-invalid",
+    "title": "Claude Code Explore Subagent Fails with 400 Invalid JSON Schema on Every Dispatch",
+    "description": "Fix Claude Code Explore subagent 400 error JSON schema is invalid Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "tools.153.custom.input_schema: JSON schema is invalid",
+    "search_intent": "Fix Claude Code Explore subagent 400 error JSON schema is invalid",
+    "common_causes": [
+      "The built-in Explore subagent is broken for many users — every dispatch fails with a 400 error. This blocks a core feature of Claude Code that developers rely on for codebase exploration.",
+      "Every dispatch of the built-in Explore subagent (via Agent tool with subagent_type: 'Explore') is rejected by the Anthropic API with 400: tools.153.custom.input_schema: JSON schema is invalid. Must match JSON Schema draft 2020-12."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Claude Code tool call validation error",
+      "Anthropic API tools parameter rejected"
+    ]
+  },
+  {
+    "slug": "vercel-vercel-env-add-value-silently-stored-as-empty-string",
+    "title": "Vercel CLI 53.x: vercel env add --value Silently Stores Empty String (Regression)",
+    "description": "Fix Vercel env add storing empty value instead of provided --value Includes evidence for Vercel troubleshooting demand.",
+    "category": "Deployment",
+    "technology": "Vercel",
+    "error_signature": "vercel env add --value silently stored as empty string",
+    "search_intent": "Fix Vercel env add storing empty value instead of provided --value",
+    "common_causes": [
+      "Vercel CLI 53.x silently drops environment variable values while reporting success. This is a data-loss regression that breaks deployments when env vars are critical (API keys, database URLs). Developers discover it only when deployments fail at runtime.",
+      "vercel env add NAME production --sensitive --yes --value <value> returns success message but stores empty value. Regression in CLI 53.x affects all --value writes. Separate --sensitive regression since 50.5.0."
+    ],
+    "quick_fix": "Check the build output, project root, and deployment platform configuration before redeploying.",
+    "related_errors": [
+      "Vercel env pull shows empty values",
+      "Vercel deployment missing environment variables"
+    ]
+  },
+  {
+    "slug": "claude-code-file-has-not-been-read-yet-case-sensitive-path-mismatch-on-windows",
+    "title": "Claude Code Read/Edit Tracker Case-Sensitive on Windows: File Has Not Been Read Yet Error",
+    "description": "Fix Claude Code File has not been read yet error caused by case-sensitive path comparison on Windows Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "File has not been read yet (case-sensitive path mismatch on Windows)",
+    "search_intent": "Fix Claude Code File has not been read yet error caused by case-sensitive path comparison on Windows",
+    "common_causes": [
+      "On Windows, Claude Code's internal file tracker uses case-sensitive string comparison. Paths like c:\\Users\\...\\foo.md and C:\\Users\\...\\foo.md are treated as different files, causing spurious 'File has not been read yet' errors that block edits.",
+      "Harness internal 'this file has been read' tracker uses case-sensitive string comparison on file paths. Windows filesystems are case-insensitive, so two paths resolving to the same file are treated as different. Causes repeated edit failures."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Claude Code file not found Windows",
+      "Claude Code path case sensitivity bug"
+    ]
+  },
+  {
+    "slug": "vercel-vercelresponse-type-declares-res-status-res-json-absent-in-rust-runtime",
+    "title": "Vercel @vercel/node: TypeScript Types Declare Express Helpers Absent in Rust Node Runtime",
+    "description": "Fix Vercel @vercel/node res.status res.json not a function error in new Rust runtime Includes evidence for Vercel troubleshooting demand.",
+    "category": "Deployment",
+    "technology": "Vercel",
+    "error_signature": "VercelResponse type declares res.status() res.json() absent in Rust runtime",
+    "search_intent": "Fix Vercel @vercel/node res.status res.json not a function error in new Rust runtime",
+    "common_causes": [
+      "@vercel/node's TypeScript types declare Express-style helpers (res.status(), res.json(), res.send()) that don't exist in Vercel's new Rust-based Node runtime. Code compiles fine but crashes at runtime with TypeError. TypeScript developers can't catch this at compile time.",
+      "VercelResponse type declares res.status(), res.json(), res.send() but these helpers are not attached in the Rust Node runtime (/opt/rust/nodejs.js). Stack traces show method undefined at runtime despite TypeScript compilation succeeding."
+    ],
+    "quick_fix": "Check the build output, project root, and deployment platform configuration before redeploying.",
+    "related_errors": [
+      "Vercel res.status is not a function",
+      "Vercel Rust runtime missing Express methods"
+    ]
+  },
+  {
+    "slug": "claude-code-claude-agents-breaks-with-can-t-access-this-organization-after-auto-update-to-2-1-132",
+    "title": "Claude Code: claude agents Fails with Can't Access This Organization After Auto-Update",
+    "description": "Fix Claude Code claude agents 'Can't access this organization' error after auto-update Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "claude agents breaks with 'Can't access this organization' after auto-update to 2.1.132",
+    "search_intent": "Fix Claude Code claude agents 'Can't access this organization' error after auto-update",
+    "common_causes": [
+      "After Claude Code auto-updates to version 2.1.132, the 'claude agents' command breaks with an organization access error. This blocks team collaboration features that organizations depend on.",
+      "After auto-update to Claude Code 2.1.132, 'claude agents' command fails with 'Can't access this organization'. Previously worked. Blocks team agent collaboration features."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Claude Code organization permission denied",
+      "Claude Code auto-update breaks auth"
+    ]
+  },
+  {
+    "slug": "pnpm-err-pnpm-ignored-builds-esbuild-build-script-blocked-during-shadcn-init",
+    "title": "shadcn init Fails on Vite Template: ERR_PNPM_IGNORED_BUILDS esbuild Blocked",
+    "description": "Fix shadcn init ERR_PNPM_IGNORED_BUILDS esbuild build script blocked on Vite template Includes evidence for pnpm troubleshooting demand.",
+    "category": "npm",
+    "technology": "pnpm",
+    "error_signature": "ERR_PNPM_IGNORED_BUILDS: esbuild build script blocked during shadcn init",
+    "search_intent": "Fix shadcn init ERR_PNPM_IGNORED_BUILDS esbuild build script blocked on Vite template",
+    "common_causes": [
+      "Running shadcn init with Vite template via pnpm dlx fails during internal pnpm install because esbuild's build script is blocked by pnpm 11's security policy. This is the first interaction new projects have with shadcn/ui.",
+      "shadcn init with Vite template fails with ERR_PNPM_IGNORED_BUILDS because esbuild postinstall script is blocked by pnpm 11's default security policy. shadcn/ui is a widely-used component library."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "shadcn init Vite pnpm error",
+      "pnpm 11 esbuild blocked build"
+    ]
+  },
+  {
+    "slug": "litellm-postgreserror-deadlock-detected-at-insert-into-endusertable",
+    "title": "LiteLLM PostgresError Deadlock Detected at INSERT INTO EndUserTable ON CONFLICT",
+    "description": "Fix LiteLLM Postgres deadlock detected error in EndUserTable Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "PostgresError: deadlock detected at INSERT INTO EndUserTable",
+    "search_intent": "Fix LiteLLM Postgres deadlock detected error in EndUserTable",
+    "common_causes": [
+      "LiteLLM proxy hits daily Postgres deadlocks on the EndUserTable INSERT, causing Slack alerts and potential request failures. This affects production LiteLLM deployments with PostgreSQL backends.",
+      "Approximately once a day, LiteLLM triggers a 'deadlock detected' in Postgres during INSERT INTO EndUserTable ON CONFLICT SET spend. Two concurrent processes conflict on the same rows."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "LiteLLM Postgres connection pool exhaustion",
+      "LiteLLM database lock timeout"
+    ]
+  },
+  {
+    "slug": "ollama-ggml-assert-buffer-failed-during-loading-of-multimodal-model",
+    "title": "Ollama GGML_ASSERT(buffer) Failed: CUDA OOM When Loading Multimodal Models like gemma4:26b",
+    "description": "Fix Ollama GGML_ASSERT(buffer) failed crash when loading multimodal models with CUDA Includes evidence for Ollama troubleshooting demand.",
+    "category": "Ollama",
+    "technology": "Ollama",
+    "error_signature": "GGML_ASSERT(buffer) failed during loading of multimodal model",
+    "search_intent": "Fix Ollama GGML_ASSERT(buffer) failed crash when loading multimodal models with CUDA",
+    "common_causes": [
+      "Ollama crashes with GGML_ASSERT when loading large multimodal models (gemma4:26b) even when GPU layers appear to load successfully. The crash happens during vision component initialization, not main model loading. Users with adequate VRAM still hit this.",
+      "On Ollama 0.30.0-RC15, loading gemma4:26b crashes with GGML_ASSERT(buffer) failed. Main LLM layers (31/31) offload to GPU successfully, but crash occurs during vision component initialization."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Ollama CUDA out of memory",
+      "Ollama multimodal model loading crash"
+    ]
+  },
+  {
+    "slug": "litellm-litellm-http-429-budget-exceeded-for-get-v1-models",
+    "title": "LiteLLM Budget Enforcement Blocks Model Discovery: HTTP 429 for GET /v1/models",
+    "description": "Fix LiteLLM 429 Budget Exceeded blocking GET /v1/models endpoint Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "LiteLLM HTTP 429 Budget Exceeded for GET /v1/models",
+    "search_intent": "Fix LiteLLM 429 Budget Exceeded blocking GET /v1/models endpoint",
+    "common_causes": [
+      "When a team/org/user budget is exhausted in LiteLLM, the proxy returns HTTP 429 Budget Exceeded even for model discovery endpoints like GET /v1/models. This prevents clients from discovering available free models when budgets are exhausted.",
+      "LiteLLM proxy returns HTTP 429 Budget Exceeded for model discovery endpoints (GET /v1/models) when any budget is exhausted. Free models should still be discoverable. Breaks client-side model selection logic."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "LiteLLM budget exceeded error",
+      "LiteLLM 429 rate limit models endpoint"
+    ]
+  },
+  {
+    "slug": "ollama-timed-out-waiting-for-llama-server-to-start",
+    "title": "Ollama 0.30.0-rc15 ROCm: 500 Internal Server Error Timed Out Waiting for llama-server",
+    "description": "Fix Ollama 500 timed out waiting for llama-server to start on ROCm after upgrade Includes evidence for Ollama troubleshooting demand.",
+    "category": "Ollama",
+    "technology": "Ollama",
+    "error_signature": "timed out waiting for llama-server to start",
+    "search_intent": "Fix Ollama 500 timed out waiting for llama-server to start on ROCm after upgrade",
+    "common_causes": [
+      "After upgrading Ollama Docker container from 0.21.1-rocm to 0.30.0-rc15-rocm, requests time out after 5 minutes with 500 error. The llama-server never starts. This breaks AMD GPU inference workflows.",
+      "After upgrading Docker container from ollama/ollama:0.21.1-rocm to 0.30.0-rc15-rocm, running any model produces '500 Internal Server Error: timed out waiting for llama-server to start' after 5 minutes."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Ollama ROCm GPU not detected",
+      "Ollama llama-server startup timeout"
+    ]
+  },
+  {
+    "slug": "pnpm-err-pnpm-missing-time-the-metadata-of-undici-is-missing-the-time-field",
+    "title": "pnpm ERR_PNPM_MISSING_TIME: Package Metadata Missing time Field Causes Build Failure",
+    "description": "Fix pnpm ERR_PNPM_MISSING_TIME metadata missing time field build failure Includes evidence for pnpm troubleshooting demand.",
+    "category": "npm",
+    "technology": "pnpm",
+    "error_signature": "ERR_PNPM_MISSING_TIME: The metadata of undici is missing the 'time' field",
+    "search_intent": "Fix pnpm ERR_PNPM_MISSING_TIME metadata missing time field build failure",
+    "common_causes": [
+      "pnpm builds fail with ERR_PNPM_MISSING_TIME when package registry metadata is incomplete. The 'time' field is required by pnpm's default resolution mode. This affects CI/CD pipelines and local builds.",
+      "Build fails with ERR_PNPM_MISSING_TIME: The metadata of undici is missing the 'time' field, caused by incomplete package metadata in the registry. Workaround: --resolution-mode=highest."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "pnpm install metadata error",
+      "pnpm resolution mode registry issue"
+    ]
   }
 ]
