@@ -13021,5 +13021,101 @@
     "related_errors": [
       "Deployment"
     ]
+  },
+  {
+    "slug": "claude-code-mcp-proxy-surfaces-32600-invalid-content-from-server-instead-of-reinitializing-on-session-404",
+    "title": "Claude Code MCP proxy returns -32600 Invalid content from server on session-404",
+    "description": "Fix MCP proxy -32600 invalid content error in Claude Code when session expires or server returns unexpected response Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "MCP proxy surfaces `-32600 \"Invalid content from server\"` instead of reinitializing on session-404",
+    "search_intent": "Fix MCP proxy -32600 invalid content error in Claude Code when session expires or server returns unexpected response",
+    "common_causes": [
+      "GitHub issue anthropics/claude-code#59410 (2026-05-15) reports MCP proxy returning -32600 JSON-RPC error on session-404 instead of gracefully reinitializing. Bug with has-repro label. Category mapping: Claude Code MCP errors → AI Coding Tools."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "claude-code-claude-agents-allow-dangerously-skip-permissions-defaults-to-bypass-instead-of-allowing-it",
+    "title": "Claude Code --allow-dangerously-skip-permissions defaults to bypass instead of prompting",
+    "description": "Fix Claude Code dangerously-skip-permissions flag not working as expected, bypassing permission prompts without user consent Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "`claude agents --allow-dangerously-skip-permissions` defaults to bypass instead of allowing it",
+    "search_intent": "Fix Claude Code dangerously-skip-permissions flag not working as expected, bypassing permission prompts without user consent",
+    "common_causes": [
+      "GitHub issue anthropics/claude-code#59406 (2026-05-15) with has-repro and area:permissions labels. The flag is supposed to allow but instead defaults to bypass, creating a security concern for enterprise users. Category: Claude Code permissions → AI Coding Tools."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "claude-code-background-sessions-disappearing-and-daemon-reconnect-failing-after-macos-sleep-wake",
+    "title": "Claude Code background agents crash-loop after macOS sleep/wake",
+    "description": "Fix Claude Code background agents crash-looping after Mac sleep/wake cycle, daemon not detecting clock jumps Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "background sessions disappearing and daemon reconnect failing after macOS sleep/wake",
+    "search_intent": "Fix Claude Code background agents crash-looping after Mac sleep/wake cycle, daemon not detecting clock jumps",
+    "common_causes": [
+      "Claude Code changelog v2.1.142 fixed: background sessions disappearing and daemon reconnect failing after macOS sleep/wake — the daemon now detects clock jumps instead of treating them as elapsed idle time. Also fixed daemon not exiting cleanly after binary upgrade causing crash-loop. Category: Claude Code background/daemon errors → AI Coding Tools."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "anthropic-api-anthropic-sdk-does-not-map-http-413-payload-too-large-or-529-overloaded-to-typed-exceptions-on-bedrock-vertex",
+    "title": "Anthropic SDK fails to map 413 and 529 HTTP status codes to typed exceptions",
+    "description": "Fix Anthropic SDK throwing generic errors for 413 and 529 HTTP status codes instead of typed exceptions on Bedrock/Vertex backends Includes evidence for Anthropic API troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Anthropic API",
+    "error_signature": "Anthropic SDK does not map HTTP 413 (payload too large) or 529 (overloaded) to typed exceptions on Bedrock/Vertex",
+    "search_intent": "Fix Anthropic SDK throwing generic errors for 413 and 529 HTTP status codes instead of typed exceptions on Bedrock/Vertex backends",
+    "common_causes": [
+      "GitHub PR anthropics/anthropic-sdk-python#1544 (2026-05-14) maps 413/529 to typed exceptions on Bedrock and Vertex backends. Without this fix, developers get untyped HTTP errors instead of actionable OverloadedError or similar. Category: Anthropic API error handling → Anthropic API."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "Anthropic API"
+    ]
+  },
+  {
+    "slug": "claude-code-mcp-tool-timeout-not-raising-the-per-request-fetch-timeout-for-remote-http-and-sse-mcp-servers-capped-at-60-seconds",
+    "title": "Claude Code MCP_TOOL_TIMEOUT capped at 60 seconds regardless of configured value",
+    "description": "Fix Claude Code MCP tool timeout being ignored, remote MCP server calls timing out at 60s even with higher MCP_TOOL_TIMEOUT configured Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "MCP_TOOL_TIMEOUT not raising the per-request fetch timeout for remote HTTP and SSE MCP servers, capped at 60 seconds",
+    "search_intent": "Fix Claude Code MCP tool timeout being ignored, remote MCP server calls timing out at 60s even with higher MCP_TOOL_TIMEOUT configured",
+    "common_causes": [
+      "Claude Code changelog v2.1.142 fixed: MCP_TOOL_TIMEOUT not raising the per-request fetch timeout for remote HTTP and SSE MCP servers, which capped tool calls at 60 seconds regardless of the configured value. Directly impacts paid users with long-running MCP tools. Category: Claude Code MCP timeout → AI Coding Tools."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "vercel-vercel-dev-missing-host-origin-validation-dns-rebinding-attack-vector",
+    "title": "Vercel dev missing Host header validation enables DNS-rebinding attacks",
+    "description": "Fix Vercel dev server missing Host header validation that allows DNS-rebinding attacks on local development environments Includes evidence for Vercel troubleshooting demand.",
+    "category": "Deployment",
+    "technology": "Vercel",
+    "error_signature": "vercel dev missing Host/Origin validation — DNS-rebinding attack vector",
+    "search_intent": "Fix Vercel dev server missing Host header validation that allows DNS-rebinding attacks on local development environments",
+    "common_causes": [
+      "GitHub issue vercel/vercel#16332 (2026-05-14) and PR vercel/vercel#16340 report missing Host header validation in vercel dev, enabling DNS-rebinding attacks. Security vulnerability affecting local dev environments. Category: Vercel dev server security → Deployment."
+    ],
+    "quick_fix": "Check the build output, project root, and deployment platform configuration before redeploying.",
+    "related_errors": [
+      "Deployment"
+    ]
   }
 ]
