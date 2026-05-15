@@ -12011,5 +12011,138 @@
       "Next.js Turbopack pino external alias not resolvable",
       "Next.js build emits page.js with missing chunks"
     ]
+  },
+  {
+    "slug": "anthropic-api-python-sdk-remoteprotocolerror-stream-dropped-mid-request-during-long-code-execution-plus-skills-runs",
+    "title": "Anthropic Python SDK Streaming Drops Mid-Stream with RemoteProtocolError on Long Code Execution Runs",
+    "description": "Fix Anthropic API streaming connection dropping during long-running code execution or skills runs Includes evidence for Anthropic API, Python SDK troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Anthropic API, Python SDK",
+    "error_signature": "RemoteProtocolError: Stream dropped mid-request during long code_execution + skills runs",
+    "search_intent": "Fix Anthropic API streaming connection dropping during long-running code execution or skills runs",
+    "common_causes": [
+      "Developers using Anthropic code execution features experience silent stream drops on long operations, losing partial results with no retry mechanism",
+      "Confirmed bug in anthropic-sdk-python: streaming /v1/messages endpoint drops connection mid-stream during extended code_execution + skills runs. No graceful error handling."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Anthropic API 529 overloaded error",
+      "Anthropic API timeout on long requests",
+      "Anthropic API SSE connection reset"
+    ]
+  },
+  {
+    "slug": "anthropic-api-python-sdk-attributeerror-nonetype-object-has-no-attribute-caused-by-streaming-sse-event-errors",
+    "title": "Anthropic Python SDK Streaming SSE Event Causes AttributeError NoneType Crash",
+    "description": "Fix AttributeError NoneType crash when Anthropic streaming SSE events contain malformed data Includes evidence for Anthropic API, Python SDK troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Anthropic API, Python SDK",
+    "error_signature": "AttributeError: 'NoneType' object has no attribute — caused by streaming SSE event errors",
+    "search_intent": "Fix AttributeError NoneType crash when Anthropic streaming SSE events contain malformed data",
+    "common_causes": [
+      "Streaming responses from Anthropic API occasionally produce SSE events that crash the Python SDK with NoneType attribute errors, breaking production pipelines",
+      "Streaming SSE events from Anthropic API can cause AttributeError: NoneType object has no attribute errors in the Python SDK when event data is malformed."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Anthropic API streaming connection reset",
+      "Anthropic API 500 internal server error",
+      "Anthropic API rate limit 429"
+    ]
+  },
+  {
+    "slug": "openai-api-python-sdk-openai-python-sdk-vector-stores-files-upload-and-poll-hangs-indefinitely-with-file-status-stuck-at-in-progress",
+    "title": "OpenAI Python SDK vector_stores upload_and_poll Hangs Indefinitely on Stuck Files",
+    "description": "Fix OpenAI vector_stores upload_and_poll hanging forever when file processing is stuck at in_progress Includes evidence for OpenAI API, Python SDK troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API, Python SDK",
+    "error_signature": "OpenAI Python SDK vector_stores.files.upload_and_poll() hangs indefinitely with file status stuck at in_progress",
+    "search_intent": "Fix OpenAI vector_stores upload_and_poll hanging forever when file processing is stuck at in_progress",
+    "common_causes": [
+      "Developers using OpenAI Assistants API find upload_and_poll() blocks indefinitely when file status remains stuck at in_progress, requiring manual cancellation",
+      "vector_stores.files.upload_and_poll() has no timeout and hangs indefinitely when file processing status is stuck at in_progress. No built-in retry or timeout mechanism."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "OpenAI API timeout error",
+      "OpenAI Assistants API file upload failed",
+      "OpenAI vector store file processing error"
+    ]
+  },
+  {
+    "slug": "ollama-ollama-v1-chat-completions-returns-400-unexpected-eof-intermittently-for-cloud-proxy-models",
+    "title": "Ollama Chat Completions API Returns 400 Unexpected EOF for Cloud Proxy Models",
+    "description": "Fix Ollama 400 unexpected EOF error when using cloud proxy models via /v1/chat/completions Includes evidence for Ollama troubleshooting demand.",
+    "category": "Ollama",
+    "technology": "Ollama",
+    "error_signature": "Ollama /v1/chat/completions returns 400 'unexpected EOF' intermittently for cloud proxy models",
+    "search_intent": "Fix Ollama 400 unexpected EOF error when using cloud proxy models via /v1/chat/completions",
+    "common_causes": [
+      "Developers using Ollama as a local proxy for cloud models encounter intermittent 400 errors with unexpected EOF, breaking API compatibility layer",
+      "Ollama /v1/chat/completions endpoint intermittently returns 400 unexpected EOF when proxying cloud models, affecting OpenAI-compatible API consumers."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Ollama connection refused error",
+      "Ollama model not found error",
+      "Ollama 500 internal server error"
+    ]
+  },
+  {
+    "slug": "litellm-redis-user-api-key-cache-deserialization-always-fails-for-team-scoped-keys",
+    "title": "LiteLLM Redis User API Key Cache Deserialization Fails for Team-Scoped Keys",
+    "description": "Fix LiteLLM Redis cache deserialization error for team-scoped API keys requiring user_id field Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "Redis user_api_key_cache deserialization always fails for team-scoped keys",
+    "search_intent": "Fix LiteLLM Redis cache deserialization error for team-scoped API keys requiring user_id field",
+    "common_causes": [
+      "LiteLLM proxy deployments using Redis caching break when team-scoped keys are cached because deserialization requires LiteLLM_UserTable.user_id which is missing",
+      "Redis user_api_key_cache deserialization fails for team-scoped keys because LiteLLM_UserTable.user_id is required but not populated for team keys."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "LiteLLM Redis connection error",
+      "LiteLLM cache miss causing duplicate key creation",
+      "LiteLLM team management error"
+    ]
+  },
+  {
+    "slug": "cloudflare-workers-cloudflare-workers-containers-deploy-gives-opaque-403-authentication-error-on-free-plan",
+    "title": "Cloudflare Workers Containers Deploy Returns Opaque 403 Authentication Error on Free Plan",
+    "description": "Fix Cloudflare Workers Containers 403 Authentication error when deploying on Free plan Includes evidence for Cloudflare Workers troubleshooting demand.",
+    "category": "Cloudflare",
+    "technology": "Cloudflare Workers",
+    "error_signature": "Cloudflare Workers Containers deploy gives opaque 403 Authentication error on Free plan",
+    "search_intent": "Fix Cloudflare Workers Containers 403 Authentication error when deploying on Free plan",
+    "common_causes": [
+      "Developers trying Cloudflare Containers get misleading 403 Authentication error when the real issue is Free plan limitation, wasting debugging time",
+      "Containers deploy returns opaque 403 Authentication error on Free plan accounts. Error message misleadingly suggests auth issue rather than plan limitation."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "Cloudflare Workers deployment failed",
+      "Cloudflare Workers 403 forbidden",
+      "Cloudflare Workers paid plan required"
+    ]
+  },
+  {
+    "slug": "openai-api-python-sdk-openai-python-sdk-background-response-failures-lack-stable-code-name-mapping-to-exception-class",
+    "title": "OpenAI Python SDK Background Responses Fail Without Stable Error Code or Exception Mapping",
+    "description": "Fix OpenAI background response failures that lack stable error codes for programmatic exception handling Includes evidence for OpenAI API, Python SDK troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API, Python SDK",
+    "error_signature": "OpenAI Python SDK background response failures lack stable code/name mapping to exception class",
+    "search_intent": "Fix OpenAI background response failures that lack stable error codes for programmatic exception handling",
+    "common_causes": [
+      "OpenAI background response API failures produce errors without stable code/name fields, making it impossible to catch specific exceptions programmatically",
+      "Background response failures in OpenAI Python SDK lack stable code or name fields that map to exception classes, forcing developers to parse error messages."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "OpenAI API rate limit error",
+      "OpenAI API 500 internal server error",
+      "OpenAI API timeout error"
+    ]
   }
 ]
