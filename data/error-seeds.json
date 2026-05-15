@@ -13533,5 +13533,101 @@
     "related_errors": [
       "Cloudflare"
     ]
+  },
+  {
+    "slug": "github-actions-rest-api-get-repos-owner-repo-actions-runners-runner-id-returns-busy-false-while-runner-is-actively-executing-a-job",
+    "title": "GitHub Actions Self-Hosted Runner busy State Desync Causes Auto-Scaler to Kill Running Jobs",
+    "description": "Fix GitHub Actions self-hosted runner being terminated mid-job by auto-scaler due to incorrect busy state Includes evidence for GitHub Actions troubleshooting demand.",
+    "category": "GitHub Actions",
+    "technology": "GitHub Actions",
+    "error_signature": "REST API GET /repos/{owner}/{repo}/actions/runners/{runner_id} returns busy: false while runner is actively executing a job",
+    "search_intent": "Fix GitHub Actions self-hosted runner being terminated mid-job by auto-scaler due to incorrect busy state",
+    "common_causes": [
+      "GitHub issue actions/runner#4422 (May 14, 2026): Non-ephemeral self-hosted runners on AWS show busy:false in REST API while actively executing jobs. Auto-scaling Lambda polls REST API, sees idle, terminates instance, killing the running job. Broker knows runner is busy but REST API doesn't. Category: GitHub Actions (CI/CD infrastructure)."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "GitHub Actions"
+    ]
+  },
+  {
+    "slug": "cloudflare-a-request-to-the-cloudflare-api-accounts-account-id-workers-scripts-name-versions-version-id-failed-this-worker-does-not-exist-on-your-account-code-10007",
+    "title": "Cloudflare Wrangler Container App Registration Fails with Error 10007 on Dispatch Namespace",
+    "description": "Fix Cloudflare Workers for Platforms container deployment error 10007 with dispatch namespace Includes evidence for Cloudflare troubleshooting demand.",
+    "category": "Cloudflare",
+    "technology": "Cloudflare",
+    "error_signature": "A request to the Cloudflare API (/accounts/{ACCOUNT_ID}/workers/scripts/{name}/versions/{VERSION_ID}) failed. This Worker does not exist on your account. [code: 10007]",
+    "search_intent": "Fix Cloudflare Workers for Platforms container deployment error 10007 with dispatch namespace",
+    "common_causes": [
+      "GitHub issue cloudflare/workers-sdk#13936 (May 15, 2026): wrangler deploy --dispatch-namespace for Workers with containers fails because container-application registration targets /workers/scripts/ instead of /workers/dispatch/namespaces/{ns}/scripts/. Image builds and pushes succeed but registration fails with 404/10007. Category: Cloudflare (Workers SDK)."
+    ],
+    "quick_fix": "Check the build output, project root, and deployment platform configuration before redeploying.",
+    "related_errors": [
+      "Cloudflare"
+    ]
+  },
+  {
+    "slug": "vercel-middleware-invocation-failed-cannot-find-module-var-task-node-modules-swc-helpers-esm-interop-require-default-js",
+    "title": "How to Fix Vercel MIDDLEWARE_INVOCATION_FAILED Cannot Find Module @swc/helpers in Next.js 16",
+    "description": "Fix Vercel deployment failure with MIDDLEWARE_INVOCATION_FAILED and missing @swc/helpers module in Next.js 16 middleware Includes evidence for Vercel troubleshooting demand.",
+    "category": "Deployment",
+    "technology": "Vercel",
+    "error_signature": "MIDDLEWARE_INVOCATION_FAILED: Cannot find module '/var/task/node_modules/@swc/helpers/esm/_interop_require_default.js'",
+    "search_intent": "Fix Vercel deployment failure with MIDDLEWARE_INVOCATION_FAILED and missing @swc/helpers module in Next.js 16 middleware",
+    "common_causes": [
+      "GitHub issue vercel/next.js#93852 (May 14, 2026): Next.js 16.2.6 with proxy.ts middleware and top-level @sentry/nextjs import causes MIDDLEWARE_INVOCATION_FAILED on Vercel deploy. Local build passes, Vercel runtime fails. The @swc/helpers ESM path exists in node_modules but Vercel's runtime resolver cannot find it. Removing Sentry import fixes deploy. Category: Deployment (Vercel is the deployment platform)."
+    ],
+    "quick_fix": "Check the build output, project root, and deployment platform configuration before redeploying.",
+    "related_errors": [
+      "Deployment"
+    ]
+  },
+  {
+    "slug": "github-copilot-proxiedresponseerror-fetchresponseerror-http-200-response-does-not-appear-to-originate-from-github-is-a-proxy-or-firewall-intercepting-this-request",
+    "title": "GitHub Copilot HTTP 200 Response Does Not Appear to Originate from GitHub Authentication Error",
+    "description": "Fix GitHub Copilot authentication failure with HTTP 200 response origin error on macOS Includes evidence for GitHub Copilot troubleshooting demand.",
+    "category": "GitHub Copilot",
+    "technology": "GitHub Copilot",
+    "error_signature": "ProxiedResponseError [FetchResponseError]: HTTP 200 response does not appear to originate from GitHub. Is a proxy or firewall intercepting this request?",
+    "search_intent": "Fix GitHub Copilot authentication failure with HTTP 200 response origin error on macOS",
+    "common_causes": [
+      "GitHub issues github/copilot.vim#282 and #283 (May 8-10, 2026): Copilot language server throws ProxiedResponseError during auth/embedding type fetch even without proxy configured. Related to npx upgrade (11.12.1) and response content-type validation. Affects Neovim + copilot.vim and Zed on macOS. Category: GitHub Copilot (subscription auth failure)."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "GitHub Copilot"
+    ]
+  },
+  {
+    "slug": "vercel-an-unexpected-error-occurred-when-running-this-build-this-may-be-a-transient-issue-please-try-rebuilding-your-project",
+    "title": "Vercel Services-Mode Deploy Fails When Next.js Middleware Is Present",
+    "description": "Fix Vercel deployment failure in services-mode (experimentalServices) when Next.js middleware.ts is present Includes evidence for Vercel troubleshooting demand.",
+    "category": "Deployment",
+    "technology": "Vercel",
+    "error_signature": "An unexpected error occurred when running this build. This may be a transient issue, please try rebuilding your project.",
+    "search_intent": "Fix Vercel deployment failure in services-mode (experimentalServices) when Next.js middleware.ts is present",
+    "common_causes": [
+      "GitHub issue vercel/vercel#16296 (May 11, 2026): With experimentalServices enabled, any middleware.ts triggers deterministic deploy failure at 'Deploying outputs...' stage. Removing middleware.ts fixes deploy. Root cause: service-route-ownership.ts rewrites middleware route src with negative lookaheads but doesn't exempt middleware routes. Category: Deployment (Vercel deployment pipeline)."
+    ],
+    "quick_fix": "Check the build output, project root, and deployment platform configuration before redeploying.",
+    "related_errors": [
+      "Deployment"
+    ]
+  },
+  {
+    "slug": "litellm-error-transforming-openrouter-image-generation-response-2-validation-errors-for-imageusage-output-tokens-input-should-be-a-valid-integer-got-a-number-with-a-fractional-part-type-int-from-float-input-value-14417-92",
+    "title": "LiteLLM OpenRouter Image Generation Fails with ImageUsage Validation Error (int_from_float)",
+    "description": "Fix LiteLLM OpenRouter image generation failure with ImageUsage Pydantic validation error Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "Error transforming OpenRouter image generation response: 2 validation errors for ImageUsage output_tokens: Input should be a valid integer, got a number with a fractional part [type=int_from_float, input_value=14417.92]",
+    "search_intent": "Fix LiteLLM OpenRouter image generation failure with ImageUsage Pydantic validation error",
+    "common_causes": [
+      "GitHub issue BerriAI/litellm#28001 (May 15, 2026): When generating images via OpenRouter through dockerized LiteLLM, the response contains fractional token counts (float) but ImageUsage Pydantic model expects integers. Causes APIError for all OpenRouter image generation requests. Category: LiteLLM (proxy/model routing layer)."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "LiteLLM"
+    ]
   }
 ]
