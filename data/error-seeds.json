@@ -11885,5 +11885,131 @@
       "Ollama GPU memory error",
       "Qwen2.5 compatibility Ollama"
     ]
+  },
+  {
+    "slug": "litellm-litellm-azure-oai-auth-broken-in-1-84-0-with-enable-azure-ad-token-refresh",
+    "title": "LiteLLM Azure OpenAI authentication broken after upgrade to 1.84.0",
+    "description": "fix LiteLLM Azure AD token refresh broken after upgrade Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "LiteLLM Azure OAI Auth Broken in 1.84.0 with enable_azure_ad_token_refresh",
+    "search_intent": "fix LiteLLM Azure AD token refresh broken after upgrade",
+    "common_causes": [
+      "Breaking change in production proxy. Teams using Azure AD token refresh for OpenAI models lose all authentication on upgrade. Affects enterprise deployments with managed identities.",
+      "Upgrading from 1.84.0.rc.1 to 1.84.0 breaks Azure AD token refresh for OAI models. `enable_azure_ad_token_refresh: true` config causes auth failures. Regression confirmed across multiple users."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "LiteLLM 429 rate limit error leaks token hash",
+      "LiteLLM Azure gpt-image-2 edit broken"
+    ]
+  },
+  {
+    "slug": "claude-code-claude-code-quota-tracking-bug-usage-percentage-increases-without-active-tasks",
+    "title": "Claude Code usage quota increases with no active tasks — serious usage tracking bug",
+    "description": "fix Claude Code usage quota increasing without tasks Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Claude Code quota tracking bug: usage percentage increases without active tasks",
+    "search_intent": "fix Claude Code usage quota increasing without tasks",
+    "common_causes": [
+      "Users see quota jump from partial usage to 100% with no running tasks. Cannot use Claude Code at all. Direct billing/usage impact on paid subscribers.",
+      "Sonnet-only mode shows 23% usage but cannot use Claude. Separate report: quota jumped from 64% to 100% with no active tasks. Appears to be a background billing/tracking bug in the quota system."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "Claude Code thinking content invisible Opus 4.7",
+      "Claude Code unhandled case object Object overlay crash"
+    ]
+  },
+  {
+    "slug": "ollama-500-internal-server-error-unable-to-load-model-path",
+    "title": "Ollama 500 Internal Server Error unable to load model after pull",
+    "description": "fix ollama 500 error unable to load model after successful pull Includes evidence for Ollama troubleshooting demand.",
+    "category": "Ollama",
+    "technology": "Ollama",
+    "error_signature": "500 Internal Server Error: unable to load model: <path>",
+    "search_intent": "fix ollama 500 error unable to load model after successful pull",
+    "common_causes": [
+      "Model downloads successfully but fails on first inference with a 500 error pointing to blob path. Common with large models (gemma4, 120B+). Developers waste time re-downloading or troubleshooting disk/RAM issues.",
+      "User downloaded huihui_ai/gemma-4-abliterated:e4b successfully but got 500 on first use. Same pattern with gemma4:e2b/e4b on Apple M5 (#16116). Root cause varies: CUDA OOM, incompatible quantization, or missing runner support."
+    ],
+    "quick_fix": "Verify the model name, local service connectivity, and network access before retrying the model pull.",
+    "related_errors": [
+      "Ollama gemma4 exit status 2 crash",
+      "Ollama GGML_ASSERT buffer failed CUDA OOM"
+    ]
+  },
+  {
+    "slug": "claude-code-enoent-no-such-file-or-directory-lstat-drive-path",
+    "title": "Claude Code VS Code extension fails on UNC network paths with ENOENT",
+    "description": "fix Claude Code extension ENOENT error on network UNC paths Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "ENOENT: no such file or directory, lstat <drive>:\\<path>",
+    "search_intent": "fix Claude Code extension ENOENT error on network UNC paths",
+    "common_causes": [
+      "Corporate developers using network shares cannot use Claude Code at all. Extension crashes immediately on folder open. Cache corruption persists across reinstalls.",
+      "Claude Code 2.1.131 on Windows fails with ENOENT on UNC paths (e.g., \\\\server\\share). Attempts to resolve as mapped drive (G:\\Grupos) which doesn't exist. All workarounds fail including cache clear and reinstall."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Claude Code REPL crash TypeError Write tool long-path prefix",
+      "Claude Code Cowork Hyper-V Unavailable"
+    ]
+  },
+  {
+    "slug": "claude-code-claude-code-repl-crash-typeerror-from-url-constructor-with-long-path-prefix",
+    "title": "Claude Code Write tool crashes REPL on Windows long-path prefix paths",
+    "description": "fix Claude Code Write tool TypeError long-path prefix Windows Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Claude Code REPL crash: TypeError from URL constructor with \\\\?\\ long-path prefix",
+    "search_intent": "fix Claude Code Write tool TypeError long-path prefix Windows",
+    "common_causes": [
+      "Windows developers using extended-length path prefix (\\\\?\\) for deep directories hit unhandled TypeError crash. Entire REPL session lost. No recovery without restart.",
+      "Write tool receives path starting with \\\\?\\ (Windows long-path prefix). URL constructor throws TypeError. Unhandled exception crashes the REPL. Occurs in VS Code extension on Windows 11."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Claude Code ENOENT UNC network paths",
+      "Claude Code Cowork Hyper-V Unavailable 0x80070005"
+    ]
+  },
+  {
+    "slug": "cloudflare-workers-wrangler-dev-crashes-with-uncaught-emfile-too-many-open-files-when-assets-directory-exceeds-watcher-limit",
+    "title": "Cloudflare Wrangler dev crashes with EMFILE too many open files on large asset directories",
+    "description": "fix wrangler dev EMFILE too many open files error Includes evidence for Cloudflare Workers troubleshooting demand.",
+    "category": "Cloudflare",
+    "technology": "Cloudflare Workers",
+    "error_signature": "wrangler dev crashes with uncaught EMFILE: too many open files when assets directory exceeds watcher limit",
+    "search_intent": "fix wrangler dev EMFILE too many open files error",
+    "common_causes": [
+      "Projects with large static asset directories cause wrangler dev to crash with uncaught EMFILE rejection. File watcher hits OS limit. Common in image-heavy sites or monorepos.",
+      "wrangler 4.86.0 on macOS with assets directory exceeding watcher limit. Looping uncaught EMFILE rejection. No graceful fallback or retry. Developer must manually increase ulimit or restructure project."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Cloudflare wrangler deploy silently fails in CI",
+      "Cloudflare websocket connection fails persistently"
+    ]
+  },
+  {
+    "slug": "next-js-vercel-middleware-invocation-failed-cannot-find-module-swc-helpers-esm-interop-require-default-js",
+    "title": "Vercel deployment MIDDLEWARE_INVOCATION_FAILED with @swc/helpers module not found",
+    "description": "fix Vercel MIDDLEWARE_INVOCATION_FAILED cannot find module @swc/helpers Includes evidence for Next.js / Vercel troubleshooting demand.",
+    "category": "Deployment",
+    "technology": "Next.js / Vercel",
+    "error_signature": "MIDDLEWARE_INVOCATION_FAILED: Cannot find module @swc/helpers/esm/_interop_require_default.js",
+    "search_intent": "fix Vercel MIDDLEWARE_INVOCATION_FAILED cannot find module @swc/helpers",
+    "common_causes": [
+      "Deploying Next.js 16.2.x with proxy.ts middleware and Sentry import breaks Vercel deployment. Common stack (Next.js + Sentry) makes this widespread. Build succeeds locally but fails on Vercel.",
+      "Next.js 16.2.6 + proxy.ts middleware + @sentry/nextjs import triggers MIDDLEWARE_INVOCATION_FAILED. @swc/helpers/esm/_interop_require_default.js not found at runtime. Multiple duplicate reports. Closed as duplicate but root cause unresolved."
+    ],
+    "quick_fix": "Check the build output, project root, and deployment platform configuration before redeploying.",
+    "related_errors": [
+      "Next.js Turbopack pino external alias not resolvable",
+      "Next.js build emits page.js with missing chunks"
+    ]
   }
 ]
