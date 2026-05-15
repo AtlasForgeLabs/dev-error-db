@@ -13741,5 +13741,133 @@
     "related_errors": [
       "Cloud Platforms"
     ]
+  },
+  {
+    "slug": "anthropic-api-overloaded-error-anthropic-api-returns-529-or-503-when-claude-models-are-at-capacity",
+    "title": "Anthropic Claude API Overloaded Error 529 — Fix Guide",
+    "description": "Fix Anthropic API overloaded_error when Claude models are at capacity during paid API calls Includes evidence for Anthropic API troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Anthropic API",
+    "error_signature": "overloaded_error — Anthropic API returns 529 or 503 when Claude models are at capacity",
+    "search_intent": "Fix Anthropic API overloaded_error when Claude models are at capacity during paid API calls",
+    "common_causes": [
+      "Anthropic API returns overloaded_error (HTTP 529) when Claude models are at capacity. High-demand issue affecting paying API users. Well-known pattern in r/ClaudeAI and Anthropic community forums. Category: Anthropic API."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "Anthropic API"
+    ]
+  },
+  {
+    "slug": "anthropic-api-invocation-of-model-id-anthropic-claude-3-5-sonnet-20241022-v2-0-with-on-demand-throughput-isn-t-supported",
+    "title": "AWS Bedrock Claude Model Invocation Not Supported Error",
+    "description": "Fix AWS Bedrock ValidationException when invoking Anthropic Claude models — requires inference profile instead of direct model ID Includes evidence for Anthropic API troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Anthropic API",
+    "error_signature": "Invocation of model ID anthropic.claude-3-5-sonnet-20241022-v2:0 with on-demand throughput isn't supported",
+    "search_intent": "Fix AWS Bedrock ValidationException when invoking Anthropic Claude models — requires inference profile instead of direct model ID",
+    "common_causes": [
+      "Stack Overflow question 79428475 (17.6k views, score 4) reports AWS Bedrock raising ValidationException when invoking Claude Sonnet 3.5 v2 with direct model ID. Must use inference profile ARN. Category mapped to Anthropic API (Bedrock-specific Claude invocation error)."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Anthropic API"
+    ]
+  },
+  {
+    "slug": "github-actions-usr-bin-env-node-no-such-file-or-directory-error-process-completed-with-exit-code-127",
+    "title": "GitHub Actions Exit Code 127 — node Not Found on Self-Hosted Runners",
+    "description": "Fix GitHub Actions workflow failure on self-hosted runners where node binary is not found Includes evidence for GitHub Actions troubleshooting demand.",
+    "category": "GitHub Actions",
+    "technology": "GitHub Actions",
+    "error_signature": "/usr/bin/env: node: No such file or directory — Error: Process completed with exit code 127",
+    "search_intent": "Fix GitHub Actions workflow failure on self-hosted runners where node binary is not found",
+    "common_causes": [
+      "Stack Overflow question 71835469 (42k views, score 9) reports self-hosted runner workflows failing with exit code 127 when node is missing. High-traffic issue affecting paid teams using custom runners. Category: GitHub Actions."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "GitHub Actions"
+    ]
+  },
+  {
+    "slug": "litellm-litellm-authenticationerror-azureexception-authenticationerror-access-denied-due-to-invalid-subscription-key-or-wrong-api-endpoint",
+    "title": "LiteLLM Azure OpenAI Authentication Error 401 with DefaultAzureCredential",
+    "description": "Fix LiteLLM Azure OpenAI authentication error when using DefaultAzureCredential — works with direct OpenAI client but fails through LiteLLM proxy Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "litellm.AuthenticationError: AzureException AuthenticationError - Access denied due to invalid subscription key or wrong API endpoint",
+    "search_intent": "Fix LiteLLM Azure OpenAI authentication error when using DefaultAzureCredential — works with direct OpenAI client but fails through LiteLLM proxy",
+    "common_causes": [
+      "Stack Overflow question 79538205 (1.4k views, score 1) reports LiteLLM returning 401 when connecting to Azure OpenAI via DefaultAzureCredential. Same credentials work with openai.AzureOpenAI directly. Category: LiteLLM."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "LiteLLM"
+    ]
+  },
+  {
+    "slug": "vercel-sh-line-1-vercel-path0-node-modules-bin-vite-permission-denied-error-command-npm-run-build-exited-with-126",
+    "title": "Vercel Vite Permission Denied Error Exit Code 126 — Fix Guide",
+    "description": "Fix Vercel deployment failure caused by vite binary permission denied during build step Includes evidence for Vercel troubleshooting demand.",
+    "category": "Deployment",
+    "technology": "Vercel",
+    "error_signature": "sh: line 1: /vercel/path0/node_modules/.bin/vite: Permission denied — Error: Command \"npm run build\" exited with 126",
+    "search_intent": "Fix Vercel deployment failure caused by vite binary permission denied during build step",
+    "common_causes": [
+      "Stack Overflow question 79938410 (closed as duplicate, 97 views) reports Vite+React deploy to Vercel fails with permission denied on vite binary, exit code 126. Local build works. Category mapped to Deployment per approved category rules for Vercel."
+    ],
+    "quick_fix": "Check the build output, project root, and deployment platform configuration before redeploying.",
+    "related_errors": [
+      "Deployment"
+    ]
+  },
+  {
+    "slug": "github-actions-error-saving-credentials-mkdir-github-permission-denied",
+    "title": "GitHub Actions Error Saving Credentials mkdir Permission Denied",
+    "description": "Fix GitHub Actions Docker credential save failure caused by permission denied on /github directory Includes evidence for GitHub Actions troubleshooting demand.",
+    "category": "GitHub Actions",
+    "technology": "GitHub Actions",
+    "error_signature": "Error saving credentials: mkdir /github: permission denied",
+    "search_intent": "Fix GitHub Actions Docker credential save failure caused by permission denied on /github directory",
+    "common_causes": [
+      "Stack Overflow question 79228484 (194 views) reports GitHub Actions failing to save Docker credentials during ECR push with mkdir /github: permission denied. Affects CI/CD pipelines for paid AWS/GitHub teams. Category: GitHub Actions."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "GitHub Actions"
+    ]
+  },
+  {
+    "slug": "kubernetes-exec-usr-bin-dotnet-exec-format-error-crashloopbackoff",
+    "title": "Kubernetes CrashLoopBackOff — exec format error with Docker Multi-Platform Builds",
+    "description": "Fix Kubernetes CrashLoopBackOff caused by exec format error when Docker image built for wrong platform (ARM vs AMD) Includes evidence for Kubernetes troubleshooting demand.",
+    "category": "Cloud Platforms",
+    "technology": "Kubernetes",
+    "error_signature": "exec /usr/bin/dotnet: exec format error — CrashLoopBackOff",
+    "search_intent": "Fix Kubernetes CrashLoopBackOff caused by exec format error when Docker image built for wrong platform (ARM vs AMD)",
+    "common_causes": [
+      "Stack Overflow question 79870696 (107 views, score 2) reports AKS pods entering CrashLoopBackOff with exec format error — Docker image built with wrong platform architecture (ARM on AMD cluster). Common issue with multi-platform Docker builds. Category: Cloud Platforms."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Cloud Platforms"
+    ]
+  },
+  {
+    "slug": "ollama-server-error-post-http-localhost-11434-api-embeddings-resulted-in-a-500-internal-server-error-eof",
+    "title": "Ollama Embedding EOF Server Error 500 — Fix Guide",
+    "description": "Fix Ollama embedding endpoint returning 500 Internal Server Error with EOF when generating embeddings Includes evidence for Ollama troubleshooting demand.",
+    "category": "Ollama",
+    "technology": "Ollama",
+    "error_signature": "Server error: POST http://localhost:11434/api/embeddings resulted in a 500 Internal Server Error — EOF",
+    "search_intent": "Fix Ollama embedding endpoint returning 500 Internal Server Error with EOF when generating embeddings",
+    "common_causes": [
+      "Stack Overflow question 79837611 (912 views, unanswered) reports Ollama embedding API returning 500 with EOF error when building RAG system. Affects developers using Ollama for local embedding generation. Category: Ollama."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Ollama"
+    ]
   }
 ]
