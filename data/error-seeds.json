@@ -11226,5 +11226,149 @@
       "Ollama CUDA OOM loading model",
       "Ollama gemma4 multimodal crash"
     ]
+  },
+  {
+    "slug": "claude-code-claude-update-downloads-wrong-platform-binary-cli-completely-broken-after-upgrading-to-2-1-114-on-windows",
+    "title": "Fix claude update on Windows downloads wrong platform binary — Claude Code CLI broken after update",
+    "description": "Fix Claude Code CLI not working after update on Windows — wrong platform binary downloaded Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "claude update downloads wrong platform binary — CLI completely broken after upgrading to 2.1.114 on Windows",
+    "search_intent": "Fix Claude Code CLI not working after update on Windows — wrong platform binary downloaded",
+    "common_causes": [
+      "Running claude update on Windows downloads incompatible binary, completely breaking the CLI including the update command itself",
+      "After running claude update to upgrade from 2.1.112 to 2.1.114, the binary becomes corrupted or replaced with incompatible binary. Windows reports executable is not valid for this OS platform. CLI completely stops working."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Claude Code extension fails to install",
+      "Claude Code Invalid Version crash"
+    ]
+  },
+  {
+    "slug": "litellm-azure-oai-models-auth-broken-in-1-84-0-enable-azure-ad-token-refresh-true",
+    "title": "Fix Azure OpenAI authentication broken in LiteLLM 1.84.0 with Azure AD token refresh",
+    "description": "Fix Azure OpenAI model authentication failure in LiteLLM 1.84.0 Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "Azure OAI Models Auth Broken in 1.84.0 — enable_azure_ad_token_refresh: true",
+    "search_intent": "Fix Azure OpenAI model authentication failure in LiteLLM 1.84.0",
+    "common_causes": [
+      "LiteLLM proxy users on Azure OpenAI experience auth failures after upgrading to 1.84.0 — breaks production proxy deployments",
+      "Azure OAI Models authentication broken in LiteLLM 1.84.0 when using enable_azure_ad_token_refresh: true. Regression breaks existing proxy configurations."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "LiteLLM Anthropic adapter max_parallel_requests",
+      "Anthropic API 401 Unauthorized"
+    ]
+  },
+  {
+    "slug": "next-js-vercel-middleware-invocation-failed-plus-function-invocation-failed-on-vercel-deploy-cannot-find-module-swc-helpers-esm-interop-require-default-js",
+    "title": "Fix MIDDLEWARE_INVOCATION_FAILED on Vercel: Cannot find module @swc/helpers/esm/_interop_require_default.js (Next.js 16.2.x + proxy.ts + @sentry/nextjs)",
+    "description": "Fix Vercel deployment failure with middleware invocation error and missing @swc/helpers module Includes evidence for Next.js / Vercel troubleshooting demand.",
+    "category": "Deployment",
+    "technology": "Next.js / Vercel",
+    "error_signature": "MIDDLEWARE_INVOCATION_FAILED + FUNCTION_INVOCATION_FAILED on Vercel deploy: Cannot find module @swc/helpers/esm/_interop_require_default.js",
+    "search_intent": "Fix Vercel deployment failure with middleware invocation error and missing @swc/helpers module",
+    "common_causes": [
+      "Common Vercel deployment failure when using Sentry with Next.js 16.x proxy middleware — blocks production deploys on paid Vercel plans",
+      "Multiple reports of Vercel deployment failures with MIDDLEWARE_INVOCATION_FAILED when using @sentry/nextjs with proxy.ts middleware in Next.js 16.2.x. Error: Cannot find module @swc/helpers/esm/_interop_require_default.js"
+    ],
+    "quick_fix": "Check the build output, project root, and deployment platform configuration before redeploying.",
+    "related_errors": [
+      "Vercel build command failed",
+      "Next.js module not found"
+    ]
+  },
+  {
+    "slug": "claude-code-error-invalid-version-2-1-0-2026-01-07-claude-code-crashes-on-startup",
+    "title": "Fix Claude Code Invalid Version crash on startup with date suffix version string",
+    "description": "Fix Claude Code crash on startup with 'Invalid Version' error containing date suffix Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "ERROR Invalid Version: 2.1.0 (2026-01-07) — Claude Code crashes on startup",
+    "search_intent": "Fix Claude Code crash on startup with 'Invalid Version' error containing date suffix",
+    "common_causes": [
+      "Claude Code crashes immediately on startup when version cache contains version strings with date suffixes like 2.1.0 (2026-01-07)",
+      "Claude Code crashes on startup with ERROR Invalid Version: 2.1.0 (2026-01-07) when version cache contains version strings with date suffixes. Multiple reports on Linux WSL2 and Windows."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "claude update wrong binary",
+      "Claude Code extension install failure"
+    ]
+  },
+  {
+    "slug": "anthropic-api-anthropic-api-cache-entries-billing-1-25x-for-tokens-that-are-never-read-server-writes-past-explicit-cache-control-breakpoint",
+    "title": "Fix Anthropic API overbilling: cache entries past cache_control breakpoint charged at 1.25x rate",
+    "description": "Fix Anthropic API cache billing overcharge when server writes past cache_control breakpoint Includes evidence for Anthropic API troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Anthropic API",
+    "error_signature": "Anthropic API cache entries billing 1.25x for tokens that are never read — server writes past explicit cache_control breakpoint",
+    "search_intent": "Fix Anthropic API cache billing overcharge when server writes past cache_control breakpoint",
+    "common_causes": [
+      "Anthropic API server writes additional cache entries past explicit cache_control breakpoint, billing 1.25x for tokens that are never read — unexpected cost increase",
+      "Server writes additional cache entries past explicit cache_control breakpoint, billing 1.25x for tokens that are never read. Users see unexpected cost increases without code changes."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "OpenAI API 429 Too Many Requests",
+      "OpenAI API insufficient quota"
+    ]
+  },
+  {
+    "slug": "ollama-ollama-500-internal-server-error-unable-to-load-model",
+    "title": "Fix Ollama 500 Internal Server Error unable to load model",
+    "description": "Fix Ollama server returning 500 Internal Server Error when loading a model Includes evidence for Ollama troubleshooting demand.",
+    "category": "Ollama",
+    "technology": "Ollama",
+    "error_signature": "Ollama 500 Internal Server Error: unable to load model",
+    "search_intent": "Fix Ollama server returning 500 Internal Server Error when loading a model",
+    "common_causes": [
+      "Ollama returns 500 Internal Server Error with 'unable to load model' message — blocks local LLM inference",
+      "Ollama server returns 500 Internal Server Error with 'unable to load model' message. Users unable to run local LLM inference."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Ollama model not found",
+      "Ollama connection refused"
+    ]
+  },
+  {
+    "slug": "npm-npm-install-produces-incomplete-package-lock-json-when-eresolve-overrides-peer-deps-npm-ci-fails-immediately-after",
+    "title": "Fix npm install produces incomplete package-lock.json when ERESOLVE overrides peer deps",
+    "description": "Fix npm install creating broken package-lock.json that causes npm ci to fail Includes evidence for npm troubleshooting demand.",
+    "category": "npm",
+    "technology": "npm",
+    "error_signature": "npm install produces incomplete package-lock.json when ERESOLVE overrides peer deps — npm ci fails immediately after",
+    "search_intent": "Fix npm install creating broken package-lock.json that causes npm ci to fail",
+    "common_causes": [
+      "npm install with ERESOLVE peer dep overrides generates incomplete lockfile, then npm ci fails — breaks CI/CD pipelines",
+      "npm install produces incomplete package-lock.json when ERESOLVE overrides peer deps. npm ci then fails immediately because lockfile is inconsistent. Affects CI/CD pipelines."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "npm ERR! code ERESOLVE",
+      "npm ci lockfile error"
+    ]
+  },
+  {
+    "slug": "npm-npm-ci-re-resolves-workspace-deps-from-the-registry-in-v11-14-x-fails-on-lockfiles-v11-13-x-accepts",
+    "title": "Fix npm ci re-resolves workspace deps from registry in v11.14.x — breaks existing lockfiles",
+    "description": "Fix npm ci re-resolving workspace dependencies from registry instead of using lockfile Includes evidence for npm troubleshooting demand.",
+    "category": "npm",
+    "technology": "npm",
+    "error_signature": "npm ci re-resolves workspace deps from the registry in v11.14.x — fails on lockfiles v11.13.x accepts",
+    "search_intent": "Fix npm ci re-resolving workspace dependencies from registry instead of using lockfile",
+    "common_causes": [
+      "npm ci in v11.14.x re-resolves workspace dependencies from registry instead of using lockfile — breaks CI pipelines that worked in v11.13.x",
+      "npm ci re-resolves workspace deps from registry in v11.14.x, fails on lockfiles that v11.13.x accepts. Version regression breaks CI/CD."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "npm ERR! code ERESOLVE",
+      "npm ci lockfile error"
+    ]
   }
 ]
