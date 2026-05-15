@@ -10884,5 +10884,214 @@
       "Ollama mtmd_helper_bitmap_init_from_buf crash",
       "Ollama vision model segmentation fault"
     ]
+  },
+  {
+    "slug": "claude-code-abnormal-usage-limit-drain-single-short-exchange-may-consume-2-7-of-5-hour-session-quota",
+    "title": "Claude Code Abnormal Usage Limit Drain — 5-Hour Sessions Deplete in 1-2 Hours",
+    "description": "Fix Claude Pro/Max usage draining too fast, session quota depleted unexpectedly Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Abnormal usage limit drain — single short exchange may consume 2-7% of 5-hour session quota",
+    "search_intent": "Fix Claude Pro/Max usage draining too fast, session quota depleted unexpectedly",
+    "common_causes": [
+      "Paying subscribers on Pro/Max plans see their 5-hour session quotas vanish in 1-2 hours instead of lasting the full duration, directly impacting productivity and billing",
+      "Widespread reports of Claude Code (CLI, Desktop, web) consuming 2-7% of session quota per short message. Caching bugs identified as root cause. Affects paid Pro and Max subscribers."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "Claude API rate limit exceeded",
+      "Claude usage limit reached",
+      "Claude session quota exhausted"
+    ]
+  },
+  {
+    "slug": "claude-code-tool-results-silently-dropped-with-missing-due-to-internal-error-across-all-tools",
+    "title": "Claude Code Tool Results Silently Dropped — \"missing due to internal error\" Regression",
+    "description": "Fix Claude Code dropping tool results silently, tool outputs missing Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Tool results silently dropped with \"missing due to internal error\" across all tools",
+    "search_intent": "Fix Claude Code dropping tool results silently, tool outputs missing",
+    "common_causes": [
+      "Critical regression in Claude Code 2.1.101+ where tool execution results are silently discarded without error notification, causing incomplete code changes and lost work",
+      "Regression in Claude Code 2.1.101 on Windows. Tool results silently dropped with 'missing due to internal error' message across all tools. Users lose work without any visible error."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Claude Code process exited with code 3",
+      "Claude Code tool execution failed",
+      "Claude Code internal error"
+    ]
+  },
+  {
+    "slug": "claude-code-claude-code-process-exited-with-code-3",
+    "title": "Claude Code Process Exited with Code 3 — VS Code Plugin Crash",
+    "description": "Fix Claude Code plugin crashing in VS Code with exit code 3 Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Claude Code process exited with code 3",
+    "search_intent": "Fix Claude Code plugin crashing in VS Code with exit code 3",
+    "common_causes": [
+      "Claude Code VS Code plugin abruptly terminates with exit code 3, disrupting coding workflow. Exit code 3 is undocumented, leaving users without guidance.",
+      "Claude Code VS Code plugin crashes with undocumented exit code 3. Multiple users reporting. No official explanation of what exit code 3 means."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Claude Code exit code 2",
+      "Claude Code VS Code extension crash",
+      "Claude Code process terminated unexpectedly"
+    ]
+  },
+  {
+    "slug": "litellm-azure-oai-models-auth-broken-in-litellm-1-84-0",
+    "title": "LiteLLM Azure OpenAI Authentication Broken in Version 1.84.0",
+    "description": "Fix LiteLLM Azure OpenAI authentication failure after upgrading to 1.84.0 Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "Azure OAI Models Auth Broken in LiteLLM 1.84.0",
+    "search_intent": "Fix LiteLLM Azure OpenAI authentication failure after upgrading to 1.84.0",
+    "common_causes": [
+      "LiteLLM proxy fails to authenticate with Azure OpenAI endpoints after upgrading to v1.84.0, breaking production AI pipelines that rely on Azure-hosted models",
+      "LiteLLM 1.84.0 introduced a regression that breaks Azure OpenAI model authentication. Affects enterprise users with Azure deployments. Regression in a patch release."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "LiteLLM Azure auth failure",
+      "LiteLLM Azure OpenAI 401",
+      "LiteLLM proxy authentication error"
+    ]
+  },
+  {
+    "slug": "cloudflare-workers-wrangler-deploy-intermittently-fails-with-401-auth-code-10000-on-parallel-api-request",
+    "title": "Cloudflare Wrangler Deploy Intermittent 401 Auth Failure on Parallel Requests",
+    "description": "Fix Wrangler deploy 401 authentication error during parallel API requests Includes evidence for Cloudflare Workers troubleshooting demand.",
+    "category": "Cloudflare",
+    "technology": "Cloudflare Workers",
+    "error_signature": "wrangler deploy intermittently fails with 401 (auth code 10000) on parallel API request",
+    "search_intent": "Fix Wrangler deploy 401 authentication error during parallel API requests",
+    "common_causes": [
+      "Wrangler deploy randomly fails with 401 auth code 10000 when making parallel API requests, even though the token is valid. Intermittent nature makes it hard to debug and causes CI/CD flakiness.",
+      "Wrangler deploy intermittently fails with 401 (auth code 10000) when parallel API requests are made. Token is confirmed valid. Affects CI/CD pipelines with Cloudflare Workers."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "Wrangler deploy 403",
+      "Cloudflare Workers authentication error",
+      "Wrangler CI/CD failure"
+    ]
+  },
+  {
+    "slug": "claude-code-webview-shows-unhandled-case-object-object-when-sdk-stream-ends-with-had-error-true",
+    "title": "Claude Code VS Code Webview \"Unhandled case: [object Object]\" Error",
+    "description": "Fix Claude Code webview showing Unhandled case [object Object] error Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Webview shows \"Unhandled case: [object Object]\" when SDK stream ends with had_error: true",
+    "search_intent": "Fix Claude Code webview showing Unhandled case [object Object] error",
+    "common_causes": [
+      "Claude Code VS Code extension webview crashes with opaque error message when SDK stream encounters an error, leaving users unable to see responses or diagnose the issue",
+      "When Claude Code SDK stream ends with had_error: true, the VS Code webview displays 'Unhandled case: [object Object]' instead of a meaningful error message. Related to issue #59271."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "sdk_stream_ended_no_result had_error",
+      "Claude Code webview crash",
+      "Claude Code SDK stream error"
+    ]
+  },
+  {
+    "slug": "cloudflare-workers-cloudflare-wrangler-deploy-fails-with-workflows-api-error-internal-server-code-10001",
+    "title": "Cloudflare Wrangler Deploy Fails — Workflows API Internal Server Error",
+    "description": "Fix Wrangler deploy failure with workflows.api.error.internal_server code 10001 Includes evidence for Cloudflare Workers troubleshooting demand.",
+    "category": "Cloudflare",
+    "technology": "Cloudflare Workers",
+    "error_signature": "Cloudflare Wrangler deploy fails with workflows.api.error.internal_server [code: 10001]",
+    "search_intent": "Fix Wrangler deploy failure with workflows.api.error.internal_server code 10001",
+    "common_causes": [
+      "New Cloudflare accounts on Free plan cannot deploy Workers using Wrangler due to opaque workflows.api.error.internal_server error with code 10001, blocking getting started with the platform",
+      "New Free tier accounts get internal_server error [code: 10001] when deploying via Wrangler. Blocks new user onboarding. Error message provides no actionable guidance."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Cloudflare Workers deploy error",
+      "Wrangler internal server error",
+      "Cloudflare Workers API error"
+    ]
+  },
+  {
+    "slug": "litellm-anthropic-batch-costs-always-0-transform-file-content-request-routes-msgbatch-ids-to-wrong-endpoint",
+    "title": "LiteLLM Anthropic Batch Costs Always Zero — Wrong Endpoint Routing",
+    "description": "Fix LiteLLM showing zero costs for Anthropic batch API requests Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "Anthropic batch costs always 0 — transform_file_content_request routes msgbatch_* IDs to wrong endpoint",
+    "search_intent": "Fix LiteLLM showing zero costs for Anthropic batch API requests",
+    "common_causes": [
+      "LiteLLM proxy routes Anthropic batch message IDs (msgbatch_*) to the wrong API endpoint, resulting in batch costs always being reported as $0. Organizations can't track batch processing costs.",
+      "LiteLLM transform_file_content_request routes msgbatch_* IDs to wrong Anthropic endpoint. Batch costs always reported as 0. Affects cost tracking for batch API users."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "LiteLLM cost tracking wrong",
+      "Anthropic batch API error",
+      "LiteLLM billing incorrect"
+    ]
+  },
+  {
+    "slug": "next-js-middleware-invocation-failed-cannot-find-module-swc-helpers-esm-interop-require-default-js",
+    "title": "Vercel Deploy MIDDLEWARE_INVOCATION_FAILED — Missing @swc/helpers Module",
+    "description": "Fix Vercel deployment failure MIDDLEWARE_INVOCATION_FAILED missing @swc/helpers Includes evidence for Next.js troubleshooting demand.",
+    "category": "Deployment",
+    "technology": "Next.js",
+    "error_signature": "MIDDLEWARE_INVOCATION_FAILED: Cannot find module @swc/helpers/esm/_interop_require_default.js",
+    "search_intent": "Fix Vercel deployment failure MIDDLEWARE_INVOCATION_FAILED missing @swc/helpers",
+    "common_causes": [
+      "Next.js 16.2.6 deployments on Vercel fail with MIDDLEWARE_INVOCATION_FAILED when using @sentry/nextjs with proxy.ts, caused by missing @swc/helpers module in the build output",
+      "Minimal reproduction: next@16.2.6 + proxy.ts + top-level @sentry/nextjs import causes MIDDLEWARE_INVOCATION_FAILED on Vercel. @swc/helpers/esm/_interop_require_default.js not included in build."
+    ],
+    "quick_fix": "Check the build output, project root, and deployment platform configuration before redeploying.",
+    "related_errors": [
+      "Vercel build command failed",
+      "Next.js middleware error",
+      "Vercel module not found"
+    ]
+  },
+  {
+    "slug": "next-js-turbopack-production-build-generates-chunk-filenames-with-multiple-dots-that-trigger-waf-403-responses",
+    "title": "Next.js Turbopack Build Chunks Trigger Cloudflare WAF 403 Blocks",
+    "description": "Fix Turbopack build chunks being blocked by Cloudflare WAF with 403 Includes evidence for Next.js troubleshooting demand.",
+    "category": "Deployment",
+    "technology": "Next.js",
+    "error_signature": "Turbopack production build generates chunk filenames with multiple dots that trigger WAF 403 responses",
+    "search_intent": "Fix Turbopack build chunks being blocked by Cloudflare WAF with 403",
+    "common_causes": [
+      "Turbopack production builds generate chunk filenames containing multiple dots (e.g., file.worker.js), which Cloudflare WAF interprets as suspicious and blocks with 403, breaking deployed applications",
+      "Turbopack generates chunk filenames with multiple dots that match Cloudflare WAF patterns for blocking. Production deployments behind Cloudflare are affected."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "Cloudflare Error 403",
+      "Next.js Turbopack build error",
+      "Cloudflare WAF false positive"
+    ]
+  },
+  {
+    "slug": "github-actions-runners-rest-api-reports-busy-false-for-self-hosted-runner-actively-executing-job",
+    "title": "GitHub Actions Self-Hosted Runner — REST API Reports Idle While Job Running",
+    "description": "Fix GitHub Actions self-hosted runner showing busy:false while actually executing jobs Includes evidence for GitHub Actions troubleshooting demand.",
+    "category": "GitHub Actions",
+    "technology": "GitHub Actions",
+    "error_signature": "/runners REST API reports busy: false for self-hosted runner actively executing job",
+    "search_intent": "Fix GitHub Actions self-hosted runner showing busy:false while actually executing jobs",
+    "common_causes": [
+      "GitHub Actions /runners REST API incorrectly reports busy:false for self-hosted runners that are actively running jobs, causing scheduling issues and resource allocation problems in self-hosted runner pools",
+      "Self-hosted runner REST API reports busy:false while the runner is actively executing a job. Broker says busy, REST API says idle. Causes duplicate job assignments."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "GitHub Actions runner stuck",
+      "GitHub Actions self-hosted runner busy",
+      "GitHub Actions runner not picking up jobs"
+    ]
   }
 ]
