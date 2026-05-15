@@ -10732,5 +10732,157 @@
       "Ollama pull manifest error",
       "Ollama service not starting on boot"
     ]
+  },
+  {
+    "slug": "openai-api-vector-stores-files-upload-and-poll-hangs-indefinitely-with-file-status-stuck-at-in-progress",
+    "title": "OpenAI Python vector_stores upload_and_poll() Infinite Hang",
+    "description": "Fix OpenAI vector_stores.files.upload_and_poll() hanging forever with file stuck in_progress status Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "vector_stores.files.upload_and_poll() hangs indefinitely with file status stuck at in_progress",
+    "search_intent": "Fix OpenAI vector_stores.files.upload_and_poll() hanging forever with file stuck in_progress status",
+    "common_causes": [
+      "The upload_and_poll() method hangs indefinitely when a file upload succeeds but the vector store processing never completes. The file stays stuck at status='in_progress' with last_error=null, causing blocking calls in production RAG pipelines.",
+      "Filed 2026-04-16. File upload succeeds, attach succeeds, but poll never returns. File stuck at 'in_progress' forever with null last_error. Breaks RAG pipelines using OpenAI Assistants API."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "OpenAI vector_stores upload stuck in_progress",
+      "OpenAI Assistants API file upload hang",
+      "OpenAI vector store processing timeout"
+    ]
+  },
+  {
+    "slug": "litellm-http-400-this-model-does-not-support-assistant-message-prefill-the-conversation-must-end-with-a-user-message",
+    "title": "LiteLLM Mid-Stream Fallback Broken for Claude Models Without Assistant Prefill",
+    "description": "Fix LiteLLM streaming fallback sending unsupported assistant prefill to Claude models causing 400 error Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "HTTP 400: This model does not support assistant message prefill. The conversation must end with a user message.",
+    "search_intent": "Fix LiteLLM streaming fallback sending unsupported assistant prefill to Claude models causing 400 error",
+    "common_causes": [
+      "When a streaming request fails mid-stream, LiteLLM's fallback mechanism unconditionally appends an assistant prefill block. Claude Sonnet 4.6/Opus 4.7 don't support this, so fallback silently fails with 400. Users see the wrong error instead of the real upstream failure.",
+      "Filed 2026-05-14. Detailed bug report with repro code. Affects LiteLLM Router with streaming fallbacks to Claude Sonnet 4.6/Opus 4.7. The escape hatches (disable_fallbacks, CustomLogger hooks) don't work. Users resort to monkey-patching."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "LiteLLM streaming fallback assistant prefill",
+      "LiteLLM MidStreamFallbackError Claude",
+      "LiteLLM disable_fallbacks ignored mid-stream"
+    ]
+  },
+  {
+    "slug": "cloudflare-cloudflare-api-request-failed-kv-bindings-require-kv-write-perms-code-10023",
+    "title": "Cloudflare Wrangler API Request Failed Randomly During Deployment",
+    "description": "Fix random Cloudflare API failure during wrangler deployment with code 10023 kv write permissions error Includes evidence for Cloudflare troubleshooting demand.",
+    "category": "Cloudflare",
+    "technology": "Cloudflare",
+    "error_signature": "Cloudflare API request failed - kv bindings require kv write perms [code: 10023]",
+    "search_intent": "Fix random Cloudflare API failure during wrangler deployment with code 10023 kv write permissions error",
+    "common_causes": [
+      "Wrangler deployments randomly fail with 'A request to the Cloudflare API failed' error. The error appears intermittent and affects KV bindings. Enterprise users with proper permissions still hit this. CI/CD pipelines break unpredictably.",
+      "Reported 2026-05-06 with 16 comments confirming the issue. Affects wrangler 4.78.0 on Ubuntu 24.04. Random failures during worker script deployment. KV permissions error despite proper IAM configuration."
+    ],
+    "quick_fix": "Check the build output, project root, and deployment platform configuration before redeploying.",
+    "related_errors": [
+      "Cloudflare wrangler deployment random failure",
+      "Cloudflare API 10023 kv write permissions",
+      "wrangler deploy intermittent API error"
+    ]
+  },
+  {
+    "slug": "litellm-nacl-exceptions-valueerror-the-nonce-must-be-exactly-24-bytes-long",
+    "title": "LiteLLM SMTP Configuration Crash - Nonce Length Validation Error",
+    "description": "Fix LiteLLM crashing with nacl.exceptions.ValueError nonce must be exactly 24 bytes when configuring SMTP Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "nacl.exceptions.ValueError: The nonce must be exactly 24 bytes long",
+    "search_intent": "Fix LiteLLM crashing with nacl.exceptions.ValueError nonce must be exactly 24 bytes when configuring SMTP",
+    "common_causes": [
+      "Configuring SMTP through LiteLLM admin UI triggers a crash. The nacl encryption library throws ValueError about nonce length. After restart, master key encryption is corrupted with 'Incorrect padding' errors. Users lose access to encrypted config values.",
+      "Reported 2026-04-07 with 10 comments. Configuring SMTP through admin UI crashes LiteLLM. Post-crash: 'Error decrypting value for key: SMTP_SENDER_EMAIL, Incorrect padding'. Encrypts/decrypts config values are corrupted."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "LiteLLM SMTP configuration crash",
+      "LiteLLM nacl nonce ValueError",
+      "LiteLLM master_key encryption corrupted after crash"
+    ]
+  },
+  {
+    "slug": "anthropic-api-anthropic-apistatuserror-with-status-code-200-for-mid-stream-sse-overloaded-error",
+    "title": "Anthropic SDK Returns status_code=200 for Mid-Stream SSE Errors",
+    "description": "Fix Anthropic Python SDK returning wrong status code 200 for streaming SSE errors like overloaded_error Includes evidence for Anthropic API troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Anthropic API",
+    "error_signature": "Anthropic APIStatusError with status_code=200 for mid-stream SSE overloaded_error",
+    "search_intent": "Fix Anthropic Python SDK returning wrong status code 200 for streaming SSE errors like overloaded_error",
+    "common_causes": [
+      "When the Anthropic API streams fine initially but then sends an SSE error event (like overloaded_error/529), the SDK creates APIStatusError with status_code=200 instead of the actual error code. This breaks retry logic, error handling, and monitoring that rely on status codes.",
+      "Filed 2026-03-18, closed. Bug in _streaming.py passing original HTTP response (status 200) to _make_status_error instead of the SSE error's actual status code. Affects all streaming users relying on error classification."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Anthropic SDK streaming error wrong status code",
+      "Anthropic APIStatusError status_code=200 overloaded_error",
+      "Anthropic SDK SSE error handling bug"
+    ]
+  },
+  {
+    "slug": "github-actions-runner-azure-blob-uploads-stall-through-https-proxy-blobclient-not-configured-with-proxy-transport",
+    "title": "GitHub Actions Runner Proxy Upload Stall Through HTTPS_PROXY",
+    "description": "Fix GitHub Actions self-hosted runner stalling on Azure Blob uploads when HTTPS_PROXY is configured Includes evidence for GitHub Actions troubleshooting demand.",
+    "category": "GitHub Actions",
+    "technology": "GitHub Actions",
+    "error_signature": "Runner Azure Blob uploads stall through HTTPS proxy - BlobClient not configured with proxy transport",
+    "search_intent": "Fix GitHub Actions self-hosted runner stalling on Azure Blob uploads when HTTPS_PROXY is configured",
+    "common_causes": [
+      "Self-hosted runners configured with HTTPS_PROXY experience 75-second stalls on Azure Blob Storage uploads (logs, summaries, artifacts). The BlobClient ignores proxy transport configuration. Affects all enterprises using proxy servers for CI/CD.",
+      "Filed 2026-04-15. Runner's ResultsHttpClient creates BlobClient without HttpClientTransport proxy config. Azure SDK falls back to default transport ignoring HTTPS_PROXY. Causes 75-second stalls and timeouts on all artifact uploads."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "GitHub Actions runner proxy upload stall",
+      "GitHub Actions HTTPS_PROXY artifact upload timeout",
+      "GitHub Actions runner Azure Blob proxy configuration"
+    ]
+  },
+  {
+    "slug": "anthropic-api-anthropic-notfounderror-404-on-batch-api-server-side-propagation-delay",
+    "title": "Anthropic Batch API Intermittent 404 Not Found After Creation",
+    "description": "Fix Anthropic Batch API returning 404 Not Found intermittently after successfully creating a batch Includes evidence for Anthropic API troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Anthropic API",
+    "error_signature": "Anthropic NotFoundError (404) on Batch API - server-side propagation delay",
+    "search_intent": "Fix Anthropic Batch API returning 404 Not Found intermittently after successfully creating a batch",
+    "common_causes": [
+      "After successfully creating a message batch via the Anthropic API, subsequent calls to batches.retrieve() or batches.results() intermittently return 404. This is a server-side propagation delay issue that causes production batch processing pipelines to fail.",
+      "Filed 2026-04-21. Batch created successfully, then retrieve/results returns 404 intermittently. Server-side propagation delay. Affects batch processing pipelines using paid Anthropic API."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Anthropic Batch API 404 Not Found",
+      "Anthropic batches.retrieve 404 after creation",
+      "Anthropic batch propagation delay error"
+    ]
+  },
+  {
+    "slug": "ollama-sigsegv-segmentation-violation-mtmd-helper-bitmap-init-from-buf-failed-to-decode-image-bytes",
+    "title": "Ollama SIGSEGV Crash on Valid WebP Image with minicpm-v:8b",
+    "description": "Fix Ollama crashing with SIGSEGV when processing valid WebP images with minicpm-v vision model Includes evidence for Ollama troubleshooting demand.",
+    "category": "Ollama",
+    "technology": "Ollama",
+    "error_signature": "SIGSEGV: segmentation violation mtmd_helper_bitmap_init_from_buf: failed to decode image bytes",
+    "search_intent": "Fix Ollama crashing with SIGSEGV when processing valid WebP images with minicpm-v vision model",
+    "common_causes": [
+      "Ollama crashes with segmentation fault when minicpm-v:8b receives a valid WebP image. The crash is in the multimodal tokenization C code. Other vision models (llama3.2-vision) handle the same image fine. Users see 'model runner has unexpectedly stopped' with no actionable guidance.",
+      "Filed 2026-05-14. Deterministic crash on specific WebP files with minicpm-v:8b. Crash in mtmd_helper_bitmap_init_from_buf C function. llama3.2-vision handles same image fine. Ollama 0.23.3 on macOS M4."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Ollama SIGSEGV minicpm-v WebP",
+      "Ollama mtmd_helper_bitmap_init_from_buf crash",
+      "Ollama vision model segmentation fault"
+    ]
   }
 ]
