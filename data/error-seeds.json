@@ -12234,5 +12234,131 @@
       "Claude Code webview error rendering",
       "Claude Code streaming response error handling"
     ]
+  },
+  {
+    "slug": "claude-code-claude-code-bills-api-instead-of-max-subscription-oauth-response-missing-organizationtype",
+    "title": "Claude Code Bills API Instead of Max Subscription: OAuth Missing organizationType",
+    "description": "Fix Claude Code using API billing instead of Max subscription Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Claude Code bills API instead of Max subscription — OAuth response missing organizationType",
+    "search_intent": "Fix Claude Code using API billing instead of Max subscription",
+    "common_causes": [
+      "Claude Code falls through to API billing when OAuth response lacks organizationType for specific orgs, causing unexpected charges on paid Max plans",
+      "Multiple users report Claude Code showing 'API Usage Billing' despite active Max subscription. Root cause: OAuth writes oauthAccount: null and hasAvailableSubscription: false for specific orgs, bypassing subscription detection."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "Claude Code OAuth token_expired after fresh login",
+      "Claude Code ConnectionRefused on all platforms"
+    ]
+  },
+  {
+    "slug": "claude-code-claude-max-plan-session-limits-exhausted-abnormally-fast-5h-window-consumed-in-1-2-hours",
+    "title": "Claude Max Plan Session Limits Exhausted Abnormally Fast Since March 2026",
+    "description": "Fix Claude Max plan hitting rate limits too quickly Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Claude Max plan session limits exhausted abnormally fast — 5h window consumed in 1-2 hours",
+    "search_intent": "Fix Claude Max plan hitting rate limits too quickly",
+    "common_causes": [
+      "Users on $200/month Claude Max plan find their 5-hour session window exhausted in 1-2 hours instead of the full window, rendering the expensive subscription nearly unusable",
+      "Since March 23, 2026, exact same workload and prompts consume session limit in 1-2 hours vs previous full 5-hour window. Affected users on Claude Max plan ($200/month). Multiple community reports."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "Claude API 429 Too Many Requests",
+      "Claude Code rate limit error"
+    ]
+  },
+  {
+    "slug": "claude-code-claude-code-connectionrefused-authenticates-to-console-instead-of-claude-ai-max-subscription",
+    "title": "Claude Code ConnectionRefused: Authenticates to Console Instead of Max Subscription on All Platforms",
+    "description": "Fix Claude Code ConnectionRefused error on Windows, WSL, and VS Code Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Claude Code ConnectionRefused — authenticates to Console instead of claude.ai Max subscription",
+    "search_intent": "Fix Claude Code ConnectionRefused error on Windows, WSL, and VS Code",
+    "common_causes": [
+      "Claude Code defaults to Console authentication instead of claude.ai Max subscription, causing ConnectionRefused error across Windows, WSL, and VS Code environments",
+      "Multiple closed issues report Claude Code authenticating to Console instead of claude.ai Max subscription on Windows (winget install) and VS Code, causing persistent ConnectionRefused error. Affects all major platforms."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "Claude Code OAuth token_expired",
+      "Claude API 401 Unauthorized"
+    ]
+  },
+  {
+    "slug": "claude-code-claude-app-causes-macos-to-terminate-sessions-due-to-excessive-vm-disk-writes-34-gb-in-one-day",
+    "title": "Claude Code Causes macOS to Terminate Sessions Due to Excessive VM Disk Writes (34 GB/day)",
+    "description": "Fix Claude desktop app consuming excessive disk space on macOS Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Claude app causes macOS to terminate sessions due to excessive VM disk writes (34 GB in one day)",
+    "search_intent": "Fix Claude desktop app consuming excessive disk space on macOS",
+    "common_causes": [
+      "Claude desktop app writes 34 GB+ to VM disk in a single day, causing macOS to terminate the process three times. Critical resource leak on MacBook Air M3 with 16GB RAM.",
+      "macOS 26.3.1 terminates Claude desktop app (PID 74115) three times on 2026-05-13 for exceeding OS disk write budget. Accumulated 34 GB writes with avg rate 5,428 KB/sec. Affects MacBook Air M3 16GB."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Claude Code excessive memory usage",
+      "Claude desktop app not responding"
+    ]
+  },
+  {
+    "slug": "litellm-litellm-apiresponsevalidationerror-malformed-output-schema-causes-provider-rejection",
+    "title": "LiteLLM APIResponseValidationError: Malformed output_schema Causes Provider to Reject Request",
+    "description": "Fix LiteLLM APIResponseValidationError when output_schema is malformed Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "LiteLLM APIResponseValidationError — malformed output_schema causes provider rejection",
+    "search_intent": "Fix LiteLLM APIResponseValidationError when output_schema is malformed",
+    "common_causes": [
+      "Malformed JSON Schema in output_schema causes LiteLLM to throw APIResponseValidationError instead of catching the error early, wasting API calls and producing unclear error messages",
+      "When output_schema contains typos (e.g., 'intger' instead of 'integer'), LiteLLM forwards the request to the provider which rejects it with APIResponseValidationError. Error surfaces as LLMResponseParseError with no clear guidance."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "LiteLLM rate limit error",
+      "OpenAI API context length exceeded"
+    ]
+  },
+  {
+    "slug": "cursor-cursor-error-connecting-to-streamablehttp-mcp-server-sizes-field-validation",
+    "title": "Cursor Error Connecting to StreamableHttp MCP Server — Icon Sizes Field Validation Failure",
+    "description": "Fix Cursor MCP streamableHttp connection error with icon sizes field Includes evidence for Cursor troubleshooting demand.",
+    "category": "Cursor",
+    "technology": "Cursor",
+    "error_signature": "Cursor error connecting to streamableHttp MCP server — sizes field validation",
+    "search_intent": "Fix Cursor MCP streamableHttp connection error with icon sizes field",
+    "common_causes": [
+      "Cursor fails to connect to streamableHttp MCP servers due to icon configuration containing unexpected 'sizes' field, causing validation errors in the MCP client",
+      "Cursor MCP client rejects server responses containing 'sizes' field in icon configuration. Home Assistant MCP integration affected. Workaround pending since January 2026."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Cursor MCP server error No server info found",
+      "MCP protocol validation errors"
+    ]
+  },
+  {
+    "slug": "cursor-cursor-failed-to-install-code-server-wsl-crash-after-patch-attempt",
+    "title": "Cursor Failed to Install Code Server in WSL — Crashes After Patch Attempt",
+    "description": "Fix Cursor server installation failure in WSL environment Includes evidence for Cursor troubleshooting demand.",
+    "category": "Cursor",
+    "technology": "Cursor",
+    "error_signature": "Cursor Failed to install code server — WSL crash after patch attempt",
+    "search_intent": "Fix Cursor server installation failure in WSL environment",
+    "common_causes": [
+      "Cursor fails to install its code server in WSL, crashing immediately after attempting to patch. WSL is a common development environment for Windows users.",
+      "Cursor installation in WSL crashes with 'Failed to patch code server' error. Works temporarily then crashes consistently. Fresh WSL instance doesn't resolve the issue."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Cursor model not available",
+      "Cursor MCP server error"
+    ]
   }
 ]
