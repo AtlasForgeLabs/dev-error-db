@@ -11676,5 +11676,214 @@
       "Netlify dev server not working",
       "Netlify CLI crash"
     ]
+  },
+  {
+    "slug": "litellm-azureexception-apierror-not-supported-between-instances-of-str-and-int-received-model-group-gpt-image-2",
+    "title": "LiteLLM Azure gpt-image-2 Edit Fails with TypeError in v1.84.0",
+    "description": "fix LiteLLM Azure gpt-image-2 edit error type comparison Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "AzureException APIError - '<=' not supported between instances of 'str' and 'int'. Received Model Group=gpt-image-2",
+    "search_intent": "fix LiteLLM Azure gpt-image-2 edit error type comparison",
+    "common_causes": [
+      "Developers using Azure OpenAI image generation through LiteLLM proxy hit this when upgrading to v1.84.0; blocks image editing workflows in production",
+      "LiteLLM proxy /image/edits endpoint fails with 500 error when proxying Azure gpt-image-2 model. TypeError: '<=' not supported between 'str' and 'int' in v1.84.0. Regression from previous version."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "LiteLLM Azure OpenAI integration",
+      "gpt-image-2 API errors",
+      "LiteLLM proxy image generation"
+    ]
+  },
+  {
+    "slug": "litellm-litellm-badrequesterror-anthropicexception-this-model-does-not-support-assistant-message-prefill",
+    "title": "LiteLLM Mid-Stream Fallback Breaks for Claude Sonnet 4.6/Opus 4.7 (Assistant Prefill Not Supported)",
+    "description": "fix LiteLLM mid-stream fallback assistant prefill error Claude Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "litellm.BadRequestError: AnthropicException - This model does not support assistant message prefill",
+    "search_intent": "fix LiteLLM mid-stream fallback assistant prefill error Claude",
+    "common_causes": [
+      "Users relying on LiteLLM's streaming fallback feature for Claude models find it silently broken — fallback requests include unsupported assistant prefill, causing 400 errors and hiding the original failure",
+      "When streaming request fails mid-stream, Router.stream_with_fallbacks appends assistant message with prefix=True. Claude Sonnet 4.6/Opus 4.7 reject this with 400. Fallback feature silently unusable for these models. No documented workaround except monkey-patching."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "LiteLLM streaming fallback",
+      "Claude assistant prefill error",
+      "LiteLLM Router fallback configuration"
+    ]
+  },
+  {
+    "slug": "claude-code-anthropic-claude-code-sonnet-only-mode-shows-23-usage-but-cannot-use-claude",
+    "title": "Claude Code Sonnet-Only Mode Shows Low Usage But Blocks Access — Quota Not Working Correctly",
+    "description": "fix Claude Code sonnet only mode quota not working usage blocked Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Anthropic Claude Code Sonnet only mode shows 23% usage but cannot use Claude",
+    "search_intent": "fix Claude Code sonnet only mode quota not working usage blocked",
+    "common_causes": [
+      "Users on Claude Code's sonnet-only mode see low usage (23%) but are blocked from using Claude, suggesting a quota tracking or billing bug in Anthropic's system",
+      "Claude Code in sonnet-only mode reports 23% usage but refuses to process requests. Bug labeled as 'area:cost' — likely a quota tracking or billing system issue. Directly impacts paying users' ability to work."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "Claude Code quota error",
+      "Anthropic billing issue",
+      "Claude API rate limit"
+    ]
+  },
+  {
+    "slug": "anthropic-api-anthropic-claude-3-haiku-20240307-v1-0-with-on-demand-throughput-isn-t-supported-retry-your-request-with-the-id-or-arn-of-an-inference-profile",
+    "title": "AWS Bedrock InvokeModel Fails: Claude Haiku On-Demand Throughput Not Supported",
+    "description": "fix AWS Bedrock anthropic claude haiku on-demand throughput not supported error Includes evidence for Anthropic API troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Anthropic API",
+    "error_signature": "anthropic.claude-3-haiku-20240307-v1:0 with on-demand throughput isn't supported. Retry your request with the ID or ARN of an inference profile",
+    "search_intent": "fix AWS Bedrock anthropic claude haiku on-demand throughput not supported error",
+    "common_causes": [
+      "Developers migrating to AWS Bedrock for Claude models get ValidationException because model ID format changed; requires inference profile ARN instead of model ID",
+      "AWS Bedrock InvokeModel throws ValidationException: 'Invocation of model ID anthropic.claude-3-haiku-20240307-v1:0 with on-demand throughput isn't supported.' Must use inference profile ARN instead. Migration guide needed."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Bedrock model invocation error",
+      "Claude on-demand throughput error",
+      "AWS Bedrock inference profile"
+    ]
+  },
+  {
+    "slug": "ollama-ollama-500-internal-server-error-unable-to-load-model-unknown-model-architecture-gemma4",
+    "title": "Ollama 500 Internal Server Error: Unable to Load Model — Unknown Architecture gemma4",
+    "description": "fix Ollama 500 error unable to load model unknown architecture gemma4 Includes evidence for Ollama troubleshooting demand.",
+    "category": "Ollama",
+    "technology": "Ollama",
+    "error_signature": "Ollama 500 Internal Server Error: unable to load model - unknown model architecture: 'gemma4'",
+    "search_intent": "fix Ollama 500 error unable to load model unknown architecture gemma4",
+    "common_causes": [
+      "Users download gemma4 models from Ollama registry but get 500 errors because their Ollama version doesn't support the new architecture; confusing since model appears in registry",
+      "Ollama 0.18.2 returns 500 when loading gemma4 models. Error: 'unknown model architecture: gemma4'. Model downloads successfully from registry but fails at runtime. Multiple users affected."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Ollama model loading error",
+      "Ollama unsupported model architecture",
+      "gemma4 Ollama compatibility"
+    ]
+  },
+  {
+    "slug": "claude-code-claude-code-error-write-epipe",
+    "title": "Claude Code Fails with Cryptic Error: write EPIPE",
+    "description": "fix Claude Code error write EPIPE Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Claude Code Error: write EPIPE",
+    "search_intent": "fix Claude Code error write EPIPE",
+    "common_causes": [
+      "Claude Code CLI fails with cryptic EPIPE error that gives no actionable information; developers cannot diagnose or fix the issue from the error message alone",
+      "Claude Code CLI throws 'Error: write EPIPE' at Socket._write with no additional context. Error appears suddenly after previous successful use. Stack trace points to Node.js internal stream operations."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Claude Code connection error",
+      "Claude Code CLI crash",
+      "EPIPE error Node.js"
+    ]
+  },
+  {
+    "slug": "github-copilot-mcp-tools-fail-with-currently-disabled-by-the-user-error-in-github-copilot",
+    "title": "GitHub Copilot MCP Tools Fail with 'Currently Disabled by the User' Error Despite Tools Enabled",
+    "description": "fix GitHub Copilot MCP tools currently disabled by user error Includes evidence for GitHub Copilot troubleshooting demand.",
+    "category": "GitHub Copilot",
+    "technology": "GitHub Copilot",
+    "error_signature": "MCP tools fail with 'currently disabled by the user' error in GitHub Copilot",
+    "search_intent": "fix GitHub Copilot MCP tools currently disabled by user error",
+    "common_causes": [
+      "Developers using MCP servers with GitHub Copilot in VS Code get tools failing with 'currently disabled by the user' even though all tools are enabled in settings; affects Excel MCP and other integrations",
+      "Multiple MCP servers (excel-mcp-server variants) fail in VS Code + GitHub Copilot with error '<tool> is currently disabled by the user, and cannot be called.' User confirms all tools are enabled in settings. Affects paid Copilot subscription."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "GitHub Copilot MCP integration",
+      "MCP tools disabled error",
+      "VS Code Copilot extension error"
+    ]
+  },
+  {
+    "slug": "git-github-personal-access-token-returns-401-bad-credentials-but-cli-works-perfectly",
+    "title": "GitHub Personal Access Token Returns 401 Bad Credentials via API/curl But CLI Works",
+    "description": "fix GitHub PAT 401 bad credentials API works CLI Includes evidence for Git troubleshooting demand.",
+    "category": "Git",
+    "technology": "Git",
+    "error_signature": "GitHub Personal Access Token returns 401 Bad credentials but CLI works perfectly",
+    "search_intent": "fix GitHub PAT 401 bad credentials API works CLI",
+    "common_causes": [
+      "Developers find their GitHub PATs return 401 when used directly in API calls but work fine with GitHub CLI; authentication discrepancy is confusing and blocks CI/CD pipelines",
+      "All GitHub PATs return 401 Bad credentials when used in curl or direct API calls, but gh CLI authentication works perfectly. Affects newly created tokens too. WSL2 environment. High community engagement (score 3)."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "GitHub 401 Bad credentials",
+      "GitHub PAT authentication error",
+      "GitHub CLI vs API authentication"
+    ]
+  },
+  {
+    "slug": "github-copilot-responsebody-getreader-is-not-a-function-typeerror-in-vs-code-copilot-chat-model-provider-extension",
+    "title": "VS Code Copilot Chat Extension Error: responseBody.getReader is Not a Function",
+    "description": "fix Copilot Chat responseBody.getReader is not a function error Includes evidence for GitHub Copilot troubleshooting demand.",
+    "category": "GitHub Copilot",
+    "technology": "GitHub Copilot",
+    "error_signature": "responseBody.getReader is not a function: TypeError in VS Code Copilot Chat model provider extension",
+    "search_intent": "fix Copilot Chat responseBody.getReader is not a function error",
+    "common_causes": [
+      "Developers using third-party model providers (DeepSeek V4) with GitHub Copilot Chat hit TypeError when the extension's response handling fails; affects Copilot extensibility",
+      "VS Code extension adding DeepSeek V4 as Copilot Chat model provider fails with 'responseBody.getReader is not a function'. Copilot Request ID generated but request fails. Extension response handling incompatible with Copilot's streaming API."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Copilot Chat model provider error",
+      "VS Code extension API compatibility",
+      "Copilot streaming response error"
+    ]
+  },
+  {
+    "slug": "ollama-ollama-sigsegv-segmentation-violation-mtmd-helper-bitmap-init-from-buf-decode-failure",
+    "title": "Ollama minicpm-v:8b SIGSEGV Crash Decoding Valid WebP Image",
+    "description": "fix Ollama SIGSEGV segmentation fault WebP image decode Includes evidence for Ollama troubleshooting demand.",
+    "category": "Ollama",
+    "technology": "Ollama",
+    "error_signature": "Ollama SIGSEGV: segmentation violation - mtmd_helper_bitmap_init_from_buf decode failure",
+    "search_intent": "fix Ollama SIGSEGV segmentation fault WebP image decode",
+    "common_causes": [
+      "Developers using Ollama's multimodal models hit reproducible crash (SIGSEGV) when processing certain valid WebP images; null pointer dereference in image decoder",
+      "minicpm-v:8b crashes with SIGSEGV on specific valid WebP image. Stack trace shows mtmd_helper_bitmap_init_from_buf returns failure but caller dereferences null pointer. Same image works on llama3.2-vision:11b. Reproducible on macOS M4."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Ollama vision model crash",
+      "WebP image decode error",
+      "Ollama multimodal tokenization error"
+    ]
+  },
+  {
+    "slug": "ollama-ollama-500-internal-server-error-llama-runner-process-has-terminated-signal-arrived-during-cgo-execution-qwen2-5-14b-exit-status-2",
+    "title": "Ollama Qwen2.5 14B Models Crash Llama Runner with Exit Status 2 on GTX TITAN X",
+    "description": "fix Ollama Qwen2.5 14B crash llama runner exit status 2 GPU Includes evidence for Ollama troubleshooting demand.",
+    "category": "Ollama",
+    "technology": "Ollama",
+    "error_signature": "Ollama 500 Internal Server Error: llama runner process has terminated: signal arrived during cgo execution - Qwen2.5 14B exit status 2",
+    "search_intent": "fix Ollama Qwen2.5 14B crash llama runner exit status 2 GPU",
+    "common_causes": [
+      "Developers with 12GB VRAM GPUs find Qwen2.5 14B models crash immediately while 7B works fine; unclear if it's a resource limit or a bug",
+      "Qwen2.5 14B models fail with 'llama runner process has terminated: signal arrived during cgo execution' on GTX TITAN X (12GB VRAM). GPU memory only reaches ~1GB before crash. 7B models work fine. Logs show 'exit status 2'."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Ollama model loading crash",
+      "Ollama GPU memory error",
+      "Qwen2.5 compatibility Ollama"
+    ]
   }
 ]
