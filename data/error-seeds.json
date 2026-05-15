@@ -12738,5 +12738,176 @@
       "pnpm install metadata error",
       "pnpm resolution mode registry issue"
     ]
+  },
+  {
+    "slug": "claude-code-403-forbidden-claude-code-use-bedrock-true-agent-window",
+    "title": "Fix Claude Code Agent Window 403 Error on AWS Bedrock — CLAUDE_CODE_USE_BEDROCK Not Supported in VS Code",
+    "description": "fix Claude Code 403 error AWS Bedrock CLAUDE_CODE_USE_BEDROCK agent window VS Code Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "403 Forbidden — CLAUDE_CODE_USE_BEDROCK=true Agent window",
+    "search_intent": "fix Claude Code 403 error AWS Bedrock CLAUDE_CODE_USE_BEDROCK agent window VS Code",
+    "common_causes": [
+      "Setting CLAUDE_CODE_USE_BEDROCK=true causes the VS Code Agent window to fail with 403 Forbidden. The regular editor extension works but Agent window does not. Enterprise users on AWS Bedrock cannot use the Agent feature.",
+      "Bug report from Windows 11 Enterprise user. CLAUDE_CODE_USE_BEDROCK=true in settings.json. Agent window shows 403. Regular VS Code extension works with same config. Never worked — not a regression."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Claude Code AWS Bedrock configuration",
+      "Claude Code agent view connection failed",
+      "Claude Code Bedrock 403 forbidden"
+    ]
+  },
+  {
+    "slug": "litellm-this-feature-is-only-available-for-litellm-enterprise-users",
+    "title": "Fix LiteLLM 'Enterprise users only' Error on Basic Virtual Key Features",
+    "description": "fix LiteLLM This feature is only available for LiteLLM Enterprise users virtual key edit Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "This feature is only available for LiteLLM Enterprise users",
+    "search_intent": "fix LiteLLM This feature is only available for LiteLLM Enterprise users virtual key edit",
+    "common_causes": [
+      "Editing virtual keys (adding models) triggers 'This feature is only available for LiteLLM Enterprise users' error even for basic features that were previously free. Paywall expanded to cover basic functionality without notice.",
+      "35 comments. Users can't edit virtual keys (add models) without enterprise license. Error: '403: This feature is only available for LiteLLM Enterprise users'. Previously worked in earlier versions. Website still advertises feature as available."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "LiteLLM enterprise license required",
+      "LiteLLM virtual key management error",
+      "LiteLLM 403 forbidden free tier"
+    ]
+  },
+  {
+    "slug": "claude-code-claude-code-process-exited-with-code-1",
+    "title": "Fix Claude Code process exited with code 1 — Desktop App & Cowork Crash on Every Message",
+    "description": "fix Claude Code process exited with code 1 desktop app cowork not working Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Claude Code process exited with code 1",
+    "search_intent": "fix Claude Code process exited with code 1 desktop app cowork not working",
+    "common_causes": [
+      "Claude Code Desktop App and Cowork mode crash immediately on every message with 'process exited with code 1', completely blocking usage. Users on paid subscriptions cannot use the product at all.",
+      "Multiple users report Claude Code Desktop App exits with code 1 on any message. Issue #59375 filed 2026-05-15 with logs showing session query error. Related to #52210 with 50+ comments. Reproducible on macOS with latest version 2.1.138+."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Claude Code process exited with code 3",
+      "Claude Code session error VS Code extension",
+      "Claude Code not responding on startup"
+    ]
+  },
+  {
+    "slug": "cloudflare-err-pnpm-ignored-builds",
+    "title": "Fix Cloudflare create-cloudflare ERR_PNPM_IGNORED_BUILDS on pnpm 10/11 — Scaffolding Fails",
+    "description": "fix Cloudflare create-cloudflare ERR_PNPM_IGNORED_BUILDS pnpm 10 11 ignored build scripts Includes evidence for Cloudflare troubleshooting demand.",
+    "category": "Cloudflare",
+    "technology": "Cloudflare",
+    "error_signature": "ERR_PNPM_IGNORED_BUILDS",
+    "search_intent": "fix Cloudflare create-cloudflare ERR_PNPM_IGNORED_BUILDS pnpm 10 11 ignored build scripts",
+    "common_causes": [
+      "Running 'pnpm create cloudflare@latest' fails with ERR_PNPM_IGNORED_BUILDS on pnpm 10+. The c3 scaffolder writes invalid YAML boolean placeholders for allowBuilds config, causing pnpm to reject build scripts for esbuild, sharp, and workerd.",
+      "Reproducible on any machine with pnpm ≥ 10. c3 writes allowBuilds with string placeholders ('set this to true or false') instead of valid YAML booleans. pnpm rejects builds, c3 treats non-zero exit as fatal. First-time user experience broken."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Cloudflare wrangler install failed",
+      "pnpm approve-builds workerd esbuild sharp",
+      "Cloudflare Workers project setup error"
+    ]
+  },
+  {
+    "slug": "cloudflare-apierror-forbidden-authentication-error-with-containers-config-on-free-plan",
+    "title": "Fix Cloudflare Containers Deploy 403 'Authentication error' — Missing Plan Requirement Message",
+    "description": "fix Cloudflare wrangler deploy 403 Authentication error containers free plan workers paid Includes evidence for Cloudflare troubleshooting demand.",
+    "category": "Cloudflare",
+    "technology": "Cloudflare",
+    "error_signature": "ApiError: Forbidden — Authentication error with [[containers]] config on Free plan",
+    "search_intent": "fix Cloudflare wrangler deploy 403 Authentication error containers free plan workers paid",
+    "common_causes": [
+      "Deploying a Worker with [[containers]] config on Cloudflare Free plan returns generic 'ApiError: Forbidden' with 'Authentication error'. No indication that Containers requires Workers Paid plan. Error message is misleading.",
+      "Reproducible: Free plan account + [[containers]] in wrangler.toml → 403 with generic 'Authentication error'. Docker image builds successfully but deployment fails. Error doesn't mention Containers or plan requirement."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "Cloudflare Workers deploy forbidden",
+      "Cloudflare containers pricing plan",
+      "wrangler deploy authentication error"
+    ]
+  },
+  {
+    "slug": "litellm-runtimeerror-cannot-send-a-request-as-the-client-has-been-closed",
+    "title": "Fix LiteLLM OpenAI Inference Broken in SDK v1.81.1 — Client Closed Error",
+    "description": "fix LiteLLM Cannot send a request as the client has been closed RuntimeError OpenAI SDK Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "RuntimeError: Cannot send a request, as the client has been closed.",
+    "search_intent": "fix LiteLLM Cannot send a request as the client has been closed RuntimeError OpenAI SDK",
+    "common_causes": [
+      "LiteLLM SDK v1.81.1 breaks OpenAI inference with 'RuntimeError: Cannot send a request, as the client has been closed.' Regression from previous working version. Affects production deployments using LiteLLM as OpenAI proxy.",
+      "22 comments. Traceback shows httpx client closed before request sent. Affects GPT 5.2 via LiteLLM Python SDK. Previous versions work without issues. Confirmed regression in v1.81.1."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "LiteLLM httpx client closed error",
+      "LiteLLM OpenAI proxy connection error",
+      "LiteLLM SDK runtime error client"
+    ]
+  },
+  {
+    "slug": "ollama-500-internal-server-error-model-failed-to-load-this-may-be-due-to-resource-limitations-or-an-internal-error",
+    "title": "Fix Ollama 500 Error — gemma4 Models Fail to Load on Apple M5 with exit status 2 Crash",
+    "description": "fix Ollama 500 Internal Server Error model failed to load gemma4 Apple M5 exit status 2 Includes evidence for Ollama troubleshooting demand.",
+    "category": "Ollama",
+    "technology": "Ollama",
+    "error_signature": "500 Internal Server Error: model failed to load, this may be due to resource limitations or an internal error",
+    "search_intent": "fix Ollama 500 Internal Server Error model failed to load gemma4 Apple M5 exit status 2",
+    "common_causes": [
+      "Ollama fails to load gemma4 models on Apple M5 chips with '500 Internal Server Error: model failed to load' and 'exit status 2' crash. gemma3:4b works fine on same hardware. M5 is new hardware with growing user base.",
+      "Consistent crash on Apple M5 (Darwin 25.0.0) with gemma4:e2b and gemma4:e4b. Crash at same fault address regardless of GPU/CPU mode. gemma3:4b works. Gemma 4 works via Google AI Studio API — Ollama-specific."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Ollama model failed to load resource limitations",
+      "Ollama gemma4 crash macOS",
+      "Ollama Apple Silicon compatibility"
+    ]
+  },
+  {
+    "slug": "claude-code-file-has-not-been-read-yet-read-it-first-before-writing-to-it",
+    "title": "Fix Claude Code 'File has not been read yet' Error on Windows — Case-Sensitive Path Tracker Bug",
+    "description": "fix Claude Code file has not been read yet Windows drive letter case mismatch Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "File has not been read yet. Read it first before writing to it.",
+    "search_intent": "fix Claude Code file has not been read yet Windows drive letter case mismatch",
+    "common_causes": [
+      "Claude Code's Read/Edit tracker uses case-sensitive string comparison on Windows, causing 'File has not been read yet' when drive letter casing differs between Read and Edit calls (e.g. c:\\ vs C:\\). Forces redundant reads and breaks editing workflow.",
+      "Bug report with reproduction steps: Read with lowercase drive letter, then Edit with uppercase (from Glob output) triggers 'File has not been read yet'. Windows filesystem is case-insensitive but tracker is case-sensitive. Labeled 'has repro'."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Claude Code Read tool ENOENT on NBSP filenames",
+      "Claude Code Edit tool file not found Windows",
+      "Claude Code path resolution case sensitivity"
+    ]
+  },
+  {
+    "slug": "ollama-gemma4-tool-call-parsing-failed-error-invalid-character",
+    "title": "Fix Ollama gemma4 Tool Call Parsing Error — 'invalid character looking for beginning of value'",
+    "description": "fix Ollama gemma4 tool call parsing failed invalid character error Includes evidence for Ollama troubleshooting demand.",
+    "category": "Ollama",
+    "technology": "Ollama",
+    "error_signature": "gemma4 tool call parsing failed error=\"invalid character\"",
+    "search_intent": "fix Ollama gemma4 tool call parsing failed invalid character error",
+    "common_causes": [
+      "Ollama's gemma4 models produce tool call parsing errors with 'invalid character looking for beginning of value'. Affects multiple tool-calling agents (opencode, oh-my-opencode). Persists across ollama versions even after fix attempts.",
+      "48 comments on issue #15315. gemma4 tool call parsing fails with invalid character errors. Content shows tool calls with backticks and angle brackets that parser can't handle. Persists in ollama 0.20.1 after claimed fix."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Ollama tool calling not working",
+      "Ollama gemma4 function calling error",
+      "Ollama structured output parsing error"
+    ]
   }
 ]
