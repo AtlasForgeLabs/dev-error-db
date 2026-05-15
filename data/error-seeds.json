@@ -11604,5 +11604,77 @@
       "Next.js Turbopack build error",
       "Vercel build failed memory"
     ]
+  },
+  {
+    "slug": "vercel-vercel-env-add-value-value-sensitive-yes-silently-stores-empty-string",
+    "title": "Vercel CLI 'env add' Silently Stores Empty String with --sensitive Flag",
+    "description": "Fix Vercel CLI env add storing empty values instead of provided --value Includes evidence for Vercel troubleshooting demand.",
+    "category": "Deployment",
+    "technology": "Vercel",
+    "error_signature": "vercel env add --value <value> --sensitive --yes silently stores empty string",
+    "search_intent": "Fix Vercel CLI env add storing empty values instead of provided --value",
+    "common_causes": [
+      "The vercel env add command reports success but silently stores an empty string as the value when using --sensitive. Deployments fail or use wrong secrets because environment variables appear set but contain no value.",
+      "CLI v50.5.0+ with --sensitive flag silently discards the --value. CLI 53.x affects all --value writes regardless of --sensitive. Success message shown but value stored as empty string."
+    ],
+    "quick_fix": "Check the build output, project root, and deployment platform configuration before redeploying.",
+    "related_errors": [
+      "Vercel environment variable not working",
+      "Vercel deployment missing env vars"
+    ]
+  },
+  {
+    "slug": "claude-code-unhandled-case-object-object-red-banner-overlay-crash-in-claude-code-vscode-extension",
+    "title": "Claude Code 'Unhandled case: [object Object]' Overlay Crash in VSCode",
+    "description": "Fix Claude Code VSCode extension 'Unhandled case: [object Object]' crash overlay Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Unhandled case: [object Object] — red banner overlay crash in Claude Code VSCode extension",
+    "search_intent": "Fix Claude Code VSCode extension 'Unhandled case: [object Object]' crash overlay",
+    "common_causes": [
+      "Claude Code VSCode extension crashes with an unhandled case overlay that recurs every ~15 minutes, correlating with MCP SSE reconnection events. The extension becomes unusable during active coding sessions.",
+      "Multiple reports on v2.1.141-142, Windows 11 and other platforms. Crash overlay recurs periodically, correlating with MCP SSE reconnect events. Fixed in v2.1.142 for some users."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Claude Code stream drop",
+      "Claude Code MCP connection error"
+    ]
+  },
+  {
+    "slug": "litellm-litellm-azure-oai-models-auth-broken-in-1-84-0-enable-azure-ad-token-authentication-fails-after-upgrading-to-v1-84-0",
+    "title": "LiteLLM Azure OpenAI Authentication Broken in v1.84.0 — enable_azure_ad_token Fails",
+    "description": "Fix LiteLLM proxy Azure OpenAI authentication failure after upgrading to v1.84.0 Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "LiteLLM Azure OAI Models Auth Broken in 1.84.0 — enable_azure_ad_token authentication fails after upgrading to v1.84.0",
+    "search_intent": "Fix LiteLLM proxy Azure OpenAI authentication failure after upgrading to v1.84.0",
+    "common_causes": [
+      "Upgrading LiteLLM to 1.84.0 breaks Azure OpenAI model authentication when using enable_azure_ad_token. Teams relying on Azure-hosted GPT models through LiteLLM proxy lose all access, causing production outages.",
+      "Bug report confirms authentication for Azure OpenAI models breaks in LiteLLM v1.84.0 when enable_azure_ad_token is used. Multiple users affected."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "LiteLLM proxy connection refused",
+      "LiteLLM Azure model not found"
+    ]
+  },
+  {
+    "slug": "netlify-netlify-cli-error-netlify-cli-has-terminated-unexpectedly-infinite-error-loop-after-ntl-dev",
+    "title": "Netlify CLI 'Terminated Unexpectedly' Infinite Error Loop in Development Mode",
+    "description": "Fix Netlify CLI infinite 'terminated unexpectedly' error loop during ntl dev Includes evidence for Netlify troubleshooting demand.",
+    "category": "Deployment",
+    "technology": "Netlify",
+    "error_signature": "Netlify CLI 'Error: Netlify CLI has terminated unexpectedly' — infinite error loop after ntl dev",
+    "search_intent": "Fix Netlify CLI infinite 'terminated unexpectedly' error loop during ntl dev",
+    "common_causes": [
+      "After running ntl dev, the Netlify CLI enters an infinite loop printing 'Error: Netlify CLI has terminated unexpectedly' with no actual error details. The dev server becomes unusable as the error message floods the terminal.",
+      "Multiple reports of the CLI printing 'terminated unexpectedly' in a tight loop after dev server starts. No useful error details provided. Affects multiple frameworks."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Netlify dev server not working",
+      "Netlify CLI crash"
+    ]
   }
 ]
