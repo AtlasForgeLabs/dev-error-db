@@ -11093,5 +11093,138 @@
       "GitHub Actions self-hosted runner busy",
       "GitHub Actions runner not picking up jobs"
     ]
+  },
+  {
+    "slug": "claude-code-claude-code-api-outage-burned-1m-tokens-on-weekly-reset-account-tokens-do-not-carry-over",
+    "title": "Claude Code API Outage Burns Tokens on Weekly-Reset Max Plan — No Refund Mechanism",
+    "description": "Recover or get refunded for tokens consumed during API outage on Claude Code Max plan Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Claude Code API outage burned ~1M tokens on weekly-reset account — tokens do not carry over",
+    "search_intent": "Recover or get refunded for tokens consumed during API outage on Claude Code Max plan",
+    "common_causes": [
+      "Claude Code Max ($200/month) has weekly token resets that don't carry over. During API outages, failed requests still consume tokens. Users lose ~1M tokens permanently with no recourse.",
+      "User reports ~1M tokens burned on failed requests during 2026-05-14 API outage. Weekly reset is next day, so tokens are permanently lost. Multi-task subagent session interrupted. No refund or token restoration mechanism exists."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Claude Code token consumption during outage",
+      "Claude Code Max plan weekly reset token loss",
+      "Anthropic API outage token billing"
+    ]
+  },
+  {
+    "slug": "claude-code-claude-code-edit-silently-clamps-file-size-to-pre-edit-size-data-loss",
+    "title": "Claude Code Cowork Edit Silently Clamps File Size — Silent Data Loss",
+    "description": "Fix Claude Code edit operation silently truncating file to original size, losing new content Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Claude Code Edit silently clamps file size to pre-edit size — data loss",
+    "search_intent": "Fix Claude Code edit operation silently truncating file to original size, losing new content",
+    "common_causes": [
+      "When Claude Code's edit tool expands a file beyond its original size, the write is silently clamped to the pre-edit size. The user sees 'File updated successfully' but content is lost. Reproduces known bug #52581.",
+      "Edit tool in Cowork mode silently clamps file writes to the original file size. New content beyond original size is dropped without error. Reproduces #52581 which was auto-closed. Labeled 'has repro' and 'area:tools'."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Claude Code file edit data loss",
+      "Claude Code write truncated silently",
+      "Claude Code Cowork edit size limit"
+    ]
+  },
+  {
+    "slug": "openrouter-openrouter-provider-ignores-selected-model-and-falls-back-to-claude-sonnet-4-6",
+    "title": "OpenRouter Provider Ignores Selected Model — Silently Falls Back to Default",
+    "description": "Fix OpenRouter provider ignoring the user-selected model and falling back to the default Anthropic model Includes evidence for OpenRouter troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "OpenRouter",
+    "error_signature": "OpenRouter provider ignores selected model and falls back to claude-sonnet-4-6",
+    "search_intent": "Fix OpenRouter provider ignoring the user-selected model and falling back to the default Anthropic model",
+    "common_causes": [
+      "When using OpenRouter provider, the selected model (e.g. openai/gpt-4o) is not preserved. The plugin silently falls back to claude-sonnet-4-6 without warning. Users pay for OpenRouter credits but get wrong model.",
+      "OpenRouter provider fails to preserve selected model parameter. Silently uses default Anthropic model instead. Users are charged for OpenRouter credits but receive responses from a different model."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "OpenRouter model routing bug",
+      "OpenRouter wrong model used",
+      "OpenRouter silent fallback to default"
+    ]
+  },
+  {
+    "slug": "docker-panic-crypto-requested-hash-function-sharp-0-is-unavailable-docker-daemon-crash",
+    "title": "Docker Daemon Panics with 'crypto: requested hash function #0 is unavailable'",
+    "description": "Fix Docker daemon crash with crypto hash function panic Includes evidence for Docker troubleshooting demand.",
+    "category": "Docker",
+    "technology": "Docker",
+    "error_signature": "panic: crypto: requested hash function #0 is unavailable — Docker daemon crash",
+    "search_intent": "Fix Docker daemon crash with crypto hash function panic",
+    "common_causes": [
+      "Docker daemon dies unexpectedly with a Go crypto panic. The error 'requested hash function #0 is unavailable' indicates a crypto registry issue. Affects Docker 29.4.1, multiple reporters.",
+      "Docker daemon crash with Go crypto panic in goroutine. Affects Docker 29.4.1. 7 comments indicating multiple affected users. No clear fix documented in issue thread."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Docker daemon panic crypto",
+      "Docker 29.4 crash hash function",
+      "Docker daemon unexpected exit crypto error"
+    ]
+  },
+  {
+    "slug": "litellm-litellm-mid-stream-fallback-request-includes-assistant-prefill-block-breaks-claude-sonnet-4-6-opus-4-7",
+    "title": "LiteLLM Mid-Stream Fallback Breaks Claude Models — Includes Unsupported Assistant Prefill",
+    "description": "Fix LiteLLM mid-stream fallback including assistant prefill block that breaks Claude model compatibility Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "LiteLLM mid-stream fallback request includes assistant prefill block, breaks Claude Sonnet 4.6 / Opus 4.7",
+    "search_intent": "Fix LiteLLM mid-stream fallback including assistant prefill block that breaks Claude model compatibility",
+    "common_causes": [
+      "When a streaming request fails mid-stream (timeout, 5xx), Router.stream_with_fallbacks constructs fallback with an extra assistant prefill block. Claude Sonnet 4.6 and Opus 4.7 don't support prefix=True, causing the fallback to fail too.",
+      "Router.stream_with_fallbacks adds assistant prefill when constructing fallback request. Claude models reject requests with assistant prefill + prefix=True. Fallback mechanism itself fails, leaving users with no recovery path."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "LiteLLM fallback Claude error",
+      "LiteLLM streaming fallback broken",
+      "LiteLLM assistant prefill unsupported"
+    ]
+  },
+  {
+    "slug": "docker-docker-cannot-exec-into-rootless-container-apparmor-failed-to-apply-profile-no-such-file-or-directory",
+    "title": "Docker 29.5.0-RC1 Cannot Exec Into Rootless Container — AppArmor Profile Missing",
+    "description": "Fix Docker exec failure in rootless containers due to missing AppArmor profile after upgrade Includes evidence for Docker troubleshooting demand.",
+    "category": "Docker",
+    "technology": "Docker",
+    "error_signature": "Docker cannot exec into rootless container — apparmor failed to apply profile: no such file or directory",
+    "search_intent": "Fix Docker exec failure in rootless containers due to missing AppArmor profile after upgrade",
+    "common_causes": [
+      "Upgrading to Docker 29.5.0-RC1 breaks docker exec into rootless containers. The error references AppArmor but rootless containers shouldn't require AppArmor. 7 comments indicate widespread impact.",
+      "Docker 29.5.0-RC1 regression: docker exec into rootless containers fails with AppArmor exec profile error. The error path references /proc/thread-self/attr/apparmor/exec which doesn't exist. 7 comments from affected users."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Docker exec rootless container fails",
+      "Docker AppArmor no such file or directory",
+      "Docker 29.5 rootless regression"
+    ]
+  },
+  {
+    "slug": "ollama-ollama-0-30-0-rc15-ggml-assert-buffer-failed-during-loading-of-multimodal-model-gemma4-26b-due-to-cuda-oom",
+    "title": "Ollama GGML_ASSERT(buffer) Failed — CUDA Out of Memory When Loading Large Models",
+    "description": "Fix GGML_ASSERT(buffer) failure and CUDA OOM when loading large multimodal models in Ollama Includes evidence for Ollama troubleshooting demand.",
+    "category": "Ollama",
+    "technology": "Ollama",
+    "error_signature": "Ollama 0.30.0-RC15: GGML_ASSERT(buffer) failed during loading of multimodal model gemma4:26b due to CUDA OOM",
+    "search_intent": "Fix GGML_ASSERT(buffer) failure and CUDA OOM when loading large multimodal models in Ollama",
+    "common_causes": [
+      "Loading large models like gemma4:26b crashes with GGML_ASSERT(buffer) failed. The main LLM layers load successfully but the multimodal component triggers CUDA OOM. Users can't identify which component is consuming VRAM.",
+      "Reproduced on 0.30.0-RC15. gemma4:26b loads 31/31 LLM layers but crashes on GGML_ASSERT(buffer) during multimodal component loading. CUDA OOM is the root cause but error message doesn't indicate this clearly."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Ollama GGML_ASSERT crash",
+      "Ollama CUDA OOM loading model",
+      "Ollama gemma4 multimodal crash"
+    ]
   }
 ]
