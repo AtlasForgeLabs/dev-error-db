@@ -13869,5 +13869,85 @@
     "related_errors": [
       "Ollama"
     ]
+  },
+  {
+    "slug": "anthropic-api-api-error-400-messages-text-content-blocks-must-be-non-empty",
+    "title": "Anthropic API 400: text content blocks must be non-empty error fix",
+    "description": "Fix Anthropic API 400 error when text content blocks are empty in messages.create request Includes evidence for Anthropic API troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Anthropic API",
+    "error_signature": "API Error: 400 messages: text content blocks must be non-empty",
+    "search_intent": "Fix Anthropic API 400 error when text content blocks are empty in messages.create request",
+    "common_causes": [
+      "Production error on TradeMindAI (PR #295): Anthropic API rejects requests with empty text content blocks. Caused by incorrect cache_control block shape change in system prompt and tool schema. The error appears when messages array contains text blocks with empty content. Category mapped directly to Anthropic API per approved list."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Anthropic API"
+    ]
+  },
+  {
+    "slug": "litellm-no-fallback-model-group-found-for-original-model-group-primary",
+    "title": "LiteLLM fallback not triggering: No fallback model group found",
+    "description": "Fix LiteLLM fallback configuration not triggering when primary model fails Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "No fallback model group found for original model_group=primary",
+    "search_intent": "Fix LiteLLM fallback configuration not triggering when primary model fails",
+    "common_causes": [
+      "LiteLLM proxy issue: When primary model fails, configured fallback models are not triggered. Error message 'No fallback model group found for original model_group=primary' indicates fallback configuration parsing failure. Category mapped to LiteLLM per approved list."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "LiteLLM"
+    ]
+  },
+  {
+    "slug": "openai-api-timeout-at-616-seconds-with-status-interrupted",
+    "title": "OpenAI API timeout at ~616 seconds with status interrupted",
+    "description": "Fix OpenAI API request timeout after extended processing time Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "timeout at ~616 seconds with status: interrupted",
+    "search_intent": "Fix OpenAI API request timeout after extended processing time",
+    "common_causes": [
+      "Observed in GitHub search results: Model (gpt-5.5 via OpenAI Responses API) generates complete output with valid usage counts, but request times out at approximately 616 seconds with interrupted status. Indicates client-side or proxy timeout before server completes response streaming. Category mapped to OpenAI API per approved list."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "ollama-word-repetition-loop-fills-num-predict-budget-json-unterminated-repeat-penalty-has-no-effect",
+    "title": "Ollama gemma4 repetition loop during constrained JSON generation",
+    "description": "Fix Ollama gemma4 repetition loop when generating structured JSON with format parameter Includes evidence for Ollama troubleshooting demand.",
+    "category": "Ollama",
+    "technology": "Ollama",
+    "error_signature": "Word repetition loop fills num_predict budget, JSON unterminated — repeat_penalty has no effect",
+    "search_intent": "Fix Ollama gemma4 repetition loop when generating structured JSON with format parameter",
+    "common_causes": [
+      "Ollama issue #15502: gemma4:31b enters word-repetition loops during constrained JSON generation with free-text string fields. repeat_penalty parameter has no effect at any value (1.0, 1.15, 1.5). Bug rate 60-100% across 39 trials. Three conditions required: gemma4 dense model, format= with JSON schema, free-text string fields. Category mapped to Ollama per approved list."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Ollama"
+    ]
+  },
+  {
+    "slug": "ollama-think-false-with-format-parameter-causes-format-constraint-to-be-silently-ignored-outputs-plain-text-instead-of-json",
+    "title": "Ollama think=false breaks format structured output silently",
+    "description": "Fix Ollama structured output being ignored when think=false is set Includes evidence for Ollama troubleshooting demand.",
+    "category": "Ollama",
+    "technology": "Ollama",
+    "error_signature": "think=false with format parameter causes format constraint to be silently ignored — outputs plain text instead of JSON",
+    "search_intent": "Fix Ollama structured output being ignored when think=false is set",
+    "common_causes": [
+      "Ollama issue #15260: Setting think=false with format= parameter causes the format constraint to be completely ignored for gemma4 models. Model outputs plain text instead of requested JSON. Server returns HTTP 200 with no errors logged. Same bug class as qwen3.5 series (#14645). Category mapped to Ollama per approved list."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Ollama"
+    ]
   }
 ]
