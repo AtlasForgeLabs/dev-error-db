@@ -12144,5 +12144,95 @@
       "OpenAI API 500 internal server error",
       "OpenAI API timeout error"
     ]
+  },
+  {
+    "slug": "claude-code-can-t-access-this-organization-you-don-t-have-access-to-this-organization-or-it-doesn-t-meet-the-requirements-for-claude-code",
+    "title": "Claude Code \"Can't access this organization\" after auto-update to 2.1.132",
+    "description": "Fix Claude Code auth failure after auto-update, restore organization access Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Can't access this organization. You don't have access to this organization or it doesn't meet the requirements for Claude Code.",
+    "search_intent": "Fix Claude Code auth failure after auto-update, restore organization access",
+    "common_causes": [
+      "Auto-update breaks previously working auth for Console-org setups, blocking agent workflows entirely",
+      "Issue #59348 filed 2026-05-15: Claude Code 2.1.132 broke `claude agents` auth for Console-org users with `forceLoginMethod: console` and `forceLoginOrgUUID` in settings.json. Interactive terminal sessions still work. Regression specific to agent view."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "Claude Code agent view authentication failure",
+      "Claude Code auto-update breaks org settings"
+    ]
+  },
+  {
+    "slug": "openai-api-openai-batch-api-returns-404-with-gpt-5-x-models",
+    "title": "OpenAI Batch API returns 404 when using GPT-5.x models",
+    "description": "Fix OpenAI Batch API 404 error when using GPT-5.x models Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "OpenAI Batch API returns 404 with GPT-5.x models",
+    "search_intent": "Fix OpenAI Batch API 404 error when using GPT-5.x models",
+    "common_causes": [
+      "New GPT-5.x models return 404 on Batch API, blocking batch processing workflows on paid tier",
+      "Issue #3071 filed 2026-04-08: Batch API endpoint returns 404 when attempting to use GPT-5.x model variants. Standard GPT-4.x models work fine. Suggests GPT-5.x batch endpoints not yet deployed or API routing issue."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "OpenAI Batch API model compatibility",
+      "GPT-5 API endpoint availability"
+    ]
+  },
+  {
+    "slug": "claude-code-session-hangs-loops-when-image-is-sent-with-no-text-prompt-via-remote-control",
+    "title": "Claude Code session hangs when image sent without text prompt via Remote Control",
+    "description": "Fix Claude Code session hang when sending image without text via Remote Control Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Session hangs/loops when image is sent with no text prompt via Remote Control",
+    "search_intent": "Fix Claude Code session hang when sending image without text via Remote Control",
+    "common_causes": [
+      "Sending an image alone (no text) to Claude Code via Remote Control causes infinite loop, wasting API credits and blocking work",
+      "Issue #59328 filed 2026-05-15: When using Claude Code Remote Control and sending an image without any accompanying text prompt, the session enters a hang/loop state. Requires killing the session manually."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Claude Code image-only message handling",
+      "Claude Code Remote Control protocol errors"
+    ]
+  },
+  {
+    "slug": "claude-code-0x80070005-hyper-v-unavailable-claude-cowork-workspace-fails-to-start",
+    "title": "Claude Code Cowork workspace fails to start on Windows 11 Home — Hyper-V Unavailable (0x80070005)",
+    "description": "Fix Claude Code Cowork workspace start failure on Windows 11 Home due to Hyper-V unavailability Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "0x80070005 — Hyper-V Unavailable, Claude Cowork Workspace Fails to Start",
+    "search_intent": "Fix Claude Code Cowork workspace start failure on Windows 11 Home due to Hyper-V unavailability",
+    "common_causes": [
+      "Windows 11 Home doesn't include Hyper-V by default, causing Claude Code Cowork workspace to fail with cryptic 0x80070005 error",
+      "Issue #59320 filed 2026-05-15: Claude Code Cowork feature requires Hyper-V for workspace isolation. Windows 11 Home doesn't ship Hyper-V, causing 0x80070005 access denied error. Users on Home edition cannot use Cowork without Pro/Enterprise upgrade."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Claude Code Cowork Windows compatibility",
+      "Hyper-V requirement for Claude Code workspace"
+    ]
+  },
+  {
+    "slug": "claude-code-unhandled-case-object-object-webview-streaming-error-with-had-error-true",
+    "title": "Claude Code webview shows \"Unhandled case: [object Object]\" on streaming error",
+    "description": "Fix Claude Code webview unhandled case error during streaming Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Unhandled case: [object Object] (webview streaming error with had_error=true)",
+    "search_intent": "Fix Claude Code webview unhandled case error during streaming",
+    "common_causes": [
+      "When streaming response ends with had_error=true, webview shows unhelpful literal object instead of error message",
+      "Issue #59306 filed 2026-05-15: The webview renders `Unhandled case: [object Object]` when a streaming response terminates with `had_error=true`. Indicates missing error case handling in the webview renderer."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Claude Code webview error rendering",
+      "Claude Code streaming response error handling"
+    ]
   }
 ]
