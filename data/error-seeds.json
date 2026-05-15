@@ -13181,5 +13181,133 @@
     "related_errors": [
       "AI Coding Tools"
     ]
+  },
+  {
+    "slug": "claude-code-operation-not-permitted-from-the-kernel-sandbox-write-denywithinallow-contains-which-blanket-blocks-all-write-paths",
+    "title": "Claude Code sandbox Operation not permitted — slash in denyWithinAllow blocks all file writes on macOS",
+    "description": "Fix Claude Code sandbox blocking all write operations on macOS, Operation not permitted error Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Operation not permitted from the kernel sandbox — write.denyWithinAllow contains \"/\" which blanket-blocks all write paths",
+    "search_intent": "Fix Claude Code sandbox blocking all write operations on macOS, Operation not permitted error",
+    "common_causes": [
+      "GitHub issue #59455 reports Claude Code 2.1.132 on macOS injects \"/\" into denyWithinAllow sandbox descriptor, causing every write attempt (project dir, /tmp, plans) to fail with kernel sandbox Operation not permitted. Regression from previous versions. No user-configurable setting causes this — Claude Code computes/injects it. Category mapped to AI Coding Tools as this is a Claude Code bug."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "claude-code-excessive-quota-consumption-session-goes-from-0-to-36-of-quota-in-12-minutes-during-normal-usage",
+    "title": "Claude Code excessive quota consumption — 0% to 36% in 12 minutes on Max plan",
+    "description": "Fix Claude Code Max plan consuming quota too fast, excessive token usage per session Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Excessive quota consumption: session goes from 0% to 36% of quota in 12 minutes during normal usage",
+    "search_intent": "Fix Claude Code Max plan consuming quota too fast, excessive token usage per session",
+    "common_causes": [
+      "GitHub issue #59437 reports Claude Code on Max plan consumes 36% of quota in just 12 minutes of normal usage. User on CLI 2.1.142, Opus 4.6 pinned, high effort. Category mapped to AI Coding Tools — this is a billing/quota impact issue on a paid subscription service."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "vercel-middleware-invocation-failed-cannot-find-module-swc-helpers-esm-interop-require-default-js",
+    "title": "Vercel MIDDLEWARE_INVOCATION_FAILED — Cannot find module @swc/helpers/esm/_interop_require_default.js on Next.js 16",
+    "description": "Fix Vercel deployment failure MIDDLEWARE_INVOCATION_FAILED with Next.js 16 and @swc/helpers module not found Includes evidence for Vercel troubleshooting demand.",
+    "category": "Deployment",
+    "technology": "Vercel",
+    "error_signature": "MIDDLEWARE_INVOCATION_FAILED — Cannot find module '@swc/helpers/esm/_interop_require_default.js'",
+    "search_intent": "Fix Vercel deployment failure MIDDLEWARE_INVOCATION_FAILED with Next.js 16 and @swc/helpers module not found",
+    "common_causes": [
+      "GitHub issue #93852 reports Vercel deployment fails with MIDDLEWARE_INVOCATION_FAILED on Next.js 16.2.6+ when using proxy.ts + top-level @sentry/nextjs import. Minimal reproduction provided. Category mapped to Deployment as this is a Vercel build/deploy failure."
+    ],
+    "quick_fix": "Check the build output, project root, and deployment platform configuration before redeploying.",
+    "related_errors": [
+      "Deployment"
+    ]
+  },
+  {
+    "slug": "anthropic-api-typeerror-unexpected-event-runtime-type-after-deserialising-twice-type-content-block-delta-index-0-delta-type-text-delta-text-class-dict",
+    "title": "Anthropic Python SDK streaming TypeError — Pydantic union discriminator returns raw dict instead of typed model",
+    "description": "Fix Anthropic Python SDK streaming error TypeError unexpected event runtime type dict instead of typed model Includes evidence for Anthropic API troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Anthropic API",
+    "error_signature": "TypeError: Unexpected event runtime type, after deserialising twice — {'type': 'content_block_delta', 'index': 0, 'delta': {'type': 'text_delta', 'text': '...'}} — <class 'dict'>",
+    "search_intent": "Fix Anthropic Python SDK streaming error TypeError unexpected event runtime type dict instead of typed model",
+    "common_causes": [
+      "GitHub PR #1542 in anthropics/anthropic-sdk-python fixes streaming TypeError when Pydantic union discriminator returns raw dict. accumulate_event raises TypeError at isinstance check because event.delta is a dict instead of TextDelta. Multiple prior PRs (#1167, #1287, #1448, #1467) attempted partial fixes but left nested fields as raw dicts. Category mapped to Anthropic API — this is an SDK bug affecting streaming responses."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Anthropic API"
+    ]
+  },
+  {
+    "slug": "anthropic-api-413-returns-generic-apistatuserror-instead-of-requesttoolargeerror-529-overloadederror-falls-into-internalservererror-on-bedrock-vertex",
+    "title": "Anthropic Python SDK Bedrock/Vertex missing 413 and 529 error code mapping — retry logic silently broken",
+    "description": "Fix Anthropic SDK Bedrock Vertex 413 529 error codes not mapped to typed exceptions retry backoff broken Includes evidence for Anthropic API troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Anthropic API",
+    "error_signature": "413 returns generic APIStatusError instead of RequestTooLargeError; 529 OverloadedError falls into InternalServerError on Bedrock/Vertex",
+    "search_intent": "Fix Anthropic SDK Bedrock Vertex 413 529 error codes not mapped to typed exceptions retry backoff broken",
+    "common_causes": [
+      "GitHub PR #1544 in anthropics/anthropic-sdk-python fixes missing 413→RequestTooLargeError and 529→OverloadedError mappings on Bedrock and Vertex clients. The canonical client already maps these. Users on Bedrock/Vertex get generic APIStatusError for 413 and InternalServerError for 529, breaking retry/backoff code keyed off typed exceptions. Category mapped to Anthropic API — SDK drift bug affecting paid platform users."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "Anthropic API"
+    ]
+  },
+  {
+    "slug": "github-actions-502-bad-gateway-from-registration-token-endpoint-ephemeral-runners-fail-to-register-and-die",
+    "title": "GitHub Actions self-hosted runner registration token endpoint returns 502 — ephemeral runners die before registering",
+    "description": "Fix GitHub Actions self-hosted runner 502 error on registration token endpoint ephemeral runners failing Includes evidence for GitHub Actions troubleshooting demand.",
+    "category": "GitHub Actions",
+    "technology": "GitHub Actions",
+    "error_signature": "502 Bad Gateway from registration token endpoint — ephemeral runners fail to register and die",
+    "search_intent": "Fix GitHub Actions self-hosted runner 502 error on registration token endpoint ephemeral runners failing",
+    "common_causes": [
+      "GitHub issue #4399 in actions/runner reports registration token endpoint returning 502 in bursts, causing ephemeral runners to die before they can register. This blocks CI/CD pipelines for teams using self-hosted runners. Category mapped to GitHub Actions — directly affects paid CI/CD infrastructure."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "GitHub Actions"
+    ]
+  },
+  {
+    "slug": "claude-code-invalid-client-metadata-oauth-dynamic-client-registration-rejects-client-name-claude-code-server-because-parentheses-are-not-allowed-by-some-oauth-servers",
+    "title": "Claude Code MCP OAuth DCR fails — client_name with parentheses rejected as invalid_client_metadata",
+    "description": "Fix Claude Code MCP OAuth registration failure invalid_client_metadata parentheses in client_name Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "invalid_client_metadata — OAuth Dynamic Client Registration rejects client_name \"Claude Code (<server>)\" because parentheses are not allowed by some OAuth servers",
+    "search_intent": "Fix Claude Code MCP OAuth registration failure invalid_client_metadata parentheses in client_name",
+    "common_causes": [
+      "GitHub issue #59445 reports Claude Code's MCP OAuth Dynamic Client Registration fails for Calendly because the hardcoded client_name format \"Claude Code (<server>)\" contains parentheses, which some OAuth servers reject as invalid_client_metadata. Category mapped to AI Coding Tools — MCP auth integration failure in paid Claude Code."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "claude-code-pwsh-exited-with-code-1-the-command-line-is-too-long-pwsh-timed-out-after-5000ms-blocks-shell-commands-behind-approval-prompt-loops",
+    "title": "Claude Code Windows PowerShell pre-validation fails — command line too long / pwsh timed out after 5000ms",
+    "description": "Fix Claude Code Windows PowerShell validation failure command line too long pwsh timeout blocking shell commands Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "pwsh exited with code 1: the command line is too long / pwsh timed out after 5000ms — blocks shell commands behind approval-prompt loops",
+    "search_intent": "Fix Claude Code Windows PowerShell validation failure command line too long pwsh timeout blocking shell commands",
+    "common_causes": [
+      "GitHub issue #59454 reports Claude Code on Windows intermittently fails PowerShell tool pre-validation with 'command line is too long' or 'pwsh timed out after 5000ms', blocking shell commands behind approval-prompt loops. Has repro steps. Category mapped to AI Coding Tools — Windows-specific bug in Claude Code's tool validation."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
   }
 ]
