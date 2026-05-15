@@ -13437,5 +13437,101 @@
     "related_errors": [
       "Anthropic API"
     ]
+  },
+  {
+    "slug": "github-copilot-the-copilot-engine-terminated-before-producing-output-error-details-no-authentication-information-found",
+    "title": "GitHub Copilot engine terminated: No authentication information found",
+    "description": "Fix GitHub Actions workflow failing because the Copilot engine cannot authenticate Includes evidence for GitHub Copilot troubleshooting demand.",
+    "category": "GitHub Copilot",
+    "technology": "GitHub Copilot",
+    "error_signature": "The `copilot` engine terminated before producing output. Error details: No authentication information found.",
+    "search_intent": "Fix GitHub Actions workflow failing because the Copilot engine cannot authenticate",
+    "common_causes": [
+      "Multiple GitHub Actions workflows (PR Review Assistant, Database Migration Reviewer) fail with 'The copilot engine terminated before producing output. No authentication information found.' This affects paid Copilot subscribers using Actions integration. High commercial impact as it blocks CI/CD pipelines."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "GitHub Copilot"
+    ]
+  },
+  {
+    "slug": "anthropic-api-ssl-certificate-verification-failed-for-every-anthropic-api-call-econnreset-from-vault-sidecar-intercepting-tls-to-api-anthropic-com",
+    "title": "Anthropic API SSL certificate verification failed via LiteLLM proxy in Kubernetes",
+    "description": "Fix Anthropic API calls failing with SSL errors when using LiteLLM proxy behind vault sidecar in K8s Includes evidence for Anthropic API troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Anthropic API",
+    "error_signature": "SSL certificate verification failed for every Anthropic API call — ECONNRESET from vault sidecar intercepting TLS to api.anthropic.com",
+    "search_intent": "Fix Anthropic API calls failing with SSL errors when using LiteLLM proxy behind vault sidecar in K8s",
+    "common_causes": [
+      "BerriAI/litellm-agent-platform#102: Vault sidecar gets ECONNRESET forwarding TLS to api.anthropic.com. Claude Code fails with 'SSL certificate verification failed' for all Anthropic API calls. Production K8s environment, affects paid Anthropic API users."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Anthropic API"
+    ]
+  },
+  {
+    "slug": "claude-code-claude-code-freezes-on-windows-when-running-bash-commands-find-ls-grep-hang-indefinitely",
+    "title": "Claude Code freezes on Windows when running bash commands — find, ls, grep hang indefinitely",
+    "description": "Fix Claude Code hanging on Windows when executing bash commands Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Claude Code freezes on Windows when running bash commands — find, ls, grep hang indefinitely",
+    "search_intent": "Fix Claude Code hanging on Windows when executing bash commands",
+    "common_causes": [
+      "Stack Overflow report: Claude Code on Windows hangs indefinitely when running basic bash commands (find, ls, grep). Blocks paid Claude Code subscribers on Windows platform. Clear error signature with platform-specific issue."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "claude-code-selection-injection-from-ide-mcp-server-has-no-documented-suppression-mechanism-leaks-env-file-contents-to-conversation-transport",
+    "title": "Claude Code MCP server selection injection leaks env file contents to conversation",
+    "description": "Prevent Claude Code MCP server from leaking environment file contents into conversation context Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Selection injection from `ide` MCP server has no documented suppression mechanism, leaks env file contents to conversation transport",
+    "search_intent": "Prevent Claude Code MCP server from leaking environment file contents into conversation context",
+    "common_causes": [
+      "anthropics/claude-code#59493: When Claude Code is active in VS Code, the ide MCP server injects selection content including .env files into the conversation transport with no documented way to suppress it. Security/privacy issue for paid Claude Code users."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "litellm-connecting-azureopenai-via-litellm-returning-authentication-error-401",
+    "title": "LiteLLM proxy returns 401 Authentication Error connecting to Azure OpenAI",
+    "description": "Fix LiteLLM proxy authentication failure when routing to Azure OpenAI backend Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "Connecting AzureOpenAI via LiteLLM returning Authentication Error 401",
+    "search_intent": "Fix LiteLLM proxy authentication failure when routing to Azure OpenAI backend",
+    "common_causes": [
+      "Stack Overflow: Users configuring LiteLLM proxy to route requests to Azure OpenAI receive 401 Authentication Error. Affects paid Azure OpenAI + LiteLLM proxy deployments. Common pattern in enterprise AI infrastructure."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "LiteLLM"
+    ]
+  },
+  {
+    "slug": "cloudflare-cloudflare-error-524-connection-timeout",
+    "title": "Cloudflare Error 524: Connection timeout on proxied applications",
+    "description": "Fix Cloudflare 524 timeout errors on proxied web applications Includes evidence for Cloudflare troubleshooting demand.",
+    "category": "Cloudflare",
+    "technology": "Cloudflare",
+    "error_signature": "Cloudflare Error 524: Connection timeout",
+    "search_intent": "Fix Cloudflare 524 timeout errors on proxied web applications",
+    "common_causes": [
+      "Stack Overflow: Cloudflare Error 524 (Connection Timeout) occurs when Cloudflare cannot establish a TCP connection to the origin server within the allowed time. Common on paid Cloudflare plans when origin servers are slow or overloaded."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Cloudflare"
+    ]
   }
 ]
