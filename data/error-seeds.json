@@ -12909,5 +12909,117 @@
       "Ollama gemma4 function calling error",
       "Ollama structured output parsing error"
     ]
+  },
+  {
+    "slug": "openai-api-v1-responses-endpoint-silently-drops-10-28-of-concurrent-requests-under-moderate-load-5-simultaneous-calls-tcp-connection-hangs-indefinitely-with-no-http-error-or-timeout",
+    "title": "OpenAI /responses endpoint silently hangs 10-28% of concurrent requests with no error",
+    "description": "Fix OpenAI API responses endpoint hanging silently on concurrent requests without returning errors or timeouts Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "/v1/responses endpoint silently drops 10-28% of concurrent requests under moderate load (5 simultaneous calls); TCP connection hangs indefinitely with no HTTP error or timeout",
+    "search_intent": "Fix OpenAI API responses endpoint hanging silently on concurrent requests without returning errors or timeouts",
+    "common_causes": [
+      "Reported on openai-python#3054 (2026-04-03). Affects GPT-5.1/GPT-5.4 /responses endpoint under moderate concurrent load. 10-28% of requests receive no HTTP error, no timeout, no retry — TCP connection simply hangs. Critical production impact for paid API users. Category: OpenAI API (direct API endpoint error)."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "openai-api-chatgpt-plus-oauth-succeeds-but-third-party-codex-api-calls-return-429-quota-exceeded-not-an-oauth-login-failure-affects-paying-plus-subscribers",
+    "title": "OpenAI ChatGPT Plus OAuth succeeds but third-party Codex calls return 429 quota exceeded",
+    "description": "Fix OpenAI API 429 quota exceeded error for ChatGPT Plus subscribers making third-party API calls despite having active subscription Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "ChatGPT Plus OAuth succeeds but third-party Codex API calls return 429 quota exceeded — not an OAuth login failure, affects paying Plus subscribers",
+    "search_intent": "Fix OpenAI API 429 quota exceeded error for ChatGPT Plus subscribers making third-party API calls despite having active subscription",
+    "common_causes": [
+      "Reported on openai/openai-python#2951 (2026-03-10). Paying ChatGPT Plus subscribers receive 429 quota exceeded when making third-party Codex API calls. OAuth authentication succeeds but API quota is incorrectly applied. Direct billing/subscription impact. Category: OpenAI API (quota/billing error)."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "claude-code-permission-mode-couldn-t-be-changed-you-can-try-again",
+    "title": "Claude Code Max plan: 'Permission mode couldn't be changed' error persists 12+ hours across sessions",
+    "description": "Fix Claude Code permission mode stuck error that prevents switching between auto and manual modes on Max plan Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Permission mode couldn't be changed. You can try again.",
+    "search_intent": "Fix Claude Code permission mode stuck error that prevents switching between auto and manual modes on Max plan",
+    "common_causes": [
+      "Reported on anthropics/claude-code#59398 (2026-05-15). Affects Claude Code v2.1.126 on macOS Max plan. Error toast appears when pressing Shift+Tab. Persists across sessions for 12+ hours. Global settings.json has no permission overrides. Affects paying Max subscribers. Category: AI Coding Tools (Claude Code is an AI coding tool)."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "anthropic-api-bedrock-and-vertex-make-status-error-methods-missing-413-requesttoolargeerror-and-529-overloadederror-mapping-canonical-anthropic-client-already-maps-these",
+    "title": "Anthropic Python SDK: Bedrock/Vertex clients missing 413 and 529 error code mapping to typed exceptions",
+    "description": "Fix Anthropic SDK Bedrock/Vertex clients not raising correct exception types for 413 Request Too Large and 529 Overloaded errors Includes evidence for Anthropic API troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Anthropic API",
+    "error_signature": "Bedrock and Vertex _make_status_error methods missing 413→RequestTooLargeError and 529→OverloadedError mapping (canonical Anthropic client already maps these)",
+    "search_intent": "Fix Anthropic SDK Bedrock/Vertex clients not raising correct exception types for 413 Request Too Large and 529 Overloaded errors",
+    "common_causes": [
+      "Reported on anthropics/anthropic-sdk-python#1544 (2026-05-14). The Bedrock and Vertex clients' _make_status_error methods are missing two status codes that the canonical client maps: 413→RequestTooLargeError and 529→OverloadedError. Production impact for users calling Claude via AWS Bedrock or GCP Vertex. Category: Anthropic API (SDK error mapping issue)."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "Anthropic API"
+    ]
+  },
+  {
+    "slug": "anthropic-api-append-messages-inside-tool-runner-loop-causes-infinite-loop-plain-context-message-or-dropped-assistant-turn-assistant-message-replacement-two-failure-modes",
+    "title": "Anthropic Python SDK: append_messages() inside tool runner loop causes infinite loop or dropped assistant turn",
+    "description": "Fix Anthropic SDK tool_runner loop hanging infinitely or dropping responses when append_messages() is called during tool execution Includes evidence for Anthropic API troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Anthropic API",
+    "error_signature": "append_messages() inside tool runner loop causes infinite loop (plain context message) or dropped assistant turn (assistant message replacement) — two failure modes",
+    "search_intent": "Fix Anthropic SDK tool_runner loop hanging infinitely or dropping responses when append_messages() is called during tool execution",
+    "common_causes": [
+      "Reported on anthropics/anthropic-sdk-python#1536, fixed in PR#1538 (2026-05-13). Calling append_messages() inside a tool runner loop had two failure modes: plain context messages caused infinite loop, assistant message replacements caused dropped turns. Critical for agentic workflows using tool_runner. Category: Anthropic API (SDK runtime bug)."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Anthropic API"
+    ]
+  },
+  {
+    "slug": "claude-code-claude-ai-desktop-crashes-immediately-when-adding-mcp-server-url-from-higgsfield",
+    "title": "Claude Code MCP server URL addition crashes Claude.ai desktop application",
+    "description": "Fix Claude desktop application crash when adding MCP server URL configuration Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Claude.ai desktop crashes immediately when adding MCP Server URL from higgsfield",
+    "search_intent": "Fix Claude desktop application crash when adding MCP server URL configuration",
+    "common_causes": [
+      "Reported on anthropics/claude-code#59391 (2026-05-15). Desktop app crashes immediately upon adding an MCP Server URL. Affects Claude Code MCP integration. Category: AI Coding Tools (MCP is core to Claude Code agentic workflows)."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "vercel-middleware-invocation-failed-on-vercel-deploy-cannot-find-module-swc-helpers-esm-interop-require-default-js-minimal-repro-next-16-2-6-plus-proxy-ts-plus-top-level-sentry-nextjs-import",
+    "title": "Vercel deploy: MIDDLEWARE_INVOCATION_FAILED Cannot find module @swc/helpers/esm/_interop_require_default.js",
+    "description": "Fix Vercel deployment failure with MIDDLEWARE_INVOCATION_FAILED error related to missing @swc/helpers module in Next.js 16 middleware Includes evidence for Vercel troubleshooting demand.",
+    "category": "Deployment",
+    "technology": "Vercel",
+    "error_signature": "MIDDLEWARE_INVOCATION_FAILED on Vercel deploy: Cannot find module '@swc/helpers/esm/_interop_require_default.js' — minimal repro: next@16.2.6 + proxy.ts + top-level @sentry/nextjs import",
+    "search_intent": "Fix Vercel deployment failure with MIDDLEWARE_INVOCATION_FAILED error related to missing @swc/helpers module in Next.js 16 middleware",
+    "common_causes": [
+      "Reported on vercel/next.js#93852 (2026-05-14). Build passes locally but fails on Vercel with MIDDLEWARE_INVOCATION_FAILED when using Next.js 16.2.x with proxy.ts middleware and @sentry/nextjs. Category: Deployment (Vercel deployment failure)."
+    ],
+    "quick_fix": "Check the build output, project root, and deployment platform configuration before redeploying.",
+    "related_errors": [
+      "Deployment"
+    ]
   }
 ]
