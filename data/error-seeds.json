@@ -12360,5 +12360,167 @@
       "Cursor model not available",
       "Cursor MCP server error"
     ]
+  },
+  {
+    "slug": "uv-uv-venv-clear-deletes-the-entire-project-directory-instead-of-just-the-virtual-environment",
+    "title": "uv venv --clear Deletes Project Directory: Dangerous --clear Flag Removes Parent Folder",
+    "description": "fix uv venv clear deleting wrong files / recover files deleted by uv venv --clear Includes evidence for uv troubleshooting demand.",
+    "category": "Python",
+    "technology": "uv",
+    "error_signature": "uv venv . --clear deletes the entire project directory instead of just the virtual environment",
+    "search_intent": "fix uv venv clear deleting wrong files / recover files deleted by uv venv --clear",
+    "common_causes": [
+      "Running 'uv venv . --clear' in a project root silently deletes the entire project folder. This is a data-loss bug that affects any developer who accidentally uses '.' as the venv path with --clear. The command is destructive with no confirmation prompt.",
+      "Reported 2026-05-13: user ran 'uv venv . --clear' which deleted the entire project directory. No warning or confirmation prompt before destructive action. Affects uv's growing user base as the default Python package manager."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "uv sync does not recover from faulty packages",
+      "uv python install races with concurrent find"
+    ]
+  },
+  {
+    "slug": "anthropic-api-server-writes-additional-cache-entries-past-explicit-cache-control-breakpoint-billing-1-25x-for-tokens-that-are-never-read",
+    "title": "Anthropic API Cache Control Billing: Extra Cache Writes Cost 1.25x on Tokens Never Read",
+    "description": "fix Anthropic API cache billing extra charges / understand cache_control breakpoint behavior Includes evidence for Anthropic API troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Anthropic API",
+    "error_signature": "Server writes additional cache entries past explicit cache_control breakpoint, billing 1.25x for tokens that are never read",
+    "search_intent": "fix Anthropic API cache billing extra charges / understand cache_control breakpoint behavior",
+    "common_causes": [
+      "When using explicit cache_control breakpoints on system blocks, the Anthropic server writes extra cache entries that cost 1.25x the input rate for tokens that are never subsequently read. This silently inflates API bills for developers using prompt caching.",
+      "Reported 2026-05-15: Server writes additional cache entries past explicit cache_control breakpoint. Users are billed 1.25x for tokens that are never read. No workaround documented."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Anthropic API cache_control not working as expected",
+      "Anthropic API unexpected high billing with prompt caching"
+    ]
+  },
+  {
+    "slug": "litellm-anthropic-api-key-is-invalid-or-not-authorized-for-this-organization",
+    "title": "Azure OpenAI Models Authentication Broken in LiteLLM v1.84.0",
+    "description": "fix LiteLLM Azure OpenAI auth broken / LiteLLM 1.84.0 authentication error Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "Anthropic API key is invalid or not authorized for this organization",
+    "search_intent": "fix LiteLLM Azure OpenAI auth broken / LiteLLM 1.84.0 authentication error",
+    "common_causes": [
+      "After upgrading to LiteLLM v1.84.0, Azure OpenAI model authentication completely breaks. LiteLLM is widely used as a unified LLM proxy, so this affects many production deployments.",
+      "Reported 2026-05-14: Azure OAI models auth broken in LiteLLM v1.84.0. Multiple users affected. Regression in a paid proxy service."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "LiteLLM Azure deployment errors",
+      "LiteLLM proxy authentication failures"
+    ]
+  },
+  {
+    "slug": "openai-api-summary-auto-produces-no-reasoning-summary-events-on-gpt-5-3-codex-responses-api-streaming",
+    "title": "OpenAI Python SDK: summary=\"auto\" Produces No Reasoning Summary Events on gpt-5.3-codex",
+    "description": "fix OpenAI summary auto not working / gpt-5.3-codex no reasoning summary events Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "summary=\"auto\" produces no reasoning summary events on gpt-5.3-codex (Responses API, streaming)",
+    "search_intent": "fix OpenAI summary auto not working / gpt-5.3-codex no reasoning summary events",
+    "common_causes": [
+      "When using summary=\"auto\" with gpt-5.3-codex via the Responses API streaming mode, no reasoning summary events are produced. This breaks developers relying on streaming summaries for UX in their applications.",
+      "Reported 2026-05-12: summary='auto' produces no reasoning summary events on gpt-5.3-codex Responses API streaming. Affects the latest OpenAI model."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "OpenAI streaming responses missing events",
+      "gpt-5.3-codex streaming issues"
+    ]
+  },
+  {
+    "slug": "openai-api-asyncopenai-api-key-raises-openaierror-in-v2-34-0-breaking-openai-compatible-local-servers",
+    "title": "OpenAI Python SDK v2.34.0: AsyncOpenAI Empty API Key Breaks Local Server Compatibility",
+    "description": "fix AsyncOpenAI empty api_key error / OpenAI SDK local server compatibility broken Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "AsyncOpenAI(api_key=\"\") raises OpenAIError in v2.34.0, breaking OpenAI-compatible local servers",
+    "search_intent": "fix AsyncOpenAI empty api_key error / OpenAI SDK local server compatibility broken",
+    "common_causes": [
+      "In v2.34.0, AsyncOpenAI(api_key='') now raises OpenAIError instead of allowing empty strings. This breaks developers using OpenAI-compatible local servers (Ollama, LM Studio, vLLM) that don't require real API keys.",
+      "Reported 2026-05-11: v2.34.0 now raises OpenAIError for empty api_key strings. Previously worked for local LLM servers that don't need authentication."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "OpenAI SDK base_url configuration errors",
+      "OpenAI-compatible server authentication errors"
+    ]
+  },
+  {
+    "slug": "anthropic-api-append-messages-inside-tool-runner-loop-causes-infinite-loop",
+    "title": "Anthropic SDK: append_messages() in Tool Runner Loop Causes Infinite Loop",
+    "description": "fix Anthropic SDK append_messages infinite loop / tool runner loop stuck Includes evidence for Anthropic API troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Anthropic API",
+    "error_signature": "append_messages() inside tool runner loop causes infinite loop",
+    "search_intent": "fix Anthropic SDK append_messages infinite loop / tool runner loop stuck",
+    "common_causes": [
+      "Calling append_messages() inside the tool runner loop (as shown in the official Advanced Usage docs example) causes an infinite loop. Developers following the official documentation hit this production-blocking bug.",
+      "Reported 2026-05-13: append_messages() in tool runner loop causes infinite loop. Official docs example triggers the bug."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Anthropic SDK tool use loop hangs",
+      "Anthropic messages API stuck processing"
+    ]
+  },
+  {
+    "slug": "claude-code-claude-code-read-edit-tracker-case-sensitive-on-windows-drive-letter-casing-mismatch-triggers-file-has-not-been-read-yet",
+    "title": "Claude Code Windows Bug: Case-Sensitive File Tracker Causes 'File Has Not Been Read Yet' Error",
+    "description": "fix Claude Code file has not been read yet Windows / case-sensitive path error Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Claude Code Read/Edit tracker case-sensitive on Windows: drive-letter casing mismatch triggers 'File has not been read yet'",
+    "search_intent": "fix Claude Code file has not been read yet Windows / case-sensitive path error",
+    "common_causes": [
+      "On Windows, Claude Code's internal file tracker uses case-sensitive string comparison. Because Windows filesystems are case-insensitive, 'C:\\file.txt' and 'c:\\file.txt' are treated as different files, causing persistent 'File has not been read yet' errors.",
+      "Reported 2026-05-15: Case-sensitive path comparison on Windows breaks Read/Edit tracker. Reproducible bug with has-repro label."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Claude Code Windows file path errors",
+      "Claude Code permission denied on Windows"
+    ]
+  },
+  {
+    "slug": "litellm-responses-api-drops-cache-control-on-input-text-content-blocks-inconsistent-with-tool-cache-control",
+    "title": "LiteLLM Responses API Drops cache_control on Input Text Blocks, Breaks Prompt Caching",
+    "description": "fix LiteLLM cache_control dropped / Responses API input_text cache_control not working Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "Responses API drops cache_control on input_text content blocks (inconsistent with tool cache_control)",
+    "search_intent": "fix LiteLLM cache_control dropped / Responses API input_text cache_control not working",
+    "common_causes": [
+      "When using OpenAI Responses API endpoint with cache_control on input_text content blocks, the cache_control field is silently dropped during conversion. This breaks prompt caching for developers using the Responses API through LiteLLM.",
+      "Reported 2026-05-14: cache_control on input_text silently dropped in Responses API conversion. Inconsistent behavior between content block types."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "LiteLLM cache_control not working",
+      "OpenAI Responses API caching issues"
+    ]
+  },
+  {
+    "slug": "cline-cline-429-with-long-retry-after-retried-instead-of-surfaced-wait-vs-stop-not-distinguished",
+    "title": "Cline AI Coding Tool: 429 Rate Limit With Long Retry-After Retried Instead of Stopped",
+    "description": "fix Cline 429 rate limit retry / Cline retry-after not respected Includes evidence for Cline troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Cline",
+    "error_signature": "Cline 429 with long retry-after retried instead of surfaced — WAIT vs STOP not distinguished",
+    "search_intent": "fix Cline 429 rate limit retry / Cline retry-after not respected",
+    "common_causes": [
+      "When Cline receives a 429 response with a long retry-after header, it retries the request instead of surfacing the error to the user. The WAIT vs STOP distinction is not implemented, leading to wasted API calls and confused developers.",
+      "Reported 2026-04-04: Cline retries on 429 with long retry-after instead of surfacing error. Static analysis finding — not version-specific."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "Cline API rate limit handling",
+      "Cline retry logic broken"
+    ]
   }
 ]
