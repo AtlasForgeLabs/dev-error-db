@@ -5,6 +5,15 @@ type ErrorEntry = CollectionEntry<'errors'>;
 export const DEFAULT_PAGE_SIZE = 20;
 export const ARCHIVE_PAGE_SIZE = 40;
 
+export type RevenueHubProfile = {
+  h1: string;
+  intro: string;
+  commonErrorTypes: string[];
+  troubleshootingClusters: string[];
+  relatedCategories: string[];
+  relatedTechnologies: string[];
+};
+
 const categoryDescriptions: Record<string, string> = {
   'AI Coding Tools':
     'AI coding tool troubleshooting pages for editor agents, coding assistants, CLI coding tools, login issues, model routing, quotas, and tool-specific runtime failures.',
@@ -43,6 +52,231 @@ const categoryDescriptions: Record<string, string> = {
   'SSL/TLS':
     'SSL and TLS troubleshooting pages for certificate chains, expired certificates, local trust stores, HTTPS validation errors, and certificate verification failures.',
 };
+
+const revenueHubProfiles: Record<string, RevenueHubProfile> = {
+  'AI Coding Tools': {
+    h1: 'Claude Code and AI Coding Tool Errors and Fixes',
+    intro:
+      'Fix Claude Code, OpenCode, OpenClaw, and AI coding assistant failures around login, model routing, tool calls, file edits, permissions, quotas, and stalled agent sessions.',
+    commonErrorTypes: [
+      'Claude Code process exited',
+      'permission denied',
+      'file has not been read yet',
+      'context limit reached',
+      'tool call timeout',
+      'model routing failed',
+    ],
+    troubleshootingClusters: [
+      'Authentication and organization access errors',
+      'Permission and file edit errors',
+      'Tool call and MCP failures',
+      'Quota and usage limit errors',
+      'Model routing and provider errors',
+      'Session hangs and stream failures',
+    ],
+    relatedCategories: ['Anthropic API', 'Cursor', 'GitHub Copilot', 'OpenAI API', 'LiteLLM'],
+    relatedTechnologies: ['Claude Code', 'OpenCode', 'OpenClaw', 'MCP servers', 'Bedrock'],
+  },
+  'Anthropic API': {
+    h1: 'Anthropic API Errors and Fixes',
+    intro:
+      'Troubleshoot Claude API request failures, SDK exceptions, rate limits, overload responses, Bedrock routing problems, tool-use errors, and prompt caching issues.',
+    commonErrorTypes: [
+      '400 invalid request',
+      '401 unauthorized',
+      '404 not found',
+      '429 rate limit',
+      '500 internal server error',
+      '529 overloaded',
+    ],
+    troubleshootingClusters: [
+      'Authentication errors',
+      'Rate limit and overload errors',
+      'Tool use and message format errors',
+      'Bedrock and Vertex routing errors',
+      'SDK streaming errors',
+      'Prompt caching and billing checks',
+    ],
+    relatedCategories: ['AI Coding Tools', 'OpenAI API', 'LiteLLM', 'Cloud Platforms'],
+    relatedTechnologies: ['Claude API', 'Claude Code', 'AWS Bedrock', 'Vertex AI', 'LiteLLM'],
+  },
+  Cloudflare: {
+    h1: 'Cloudflare Errors and Fixes',
+    intro:
+      'Fix Cloudflare DNS, SSL, WAF, Workers, Pages, and origin connectivity errors that block deployments or make proxied applications fail.',
+    commonErrorTypes: ['520', '522 timeout', '525 SSL handshake failed', '403 forbidden', 'DNS error', 'Workers deploy failed'],
+    troubleshootingClusters: [
+      'Origin connection errors',
+      'SSL and certificate errors',
+      'DNS and proxy configuration errors',
+      'WAF and access denials',
+      'Workers and Pages deployment errors',
+      'API and plan-limit errors',
+    ],
+    relatedCategories: ['DNS', 'SSL/TLS', 'Deployment', 'Cloud Platforms'],
+    relatedTechnologies: ['Cloudflare Workers', 'Cloudflare Pages', 'DNS', 'TLS', 'WAF'],
+  },
+  'Cloud Platforms': {
+    h1: 'Cloud Platform Errors and Fixes',
+    intro:
+      'Troubleshoot cloud build, runtime, routing, IAM, container, and managed platform errors across compatible cloud infrastructure topics.',
+    commonErrorTypes: ['permission denied', 'build failed', 'service unavailable', 'not found', 'timeout', 'configuration error'],
+    troubleshootingClusters: [
+      'IAM and permission errors',
+      'Cloud build failures',
+      'Runtime and container errors',
+      'Network and DNS errors',
+      'Managed service routing errors',
+      'Environment configuration errors',
+    ],
+    relatedCategories: ['Deployment', 'Cloudflare', 'Docker', 'GitHub Actions', 'DNS'],
+    relatedTechnologies: ['AWS', 'GCP', 'Azure', 'Kubernetes', 'Vercel'],
+  },
+  Cursor: {
+    h1: 'Cursor Errors and Fixes',
+    intro:
+      'Fix Cursor editor, chat, model access, authentication, provider configuration, and AI coding workflow errors without relying on client-side search.',
+    commonErrorTypes: ['authentication failed', 'model not available', 'usage limit reached', 'invalid request', 'stream connection failed', 'server info missing'],
+    troubleshootingClusters: [
+      'Authentication errors',
+      'Model access and routing errors',
+      'Usage limit and billing errors',
+      'Editor integration errors',
+      'MCP and provider connection errors',
+      'Request validation errors',
+    ],
+    relatedCategories: ['AI Coding Tools', 'GitHub Copilot', 'OpenAI API', 'LiteLLM'],
+    relatedTechnologies: ['Cursor', 'Claude Code', 'OpenAI-compatible APIs', 'MCP servers'],
+  },
+  Deployment: {
+    h1: 'Deployment Errors and Fixes',
+    intro:
+      'Fix deployment failures in Vercel, Netlify, hosted build pipelines, environment variables, output directories, serverless functions, and release workflows.',
+    commonErrorTypes: ['build failed', 'permission denied', 'module not found', 'function timeout', 'environment variable invalid', 'network connection error'],
+    troubleshootingClusters: [
+      'Build and install failures',
+      'Environment variable errors',
+      'Serverless runtime errors',
+      'Permission and executable errors',
+      'DNS and SSL rollout errors',
+      'CI/CD deployment failures',
+    ],
+    relatedCategories: ['GitHub Actions', 'Cloud Platforms', 'Cloudflare', 'npm', 'Node.js'],
+    relatedTechnologies: ['Vercel', 'Netlify', 'GitHub Pages', 'Node.js', 'Cloudflare Pages'],
+  },
+  Docker: {
+    h1: 'Docker Errors and Fixes',
+    intro:
+      'Fix Docker daemon, Docker Compose, image pull, container runtime, storage, networking, and build errors in local development and CI environments.',
+    commonErrorTypes: ['cannot connect to daemon', 'pull rate limit', 'build failed', 'permission denied', 'port already allocated', 'container exited'],
+    troubleshootingClusters: [
+      'Docker daemon and runtime errors',
+      'Image pull and registry errors',
+      'Build and Dockerfile failures',
+      'Compose networking errors',
+      'Volume and storage errors',
+      'CI container failures',
+    ],
+    relatedCategories: ['Deployment', 'GitHub Actions', 'Cloud Platforms', 'Node.js'],
+    relatedTechnologies: ['Docker Compose', 'Docker Desktop', 'containers', 'Kubernetes'],
+  },
+  'GitHub Actions': {
+    h1: 'GitHub Actions Errors and Fixes',
+    intro:
+      'Troubleshoot GitHub Actions workflow failures, runner problems, queued jobs, secrets, permissions, dependency installs, and deployment automation errors.',
+    commonErrorTypes: ['workflow failed', 'waiting for a runner', 'permission denied', 'secret not found', 'dependency install failed', 'job queued'],
+    troubleshootingClusters: [
+      'Runner and queue failures',
+      'CI/CD build errors',
+      'Secret and permission errors',
+      'Dependency install failures',
+      'Matrix and cancellation issues',
+      'Deployment workflow errors',
+    ],
+    relatedCategories: ['Deployment', 'Docker', 'Git', 'npm', 'Cloud Platforms'],
+    relatedTechnologies: ['GitHub Actions', 'self-hosted runners', 'Docker', 'Node.js', 'Vercel'],
+  },
+  'GitHub Copilot': {
+    h1: 'GitHub Copilot Errors and Fixes',
+    intro:
+      'Fix GitHub Copilot authentication, quota, chat, editor integration, certificate, and agent editing failures in developer workflows.',
+    commonErrorTypes: ['quota exceeded', 'authentication failed', 'chat unavailable', 'certificate expired', 'operation aborted', 'agent edit failed'],
+    troubleshootingClusters: [
+      'Authentication and account errors',
+      'Quota and usage limit errors',
+      'Editor integration failures',
+      'Network and certificate errors',
+      'Chat and agent editing errors',
+      'Model access errors',
+    ],
+    relatedCategories: ['AI Coding Tools', 'Cursor', 'GitHub Actions', 'OpenAI API'],
+    relatedTechnologies: ['GitHub Copilot', 'VS Code', 'JetBrains', 'Copilot Chat'],
+  },
+  LiteLLM: {
+    h1: 'LiteLLM Errors and Fixes',
+    intro:
+      'Fix LiteLLM proxy, gateway, virtual key, provider routing, budget, schema validation, and OpenAI-compatible API errors.',
+    commonErrorTypes: ['401 authentication error', '429 budget exceeded', '400 bad request', 'model not found', 'provider rejection', 'validation error'],
+    troubleshootingClusters: [
+      'Virtual key and authentication errors',
+      'Budget and rate limit errors',
+      'Provider routing errors',
+      'Schema and request validation errors',
+      'Proxy deployment errors',
+      'Model discovery errors',
+    ],
+    relatedCategories: ['OpenAI API', 'Anthropic API', 'AI Coding Tools', 'Cloud Platforms'],
+    relatedTechnologies: ['LiteLLM Proxy', 'OpenRouter', 'Anthropic API', 'OpenAI-compatible APIs', 'Bedrock'],
+  },
+  Ollama: {
+    h1: 'Ollama Errors and Fixes',
+    intro:
+      'Troubleshoot Ollama local server, model load, cloud API, timeout, runner crash, memory, GPU, and connection errors for local and hosted inference.',
+    commonErrorTypes: ['connection refused', '500 internal server error', '503 service unavailable', 'model failed to load', 'runner process terminated', 'read timeout'],
+    troubleshootingClusters: [
+      'Local server connection errors',
+      'Model load and manifest errors',
+      'Memory and GPU runtime errors',
+      'Cloud API availability errors',
+      'Streaming timeout errors',
+      'Tool call parsing errors',
+    ],
+    relatedCategories: ['AI Coding Tools', 'LiteLLM', 'OpenAI API', 'Docker'],
+    relatedTechnologies: ['Ollama Cloud', 'local inference', 'GGUF models', 'GPU runners'],
+  },
+  'OpenAI API': {
+    h1: 'OpenAI API Errors and Fixes',
+    intro:
+      'Fix OpenAI API authentication, quota, rate limit, model access, context length, timeout, SDK, and OpenAI-compatible provider errors.',
+    commonErrorTypes: ['401 Unauthorized', '429 Too Many Requests', 'insufficient_quota', 'model not found', 'timeout', 'invalid request'],
+    troubleshootingClusters: [
+      'Authentication errors',
+      'Rate limit and quota errors',
+      'Model access and routing errors',
+      'Context length errors',
+      'Timeout and connection errors',
+      'SDK request validation errors',
+    ],
+    relatedCategories: ['Anthropic API', 'LiteLLM', 'AI Coding Tools', 'Cursor', 'Ollama'],
+    relatedTechnologies: ['OpenAI API', 'OpenRouter', 'Responses API', 'OpenAI Python SDK', 'LiteLLM'],
+  },
+};
+
+export const revenueHubLabels = Object.keys(revenueHubProfiles);
+
+export const homepageRevenueHubLinks = [
+  { label: 'OpenAI API Errors', category: 'OpenAI API' },
+  { label: 'Anthropic API Errors', category: 'Anthropic API' },
+  { label: 'Claude Code Errors', category: 'AI Coding Tools' },
+  { label: 'Docker Errors', category: 'Docker' },
+  { label: 'GitHub Actions Errors', category: 'GitHub Actions' },
+  { label: 'Cloudflare Errors', category: 'Cloudflare' },
+  { label: 'LiteLLM Errors', category: 'LiteLLM' },
+  { label: 'Ollama Errors', category: 'Ollama' },
+  { label: 'Cursor Errors', category: 'Cursor' },
+  { label: 'GitHub Copilot Errors', category: 'GitHub Copilot' },
+  { label: 'Deployment Errors', category: 'Deployment' },
+];
 
 const categoryMergeMap: Record<string, string> = {
   'AI coding tools': 'AI Coding Tools',
@@ -115,6 +349,28 @@ export function categoryDescriptionFor(label: string) {
     categoryDescriptions[label] ??
     `Troubleshooting pages for ${label} errors, including common causes, quick fixes, practical debugging steps, and related developer errors.`
   );
+}
+
+export function revenueHubProfileFor(label: string) {
+  return revenueHubProfiles[label];
+}
+
+export function getExistingRevenueHubLinks(groups: { label: string; slug: string; entries: ErrorEntry[] }[]) {
+  const byLabel = new Map(groups.map((group) => [group.label, group]));
+
+  return homepageRevenueHubLinks
+    .map((hub) => {
+      const group = byLabel.get(hub.category);
+      if (!group) return null;
+      return {
+        label: hub.label,
+        category: hub.category,
+        path: categoryPathFor(group.label),
+        count: group.entries.length,
+        description: revenueHubProfileFor(group.label)?.intro ?? categoryDescriptionFor(group.label),
+      };
+    })
+    .filter((hub): hub is { label: string; category: string; path: string; count: number; description: string } => Boolean(hub));
 }
 
 export function getCategoryGroups(entries: ErrorEntry[]) {

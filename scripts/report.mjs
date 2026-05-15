@@ -6,6 +6,19 @@ import { fileURLToPath } from 'node:url';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const rootDir = path.resolve(__dirname, '..');
+const highValueHubs = [
+  { label: 'OpenAI API', slug: 'openai-api', homepageText: 'OpenAI API Errors' },
+  { label: 'Anthropic API', slug: 'anthropic-api', homepageText: 'Anthropic API Errors' },
+  { label: 'AI Coding Tools', slug: 'ai-coding-tools', homepageText: 'Claude Code Errors' },
+  { label: 'Docker', slug: 'docker', homepageText: 'Docker Errors' },
+  { label: 'GitHub Actions', slug: 'github-actions', homepageText: 'GitHub Actions Errors' },
+  { label: 'Cloudflare', slug: 'cloudflare', homepageText: 'Cloudflare Errors' },
+  { label: 'LiteLLM', slug: 'litellm', homepageText: 'LiteLLM Errors' },
+  { label: 'Ollama', slug: 'ollama', homepageText: 'Ollama Errors' },
+  { label: 'Cursor', slug: 'cursor', homepageText: 'Cursor Errors' },
+  { label: 'GitHub Copilot', slug: 'github-copilot', homepageText: 'GitHub Copilot Errors' },
+  { label: 'Deployment', slug: 'deployment', homepageText: 'Deployment Errors' },
+];
 
 const packageJson = await readJson('package.json');
 const errorFiles = await listMarkdownFiles('src/content/errors');
@@ -79,6 +92,11 @@ print('average_links_per_built_page', String(crawlStats.averageLinksPerPage));
 print('orphan_error_pages', String(crawlStats.orphanErrorPages.length));
 print('homepage_has_website_schema', crawlStats.homepageHasWebsiteSchema ? 'yes' : 'no');
 print('category_pages_with_collection_schema', String(crawlStats.categoryPagesWithCollectionSchema));
+print('high_value_hubs_exist', `${crawlStats.highValueHubStats.existing}/${highValueHubs.length}`);
+print('high_value_hubs_with_intro', `${crawlStats.highValueHubStats.withIntro}/${highValueHubs.length}`);
+print('high_value_hubs_with_page_links', `${crawlStats.highValueHubStats.withPageLinks}/${highValueHubs.length}`);
+print('high_value_hubs_with_related_links', `${crawlStats.highValueHubStats.withRelatedCategoryLinks}/${highValueHubs.length}`);
+print('homepage_high_value_hub_links', `${crawlStats.highValueHubStats.homepageLinks}/${highValueHubs.length}`);
 print('pages_with_evidence_section', String(crawlStats.pagesWithEvidenceSection));
 print('pages_with_raw_intent_score', String(crawlStats.pagesWithRawIntentScore));
 print('category_intro_coverage', `${crawlStats.categoryPagesWithIntro}/${crawlStats.categoryPages}`);
@@ -290,6 +308,13 @@ async function inspectBuiltHtml() {
       pagesWithRawIntentScore: 0,
       categoryPagesWithIntro: 0,
       categoryPages: 0,
+      highValueHubStats: {
+        existing: 0,
+        withIntro: 0,
+        withPageLinks: 0,
+        withRelatedCategoryLinks: 0,
+        homepageLinks: 0,
+      },
       faqUniqueQuestionRatio: 0,
     };
   }
@@ -303,6 +328,13 @@ async function inspectBuiltHtml() {
   let pagesWithRawIntentScore = 0;
   let categoryPagesWithIntro = 0;
   let categoryPages = 0;
+  const highValueHubStats = {
+    existing: 0,
+    withIntro: 0,
+    withPageLinks: 0,
+    withRelatedCategoryLinks: 0,
+    homepageLinks: 0,
+  };
   let errorPageRelevantLinks = 0;
   let errorPageCount = 0;
   const schemaCounts = {};
@@ -326,6 +358,16 @@ async function inspectBuiltHtml() {
     if (route.startsWith('/categories/') && !route.includes('/page/')) {
       categoryPages += 1;
       if (raw.includes('Troubleshooting overview') && raw.includes('Common causes')) categoryPagesWithIntro += 1;
+      const hub = highValueHubs.find((candidate) => route === `/categories/${candidate.slug}/`);
+
+      if (hub) {
+        const categoryLinks = links.filter((href) => href.startsWith('/categories/') && normalizeRoute(href) !== route);
+        const pageLinks = links.filter((href) => href.startsWith('/errors/'));
+        highValueHubStats.existing += 1;
+        if (raw.includes('Troubleshooting overview') && raw.includes('Common error types')) highValueHubStats.withIntro += 1;
+        if (pageLinks.length > 0) highValueHubStats.withPageLinks += 1;
+        if (categoryLinks.length > 0) highValueHubStats.withRelatedCategoryLinks += 1;
+      }
     }
     if (route.startsWith('/errors/') && raw.includes('Evidence and references')) pagesWithEvidenceSection += 1;
     if (route.startsWith('/errors/')) {
@@ -346,6 +388,11 @@ async function inspectBuiltHtml() {
   const expectedErrorRoutes = errorFiles.map((file) => `/errors/${path.basename(file, '.md')}/`);
   const orphanErrorPages = expectedErrorRoutes.filter((route) => (inbound.get(route) ?? 0) === 0);
   const uniqueFaq = new Set(faqQuestions);
+  const homepagePath = path.join(rootDir, 'dist', 'index.html');
+  const homepageRaw = existsSync(homepagePath) ? readFileSync(homepagePath, 'utf8') : '';
+  highValueHubStats.homepageLinks = highValueHubs.filter(
+    (hub) => homepageRaw.includes(hub.homepageText) && homepageRaw.includes(`/categories/${hub.slug}/`)
+  ).length;
 
   return {
     averageLinksPerPage: htmlFiles.length ? Number((totalLinks / htmlFiles.length).toFixed(2)) : 0,
@@ -356,6 +403,7 @@ async function inspectBuiltHtml() {
     pagesWithRawIntentScore,
     categoryPagesWithIntro,
     categoryPages,
+    highValueHubStats,
     faqUniqueQuestionRatio: faqQuestions.length ? Number((uniqueFaq.size / faqQuestions.length).toFixed(2)) : 0,
     errorPageRelevantLinkDensity: errorPageCount ? Number((errorPageRelevantLinks / errorPageCount).toFixed(2)) : 0,
     schemaCounts,
