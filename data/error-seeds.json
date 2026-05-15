@@ -11370,5 +11370,239 @@
       "npm ERR! code ERESOLVE",
       "npm ci lockfile error"
     ]
+  },
+  {
+    "slug": "claude-code-hermes-md-in-git-commit-messages-causes-requests-to-route-to-extra-usage-billing-instead-of-plan-quota",
+    "title": "Claude Code Routes to Extra Billing When Git History Contains HERMES.md",
+    "description": "Fix Claude Code unexpectedly using extra usage billing instead of Max plan quota Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "HERMES.md in git commit messages causes requests to route to extra usage billing instead of plan quota",
+    "search_intent": "Fix Claude Code unexpectedly using extra usage billing instead of Max plan quota",
+    "common_causes": [
+      "Developers with expensive Max plans discover they are being double-charged when their git history happens to contain the string HERMES.md, a silent and unexpected billing trigger",
+      "521 reactions on GitHub issue. Case-sensitive string in recent commit history triggers billing route switch. Affects paying Max plan users directly."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "Claude Code quota exhausted unexpectedly",
+      "Claude Code billing discrepancy"
+    ]
+  },
+  {
+    "slug": "claude-code-cache-ttl-silently-regressed-from-1h-to-5m-around-early-march-2026-causing-quota-and-cost-inflation",
+    "title": "Claude Code Cache TTL Regression Causes Quota and Cost Inflation",
+    "description": "Fix Claude Code prompt cache not lasting 1 hour as expected, causing excessive API costs Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Cache TTL silently regressed from 1h to 5m around early March 2026, causing quota and cost inflation",
+    "search_intent": "Fix Claude Code prompt cache not lasting 1 hour as expected, causing excessive API costs",
+    "common_causes": [
+      "Developers noticed their API costs and quota usage spiking without code changes. The root cause is a silent cache TTL regression from 1 hour to 5 minutes.",
+      "336 reactions. Analysis of session JSONL files confirmed cache TTL regression from 1h to 5m. Causes direct cost inflation for paid users."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "Claude Code disabling telemetry also disables cache TTL",
+      "Claude Code cache_creation inflated tokens"
+    ]
+  },
+  {
+    "slug": "claude-code-opus-4-7-doesn-t-work-with-bedrock-error-model-not-found-or-access-denied",
+    "title": "Claude Code Opus 4.7 Not Working with AWS Bedrock",
+    "description": "Fix Claude Code failing to use Opus 4.7 model through AWS Bedrock provider Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Opus 4.7 doesn't work with bedrock — error: model not found or access denied",
+    "search_intent": "Fix Claude Code failing to use Opus 4.7 model through AWS Bedrock provider",
+    "common_causes": [
+      "Enterprise users on Bedrock cannot access the latest Opus 4.7 model, blocking their upgrade path",
+      "97 reactions. Opus 4.7 fails through Bedrock provider. Enterprise users locked out of latest model."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Claude Code model not available",
+      "Bedrock access denied"
+    ]
+  },
+  {
+    "slug": "claude-code-cc-v2-1-100-plus-inflates-cache-creation-by-20k-tokens-vs-v2-1-98-same-payload-server-side",
+    "title": "Claude Code v2.1.100+ Inflates Cache Creation Tokens by 20K",
+    "description": "Fix Claude Code creating unnecessarily large cache entries inflating API costs Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "CC v2.1.100+ inflates cache_creation by ~20K tokens vs v2.1.98 — same payload, server-side",
+    "search_intent": "Fix Claude Code creating unnecessarily large cache entries inflating API costs",
+    "common_causes": [
+      "After upgrading Claude Code, users see cache_creation token counts jump by 20K per request with no code changes, directly increasing costs",
+      "217 reactions. Version-specific regression confirmed server-side. Same payload produces ~20K more cache_creation tokens."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Claude Code cache TTL regression",
+      "Claude Code quota exhausted"
+    ]
+  },
+  {
+    "slug": "claude-code-disabling-telemetry-also-disables-1-hour-prompt-cache-ttl",
+    "title": "Claude Code: Telemetry Setting Silently Disables Cache TTL",
+    "description": "Fix Claude Code cache not working when telemetry is disabled Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Disabling telemetry also disables 1-hour prompt cache TTL",
+    "search_intent": "Fix Claude Code cache not working when telemetry is disabled",
+    "common_causes": [
+      "Privacy-conscious users who disable telemetry discover their prompt cache stops working, causing massive cost increases without explanation",
+      "167 reactions. Disabling telemetry silently breaks cache TTL. Users pay significantly more without knowing why."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Claude Code cache TTL regression",
+      "Claude Code quota exhausted unexpectedly"
+    ]
+  },
+  {
+    "slug": "ollama-ollama-cloud-frequent-503-service-unavailable-errors-making-cloud-models-unreliable",
+    "title": "Ollama Cloud Frequent 503 Service Unavailable Errors",
+    "description": "Fix Ollama Cloud returning 503 Service Unavailable for cloud models Includes evidence for Ollama troubleshooting demand.",
+    "category": "Ollama",
+    "technology": "Ollama",
+    "error_signature": "Ollama Cloud: Frequent 503 Service Unavailable errors making cloud models unreliable",
+    "search_intent": "Fix Ollama Cloud returning 503 Service Unavailable for cloud models",
+    "common_causes": [
+      "Ollama Cloud users running autonomous agents hit frequent 503 errors, making the paid service unreliable for production use",
+      "22 reactions. Users running autonomous agents report frequent 503 errors. Ollama Cloud is a paid service."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Ollama Cloud 500 error",
+      "Ollama Cloud Pro 95% failure rate"
+    ]
+  },
+  {
+    "slug": "ollama-ollama-cloud-pro-95-failure-rate-across-all-cloud-models-service-is-unusable",
+    "title": "Ollama Cloud Pro 95% Failure Rate Across All Models",
+    "description": "Fix Ollama Cloud Pro paid service returning errors on nearly all requests Includes evidence for Ollama troubleshooting demand.",
+    "category": "Ollama",
+    "technology": "Ollama",
+    "error_signature": "Ollama Cloud Pro: 95% failure rate across all cloud models — service is unusable",
+    "search_intent": "Fix Ollama Cloud Pro paid service returning errors on nearly all requests",
+    "common_causes": [
+      "Pro plan subscribers ($20/month) report the service is completely unusable with 95% failure rate across all cloud models",
+      "15 reactions. Pro plan ($20/mo) users report 95% failure rate. Complete service degradation."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "Ollama Cloud 500 error",
+      "Ollama Cloud 503 error"
+    ]
+  },
+  {
+    "slug": "litellm-deepseek-v4-pro-fails-in-multi-turn-conversations-reasoning-content-strip",
+    "title": "LiteLLM DeepSeek V4 Pro Multi-Turn Conversation Failure",
+    "description": "Fix LiteLLM proxy failing with DeepSeek V4 Pro in multi-turn conversations Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "DeepSeek V4 Pro fails in multi-turn conversations — reasoning_content strip",
+    "search_intent": "Fix LiteLLM proxy failing with DeepSeek V4 Pro in multi-turn conversations",
+    "common_causes": [
+      "LiteLLM proxy users routing to DeepSeek V4 Pro encounter failures in multi-turn conversations due to reasoning_content handling",
+      "17 reactions. LiteLLM proxy (paid service) fails with DeepSeek V4 Pro in multi-turn. reasoning_content field handling issue."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "LiteLLM additional_drop_params ignored",
+      "LiteLLM Vertex AI wrong base URL"
+    ]
+  },
+  {
+    "slug": "litellm-additional-drop-params-ignored-for-post-v1-messages-bedrock-rejects-unsupported-fields",
+    "title": "LiteLLM Additional Drop Params Ignored on Anthropic Pass-Through",
+    "description": "Fix LiteLLM not stripping unsupported parameters before forwarding to Bedrock Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "additional_drop_params ignored for POST /v1/messages — Bedrock rejects unsupported fields",
+    "search_intent": "Fix LiteLLM not stripping unsupported parameters before forwarding to Bedrock",
+    "common_causes": [
+      "LiteLLM proxy forwards unsupported fields to Bedrock which rejects them, causing request failures for Claude Code users behind LiteLLM",
+      "6 reactions. additional_drop_params config ignored on Anthropic pass-through handler. Bedrock rejects unsupported fields."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "LiteLLM Vertex AI wrong base URL",
+      "LiteLLM effort max hardcoded"
+    ]
+  },
+  {
+    "slug": "next-js-the-router-state-header-was-sent-but-could-not-be-parsed",
+    "title": "Next.js Router State Header Parse Error During Rolling Deployment",
+    "description": "Fix Next.js router state header parse error during version upgrades or rolling deployments Includes evidence for Next.js troubleshooting demand.",
+    "category": "Deployment",
+    "technology": "Next.js",
+    "error_signature": "The router state header was sent but could not be parsed",
+    "search_intent": "Fix Next.js router state header parse error during version upgrades or rolling deployments",
+    "common_causes": [
+      "Occurs during rolling deployments when client and server run different Next.js versions, causing 500 errors in production",
+      "21 reactions. Affects production deployments during version skew. Vercel/Next.js is a paid deployment platform."
+    ],
+    "quick_fix": "Check the build output, project root, and deployment platform configuration before redeploying.",
+    "related_errors": [
+      "Next.js stale router state header",
+      "Vercel deployment failed"
+    ]
+  },
+  {
+    "slug": "litellm-litellm-self-hosted-installation-fail-due-to-schema-prisma-error",
+    "title": "LiteLLM Self-Hosted Installation Fails with Prisma Schema Error",
+    "description": "Fix LiteLLM self-hosted installation failing at Prisma schema step Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "LiteLLM self-hosted installation fail due to schema.prisma error",
+    "search_intent": "Fix LiteLLM self-hosted installation failing at Prisma schema step",
+    "common_causes": [
+      "New users trying to self-host LiteLLM proxy encounter installation failures at the database schema step, blocking initial setup",
+      "4 reactions. Installation script fails at schema.prisma. Blocks new self-hosted deployments."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "LiteLLM Prisma reconnection failed",
+      "LiteLLM Docker log Python error"
+    ]
+  },
+  {
+    "slug": "ollama-ollama-apple-m5-plus-macos-26-3-1-500-internal-server-error-metal-compiler-failed-to-build-request",
+    "title": "Ollama 500 Internal Server Error on Apple M5 Metal Compiler Failure",
+    "description": "Fix Ollama 500 error on Apple M5 with Metal compiler failure Includes evidence for Ollama troubleshooting demand.",
+    "category": "Ollama",
+    "technology": "Ollama",
+    "error_signature": "Ollama Apple M5 + macOS 26.3.1: 500 Internal Server Error — Metal compiler failed to build request",
+    "search_intent": "Fix Ollama 500 error on Apple M5 with Metal compiler failure",
+    "common_causes": [
+      "New Apple M5 users cannot run any Ollama model due to Metal compiler failure in the llama runner process",
+      "20 reactions. Affects all models on Apple M5 + macOS 26.3.1. Metal compiler build failure in llama runner."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Ollama MLX runner failed",
+      "Ollama llama runner process terminated"
+    ]
+  },
+  {
+    "slug": "next-js-next-js-turbopack-misdetected-workspace-root-causes-ram-exhaustion-40-plus-gb-and-process-crash",
+    "title": "Next.js Turbopack RAM Exhaustion from Stray Parent Lockfile",
+    "description": "Fix Turbopack consuming 40+ GB RAM and crashing due to incorrect workspace root detection Includes evidence for Next.js troubleshooting demand.",
+    "category": "Deployment",
+    "technology": "Next.js",
+    "error_signature": "Next.js Turbopack misdetected workspace root causes RAM exhaustion (40+ GB) and process crash",
+    "search_intent": "Fix Turbopack consuming 40+ GB RAM and crashing due to incorrect workspace root detection",
+    "common_causes": [
+      "A stray lockfile in a parent directory causes Turbopack to misidentify workspace root, leading to RAM exhaustion and crashes",
+      "12 reactions. Turbopack RAM exhaustion from workspace root misidentification. Causes dev server crash."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Next.js Turbopack build error",
+      "Vercel build failed memory"
+    ]
   }
 ]
