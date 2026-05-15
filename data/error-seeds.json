@@ -13117,5 +13117,69 @@
     "related_errors": [
       "Deployment"
     ]
+  },
+  {
+    "slug": "openai-api-500-internal-error-when-providing-input-files-images-to-gpt-5-4-mini-via-responses-api",
+    "title": "GPT-5.4-Mini returns 500 internal errors with image/file input parameters",
+    "description": "Fix GPT-5.4-Mini 500 errors when sending images or file attachments Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "500 internal error when providing input files / images to gpt-5.4-mini via Responses API",
+    "search_intent": "Fix GPT-5.4-Mini 500 errors when sending images or file attachments",
+    "common_causes": [
+      "Multiple users report gpt-5.4-mini returns 500 errors ~95% of the time with image/file input via ResponseInputImageParam. Same code works with other models. OpenAI Python SDK issue #3090 (2026-04-15) with 4 comments confirms the bug is model-specific, not SDK-specific. High commercial impact: paid API, production workflows broken."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "vercel-vercel-env-add-name-value-v-reports-success-but-stores-empty-string",
+    "title": "Vercel env add --value silently stores empty string (CLI 53.x and --sensitive since 50.5.0)",
+    "description": "Fix Vercel CLI env add storing empty value despite reporting success Includes evidence for Vercel troubleshooting demand.",
+    "category": "Deployment",
+    "technology": "Vercel",
+    "error_signature": "vercel env add NAME --value <v> reports success but stores empty string",
+    "search_intent": "Fix Vercel CLI env add storing empty value despite reporting success",
+    "common_causes": [
+      "Two regressions in Vercel CLI: (1) CLI 53.x silently drops all --value writes, (2) --sensitive flag broken since 50.5.0. vercel env pull returns empty string. Silent data loss in CI/CD — environment variables silently empty. Vercel issue #16232 (2026-05-06) and #16160 (2026-04-30). Paid deployment service, critical for production configs."
+    ],
+    "quick_fix": "Check the build output, project root, and deployment platform configuration before redeploying.",
+    "related_errors": [
+      "Deployment"
+    ]
+  },
+  {
+    "slug": "github-actions-post-repos-owner-repo-actions-runners-registration-token-returns-502-bad-gateway-under-concurrent-requests",
+    "title": "GitHub Actions self-hosted runner registration token returns 502 Bad Gateway in bursts",
+    "description": "Fix GitHub Actions self-hosted runner registration 502 errors during autoscaler bursts Includes evidence for GitHub Actions troubleshooting demand.",
+    "category": "GitHub Actions",
+    "technology": "GitHub Actions",
+    "error_signature": "POST /repos/{owner}/{repo}/actions/runners/registration-token returns 502 Bad Gateway under concurrent requests",
+    "search_intent": "Fix GitHub Actions self-hosted runner registration 502 errors during autoscaler bursts",
+    "common_causes": [
+      "Registration token endpoint returns 502 under burst concurrency from autoscaled ephemeral runners. ~21 containers died mid-registration, requiring manual cleanup. No retry hint provided. actions/runner issue #4399 (2026-05-04). Affects paid teams with self-hosted runner infrastructure."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "GitHub Actions"
+    ]
+  },
+  {
+    "slug": "claude-code-unhandled-case-object-object-mcp-server-returns-json-rpc-error-32601-method-not-found-on-tools-list",
+    "title": "Claude Code VSCode MCP returns -32601 causing 'Unhandled case: [object Object]' toast error",
+    "description": "Fix Claude Code VSCode extension unhandled MCP -32601 error toast Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Unhandled case: [object Object] — MCP server returns JSON-RPC error -32601 Method not found on tools/list",
+    "search_intent": "Fix Claude Code VSCode extension unhandled MCP -32601 error toast",
+    "common_causes": [
+      "Claude Code VSCode extension launches internal MCP server on localhost. When tools/list is called, server returns -32601 'Method not found'. UI fails to handle this case, showing red toast error. Affects claude-vscode extension on Windows/macOS. Anthropic claude-code issue #59425 (2026-05-15). Paid subscription tool, UX-breaking bug."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
   }
 ]
