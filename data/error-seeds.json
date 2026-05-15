@@ -13629,5 +13629,117 @@
     "related_errors": [
       "LiteLLM"
     ]
+  },
+  {
+    "slug": "anthropic-api-anthropic-api-error-529-type-error-error-type-overloaded-error-message-overloaded-request-id-req",
+    "title": "How to Fix Anthropic API overloaded_error 529 (Overloaded)",
+    "description": "Fix Anthropic Claude API 529 overloaded error that blocks paid API calls Includes evidence for Anthropic API troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Anthropic API",
+    "error_signature": "Anthropic API Error 529: {\"type\":\"error\",\"error\":{\"type\":\"overloaded_error\",\"message\":\"Overloaded\"},\"request_id\":\"req_...\"}",
+    "search_intent": "Fix Anthropic Claude API 529 overloaded error that blocks paid API calls",
+    "common_causes": [
+      "Anthropic API returns HTTP 529 overloaded_error during high-traffic periods. This affects paying API users who depend on Claude for production workloads. The error is documented in Anthropic's API error reference and frequently reported on HN and GitHub during outage events (e.g., HN post 'Ask HN: Claude Down?' from 2026-01-22 reporting API Error: 500 and overloaded states). Category mapped to 'Anthropic API' per approved category list."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "Anthropic API"
+    ]
+  },
+  {
+    "slug": "cloudflare-cloudflare-error-1016-origin-dns-error-dns-points-to-prohibited-ip-or-no-a-aaaa-record-found",
+    "title": "Cloudflare Error 1016 Origin DNS Error How to Fix",
+    "description": "Fix Cloudflare Error 1016 DNS resolution failure preventing website access Includes evidence for Cloudflare troubleshooting demand.",
+    "category": "Cloudflare",
+    "technology": "Cloudflare",
+    "error_signature": "Cloudflare Error 1016: Origin DNS error (DNS points to prohibited IP or no A/AAAA record found)",
+    "search_intent": "Fix Cloudflare Error 1016 DNS resolution failure preventing website access",
+    "common_causes": [
+      "Cloudflare Error 1016 occurs when Cloudflare cannot resolve the origin server's DNS. This affects Cloudflare CDN/proxy users on paid plans. The error is documented in Cloudflare's official error reference and is distinct from the already-covered Errors 522 and 525. Frequently reported in Cloudflare community forums and GitHub issues for workers-sdk."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Cloudflare"
+    ]
+  },
+  {
+    "slug": "vercel-function-invocation-timeout-the-execution-of-the-function-has-timed-out-exceeded-10s-on-hobby-plan",
+    "title": "Vercel Function Execution Timeout FUNCTION_INVOCATION_TIMEOUT Fix",
+    "description": "Fix Vercel serverless function timeout deployment error blocking production Includes evidence for Vercel troubleshooting demand.",
+    "category": "Deployment",
+    "technology": "Vercel",
+    "error_signature": "FUNCTION_INVOCATION_TIMEOUT: The execution of the Function has timed out (exceeded 10s on Hobby plan)",
+    "search_intent": "Fix Vercel serverless function timeout deployment error blocking production",
+    "common_causes": [
+      "Vercel serverless functions hit FUNCTION_INVOCATION_TIMEOUT when execution exceeds the plan limit (10s Hobby, 60s Pro). This is a deployment-blocking error that directly affects paying Vercel customers. The error is documented in Vercel's official error pages and commonly reported in Vercel GitHub issues. Category mapped to 'Deployment' as per SKILL.md Vercel → Deployment mapping."
+    ],
+    "quick_fix": "Check the build output, project root, and deployment platform configuration before redeploying.",
+    "related_errors": [
+      "Deployment"
+    ]
+  },
+  {
+    "slug": "github-copilot-github-copilot-rate-limit-exceeded-please-wait-a-short-period-before-retrying-your-request-or-upgrade-to-copilot-pro-for-higher-limits",
+    "title": "GitHub Copilot Rate Limit Exceeded Error How to Fix",
+    "description": "Fix GitHub Copilot rate limit exceeded error blocking AI code suggestions Includes evidence for GitHub Copilot troubleshooting demand.",
+    "category": "GitHub Copilot",
+    "technology": "GitHub Copilot",
+    "error_signature": "GitHub Copilot: Rate limit exceeded. Please wait a short period before retrying your request or upgrade to Copilot Pro for higher limits.",
+    "search_intent": "Fix GitHub Copilot rate limit exceeded error blocking AI code suggestions",
+    "common_causes": [
+      "GitHub Copilot enforces rate limits on code suggestions and chat requests. Free-tier users hit limits frequently; Pro/Team users encounter them during heavy usage. This directly impacts paid subscribers' productivity. The error is documented in GitHub Copilot docs and widely reported on GitHub community forums. Category mapped to 'GitHub Copilot' per approved category list."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "GitHub Copilot"
+    ]
+  },
+  {
+    "slug": "github-actions-error-error-oidc-token-request-failed-with-error-the-service-url-is-not-correct-github-actions-workflow-identity-federation",
+    "title": "GitHub Actions Error OIDC Token Request Failed ID Token Fetch",
+    "description": "Fix GitHub Actions OIDC token request failure blocking cloud deployments via workload identity federation Includes evidence for GitHub Actions troubleshooting demand.",
+    "category": "GitHub Actions",
+    "technology": "GitHub Actions",
+    "error_signature": "Error: Error: OIDC token request failed with error: The service URL is not correct. (GitHub Actions workflow identity federation)",
+    "search_intent": "Fix GitHub Actions OIDC token request failure blocking cloud deployments via workload identity federation",
+    "common_causes": [
+      "GitHub Actions OIDC token errors occur when configuring workload identity federation with AWS/GCP/Azure. The 'id-token: write' permission and OIDC provider setup are common failure points. This blocks CI/CD pipelines that deploy to cloud platforms—a paid-team workflow. GitHub Actions OIDC errors are distinct from the already-covered 'permission denied publickey' and 'npm ci lockfile' errors. Category mapped to 'GitHub Actions'."
+    ],
+    "quick_fix": "Check the build output, project root, and deployment platform configuration before redeploying.",
+    "related_errors": [
+      "GitHub Actions"
+    ]
+  },
+  {
+    "slug": "docker-docker-desktop-on-apple-silicon-the-docker-vm-exists-but-cannot-start-or-com-docker-hyperkit-exited-unexpectedly-after-macos-update",
+    "title": "Docker Desktop Apple Silicon 'vm exists but cannot start' Error Fix",
+    "description": "Fix Docker Desktop failing to start on Apple Silicon Macs after macOS update Includes evidence for Docker troubleshooting demand.",
+    "category": "Docker",
+    "technology": "Docker",
+    "error_signature": "Docker Desktop on Apple Silicon: 'The Docker VM exists but cannot start' or 'com.docker.hyperkit exited unexpectedly' after macOS update",
+    "search_intent": "Fix Docker Desktop failing to start on Apple Silicon Macs after macOS update",
+    "common_causes": [
+      "Docker Desktop on Apple Silicon (M1/M2/M3/M4) frequently breaks after macOS updates with VM start failures. This is a production-impacting error for Docker Desktop paid subscribers. GitHub issue docker/for-mac#7520 (1725 comments) documents related Docker-as-malware detection and VM start failures. This is distinct from the already-covered 'Cannot connect to the Docker daemon' and 'permission denied' errors. Category mapped to 'Docker'."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Docker"
+    ]
+  },
+  {
+    "slug": "kubernetes-back-off-restarting-failed-container-in-pod-crashloopbackoff-oomkilled-or-missing-database-url-environment-variable",
+    "title": "Kubernetes CrashLoopBackOff OOMKilled Missing Environment Variable Fix",
+    "description": "Fix Kubernetes CrashLoopBackOff pod restart loop caused by OOMKilled or missing env vars Includes evidence for Kubernetes troubleshooting demand.",
+    "category": "Cloud Platforms",
+    "technology": "Kubernetes",
+    "error_signature": "Back-off restarting failed container in pod: CrashLoopBackOff (OOMKilled or missing DATABASE_URL environment variable)",
+    "search_intent": "Fix Kubernetes CrashLoopBackOff pod restart loop caused by OOMKilled or missing env vars",
+    "common_causes": [
+      "Kubernetes CrashLoopBackOff is the most common pod failure mode, caused by OOMKilled (memory limit too low) or missing required environment variables. Affects production deployments on paid cloud platforms. HN post 'Crashloop Analyzer' (2026-03-13) confirms this is a widespread debugging pain point. GitHub issues in kubernetes/kubernetes repo show thousands of reports. Category mapped to 'Cloud Platforms' per SKILL.md K8s → Cloud Platforms mapping."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Cloud Platforms"
+    ]
   }
 ]
