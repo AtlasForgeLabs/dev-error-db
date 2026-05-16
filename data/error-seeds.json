@@ -14125,5 +14125,85 @@
     "related_errors": [
       "Ollama"
     ]
+  },
+  {
+    "slug": "anthropic-api-badrequesterror-error-code-400-type-error-error-type-invalid-request-error-message-requests-0-custom-id-string-should-have-at-most-64-characters",
+    "title": "Anthropic API Batch Processing undocumented 64-character custom_id limit",
+    "description": "Fix Anthropic API batch processing error: custom_id character limit not documented, causing 400 BadRequestError Includes evidence for Anthropic API troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Anthropic API",
+    "error_signature": "BadRequestError: Error code: 400 - {'type': 'error', 'error': {'type': 'invalid_request_error', 'message': 'requests.0.custom_id: String should have at most 64 characters'}}",
+    "search_intent": "Fix Anthropic API batch processing error: custom_id character limit not documented, causing 400 BadRequestError",
+    "common_causes": [
+      "GitHub issue anthropics/anthropic-sdk-python#984 (open since Jun 2025, updated May 2026): custom_id parameter for Message Batch Processing has an undocumented 64-character limit. Users hit BadRequestError 400 when exceeding it. The limit is not mentioned anywhere in the API documentation. Category mapping: Anthropic API (direct API error)."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Anthropic API"
+    ]
+  },
+  {
+    "slug": "litellm-litellm-badrequesterror-anthropicexception-type-error-error-type-invalid-request-error-message-this-model-does-not-support-assistant-message-prefill-the-conversation-must-end-with-a-user-message",
+    "title": "LiteLLM mid-stream fallback fails with HTTP 400 assistant prefill error on Claude models",
+    "description": "Fix LiteLLM streaming fallback error: mid-stream fallback adds unsupported assistant prefill block, causing HTTP 400 on Claude Sonnet 4.6 / Opus 4.7 Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "litellm.BadRequestError: AnthropicException - {\"type\":\"error\",\"error\":{\"type\":\"invalid_request_error\",\"message\":\"This model does not support assistant message prefill. The conversation must end with a user message.\"}}",
+    "search_intent": "Fix LiteLLM streaming fallback error: mid-stream fallback adds unsupported assistant prefill block, causing HTTP 400 on Claude Sonnet 4.6 / Opus 4.7",
+    "common_causes": [
+      "GitHub issue BerriAI/litellm#27967 (May 2026): When streaming fails mid-stream, Router.stream_with_fallbacks appends an assistant prefill block with prefix=True. Fallback targets that don't support prefill (Claude Sonnet 4.6/Opus 4.7) reject with 400. The disable_fallbacks flag is also ignored mid-stream (#19077). Category mapping: LiteLLM (proxy/routing-specific behavior)."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "LiteLLM"
+    ]
+  },
+  {
+    "slug": "openai-api-realtime-does-not-execute-tool-calls-with-mcp-mcp-server-connected-but-tool-calls-silently-never-fire-only-instruction-text-returned",
+    "title": "OpenAI Realtime API MCP tool calls not executing with Azure deployment",
+    "description": "Fix OpenAI Realtime API MCP integration: tool calls never execute despite MCP server being connected and verified with inspector Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "Realtime does not execute tool calls with mcp — MCP server connected but tool calls silently never fire, only instruction text returned",
+    "search_intent": "Fix OpenAI Realtime API MCP integration: tool calls never execute despite MCP server being connected and verified with inspector",
+    "common_causes": [
+      "GitHub issue openai/openai-python#3128 (Apr 2026, bug-labeled): OpenAI Realtime SIP app connected to Twilio with MCP server (Langflow). MCP verified working with @modelcontextprotocol/inspector. Tool calls never fire — app only returns instruction text. Affects Azure OpenAI Realtime endpoint. Category mapping: OpenAI API (API feature failure)."
+    ],
+    "quick_fix": "Check the build output, project root, and deployment platform configuration before redeploying.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "docker-docker-compose-up-wait-exits-1-container-exited-with-code-0-but-compose-reports-failure",
+    "title": "Docker Compose up --wait exits with code 1 on init containers completing successfully",
+    "description": "Fix Docker Compose --wait exit code 1 when init containers exit 0: compose treats successful init container exit as failure Includes evidence for Docker troubleshooting demand.",
+    "category": "Docker",
+    "technology": "Docker",
+    "error_signature": "docker compose up --wait exits 1 (container exited with code 0 but compose reports failure)",
+    "search_intent": "Fix Docker Compose --wait exit code 1 when init containers exit 0: compose treats successful init container exit as failure",
+    "common_causes": [
+      "GitHub issue docker/compose#10596 (29 upvotes, still open May 2026): docker compose up --wait returns exit code 1 when init containers exit successfully (code 0) if no other service depends on them. Affects CI/CD pipelines that check exit codes. Category mapping: Docker (Docker Compose behavior)."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Docker"
+    ]
+  },
+  {
+    "slug": "ollama-error-privileged-native-pipe-bridge-is-not-available-browser-client-is-not-trusted",
+    "title": "Ollama browser-client trust error when launching codex-app: privileged native pipe bridge unavailable",
+    "description": "Fix Ollama codex-app browser trust error: launching codex-app via ollama breaks built-in browser with pipe bridge trust failure Includes evidence for Ollama troubleshooting demand.",
+    "category": "Ollama",
+    "technology": "Ollama",
+    "error_signature": "Error: privileged native pipe bridge is not available; browser-client is not trusted",
+    "search_intent": "Fix Ollama codex-app browser trust error: launching codex-app via ollama breaks built-in browser with pipe bridge trust failure",
+    "common_causes": [
+      "GitHub issue ollama/ollama#16177 (May 2026): After running 'ollama launch codex-app', normal chat works with Ollama model but browser use fails with pipe bridge trust error. The browser plugin exists at ~/.codex/plugins/cache/ but is not trusted. Affects users switching between OpenAI and local Ollama models. Category mapping: Ollama (local LLM serving integration)."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Ollama"
+    ]
   }
 ]
