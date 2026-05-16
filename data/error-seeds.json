@@ -15149,5 +15149,69 @@
     "related_errors": [
       "OpenAI API"
     ]
+  },
+  {
+    "slug": "openai-api-you-exceeded-your-current-quota-which-is-set-at-x-requests-per-minute-rate-limit-exceeded-for-your-api-key",
+    "title": "OpenAI API Rate Limit Error 429 — \"You exceeded your current quota\" on gpt-4o models",
+    "description": "Resolve OpenAI API 429 rate limit errors and increase request quotas for production apps Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "You exceeded your current quota, which is set at X requests per minute. Rate limit exceeded for your api key",
+    "search_intent": "Resolve OpenAI API 429 rate limit errors and increase request quotas for production apps",
+    "common_causes": [
+      "Extremely common error for teams scaling GPT-4o usage. Rate limits vary by tier. Users need to understand TPM/RPM quotas and implement exponential backoff. High commercial value as it blocks paid API calls."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "claude-code-error-mcp-connection-failed-could-not-connect-to-mcp-server",
+    "title": "Claude Code MCP server auth failure — \"Error: MCP connection failed\" when using claude code --mcp",
+    "description": "Fix Claude Code MCP server authentication/connection failures Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Error: MCP connection failed; could not connect to MCP server",
+    "search_intent": "Fix Claude Code MCP server authentication/connection failures",
+    "common_causes": [
+      "Claude Code v1.x introduced MCP tool support. Users report MCP connection failures when configuring custom servers, especially with OAuth and credential-based auth chains."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "vercel-function-invocation-timeout-the-function-timed-out-after-60-seconds",
+    "title": "Vercel Function Invocation Timeout — FUNCTION_INVOCATION_TIMEOUT for Next.js API routes",
+    "description": "Fix Vercel serverless function timeout errors causing API route failures Includes evidence for Vercel troubleshooting demand.",
+    "category": "Deployment",
+    "technology": "Vercel",
+    "error_signature": "FUNCTION_INVOCATION_TIMEOUT: The function timed out after 60 seconds",
+    "search_intent": "Fix Vercel serverless function timeout errors causing API route failures",
+    "common_causes": [
+      "Vercel free/pro plans default to 10s-60s timeouts. Teams running long operations hit this wall. Upgrade path and workarounds have strong commercial intent."
+    ],
+    "quick_fix": "Check the build output, project root, and deployment platform configuration before redeploying.",
+    "related_errors": [
+      "Deployment"
+    ]
+  },
+  {
+    "slug": "litellm-ratelimiterror-request-failed-due-to-rate-limiting-retry-after-30-seconds",
+    "title": "LiteLLM Proxy Rate Limit Error — \"RateLimitError\" when routing through LiteLLM proxy",
+    "description": "Debug LiteLLM proxy rate limiting and timeout issues when aggregating multiple LLM providers Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "RateLimitError: Request failed due to rate limiting. Retry after 30 seconds",
+    "search_intent": "Debug LiteLLM proxy rate limiting and timeout issues when aggregating multiple LLM providers",
+    "common_causes": [
+      "LiteLLM proxy aggregates multiple APIs and its own rate management can conflict with upstream provider limits. Common in enterprise setups. High commercial value as it impacts billing across multiple vendors."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "LiteLLM"
+    ]
   }
 ]
