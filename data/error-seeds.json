@@ -14317,5 +14317,133 @@
     "related_errors": [
       "Cloudflare"
     ]
+  },
+  {
+    "slug": "claude-code-corrupt-credentials-json-with-non-array-scopes-value-hanging-the-cli-on-startup-or-silently-aborting-oauth-token-refresh",
+    "title": "Claude Code corrupt .credentials.json with non-array scopes hangs CLI on startup",
+    "description": "Fix Claude Code CLI hanging on startup when .credentials.json has corrupted scopes field, preventing OAuth token refresh Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "corrupt .credentials.json with non-array scopes value hanging the CLI on startup or silently aborting OAuth token refresh",
+    "search_intent": "Fix Claude Code CLI hanging on startup when .credentials.json has corrupted scopes field, preventing OAuth token refresh",
+    "common_causes": [
+      "Fixed in Claude Code v2.1.143 changelog: 'Fixed a corrupt .credentials.json with a non-array scopes value hanging the CLI on startup or silently aborting OAuth token refresh'. This is a known issue with clear error signature and fix. Category mapped to AI Coding Tools per Claude Code -> AI Coding Tools rule."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "claude-code-eexist-non-idempotent-mkdir-of-session-env",
+    "title": "Claude Code Bash tool and SessionStart hooks fail with EEXIST on Windows due to non-idempotent mkdir",
+    "description": "Fix Claude Code Bash tool crashing on Windows with EEXIST error when session-env directory already exists Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "EEXIST: non-idempotent mkdir of session-env",
+    "search_intent": "Fix Claude Code Bash tool crashing on Windows with EEXIST error when session-env directory already exists",
+    "common_causes": [
+      "GitHub issue #59622 filed 2026-05-16 against anthropics/claude-code repo, labeled bug+platform:windows+area:bash+area:hooks. Non-idempotent mkdir causes EEXIST on every SessionStart. Category mapped to AI Coding Tools per Claude Code -> AI Coding Tools rule."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "claude-code-v2-1-142-disconnects-on-remote-ssh-after-extension-update-claude-binary-accumulation-plus-mcp-server-flapping",
+    "title": "Claude Code remote-SSH disconnects on v2.1.142 — binary accumulation and MCP server flapping",
+    "description": "Fix Claude Code disconnecting during remote-SSH sessions after upgrading to v2.1.142, with binary accumulation and MCP server flapping Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "v2.1.142 disconnects on remote-SSH after extension update — claude binary accumulation + MCP server flapping",
+    "search_intent": "Fix Claude Code disconnecting during remote-SSH sessions after upgrading to v2.1.142, with binary accumulation and MCP server flapping",
+    "common_causes": [
+      "GitHub issue #59552 filed 2026-05-15, labeled bug+platform:linux+area:mcp+area:ide+platform:vscode. Multi-hour large-context sessions disconnect after v2.1.142 upgrade. Category mapped to AI Coding Tools per Claude Code -> AI Coding Tools rule."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "claude-code-claude-code-v2-1-142-performance-degradation-tokens-per-context-memory-recovery-inference-all-degraded",
+    "title": "Claude Code v2.1.142 massively degraded tokens per context and inference performance",
+    "description": "Fix Claude Code version 2.1.142 performance regression where token throughput and inference speed are significantly degraded Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Claude Code v2.1.142 performance degradation — tokens per context, memory recovery, inference all degraded",
+    "search_intent": "Fix Claude Code version 2.1.142 performance regression where token throughput and inference speed are significantly degraded",
+    "common_causes": [
+      "GitHub issue #59574 filed 2026-05-16, labeled bug+platform:windows+area:model. Users report major performance degradation after upgrading to v2.1.142. Category mapped to AI Coding Tools per Claude Code -> AI Coding Tools rule."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "claude-code-json-parse-error-during-init-unexpected-identifier-c-after-bash-path-detection-telemetry-dropped",
+    "title": "Claude Code JSON Parse error during init — unexpected identifier after bash-path detection on Windows",
+    "description": "Fix Claude Code Windows init crash with JSON Parse error when detecting bash path, causing telemetry data loss Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "JSON Parse error during init — Unexpected identifier \"C\" after bash-path detection (telemetry dropped)",
+    "search_intent": "Fix Claude Code Windows init crash with JSON Parse error when detecting bash path, causing telemetry data loss",
+    "common_causes": [
+      "GitHub issue #59542 filed 2026-05-15, labeled bug+platform:windows+area:core+platform:vscode. v2.1.142 on Windows 11 + VS Code extension crashes during init with JSON parse error. Category mapped to AI Coding Tools per Claude Code -> AI Coding Tools rule."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "cloudflare-err-pnpm-ignored-builds-on-pnpm-10-11-during-create-cloudflare-scaffolding",
+    "title": "Cloudflare create-cloudflare fails with ERR_PNPM_IGNORED_BUILDS on pnpm 10/11",
+    "description": "Fix Cloudflare Workers scaffolding failing with ERR_PNPM_IGNORED_BUILDS when using pnpm 10 or 11 Includes evidence for Cloudflare troubleshooting demand.",
+    "category": "Cloudflare",
+    "technology": "Cloudflare",
+    "error_signature": "ERR_PNPM_IGNORED_BUILDS on pnpm 10/11 during create-cloudflare scaffolding",
+    "search_intent": "Fix Cloudflare Workers scaffolding failing with ERR_PNPM_IGNORED_BUILDS when using pnpm 10 or 11",
+    "common_causes": [
+      "GitHub issue #13928 filed 2026-05-15 against cloudflare/workers-sdk. Running 'pnpm create cloudflare@latest' on pnpm >= 10 fails with ERR_PNPM_IGNORED_BUILDS. This blocks new Cloudflare Workers project creation for pnpm users."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Cloudflare"
+    ]
+  },
+  {
+    "slug": "cloudflare-workflows-api-error-internal-server-code-10001-on-new-free-plan-account",
+    "title": "Cloudflare wrangler deploy fails with workflows.api.error.internal_server on Free account",
+    "description": "Fix wrangler deploy failing with internal_server error code 10001 on Cloudflare Free plan accounts Includes evidence for Cloudflare troubleshooting demand.",
+    "category": "Cloudflare",
+    "technology": "Cloudflare",
+    "error_signature": "workflows.api.error.internal_server [code: 10001] on new Free plan account",
+    "search_intent": "Fix wrangler deploy failing with internal_server error code 10001 on Cloudflare Free plan accounts",
+    "common_causes": [
+      "GitHub issue #13915 filed 2026-05-14 against cloudflare/workers-sdk, labeled internal+workflows. Brand-new Free-plan account hits workflows.api.error.internal_server consistently. Worker uploads successfully but workflows fail. High commercial value as Free plan is entry point for paid conversion."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Cloudflare"
+    ]
+  },
+  {
+    "slug": "ollama-runtime-out-of-memory-during-gguf-metadata-parsing-readstring-n-kv-allocation-in-ollama-v0-24-0",
+    "title": "Ollama OOM crash during GGUF metadata parsing in v0.24.0",
+    "description": "Fix Ollama server crashing with OOM during GGUF metadata parsing after upgrading to v0.24.0 Includes evidence for Ollama troubleshooting demand.",
+    "category": "Ollama",
+    "technology": "Ollama",
+    "error_signature": "runtime: out of memory during GGUF metadata parsing (readString/n_kv allocation) in Ollama v0.24.0",
+    "search_intent": "Fix Ollama server crashing with OOM during GGUF metadata parsing after upgrading to v0.24.0",
+    "common_causes": [
+      "GitHub issue #16175 filed 2026-05-15 against ollama/ollama, labeled bug. Ollama v0.24.0 crashes on startup with fatal OOM error during GGUF metadata parsing on RTX 5060 Ti 16GB + 32GB RAM system. Category mapped to Ollama per approved category list."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Ollama"
+    ]
   }
 ]
