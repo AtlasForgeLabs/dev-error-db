@@ -15485,5 +15485,85 @@
     "related_errors": [
       "Cloud Platforms"
     ]
+  },
+  {
+    "slug": "claude-code-usage-limits-exhausted-in-claude-code-maxed-out-every-monday-resets-saturday-on-100-mo-max-plan",
+    "title": "Claude Code Usage Limits Draining Faster Than Expected — Max Plan Quota Exhaustion",
+    "description": "Developer on paid Claude Code plan experiencing rapid quota drain, wants to understand why usage limits deplete so quickly and how to extend usage time Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Usage limits exhausted in Claude Code — 'Maxed out every Monday, resets Saturday' on $100/mo Max plan",
+    "search_intent": "Developer on paid Claude Code plan experiencing rapid quota drain, wants to understand why usage limits deplete so quickly and how to extend usage time",
+    "common_causes": [
+      "Confirmed via The Register 2026-03-31 (https://www.theregister.com/software/2026/03/31/anthropic-admits-claude-code-quotas-running-out-too-fast/5223468). Anthropic explicitly admitted 'people are hitting usage limits in Claude Code way faster than expected, top priority.' Multiple Reddit reports confirm Max $100 plan users exhausting limits within hours. Peak-hour quota reduction (March 2026) and expired usage promotion both contribute. Highly commercial: affects paying customers directly."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "claude-code-prompt-cache-broken-silently-inflates-costs-10-20x-in-claude-code-downgrading-helps",
+    "title": "Claude Code Prompt Cache Bugs Inflating Costs by 10-20x",
+    "description": "Developer discovers unexpectedly high token usage in Claude Code, searching for causes beyond normal rate limits — specifically cache-related cost inflation Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Prompt cache broken — silently inflates costs 10-20x in Claude Code; downgrading helps",
+    "search_intent": "Developer discovers unexpectedly high token usage in Claude Code, searching for causes beyond normal rate limits — specifically cache-related cost inflation",
+    "common_causes": [
+      "Confirmed via The Register reporting on reverse-engineered Claude Code binary bugs. Two independent prompt cache bugs cause silent 10-20x cost inflation. Users confirmed downgrading to v2.1.34 reduced usage. This is distinct from general quota exhaustion — it's a specific root cause (cache bug). Commercially valuable: affects paid users billing for wasted tokens."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "claude-code-rate-limit-errors-appear-as-generic-failures-triggering-silent-retry-loops-draining-daily-budget-in-minutes",
+    "title": "Claude Code Rate Limit Errors Trigger Silent Retries in Automated Workflows",
+    "description": "Developer automating Claude Code encounters unexplained daily quota exhaustion, seeking explanation for silent retry behavior Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Rate-limit errors appear as generic failures triggering silent retry loops, draining daily budget in minutes",
+    "search_intent": "Developer automating Claude Code encounters unexplained daily quota exhaustion, seeking explanation for silent retry behavior",
+    "common_causes": [
+      "Confirmed via The Register quoting Reddit observation about automated workflows. Rate-limit errors masquerade as generic failures, causing automatic retry loops that rapidly drain budgets. Distinct from regular quota exhaustion — it's about error handling pattern. High commercial value: CI/CD automation scenarios are enterprise-relevant."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "docker-cannot-connect-to-the-docker-daemon-at-unix-var-run-docker-sock-is-the-docker-daemon-running-permission-denied",
+    "title": "Docker Permission Denied — Cannot Connect to Docker Daemon After macOS Update",
+    "description": "Docker user on macOS encountering permission denied after system update or when running commands outside default user group, needs to restore daemon connectivity Includes evidence for Docker troubleshooting demand.",
+    "category": "Docker",
+    "technology": "Docker",
+    "error_signature": "Cannot connect to the Docker daemon at unix:///var/run/docker.sock. Is the docker daemon running? permission denied",
+    "search_intent": "Docker user on macOS encountering permission denied after system update or when running commands outside default user group, needs to restore daemon connectivity",
+    "common_causes": [
+      "Common Docker permission issue especially prevalent after macOS updates when group memberships reset. Distinct from the already-covered 'cannot connect to daemon' topic — focuses specifically on permission/group membership root cause. High search volume among developers who recently updated their Mac. Not yet covered on dev-error-db beyond generic connection errors."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Docker"
+    ]
+  },
+  {
+    "slug": "vercel-function-invocation-timeout-504-error-when-serverless-function-exceeds-execution-time-limit",
+    "title": "Vercel FUNCTION_INVOCATION_TIMEOUT Causing 504 Errors on Serverless Functions",
+    "description": "Developer getting 504 FUNCTION_INVOCATION_TIMEOUT on Vercel serverless functions, needs to optimize or extend execution time Includes evidence for Vercel troubleshooting demand.",
+    "category": "Deployment",
+    "technology": "Vercel",
+    "error_signature": "FUNCTION_INVOCATION_TIMEOUT — 504 error when serverless function exceeds execution time limit",
+    "search_intent": "Developer getting 504 FUNCTION_INVOCATION_TIMEOUT on Vercel serverless functions, needs to optimize or extend execution time",
+    "common_causes": [
+      "Official Vercel error code documented at vercel.com/docs/errors/FUNCTION_INVOCATION_TIMEOUT. Very common in Next.js API routes and webhook handlers. High commercial value: deployment-blocking error for paid Vercel teams. Not yet in dev-error-db covered list (only 'build command failed' and 'module not found' listed). Ranking difficulty moderate due to official docs presence."
+    ],
+    "quick_fix": "Check the build output, project root, and deployment platform configuration before redeploying.",
+    "related_errors": [
+      "Deployment"
+    ]
   }
 ]
