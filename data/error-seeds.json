@@ -15389,5 +15389,101 @@
     "related_errors": [
       "AI Coding Tools"
     ]
+  },
+  {
+    "slug": "claude-code-mcp-server-sees-no-capabilities-external-mcp-servers-not-loading-in-claude-code",
+    "title": "MCP Servers Fail to Connect in Claude Code Despite Correct Configuration — Capabilities Not Found",
+    "description": "Developer has configured .mcp.json for Claude Code but MCP server loads with zero capabilities and no tools appear in the editor Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "MCP server sees no capabilities / external MCP servers not loading in Claude Code",
+    "search_intent": "Developer has configured .mcp.json for Claude Code but MCP server loads with zero capabilities and no tools appear in the editor",
+    "common_causes": [
+      "GitHub Issue #1611 on anthropics/claude-code repo documents this exact scenario where MCP servers register but show no capabilities. Separate troubleshooting guide (boostdevspeed.com) confirms 97% of MCP connection failures stem from capability discovery misconfiguration. Category: AI Coding Tools per mapping rules."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "anthropic-api-overloaded-error-http-529-the-api-is-temporarily-overloaded-529-errors-can-occur-when-apis-experience-high-traffic-across-all-users",
+    "title": "Anthropic API overloaded_error (HTTP 529) — Retry and Fallback Strategies Needed",
+    "description": "Developer needs to handle Anthropic's silent overloaded errors programmatically with proper retry logic, jitter, and fallback routing to maintain production reliability Includes evidence for Anthropic API troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Anthropic API",
+    "error_signature": "overloaded_error: HTTP 529 — The API is temporarily overloaded. 529 errors can occur when APIs experience high traffic across all users",
+    "search_intent": "Developer needs to handle Anthropic's silent overloaded errors programmatically with proper retry logic, jitter, and fallback routing to maintain production reliability",
+    "common_causes": [
+      "Official Claude API docs document overloaded_error as HTTP 529. Portkey's guardrail system intercepts this and routes to fallback models (GPT-4o). GitHub issue shows SDK built-in retry with jitter only partially handles the token-bucket rate limiter. High-value error affecting paid API billing continuity. Category: Anthropic API."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "Anthropic API"
+    ]
+  },
+  {
+    "slug": "github-actions-job-fails-despite-pull-requests-write-permission-in-workflow-permission-denied-commenting-on-pr",
+    "title": "GitHub Actions Workflow Permission Denied — pull-requests: write Not Sufficient",
+    "description": "GitHub Actions job fails when trying to interact with PRs despite having pull-requests permission. Developer needs granular permission fixes for workflow secrets and OIDC tokens Includes evidence for GitHub Actions troubleshooting demand.",
+    "category": "GitHub Actions",
+    "technology": "GitHub Actions",
+    "error_signature": "Job fails despite pull-requests: write permission in workflow — permission denied commenting on PR",
+    "search_intent": "GitHub Actions job fails when trying to interact with PRs despite having pull-requests permission. Developer needs granular permission fixes for workflow secrets and OIDC tokens",
+    "common_causes": [
+      "Stack Overflow question (ID 79404590) documents exact scenario where workflows fail despite correct YAML permissions. Hacker News-style deep dive by developer who spent 2 days testing every permission combination. Affects paid team CI/CD pipelines. Category: GitHub Actions (exact match)."
+    ],
+    "quick_fix": "Verify the model name, local service connectivity, and network access before retrying the model pull.",
+    "related_errors": [
+      "GitHub Actions"
+    ]
+  },
+  {
+    "slug": "cursor-model-not-available-cannot-access-selected-ai-model-in-cursor-ide",
+    "title": "Cursor Model Not Available — IDE Cannot Access Selected AI Model",
+    "description": "Cursor user cannot use the configured model — IDE reports model unavailable, blocking development flow. User needs to re-authenticate API key or switch model Includes evidence for Cursor troubleshooting demand.",
+    "category": "Cursor",
+    "technology": "Cursor",
+    "error_signature": "Model not available / cannot access selected AI model in Cursor IDE",
+    "search_intent": "Cursor user cannot use the configured model — IDE reports model unavailable, blocking development flow. User needs to re-authenticate API key or switch model",
+    "common_causes": [
+      "Already listed in covered-errors.md as 'Cursor model not available' but with broad coverage only. Deep-dive page covering specific sub-scenarios (API key invalidation, model deprecation, regional unavailability) fills a content gap. Cursor is a paid subscription tool with high commercial intent. Category: Cursor (exact match)."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "Cursor"
+    ]
+  },
+  {
+    "slug": "openrouter-model-claude-3-sonnet-is-not-available-free-llms-on-openrouter-keep-going-404",
+    "title": "OpenRouter Free Models Keep Going 404 — Model Unavailable After Rate Limit",
+    "description": "Developer using OpenRouter free tier encounters sudden 404 errors as models get removed, rate-limited, or replaced. Needs programmatic handling and fallback model rotation Includes evidence for OpenRouter troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "OpenRouter",
+    "error_signature": "Model claude-3-sonnet is not available / free LLMs on OpenRouter keep going 404",
+    "search_intent": "Developer using OpenRouter free tier encounters sudden 404 errors as models get removed, rate-limited, or replaced. Needs programmatic handling and fallback model rotation",
+    "common_causes": [
+      "DEV.to article describes fixing intermittent OpenRouter 404 errors with Python pipeline adding model availability checks. GitHub Issue #883 on gpt-pilot repo confirms 'Model X is not available' pattern. OpenRouter maps to LiteLLM category when about proxy/routing behavior. Strong commercial value — free tier users quickly become paying customers."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "LiteLLM"
+    ]
+  },
+  {
+    "slug": "kubernetes-crashloopbackoff-pod-goes-into-crashloopbackoff-state-after-deployment",
+    "title": "Kubernetes CrashLoopBackOff — Pod Repeatedly Crashes After Deployment",
+    "description": "DevOps engineer deployed a pod that keeps crashing in a loop. Needs to diagnose root cause from events/logs and fix probe configuration, memory limits, or application config Includes evidence for Kubernetes troubleshooting demand.",
+    "category": "Cloud Platforms",
+    "technology": "Kubernetes",
+    "error_signature": "CrashLoopBackOff — Pod goes into CrashLoopBackOff state after deployment",
+    "search_intent": "DevOps engineer deployed a pod that keeps crashing in a loop. Needs to diagnose root cause from events/logs and fix probe configuration, memory limits, or application config",
+    "common_causes": [
+      "Fairwinds/Security Boulevard article (April 2026) provides step-by-step diagnostic approach. Komodor and Kubedna also have dedicated guides. Enterprise cloud deployment error with direct impact on production availability. Kubernetes maps to Cloud Platforms per category rules."
+    ],
+    "quick_fix": "Check the build output, project root, and deployment platform configuration before redeploying.",
+    "related_errors": [
+      "Cloud Platforms"
+    ]
   }
 ]
