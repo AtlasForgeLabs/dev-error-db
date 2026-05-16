@@ -14285,5 +14285,37 @@
     "related_errors": [
       "Ollama"
     ]
+  },
+  {
+    "slug": "anthropic-api-api-error-400-tools-11-custom-input-schema-input-schema-does-not-support-oneof-allof-or-anyof-at-the-top-level",
+    "title": "Anthropic API 400: input_schema does not support oneOf, allOf, or anyOf at the top level",
+    "description": "Fix Anthropic API 400 rejection when MCP server tool schemas use top-level oneOf/anyOf in JSON Schema Includes evidence for Anthropic API troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Anthropic API",
+    "error_signature": "API Error: 400 tools.11.custom.input_schema: input_schema does not support oneOf, allOf, or anyOf at the top level",
+    "search_intent": "Fix Anthropic API 400 rejection when MCP server tool schemas use top-level oneOf/anyOf in JSON Schema",
+    "common_causes": [
+      "MCP server with Zod discriminatedUnion generates JSON Schema with root oneOf, which Anthropic API rejects with 400. Affects all Claude Code sessions using the MCP server. Category mapped to Anthropic API because the error originates from the Anthropic API validation layer."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Anthropic API"
+    ]
+  },
+  {
+    "slug": "cloudflare-524-connection-timeout-cloudflare-returns-524-when-origin-response-exceeds-100-second-upstream-timeout",
+    "title": "Cloudflare 524 Connection Timeout: Origin exceeds upstream timeout",
+    "description": "Fix Cloudflare 524 timeout errors when origin server takes too long to respond, especially for long-running API calls like AI/OCR processing Includes evidence for Cloudflare troubleshooting demand.",
+    "category": "Cloudflare",
+    "technology": "Cloudflare",
+    "error_signature": "524 Connection Timeout — Cloudflare returns 524 when origin response exceeds 100-second upstream timeout",
+    "search_intent": "Fix Cloudflare 524 timeout errors when origin server takes too long to respond, especially for long-running API calls like AI/OCR processing",
+    "common_causes": [
+      "Cloudflare's 100-second upstream timeout causes 524 errors for routes with heavy processing (multiple AI model calls). Developers need to configure origin timeouts or offload work to async patterns. Category mapped to Cloudflare as the error is a Cloudflare-specific status code."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Cloudflare"
+    ]
   }
 ]
