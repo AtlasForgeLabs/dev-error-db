@@ -14445,5 +14445,85 @@
     "related_errors": [
       "Ollama"
     ]
+  },
+  {
+    "slug": "anthropic-api-cache-creation-1416-cache-read-2227-uncached-input-8-server-writes-additional-cache-entries-past-explicit-cache-control-breakpoint",
+    "title": "Anthropic API Prompt Caching Writes Extra Cache Entries Billing 1.25x for Unread Tokens",
+    "description": "Fix unexpected cache write charges on Anthropic API when using explicit cache_control breakpoint Includes evidence for Anthropic API troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Anthropic API",
+    "error_signature": "cache_creation=1416 cache_read=2227 uncached_input=8 — server writes additional cache entries past explicit cache_control breakpoint",
+    "search_intent": "Fix unexpected cache write charges on Anthropic API when using explicit cache_control breakpoint",
+    "common_causes": [
+      "GitHub issue #1547 on anthropic-sdk-python: server writes additional cache entry inside user content on warm calls despite only one explicit cache_control marker. Billed at 1.25x for tokens never read back. Reproducible on SDK 0.102.0 and 0.79.0, confirming server-side behavior. Direct billing impact for paying Anthropic API users."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Anthropic API"
+    ]
+  },
+  {
+    "slug": "vercel-next-build-hangs-indefinitely-in-swc-compile-phase-reproduces-on-every-next-16-release-16-0-0-16-2-6-16-3-0-canary-19",
+    "title": "Next.js 16 Build Hangs Indefinitely in SWC Compile Phase on Vercel",
+    "description": "Fix Next.js 16 production build hanging forever during SWC compilation on Vercel deployment Includes evidence for Vercel troubleshooting demand.",
+    "category": "Deployment",
+    "technology": "Vercel",
+    "error_signature": "next build hangs indefinitely in SWC compile phase — reproduces on every Next 16 release (16.0.0, 16.2.6, 16.3.0-canary.19)",
+    "search_intent": "Fix Next.js 16 production build hanging forever during SWC compilation on Vercel deployment",
+    "common_causes": [
+      "GitHub issue #93880 on vercel/next.js: next build hangs indefinitely in SWC compile phase on Next 16. Reproduces on macOS arm64 AND Linux x86_64 (Vercel cloud). Last known good: next@15.5.18. Affects both webpack and Turbopack bundlers. Blocks deployment for Vercel paying customers upgrading to Next 16."
+    ],
+    "quick_fix": "Check the build output, project root, and deployment platform configuration before redeploying.",
+    "related_errors": [
+      "Deployment"
+    ]
+  },
+  {
+    "slug": "github-actions-self-hosted-worker-hangs-holding-runner-slot-after-completejobasync-hits-workflow-instance-not-found",
+    "title": "GitHub Actions Self-hosted Worker Hangs Holding Runner Slot After workflow instance not found",
+    "description": "Fix GitHub Actions self-hosted runner stuck in busy state after workflow instance not found error Includes evidence for GitHub Actions troubleshooting demand.",
+    "category": "GitHub Actions",
+    "technology": "GitHub Actions",
+    "error_signature": "Self-hosted Worker hangs holding runner slot after CompleteJobAsync hits 'workflow instance not found'",
+    "search_intent": "Fix GitHub Actions self-hosted runner stuck in busy state after workflow instance not found error",
+    "common_causes": [
+      "GitHub issue #4418 on actions/runner: self-hosted worker hangs holding runner slot after CompleteJobAsync hits 'workflow instance not found'. Runner becomes permanently busy, blocking CI/CD pipelines for paid GitHub teams using self-hosted runners."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "GitHub Actions"
+    ]
+  },
+  {
+    "slug": "claude-code-failed-to-uninstall-plugin-plugin-is-enabled-at-project-scope-claude-settings-json-shared-with-your-team-to-disable-just-for-you-claude-plugin-disable-scope-local-but-running-the-command-fails-with-already-disabled-at-local-scope",
+    "title": "Claude Code Plugins From Other Projects Appear in Current Project with Misleading Error",
+    "description": "Fix Claude Code plugin scope error where plugins from other projects leak into current project UI Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Failed to uninstall plugin: Plugin is enabled at project scope (.claude/settings.json, shared with your team). To disable just for you: claude plugin disable --scope local — but running the command fails with 'already disabled at local scope'",
+    "search_intent": "Fix Claude Code plugin scope error where plugins from other projects leak into current project UI",
+    "common_causes": [
+      "GitHub issue #59629 on anthropics/claude-code: plugins installed with --scope project in one project incorrectly appear in Manage Plugins UI of unrelated projects. Error message misleadingly claims plugin is enabled via .claude/settings.json when no such file exists. Affects Claude Code paid users on Windows/VSCode."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "litellm-budget-bypass-vulnerability-allowing-unlimited-spending-in-litellm-proxy-infinite-money-glitch",
+    "title": "LiteLLM Budget Bypass Security Vulnerability in Proxy",
+    "description": "Fix LiteLLM proxy budget bypass vulnerability that allows users to exceed spending limits Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "Budget bypass vulnerability allowing unlimited spending in LiteLLM proxy (infinite money glitch)",
+    "search_intent": "Fix LiteLLM proxy budget bypass vulnerability that allows users to exceed spending limits",
+    "common_causes": [
+      "GitHub issue #28033 on BerriAI/litellm: security report of budget bypass vulnerability in LiteLLM proxy allowing unlimited spending. Reproduction details shared in linked repo. Critical for LiteLLM proxy administrators managing billing and spending limits."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "LiteLLM"
+    ]
   }
 ]
