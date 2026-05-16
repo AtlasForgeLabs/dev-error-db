@@ -14941,5 +14941,53 @@
     "related_errors": [
       "Ollama"
     ]
+  },
+  {
+    "slug": "claude-code-thinking-blocks-error-bricking-claude-code-sessions",
+    "title": "Claude Code 'thinking blocks' error bricking sessions — how to recover",
+    "description": "Recover or fix Claude Code sessions stuck with thinking blocks error Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "thinking blocks error bricking Claude Code sessions",
+    "search_intent": "Recover or fix Claude Code sessions stuck with thinking blocks error",
+    "common_causes": [
+      "HN post (ObjectID 47017535, 2026-02-14) links to GitHub repo miteshashar/claude-code-thinking-blocks-fix with a fix script for bricked sessions. Real user reports of sessions becoming unusable. Category: AI Coding Tools per mapping rule for Claude Code."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "claude-code-claude-code-is-unable-to-respond-to-this-request",
+    "title": "Claude Code 'is unable to respond to this request' — session limit or quota error",
+    "description": "Fix Claude Code refusing to respond, likely session or quota limit Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Claude Code is unable to respond to this request",
+    "search_intent": "Fix Claude Code refusing to respond, likely session or quota limit",
+    "common_causes": [
+      "HN 'Claude Code Down' post (83 points, 76 comments) and 'Claude Code is unable to respond to this request' (ObjectID 47017535-adjacent). Multiple users reporting sudden inability to use Claude Code. Category: AI Coding Tools per mapping rule for Claude Code."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "litellm-authentication-error-401-when-connecting-azure-openai-via-litellm",
+    "title": "LiteLLM Azure OpenAI authentication error 401 — DefaultAzureCredential token provider",
+    "description": "Fix LiteLLM returning 401 authentication error when using Azure AD token provider with DefaultAzureCredential Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "Authentication Error 401 when connecting Azure OpenAI via LiteLLM",
+    "search_intent": "Fix LiteLLM returning 401 authentication error when using Azure AD token provider with DefaultAzureCredential",
+    "common_causes": [
+      "SO #79538205: Using DSPy framework (v2.6.4) with LiteLLM (v1.63.7) to connect Azure OpenAI via DefaultAzureCredential token provider. Returns Authentication Error 401. Specific, actionable error with paid service impact. Category: LiteLLM per exact mapping."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "LiteLLM"
+    ]
   }
 ]
