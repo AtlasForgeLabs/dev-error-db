@@ -14845,5 +14845,101 @@
     "related_errors": [
       "Ollama"
     ]
+  },
+  {
+    "slug": "openai-api-429-too-many-requests-error-message-too-many-requests-type-invalid-request-error-param-null-code-null",
+    "title": "OpenAI Moderation API Returns 429 Too Many Requests Even With No Prior Usage",
+    "description": "Fix OpenAI Moderation API 429 rate limit error that occurs even with new API keys and no prior usage Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "429 Too Many Requests — {\"error\":{\"message\":\"Too Many Requests\",\"type\":\"invalid_request_error\",\"param\":null,\"code\":null}}",
+    "search_intent": "Fix OpenAI Moderation API 429 rate limit error that occurs even with new API keys and no prior usage",
+    "common_causes": [
+      "Stack Overflow user reports omni-moderation-latest endpoint returns 429 on every request despite fresh API keys, multiple key regenerations, and no prior usage. Likely account-level rate limit or billing configuration issue. High commercial value: paid API, billing/quota impact."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "github-actions-error-no-subscriptions-found-for-error-login-failed-with-error-the-process-usr-bin-az-failed-with-exit-code-1",
+    "title": "GitHub Actions Azure Login Fails With No Subscriptions Found Using Student Subscription",
+    "description": "Fix GitHub Actions azure/login@v2 failing with 'No subscriptions found' when using Azure Student Subscription service principal Includes evidence for GitHub Actions troubleshooting demand.",
+    "category": "GitHub Actions",
+    "technology": "GitHub Actions",
+    "error_signature": "Error: No subscriptions found for ***. — Error: Login failed with Error: The process '/usr/bin/az' failed with exit code 1",
+    "search_intent": "Fix GitHub Actions azure/login@v2 failing with 'No subscriptions found' when using Azure Student Subscription service principal",
+    "common_causes": [
+      "Stack Overflow user running ML retraining pipeline with GitHub Actions + Azure Student Subscription. azure/login@v2 with service principal creds fails with 'No subscriptions found'. Affects CI/CD for paid Azure workloads. Category is GitHub Actions (CI/CD failure blocking paid pipeline)."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "GitHub Actions"
+    ]
+  },
+  {
+    "slug": "cloudflare-http-1-1-502-bad-gateway-server-cloudflare-origin-returns-302-then-resets-connection",
+    "title": "Cloudflare 502 Bad Gateway on ASP.NET Protected Content Redirect",
+    "description": "Fix Cloudflare 502 error when ASP.NET/Sitefinity protected content triggers 302 redirect to SSO login page Includes evidence for Cloudflare troubleshooting demand.",
+    "category": "Cloudflare",
+    "technology": "Cloudflare",
+    "error_signature": "HTTP/1.1 502 Bad Gateway — Server: cloudflare — Origin returns 302 then resets connection",
+    "search_intent": "Fix Cloudflare 502 error when ASP.NET/Sitefinity protected content triggers 302 redirect to SSO login page",
+    "common_causes": [
+      "Stack Overflow user reports Cloudflare 502 on ASP.NET protected content. Origin returns 302 redirect to SSO login, but connection resets before response completes through Cloudflare. Works fine bypassing Cloudflare. Likely chunked transfer encoding or connection reset issue with Cloudflare proxy. Category is Cloudflare (CDN/proxy error)."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "Cloudflare"
+    ]
+  },
+  {
+    "slug": "docker-container-creation-failed-no-such-image-public-ecr-aws-sam-build-python3-12-latest-x86-64",
+    "title": "Docker Container Creation Failed No Such Image public.ecr.aws SAM Build Python",
+    "description": "Fix Docker container creation failure when running sam build --use-container with missing ECR image on Apple Silicon Includes evidence for Docker troubleshooting demand.",
+    "category": "Docker",
+    "technology": "Docker",
+    "error_signature": "Container creation failed: No such image: public.ecr.aws/sam/build-python3.12:latest-x86_64",
+    "search_intent": "Fix Docker container creation failure when running sam build --use-container with missing ECR image on Apple Silicon",
+    "common_causes": [
+      "Stack Overflow user on M2 Pro with Docker v29.2.0 gets 'No such image: public.ecr.aws/sam/build-python3.12:latest-x86_64' when running sam build --use-container. ARM64 vs x86_64 architecture mismatch issue with AWS SAM CLI Docker images. Category is Docker (container runtime error)."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Docker"
+    ]
+  },
+  {
+    "slug": "npm-err-pnpm-audit-bad-response-the-audit-endpoint-at-https-registry-npmjs-org-npm-v1-security-audits-responded-with-410-error-this-endpoint-is-being-retired-use-the-bulk-advisory-endpoint-instead",
+    "title": "pnpm audit Returns 410 Endpoint Retired Use Bulk Advisory Endpoint Instead",
+    "description": "Fix pnpm audit 410 error after npm registry retired the v1 security audits endpoint Includes evidence for npm troubleshooting demand.",
+    "category": "npm",
+    "technology": "npm",
+    "error_signature": "ERR_PNPM_AUDIT_BAD_RESPONSE — The audit endpoint (at https://registry.npmjs.org/-/npm/v1/security/audits) responded with 410: {\"error\":\"This endpoint is being retired. Use the bulk advisory endpoint instead.\"}",
+    "search_intent": "Fix pnpm audit 410 error after npm registry retired the v1 security audits endpoint",
+    "common_causes": [
+      "Stack Overflow user reports pnpm audit suddenly returns 410 error because npmjs.org retired the /-/npm/v1/security/audits endpoint. Breaking change affecting all pnpm/npm audit users. Requires migration to new bulk advisory endpoint. High impact: security audit workflow broken for entire npm ecosystem."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "npm"
+    ]
+  },
+  {
+    "slug": "ollama-mcp-server-connection-failed-continue-extension-does-not-show-or-trigger-mcp-tools-when-ollama-runs-in-docker-on-wsl2",
+    "title": "Failed to Connect MCP Server to VS Code Continue Extension on Windows WSL2 Using Ollama",
+    "description": "Fix MCP server connection failure between VS Code Continue extension and Ollama running in Docker on Windows WSL2 Includes evidence for Ollama troubleshooting demand.",
+    "category": "Ollama",
+    "technology": "Ollama",
+    "error_signature": "MCP server connection failed — Continue extension does not show or trigger MCP tools when Ollama runs in Docker on WSL2",
+    "search_intent": "Fix MCP server connection failure between VS Code Continue extension and Ollama running in Docker on Windows WSL2",
+    "common_causes": [
+      "Stack Overflow user reports MCP server fails to connect in VS Code Continue extension when Ollama runs in Docker container on WSL2. Ollama reachable at localhost:11434 but Continue extension doesn't see MCP tools. WSL2/Docker networking and stdio transport issue. Category is Ollama (local LLM serving + MCP integration)."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Ollama"
+    ]
   }
 ]
