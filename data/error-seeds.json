@@ -14765,5 +14765,85 @@
     "related_errors": [
       "Ollama"
     ]
+  },
+  {
+    "slug": "openrouter-openrouter-byok-claude-models-do-not-benefit-from-prompt-caching-causing-excessive-token-costs-in-agent-mode",
+    "title": "Fix OpenRouter BYOK prompt caching disabled — excessive token costs for Claude models in agent mode",
+    "description": "Resolve OpenRouter silently disabling prompt caching for Anthropic Claude models via BYOK, causing full-context resends at full price in long agent sessions Includes evidence for OpenRouter troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenRouter",
+    "error_signature": "OpenRouter BYOK: Claude models do not benefit from prompt caching, causing excessive token costs in agent mode",
+    "search_intent": "Resolve OpenRouter silently disabling prompt caching for Anthropic Claude models via BYOK, causing full-context resends at full price in long agent sessions",
+    "common_causes": [
+      "microsoft/vscode#312939 — When using OpenRouter BYOK with Claude models in GitHub Copilot, prompt caching is silently disabled. Every agentic request re-sends full conversation context at full price. High billing impact for paid users. Category mapping: OpenRouter with API compatibility issue → OpenAI API (context-dependent mapping per SKILL.md)."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "claude-code-api-error-unable-to-connect-to-api-ssl-certificate-has-expired",
+    "title": "Fix Claude Code Cowork SSL certificate expired error on Windows — API calls fail before VM rootfs download",
+    "description": "Resolve Claude Code SSL certificate expired error on Windows 11 Enterprise that blocks all API calls during Cowork mode Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "API Error: Unable to connect to API: SSL certificate has expired",
+    "search_intent": "Resolve Claude Code SSL certificate expired error on Windows 11 Enterprise that blocks all API calls during Cowork mode",
+    "common_causes": [
+      "anthropics/claude-code#52112 — Claude Cowork fails with SSL certificate expired on Windows 11 Enterprise v1.3561.0. API calls fail before VM rootfs download completes. Specific error signature, high urgency for paid Claude Code users. Category mapping: Claude Code → AI Coding Tools (exact mapping)."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "litellm-api-error-400-litellm-badrequest",
+    "title": "Fix LiteLLM BadRequest error when using thinking mode with DeepSeek through Claude Code",
+    "description": "Fix LiteLLM proxy returning 400 BadRequest when Claude Code attempts thinking mode with DeepSeek models Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "API Error: 400 litellm.BadRequest",
+    "search_intent": "Fix LiteLLM proxy returning 400 BadRequest when Claude Code attempts thinking mode with DeepSeek models",
+    "common_causes": [
+      "BerriAI/litellm#28045 — Using LiteLLM as API proxy for DeepSeek models in Claude Code. Normal chat works but thinking mode triggers 400 BadRequest. Clear error signature on paid proxy service. Category mapping: LiteLLM → LiteLLM (exact mapping)."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "LiteLLM"
+    ]
+  },
+  {
+    "slug": "kubernetes-ssl-certificate-expired-for-many-k8s-io-subdomains-including-pkgs-k8s-io-git-k8s-io-k8s-io",
+    "title": "Fix SSL certificate expired on k8s.io subdomains blocking package installation",
+    "description": "Resolve expired SSL certificates on Kubernetes infrastructure domains that block package downloads and repository access Includes evidence for Kubernetes troubleshooting demand.",
+    "category": "Cloud Platforms",
+    "technology": "Kubernetes",
+    "error_signature": "SSL Certificate Expired For Many k8s.io Subdomains (including pkgs.k8s.io, git.k8s.io, k8s.io)",
+    "search_intent": "Resolve expired SSL certificates on Kubernetes infrastructure domains that block package downloads and repository access",
+    "common_causes": [
+      "kubernetes/k8s.io#9389 — SSL certificates expired for k8s.io, pkgs.k8s.io, git.k8s.io subdomains. Blocks apt/yum repository access and git operations for Kubernetes users. High impact on production environments. Category mapping: Kubernetes → Cloud Platforms (exact mapping per SKILL.md)."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Cloud Platforms"
+    ]
+  },
+  {
+    "slug": "ollama-request-failed-get-http-registry-ollama-ai-v2-dial-tcp-connect-connection-refused",
+    "title": "Fix Ollama ignoring http_proxy settings — model downloads fail behind corporate proxy",
+    "description": "Fix Ollama ignoring http_proxy environment variable when downloading models that use plain HTTP manifests, causing connection refused behind proxies Includes evidence for Ollama troubleshooting demand.",
+    "category": "Ollama",
+    "technology": "Ollama",
+    "error_signature": "request failed: Get \"http://registry.ollama.ai/v2/...\": dial tcp: connect: connection refused",
+    "search_intent": "Fix Ollama ignoring http_proxy environment variable when downloading models that use plain HTTP manifests, causing connection refused behind proxies",
+    "common_causes": [
+      "ollama/ollama#15358 — Ollama deployed behind proxy cannot download models using plain HTTP manifests because it ignores http_proxy settings. HTTPS manifests work fine. Affects enterprise/corporate deployments. Category mapping: Ollama → Ollama (exact mapping)."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "Ollama"
+    ]
   }
 ]
