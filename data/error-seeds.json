@@ -15773,5 +15773,37 @@
     "related_errors": [
       "Cloudflare"
     ]
+  },
+  {
+    "slug": "kubernetes-kubectl-describe-pod-state-waiting-reason-crashloopbackoff",
+    "title": "Kubernetes CrashLoopBackOff — Pod Repeatedly Crashing After Startup",
+    "description": "Debug Kubernetes pods stuck in CrashLoopBackOff state with repeated container restarts Includes evidence for Kubernetes troubleshooting demand.",
+    "category": "Cloud Platforms",
+    "technology": "Kubernetes",
+    "error_signature": "kubectl describe pod → State: Waiting → Reason: CrashLoopBackOff",
+    "search_intent": "Debug Kubernetes pods stuck in CrashLoopBackOff state with repeated container restarts",
+    "common_causes": [
+      "One of the most common K8s production errors. P1 tier (Cloud Platforms). Not in covered-errors.md. High commercial value for cloud ops teams. Broad coverage needed because root causes vary widely (app crash, missing configmap, resource limits). Good ranking difficulty for niche sub-topics like OOMKilled vs liveness probe triggers."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Cloud Platforms"
+    ]
+  },
+  {
+    "slug": "anthropic-api-overloadederror-status-code-200-should-be-529-in-mid-stream-sse-error-handling",
+    "title": "Anthropic Streaming SDK Returns HTTP 200 Instead of 529 for Overloaded Errors",
+    "description": "Debug why Anthropic streaming API reports HTTP 200 status for overloaded/sse_error events instead of correct 529 status code Includes evidence for Anthropic API troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Anthropic API",
+    "error_signature": "OverloadedError status_code=200 (should be 529) in mid-stream SSE error handling",
+    "search_intent": "Debug why Anthropic streaming API reports HTTP 200 status for overloaded/sse_error events instead of correct 529 status code",
+    "common_causes": [
+      "GitHub issue #1258 on anthropics/anthropic-sdk-python (closed via PRs). Reports mid-stream SSE overloaded_error wrapped with wrong status_code=200, breaking retry logic in LangChain and other integrations. Affects paid API billing and production reliability. Mapping reason: Anthropic SDK-level API behavior error."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "Anthropic API"
+    ]
   }
 ]
