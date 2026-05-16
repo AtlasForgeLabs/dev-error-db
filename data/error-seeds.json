@@ -14205,5 +14205,85 @@
     "related_errors": [
       "Ollama"
     ]
+  },
+  {
+    "slug": "claude-code-tools-list-failed-mcp-error-32601-method-not-found-retrying-once",
+    "title": "Claude Code VSCode extension MCP fails tools/list with -32601 Method not found, adds ~50s cold start",
+    "description": "Fix Claude Code MCP -32601 error causing slow cold start in VSCode extension Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "tools/list failed (MCP error -32601: Method not found); retrying once",
+    "search_intent": "Fix Claude Code MCP -32601 error causing slow cold start in VSCode extension",
+    "common_causes": [
+      "VSCode extension v2.1.142: claude-vscode IDE-bridge MCP server fails tools/list with -32601 on every session. Client retries once, fails, logs error event. Adds ~50s to cold start on slow hosts. Category mapped to AI Coding Tools (Claude Code)."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "openai-api-streaming-tool-call-deltas-with-duplicate-indexes-in-first-chunk-are-accumulated-incorrectly-accumulate-delta-assumes-index-matches-physical-list-position",
+    "title": "OpenAI Python SDK streaming tool_call deltas with duplicate indexes accumulated incorrectly",
+    "description": "Fix broken tool call streaming when first chunk contains duplicate index entries in OpenAI Python SDK Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "Streaming tool_call deltas with duplicate indexes in first chunk are accumulated incorrectly — accumulate_delta assumes index matches physical list position",
+    "search_intent": "Fix broken tool call streaming when first chunk contains duplicate index entries in OpenAI Python SDK",
+    "common_causes": [
+      "Bug in openai-python accumulate_delta: when first streamed chunk has multiple tool_calls with same index, accumulator stores list directly and later chunks merge into wrong entry. Results in invalid JSON and stranded tool call arguments. Category: OpenAI API."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "claude-code-error-rendering-content-disposing-of-store-aggregateerror-from-disposablestore-during-long-agent-sessions",
+    "title": "Claude Code VSCode webview crash Error rendering content disposing of store AggregateError",
+    "description": "Fix Claude Code VSCode webview crash during long sessions with AggregateError Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Error rendering content: disposing of store — AggregateError from DisposableStore during long agent sessions",
+    "search_intent": "Fix Claude Code VSCode webview crash during long sessions with AggregateError",
+    "common_causes": [
+      "Claude Code VSCode extension crashes with red banner during long agent sessions (>2hrs, 200+ messages). Backend continues processing but UI becomes unresponsive. Root cause: AggregateError from DisposableStore. Category: AI Coding Tools."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "claude-code-hresult-0x80073cf9-addpackage-failed-hresult-0x80073cfa-removepackage-failed-preserveapplicationdata-flag",
+    "title": "Claude Code Windows MSIX installation failure HRESULT 0x80073CF9 stuck package",
+    "description": "Fix Claude Code Cowork MSIX installation failure on Windows with stuck package Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "HRESULT 0x80073CF9 — AddPackage failed / HRESULT 0x80073CFA — RemovePackage failed (PreserveApplicationData flag)",
+    "search_intent": "Fix Claude Code Cowork MSIX installation failure on Windows with stuck package",
+    "common_causes": [
+      "Claude Desktop Cowork feature never installs on Azure AD-joined Windows 11. MSIX package stuck at Claude_1.6608.2.0_x64. Installer silently fails. Relates to issues #25162, #49917. Category: AI Coding Tools."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "ollama-runtime-out-of-memory-readstring-n-kv-allocation-in-fs-gguf-readstring-tries-to-allocate-32gb-plus-ram-on-corrupted-model-header",
+    "title": "Ollama OOM crash during GGUF metadata parsing in v0.24.0 readString/n_kv allocation",
+    "description": "Fix Ollama v0.24.0 crash on startup due to OOM during GGUF metadata parsing with corrupted model headers Includes evidence for Ollama troubleshooting demand.",
+    "category": "Ollama",
+    "technology": "Ollama",
+    "error_signature": "runtime: out of memory — readString/n_kv allocation in fs/gguf.readString tries to allocate 32GB+ RAM on corrupted model header",
+    "search_intent": "Fix Ollama v0.24.0 crash on startup due to OOM during GGUF metadata parsing with corrupted model headers",
+    "common_causes": [
+      "Ollama v0.24.0 crashes immediately on startup with runtime: out of memory when parsing models with wonky/corrupted headers. New parser allocates massive RAM (32GB+) on bad n_kv field. Workaround: rollback to v0.21.0. Category: Ollama."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Ollama"
+    ]
   }
 ]
