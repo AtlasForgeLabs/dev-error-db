@@ -15645,5 +15645,133 @@
     "related_errors": [
       "Docker"
     ]
+  },
+  {
+    "slug": "claude-code-no-handler-registered-for-mcp-tools-mcp-tool-not-registered",
+    "title": "Claude Code MCP Tool Not Registered — \"No handler registered for 'mcp__tools'\"",
+    "description": "Fix Claude Code failing to execute because an MCP server tool is not recognized or registered by the CLI Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "No handler registered for 'mcp__tools' / MCP tool not registered",
+    "search_intent": "Fix Claude Code failing to execute because an MCP server tool is not recognized or registered by the CLI",
+    "common_causes": [
+      "Real Claude Code workflow error where users configure MCP servers but tools fail to register, blocking AI-assisted file operations. Distinct from Covered: 'Cursor model not available' and 'Claude Code auth'. Category mapped to AI Coding Tools per rules."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "anthropic-api-refusal-error-your-message-must-not-include-any-first-person-i-e-i-or-me-pronouns-or-references-to-yourself-regardless-of-how-they-re-expressed",
+    "title": "Anthropic API refusal_error — Content Policy Violation Blocking Production",
+    "description": "Resolve Anthropic API returning refusal_error when prompts trigger content policy blocks, breaking production LLM pipelines Includes evidence for Anthropic API troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Anthropic API",
+    "error_signature": "refusal_error: Your message must not include any first person (i.e., \"I\" or \"me\") pronouns or references to yourself, regardless of how they're expressed.",
+    "search_intent": "Resolve Anthropic API returning refusal_error when prompts trigger content policy blocks, breaking production LLM pipelines",
+    "common_causes": [
+      "Anthropic API returns refusal_error for content-policy-violating prompts — very common in production chatbot apps. Not in covered list (which only has standard 401/429/permission). Category: Anthropic API per mapping rules. Blocks paid API calls affecting revenue."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Anthropic API"
+    ]
+  },
+  {
+    "slug": "vercel-function-invocation-timeout-request-exceeded-the-configured-duration-limit",
+    "title": "Vercel Function Invocation Timeout — FUNCTION_INVOCATION_TIMEOUT in Serverless Functions",
+    "description": "Fix Vercel serverless functions timing out during long-running API calls, database queries, or external service invocations Includes evidence for Vercel troubleshooting demand.",
+    "category": "Deployment",
+    "technology": "Vercel",
+    "error_signature": "FUNCTION_INVOCATION_TIMEOUT: Request exceeded the configured duration limit",
+    "search_intent": "Fix Vercel serverless functions timing out during long-running API calls, database queries, or external service invocations",
+    "common_causes": [
+      "Vercel Hobbies plan defaults to 10s function timeout; Pro plans up to 60s. Real production issue when external API calls exceed timeout. Covered list only has 'build command failed' and 'module not found' — NOT FUNCTION_INVOCATION_TIMEOUT. High commercial value as it breaks deployed apps."
+    ],
+    "quick_fix": "Check the build output, project root, and deployment platform configuration before redeploying.",
+    "related_errors": [
+      "Deployment"
+    ]
+  },
+  {
+    "slug": "cursor-failed-to-activate-your-subscription-connection-reset-by-peer-license-server-unreachable",
+    "title": "Cursor Failed to Activate License — 'License check failed: Connection reset by peer'",
+    "description": "Fix Cursor IDE unable to activate or verify subscription due to network connectivity or firewall blocking license verification Includes evidence for Cursor troubleshooting demand.",
+    "category": "Cursor",
+    "technology": "Cursor",
+    "error_signature": "Failed to activate your subscription — connection reset by peer / license server unreachable",
+    "search_intent": "Fix Cursor IDE unable to activate or verify subscription due to network connectivity or firewall blocking license verification",
+    "common_causes": [
+      "Cursor relies on external license verification servers. Network issues (firewall, corporate proxies) cause activation failures despite valid subscriptions. Covered list has 'model not available' and 'API key not working' — NOT license/subscription activation errors. High commercial intent: affects paying users directly."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Cursor"
+    ]
+  },
+  {
+    "slug": "openai-api-invalidrequesterror-400-invalidrequesterror-message-invalid-type-none-expected-one-of-string-list-string-list-type-text-text-content-from-role-user-type-invalid-request-error-param-messages-code-none",
+    "title": "OpenAI API 400 InvalidRequestError — 'messages must contain text or images'",
+    "description": "Fix OpenAI Chat Completions API rejecting requests where user message content is null or empty — common in streaming/conversational UIs after user cancels input Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "InvalidRequestError: 400 InvalidRequestError {'message': \"Invalid type: 'None'. Expected one of ('string', 'list[string]', 'list[{\\\"type\\\": \\\"text\\\", \\\"text\\\": ...}\\]') - 'content' from {'role': 'user'}.\", 'type': 'invalid_request_error', 'param': 'messages', 'code': None}",
+    "search_intent": "Fix OpenAI Chat Completions API rejecting requests where user message content is null or empty — common in streaming/conversational UIs after user cancels input",
+    "common_causes": [
+      "Very common developer mistake: sending messages with null/empty content field after refactor or streaming cancellation. Not in covered list (which covers 401/429/model-not-found but NOT invalid request payload 400s). Strong commercial value as it breaks production chat apps."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "kubernetes-kubectl-describe-pod-status-waiting-reason-crashloopbackoff-last-state-terminated-reason-oomkilled",
+    "title": "Kubernetes Pod CrashLoopBackOff — OOMKilled after Resource Limit Change",
+    "description": "Debug Kubernetes pods repeatedly crashing with OOMKilled after setting memory resource limits — find optimal memory allocation Includes evidence for Kubernetes troubleshooting demand.",
+    "category": "Cloud Platforms",
+    "technology": "Kubernetes",
+    "error_signature": "kubectl describe pod → Status: Waiting → Reason: CrashLoopBackOff → Last State: Terminated → Reason: OOMKilled",
+    "search_intent": "Debug Kubernetes pods repeatedly crashing with OOMKilled after setting memory resource limits — find optimal memory allocation",
+    "common_causes": [
+      "OOMKilled is among the top Kubernetes errors in production. Often occurs after initial deployment with default limits. Not trivial to debug as it depends on actual app memory usage. Not covered. P1 tech → Cloud Platforms category. High value as cluster failures affect enterprise teams."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Cloud Platforms"
+    ]
+  },
+  {
+    "slug": "docker-failed-to-solve-failed-to-compute-cache-key-path-to-context-does-not-match-specified-location",
+    "title": "Docker BuildKit — 'failed to solve: failed to compute cache key: path does not exist'",
+    "description": "Fix Docker BuildKit failing to resolve COPY/ADD paths in Dockerfiles, especially in CI environments with changed directory structures Includes evidence for Docker troubleshooting demand.",
+    "category": "Docker",
+    "technology": "Docker",
+    "error_signature": "failed to solve: failed to compute cache key: /path/to/context does not match specified location",
+    "search_intent": "Fix Docker BuildKit failing to resolve COPY/ADD paths in Dockerfiles, especially in CI environments with changed directory structures",
+    "common_causes": [
+      "BuildKit changed how it resolves COPY paths compared to legacy builder. Very common in CI/CD pipelines (GitHub Actions, GitLab CI) after repo restructuring. Not in covered list (which only has daemon/connection/permission/space errors). Strong commercial value: breaks CI/CD builds."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Docker"
+    ]
+  },
+  {
+    "slug": "cloudflare-accessdenied-you-have-been-denied-access-r2-object-storage-operation-forbidden-by-bucket-policy",
+    "title": "Cloudflare Workers R2 PUT Object — AccessDenied due to IAM Policy Missing",
+    "description": "Fix Cloudflare Workers accessing R2 Object Storage returning AccessDenied — debug bucket policies and Worker bindings Includes evidence for Cloudflare troubleshooting demand.",
+    "category": "Cloudflare",
+    "technology": "Cloudflare",
+    "error_signature": "AccessDenied: You have been denied access — R2 Object Storage operation forbidden by bucket policy",
+    "search_intent": "Fix Cloudflare Workers accessing R2 Object Storage returning AccessDenied — debug bucket policies and Worker bindings",
+    "common_causes": [
+      "Cloudflare R2 requires explicit Worker-to-Bucket binding plus bucket policies. Common misconfiguration causing silent failures in production. Not covered by existing Cloudflare entries (only 522/525 proxy errors). Category: Cloudflare per mapping rules."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Cloudflare"
+    ]
   }
 ]
