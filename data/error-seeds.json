@@ -15805,5 +15805,69 @@
     "related_errors": [
       "Anthropic API"
     ]
+  },
+  {
+    "slug": "claude-code-mcp-oauth-dcr-fails-for-third-party-service-client-name-rejected-as-invalid-client-metadata",
+    "title": "Claude Code MCP OAuth DCR Fails: invalid_client_metadata Rejected",
+    "description": "Fix OAuth Dynamic Client Registration failure when connecting Claude Code MCP servers to external services like Calendly Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "MCP OAuth DCR fails for third-party service: client_name rejected as invalid_client_metadata",
+    "search_intent": "Fix OAuth Dynamic Client Registration failure when connecting Claude Code MCP servers to external services like Calendly",
+    "common_causes": [
+      "Real GitHub issue reported (anthropics/claude-code#59445). Developers encounter 'invalid_client' error during MCP OAuth flow when registering external service clients. This blocks production integrations with tools like CRM, calendar, and internal APIs — high commercial value for AI coding tool users."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "vercel-error-cannot-find-module-imported-from-during-vercel-build",
+    "title": "Vercel Build Failed Module Not Found After Dependency Update",
+    "description": "Fix Vercel deployment failures caused by missing modules after package updates, often related to monorepo setups or Next.js app router migration Includes evidence for Vercel troubleshooting demand.",
+    "category": "Deployment",
+    "technology": "Vercel",
+    "error_signature": "Error: Cannot find module '~' imported from '~' during Vercel build",
+    "search_intent": "Fix Vercel deployment failures caused by missing modules after package updates, often related to monorepo setups or Next.js app router migration",
+    "common_causes": [
+      "Common Vercel-specific error pattern where dependencies resolve locally but fail in Vercel's build environment. Often occurs in Next.js projects with dynamic imports or Turbopack. Paid Vercel Hobby/Pro users impacted. Search demand consistently high due to large Vercel user base."
+    ],
+    "quick_fix": "Check the build output, project root, and deployment platform configuration before redeploying.",
+    "related_errors": [
+      "Deployment"
+    ]
+  },
+  {
+    "slug": "github-actions-job-timed-out-after-36-hours-github-actions-free-tier-limit-exceeded",
+    "title": "GitHub Actions Workflow Run Time Limit Exceeded (36h)",
+    "description": "Fix or work around GitHub Actions job timeout limits for long-running CI/CD pipelines, especially Windows runner builds and large ETL jobs Includes evidence for GitHub Actions troubleshooting demand.",
+    "category": "GitHub Actions",
+    "technology": "GitHub Actions",
+    "error_signature": "Job timed out after 36 hours — GitHub Actions free tier limit exceeded",
+    "search_intent": "Fix or work around GitHub Actions job timeout limits for long-running CI/CD pipelines, especially Windows runner builds and large ETL jobs",
+    "common_causes": [
+      "Paid GitHub Team/Org users hit hard when long-running workflows get killed. Many search for workarounds including self-hosted runners, caching strategies, and build splitting. Strong commercial intent as it directly affects team productivity and deployment velocity."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "GitHub Actions"
+    ]
+  },
+  {
+    "slug": "cloudflare-error-522-origin-server-timeout-cloudflare-cannot-establish-connection-to-origin",
+    "title": "Cloudflare Error 522 Origin Server Timeout for Workers Apps",
+    "description": "Diagnose and fix 522 timeout errors affecting Cloudflare-backed sites, especially Workers applications and proxied DNS zones Includes evidence for Cloudflare troubleshooting demand.",
+    "category": "Cloudflare",
+    "technology": "Cloudflare",
+    "error_signature": "Error 522: Origin server timeout — Cloudflare cannot establish connection to origin",
+    "search_intent": "Diagnose and fix 522 timeout errors affecting Cloudflare-backed sites, especially Workers applications and proxied DNS zones",
+    "common_causes": [
+      "Error 522 is one of Cloudflare's most commonly searched errors. Affects paying Cloudflare Pro/Business customers whose sites go down unexpectedly. Many root causes (firewall rules, WAF blocks, origin overload) make troubleshooting complex and searchable. Covered-errors has basic entry but no Workers-specific variant."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Cloudflare"
+    ]
   }
 ]
