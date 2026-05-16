@@ -13949,5 +13949,85 @@
     "related_errors": [
       "Ollama"
     ]
+  },
+  {
+    "slug": "claude-code-upstream-429-then-every-retry-returns-400-previous-message-id",
+    "title": "Claude Code Session Unrecoverable After 429: Retry Returns 400 previous_message_id",
+    "description": "Fix Claude Code session becoming permanently broken after hitting Anthropic rate limit Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Upstream 429 then every retry returns 400 previous_message_id",
+    "search_intent": "Fix Claude Code session becoming permanently broken after hitting Anthropic rate limit",
+    "common_causes": [
+      "User on Max plan reports that after an upstream 429 rate limit, all subsequent retries return 400 error referencing previous_message_id, making the session permanently unrecoverable. No workaround except starting a new session. Category: AI Coding Tools (Claude Code is an AI coding tool)."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "litellm-docker-image-ghcr-io-berriai-litellm-1-84-0-start-failure-in-container-logs",
+    "title": "LiteLLM Docker Start Fails for v1.84.0",
+    "description": "Fix LiteLLM v1.84.0 Docker container failing to start Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "Docker image ghcr.io/berriai/litellm:1.84.0 start failure in container logs",
+    "search_intent": "Fix LiteLLM v1.84.0 Docker container failing to start",
+    "common_causes": [
+      "User reports LiteLLM Docker image v1.84.0 fails to start when pulled from ghcr.io. Error appears in container logs during startup. Blocks proxy deployment for paid teams. Category: LiteLLM."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "LiteLLM"
+    ]
+  },
+  {
+    "slug": "claude-code-rate-limits-field-is-null-from-statusline-json-on-2-1-141-oauth-pro-firstparty",
+    "title": "Claude Code rate_limits Field Null in statusLine JSON on OAuth Pro",
+    "description": "Fix missing rate limit information in Claude Code status bar for paid users Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "rate_limits field is null from statusLine JSON on 2.1.141 (OAuth Pro, firstParty)",
+    "search_intent": "Fix missing rate limit information in Claude Code status bar for paid users",
+    "common_causes": [
+      "Paid Pro/OAuth user reports rate_limits field consistently null in statusLine JSON despite active subscription. Prior bug reports were closed as duplicates/not_planned but issue persists on latest version. Users cannot monitor their quota. Category: AI Coding Tools."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "claude-code-unhandled-case-object-object-red-banner-in-vs-code-chat-panel",
+    "title": "Claude Code VS Code Extension Red Banner Unhandled Case Object Object",
+    "description": "Fix frequent red error banner in Claude Code VS Code extension Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Unhandled case: [object Object] red banner in VS Code chat panel",
+    "search_intent": "Fix frequent red error banner in Claude Code VS Code extension",
+    "common_causes": [
+      "User reports red banner with Unhandled case error appearing frequently in VS Code chat panel on claude-vscode 2.1.141.x. Labeled as bug by maintainers. Affects daily usage of paid tool. Category: AI Coding Tools."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "cloudflare-err-pnpm-ignored-builds-ignored-builds-during-pnpm-create-cloudflare",
+    "title": "Cloudflare create-cloudflare ERR_PNPM_IGNORED_BUILDS on pnpm 10 and 11",
+    "description": "Fix Cloudflare scaffolding failure with pnpm 10+ due to ERR_PNPM_IGNORED_BUILDS Includes evidence for Cloudflare troubleshooting demand.",
+    "category": "Cloudflare",
+    "technology": "Cloudflare",
+    "error_signature": "ERR_PNPM_IGNORED_BUILDS: Ignored builds during pnpm create cloudflare",
+    "search_intent": "Fix Cloudflare scaffolding failure with pnpm 10+ due to ERR_PNPM_IGNORED_BUILDS",
+    "common_causes": [
+      "Running pnpm create cloudflare on machines with pnpm 10+ fails with ERR_PNPM_IGNORED_BUILDS after install completes. Red error blocks project creation. Affects new Cloudflare Workers projects. Category: Cloudflare."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Cloudflare"
+    ]
   }
 ]
