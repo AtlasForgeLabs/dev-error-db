@@ -15325,5 +15325,69 @@
     "related_errors": [
       "Ollama"
     ]
+  },
+  {
+    "slug": "openai-api-ratelimiterror-rate-limit-reached-for-requests-status-code-429-if-using-an-enterprise-account-insufficient-quota-may-indicate-your-organization-has-hit-its-usage-cap",
+    "title": "How to Handle OpenAI API 429 Quota Exhaustion vs Rate Limit Errors",
+    "description": "区分 OpenAI API 的临时速率限制（rate limit）和配额耗尽（quota exceeded/insufficient_quota），了解各自的处理方式——重试 vs 切换 API key Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "RateLimitError: Rate limit reached for requests (status code: 429). If using an enterprise account, insufficient_quota may indicate your organization has hit its usage cap.",
+    "search_intent": "区分 OpenAI API 的临时速率限制（rate limit）和配额耗尽（quota exceeded/insufficient_quota），了解各自的处理方式——重试 vs 切换 API key",
+    "common_causes": [
+      "GitHub openai-python #3042 正在推动新增 InsufficientQuotaError 异常类，说明当前 RateLimitError 混用了两种不同语义：临时限速应重试，而配额耗尽需切换 key。该 PR 于 2026-04-01 开放讨论中（https://github.com/openai/openai-python/pull/3042）。商业价值极高——直接影响企业付费账户的生产环境稳定性。Category mapping: 直接对应 OpenAI API。"
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "anthropic-api-apistatuserror-status-code-200-expected-529-mid-stream-overloaded-error-event-not-properly-mapped-in-streaming-response",
+    "title": "Anthropic API SSE Stream 中断时状态码错误为 200 而非 529",
+    "description": "修复 Anthropic Claude API 流式调用中 SSE 中断错误事件返回 HTTP 200 而非正确的 529 Overloaded 状态码的问题 Includes evidence for Anthropic API troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Anthropic API",
+    "error_signature": "APIStatusError: Status code 200 (expected 529) — mid-stream 'overloaded_error' event not properly mapped in streaming response",
+    "search_intent": "修复 Anthropic Claude API 流式调用中 SSE 中断错误事件返回 HTTP 200 而非正确的 529 Overloaded 状态码的问题",
+    "common_causes": [
+      "anthropic-sdk-python #1258 明确描述：SSE 错误事件中 _streaming.py 传递原始 HTTP 200 response 给 _make_status_error，导致错误对象的 status_code 始终为 200。SDK 维护者已通过 PR #1262/#1263/#1269 逐步修复（https://github.com/anthropics/anthropic-sdk-python/issues/1258）。这是典型的 429/529 生产问题场景。Category mapping: 直接对应 Anthropic API。"
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "Anthropic API"
+    ]
+  },
+  {
+    "slug": "cloudflare-error-email-is-not-verified-wrangler-deploy-rejects-worker-publish-even-though-email-is-verified-on-cloudflare-com",
+    "title": "Cloudflare Wrangler Email Verified But Deploy Rejected with Email Not Verified Error",
+    "description": "解决 Cloudflare Wrangler CLI 在用户已完成邮箱验证的情况下仍然报 email is not verified 导致 worker 部署被拒的问题 Includes evidence for Cloudflare troubleshooting demand.",
+    "category": "Cloudflare",
+    "technology": "Cloudflare",
+    "error_signature": "Error: Email is not verified — wrangler deploy rejects worker publish even though email IS verified on cloudflare.com",
+    "search_intent": "解决 Cloudflare Wrangler CLI 在用户已完成邮箱验证的情况下仍然报 email is not verified 导致 worker 部署被拒的问题",
+    "common_causes": [
+      "cloudflare/workers-sdk #13870 报告：用户使用最新版本的 wrangler 尝试 deploy worker 时，虽然邮箱已在 cloudflare.com 页面验证，Wrangler 仍提示 email not verified 并拒绝部署。这是部署阻塞级错误，直接影响付费用户的上线流程。Category mapping: 直接对应 Cloudflare（CDN/Workers 平台部署错误）。"
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Cloudflare"
+    ]
+  },
+  {
+    "slug": "claude-code-initialize-request-accepted-despite-mismatched-mcp-protocol-version-header-vs-body-protocolversion-server-negotiates-from-json-rpc-body-ignoring-header",
+    "title": "MCP Server 未拒绝 Header 与 Body 协议版本不匹配的初始化请求",
+    "description": "修复 MCP SDK 在 initialize 阶段同时接收 HTTP header 和 body 中的 protocolVersion 时，未能校验两者一致性的问题，避免 Claude Code/Cursor 等工具因版本协商失败导致的连接异常 Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "initialize request accepted despite MISMATCHED MCP-Protocol-Version header vs body protocolVersion — server negotiates from JSON-RPC body, ignoring header",
+    "search_intent": "修复 MCP SDK 在 initialize 阶段同时接收 HTTP header 和 body 中的 protocolVersion 时，未能校验两者一致性的问题，避免 Claude Code/Cursor 等工具因版本协商失败导致的连接异常",
+    "common_causes": [
+      "modelcontextprotocol/typescript-sdk #2108 报告：MCP v2025-11-25 规范下，server 接受 header 与 body 协议版本不一致的 initialize 请求而不报错，可能导致客户端与服务端使用错误的协议版本通信。复现于 v1.29.0（2026-05-16）。这直接影响 Claude Code 和 Cursor 等依赖 MCP 协议的 AI 编程工具。Category mapping: 属于 AI Coding Tools 范畴（Claude Code 通过 MCP 协议与外部服务交互时的鉴权/协商错误）。"
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
   }
 ]
