@@ -15565,5 +15565,85 @@
     "related_errors": [
       "Deployment"
     ]
+  },
+  {
+    "slug": "openai-api-429-too-many-requests-with-error-code-insufficient-quota-distinguishable-from-rate-limit-type",
+    "title": "OpenAI API 429 Insufficient Quota Error vs Rate Limit — Distinguishing Exhausted Quota from Temporary Throttling",
+    "description": "Resolve OpenAI 429 error caused by exhausted subscription quota (not temporary rate limiting); need to upgrade plan, switch keys, or adjust usage Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "429 Too Many Requests with error code insufficient_quota — distinguishable from rate_limit type",
+    "search_intent": "Resolve OpenAI 429 error caused by exhausted subscription quota (not temporary rate limiting); need to upgrade plan, switch keys, or adjust usage",
+    "common_causes": [
+      "From openai/openai-python PR #3042 (merged status uncertain, created 2026-04-01). Developer proposes adding InsufficientQuotaError subclass to distinguish quota exhaustion from rate limits. This is a distinct error signature not yet published on dev-error-db. Category mapping: OpenAI API → OpenAI API per SKILL.md."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "claude-code-oauth-login-fails-auth-anthropic-com-does-not-resolve-via-dns-timeout-error-prevents-authentication",
+    "title": "How to Fix Claude Code OAuth Login Fails Due to DNS Resolution Failure on auth.anthropic.com",
+    "description": "Fix Claude Code OAuth login failure caused by DNS resolution failure for auth.anthropic.com, especially Windows users on home networks Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "OAuth login fails: auth.anthropic.com does not resolve via DNS — timeout error prevents authentication",
+    "search_intent": "Fix Claude Code OAuth login failure caused by DNS resolution failure for auth.anthropic.com, especially Windows users on home networks",
+    "common_causes": [
+      "Found as open issue in anthropics/claude-code#33238 (created 2026-03-11). Users report 'timeout error' when auth.anthropic.com cannot resolve, blocking sign-in entirely. Labeled as bug + platform:windows + area:auth. Category mapping: Claude Code → AI Coding Tools per SKILL.md rules."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "github-copilot-forbidden-access-to-this-endpoint-is-forbidden-occurs-after-2-3-messages-using-sonnet-4-5-or-other-models",
+    "title": "GitHub Copilot Returns Forbidden Access After Few Messages — Token Expired or License Check Failing Mid-Session",
+    "description": "Fix GitHub Copilot 'forbidden' error that interrupts sessions mid-use; requires re-authentication or license renewal without restarting the IDE Includes evidence for GitHub Copilot troubleshooting demand.",
+    "category": "GitHub Copilot",
+    "technology": "GitHub Copilot",
+    "error_signature": "Forbidden: Access to this endpoint is forbidden — occurs after 2-3 messages using Sonnet 4.5 or other models",
+    "search_intent": "Fix GitHub Copilot 'forbidden' error that interrupts sessions mid-use; requires re-authentication or license renewal without restarting the IDE",
+    "common_causes": [
+      "Reported in anomalyco/opencode#26344 (open, created 2026-05-08). User with Copilot Pro license gets 'Forbidden' error after just 2-3 messages on Ubuntu 24.04. Indicates session token expiry or license validation race condition. High frustration factor for paid subscribers. Category mapping: GitHub Copilot → GitHub Copilot per SKILL.md exact mapping."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "GitHub Copilot"
+    ]
+  },
+  {
+    "slug": "openrouter-http-404-no-endpoints-found-that-support-image-input",
+    "title": "OpenRouter 404 No Endpoints Found That Support Image Input — Text-Only Model Fails on Multimodal Tool Results",
+    "description": "Fix OpenRouter rejection when sending images to text-only models (e.g., deepseek-v4-pro); need to detect modality mismatch before tool invocation Includes evidence for OpenRouter troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenRouter",
+    "error_signature": "HTTP 404: No endpoints found that support image input",
+    "search_intent": "Fix OpenRouter rejection when sending images to text-only models (e.g., deepseek-v4-pro); need to detect modality mismatch before tool invocation",
+    "common_causes": [
+      "From NousResearch/hermes-agent PR #23411 (open, created 2026-05-10). When a multimodal tool captures images and sends them via OpenRouter with a text-only model, the API returns 404 instead of a friendly message. Recovery fallback triggers fail because error phrase doesn't match. High commercial value for teams using multi-model routing. Category mapping: OpenRouter model routing/API compatibility → OpenAI API per SKILL.md context-dependent rules."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "docker-service-marked-as-unhealthy-in-docker-compose-ps-output-after-container-restart-or-update",
+    "title": "Docker Compose Service Unhealthy After Container Restart — How to Diagnose and Resolve Recurring Unhealthy States",
+    "description": "Diagnose why Docker Compose service remains in unhealthy state after restart; fix healthcheck configuration, dependency ordering, or resource constraints Includes evidence for Docker troubleshooting demand.",
+    "category": "Docker",
+    "technology": "Docker",
+    "error_signature": "Service marked as 'unhealthy' in docker-compose ps output after container restart or update",
+    "search_intent": "Diagnose why Docker Compose service remains in unhealthy state after restart; fix healthcheck configuration, dependency ordering, or resource constraints",
+    "common_causes": [
+      "Widely-searched Docker pattern not yet covered on dev-error-db. Unhealthy state is a distinct diagnosis surface from 'cannot connect to daemon'. Covers cases where healthcheck misconfiguration or slow startup causes persistent unhealthy flag, breaking orchestration. Category mapping: Docker Compose → Docker per SKILL.md exact mapping."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Docker"
+    ]
   }
 ]
