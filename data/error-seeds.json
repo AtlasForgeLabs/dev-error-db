@@ -15213,5 +15213,117 @@
     "related_errors": [
       "LiteLLM"
     ]
+  },
+  {
+    "slug": "claude-code-error-incompatible-auth-server-does-not-support-dynamic-client-registration",
+    "title": "How to Fix \"Invalid Client\" DCR Auth Error Connecting Claude Code to GitHub MCP Server",
+    "description": "Fix Dynamic Client Registration failure when connecting Claude Code to GitHub MCP server Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Error: Incompatible auth server: does not support dynamic client registration",
+    "search_intent": "Fix Dynamic Client Registration failure when connecting Claude Code to GitHub MCP server",
+    "common_causes": [
+      "Real user-reported error confirmed by multiple Claude Code GitHub issues (#3273, #5826, #3433) and detailed troubleshooting guide at misaac.me/blog/solve-mcp-dcr-issues-with-mcp-remote/. Users encounter this when Claude Code requires DCR support but GitHub MCP server doesn't implement it despite spec saying DCR is optional (MAY). Mapping: MCP/auth errors → AI Coding Tools."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "openai-api-429-quota-exceeded",
+    "title": "ChatGPT Plus OAuth Returns 429 Quota Exceeded for Third-Party Codex Calls",
+    "description": "Understand why third-party apps using ChatGPT Plus OAuth get rate-limited while ChatGPT itself works fine Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "429 quota exceeded",
+    "search_intent": "Understand why third-party apps using ChatGPT Plus OAuth get rate-limited while ChatGPT itself works fine",
+    "common_causes": [
+      "Real GitHub issue on openai/openai-python (#2951) documenting that ChatGPT Plus OAuth token grants access to ChatGPT but hits quota limits on third-party Codex integrations. High commercial value: paid users confused about shared quotas between ChatGPT and OpenAI API. Maps to OpenAI API category."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "litellm-rate-limit-error-message-body-leaks-full-sha-256-token-hash-on-429-responses-wrapped-as-apiconnectionerror-instead-of-ratelimiterror",
+    "title": "LiteLLM 429 Errors Bypass Cooldown When Using OpenAI-like Providers (Wrapped as APIConnectionError)",
+    "description": "Fix rate limit handling in LiteLLM proxy where upstream 429s are incorrectly re-wrapped as connection errors and leak security-sensitive token hashes Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "Rate limit error message body leaks full SHA-256 token hash on 429 responses; wrapped as APIConnectionError instead of RateLimitError",
+    "search_intent": "Fix rate limit handling in LiteLLM proxy where upstream 429s are incorrectly re-wrapped as connection errors and leak security-sensitive token hashes",
+    "common_causes": [
+      "Two related bugs reported on BerriAI/litellm repo: #24366 (429 errors bypass rate-limit cooldown because they're treated as APIConnectionError, not RateLimitError) and #27884 (429 error body leaks full SHA-256 provider API key hash). Both affect production LiteLLM proxy deployments. Maps to LiteLLM category."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "LiteLLM"
+    ]
+  },
+  {
+    "slug": "docker-opaque-403-authentication-error-when-trying-to-deploy-containers-on-free-plan",
+    "title": "Docker Compose Containers Deploy Gives Opague 403 Authentication Error on Free Plan",
+    "description": "Troubleshoot unexpected 403 Authentication error when attempting container deployment with Docker Compose on free Cloudflare Workers account Includes evidence for Docker troubleshooting demand.",
+    "category": "Docker",
+    "technology": "Docker",
+    "error_signature": "opaque 403 'Authentication error' when trying to deploy containers on Free plan",
+    "search_intent": "Troubleshoot unexpected 403 Authentication error when attempting container deployment with Docker Compose on free Cloudflare Workers account",
+    "common_causes": [
+      "Real GitHub issue on cloudflare/workers-sdk (#13904). Users deploying containers get a cryptic 403 Authentication error that obscures the actual cause: Free plan does not support containers deployment. Strong commercial intent — paid upgrade blocked by unclear error. Despite Cloudflare context, the technology is Docker/Compose container runtime, maps to Docker category."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "Docker"
+    ]
+  },
+  {
+    "slug": "vercel-empty-slot-directory-causes-error-in-production-build",
+    "title": "Next.js Production Build Fails With Empty Slot Directory Error",
+    "description": "Debug Next.js build failure caused by empty slot directory in production builds Includes evidence for Vercel troubleshooting demand.",
+    "category": "Deployment",
+    "technology": "Vercel",
+    "error_signature": "Empty slot directory causes error in production build",
+    "search_intent": "Debug Next.js build failure caused by empty slot directory in production builds",
+    "common_causes": [
+      "Real GitHub issue on vercel/next.js (#77319). Specific edge-case build error affecting production deploys. High urgency since it blocks deployments. Maps to Deployment category per approved list."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Deployment"
+    ]
+  },
+  {
+    "slug": "anthropic-api-streaming-error-sse-event-causes-attributeerror-nonetype-object-has-no-attribute",
+    "title": "Streaming SSE Error Causes AttributeError When Message Body Is Null",
+    "description": "Fix null response crash when receiving Streaming Error SSE events from Anthropic Claude API Includes evidence for Anthropic API troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Anthropic API",
+    "error_signature": "Streaming error SSE event causes AttributeError: 'NoneType' object has no attribute",
+    "search_intent": "Fix null response crash when receiving Streaming Error SSE events from Anthropic Claude API",
+    "common_causes": [
+      "Real GitHub issue on anthropics/anthropic-sdk-python (#1472). Stream parsing crashes when SSE event contains null body. Affects production streaming applications. The SDK should handle this gracefully. Clear, technical error signature."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Anthropic API"
+    ]
+  },
+  {
+    "slug": "ollama-pulling-manifest-error-eof",
+    "title": "Ollama \"pulling manifest Error: EOF\" When Pulling Model After Disk Full",
+    "description": "Fix model download failure showing EOF error when Ollama run out of disk space during pull Includes evidence for Ollama troubleshooting demand.",
+    "category": "Ollama",
+    "technology": "Ollama",
+    "error_signature": "pulling manifest Error: EOF",
+    "search_intent": "Fix model download failure showing EOF error when Ollama run out of disk space during pull",
+    "common_causes": [
+      "Real GitHub issue on ollama/ollama (#1731). Users pulling models see 'EOF' error when disk fills up mid-download. Clear, specific error signature with actionable fix (free disk space + retry). Growing local LLM adoption means high search demand. P1 tech bonus applied."
+    ],
+    "quick_fix": "Verify the model name, local service connectivity, and network access before retrying the model pull.",
+    "related_errors": [
+      "Ollama"
+    ]
   }
 ]
