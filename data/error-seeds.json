@@ -15085,5 +15085,69 @@
     "related_errors": [
       "Ollama"
     ]
+  },
+  {
+    "slug": "vercel-runtime-500-clientreferencemanifest-undefined-for-server-only-pages",
+    "title": "Vercel Runtime 500: clientReferenceManifest undefined for server-only pages in Next.js 15.5.18",
+    "description": "Fix Vercel production 500 error caused by missing clientReferenceManifest in Next.js server components Includes evidence for Vercel troubleshooting demand.",
+    "category": "Deployment",
+    "technology": "Vercel",
+    "error_signature": "Runtime 500: clientReferenceManifest undefined for server-only pages",
+    "search_intent": "Fix Vercel production 500 error caused by missing clientReferenceManifest in Next.js server components",
+    "common_causes": [
+      "Reported on vercel/next.js #93862. Production-only runtime error where clientReferenceManifest is undefined for server-only pages in Next.js 15.5.18 on Vercel. Blocks production deployments for付费 users."
+    ],
+    "quick_fix": "Verify the model name, local service connectivity, and network access before retrying the model pull.",
+    "related_errors": [
+      "Deployment"
+    ]
+  },
+  {
+    "slug": "openai-api-response-failed-collapsed-into-generic-unknown-error-no-detail-from-openai-responses-api",
+    "title": "OpenAI Responses transport collapses detail-less response.failed into generic Unknown error",
+    "description": "Debug OpenAI Responses API failures that return no useful error details, making production debugging impossible Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "response.failed collapsed into generic Unknown error (no detail from OpenAI Responses API)",
+    "search_intent": "Debug OpenAI Responses API failures that return no useful error details, making production debugging impossible",
+    "common_causes": [
+      "Reported on openclaw/openclaw #82558. OpenAI Responses transport collapses detail-less response.failed into generic Unknown error. When the Responses API returns a failure with no detail field, the error loses all diagnostic value. Affects production debugging for付费 API users."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "claude-code-desktop-fails-on-windows-when-claude-desktop-is-installed-as-msix-store-package-refile-of-sharp-36079",
+    "title": "Claude Code /desktop fails on Windows when installed as MSIX/Store package",
+    "description": "Fix Claude Code desktop integration failure on Windows with MSIX/Store installation Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "/desktop fails on Windows when Claude Desktop is installed as MSIX/Store package (refile of #36079)",
+    "search_intent": "Fix Claude Code desktop integration failure on Windows with MSIX/Store installation",
+    "common_causes": [
+      "Reported on anthropics/claude-code #59692. Claude Code's /desktop command fails on Windows when Claude Desktop is installed via MSIX/Store package. Refiled issue indicates persistent problem. Blocks Windows users of paid Claude Code tool."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "openai-api-codex-doctor-cannot-inspect-npm-global-root-because-it-spawns-npm-instead-of-npm-cmd",
+    "title": "OpenAI Codex doctor cannot inspect npm global root on Windows (spawns npm instead of npm.cmd)",
+    "description": "Fix OpenAI Codex doctor command failure on Windows due to npm vs npm.cmd spawn issue Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "codex doctor cannot inspect npm global root because it spawns npm instead of npm.cmd",
+    "search_intent": "Fix OpenAI Codex doctor command failure on Windows due to npm vs npm.cmd spawn issue",
+    "common_causes": [
+      "Reported on openai/codex #22964. On Windows, codex doctor spawns npm instead of npm.cmd, causing it to fail when inspecting npm global root. Affects paid OpenAI Codex users on Windows."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "OpenAI API"
+    ]
   }
 ]
