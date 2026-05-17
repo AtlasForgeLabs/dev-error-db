@@ -15965,5 +15965,85 @@
     "related_errors": [
       "AI Coding Tools"
     ]
+  },
+  {
+    "slug": "claude-code-bug-running-claude-sessions-list-via-bash-tool-triggers-recursive-process-fork-bomb-spawns-197-concurrent-claude-dangerously-skip-permissions-instances",
+    "title": "Claude Code Bash Tool Recursive Process Fork Bomb Consumes Entire Usage Quota",
+    "description": "Claude Code user wrapping claude in shell function with --dangerously-skip-permissions accidentally triggers recursive process spawning (~197 instances), consuming entire monthly usage quota instantly Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "[BUG] Running claude sessions list via Bash tool triggers recursive process fork bomb — spawns ~197 concurrent claude --dangerously-skip-permissions instances",
+    "search_intent": "Claude Code user wrapping claude in shell function with --dangerously-skip-permissions accidentally triggers recursive process spawning (~197 instances), consuming entire monthly usage quota instantly",
+    "common_causes": [
+      "GitHub issue anthropics/claude-code#58838 (created 2026-05-13, 3 comments, open). Brand-new issue with extremely clear error signature and dramatic commercial impact (entire quota wiped in minutes). Distinct from #48915: #48915 is about gradual overconsumption; this is an immediate runaway process bug triggered by shell aliasing. Category: AI Coding Tools. No prior coverage. Very fresh topic = low ranking difficulty."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "claude-code-bug-unexpected-quota-consumption-spike-without-usage-pattern-changes-rangeerror-err-child-process-stdio-maxbuffer-stdout-maxbuffer-length-exceeded",
+    "title": "Claude Code Unexpected Quota Consumption Spike Without Pattern Changes",
+    "description": "Claude Code user experiencing sudden quota exhaustion (30%+ per message) despite unchanged usage — wants to understand why quota is consumed faster and how to fix Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "[Bug] Unexpected quota consumption spike without usage pattern changes — RangeError [ERR_CHILD_PROCESS_STDIO_MAXBUFFER]: stdout maxBuffer length exceeded",
+    "search_intent": "Claude Code user experiencing sudden quota exhaustion (30%+ per message) despite unchanged usage — wants to understand why quota is consumed faster and how to fix",
+    "common_causes": [
+      "GitHub issue anthropics/claude-code#48915 (created 2026-04-16, 5 comments). User reports per-message quota jump >30% with no usage change. Includes concrete Node.js ERR_CHILD_PROCESS_STDIO_MAXBUFFER error from Claude Code subprocess. High commercial value: enterprise AI coding tool with direct billing impact. Category: AI Coding Tools (exact mapping per SKILL.md)."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "litellm-bug-duplicate-usage-aggregation-across-billing-cycles-april-30th-tokens-double-counted-in-may-pre-exhausting-balances",
+    "title": "LiteLLM Duplicate Usage Aggregation Across Monthly Billing Cycles",
+    "description": "LiteLLM proxy admin sees usage data from end-of-month incorrectly carried over into next month's total, causing 'Month-to-Date' counter not to reset, leading to premature budget exhaustion Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "[Bug]: Duplicate Usage Aggregation Across Billing Cycles — April 30th tokens double-counted in May, pre-exhausting balances",
+    "search_intent": "LiteLLM proxy admin sees usage data from end-of-month incorrectly carried over into next month's total, causing 'Month-to-Date' counter not to reset, leading to premature budget exhaustion",
+    "common_causes": [
+      "GitHub issue BerriAI/litellm#27917 (created 2026-05-14, just opened). Directly impacts billing: end-of-month tokens double-counted into next month, pre-exhausting team budgets. High commercial value: LiteLLM users are typically proxy operators managing multi-model budgets. Clear monetary impact drives strong search intent. Category: LiteLLM (exact match). Fresh issue with little competition."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "LiteLLM"
+    ]
+  },
+  {
+    "slug": "anthropic-api-mid-stream-sse-overloaded-error-returns-status-code-200-instead-of-529-fails-fallback-retry-logic",
+    "title": "Anthropic SDK Mid-stream SSE Overloaded Error Returns Wrong Status Code (200 vs 529)",
+    "description": "Developer using anthropic SDK streaming sees overloaded_error arrive as HTTP 200 SSE event; SDK creates bare APIStatusError(200) instead of OverloadedError(529); fallback/retry logic breaks because status check >= 500 never matches Includes evidence for Anthropic API troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Anthropic API",
+    "error_signature": "Mid-stream SSE overloaded_error returns status_code=200 instead of 529 — fails fallback retry logic",
+    "search_intent": "Developer using anthropic SDK streaming sees overloaded_error arrive as HTTP 200 SSE event; SDK creates bare APIStatusError(200) instead of OverloadedError(529); fallback/retry logic breaks because status check >= 500 never matches",
+    "common_causes": [
+      "GitHub issue anthropics/anthropic-sdk-python#1258 (closed 2026-03-31). Very specific technical bug: _streaming.py passes original HTTP 200 response to _make_status_error, so overloaded_error type is ignored. Impacts production retry logic (e.g., pydantic-ai FallbackModel). High commercial value: misdiagnosed server errors cause wasted API calls on paid accounts. Category: Anthropic API (exact match). Not covered."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "Anthropic API"
+    ]
+  },
+  {
+    "slug": "litellm-bug-prisma-query-engine-unable-to-recover-from-oomkill-in-k8s-deployment-query-engine-de-stuck-in-defunct-state-after-large-dataset-access",
+    "title": "LiteLLM Proxy K8s Deployment OOMKill on Prisma Query Engine During Usage Stats Query",
+    "description": "LiteLLM proxy admin running on Kubernetes finds that querying Usage page with large datasets triggers OOMKill on Prisma Query Engine, leaving proxy alive but unable to communicate with database Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "[Bug]: Prisma Query Engine unable to recover from OOMKill in K8s deployment — query-engine-de stuck in defunct state after large dataset access",
+    "search_intent": "LiteLLM proxy admin running on Kubernetes finds that querying Usage page with large datasets triggers OOMKill on Prisma Query Engine, leaving proxy alive but unable to communicate with database",
+    "common_causes": [
+      "GitHub issue BerriAI/litellm#20697 (updated 2026-05-17, stale label). Production-infrastructure-relevant: K8s cluster operator managing LiteLLM proxy experiences complete DB connection loss when viewing usage stats. High commercial value: LiteLLM proxy deployments are common in teams managing multimodel billing. Category: LiteLLM (exact match). Infrastructure angle gives good long-tail search volume."
+    ],
+    "quick_fix": "Check the build output, project root, and deployment platform configuration before redeploying.",
+    "related_errors": [
+      "LiteLLM"
+    ]
   }
 ]
