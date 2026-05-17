@@ -16765,5 +16765,85 @@
     "related_errors": [
       "Ollama"
     ]
+  },
+  {
+    "slug": "cloudflare-workflows-api-error-internal-server-code-10001-a-request-to-the-cloudflare-api-accounts-workflows-failed-during-wrangler-deploy",
+    "title": "Cloudflare wrangler deploy workflows.api.error.internal_server [code: 10001] persistent on new Free accounts",
+    "description": "Fix persistent deployment failure when deploying Workers with Workflow bindings on new Cloudflare Free accounts Includes evidence for Cloudflare troubleshooting demand.",
+    "category": "Cloudflare",
+    "technology": "Cloudflare",
+    "error_signature": "workflows.api.error.internal_server [code: 10001] — A request to the Cloudflare API (/accounts/*/workflows/*) failed during wrangler deploy",
+    "search_intent": "Fix persistent deployment failure when deploying Workers with Workflow bindings on new Cloudflare Free accounts",
+    "common_causes": [
+      "GitHub Issue in cloudflare/workers-sdk (created 2026-05-14). Persistent server-side error on new Free accounts when registering workflow bindings via wrangler. Not transient — confirmed persistent over 24h+ across multiple environments. Blocks deployment of Workers with D1+R2+Workflow bindings. Category: Cloudflare — CDN/Workers platform error."
+    ],
+    "quick_fix": "Check the build output, project root, and deployment platform configuration before redeploying.",
+    "related_errors": [
+      "Cloudflare"
+    ]
+  },
+  {
+    "slug": "vercel-next-js-function-invocation-failed-404-an-error-occurred-in-the-server-components-render-instead-of-rendering-the-custom-not-found-page-when-cachecomponents-are-enabled",
+    "title": "FUNCTION_INVOCATION_FAILED — Server Components not-found.tsx throws 500 instead of custom 404 page",
+    "description": "Fix production deployment error where notFound() triggers FUNCTION_INVOCATION_FAILED 500 error instead of serving custom 404 page in Next.js 16+ Includes evidence for Vercel / Next.js troubleshooting demand.",
+    "category": "Deployment",
+    "technology": "Vercel / Next.js",
+    "error_signature": "FUNCTION_INVOCATION_FAILED;404 — An error occurred in the Server Components render instead of rendering the custom not-found page when cacheComponents are enabled",
+    "search_intent": "Fix production deployment error where notFound() triggers FUNCTION_INVOCATION_FAILED 500 error instead of serving custom 404 page in Next.js 16+",
+    "common_causes": [
+      "GitHub Issue #93902 in vercel/next.js (created 2026-05-17). Regression between 16.2.3 and 16.2.6 affecting production environments with cacheComponents enabled. Blocks customer-facing 404 handling in deployed apps. Category: Deployment — Vercel hosting platform error."
+    ],
+    "quick_fix": "Check the build output, project root, and deployment platform configuration before redeploying.",
+    "related_errors": [
+      "Deployment"
+    ]
+  },
+  {
+    "slug": "vercel-next-js-cannot-find-module-require-in-the-middle-hash-failed-to-load-external-module-require-stack-error-in-instrumentation-hook-during-vercel-prebuilt-deployment",
+    "title": "Turbopack hashed external aliases unresolved in Vercel prebuilt pnpm deployments",
+    "description": "Fix Vercel deployment failure caused by Turbopack hashed symlinks resolving incorrectly in pnpm monorepo prebuilt builds Includes evidence for Vercel / Next.js troubleshooting demand.",
+    "category": "Deployment",
+    "technology": "Vercel / Next.js",
+    "error_signature": "Cannot find module 'require-in-the-middle-<hash>' — Failed to load external module require stack error in instrumentation hook during Vercel prebuilt deployment",
+    "search_intent": "Fix Vercel deployment failure caused by Turbopack hashed symlinks resolving incorrectly in pnpm monorepo prebuilt builds",
+    "common_causes": [
+      "GitHub Issue #93901 in vercel/next.js (created 2026-05-17). Regression in Next.js 16.2.6 + Turbopack + pnpm causing instrumentation hooks to crash on Vercel prebuilt deployments. Symlink resolution works locally but fails in Vercel containerized environment. Category: Deployment — Vercel hosting platform build/deploy error."
+    ],
+    "quick_fix": "Check the build output, project root, and deployment platform configuration before redeploying.",
+    "related_errors": [
+      "Deployment"
+    ]
+  },
+  {
+    "slug": "anthropic-api-httpx-transporterror-remoteprotocolerror-readerror-connecterror-leaked-during-sse-body-iteration-instead-of-apiconnectionerror",
+    "title": "Anthropic mid-stream TransportError not wrapped as APIConnectionError in SSE streaming",
+    "description": "Fix streaming connection drops causing unhandled httpx exceptions instead of APIConnectionError, breaking standard retry logic in production applications Includes evidence for Anthropic API troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Anthropic API",
+    "error_signature": "httpx.TransportError (RemoteProtocolError, ReadError, ConnectError) leaked during SSE body iteration instead of APIConnectionError",
+    "search_intent": "Fix streaming connection drops causing unhandled httpx exceptions instead of APIConnectionError, breaking standard retry logic in production applications",
+    "common_causes": [
+      "GitHub PR #1552 in anthropics/anthropic-sdk-python (created 2026-05-16). Mid-stream transport failures leak as bare httpx exceptions bypassing the SDK's retry wrapper. Customers' try/except for APIConnectionError miss these drops entirely. Critical for production AI agent workloads using streaming. Category: Anthropic API — paid API service error."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Anthropic API"
+    ]
+  },
+  {
+    "slug": "litellm-valueerror-error-getting-number-of-tokens-from-content-list-invalid-image-url-type-nonetype-expected-str-or-dict-with-url-field-default-token-count-none",
+    "title": "LiteLLM token_counter ValueError crash when message content has null image_url",
+    "description": "Fix LiteLLM token_counter crashing with ValueError when optional image_url field is null in multimodal messages, causing billing calculation to fail Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "ValueError: Error getting number of tokens from content list: Invalid image_url type: NoneType. Expected str or dict with 'url' field., default_token_count=None",
+    "search_intent": "Fix LiteLLM token_counter crashing with ValueError when optional image_url field is null in multimodal messages, causing billing calculation to fail",
+    "common_causes": [
+      "GitHub Issue #28119 in BerriAI/litellm (created 2026-05-17). token_counter() raises unhandled ValueError on valid edge case (None image_url) instead of returning a default count. Affects billing accuracy for multimodal API calls routed through LiteLLM proxy. Category: LiteLLM — proxy billing layer error."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "LiteLLM"
+    ]
   }
 ]
