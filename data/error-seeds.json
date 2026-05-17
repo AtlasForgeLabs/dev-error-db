@@ -16845,5 +16845,85 @@
     "related_errors": [
       "LiteLLM"
     ]
+  },
+  {
+    "slug": "claude-code-openai-codex-provider-failed-to-parse-server-json-response-insufficientquotaerror-agent-ignores-429-quota-errors-instead-of-falling-back-to-configured-model-chain",
+    "title": "Agent fallback chain not triggered on 429 quota errors",
+    "description": "Developers running AI agents with Claude Code encounter 429 quota errors but the agent does not trigger the configured fallback chain, causing complete task failure instead of gracefully switching models Includes evidence for Claude Code / OpenAI Codex Provider troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code / OpenAI Codex Provider",
+    "error_signature": "Failed to parse server JSON response: InsufficientQuotaError - Agent ignores 429 quota errors instead of falling back to configured model chain",
+    "search_intent": "Developers running AI agents with Claude Code encounter 429 quota errors but the agent does not trigger the configured fallback chain, causing complete task failure instead of gracefully switching models",
+    "common_causes": [
+      "Found in OpenClaw issue #24102 (2026-02-22). The agent treats 429 quota errors as fatal rather than falling back to alternative models. Extremely high commercial value — directly blocks paid developer workflows. Category: AI Coding Tools because this affects agent-based coding tools."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "vercel-ai-sdk-openai-insufficientquotaerror-type-insufficient-quota-code-insufficient-quota-ai-sdk-openai-schema-does-not-include-quota-error-types-in-error-response",
+    "title": "@ai-sdk/openai does not handle quota-related errors",
+    "description": "Developer using @ai-sdk/openai encounters quota exceeded errors but the SDK fails to parse/handle them properly, causing silent failures or missing error details in their application Includes evidence for Vercel AI SDK / OpenAI troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "Vercel AI SDK / OpenAI",
+    "error_signature": "InsufficientQuotaError: type: 'insufficient_quota', code: 'insufficient_quota' - @ai-sdk/openai schema does not include quota error types in error response",
+    "search_intent": "Developer using @ai-sdk/openai encounters quota exceeded errors but the SDK fails to parse/handle them properly, causing silent failures or missing error details in their application",
+    "common_causes": [
+      "Found in Vercel AI repo issue #10304 (2025-11-17). The @ai-sdk/openai provider does not include insufficient_quota types in its error schema, causing quota errors from OpenAI to be dropped silently. High commercial value — affects serverless/API gateway deployments with direct billing exposure. Category: OpenAI API because the root cause is OpenAI returning quota errors."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "dify-openai-api-run-failed-openai-rate-limit-error-insufficient-quota-dify-cloud-openai-provider-continues-returning-quota-errors-after-billing-setup-completion",
+    "title": "Dify Cloud quota for OpenAI returns insufficient_quota errors after billing setup",
+    "description": "Dify Cloud users who have set up OpenAI billing still encounter persistent insufficient_quota errors and cannot use OpenAI models; need resolution path for quota vs billing state mismatch Includes evidence for Dify / OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "Dify / OpenAI API",
+    "error_signature": "Run failed: [openai] Rate Limit Error - insufficient_quota — Dify Cloud OpenAI provider continues returning quota errors after billing setup completion",
+    "search_intent": "Dify Cloud users who have set up OpenAI billing still encounter persistent insufficient_quota errors and cannot use OpenAI models; need resolution path for quota vs billing state mismatch",
+    "common_causes": [
+      "Found in langgenius/dify issue #11959 (2024-12-21). Users report that despite completing billing setup, Dify Cloud still returns OpenAI insufficient_quota errors. Distinct from generic insufficient_quota because it involves a platform-specific billing-to-API-key state sync bug. Category: OpenAI API. High commercial value for no-code AI platform users."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "anthropic-api-overloaded-error-we-could-not-process-your-request-differentiating-anthropic-overloaded-error-from-429-rate-limit-error-and-insufficient-quota-for-proper-retry-logic",
+    "title": "Anthropic overloaded_error vs rate_limit_error differentiation",
+    "description": "Developers integrating with Anthropic API need to distinguish between overloaded_error (server temporarily unavailable) and standard rate-limit errors (429) to implement correct exponential backoff vs immediate retry strategies Includes evidence for Anthropic API troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Anthropic API",
+    "error_signature": "overloaded_error: We could not process your request — Differentiating Anthropic overloaded_error from 429 rate_limit_error and insufficient_quota for proper retry logic",
+    "search_intent": "Developers integrating with Anthropic API need to distinguish between overloaded_error (server temporarily unavailable) and standard rate-limit errors (429) to implement correct exponential backoff vs immediate retry strategies",
+    "common_causes": [
+      "Found via Google search results for anthropic overloading errors on GitHub. Commercial value is high because incorrect retry logic wastes API credits and blocks production. Category: Anthropic API. No coverage for this distinction exists in dev-error-db."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "Anthropic API"
+    ]
+  },
+  {
+    "slug": "cloudflare-workers-returned-a-malformed-response-from-the-api-script-will-never-generate-a-response-error-1101-cloudflare-workers-returning-http-error-1101-when-scripts-time-out",
+    "title": "Cloudflare Error 1101 script will never generate a response",
+    "description": "Developers deploying Cloudflare Workers encounter Error 1101 where the edge script times out before producing a response, causing client-side 522/524 gateway errors; need diagnosis and timeout tuning guidance Includes evidence for Cloudflare Workers troubleshooting demand.",
+    "category": "Cloudflare",
+    "technology": "Cloudflare Workers",
+    "error_signature": "Returned a malformed response from the API | Script will never generate a response (Error 1101) — Cloudflare Workers returning HTTP error 1101 when scripts time out",
+    "search_intent": "Developers deploying Cloudflare Workers encounter Error 1101 where the edge script times out before producing a response, causing client-side 522/524 gateway errors; need diagnosis and timeout tuning guidance",
+    "common_causes": [
+      "Found in Cloudflare workers-sdk issue #10616 (2025-09-10) and withastro/adapters #43. Error 1101 is distinct from standard 522/524 — it means CF connected to origin but the script itself never completed. Moderate-high commercial value for hosted SaaS apps behind CF. Category: Cloudflare. Not covered in existing entries."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "Cloudflare"
+    ]
   }
 ]
