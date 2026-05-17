@@ -16189,5 +16189,85 @@
     "related_errors": [
       "Docker"
     ]
+  },
+  {
+    "slug": "litellm-litellm-apiconnectionerror-request-timed-out-please-increase-the-max-retries-parameter",
+    "title": "Fixing LiteLLM APIConnectionError: Connection timed out",
+    "description": "Fix LiteLLM API connection timeout errors by adjusting request_timeout or retry settings Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "litellm.APIConnectionError: Request timed out. Please increase the max_retries parameter.",
+    "search_intent": "Fix LiteLLM API connection timeout errors by adjusting request_timeout or retry settings",
+    "common_causes": [
+      "Found via GitHub issue #7996 on BerriAI/litellm repo. User reports litellm.APIConnectionError when backend service is slow; fix involves setting litellm.request_timeout or passing timeout dynamically in completion call. High commercial value as timeout blocks production API calls."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "LiteLLM"
+    ]
+  },
+  {
+    "slug": "vercel-middleware-invocation-failed-on-vercel-deploy-cannot-find-module-local-build-artifact-does-not-reference-esm-path",
+    "title": "Vercel MIDDLEWARE_INVOCATION_FAILED: Cannot find module (ESM resolver mismatch)",
+    "description": "Fix Vercel deployment failure caused by Vercel runtime resolver using require() instead of ESM path for middleware modules Includes evidence for Vercel troubleshooting demand.",
+    "category": "Deployment",
+    "technology": "Vercel",
+    "error_signature": "MIDDLEWARE_INVOCATION_FAILED on Vercel deploy: Cannot find module — local build artifact does not reference ESM path",
+    "search_intent": "Fix Vercel deployment failure caused by Vercel runtime resolver using require() instead of ESM path for middleware modules",
+    "common_causes": [
+      "Found via Vercel/Next.js GitHub issue #93852. The Sentry static import triggers an ESM path resolution bug: local build succeeds but Vercel deploy fails with MIDDLEWARE_INVOCATION_FAILED because Vercel's runtime resolver tries to require() the ESM path. Direct deployment blocker for teams using Sentry + Vercel."
+    ],
+    "quick_fix": "Check the build output, project root, and deployment platform configuration before redeploying.",
+    "related_errors": [
+      "Deployment"
+    ]
+  },
+  {
+    "slug": "github-copilot-oops-you-reached-the-rate-limit-please-try-again-later",
+    "title": "GitHub Copilot 'Oops, you reached the rate limit' despite PRO license",
+    "description": "Resolve unexpected GitHub Copilot rate limit message even when user has active PRO subscription Includes evidence for GitHub Copilot troubleshooting demand.",
+    "category": "GitHub Copilot",
+    "technology": "GitHub Copilot",
+    "error_signature": "Oops, you reached the rate limit. Please try again later.",
+    "search_intent": "Resolve unexpected GitHub Copilot rate limit message even when user has active PRO subscription",
+    "common_causes": [
+      "Found on JetBrains community support forum and GitHub discussions. Developers with Pro licenses hitting short-term per-minute/hour rate limits distinct from monthly quota. Confirmed on orgs/community discussion #180092 showing usage bar discrepancy. High urgency for paid users whose AI coding is blocked."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "GitHub Copilot"
+    ]
+  },
+  {
+    "slug": "github-copilot-error-no-authentication-information-found",
+    "title": "Troubleshooting GitHub Copilot CLI 'No authentication information found'",
+    "description": "Fix GitHub Copilot CLI authentication failure where no credentials are detected in any checked location Includes evidence for GitHub Copilot troubleshooting demand.",
+    "category": "GitHub Copilot",
+    "technology": "GitHub Copilot",
+    "error_signature": "Error: No authentication information found",
+    "search_intent": "Fix GitHub Copilot CLI authentication failure where no credentials are detected in any checked location",
+    "common_causes": [
+      "Official GitHub Copilot docs troubleshooting guide. Exact error message from copilot-cli setup flow when OAuth token or Fine-Grained PAT is missing. Different from rate-limit issue above — this is a pure auth configuration problem. HIGH_VALUE: affects developers who rely on CLI-based Copilot workflows for automated tasks."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "GitHub Copilot"
+    ]
+  },
+  {
+    "slug": "cloudflare-524-error-from-cloudflare-while-loading-big-file-for-embedding-origin-server-timed-out",
+    "title": "Cloudflare Error 524 while loading large files for embedding (timeout)",
+    "description": "Fix Cloudflare 524 timeout errors when serving large files through Cloudflare proxy, especially for AI/ML embedding workloads Includes evidence for Cloudflare troubleshooting demand.",
+    "category": "Cloudflare",
+    "technology": "Cloudflare",
+    "error_signature": "524 Error from Cloudflare while loading big file for embedding — origin server timed out",
+    "search_intent": "Fix Cloudflare 524 timeout errors when serving large files through Cloudflare proxy, especially for AI/ML embedding workloads",
+    "common_causes": [
+      "Found in open-webui GitHub discussion #6648. Large model file uploads (embedding models) hit Cloudflare's default 100s timeout at the origin server level. Affects production AI applications running behind Cloudflare. The upstream code captures response codes and handles polling — real-world scenario with concrete workaround suggestions."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Cloudflare"
+    ]
   }
 ]
