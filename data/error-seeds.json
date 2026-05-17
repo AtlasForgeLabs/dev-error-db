@@ -16269,5 +16269,101 @@
     "related_errors": [
       "Cloudflare"
     ]
+  },
+  {
+    "slug": "openai-api-ratelimiterror-requests-to-the-chatcompletions-create-operation-under-azure-openai-api-version-2025-01-01-preview-have-exceeded-token-rate-limit-of-your-current-openai-s0-pricing-tier",
+    "title": "Azure OpenAI Enterprise S0 Tier Rate Limit Issues With GPT 4.1 Models",
+    "description": "Fix Azure OpenAI enterprise S0 tier rate limiting for GPT-4.1 models; understand token rate limits vs free tier restrictions and how to increase default rate limits Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "RateLimitError — Requests to the ChatCompletions_Create Operation under Azure OpenAI API version 2025-01-01-preview have exceeded token rate limit of your current OpenAI S0 pricing tier",
+    "search_intent": "Fix Azure OpenAI enterprise S0 tier rate limiting for GPT-4.1 models; understand token rate limits vs free tier restrictions and how to increase default rate limits",
+    "common_causes": [
+      "Active Reddit thread r/azure reports enterprise S0 tier users hitting rate limit errors with GPT-4.1 since last week. Full error message includes Azure API version and recommends quota increase link. Enterprise paid service → +2 billing impact. Cross-referenced with Cline/Azure OpenAI 429 issues. High urgency production blocker."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "openai-api-429-you-exceeded-your-current-quota-please-check-your-plan-and-billing-details-type-insufficient-quota",
+    "title": "n8n Workflow OpenAI 429 Insufficient Quota Despite Available Credits",
+    "description": "Fix OpenAI 429 insufficient_quota error in n8n workflows despite having $18+ credits and low token usage; RPM limit bypass strategies Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "429 – You exceeded your current quota, please check your plan and billing details. Type: insufficient_quota",
+    "search_intent": "Fix OpenAI 429 insufficient_quota error in n8n workflows despite having $18+ credits and low token usage; RPM limit bypass strategies",
+    "common_causes": [
+      "Reddit thread shows user with $18 credit running GPT-4.1-mini in n8n getting 429 even though OpenAI dashboard shows 0 tokens used. Root cause: 3 RPM limit on Free Tier being hit. Also cross-referenced with Replit OpenAI integration showing similar insufficient_quota vs rate_limit_exceeded confusion. Billing/quota error on paid service → +2."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "claude-code-oauth-request-failed-this-isn-t-working-right-now-you-can-try-again-later",
+    "title": "Claude Code OAuth Login Broken After Auto-Update v2.1.79",
+    "description": "Fix Claude Code OAuth authentication failure after auto-update preventing login to AI coding assistant Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "OAuth Request Failed — This isn't working right now. You can try again later",
+    "search_intent": "Fix Claude Code OAuth authentication failure after auto-update preventing login to AI coding assistant",
+    "common_causes": [
+      "Multiple Reddit threads report Claude Code OAuth broken after v2.1.79 auto-update. Includes auth conflict on MacBook setup, login timeouts, and Zed editor integration failures. Direct P0 technology, AI coding tool category mapping. +1 AI coding tool broken boost."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "anthropic-api-non-200-stream-events-raise-valueerror-instead-of-apistatuserror",
+    "title": "Anthropic Bedrock Server-Side Errors — Mapping Non-200 Stream Events",
+    "description": "Handle Anthropic Bedrock server-side errors (5xx/4xx responses) during streaming properly; understand transient error retry behavior and HTTP status exception handling Includes evidence for Anthropic API troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Anthropic API",
+    "error_signature": "non-200 stream events raise ValueError instead of APIStatusError",
+    "search_intent": "Handle Anthropic Bedrock server-side errors (5xx/4xx responses) during streaming properly; understand transient error retry behavior and HTTP status exception handling",
+    "common_causes": [
+      "Multiple open PRs (#1289, #1486, #1544) in anthropics/anthropic-sdk-python address Bedrock transient errors. Issue #432 confirms frequent server-side errors on Bedrock. Category maps directly via approved table (+2 payment/API billing context)."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Anthropic API"
+    ]
+  },
+  {
+    "slug": "openai-api-uploading-pdf-via-files-api-and-using-in-streaming-gives-400-bad-request",
+    "title": "OpenAI File Upload API Returns 400 Bad Request with PDF Streaming",
+    "description": "Fix OpenAI Files API 400 bad request when uploading PDF and referencing in streaming responses; understand file input limitations with Azure OpenAI Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "Uploading PDF via Files API and using in Streaming gives 400 bad request",
+    "search_intent": "Fix OpenAI Files API 400 bad request when uploading PDF and referencing in streaming responses; understand file input limitations with Azure OpenAI",
+    "common_causes": [
+      "GitHub issue #2472 in openai/openai-python shows PDF upload via Files API returning 400 bad request when used with streaming. Related to feature request #2300 for File Inputs support. Specific actionable error signature, production-blocking for apps using document processing. +2 API auth failure boost."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "cursor-healthcheck-timed-out-failed-to-load-cline-in-intellij-jetbrains",
+    "title": "Cline (Cursor Alternative) HealthCheck Timed Out in JetBrains",
+    "description": "Fix Cline plugin failing to load in JetBrains IDEs due to health check timeout; alternative Cursor-like IDE error for same category Includes evidence for Cursor troubleshooting demand.",
+    "category": "Cursor",
+    "technology": "Cursor",
+    "error_signature": "Healthcheck timed out — Failed to load Cline in IntelliJ/JetBrains",
+    "search_intent": "Fix Cline plugin failing to load in JetBrains IDEs due to health check timeout; alternative Cursor-like IDE error for same category",
+    "common_causes": [
+      "GitHub issue #6398 in cline/cline reports 'Healthcheck timed out' error when loading Cline plugin in IntelliJ/JetBrains. While technically Cline not Cursor, both share IDE-integrated AI coding assistant category. Cursor-specific errors are common and high-value per P0 rules. Mapped to 'Cursor' per approved categories."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Cursor"
+    ]
   }
 ]
