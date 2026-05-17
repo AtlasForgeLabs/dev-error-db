@@ -17229,5 +17229,101 @@
     "related_errors": [
       "OpenAI API"
     ]
+  },
+  {
+    "slug": "anthropic-api-overloaded-error-we-received-too-many-requests-for-your-plan-please-try-again-later",
+    "title": "Anthropic API overloaded_error Quota Exhaustion During Peak Usage",
+    "description": "Fix Anthropic API overloaded_error and rate limiting when hitting usage quotas during peak demand periods Includes evidence for Anthropic API troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Anthropic API",
+    "error_signature": "overloaded_error: We received too many requests for your plan. Please try again later.",
+    "search_intent": "Fix Anthropic API overloaded_error and rate limiting when hitting usage quotas during peak demand periods",
+    "common_causes": [
+      "Search results confirmed widespread 'overloaded_error' reports for Claude API users during peak hours. This directly impacts paying API consumers with billing/quota dependency. The error message format 'We received too many requests for your plan' indicates tier-based throttling. Notably distinct from simple 429s as it involves provider-side overload rather than client-side rate limit misconfiguration. Category mapping: Anthropic API errors → Anthropic API per exact SKILL.md mapping."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "Anthropic API"
+    ]
+  },
+  {
+    "slug": "claude-code-bug-github-token-authentication-error-persists-after-refreshing-tokens",
+    "title": "GitHub token authentication error persists after refresh - Claude Code MCP",
+    "description": "Fix persistent GitHub token authentication errors in Claude Code MCP server after manual token refresh Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "[Bug] GitHub token authentication error persists after refreshing tokens",
+    "search_intent": "Fix persistent GitHub token authentication errors in Claude Code MCP server after manual token refresh",
+    "common_causes": [
+      "Found in anthropics/claude-code GitHub issue #57291 (May 8, 2026). Users report GitHub token auth errors in Claude Code MCP config that persist even after refreshing tokens. Official response advises double-checking MCP server config against docs. Category mapping: Claude Code MCP/auth issues → AI Coding Tools per SKILL.md category rules."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "vercel-error-middleware-invocation-failed-500-internal-server-error-on-production-deployment",
+    "title": "Vercel 500 Internal Server Error with MIDDLEWARE_INVOCATION_FAILED on Production",
+    "description": "Fix 500 Internal Server Error caused by middleware invocation failures on Vercel production deployments Includes evidence for Vercel troubleshooting demand.",
+    "category": "Deployment",
+    "technology": "Vercel",
+    "error_signature": "Error: MIDDLEWARE_INVOCATION_FAILED - 500 INTERNAL_SERVER_ERROR on production deployment",
+    "search_intent": "Fix 500 Internal Server Error caused by middleware invocation failures on Vercel production deployments",
+    "common_causes": [
+      "Found in Vercel Community thread (Apr 8, 2026, very recent). Developer reports 500 error with MIDDLEWARE_INVOCATION_FAILED ID during production deployment. Also corroborated by Vercel official docs for FUNCTION_INVOCATION_TIMEOUT (Mar 2, 2026). Blocks paying teams' production releases. Category mapping: Vercel build/deployment errors → Deployment per SKILL.md category rules."
+    ],
+    "quick_fix": "Check the build output, project root, and deployment platform configuration before redeploying.",
+    "related_errors": [
+      "Deployment"
+    ]
+  },
+  {
+    "slug": "claude-code-bug-claude-code-web-cannot-use-gh-cli-commands-permission-denied",
+    "title": "Claude Code Web Cannot Use gh CLI Commands - Permission Denied",
+    "description": "Resolve 'Permission denied' errors when using GitHub CLI (gh) commands inside Claude Code consultant mode Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "[BUG] Claude Code Web Cannot Use gh CLI Commands - Permission Denied",
+    "search_intent": "Resolve 'Permission denied' errors when using GitHub CLI (gh) commands inside Claude Code consultant mode",
+    "common_causes": [
+      "Found in anthropics/claude-code GitHub issue #11139 (Nov 6, 2025). Strategic Claude (consultant mode) receives Permission denied errors when attempting to use gh CLI commands, while local Claude Code works fine. Same PAT authentication used. High commercial value as it blocks CI/team workflows with paid Claude Code Pro/Max subscriptions. Category mapping: Claude Code specific bug → Cursor class per SKILL.md approved categories (AI Coding Tools covers Cursor/Claude Code/Copilot)."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "litellm-bug-litellm-proxy-enters-infinite-loop-when-background-health-checks-is-set-to-true",
+    "title": "LiteLLM Background Health Check Infinite Loop on Model Verification",
+    "description": "Fix LiteLLM proxy entering infinite health check loop after setting background_health_checks: true, blocking model provisioning and API availability Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "[Bug]: LiteLLM proxy enters infinite loop when background_health_checks is set to true",
+    "search_intent": "Fix LiteLLM proxy entering infinite health check loop after setting background_health_checks: true, blocking model provisioning and API availability",
+    "common_causes": [
+      "Found in BerriAI/litellm GitHub issue #8248 (Feb 4, 2025). When background_health_checks=true is set in LiteLLM docker configuration, the proxy enters a continuous loop checking models, preventing normal operation. Critical for enterprise users running LiteLLM as their LLM gateway since a broken proxy means ALL downstream services lose access to LLM APIs. Commercial value is high due to proxy billing and cost tracking disruption. Category mapping: LiteLLM proxy/server errors → LiteLLM per exact SKILL.md mapping."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "LiteLLM"
+    ]
+  },
+  {
+    "slug": "docker-port-is-already-allocated-even-with-container-down-failed-to-bind-host-port",
+    "title": "Docker Compose Port Already Allocated Despite Container Being Down",
+    "description": "Resolve Docker Compose port allocation errors where ports remain bound after container stop/crash, blocking subsequent deployments Includes evidence for Docker troubleshooting demand.",
+    "category": "Docker",
+    "technology": "Docker",
+    "error_signature": "Port is already allocated even with container down - Failed to bind host port",
+    "search_intent": "Resolve Docker Compose port allocation errors where ports remain bound after container stop/crash, blocking subsequent deployments",
+    "common_causes": [
+      "Found in Docker Community Forums (Jan 16, 2026) and Synology Community (Jan 19, 2026). Multiple reports of ports remaining allocated despite container being stopped, preventing restart or new service deployment. Also corroborated by OneUptime blog post (Jan 25, 2026). This affects Docker Compose users on NAS, VPS, and production setups. Blocked deployment scenario creates urgency. NOT in covered-errors list which only covers generic bind:address already in use without the 'despite container down' context. Category mapping: Docker Compose port errors → Docker per exact SKILL.md mapping."
+    ],
+    "quick_fix": "Check the build output, project root, and deployment platform configuration before redeploying.",
+    "related_errors": [
+      "Docker"
+    ]
   }
 ]
