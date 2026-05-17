@@ -15869,5 +15869,101 @@
     "related_errors": [
       "Cloudflare"
     ]
+  },
+  {
+    "slug": "claude-code-anthropic-api-error-500-internal-server-error",
+    "title": "Anthropic API Error: 500 Internal Server Error in Claude Code",
+    "description": "Claude Code session fails due to Anthropic backend 500 errors; user needs workaround or fix to continue coding session Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Anthropic API Error: 500 Internal Server Error",
+    "search_intent": "Claude Code session fails due to Anthropic backend 500 errors; user needs workaround or fix to continue coding session",
+    "common_causes": [
+      "Found in official claude-code GitHub Issues (#59743) reported by a live user 2026-05-16 (2 comments). Directly impacts paid Claude Code subscription users experiencing complete service outage. Maps to AI Coding Tools as it is a Claude Code-specific failure scenario."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "anthropic-api-claude-opus-4-7-quota-changed-to-0-tpm-in-bedrock",
+    "title": "Claude Opus 4.7 Quota Suddenly Changed to 0 TPM on AWS Bedrock",
+    "description": "Enterprise users on AWS Bedrock experience sudden 0 TPM throttling for Claude Opus 4.7 model; need to restore throughput capacity Includes evidence for Anthropic API troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Anthropic API",
+    "error_signature": "Claude Opus 4.7 quota changed to 0 TPM in Bedrock",
+    "search_intent": "Enterprise users on AWS Bedrock experience sudden 0 TPM throttling for Claude Opus 4.7 model; need to restore throughput capacity",
+    "common_causes": [
+      "Discussed in Tell HN thread with 6 comments on 2026-05-01. Sudden 0 TPM change represents a severe production outage affecting paid enterprise customers. Strong billing/quota-related error with clear revenue impact."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "Anthropic API"
+    ]
+  },
+  {
+    "slug": "kubernetes-crashloopbackoff-back-off-restarting-failed-container",
+    "title": "Kubernetes CrashLoopBackOff Pod Restarting Continuously",
+    "description": "Kubernetes pod stuck in CrashLoopBackOff state; developer needs to diagnose exit codes, check logs, resource limits, or probe configurations to stabilize the deployment Includes evidence for Kubernetes troubleshooting demand.",
+    "category": "Cloud Platforms",
+    "technology": "Kubernetes",
+    "error_signature": "CrashLoopBackOff: Back-off restarting failed container",
+    "search_intent": "Kubernetes pod stuck in CrashLoopBackOff state; developer needs to diagnose exit codes, check logs, resource limits, or probe configurations to stabilize the deployment",
+    "common_causes": [
+      "Most common K8s production failure mode. P1 technology mapping to Cloud Platforms category. Enterprise IT ops professionals dealing with cluster management failures — strong commercial intent around SRE tools and managed K8s services."
+    ],
+    "quick_fix": "Check the build output, project root, and deployment platform configuration before redeploying.",
+    "related_errors": [
+      "Cloud Platforms"
+    ]
+  },
+  {
+    "slug": "cloudflare-error-524-a-timeout-occurred",
+    "title": "Cloudflare Error 524 A Timeout Occurred",
+    "description": "Cloudflare proxy returns 524 timeout when origin server takes too long to respond; developer needs to adjust origin timeout, optimize backend, or check CDN cache hit ratio Includes evidence for Cloudflare troubleshooting demand.",
+    "category": "Cloudflare",
+    "technology": "Cloudflare",
+    "error_signature": "Error 524: A timeout occurred",
+    "search_intent": "Cloudflare proxy returns 524 timeout when origin server takes too long to respond; developer needs to adjust origin timeout, optimize backend, or check CDN cache hit ratio",
+    "common_causes": [
+      "Distinct from covered 522/525 errors. 524 specifically means Cloudflare successfully connected to origin but received no response within 100 seconds. Different diagnosis and fix path. High traffic site impacting commercial sites hosted through Cloudflare."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Cloudflare"
+    ]
+  },
+  {
+    "slug": "vercel-function-invocation-timeout-function-invocation-exceeded-maximum-allowed-duration",
+    "title": "Vercel FUNCTION_INVOCATION_TIMEOUT Deployment Failure",
+    "description": "Serverless function on Vercel times out during execution; developer needs to increase timeout limit, optimize function code, or configure revalidation settings Includes evidence for Vercel troubleshooting demand.",
+    "category": "Deployment",
+    "technology": "Vercel",
+    "error_signature": "FUNCTION_INVOCATION_TIMEOUT: function invocation exceeded maximum allowed duration",
+    "search_intent": "Serverless function on Vercel times out during execution; developer needs to increase timeout limit, optimize function code, or configure revalidation settings",
+    "common_causes": [
+      "Known Vercel-specific error occurring frequently with long-running serverless functions, data aggregation, report generation. Well-documented on Vercel community forums and GitHub issues. Blocks production deployments."
+    ],
+    "quick_fix": "Check the build output, project root, and deployment platform configuration before redeploying.",
+    "related_errors": [
+      "Deployment"
+    ]
+  },
+  {
+    "slug": "langchain-rate-limit-exceeded-please-retry-after-x-seconds-langchain",
+    "title": "LangChain ChatModel Rate Limit Exceeded Error Handling",
+    "description": "LangChain application hitting LLM provider rate limits; developer needs to implement proper retry logic, exponential backoff, or request batching to prevent application crashes Includes evidence for LangChain troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "LangChain",
+    "error_signature": "Rate limit exceeded – please retry after X seconds (langchain)",
+    "search_intent": "LangChain application hitting LLM provider rate limits; developer needs to implement proper retry logic, exponential backoff, or request batching to prevent application crashes",
+    "common_causes": [
+      "Common LangChain integration pattern failing under production load. Users struggle with default non-retryable behavior causing cascading failures in agent chains. High demand because LangChain powers many paid AI automation products."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
   }
 ]
