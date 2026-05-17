@@ -17005,5 +17005,37 @@
     "related_errors": [
       "Deployment"
     ]
+  },
+  {
+    "slug": "claude-code-askuserquestion-fallback-on-tool-denial-removed-model-must-figure-out-why-tool-was-denied-on-its-own-silent-failures-in-autonomous-coding-sessions",
+    "title": "Claude Code Silent Tool Denial — AskUserQuestion Fallback Removed Breaking Agent Workflows",
+    "description": "Fix Claude Code tools silently failing after denied by permission model without explaining why or asking for clarification; resolve broken agent workflow due to prompt change Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "AskUserQuestion fallback on tool denial removed — model must figure out why tool was denied on its own; silent failures in autonomous coding sessions",
+    "search_intent": "Fix Claude Code tools silently failing after denied by permission model without explaining why or asking for clarification; resolve broken agent workflow due to prompt change",
+    "common_causes": [
+      "Source: Reddit r/ClaudeCode deep analysis of system prompt delta between CC ~2.1.70 (March 2026) and CC ~2.1.117 (April 2026). Key delta: '# System' section lost 'If you do not understand why the user has denied the tool call, use the AskUserQuestion to ask them'. Previously Claude triggered AskUserQuestion on tool denial; now it self-diagnoses, causing silent failures in CI-like autonomous sessions. 43 upvotes, 22 comments as of 25 days ago. Mapping: per approved mappings, Claude Code → AI Coding Tools."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "cloudflare-cloudflared-tunnel-docker-on-mac-returns-502-host-error-even-though-local-service-is-healthy-worked-yesterday-broke-after-reboot-quic-stream-timeout-failed-to-accept-quic-stream-timeout-no-recent-network-activity",
+    "title": "Cloudflared Tunnel Docker Mac Returns 502 Host Error After Reboot Despite Healthy Local Service",
+    "description": "Fix Cloudflare 502 Host error in cloudflared Docker tunnel setup on Apple Silicon Mac after reboot when local FastAPI/uvicorn service responds correctly via curl health checks pass Includes evidence for Cloudflare troubleshooting demand.",
+    "category": "Cloudflare",
+    "technology": "Cloudflare",
+    "error_signature": "Cloudflared tunnel (Docker on Mac) returns 502 \"Host error\" even though local service is healthy — worked yesterday, broke after reboot; QUIC stream timeout: failed to accept QUIC stream: timeout: no recent network activity",
+    "search_intent": "Fix Cloudflare 502 Host error in cloudflared Docker tunnel setup on Apple Silicon Mac after reboot when local FastAPI/uvicorn service responds correctly via curl health checks pass",
+    "common_causes": [
+      "Sources: Cross-posted on r/CloudFlare and r/devops with full reproduction details including docker-compose.yml, ingress config, cloudflared logs showing QUIC timeouts, and ERR Cannot determine default origin certificate path warning even for token-based Zero Trust tunnels. Includes verified workaround attempts (switching radscribe:7860 vs host.docker.internal:7860, restarts, DNS CNAME verification). Mapping: direct Cloudflare product error → Cloudflare category."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Cloudflare"
+    ]
   }
 ]
