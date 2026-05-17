@@ -17581,5 +17581,85 @@
     "related_errors": [
       "OpenAI API"
     ]
+  },
+  {
+    "slug": "claude-code-sse-connection-dropped-after-n-seconds-uptime-tool-x-still-running-30s-elapsed-oncancel-source-local-mcperror-mcp-error-32001-user-cancel",
+    "title": "Claude Code 2.1.143 silently hangs MCP tool calls after SSE drop — client logs the drop but does not fail or reconnect",
+    "description": "Fix Claude Code MCP tool call hanging indefinitely after server-side SSE stream drops due to network timeouts or container restarts Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "SSE connection dropped after N seconds uptime; Tool 'X' still running (30s elapsed) ... [onCancel] source=local; McpError: MCP error -32001: user-cancel",
+    "search_intent": "Fix Claude Code MCP tool call hanging indefinitely after server-side SSE stream drops due to network timeouts or container restarts",
+    "common_causes": [
+      "GitHub issue #60061 opened May 18 2026 by arbitermano with verbatim debug logs showing SSE drop detection but zero reconnect attempt. Affects any deployment using SSE-transport MCP servers behind reverse proxies. P0 priority — broken AI coding workflow blocking production sessions."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "claude-code-streamable-http-error-error-posting-to-endpoint-unauthorized-not-authorized-to-use-this-copilot-feature-code-403",
+    "title": "GitHub MCP returns 403 \"not authorized to use this Copilot feature\" on Claude Code web — OAuth fallback renders misleading Server Turned Down page",
+    "description": "Fix GitHub MCP authentication failure on Claude Code web caused by Copilot entitlement check failing, resulting in 403 and misleading OAuth redirect to Google Drive Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Streamable HTTP error: Error POSTing to endpoint: unauthorized: not authorized to use this Copilot feature (code: 403)",
+    "search_intent": "Fix GitHub MCP authentication failure on Claude Code web caused by Copilot entitlement check failing, resulting in 403 and misleading OAuth redirect to Google Drive",
+    "common_causes": [
+      "GitHub issue #59953 opened May 17 2026. Root cause identified as account/org Copilot feature entitlement, not transient outage. OAuth flow triggered as wrong recovery path produces misleading 'Server Turned Down → Google Drive' page. High commercial value — blocks GitHub integration in paid Claude Code web sessions. Category mapped to AI Coding Tools per SKILL.md rules."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "claude-code-mcp-mcp-config-servers-running-fully-async-nonblocking-but-no-connection-to-the-mcp-url-is-ever-attempted-no-error-is-logged-tools-never-appear",
+    "title": "HTTP MCP servers working in 2.1.140 and broken in 2.1.142 — no connection attempt logged on startup",
+    "description": "Fix HTTP transport MCP server registration regression in Claude Code v2.1.142 causing silent startup without any connection attempt Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "[MCP] --mcp-config servers running fully async (nonblocking) but no connection to the MCP URL is ever attempted. No error is logged. Tools never appear.",
+    "search_intent": "Fix HTTP transport MCP server registration regression in Claude Code v2.1.142 causing silent startup without any connection attempt",
+    "common_causes": [
+      "GitHub issue #59956 opened May 17 2026 confirmed regression from v2.1.140 (working) to v2.1.142 (broken). Affected platforms Windows + VS Code. Category mapped to AI Coding Tools per SKILL.md mapping rules. Strong commercial value as users cannot access external MCP tools."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "vercel-build-failed-command-vite-build-exited-with-127",
+    "title": "Vercel build failed — Command \"vite build\" exited with 127 missing command dependency",
+    "description": "Fix Vercel deployment failing because vite build command not found during CI build step on pushed changes Includes evidence for Vercel troubleshooting demand.",
+    "category": "Deployment",
+    "technology": "Vercel",
+    "error_signature": "Build Failed Command \"vite build\" exited with 127",
+    "search_intent": "Fix Vercel deployment failing because vite build command not found during CI build step on pushed changes",
+    "common_causes": [
+      "From GitHub community discussions search result #5158. Vercel build command exits with 127 (command not found) during deployment trigger. Blocks production deploys for teams relying on Vercel hosting. P0 technology with strong commercial impact for SaaS deployments."
+    ],
+    "quick_fix": "Check the build output, project root, and deployment platform configuration before redeploying.",
+    "related_errors": [
+      "Deployment"
+    ]
+  },
+  {
+    "slug": "claude-code-tool-permission-stream-closed-before-response-received",
+    "title": "Claude Code Cowork AskUserQuestion fails — Tool permission stream closed before response received in parallel batch",
+    "description": "Fix Claude Code parallel batch tool execution error where AskUserQuestion permission dialog fails because the permission stream closes before user receives response Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Tool permission stream closed before response received",
+    "search_intent": "Fix Claude Code parallel batch tool execution error where AskUserQuestion permission dialog fails because the permission stream closes before user receives response",
+    "common_causes": [
+      "GitHub issue #60042 opened May 18 2026 within minutes of discovery. Labeled area:cowork, area:permissions, has repro. Occurs specifically in parallel batch dispatch alongside other tool calls on Windows platform. Directly blocks collaborative AI coding workflows requiring user confirmation for tool execution."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
   }
 ]
