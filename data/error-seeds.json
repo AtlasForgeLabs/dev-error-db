@@ -16413,5 +16413,69 @@
     "related_errors": [
       "Anthropic API"
     ]
+  },
+  {
+    "slug": "openai-api-the-model-gpt-5-mini-2025-08-07-batch-does-not-exist-or-you-do-not-have-access-http-404-on-v1-chat-completions-batch-endpoint",
+    "title": "OpenAI Batch API returns 404 for GPT-5 mini/nano models",
+    "description": "Fix OpenAI Batch API 404 error when using GPT-5 mini or nano models with chat completions endpoint Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "The model gpt-5-mini-2025-08-07-batch does not exist or you do not have access (HTTP 404 on /v1/chat/completions batch endpoint)",
+    "search_intent": "Fix OpenAI Batch API 404 error when using GPT-5 mini or nano models with chat completions endpoint",
+    "common_causes": [
+      "Found in openai/openai-python repo issue #3071. Responses API works fine but chat completions batch endpoint returns 404. Affects paid batch API users. Category: OpenAI API."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "claude-code-http-error-431-mcp-server-authentication-failure-browser-restart",
+    "title": "Claude Code MCP server auth returns HTTP 431 error on Linux",
+    "description": "Fix Claude Code MCP server authentication returning HTTP 431 error on Linux platform Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "HTTP ERROR 431 — MCP server authentication failure (browser restart!)",
+    "search_intent": "Fix Claude Code MCP server authentication returning HTTP 431 error on Linux platform",
+    "common_causes": [
+      "Found in anthropics/claude-code repo issue #58951 (created 2026-05-14). OAuth flow broken with HTTP 431 header too large error. Version-specific regression in v2.1.141 on Linux x64. Category: AI Coding Tools."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "docker-failed-to-connect-to-the-docker-api-at-unix-run-user-1000-docker-sock-dial-unix-run-user-1000-docker-sock-connect-no-such-file-or-directory",
+    "title": "Docker rootless daemon not connecting after update to version 29.5.0",
+    "description": "Fix Docker rootless mode broken after upgrading to 29.5.0 — docker.sock missing Includes evidence for Docker troubleshooting demand.",
+    "category": "Docker",
+    "technology": "Docker",
+    "error_signature": "failed to connect to the docker API at unix:///run/user/1000/docker.sock: dial unix /run/user/1000/docker.sock: connect: no such file or directory",
+    "search_intent": "Fix Docker rootless mode broken after upgrading to 29.5.0 — docker.sock missing",
+    "common_causes": [
+      "Found in moby/moby repo issue #52641 (opened 2026-05-17). Regression in latest Docker release affecting rootless users. Directly blocks container operations (docker ps, docker compose up). Specific socket path error signature. Category: Docker."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Docker"
+    ]
+  },
+  {
+    "slug": "github-actions-syntaxerror-the-requested-module-minimatch-does-not-provide-an-export-named-minimatch-in-actions-glob-v0-7-0",
+    "title": "@actions/glob v0.7.0 breaks ESM actions — Minimatch not a named export in minimatch v10",
+    "description": "Fix ESM action crashes after @actions/glob v0.7.0 upgrade — broken import of Minimatch named export Includes evidence for GitHub Actions troubleshooting demand.",
+    "category": "GitHub Actions",
+    "technology": "GitHub Actions",
+    "error_signature": "SyntaxError: The requested module 'minimatch' does not provide an export named 'Minimatch' (in @actions/glob v0.7.0)",
+    "search_intent": "Fix ESM action crashes after @actions/glob v0.7.0 upgrade — broken import of Minimatch named export",
+    "common_causes": [
+      "Found in actions/toolkit issue #2408 (2026-05-15). Bumping minimatch from v3 to v10 broke named export compatibility. Any GitHub Action using @actions/glob in ESM context will crash at runtime. CI/CD impact for teams using pinned actions. Category: GitHub Actions."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "GitHub Actions"
+    ]
   }
 ]
