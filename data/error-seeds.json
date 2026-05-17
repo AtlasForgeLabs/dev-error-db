@@ -17037,5 +17037,117 @@
     "related_errors": [
       "Cloudflare"
     ]
+  },
+  {
+    "slug": "vercel-the-request-for-a-vercel-function-reached-the-timeout-threshold",
+    "title": "Vercel FUNCTION_INVOCATION_TIMEOUT — Request Timeout on Serverless Functions",
+    "description": "Fix Vercel serverless function timeout errors (FUNCTION_INVOCATION_TIMEOUT) causing deployment failures, looking for optimization strategies or configuration fixes Includes evidence for Vercel troubleshooting demand.",
+    "category": "Deployment",
+    "technology": "Vercel",
+    "error_signature": "The request for a Vercel Function reached the timeout threshold",
+    "search_intent": "Fix Vercel serverless function timeout errors (FUNCTION_INVOCATION_TIMEOUT) causing deployment failures, looking for optimization strategies or configuration fixes",
+    "common_causes": [
+      "DDG snippet confirms exact Vercel error message for FUNCTION_INVOCATION_TIMEOUT. Developer reports production timeouts affecting preview deployments. High commercial value as it impacts paid Vercel users deploying to production."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "Deployment"
+    ]
+  },
+  {
+    "slug": "openai-api-openai-api-key-invalid-401-unauthorized-authentication-error",
+    "title": "OpenAI API 401 Unauthorized — Authentication and Invalid API Key Errors",
+    "description": "Fix OpenAI API 401 errors caused by invalid/expired API keys, wrong organization ID, or environment variable not loaded correctly in production Python clients Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "OpenAI API key invalid / 401 Unauthorized authentication error",
+    "search_intent": "Fix OpenAI API 401 errors caused by invalid/expired API keys, wrong organization ID, or environment variable not loaded correctly in production Python clients",
+    "common_causes": [
+      "Multiple DDG results confirm persistent 401 invalid_api_key errors for OpenAI Python client v1.57+. Root causes include wrong key, revoked key, wrong org ID, env var loading failures. Verified fix exists but ongoing production issues reported."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "aws-invalidclienttokenid-the-security-token-included-in-the-request-is-invalid",
+    "title": "AWS Lambda InvalidClientTokenId — IAM Access Key Authentication Failure",
+    "description": "Fix AWS Lambda/CLI access key authentication errors (InvalidClientTokenId, ExpiredTokenException, SignatureDoesNotMatch) when using IAM credentials across AWS services Includes evidence for AWS troubleshooting demand.",
+    "category": "Cloud Platforms",
+    "technology": "AWS",
+    "error_signature": "InvalidClientTokenId: The security token included in the request is invalid",
+    "search_intent": "Fix AWS Lambda/CLI access key authentication errors (InvalidClientTokenId, ExpiredTokenException, SignatureDoesNotMatch) when using IAM credentials across AWS services",
+    "common_causes": [
+      "DDG confirms real AWS authentication error pages covering InvalidClientTokenId, ExpiredTokenException, and SignatureDoesNotMatch. AWS official documentation page exists with detailed troubleshooting. High commercial value as it blocks all AWS deployments and CI/CD pipelines."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "Cloud Platforms"
+    ]
+  },
+  {
+    "slug": "claude-code-claude-code-fails-connecting-to-mcp-server-that-does-not-have-dynamic-client-registration-implemented",
+    "title": "Claude Code MCP Server OAuth Auth Error: Dynamic Client Registration Not Implemented",
+    "description": "Fix Claude Code failing to connect to an MCP server due to missing Dynamic Client Registration (OAuth 2.0), seeking configuration or workaround to enable MCP auth Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Claude Code fails connecting to MCP server that does not have Dynamic Client Registration implemented",
+    "search_intent": "Fix Claude Code failing to connect to an MCP server due to missing Dynamic Client Registration (OAuth 2.0), seeking configuration or workaround to enable MCP auth",
+    "common_causes": [
+      "DDG snippet shows real Claude Code + MCP integration failure where the MCP server lacks OAuth Dynamic Client Registration support. Multiple related results confirm this is a known issue in 2026. Category maps to AI Coding Tools per SKILL.md rule for Claude Code errors."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "github-copilot-agent-mode-unavailable-and-timeout-errors-intermittent-authentication-errors-during-git-fetch-pull-merge-push-operations",
+    "title": "GitHub Copilot Agent Mode Unavailable — Authentication and Git Operation Failures",
+    "description": "Fix GitHub Copilot VS Code agent mode failing with authentication errors and git CLI operation timeouts across multiple repositories Includes evidence for GitHub Copilot troubleshooting demand.",
+    "category": "GitHub Copilot",
+    "technology": "GitHub Copilot",
+    "error_signature": "Agent mode unavailable and timeout errors; intermittent authentication errors during git fetch/pull/merge/push operations",
+    "search_intent": "Fix GitHub Copilot VS Code agent mode failing with authentication errors and git CLI operation timeouts across multiple repositories",
+    "common_causes": [
+      "DDG confirmed two distinct sub-errors under one topic: (1) 'Agent mode unavailable' requiring configuration fixes, (2) recurring auth failures during standard git ops via Copilot's git CLI integration. Both affect paid Copilot subscription users."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "GitHub Copilot"
+    ]
+  },
+  {
+    "slug": "gcp-getting-a-iam-permission-denied-for-running-the-application-with-service-account-which-has-roles-run-admin-role-set",
+    "title": "GCP Cloud Run Deployment Fails — IAM Permission Denied for Service Account",
+    "description": "Fix GCP Cloud Run Terraform deployment failing because the service account with run.admin role still gets IAM permission denied, needing additional roles or configuration Includes evidence for GCP troubleshooting demand.",
+    "category": "Cloud Platforms",
+    "technology": "GCP",
+    "error_signature": "getting a IAM permission denied for running the application with service account which has roles/run.admin role set",
+    "search_intent": "Fix GCP Cloud Run Terraform deployment failing because the service account with run.admin role still gets IAM permission denied, needing additional roles or configuration",
+    "common_causes": [
+      "DDG snippet shows real Terraform-based GCP Cloud Run deployment failure. Service account explicitly has roles/run.admin but deployment is blocked by IAM permission denied. Related results show default App Engine service account also has this issue. Affects paid GCP cloud deployments."
+    ],
+    "quick_fix": "Check the build output, project root, and deployment platform configuration before redeploying.",
+    "related_errors": [
+      "Cloud Platforms"
+    ]
+  },
+  {
+    "slug": "litellm-litellm-rate-limit-exceeded-when-key-belongs-to-team-resolution-order-key-metadata-key-model-max-budget-team-metadata",
+    "title": "LiteLLM Proxy Rate Limit Resolution Order Failure",
+    "description": "Understand why LiteLLM proxy applies unexpected rate limits when keys are in teams, and how to properly configure per-model rate limiting overrides Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "LiteLLM rate limit exceeded when key belongs to team; resolution order: Key metadata > Key model_max_budget > Team metadata",
+    "search_intent": "Understand why LiteLLM proxy applies unexpected rate limits when keys are in teams, and how to properly configure per-model rate limiting overrides",
+    "common_causes": [
+      "DDG snippet shows real LiteLLM proxy behavior where rate limits resolve through a specific hierarchy (key > team). Developers hit unexpected limits despite having sufficient budget at team level. Directly affects paid LiteLLM proxy users managing multi-team deployments."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "LiteLLM"
+    ]
   }
 ]
