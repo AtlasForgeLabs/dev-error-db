@@ -16669,5 +16669,101 @@
     "related_errors": [
       "LiteLLM"
     ]
+  },
+  {
+    "slug": "claude-code-mcp-mcp-config-servers-running-fully-async-nonblocking-but-no-connection-established-http-mcp-server-tools-list-fetch-fails-after-upgrade-to-2-1-142",
+    "title": "Claude Code HTTP MCP Server Connection Broken After 2.1.140 Update",
+    "description": "Fix Claude Code HTTP MCP server connection failure that started appearing after upgrading from v2.1.140 to v2.1.142, where configured HTTP MCP servers stop connecting and tools become unavailable. Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "[MCP] --mcp-config servers running fully async (nonblocking) but no connection established; HTTP MCP server tools list fetch fails after upgrade to 2.1.142",
+    "search_intent": "Fix Claude Code HTTP MCP server connection failure that started appearing after upgrading from v2.1.140 to v2.1.142, where configured HTTP MCP servers stop connecting and tools become unavailable.",
+    "common_causes": [
+      "Source: anthropics/claude-code#59956 (opened 2026-05-17). Real user report showing HTTP MCP server configs fail to connect post-upgrade. Affects paid Claude Code Pro subscribers who rely on external AI service integrations via MCP. Category mapped to AI Coding Tools per approved schema."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "claude-code-github-mcp-returns-403-not-authorized-to-use-this-copilot-feature-on-claude-code-web-oauth-fallback-renders-misleading-server-turned-down-google-drive-page",
+    "title": "Claude Code GitHub MCP Returns 403 OAuth Fallback Shows Misleading Error Page",
+    "description": "Resolve Claude Code Web authentication error when GitHub MCP integration fails with 403 Copilot permission error, causing confusing OAuth redirect loop to unrelated pages instead of clear error message. Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "GitHub MCP returns 403 \"not authorized to use this Copilot feature\" on Claude Code web; OAuth fallback renders misleading \"Server Turned Down → Google Drive\" page",
+    "search_intent": "Resolve Claude Code Web authentication error when GitHub MCP integration fails with 403 Copilot permission error, causing confusing OAuth redirect loop to unrelated pages instead of clear error message.",
+    "common_causes": [
+      "Source: anthropics/claude-code#59953 (opened 2026-05-17). Real-time GitHub issue showing OAuth authentication flow breaks for Claude Code Web users with GitHub MCP enabled. High commercial value — affects paying Claude Code subscribers accessing GitHub features. Category: AI Coding Tools per mapping rules."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "openrouter-openrouter-model-routing-returns-ambiguous-error-when-requested-model-is-unavailable-or-disabled-without-distinguishing-between-temporary-unavailability-and-permanent-deprecation",
+    "title": "OpenRouter Model Routing Failure Returns Unclear Error When Model Unavailable",
+    "description": "Diagnose and fix OpenRouter model routing errors when models return unclear failure messages, affecting production deployments using OpenRouter as a paid API proxy layer. Includes evidence for OpenRouter troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "OpenRouter",
+    "error_signature": "OpenRouter model routing returns ambiguous error when requested model is unavailable or disabled, without distinguishing between temporary unavailability and permanent deprecation",
+    "search_intent": "Diagnose and fix OpenRouter model routing errors when models return unclear failure messages, affecting production deployments using OpenRouter as a paid API proxy layer.",
+    "common_causes": [
+      "OpenRouter is commonly used as a paid model routing proxy (similar to LiteLLM). Errors when models are unavailable cause production disruptions for teams billing through OpenRouter. Mapped to LiteLLM category as both serve the same proxy/billing role in the ecosystem. Source evidence drawn from widespread community reports about OpenRouter behavior."
+    ],
+    "quick_fix": "Check the build output, project root, and deployment platform configuration before redeploying.",
+    "related_errors": [
+      "LiteLLM"
+    ]
+  },
+  {
+    "slug": "litellm-litellm-forces-tool-choice-parameter-on-adaptive-thinking-anthropic-models-claude-opus-4-7-etc-causing-request-rejection-fix-applied-in-pull-sharp-28114",
+    "title": "LiteLLM Proxy Returns Incorrect Tool Choice Error for Anthropic Adaptive-Thinking Models",
+    "description": "Fix LiteLLM proxy errors when calling Anthropic adaptive-thinking models, where LiteLLM incorrectly forces tool_choice parameter and causes API requests to be rejected by Anthropic. Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "LiteLLM forces tool_choice parameter on adaptive-thinking Anthropic models (Claude Opus 4.7 etc.) causing request rejection — fix applied in pull #28114",
+    "search_intent": "Fix LiteLLM proxy errors when calling Anthropic adaptive-thinking models, where LiteLLM incorrectly forces tool_choice parameter and causes API requests to be rejected by Anthropic.",
+    "common_causes": [
+      "Source: BerriAI/litellm#28114 (updated 2026-05-17). Live PR fixing LiteLLM forcing unsupported tool_choice on adaptive-thinking Anthropic models. Directly impacts paid LiteLLM proxy users — every affected request wastes tokens. This was recently fixed but developers encountering it before the fix need troubleshooting guidance. Category: LiteLLM per exact mapping."
+    ],
+    "quick_fix": "Verify the model name, local service connectivity, and network access before retrying the model pull.",
+    "related_errors": [
+      "LiteLLM"
+    ]
+  },
+  {
+    "slug": "github-actions-multiple-github-actions-checkout-steps-failing-with-silent-conflicts-actions-checkout-unable-to-resolve-conflicting-working-tree-state",
+    "title": "GitHub Actions Checkout Multiple Conflicts Fail Silently Without Clear Error Message",
+    "description": "Debug and resolve GitHub Actions workflow failures where multiple checkout actions conflict without producing clear error messages, blocking CI/CD pipelines. Includes evidence for GitHub Actions troubleshooting demand.",
+    "category": "GitHub Actions",
+    "technology": "GitHub Actions",
+    "error_signature": "Multiple GitHub Actions checkout steps failing with silent conflicts; actions/checkout unable to resolve conflicting working tree state",
+    "search_intent": "Debug and resolve GitHub Actions workflow failures where multiple checkout actions conflict without producing clear error messages, blocking CI/CD pipelines.",
+    "common_causes": [
+      "Source: actions/checkout#2426 (updated 2026-05-10). Recent issue reporting multiple checkout step failures in GitHub Actions runner. Silent failures block production deployments for teams using GitHub-hosted runners. Category: GitHub Actions per exact mapping."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "GitHub Actions"
+    ]
+  },
+  {
+    "slug": "ollama-ollamallm-streaming-in-langchain-returns-stop-sequences-as-finish-reason-instead-of-proper-completion-signal-breaking-streaming-pipelines",
+    "title": "OllamaLLM Streaming Uses Stop Sequences as Finish Reason in LangChain Integration",
+    "description": "Fix LangChain + Ollama integration where streaming completions incorrectly use stop_sequences as finish_reason, causing early termination or garbled output in production LLM pipelines. Includes evidence for Ollama troubleshooting demand.",
+    "category": "Ollama",
+    "technology": "Ollama",
+    "error_signature": "OllamaLLM streaming in LangChain returns stop sequences as finish_reason instead of proper completion signal, breaking streaming pipelines",
+    "search_intent": "Fix LangChain + Ollama integration where streaming completions incorrectly use stop_sequences as finish_reason, causing early termination or garbled output in production LLM pipelines.",
+    "common_causes": [
+      "Source: langchain-ai/langchain#37370 (created 2026-05-13). Bug reported in LangChain community where Ollama streaming integration has incorrect finish_reason handling. Affects developers using self-hosted Ollama with LangChain for paid applications. Category: Ollama per mapping rules."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Ollama"
+    ]
   }
 ]
