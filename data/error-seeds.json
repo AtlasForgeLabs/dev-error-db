@@ -16573,5 +16573,101 @@
     "related_errors": [
       "AI Coding Tools"
     ]
+  },
+  {
+    "slug": "claude-code-navigation-to-this-domain-is-not-allowed-permission-denied-for-reading-pages-on-this-domain",
+    "title": "Claude in Chrome MCP tools fail silently — Permission denied on ALL domains",
+    "description": "Fix Claude Code Chrome MCP tools failing on all domains when navigating or reading pages Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "\"Navigation to this domain is not allowed\" / \"Permission denied for reading pages on this domain\"",
+    "search_intent": "Fix Claude Code Chrome MCP tools failing on all domains when navigating or reading pages",
+    "common_causes": [
+      "Multiple GitHub issues report Claude in Chrome MCP tools returning \"Navigation to this domain is not allowed\" and \"Permission denied for reading pages on this domain\" for ALL domains (docs.google.com, github.com, wikipedia.org, example.com). Issue #49979 and #43255 show tab creation works but navigation/read_page/click tools fail. v1.0.69 also reports permission_required returned for all MCP navigations with approval popup never rendering (#53630). Strong match for Claude Code Chrome MCP authorization flow bug."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "claude-code-tools-spuriously-rejected-as-user-denied-without-permission-prompt",
+    "title": "Claude Code macOS Pencil MCP tools spuriously rejected as 'user denied' without permission prompt",
+    "description": "Fix MCP tools in Claude Code returning user denied error even when permissions.allow contains correct server entry, no permission prompt appears Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "tools spuriously rejected as 'user denied' without permission prompt",
+    "search_intent": "Fix MCP tools in Claude Code returning user denied error even when permissions.allow contains correct server entry, no permission prompt appears",
+    "common_causes": [
+      "Issue #53314 filed 3 weeks ago shows mcp__pencil__get_editor_state returns literal 'user denied' response despite settings.json having permissions.allow with 'mcp__pencil' entry and no deny entry. Affects macOS specifically with v2.1.120. Very specific signature with clear reproduction steps."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "vercel-no-more-than-12-serverless-functions-can-be-added-to-a-deployment",
+    "title": "Vercel build failed: too many Serverless Functions added to Deployment",
+    "description": "Fix Vercel deployment build failure caused by exceeding the limit of 12 Serverless Functions per deployment Includes evidence for Vercel troubleshooting demand.",
+    "category": "Deployment",
+    "technology": "Vercel",
+    "error_signature": "No more than 12 Serverless Functions can be added to a Deployment",
+    "search_intent": "Fix Vercel deployment build failure caused by exceeding the limit of 12 Serverless Functions per deployment",
+    "common_causes": [
+      "Issue #12401 in lobehub/lobehub reports Vercel build failing with error limiting Serverless Functions to 12 per deployment. Filed Feb 2026, recently active. Affects large AI chatbot apps deploying to Vercel. Commercially valuable as many teams hit this hard cap."
+    ],
+    "quick_fix": "Check the build output, project root, and deployment platform configuration before redeploying.",
+    "related_errors": [
+      "Deployment"
+    ]
+  },
+  {
+    "slug": "claude-code-worktree-removal-fails-with-permission-denied-due-to-mcp-shutdown-ordering",
+    "title": "Windows Claude Code worktree removal fails with Permission denied due to MCP shutdown ordering",
+    "description": "Fix Claude Code on Windows where git worktree remove fails with Permission denied because MCP servers aren't shut down before worktree operations Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "worktree removal fails with Permission denied due to MCP shutdown ordering",
+    "search_intent": "Fix Claude Code on Windows where git worktree remove fails with Permission denied because MCP servers aren't shut down before worktree operations",
+    "common_causes": [
+      "Issue #32747 reports internal shutdown ordering bug where MCP servers should be shut down before attempting git worktree remove. Reproduced with default worktree behavior (no custom WorktreeCreate/WorktreeRemove hooks). Specific to Windows platform. No duplicate found in covered-errors list."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "vercel-build-exited-with-code-1-oom-during-vite-vanilla-extract-build-bundle",
+    "title": "Vercel deployment build failed (out of memory)",
+    "description": "Fix Vercel deployment build failure due to out of memory during build step Includes evidence for Vercel troubleshooting demand.",
+    "category": "Deployment",
+    "technology": "Vercel",
+    "error_signature": "build exited with code 1 (OOM during Vite/vanilla-extract build bundle)",
+    "search_intent": "Fix Vercel deployment build failure due to out of memory during build step",
+    "common_causes": [
+      "Issue #9780 in lobehub/lobe-chat reports Vercel deployment building until exit code 1 from OOM. Large project using vanilla-extract CSS-in-JS causes massive webpack cache serialization strings (128kiB+). Relevant for any large SPA deployed to Vercel hitting memory limits during production builds."
+    ],
+    "quick_fix": "Check the build output, project root, and deployment platform configuration before redeploying.",
+    "related_errors": [
+      "Deployment"
+    ]
+  },
+  {
+    "slug": "litellm-no-fair-queuing-traffic-burst-from-one-client-starves-other-clients-requests",
+    "title": "LiteLLM IP Usage-Based Dynamic Priority Queuing (Fair Queuing)",
+    "description": "Implement fair queuing in LiteLLM proxy to prevent single client from monopolizing model capacity and causing starvation for other tenants Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "No fair queuing — traffic burst from one client starves other clients' requests",
+    "search_intent": "Implement fair queuing in LiteLLM proxy to prevent single client from monopolizing model capacity and causing starvation for other tenants",
+    "common_causes": [
+      "Feature request #18128 in BerriAI/litellm proposes IP-based dynamic priority queuing (fair queuing) for LiteLLM proxy. Without this, a single IP/client can flood the proxy and cause request starvation for other tenants. Strong commercial value for multi-tenant LLM proxy deployments."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "LiteLLM"
+    ]
   }
 ]
