@@ -16045,5 +16045,69 @@
     "related_errors": [
       "LiteLLM"
     ]
+  },
+  {
+    "slug": "claude-code-error-claude-code-process-exited-with-code-1-sdk-execution-error-14-depscount",
+    "title": "Claude Code SDK Crashes on Initialization with Exit Code 1 (GitHub Actions)",
+    "description": "Fix Claude Code SDK crashing immediately on startup during GitHub Actions CI, no API calls made Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "error: Claude Code process exited with code 1; SDK execution error: 14 | depsCount",
+    "search_intent": "Fix Claude Code SDK crashing immediately on startup during GitHub Actions CI, no API calls made",
+    "common_causes": [
+      "Official anthropics/anthropic-sdk-typescript repo issue #909. Bug report shows @anthropic-ai/claude-agent-sdk@0.2.42 crashes during JSON schema validation in GitHub Actions (Ubuntu 24.04), 80% reproduction rate (5/6 failures). Different Azure regions produce identical error. High commercial value: affects paid Claude Code users in production CI pipelines."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "openai-python-sdk-accumulate-delta-drops-tool-call-fragments-when-one-chunk-has-multiple-entries-at-the-same-index",
+    "title": "OpenAI Python SDK Streaming Tool Call Fragmentation Drops Arguments",
+    "description": "Fix streaming tool calls having incomplete function arguments when speculative decoding produces multiple tool_calls entries per chunk Includes evidence for OpenAI Python SDK troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI Python SDK",
+    "error_signature": "accumulate_delta drops tool_call fragments when one chunk has multiple entries at the same index",
+    "search_intent": "Fix streaming tool calls having incomplete function arguments when speculative decoding produces multiple tool_calls entries per chunk",
+    "common_causes": [
+      "OpenAI official openai-python SDK issue #3203. Bug occurs with vLLM speculative decoding: streaming chunks contain two tool_calls with same index, accumulate_delta stores as separate elements instead of merging. Reconstructed arguments become unparsable. High commercial value: paid users building with real-time streaming face broken tool invocations. Distinct from covered 'model not found' / 'rate limit' errors."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "vercel-next-js-cached-internal-streamed-fetches-cause-unbounded-arraybuffers-growth-and-oom",
+    "title": "Next.js Standalone Mode Cache Components Memory Leak Causes OOM",
+    "description": "Fix Next.js 16.2.2 standalone deployment running out of memory due to cached streamed fetches leaking arrayBuffers under load Includes evidence for Vercel / Next.js troubleshooting demand.",
+    "category": "Deployment",
+    "technology": "Vercel / Next.js",
+    "error_signature": "cached internal streamed fetches cause unbounded arrayBuffers growth and OOM",
+    "search_intent": "Fix Next.js 16.2.2 standalone deployment running out of memory due to cached streamed fetches leaking arrayBuffers under load",
+    "common_causes": [
+      "Vercel's vercel/next.js repo issue #92287. Confirmed reproducible with standalone mode + Cache Components: internal streamed fetches create unbounded arrayBuffer growth leading to OOM kills. Repro requires 64 concurrent connections over 3 minutes. High commercial value: affects teams deploying Next.js on Vercel with real-world traffic patterns. Production blocking issue."
+    ],
+    "quick_fix": "Check the build output, project root, and deployment platform configuration before redeploying.",
+    "related_errors": [
+      "Deployment"
+    ]
+  },
+  {
+    "slug": "cloudflare-workers-wrangler-next-js-integration-does-not-recognize-proxy-ts-still-depends-on-old-middleware-ts-convention",
+    "title": "Cloudflare Wrangler Does Not Support Next.js 16 proxy.ts Convention",
+    "description": "Fix Cloudflare Wrangler failing to bundle Next.js 16 apps that use proxy.ts instead of deprecated middleware.ts Includes evidence for Cloudflare Workers troubleshooting demand.",
+    "category": "Cloudflare",
+    "technology": "Cloudflare Workers",
+    "error_signature": "wrangler Next.js integration does not recognize proxy.ts; still depends on old middleware.ts convention",
+    "search_intent": "Fix Cloudflare Wrangler failing to bundle Next.js 16 apps that use proxy.ts instead of deprecated middleware.ts",
+    "common_causes": [
+      "Official cloudflare/workers-sdk issue #13937. Next.js 16 renamed middleware.ts to proxy.ts and exported function from middleware() to proxy(). Wrangler 4.90.1 does not recognize new convention, causing proxy handling failures. Highly relevant for teams migrating to Next.js 16 on Cloudflare Pages. Strong commercial value: deployment-blocking for paid Cloudflare plans."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Cloudflare"
+    ]
   }
 ]
