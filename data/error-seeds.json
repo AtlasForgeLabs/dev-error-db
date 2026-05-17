@@ -16477,5 +16477,101 @@
     "related_errors": [
       "GitHub Actions"
     ]
+  },
+  {
+    "slug": "claude-code-login-shows-login-successful-but-immediately-reverts-to-not-logged-in-any-subsequent-command-fails-with-not-logged-in",
+    "title": "Claude Code /login Shows Success But Reverts to Not Logged In — Auth Persistence Bug",
+    "description": "User ran /login in Claude Code on Windows, sees success message but tool remains unauthenticated and rejects all commands afterward Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "/login shows \"Login successful\" but immediately reverts to \"Not logged in\". Any subsequent command fails with \"Not logged in\".",
+    "search_intent": "User ran /login in Claude Code on Windows, sees success message but tool remains unauthenticated and rejects all commands afterward",
+    "common_causes": [
+      "Found on anthropics/claude-code#44585 (open, 2026-05-17, 5 comments, labels: bug, has repro, platform:windows, area:auth). Clear auth persistence bug on paid AI coding tool — users pay monthly but can't authenticate. Maps to approved category AI Coding Tools (Claude Code specific)."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "litellm-get-v1-models-ignores-user-models-restriction-shows-all-proxy-models-regardless-of-user-access-groups",
+    "title": "LiteLLM Proxy GET /v1/models Ignores user.models Restriction — Unauthorized Model List Exposure",
+    "description": "Developer using LiteLLM proxy finds that restricted users can see full model list via GET /v1/models endpoint despite access group restrictions, creating a security/authorization inconsistency Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "GET /v1/models ignores user.models restriction — shows all proxy models regardless of user access groups",
+    "search_intent": "Developer using LiteLLM proxy finds that restricted users can see full model list via GET /v1/models endpoint despite access group restrictions, creating a security/authorization inconsistency",
+    "common_causes": [
+      "Found on BerriAI/litellm#26420 (open, 2026-05-17, 1 comment). Multi-tenant LiteLLM proxy bug where key.models is enforced but user.models is silently ignored. Affects billing/authorization — users can enumerate restricted models. Direct LiteLLM proxy issue, maps to approved category LiteLLM."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "LiteLLM"
+    ]
+  },
+  {
+    "slug": "openai-api-background-responses-failures-lack-a-stable-code-name-that-maps-to-an-exception-class-http-poll-returns-200-ok-with-status-failed-but-no-typed-exception-is-raised",
+    "title": "OpenAI Python SDK Background Mode Returns No Typed Exception When Response Fails",
+    "description": "Developer using client.responses.create(background=True) cannot handle failure cases programmatically because the SDK returns 200 with failed payload instead of raising a typed exception Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "Background responses failures lack a stable code/name that maps to an exception class — HTTP poll returns 200 OK with status=failed but no typed exception is raised",
+    "search_intent": "Developer using client.responses.create(background=True) cannot handle failure cases programmatically because the SDK returns 200 with failed payload instead of raising a typed exception",
+    "common_causes": [
+      "Found on openai/openai-python#3212 (open, 2026-05-08, 3 comments). SDK-level bug in OpenAI Responses API — background polling always returns 200 even on failure, so no exception type maps to it. Blocks production error handling on paid API. Maps to approved category OpenAI API."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "anthropic-api-mid-stream-httpx-transporterror-leaks-through-as-bare-httpx-exceptions-because-sse-body-iteration-has-no-try-except-customers-standard-retry-ladder-misses-mid-stream-drops",
+    "title": "Anthropic SDK Mid-Stream Transport Error Leaks as Bare httpx.Exception Instead of APIConnectionError",
+    "description": "Developer using Anthropic streaming API loses connection mid-stream (TransportError) and can't catch it with standard except anthropic.APIConnectionError blocks — must know to also catch httpx.TransportError Includes evidence for Anthropic API troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Anthropic API",
+    "error_signature": "Mid-stream httpx.TransportError leaks through as bare httpx exceptions because SSE body iteration has no try/except — customers standard retry ladder misses mid-stream drops",
+    "search_intent": "Developer using Anthropic streaming API loses connection mid-stream (TransportError) and can't catch it with standard except anthropic.APIConnectionError blocks — must know to also catch httpx.TransportError",
+    "common_causes": [
+      "Found on anthropics/anthropic-sdk-python/pull/1552 (open PR, 2026-05-16, fix proposed). Streaming SSE errors during body iteration cause crashes outside SDK error wrapping. Developers lose streamed content without catching unexpected exception types. Critical for paid API users building production apps. Maps to Anthropic API (approved category)."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Anthropic API"
+    ]
+  },
+  {
+    "slug": "docker-failed-to-connect-to-the-docker-api-at-unix-run-user-1000-docker-sock-check-if-the-path-is-correct-and-if-the-daemon-is-running-dial-unix-run-user-1000-docker-sock-connect-no-such-file-or-directory",
+    "title": "Docker 29.5.0 Rootless Daemon Socket Disappears — Cannot Connect to Docker API",
+    "description": "User upgraded to Docker 29.5.0 and rootless mode stopped working — docker socket file disappears, can't run any docker commands Includes evidence for Docker troubleshooting demand.",
+    "category": "Docker",
+    "technology": "Docker",
+    "error_signature": "failed to connect to the docker API at unix:///run/user/1000/docker.sock; check if the path is correct and if the daemon is running: dial unix /run/user/1000/docker.sock: connect: no such file or directory",
+    "search_intent": "User upgraded to Docker 29.5.0 and rootless mode stopped working — docker socket file disappears, can't run any docker commands",
+    "common_causes": [
+      "Found on moby/moby#52641 (open, 2026-05-17, 0 comments, kind/bug). Very recent regression in Docker Engine Community 29.5.0. Rootless Docker is widely used by developers. High urgency because docker ps / docker compose up both fail. Category: Docker (approved)."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Docker"
+    ]
+  },
+  {
+    "slug": "langchain-langchain-openai-with-structured-output-silently-drops-previously-bound-tools-and-lacks-support-for-openai-native-tool-bindings",
+    "title": "LangChain with_structured_output() Silently Drops Previously Bound Tools",
+    "description": "Developer calls langgraph.with_structured_output() expecting it to preserve pre-bound tools, but they are silently dropped — functional regression breaking LLM function calling workflows Includes evidence for LangChain troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "LangChain",
+    "error_signature": "[langchain-openai] with_structured_output() silently drops previously bound tools and lacks support for OpenAI native tool bindings",
+    "search_intent": "Developer calls langgraph.with_structured_output() expecting it to preserve pre-bound tools, but they are silently dropped — functional regression breaking LLM function calling workflows",
+    "common_causes": [
+      "Found on langchain-ai/langchain#35320 (open, 2026-05-16, 14 comments, labels: bug, openai, external). Significant regression: structured output wrapper discards prior tool bindings, breaking complex agent chains. Maps to AI Coding Tools per SKILL.md LangChain mapping. High comment count indicates active developer pain."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
   }
 ]
