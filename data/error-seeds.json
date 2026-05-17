@@ -17437,5 +17437,149 @@
     "related_errors": [
       "Deployment"
     ]
+  },
+  {
+    "slug": "claude-code-org-create-api-key-scope-silently-dropped-from-oauth-grant-remote-control-permanently-broken-on-max-subscription",
+    "title": "[BUG] org:create_api_key scope silently dropped from OAuth grant — Remote Control permanently broken on Max subscription",
+    "description": "Fix silent OAuth scope drop causing Remote Control feature to break permanently for paid Max subscribers, preventing API key generation Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "org:create_api_key scope silently dropped from OAuth grant — Remote Control permanently broken on Max subscription",
+    "search_intent": "Fix silent OAuth scope drop causing Remote Control feature to break permanently for paid Max subscribers, preventing API key generation",
+    "common_causes": [
+      "GitHub issue #59700 on anthropics/claude-code, opened May 16 2026. Labels: area:auth, bug, has repro, platform:linux. Critical for paying enterprise users. Direct source: https://github.com/anthropics/claude-code/issues/59700."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "claude-code-oauth-stores-empty-accesstoken-after-completing-flow-complete-authentication-also-broken",
+    "title": "Slack MCP OAuth stores empty accessToken after completing flow; complete_authentication also broken",
+    "description": "Fix Slack MCP OAuth integration in Claude Code where accessToken is stored as empty string despite successful OAuth completion, blocking authenticated Slack usage Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "OAuth stores empty accessToken after completing flow; complete_authentication also broken",
+    "search_intent": "Fix Slack MCP OAuth integration in Claude Code where accessToken is stored as empty string despite successful OAuth completion, blocking authenticated Slack usage",
+    "common_causes": [
+      "GitHub issue #59725 on anthropics/claude-code, opened May 16 2026. area:auth + area:mcp labels. Verified real source: https://github.com/anthropics/claude-code/issues/59725. Category mapped via strict rules: Claude Code → AI Coding Tools."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "claude-code-claude-desktop-cowork-freezes-at-authenticating-localagentmodesessions-oauth-exchange-never-completes",
+    "title": "[BUG] Claude Desktop Cowork freezes at 'Authenticating' — LocalAgentModeSessions OAuth exchange never completes",
+    "description": "Fix perpetual freezing during Cowork OAuth authentication flow in Claude Desktop app, blocking collaborative coding sessions Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Claude Desktop Cowork freezes at \"Authenticating\" — LocalAgentModeSessions OAuth exchange never completes",
+    "search_intent": "Fix perpetual freezing during Cowork OAuth authentication flow in Claude Desktop app, blocking collaborative coding sessions",
+    "common_causes": [
+      "GitHub issue #59831 on anthropics/claude-code, opened May 17 2026. Labels: area:auth, area:cowork, duplicate, platform:macos. Real error signature with clear description of OAuth dead loop. Source: https://github.com/anthropics/claude-code/issues/59831."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "openai-api-exceeded-retry-limit-last-status-429-too-many-requests-request-id-9f9fe320aa92b10b-fra",
+    "title": "Codex exceeded retry limit, last status: 429 Too Many Requests",
+    "description": "Fix 429 rate limit error handling in OpenAI Codex app when hitting response endpoint DDoS-rate limits, distinguishing between usage quotas and request frequency caps Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "exceeded retry limit, last status: 429 Too Many Requests, request id: 9f9fe320aa92b10b-FRA",
+    "search_intent": "Fix 429 rate limit error handling in OpenAI Codex app when hitting response endpoint DDoS-rate limits, distinguishing between usage quotas and request frequency caps",
+    "common_causes": [
+      "GitHub issue #22122 on openai/codex, opened ~6 days ago. Clear 429 error with request ID. Users confused between rate limit vs usage limit errors. Source: https://github.com/openai/codex/issues/22122."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "claude-code-chrome-crashes-on-any-page-interacting-mcp-op-navigate-get-page-text-against-a-sharepoint-online-tenant",
+    "title": "Chrome crashes on any page-interacting MCP op against a SharePoint Online tenant",
+    "description": "Fix Chrome crash in Claude Code MCP operations when interacting with SharePoint Online, affecting enterprise Microsoft 365 deployments Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Chrome crashes on any page-interacting MCP op (navigate / get_page_text) against a SharePoint Online tenant",
+    "search_intent": "Fix Chrome crash in Claude Code MCP operations when interacting with SharePoint Online, affecting enterprise Microsoft 365 deployments",
+    "common_causes": [
+      "GitHub issue #59988 on anthropics/claude-code, opened May 17 2026. Labels: area:chrome, area:mcp, bug, has repro. Enterprise SharePoint use case adds strong commercial value. Source: https://github.com/anthropics/claude-code/issues/59988."
+    ],
+    "quick_fix": "Check the build output, project root, and deployment platform configuration before redeploying.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "litellm-llm-retry-policy-too-aggressive-for-provider-rate-limit-429-windows-gemini-quota-windows-exceed-max-backoff",
+    "title": "LLM retry policy too aggressive for provider rate-limit (429) windows — Gemini quota windows exceed max backoff",
+    "description": "Fix overly aggressive retry policy in LLM middleware that causes repeated 429 errors when exceeding provider rate limits, because max backoff duration is shorter than provider's rate limit window Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "LLM retry policy too aggressive for provider rate-limit (429) windows — Gemini quota windows exceed max backoff",
+    "search_intent": "Fix overly aggressive retry policy in LLM middleware that causes repeated 429 errors when exceeding provider rate limits, because max backoff duration is shorter than provider's rate limit window",
+    "common_causes": [
+      "GitHub issue #1664 on harbor-framework/harbor, opened yesterday. Proposes split retry layer catching litellm.RateLimitError only. Production AI infrastructure scenario. Source: https://github.com/harbor-framework/harbor/issues/1664."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "LiteLLM"
+    ]
+  },
+  {
+    "slug": "openai-api-background-responses-failures-lack-a-stable-code-name-that-maps-to-an-exception-class",
+    "title": "Background responses failures lack a stable code/name that maps to an exception class",
+    "description": "Fix inconsistent error mapping for background response failures in OpenAI Python SDK, preventing proper exception handling and retry logic Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "Background responses failures lack a stable code/name that maps to an exception class",
+    "search_intent": "Fix inconsistent error mapping for background response failures in OpenAI Python SDK, preventing proper exception handling and retry logic",
+    "common_causes": [
+      "GitHub issue #3212 on openai/openai-python, opened May 8 2026. 3 comments indicate active discussion. Affects all users doing async/background calls to OpenAI API. Source: https://github.com/openai/openai-python/issues/3212."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "openai-api-codex-app-consumes-rate-limit-on-startup-without-any-user-action",
+    "title": "Codex App consumes rate limit on startup without any user action",
+    "description": "Investigate and fix Codex App pre-emptively consuming rate limits before user submits prompts, unfairly blocking subsequent legitimate requests Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "Codex App consumes rate limit on startup without any user action",
+    "search_intent": "Investigate and fix Codex App pre-emptively consuming rate limits before user submits prompts, unfairly blocking subsequent legitimate requests",
+    "common_causes": [
+      "GitHub issue #22073 on openai/codex, opened ~6 days ago. Bug labeled, high relevance for Plus/Pro subscribers. Directly impacts paid tier experience. Source: https://github.com/openai/codex/issues/22073."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "openai-api-hooks-stop-firing-after-rate-limit-stops-or-live-hooks-json-edits",
+    "title": "Hooks stop firing after rate-limit stops or live hooks.json edits",
+    "description": "Fix Claude Code hooks system breaking when rate limits are hit mid-session or when hooks.json is edited dynamically, stopping all further hook processing until restart Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "Hooks stop firing after rate-limit stops or live hooks.json edits",
+    "search_intent": "Fix Claude Code hooks system breaking when rate limits are hit mid-session or when hooks.json is edited dynamically, stopping all further hook processing until restart",
+    "common_causes": [
+      "GitHub issue #21160 on openai/codex, opened ~12 days ago. 1 comment, clearly marked bug. Affects developers using custom hook scripts with rate-limited API usage. Source: https://github.com/openai/codex/issues/21160."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "OpenAI API"
+    ]
   }
 ]
