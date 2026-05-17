@@ -16365,5 +16365,53 @@
     "related_errors": [
       "Cursor"
     ]
+  },
+  {
+    "slug": "openai-api-status-failed-error-code-server-error-with-http-200-ok-no-mapped-sdk-exception-raised",
+    "title": "Background responses failures lack a stable error code mapping — no typed exception for retry logic",
+    "description": "Fix OpenAI Python SDK failing to surface a typed exception for failed background Runs, preventing correct retry/backoff handling Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "status='failed', error.code='server_error' with HTTP 200 OK — no mapped SDK exception raised",
+    "search_intent": "Fix OpenAI Python SDK failing to surface a typed exception for failed background Runs, preventing correct retry/backoff handling",
+    "common_causes": [
+      "Found in openai/openai-python#3212 (open, created 2026-05-08). The Responses API in background=True mode returns HTTP 200 even on failure, with only opaque error.code strings that don't map to any SDK exception class. This breaks production retry/backoff logic."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "anthropic-api-400-invalid-request-error-the-compiled-grammar-is-too-large-which-would-cause-performance-issues",
+    "title": "Anthropic structured outputs 'compiled grammar is too large' blocks complex JSON schema use cases",
+    "description": "Fix or work around Anthropic API rejecting valid but complex JSON schemas for structured outputs Includes evidence for Anthropic API troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Anthropic API",
+    "error_signature": "400 invalid_request_error: \"The compiled grammar is too large, which would cause performance issues\"",
+    "search_intent": "Fix or work around Anthropic API rejecting valid but complex JSON schemas for structured outputs",
+    "common_causes": [
+      "Found in anthropics/anthropic-sdk-python#1185. Users building code generation services get 400 errors with moderately nested schemas (5 levels deep). Blocks adoption of structured outputs for production workflows."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Anthropic API"
+    ]
+  },
+  {
+    "slug": "anthropic-api-sse-stream-produces-server-side-errors-but-http-status-code-stays-200-errors-invisible-to-caller",
+    "title": "Mid-stream SSE errors return status_code=200 instead of actual error code in Anthropic SDK",
+    "description": "Fix AWS Bedrock SSE error events being swallowed with 200 status, making errors undetectable Includes evidence for Anthropic API troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Anthropic API",
+    "error_signature": "SSE stream produces server-side errors but HTTP status_code stays 200 — errors invisible to caller",
+    "search_intent": "Fix AWS Bedrock SSE error events being swallowed with 200 status, making errors undetectable",
+    "common_causes": [
+      "Found via GitHub issue search for anthropics/anthropic-sdk-python mid-stream SSE errors. Non-200 SSE error events should be converted to APIStatusError but currently pass through silently."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Anthropic API"
+    ]
   }
 ]
