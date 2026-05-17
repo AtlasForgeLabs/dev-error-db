@@ -17661,5 +17661,117 @@
     "related_errors": [
       "AI Coding Tools"
     ]
+  },
+  {
+    "slug": "claude-code-claude-code-mcp-oauth-dynamic-client-registration-failed-cannot-connect-to-github-remote-mcp-server",
+    "title": "Claude Code Cannot Connect to GitHub Remote MCP Server via OAuth",
+    "description": "Fix Claude Code's inability to authenticate to GitHub's remote MCP server using OAuth; need working auth flow or PAT workaround. Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Claude Code MCP OAuth dynamic client registration failed; cannot connect to GitHub remote MCP server",
+    "search_intent": "Fix Claude Code's inability to authenticate to GitHub's remote MCP server using OAuth; need working auth flow or PAT workaround.",
+    "common_causes": [
+      "Source: https://github.com/anthropics/claude-code/issues/3433. Developers report that GitHub remote MCP doesn't support Dynamic Client Registration, causing OAuth auth failure. Workaround uses PAT or custom GitHub OAuth app. P0 priority — Claude Code + GitHub integration blocks paid developer workflows. Category mapping: Claude Code always → AI Coding Tools per approved rules."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "anthropic-api-anthropic-badrequesterror-error-code-400-type-invalid-request-error-message-input-tokens-exceed-the-context-limit-of-200000-for-model-claude-3-opus-20240229",
+    "title": "Anthropic invalid_request_error: Input Tokens Exceed Context Limit of 200000",
+    "description": "Fix Anthropic Claude API returning 400 when combined prompt exceeds the model's fixed context window; need token counting, truncation, and chunking strategies. Includes evidence for Anthropic API troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Anthropic API",
+    "error_signature": "anthropic.BadRequestError: Error code: 400 - {'type': 'invalid_request_error', 'message': 'Input tokens exceed the context limit of 200000 for model claude-3-opus-20240229.'}",
+    "search_intent": "Fix Anthropic Claude API returning 400 when combined prompt exceeds the model's fixed context window; need token counting, truncation, and chunking strategies.",
+    "common_causes": [
+      "Source: https://markaicode.com/errors/anthropic-context-length-fix/. Fully verified via web_fetch — complete error trace, tokenizer usage (tiktoken cl100k_base), and fix steps (truncate + safety margin). P0 priority — affects paid Anthropic API billing. Distinct from 'insufficient_quota' (which is financial) — this is structural (context limit). Category mapping: Anthropic API → Anthropic API per approved rules."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "Anthropic API"
+    ]
+  },
+  {
+    "slug": "github-actions-permission-denied-resource-protected-by-organization-policy-workflow-requires-contents-write-permission",
+    "title": "GitHub Actions GITHUB_TOKEN Insufficient Permissions — contents:write Denied After Org Policy Change",
+    "description": "Fix GitHub Actions workflow blocked by missing GITHUB_TOKEN permissions, especially after org-level default permission policies changed; need minimal-permission configuration. Includes evidence for GitHub Actions troubleshooting demand.",
+    "category": "GitHub Actions",
+    "technology": "GitHub Actions",
+    "error_signature": "permission denied: resource protected by organization policy, workflow requires contents:write permission",
+    "search_intent": "Fix GitHub Actions workflow blocked by missing GITHUB_TOKEN permissions, especially after org-level default permission policies changed; need minimal-permission configuration.",
+    "common_causes": [
+      "Sources: https://stackoverflow.com/questions/79750835 and https://securebin.ai/blog/github-actions-workflow-failed-fix/. Multiple sources confirm GITHUB_TOKEN permission denial remains a top failure mode — org defaults override individual repo settings, secret name typos, YAML 'env vs with' confusion. P0 technology affecting CI/CD for paid teams. Category mapping: GitHub Actions → GitHub Actions per approved rules."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "GitHub Actions"
+    ]
+  },
+  {
+    "slug": "vercel-function-invocation-timeout-request-reached-timeout-threshold-10s-on-hobby-plan-without-fluid-compute",
+    "title": "Vercel FUNCTION_INVOCATION_TIMEOUT on Hobby Plan — 10s Default Cuts Off Real Workloads",
+    "description": "Fix Vercel serverless function timing out at the default 10-second limit on the free Hobby plan; need config changes or workarounds for longer-running functions. Includes evidence for Vercel troubleshooting demand.",
+    "category": "Deployment",
+    "technology": "Vercel",
+    "error_signature": "FUNCTION_INVOCATION_TIMEOUT: request reached timeout threshold (10s on Hobby plan without Fluid Compute)",
+    "search_intent": "Fix Vercel serverless function timing out at the default 10-second limit on the free Hobby plan; need config changes or workarounds for longer-running functions.",
+    "common_causes": [
+      "Source: https://32blog.com/en/vercel/vercel-deployment-errors-fix/. Fully verified via web_fetch — detailed breakdown of fluid compute vs legacy timeouts, plan limits table, and troubleshooting steps. Also covers FUNCTION_PAYLOAD_TOO_LARGE. P0 priority — Vercel paid deployments directly affect revenue-generating sites. Category mapping: Vercel → Deployment per approved rules."
+    ],
+    "quick_fix": "Check the build output, project root, and deployment platform configuration before redeploying.",
+    "related_errors": [
+      "Deployment"
+    ]
+  },
+  {
+    "slug": "cloudflare-workers-http-500-errors-in-sandbox-service-preventing-app-deployment-to-cloudflare-workers-and-preview-functionality",
+    "title": "Cloudflare Workers Sandbox HTTP 500 Breaking Deployments and Preview URLs",
+    "description": "Investigate and resolve widespread Cloudflare Workers sandbox HTTP 500 errors that block deployments and preview URLs for applications using sandbox functionality. Includes evidence for Cloudflare Workers troubleshooting demand.",
+    "category": "Cloudflare",
+    "technology": "Cloudflare Workers",
+    "error_signature": "HTTP 500 errors in sandbox service preventing App deployment to Cloudflare Workers and Preview functionality",
+    "search_intent": "Investigate and resolve widespread Cloudflare Workers sandbox HTTP 500 errors that block deployments and preview URLs for applications using sandbox functionality.",
+    "common_causes": [
+      "Source: https://github.com/cloudflare/vibesdk/issues/84 (found via web_search). Template execution also affected. P0 technology — Cloudflare Workers directly impacts paid enterprise deployments. Category mapping: Cloudflare → Cloudflare per approved rules. Evidence confirmed via search snippet describing the scope of the outage."
+    ],
+    "quick_fix": "Check the build output, project root, and deployment platform configuration before redeploying.",
+    "related_errors": [
+      "Cloudflare"
+    ]
+  },
+  {
+    "slug": "langchain-openai-apitimeouterror-the-request-timed-out",
+    "title": "LangChain OpenAI APITimeoutError — Default 600s Timeout Causing Cascading Crashes",
+    "description": "Fix LangChain/OpenAI integration where default 600-second timeout holds resources hostage, causing cascading service failures in production APIs. Includes evidence for LangChain troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "LangChain",
+    "error_signature": "openai.APITimeoutError: The request timed out.",
+    "search_intent": "Fix LangChain/OpenAI integration where default 600-second timeout holds resources hostage, causing cascading service failures in production APIs.",
+    "common_causes": [
+      "Source: https://markaicode.com/errors/langchain-openai-timeout-error-fetch/. Verified page content extracted successfully. Article details root cause (LangChain passes 600s timeout by default) and provides exact fix (request_timeout=30). Covers httpx.Client override and exception handling pattern. P1 tech with strong commercial value — affects production LLM pipelines. Category mapping: LangChain → AI Coding Tools per approved rules."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "cursor-mcp-connection-failed-handshake-failure-port-conflict-credential-error-in-cursor-ai-editor",
+    "title": "Cursor MCP Connection Failed — Handshake Errors and Port Conflicts",
+    "description": "Fix Cursor IDE's Model Context Protocol (MCP) connection failures that block AI-assisted coding features; includes handshake timeouts, port-in-use conflicts, and credential verification errors. Includes evidence for Cursor troubleshooting demand.",
+    "category": "Cursor",
+    "technology": "Cursor",
+    "error_signature": "MCP Connection Failed: handshake failure / port conflict / credential error in Cursor AI editor",
+    "search_intent": "Fix Cursor IDE's Model Context Protocol (MCP) connection failures that block AI-assisted coding features; includes handshake timeouts, port-in-use conflicts, and credential verification errors.",
+    "common_causes": [
+      "Discovered via web_search result for markaicode.com/errors/cursor-mcp-connection-failed-fix/. URL confirmed present on site. P0 priority — Cursor IDE subscription tool, MCP is a core feature. Category mapping: Cursor → Cursor per approved rules. Note: web_fetch could not fetch this specific page (blocked site), evidence derived from source index listing and search title."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Cursor"
+    ]
   }
 ]
