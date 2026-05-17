@@ -17149,5 +17149,85 @@
     "related_errors": [
       "LiteLLM"
     ]
+  },
+  {
+    "slug": "cloudflare-wrangler-whoami-failed-to-fetch-auth-token-400-bad-request-you-are-logged-in-with-an-api-token-unset-the-cloudflare-api-token-cannot-use-oauth-for-ci-cd",
+    "title": "No longer able to use API token for auth — wrangler returns 'Failed to fetch auth token: 400 Bad Request'",
+    "description": "Restore API token authentication in Cloudflare Wrangler CLI after it stopped working; user needs non-interactive auth for CI/CD pipelines. Includes evidence for Cloudflare troubleshooting demand.",
+    "category": "Cloudflare",
+    "technology": "Cloudflare",
+    "error_signature": "wrangler whoami: Failed to fetch auth token: 400 Bad Request — 'You are logged in with an API Token. Unset the CLOUDFLARE_API_TOKEN' — cannot use OAuth for CI/CD",
+    "search_intent": "Restore API token authentication in Cloudflare Wrangler CLI after it stopped working; user needs non-interactive auth for CI/CD pipelines.",
+    "common_causes": [
+      "GitHub issue cloudflare/workers-sdk#13744: `wrangler whoami` started returning 400 Bad Request even with active API tokens. User cannot fall back to OAuth due to automation requirements. Covers Account API Tokens, User API Tokens, Global API Key. Created 2026-04-29, 4 comments. Critical auth regression affecting deployments."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "Cloudflare"
+    ]
+  },
+  {
+    "slug": "docker-panic-crypto-requested-hash-function-sharp-0-is-unavailable-docker-daemon-crash-go-runtime",
+    "title": "Docker 29.4.1 Daemon dies with panic: crypto requested hash function unavailable",
+    "description": "Fix Docker daemon crash caused by missing Go crypto hash function — containers become unmanageable after unexpected daemon death. Includes evidence for Docker troubleshooting demand.",
+    "category": "Docker",
+    "technology": "Docker",
+    "error_signature": "panic: crypto: requested hash function #0 is unavailable (Docker daemon crash, Go runtime)",
+    "search_intent": "Fix Docker daemon crash caused by missing Go crypto hash function — containers become unmanageable after unexpected daemon death.",
+    "common_causes": [
+      "GitHub issue moby/moby#52578: Docker daemon v29.4.1 crashes with panic in go-digest.Algorithm.Hash(). Stack trace points to Go stdlib crypto package. 9 comments, created 2026-05-07. Production-critical runtime crash with clear stack trace. Known regression in 29.4.x series."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Docker"
+    ]
+  },
+  {
+    "slug": "vercel-an-unexpected-error-occurred-when-running-this-build-services-mode-middleware-breaks-deploy-outputs-stage",
+    "title": "Vercel Services-Mode: Middleware routes break deploy with 'unexpected error' — deterministic regression",
+    "description": "Fix Vercel deployment failure caused by middleware.ts interacting badly with experimentalServices (services-mode); removing middleware deploys cleanly. Includes evidence for Vercel troubleshooting demand.",
+    "category": "Deployment",
+    "technology": "Vercel",
+    "error_signature": "An unexpected error occurred when running this build — Services-Mode middleware breaks deploy outputs stage",
+    "search_intent": "Fix Vercel deployment failure caused by middleware.ts interacting badly with experimentalServices (services-mode); removing middleware deploys cleanly.",
+    "common_causes": [
+      "GitHub issue vercel/vercel#16296: Projects using services-mode + middleware.ts fail deterministically during Deploying outputs stage. Verified with 5-file sandbox repro. Middleware content irrelevant — stub triggers same error. Created 2026-05-11, blocked production deployments. Strong commercial value for teams shipping to Vercel."
+    ],
+    "quick_fix": "Check the build output, project root, and deployment platform configuration before redeploying.",
+    "related_errors": [
+      "Deployment"
+    ]
+  },
+  {
+    "slug": "github-copilot-remote-on-stops-working-partway-through-long-running-copilot-cli-session-off-on-cycle-does-not-recover-connection",
+    "title": "GitHub Copilot CLI /remote toggle stops working in long-running sessions — requires session restart",
+    "description": "Fix remote SSH session instability in GitHub Copilot CLI where /remote toggle becomes unresponsive during extended multi-day sessions. Includes evidence for GitHub Copilot troubleshooting demand.",
+    "category": "GitHub Copilot",
+    "technology": "GitHub Copilot",
+    "error_signature": "/remote on stops working partway through long-running Copilot CLI session; off/on cycle does not recover connection",
+    "search_intent": "Fix remote SSH session instability in GitHub Copilot CLI where /remote toggle becomes unresponsive during extended multi-day sessions.",
+    "common_causes": [
+      "GitHub issue github/copilot-cli#3358: Copilot CLI v1.0.49 on macOS — /remote on becomes unresponsive after extended session length (multi-day with scheduled prompts). Only remediation is to abandon session and restart. Created 2026-05-17 (very recent). 0 comments — still being triaged. Affects remote development workflow for paying Copilot users."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "GitHub Copilot"
+    ]
+  },
+  {
+    "slug": "openai-api-responses-api-background-true-returns-status-failed-with-http-200-sdk-raises-no-typed-exception-no-machine-readable-failure-identifier",
+    "title": "Background responses failures lack a stable code/name mapping to typed exception class",
+    "description": "Get stable exception class for failed OpenAI Responses API background runs so production code can catch and handle failures reliably. Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "Responses API background=True returns status='failed' with HTTP 200 — SDK raises no typed exception, no machine-readable failure identifier",
+    "search_intent": "Get stable exception class for failed OpenAI Responses API background runs so production code can catch and handle failures reliably.",
+    "common_causes": [
+      "GitHub issue openai/openai-python#3212: When Responses API runs in background mode and terminates with status='failed' or 'incomplete', the SDK returns HTTP 200 and never invokes the status-code dispatcher, so no typed exception is raised. Callers have no way to distinguish failure types programmatically. Created 2026-05-08, 3 comments."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "OpenAI API"
+    ]
   }
 ]
