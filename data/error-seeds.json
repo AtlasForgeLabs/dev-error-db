@@ -17325,5 +17325,117 @@
     "related_errors": [
       "Docker"
     ]
+  },
+  {
+    "slug": "claude-code-api-error-529-type-overloaded-error",
+    "title": "Claude Code HTTP 529 Overloaded Error: Anthropic Capacity Exhaustion",
+    "description": "Fix Claude Code 529 overloaded error when Anthropic API capacity is saturated during peak hours on Opus or Max plan Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "API Error: 529 {\"type\":\"overloaded_error\"}",
+    "search_intent": "Fix Claude Code 529 overloaded error when Anthropic API capacity is saturated during peak hours on Opus or Max plan",
+    "common_causes": [
+      "Source: codersera.com detailed troubleshooting guide (May 2026). Covers root cause (Anthropic capacity saturation per-model), /doctor output (API connectivity green but overload inline), fixes (switch model via /model, check status.claude.com, let CLI retry with exponential backoff), and escalation path (documented 2026 regression for sustained per-account 529s). Category mapping: Claude Code → AI Coding Tools per SKILL.md exact mapping rules."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "claude-code-authentication-error-http-401-oauth-token-expired-mid-session",
+    "title": "Claude Code HTTP 401 OAuth Token Expiration Mid-Session",
+    "description": "Fix Claude Code 401 authentication error when OAuth token expires during an autonomous coding run, making session unrecoverable without re-auth Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "authentication_error (HTTP 401 OAuth token expired mid-session)",
+    "search_intent": "Fix Claude Code 401 authentication error when OAuth token expires during an autonomous coding run, making session unrecoverable without re-auth",
+    "common_causes": [
+      "Source: codersera.com detailed fix guide (May 2026). Root cause: OAuth token expired, revoked, or missing scope for new features. Painful variant: mid-session expiry during autonomous run — every subsequent tool call returns authentication_error. Fixes: /logout then /login, clear credentials cache (rm -rf ~/.claude/auth), fresh login for long runs. Documented 2026 regression when fresh browser login still 401s. Category: Claude Code → AI Coding Tools per SKILL.md exact mapping."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "github-copilot-user-not-authorized-token-expired-or-revoked-in-copilot-cli",
+    "title": "GitHub Copilot CLI 'User Not Authorized' Error After Token Revocation",
+    "description": "Fix GitHub Copilot CLI authorization errors after token expiration, revocation, or SSO re-authentication — especially common in enterprise environments Includes evidence for GitHub Copilot troubleshooting demand.",
+    "category": "GitHub Copilot",
+    "technology": "GitHub Copilot",
+    "error_signature": "User not authorized (token expired or revoked in Copilot CLI)",
+    "search_intent": "Fix GitHub Copilot CLI authorization errors after token expiration, revocation, or SSO re-authentication — especially common in enterprise environments",
+    "common_causes": [
+      "Source: inventivehq.com knowledge base (January 2026). Covers multiple error variants (token expired, User not authorized, SSO required, invalid/missing token). Root causes: subscription inactive, org policy blocks, SAML SSO not completed, revoked tokens. Fixes: gh auth refresh, full re-auth via gh auth login --web, fine-grained PAT creation with Copilot Requests permission. Enterprise-specific: verify seat assignment, organization Copilot settings, repository-level policies. Category: GitHub Copilot → GitHub Copilot per SKILL.md exact mapping."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "GitHub Copilot"
+    ]
+  },
+  {
+    "slug": "cursor-error-mcp-connection-failed-unable-to-establish-a-connection-to-the-mcp-server",
+    "title": "Cursor MCP Connection Failed: Zombie Process Port Conflict",
+    "description": "Fix Cursor IDE 'MCP Connection Failed' error caused by zombie MCP server process holding port 3001, preventing new MCP server from starting Includes evidence for Cursor troubleshooting demand.",
+    "category": "Cursor",
+    "technology": "Cursor",
+    "error_signature": "Error: MCP Connection Failed — Unable to establish a connection to the MCP server",
+    "search_intent": "Fix Cursor IDE 'MCP Connection Failed' error caused by zombie MCP server process holding port 3001, preventing new MCP server from starting",
+    "common_causes": [
+      "Source: markaicode.com comprehensive fix guide (tested macOS 15.3 + Cursor v0.47.1). Six out of ten cases are zombie processes from previous Cursor sessions not shutting down cleanly. Fixes: lsof -i :3001 + kill -9 <PID>, edit ~/.cursor/mcp.json to change port/cwd/command, use systemd for auto-restart in production. Also covers firewall blocking loopback and relative path working directory issues. Category: Cursor → Cursor per SKILL.md exact mapping."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Cursor"
+    ]
+  },
+  {
+    "slug": "claude-code-http-503-anthropic-backend-unreachable-on-route-cloudflare-edge-or-regional-gateway-error",
+    "title": "Claude Code HTTP 503 Edge Unreachable — Corporate Proxy Blocking Anthropic API",
+    "description": "Fix Claude Code 503 errors caused by corporate proxies, ZTNA agents, or VPNs blocking Anthropic API requests from reaching the cloud endpoint Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "HTTP 503 — Anthropic backend unreachable on route (Cloudflare edge or regional gateway error)",
+    "search_intent": "Fix Claude Code 503 errors caused by corporate proxies, ZTNA agents, or VPNs blocking Anthropic API requests from reaching the cloud endpoint",
+    "common_causes": [
+      "Source: codersera.com detailed analysis (May 2026). Unlike 529 (application-level overload), 503 means request never passed Cloudflare/regional gateway. Most reports come from corporate zero-trust network agents (ZTNA) that selectively break long-lived HTTPS streams. Diagnosis: curl -I https://api.anthropic.com/v1/messages. Fixes: disable VPN/ZTNA for testing, try different egress network (phone hotspot), include cf-ray header and traceroute when escalating. Distinct from 529 and covered errors list has no 503 entry. Category: Claude Code → AI Coding Tools per SKILL.md."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "github-copilot-rate-limit-reached-copilot-request-cap-exceeded-throttling-requests",
+    "title": "GitHub Copilot Rate Limit Reached During Peak Usage",
+    "description": "Fix GitHub Copilot rate limiting errors when usage caps are hit during heavy usage, especially preview model restrictions or enterprise fair-usage throttling Includes evidence for GitHub Copilot troubleshooting demand.",
+    "category": "GitHub Copilot",
+    "technology": "GitHub Copilot",
+    "error_signature": "Rate limit reached — Copilot request cap exceeded, throttling requests",
+    "search_intent": "Fix GitHub Copilot rate limiting errors when usage caps are hit during heavy usage, especially preview model restrictions or enterprise fair-usage throttling",
+    "common_causes": [
+      "Source: hostingseekers.com top 5 Copilot errors guide (updated Dec 2025, referenced in 2026 context). Covers rate limit as one of the top 5 common errors. Hidden 2026 insight: rate limits affecting preview model users more frequently due to capacity upgrades. Causes: too many rapid-fire requests, service interruption, preview model restrictions. Fixes: wait for reset, reduce prompt frequency, contact GitHub Support for legitimate high-volume patterns. Category: GitHub Copilot → GitHub Copilot per SKILL.md."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "GitHub Copilot"
+    ]
+  },
+  {
+    "slug": "vercel-function-invocation-timeout-vercel-request-reached-the-timeout-threshold-free-plan-10s-limit",
+    "title": "Vercel Serverless Function 504 FUNCTION_INVOCATION_TIMEOUT on Free Plan",
+    "description": "Fix Vercel 504 FUNCTION_INVOCATION_TIMEOUT errors in serverless functions, especially on free tier with 10-second limit causing deployment failures Includes evidence for Vercel troubleshooting demand.",
+    "category": "Deployment",
+    "technology": "Vercel",
+    "error_signature": "FUNCTION_INVOCATION_TIMEOUT — Vercel request reached the timeout threshold (free plan 10s limit)",
+    "search_intent": "Fix Vercel 504 FUNCTION_INVOCATION_TIMEOUT errors in serverless functions, especially on free tier with 10-second limit causing deployment failures",
+    "common_causes": [
+      "Source: community discussions (github.com/vercel/community/discussions/1813), StackOverflow, Medium articles (2026). Core issue: free plan enforces 10s timeout on serverless function calls; paid plans allow configurable timeouts. Additional factor: database connection region mismatch (default US Washington vs. DB location). Covers works-locally-but-fails-on-vercel pattern, configuration-based fixes, and plan upgrade path. Category: Vercel → Deployment per SKILL.md exact mapping."
+    ],
+    "quick_fix": "Check the build output, project root, and deployment platform configuration before redeploying.",
+    "related_errors": [
+      "Deployment"
+    ]
   }
 ]
