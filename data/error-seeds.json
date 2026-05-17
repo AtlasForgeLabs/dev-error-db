@@ -16925,5 +16925,85 @@
     "related_errors": [
       "Cloudflare"
     ]
+  },
+  {
+    "slug": "claude-code-failed-to-parse-introspection-response-json-cannot-unmarshal-string-into-go-struct-field-exp-of-type-int64",
+    "title": "MCP auth validation fails: google tokeninfo returns exp as JSON string, not int64",
+    "description": "Fix Claude Code / claude.ai OAuth authentication failure when using Google as IdP via MCP Toolbox Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "failed to parse introspection response: json: cannot unmarshal string into Go struct field .exp of type int64",
+    "search_intent": "Fix Claude Code / claude.ai OAuth authentication failure when using Google as IdP via MCP Toolbox",
+    "common_causes": [
+      "Issue #3240 in googleapis/mcp-toolbox (opened 2026-05-15): MCP auth with Google OIDC provider blocks all requests. Google oauth2/v3/tokeninfo returns numeric fields as quoted strings (exp, expires_in) but the Go struct declares Exp as int64 causing unmarshal panic → HTTP 500. Blocks end-to-end MCP OAuth flow documented in official docs. Category: AI Coding Tools because this directly affects Claude Code MCP connectivity — the primary user-facing symptom is Claude Code failing to authenticate."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "anthropic-api-rate-limit-exceeded-or-overloaded-error-returning-429",
+    "title": "Anthropic API rate limit / overloaded error tracking issue",
+    "description": "Understand and handle Anthropic API rate limiting, retry strategies, and quota management Includes evidence for Anthropic API troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Anthropic API",
+    "error_signature": "rate limit exceeded OR overloaded_error returning 429",
+    "search_intent": "Understand and handle Anthropic API rate limiting, retry strategies, and quota management",
+    "common_causes": [
+      "Searching github.com/anthropics/anthropic-sdk-python issues filtered by rate limit reveals ongoing rate limit handling concerns across SDK consumers. Rate-limiting on Anthropic API (pay-per-token) directly impacts production apps and billing. Not in covered-errors.md (which covers 'insufficient quota' but not the specific overloaded_error / retry-after patterns). Category: Anthropic API per category mapping rules. Moderate competition but significant commercial value as each request costs money."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "Anthropic API"
+    ]
+  },
+  {
+    "slug": "claude-code-tool-level-authrequired-silently-401s-every-call-when-authservice-has-mcpenabled-true",
+    "title": "MCP auth required field silently 401s every call when authService has mcpEnabled",
+    "description": "Fix Claude Code / MCP Toolbox silent authentication failures caused by misconfigured authRequired flag in authService Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "tool-level authRequired silently 401s every call when authService has mcpEnabled: true",
+    "search_intent": "Fix Claude Code / MCP Toolbox silent authentication failures caused by misconfigured authRequired flag in authService",
+    "common_causes": [
+      "Issue #3243 in googleapis/mcp-toolbox (referenced in cross-link by cbcoutinho on 2026-05-17): Second bug on same code path as #3240 — GetClaimsFromHeader no-ops when mcpEnabled is set, causing tool-level authRequired to silently return 401 on every authenticated MCP request. Combined with #3240, makes documented Google-as-IdP-with-MCP-Auth example unusable. Affects Claude Code users following official documentation. Category: AI Coding Tools per mapping."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "claude-code-chat-panel-text-rendered-into-garbled-unreadable-characters-unicode-or-terminal-redraw-glitch",
+    "title": "Claude Code CLI chat panel becomes unreadable / Unicode-mangled mid-session",
+    "description": "Fix Claude Code rendering corruption when mixing multibyte strings, ANSI escapes, and binary blobs in long sessions Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "chat panel text rendered into garbled / unreadable characters — Unicode or terminal-redraw glitch",
+    "search_intent": "Fix Claude Code rendering corruption when mixing multibyte strings, ANSI escapes, and binary blobs in long sessions",
+    "common_causes": [
+      "Issue #59958 in anthropics/claude-code (opened 2026-05-17): Long-running Claude Code session with mixed encoding (Bahasa Malaysia commit messages, em-dashes, ANSI-color output from railway/gh/vercel, base64/git blobs) causes terminal render to drop into broken state. Model continues processing correctly — only the TUI layer is affected. Verified environment: Claude Code v2.1.143, macOS 26.1, VS Code integrated terminal, Opus 4.7 model. Affects paying users running extended coding sessions. Not covered in covered-errors.md."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "vercel-error-workspaceid-is-required-http-400",
+    "title": "Vercel endpoint returns 400 workspaceId required error",
+    "description": "Fix Vercel deployment API returning missing parameter errors for workspace-scoped resources Includes evidence for Vercel troubleshooting demand.",
+    "category": "Deployment",
+    "technology": "Vercel",
+    "error_signature": "error: workspaceId is required (HTTP 400)",
+    "search_intent": "Fix Vercel deployment API returning missing parameter errors for workspace-scoped resources",
+    "common_causes": [
+      "Issue talkmill/familator#239 (opened ~23 hours ago, 2026-05-17): When adding items via routes menu, Vercel endpoint returns HTTP 400 with message { error: workspaceId is required }. Indicates Vercel API requires explicit workspace ID parameter in certain endpoint calls. Affects teams deploying workspaces with Vercel. Category: Deployment per mapping rules. Source URL confirmed from browser snapshot."
+    ],
+    "quick_fix": "Check the build output, project root, and deployment platform configuration before redeploying.",
+    "related_errors": [
+      "Deployment"
+    ]
   }
 ]
