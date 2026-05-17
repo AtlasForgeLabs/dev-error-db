@@ -16109,5 +16109,85 @@
     "related_errors": [
       "Cloudflare"
     ]
+  },
+  {
+    "slug": "openai-api-ratelimiterror-429-insufficient-quota-both-rate-limit-and-quota-exhaustion-map-to-same-ratelimiterror-class",
+    "title": "OpenAI API insufficient_quota 429 response lacks dedicated exception — use RateLimitError fallback",
+    "description": "Developer needs to distinguish temporary rate limits from permanent quota exhaustion to trigger different retry logic (e.g., switch backup API key vs exponential backoff) Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "RateLimitError: 429 insufficient_quota — both rate-limit and quota-exhaustion map to same RateLimitError class",
+    "search_intent": "Developer needs to distinguish temporary rate limits from permanent quota exhaustion to trigger different retry logic (e.g., switch backup API key vs exponential backoff)",
+    "common_causes": [
+      "GitHub openai/openai-python PR #3042 (created 2026-04-01) adds InsufficientQuotaError as subclass of RateLimitError because before this change, insufficient_quota 429 responses raised the generic RateLimitError — users could not tell if they needed to retry or buy more credits. Covered-errors.md lists 'insufficient quota' but does NOT have a page covering the exception-class mapping problem. Category: OpenAI API (paid API, quota/billing impact)."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "vercel-middleware-invocation-failed-cannot-find-module-var-task-node-modules-swc-helpers-esm-interop-require-default-js-next-16-2-x-plus-proxy-ts-plus-sentry-nextjs",
+    "title": "Vercel deploy MIDDLEWARE_INVOCATION_FAILED + Cannot find module @swc/helpers — Next.js 16.2.x + proxy.ts middleware regression",
+    "description": "Fix HTTP 500 MIDDLEWARE_INVOCATION_FAILED on Vercel production deployment caused by @swc/helpers module resolution failure when using Next.js 16.2.x App Router with proxy.ts middleware convention and Sentry installed Includes evidence for Vercel troubleshooting demand.",
+    "category": "Deployment",
+    "technology": "Vercel",
+    "error_signature": "MIDDLEWARE_INVOCATION_FAILED: Cannot find module '/var/task/node_modules/@swc/helpers/esm/_interop_require_default.js' — next@16.2.x + proxy.ts + @sentry/nextjs",
+    "search_intent": "Fix HTTP 500 MIDDLEWARE_INVOCATION_FAILED on Vercel production deployment caused by @swc/helpers module resolution failure when using Next.js 16.2.x App Router with proxy.ts middleware convention and Sentry installed",
+    "common_causes": [
+      "GitHub vercel/next.js issues #93852 (#93850) reported May 2026 with minimal repro. Local build succeeds but Vercel deploy fails with HTTP 500. Blocking production deployments for teams using Next.js 16.2.x + sentry. Not in covered-errors (only generic 'Vercel build failed' exists, this is a specific deployment/runtime error). Category: Deployment."
+    ],
+    "quick_fix": "Check the build output, project root, and deployment platform configuration before redeploying.",
+    "related_errors": [
+      "Deployment"
+    ]
+  },
+  {
+    "slug": "anthropic-api-attributeerror-nonetype-object-has-no-attribute-model-bedrock-cross-region-profile-returns-http-200-with-error-payload-type-rate-limit-error-sdk-decodes-as-betarawmessagestartevent-with-message-none",
+    "title": "Anthropic Bedrock streaming SSE events return TypeError instead of typed APIStatusError — NoneType has no attribute 'model'",
+    "description": "Fix intermittent streaming crashes when calling Anthropic Claude via AWS Bedrock cross-region inference profiles; rate-limited responses appear as HTTP 200 error frames causing TypeError instead of catchable APIStatusError Includes evidence for Anthropic API troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Anthropic API",
+    "error_signature": "AttributeError: 'NoneType' object has no attribute 'model' — Bedrock cross-region profile returns HTTP 200 with error payload type='rate_limit_error', SDK decodes as BetaRawMessageStartEvent with message=None",
+    "search_intent": "Fix intermittent streaming crashes when calling Anthropic Claude via AWS Bedrock cross-region inference profiles; rate-limited responses appear as HTTP 200 error frames causing TypeError instead of catchable APIStatusError",
+    "common_causes": [
+      "GitHub anthropics/anthropic-sdk-python issues #1472, #1477, PRs #1479/#1555 (updated through May 2026) cover Bedrock SSE error handling gaps. Bedrock returns HTTP 200 with error-type SSE frames; SDK incorrectly instantiates message-start events with null message, triggering AttributeError. Category: Anthropic API (paid service, production blocking). Note: PR #1555 fixes non-200 SSE errors but #1472 (HTTP 200 error frames) may still be unresolved — makes this a real candidate."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "Anthropic API"
+    ]
+  },
+  {
+    "slug": "ollama-codex-app-sends-requests-with-context-window-128000-262144-tokens-instead-of-model-s-configured-num-ctx-e-g-32768-causing-severe-generation-slowdowns-on-local-models",
+    "title": "Ollama Codex App integration ignores model num_ctx setting, generates excessively large context_window causing severe slowdown",
+    "description": "Developers running local Ollama models via Codex App notice extreme slowdowns; root cause is Codex App not reading model parameter num_ctx and defaulting to max context sizes Includes evidence for Ollama troubleshooting demand.",
+    "category": "Ollama",
+    "technology": "Ollama",
+    "error_signature": "Codex App sends requests with context_window=128000-262144 tokens instead of model's configured num_ctx (e.g., 32768) — causing severe generation slowdowns on local models",
+    "search_intent": "Developers running local Ollama models via Codex App notice extreme slowdowns; root cause is Codex App not reading model parameter num_ctx and defaulting to max context sizes",
+    "common_causes": [
+      "GitHub ollama/ollama issue #16188 (created 2026-05-16, updated 2026-05-16) filed against Ollama repo. Directly affects AI coding tool users. Local LLM serving is growing commercial interest area. Category: Ollama (local LLM serving, AI coding tools workflow)."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "Ollama"
+    ]
+  },
+  {
+    "slug": "docker-panic-crypto-requested-hash-function-sharp-0-is-unavailable-github-goroutine-crash-in-github-com-opencontainers-go-digest-algorithm-hash-triggered-by-docker-image-digest-computation",
+    "title": "Docker 29.4.1 daemon crash panic: crypto: requested hash function #0 is unavailable",
+    "description": "Fix Docker daemon unexpectedly crashing with crypto hash function unavailable panic, preventing any container operations until daemon restart Includes evidence for Docker troubleshooting demand.",
+    "category": "Docker",
+    "technology": "Docker",
+    "error_signature": "panic: crypto: requested hash function #0 is unavailable — GitHub goroutine crash in github.com/opencontainers/go-digest.Algorithm.Hash triggered by Docker image digest computation",
+    "search_intent": "Fix Docker daemon unexpectedly crashing with crypto hash function unavailable panic, preventing any container operations until daemon restart",
+    "common_causes": [
+      "GitHub moby/moby issue #52578 (created 2026-05-07). Docker daemon dies with Go runtime panic. Critical for Docker users — complete runtime outage. Not in covered-errors (which only list general 'daemon not running'). This is a version-specific crash with clear stack trace. Category: Docker."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Docker"
+    ]
   }
 ]
