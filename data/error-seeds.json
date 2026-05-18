@@ -18765,5 +18765,69 @@
     "related_errors": [
       "OpenAI API"
     ]
+  },
+  {
+    "slug": "github-copilot-server-error-sorry-you-have-exceeded-your-copilot-token-usage-error-code-rate-limited",
+    "title": "GitHub Copilot Pro users hit aggressive rate limits despite low monthly usage",
+    "description": "Resolve GitHub Copilot rate limiting error for Pro subscribers who have not reached their monthly quota Includes evidence for GitHub Copilot troubleshooting demand.",
+    "category": "GitHub Copilot",
+    "technology": "GitHub Copilot",
+    "error_signature": "Server Error: Sorry, you have exceeded your Copilot token usage. Error Code: rate_limited",
+    "search_intent": "Resolve GitHub Copilot rate limiting error for Pro subscribers who have not reached their monthly quota",
+    "common_causes": [
+      "Community discussion on github.com community forum (#180092), 235 👍 reactions, closed but highly active thread. Multiple Pro/Pro+ users report being rate-limited within minutes of light usage (e.g., 2 requests hitting limit while only 14% monthly usage consumed). Two separate limits: monthly premium allowance + per-minute/per-hour burst rate limit."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "GitHub Copilot"
+    ]
+  },
+  {
+    "slug": "openai-api-requests-to-the-chatcompletions-create-operation-under-azure-openai-api-version-2024-06-01-have-exceeded-token-rate-limit-of-your-current-openai-s0-pricing-tier-please-retry-after-86400-seconds",
+    "title": "Azure OpenAI Error 429 — Requests below rate limit exceeding S0 tier token cap",
+    "description": "Resolve Azure OpenAI 429 rate limit error even when making requests well below stated rate limits on S0 pricing tier Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "Requests to the ChatCompletions_Create Operation under Azure OpenAI API version 2024-06-01 have exceeded token rate limit of your current OpenAI S0 pricing tier. Please retry after 86400 seconds.",
+    "search_intent": "Resolve Azure OpenAI 429 rate limit error even when making requests well below stated rate limits on S0 pricing tier",
+    "common_causes": [
+      "Microsoft Q&A question reporting Azure OpenAI 429 errors with an unusually long retry-after period (86400 seconds = 24h). Indicates per-resource-group or per-deployment token rate limits on S0 tier may be lower than expected. Affects enterprise users paying for Azure OpenAI credits."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "claude-code-authentication-error-every-subsequent-tool-call-returns-401-after-oauth-token-expires-mid-autonomous-run",
+    "title": "Claude Code Claude CLI version 1.0.51 OAuth token expired mid-session causing unrecoverable session",
+    "description": "Recover from Claude Code session lockout caused by mid-run OAuth token expiry that prevents any further tool calls Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "authentication_error — every subsequent tool call returns 401 after OAuth token expires mid-autonomous run",
+    "search_intent": "Recover from Claude Code session lockout caused by mid-run OAuth token expiry that prevents any further tool calls",
+    "common_causes": [
+      "Documented on codersera.com as a critical Claude Code 2026 error pattern. When OAuth token expires during an autonomous multi-step run, all subsequent tool calls return 401 authentication_error. The session becomes unrecoverable until explicit re-authentication via /logout then /login. Common scenario: extended coding sessions where OAuth tokens have finite validity."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "docker-cannot-connect-to-the-docker-daemon-at-http-internal-tunnel-invalid",
+    "title": "Docker daemon connection failure at unix socket path in GitLab CI/CD pipelines on Mac",
+    "description": "Fix Docker daemon connection errors in GitLab Runner docker-autoscaler setups on cloud providers like Azure Includes evidence for Docker troubleshooting demand.",
+    "category": "Docker",
+    "technology": "Docker",
+    "error_signature": "Cannot connect to the Docker daemon at http://internal.tunnel.invalid",
+    "search_intent": "Fix Docker daemon connection errors in GitLab Runner docker-autoscaler setups on cloud providers like Azure",
+    "common_causes": [
+      "GitLab runner issue (#37700) where docker-autoscaler in Azure fails to connect to Docker daemon. Instance reports 'ERROR: Failed to remove network for build' and 'Preparation failed: Cannot connect to the Docker daemon'. Affects CI/CD pipelines for teams running auto-scaling Docker runners."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Docker"
+    ]
   }
 ]
