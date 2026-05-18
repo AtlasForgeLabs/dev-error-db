@@ -18829,5 +18829,101 @@
     "related_errors": [
       "Docker"
     ]
+  },
+  {
+    "slug": "claude-code-mcp-token-exchange-failed-against-oauth-2-1-plus-cognito-stack",
+    "title": "mcp_token_exchange_failed against OAuth 2.1 + Cognito stack on claude.ai web; same stack works via Claude Code CLI",
+    "description": "Fix Claude Code OAuth 2.1 + AWS Cognito token exchange failure for MCP server connections Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "mcp_token_exchange_failed against OAuth 2.1 + Cognito stack",
+    "search_intent": "Fix Claude Code OAuth 2.1 + AWS Cognito token exchange failure for MCP server connections",
+    "common_causes": [
+      "GitHub Issue #309 (anthropics/claude-ai-mcp, 2026-05-18): User reports mcp_token_exchange_failed when using OAuth 2.1 + Cognito authentication stack on claude.ai web, while the identical stack works via Claude Code CLI. Indicates an inconsistency between web and CLI MCP auth flows. Maps to AI Coding Tools category as it concerns Claude Code's MCP server connectivity."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "claude-code-authorization-with-the-mcp-server-failed-you-can-check-your-credentials-and-permissions",
+    "title": "\"Authorization with the M365 MCP server failed\" despite admin consent granted",
+    "description": "Fix M365 MCP server authorization failure in Claude Desktop despite having admin consent and correct Entra login Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Authorization with the MCP server failed. You can check your credentials and permissions",
+    "search_intent": "Fix M365 MCP server authorization failure in Claude Desktop despite having admin consent and correct Entra login",
+    "common_causes": [
+      "GitHub Issue #307 (anthropics/claude-ai-mcp, 2026-05-18): User cannot connect M365 Connector in Claude Desktop app. They signed in as authorized account for Claude and Entra, but connection fails with 'Authorization with the MCP server failed' error and reference ID 'ofid_9643bc28edf7aa89'. Admin consent is already granted. This is a critical enterprise integration blocker. Maps to AI Coding Tools as it affects Claude Code desktop experience."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "openai-api-insufficient-quota-429-response",
+    "title": "OpenAI API insufficent_quota 429 - new error class needed for quota vs rate limit distinction",
+    "description": "Distinguish between insufficient quota and rate limit 429 errors in OpenAI API to handle billing failures properly Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "insufficient_quota 429 response",
+    "search_intent": "Distinguish between insufficient quota and rate limit 429 errors in OpenAI API to handle billing failures properly",
+    "common_causes": [
+      "GitHub PR #3042 (openai/openai-python, 2026-04-01): Developer proposes adding InsufficientQuotaError subclass of RateLimitError to distinguish quota exhaustion (billing/credit issue) from rate limiting. This is a critical distinction for paying users — quota errors mean payment/top-up needed, not just waiting. Already-covered items include general 429 and insufficient_quota broadly, but the specific differentiation and exception handling is an unresolved gap. Strong commercial value as it directly impacts billing/revenue."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "aws-kubernetes-imagepullbackoff",
+    "title": "EKS deployment ImagePullBackOff blocking Kubernetes cluster availability",
+    "description": "Fix EKS (Amazon Elastic Kubernetes Service) deployment failure caused by ImagePullBackOff pod state preventing container startup Includes evidence for AWS / Kubernetes troubleshooting demand.",
+    "category": "Cloud Platforms",
+    "technology": "AWS / Kubernetes",
+    "error_signature": "ImagePullBackOff",
+    "search_intent": "Fix EKS (Amazon Elastic Kubernetes Service) deployment failure caused by ImagePullBackOff pod state preventing container startup",
+    "common_causes": [
+      "GitHub Issue (AI-Ideas-xyz/ai-jenkins-pipeline-triage, 2026-05-18): Active report of '[eks-deploy] ImagePullBackOff' on same day. EKS-specific ImagePullBackOff occurs when the ECR registry credentials or IAM role policy prevents the kubelet from pulling container images. This is a cloud infrastructure blocker affecting paying AWS customers running production workloads. Maps to Cloud Platforms category. Not in covered-errors."
+    ],
+    "quick_fix": "Verify the model name, local service connectivity, and network access before retrying the model pull.",
+    "related_errors": [
+      "Cloud Platforms"
+    ]
+  },
+  {
+    "slug": "docker-alpine-apk-exec-format-error-in-cross-arch-docker-build",
+    "title": "Docker cross-arch build failing with alpine apk exec format error since 2026-04-20",
+    "description": "Fix Docker cross-architecture build failure caused by alpine apk package manager exec format mismatch introduced after 2026-04-20 Includes evidence for Docker troubleshooting demand.",
+    "category": "Docker",
+    "technology": "Docker",
+    "error_signature": "alpine apk exec format error in cross-arch docker build",
+    "search_intent": "Fix Docker cross-architecture build failure caused by alpine apk package manager exec format mismatch introduced after 2026-04-20",
+    "common_causes": [
+      "GitHub Issue #1238 (VibeWarden/vibewarden, 2026-04-30): Release dry-run workflow broken due to 'alpine apk exec format error in cross-arch docker build', first appearing after 2026-04-20. This is a Docker-in-Docker / multi-platform build failure that blocks CI/CD pipelines for teams shipping Docker images across architectures. Maps to Docker category. Not in covered-errors list. Fresh bug affecting active projects."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Docker"
+    ]
+  },
+  {
+    "slug": "ollama-error-400-empty-body-when-pulling-hf-co-gguf-models-after-successful-download",
+    "title": "Ollama pulls HF GGUF models but returns Error: 400 (empty body)",
+    "description": "Fix Ollama HuggingFace GGUF model download that completes transfer but then fails with HTTP 400 empty body response Includes evidence for Ollama troubleshooting demand.",
+    "category": "Ollama",
+    "technology": "Ollama",
+    "error_signature": "Error: 400 (empty body) when pulling hf.co GGUF models after successful download",
+    "search_intent": "Fix Ollama HuggingFace GGUF model download that completes transfer but then fails with HTTP 400 empty body response",
+    "common_causes": [
+      "GitHub Issue #15447 (ollama/ollama, 2026-04-09): Model download to huggingface.co GGUF files completes successfully (bytes downloaded), but final step returns 'Error: 400 (empty body)'. This affects users running local LLM inference who rely on Ollama for cost-efficient model serving — a core commercial use case for Ollama. Distinct from covered-errors. Maps to Ollama category."
+    ],
+    "quick_fix": "Verify the model name, local service connectivity, and network access before retrying the model pull.",
+    "related_errors": [
+      "Ollama"
+    ]
   }
 ]
