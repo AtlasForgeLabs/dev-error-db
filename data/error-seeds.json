@@ -19197,5 +19197,53 @@
     "related_errors": [
       "Deployment"
     ]
+  },
+  {
+    "slug": "anthropic-api-vault-ids-not-inherited-by-subagents-dispatched-via-agent-toolset-mcp-oauth-calls-fail",
+    "title": "Managed Agents: vault_ids not inherited by subagents dispatched via agent_toolset — MCP OAuth calls fail",
+    "description": "Fix anthropic managed agents subagent dispatch failing with MCP OAuth auth errors due to missing vault credential inheritance Includes evidence for Anthropic API troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Anthropic API",
+    "error_signature": "vault_ids not inherited by subagents dispatched via agent_toolset — MCP OAuth calls fail",
+    "search_intent": "Fix anthropic managed agents subagent dispatch failing with MCP OAuth auth errors due to missing vault credential inheritance",
+    "common_causes": [
+      "GitHub issue #1562 in anthropics/anthropic-sdk-python (opened May 18, 2026). Coordinator agent using sessions.create with vault_ids for MCP OAuth tools cannot pass credentials to subagents spawned via agent_toolset_20260401. All subagent MCP tool calls result in is_error=True auth failures. This blocks multi-agent patterns requiring OAuth-backed MCP servers."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "Anthropic API"
+    ]
+  },
+  {
+    "slug": "litellm-fallback-lookup-fails-for-team-scoped-models-model-group-uses-public-name-but-fallback-config-requires-internal-names",
+    "title": "[Bug]: Fallback lookup fails for team-scoped models — model_group uses public name but fallback config requires internal names",
+    "description": "Fix LiteLLM proxy fallback configuration not working for team-scoped BYOK models due to public vs internal model name mismatch Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "Fallback lookup fails for team-scoped models — model_group uses public name but fallback config requires internal names",
+    "search_intent": "Fix LiteLLM proxy fallback configuration not working for team-scoped BYOK models due to public vs internal model name mismatch",
+    "common_causes": [
+      "GitHub issue #28019 in BerriAI/litellm (opened May 15, 2026). When a team-scoped BYOK model has a fallback configured via POST /fallback (which requires internal model names like model_name_team_uuid), requests using the public model name fail to trigger fallback routing. Router.async_function_with_fallbacks reads the unresolved public name before resolution, causing direct string comparison to never match."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "LiteLLM"
+    ]
+  },
+  {
+    "slug": "vercel-history-pushstate-to-a-new-url-reverts-when-route-has-a-prefetched-link-plus-proxy-ts-cookie-based-redirect",
+    "title": "Bug: history.pushState to a new URL reverts when route has a prefetched Link + proxy.ts cookie-based redirect",
+    "description": "Fix Next.js URL reversion bug where client-side navigation via history.pushState gets reverted by RSC tree when middleware uses proxy.ts with cookies Includes evidence for Vercel troubleshooting demand.",
+    "category": "Deployment",
+    "technology": "Vercel",
+    "error_signature": "history.pushState to a new URL reverts when route has a prefetched <Link> + proxy.ts cookie-based redirect",
+    "search_intent": "Fix Next.js URL reversion bug where client-side navigation via history.pushState gets reverted by RSC tree when middleware uses proxy.ts with cookies",
+    "common_causes": [
+      "GitHub issue #93923 in vercel/next.js (opened May 18, 2026). In Next.js 16.x, calling history.pushState to navigate to a new URL on the same route appears to succeed but immediately reverts within ~1 frame. Server-rendered RSC tree remains for old URL. Affected areas: Middleware, Linking and Navigating, Runtime, Dynamic Routes. Has minimal repro repo."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Deployment"
+    ]
   }
 ]
