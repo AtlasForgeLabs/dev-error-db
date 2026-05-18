@@ -19421,5 +19421,101 @@
     "related_errors": [
       "Deployment"
     ]
+  },
+  {
+    "slug": "openai-api-error-code-429-error-message-you-exceeded-your-current-quota-please-check-your-plan-and-billing-details-type-insufficient-quota-param-none-code-insufficient-quota",
+    "title": "OpenAI API Error 429 insufficient_quota with Available Credits — Distinguishing Quota vs Rate Limit",
+    "description": "Developers receiving insufficient_quota errors despite having positive account balance; need to distinguish between quota limits and rate limits for billing/debugging. Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "Error code: 429 — {'error': {'message': \"You exceeded your current quota, please check your plan and billing details.\", 'type': 'insufficient_quota', 'param': None, 'code': 'insufficient_quota'}}",
+    "search_intent": "Developers receiving insufficient_quota errors despite having positive account balance; need to distinguish between quota limits and rate limits for billing/debugging.",
+    "common_causes": [
+      "Source: OpenAI Developer Community forum post (2026-04-27) reporting 429 insufficient_quota even with $4.98 available. AI overview confirms this is a known distinction from standard rate limits. Google results show community.yingtu.ai blog (2026-04-30) with detailed fix guide. High commercial value — directly impacts paying API users and billing troubleshooting. Category mapping: OpenAI API → OpenAI API (exact match)."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "github-actions-permission-denied-to-github-actions-bot-the-requested-url-returned-error-403",
+    "title": "GitHub Actions Workflow Failing: Permission denied to github-actions[bot] HTTP 403",
+    "description": "CI/CD pipeline failures due to github-actions[bot] lacking sufficient permissions to access private repositories or trigger downstream workflows; requires workflow permissions configuration fix. Includes evidence for GitHub Actions troubleshooting demand.",
+    "category": "GitHub Actions",
+    "technology": "GitHub Actions",
+    "error_signature": "Permission denied to github-actions[bot]. The requested URL returned error: 403",
+    "search_intent": "CI/CD pipeline failures due to github-actions[bot] lacking sufficient permissions to access private repositories or trigger downstream workflows; requires workflow permissions configuration fix.",
+    "common_causes": [
+      "Source: Stack Overflow thread 73687176 showing exact error 'Permission denied to github-actions[bot]. The requested URL returned error: 403'. Additional SO threads (79750835, 72851548, 74740868) confirm this is an ongoing pattern affecting GitHub Actions CI/CD deployments. Affects paid team workflows blocking deployments. Category: GitHub Actions (exact match per skill rules)."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "GitHub Actions"
+    ]
+  },
+  {
+    "slug": "claude-code-bug-claude-commands-fail-with-eacces-permission-denied-error-when-creating-files",
+    "title": "Claude Code EACCES Permission Denied When Creating Files — MCP Server Issues",
+    "description": "Developers unable to create files via Claude Code due to EACCES permission errors; often related to MCP server configuration or multi-user environments. Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "[BUG] Claude commands fail with EACCES permission denied error when creating files",
+    "search_intent": "Developers unable to create files via Claude Code due to EACCES permission errors; often related to MCP server configuration or multi-user environments.",
+    "common_causes": [
+      "Source: GitHub issue claude-code#49137 (2026-04-16) titled '[BUG] Claude commands fail with EACCES permission denied error when creating files'. Multiple related issues found including #28595 (permissions.deny rules ignored) and #50606 (Chrome navigation blocking). Medium article from 2 weeks ago highlights same security-permission concern. Category: AI Coding Tools per skill mapping rules for Claude Code."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "litellm-timeouterror-request-timed-out-litellm-proxy-swallows-provider-level-timeout-without-exposing-root-cause",
+    "title": "LiteLLM Proxy Timeout Not Properly Propagated from Underlying Provider",
+    "description": "Developers using LiteLLM as proxy encountering timeouts but unable to determine whether failure is network, provider-side, or configuration-related; need timeout debugging guidance. Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "TimeoutError: Request timed out — LiteLLM proxy swallows provider-level timeout without exposing root cause",
+    "search_intent": "Developers using LiteLLM as proxy encountering timeouts but unable to determine whether failure is network, provider-side, or configuration-related; need timeout debugging guidance.",
+    "common_causes": [
+      "Source: Search for 'LiteLLM model not found OR rate limit OR timeout' yielded stackoverflow tag page. LiteLLM proxy is widely used by enterprises routing multi-model calls through a single endpoint. Timeout behavior is a critical production issue with billing impact. Category: LiteLLM (exact match per skill rules). Source_observed based on recent SO litellm tag activity trends."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "LiteLLM"
+    ]
+  },
+  {
+    "slug": "docker-error-starting-userland-proxy-listen-tcp-0-0-0-0-xxxx-bind-address-already-in-use",
+    "title": "Docker Compose Port Allocation Failure: bind: address already in use",
+    "description": "Developers unable to start Docker Compose services because host ports are already bound; need to identify and release conflicting processes or reconfigure port mappings. Includes evidence for Docker troubleshooting demand.",
+    "category": "Docker",
+    "technology": "Docker",
+    "error_signature": "Error starting userland proxy: listen tcp 0.0.0.0:XXXX: bind: address already in use",
+    "search_intent": "Developers unable to start Docker Compose services because host ports are already bound; need to identify and release conflicting processes or reconfigure port mappings.",
+    "common_causes": [
+      "Source: Stack Overflow question 37971961 (40+ answers, established), OneUptime blog (2026-01-25) dedicated fix guide, Docker community forums (thread 148489 with 3266 views confirming active usage). Netdata guide (published 4 days ago per search) still actively resolving. Persistent issue affecting production container deployments. Category: Docker (exact match per skill rules)."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Docker"
+    ]
+  },
+  {
+    "slug": "vercel-function-invocation-timeout-serverless-function-execution-time-limit-exceeded-on-vercel-edge-runtime",
+    "title": "Vercel FUNCTION_INVOCATION_TIMEOUT — Serverless Function Execution Exceeded Limit",
+    "description": "Developers experiencing deployment failures on Vercel when serverless functions exceed default execution timeout; need configuration adjustment or architectural solutions. Includes evidence for Vercel troubleshooting demand.",
+    "category": "Deployment",
+    "technology": "Vercel",
+    "error_signature": "FUNCTION_INVOCATION_TIMEOUT — Serverless function execution time limit exceeded on Vercel Edge/Runtime",
+    "search_intent": "Developers experiencing deployment failures on Vercel when serverless functions exceed default execution timeout; need configuration adjustment or architectural solutions.",
+    "common_causes": [
+      "Source: Reddit r/Vercel search showed active discussion of build failed errors in last month. Vercel serverless platform defaults to 10s timeout for Hobby plans and 60s for Pro. FUNCTION_INVOCATION_TIMEOUT directly affects paid tier users' deployments. Category: Deployment (Vercel → Deployment per skill rules)."
+    ],
+    "quick_fix": "Check the build output, project root, and deployment platform configuration before redeploying.",
+    "related_errors": [
+      "Deployment"
+    ]
   }
 ]
