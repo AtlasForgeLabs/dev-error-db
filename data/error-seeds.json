@@ -17773,5 +17773,69 @@
     "related_errors": [
       "Cursor"
     ]
+  },
+  {
+    "slug": "litellm-npm-package-tampering-supply-chain-attack-breaking-litellm-gateway-used-by-crewai-dspy-browser-use-opik-and-nearly-every-major-ai-agent-framework",
+    "title": "LiteLLM Supply Chain Attack — npm Package Tampering Disrupts Millions of Developers",
+    "description": "Recover from or prevent damage caused by LiteLLM npm package supply chain compromise affecting production LLM routing pipelines Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "npm package tampering (supply chain attack) breaking LiteLLM gateway used by CrewAI, DSPy, Browser-Use, Opik and nearly every major AI agent framework",
+    "search_intent": "Recover from or prevent damage caused by LiteLLM npm package supply chain compromise affecting production LLM routing pipelines",
+    "common_causes": [
+      "LiteLLM (95M monthly downloads) was hit by a supply chain attack on March 24, 2026, compromising the pip install dependency chain used by virtually all major AI agent frameworks. Enterprise users depend on LiteLLM proxy for billing, load balancing and model routing. Extremely high commercial impact. Not in covered-errors.md list — completely novel error class."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "LiteLLM"
+    ]
+  },
+  {
+    "slug": "claude-code-redirection-handling-is-disabled-skipping-redirect-tools-list-returns-unauthorized-after-successful-initialize-handshake",
+    "title": "[BUG] HTTP MCP servers requiring OAuth silently fail with no user notification",
+    "description": "Fix Claude Code MCP server OAuth authentication failure where tools silently disappear without any error message or notification Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Redirection handling is disabled, skipping redirect; tools/list returns Unauthorized after successful initialize handshake",
+    "search_intent": "Fix Claude Code MCP server OAuth authentication failure where tools silently disappear without any error message or notification",
+    "common_causes": [
+      "Multiple duplicate reports (#26917, #11585, #35052, #36307) confirm HTTP MCP servers requiring OAuth (Neon, Stripe, Sentry) silently fail when redirection is disabled. The initialize handshake succeeds but tools/list returns Unauthorized with zero user notification. Related: AWS Cognito token exchange fails due to missing code_challenge_methods_supported (#35846). P0 tech, paid AI coding tool broken."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "claude-code-oauth-fails-with-aws-cognito-plus-agentcore-gateway-token-exchange-silently-fails-due-to-missing-code-challenge-methods-supported",
+    "title": "OAuth Token Exchange Silently Fails with AWS Cognito + AgentCore Gateway Missing code_challenge_methods_supported",
+    "description": "Fix OAuth token exchange failure between AWS Cognito identity provider and AgentCore Gateway when code_challenge_methods_supported metadata is absent Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "OAuth fails with AWS Cognito + AgentCore Gateway: token exchange silently fails due to missing code_challenge_methods_supported",
+    "search_intent": "Fix OAuth token exchange failure between AWS Cognito identity provider and AgentCore Gateway when code_challenge_methods_supported metadata is absent",
+    "common_causes": [
+      "Specific OAuth interoperability bug reported in claude-code issue #35846. When connecting MCP servers through AWS Cognito SSO + AgentCore, the OAuth PKCE flow breaks because the authorization server doesn't advertise code_challenge_methods_supported. Silent failure means developers waste time debugging what appears to be a connectivity issue. Related to broader MCP OAuth failures (#26917, #11585, #35052). Distinct error_signature from parent issues — focuses on the specific Cognito metadata gap."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "cloudflare-unhandled-promise-rejection-in-cloudflare-worker-script-returning-http-500-internal-server-error-instead-of-application-level-error",
+    "title": "Cloudflare Workers Unhandled Promise Rejection Causes 500 Internal Server Error",
+    "description": "Debug and fix Cloudflare Workers unhandled promise rejection causing 500 errors in production edge functions Includes evidence for Cloudflare troubleshooting demand.",
+    "category": "Cloudflare",
+    "technology": "Cloudflare",
+    "error_signature": "Unhandled promise rejection in Cloudflare Worker script returning HTTP 500 Internal Server Error instead of application-level error",
+    "search_intent": "Debug and fix Cloudflare Workers unhandled promise rejection causing 500 errors in production edge functions",
+    "common_causes": [
+      "Cloudflare Workers runtime errors (unhandled rejections, TypeError, timeout) are a persistent pain point. Pages using JS-heavy Workers consistently return opaque 500 errors to end-users with no stack trace visible. This maps directly to the Cloudflare approved category. No exact match in covered-errors.md which only lists 522/525."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Cloudflare"
+    ]
   }
 ]
