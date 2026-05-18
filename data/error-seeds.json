@@ -18157,5 +18157,69 @@
     "related_errors": [
       "AI Coding Tools"
     ]
+  },
+  {
+    "slug": "anthropic-api-billing-console-conflates-api-direct-charges-with-subscription-overages-users-cannot-distinguish-charge-sources-in-single-undifferentiated-usage-block",
+    "title": "Anthropic Claude Max Billing Console Conflates API Direct Charges With Subscription Overages",
+    "description": "Diagnose why the claude.ai billing dashboard merges two distinct charge types (API direct pay-as-you-go vs subscription extra usage) into one block, preventing users from accurately understanding spending patterns and incorrectly attributing API charges to plan overages Includes evidence for Anthropic API troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Anthropic API",
+    "error_signature": "Billing console conflates API direct charges with subscription overages — users cannot distinguish charge sources in single undifferentiated Usage block",
+    "search_intent": "Diagnose why the claude.ai billing dashboard merges two distinct charge types (API direct pay-as-you-go vs subscription extra usage) into one block, preventing users from accurately understanding spending patterns and incorrectly attributing API charges to plan overages",
+    "common_causes": [
+      "GitHub issue #1490 on anthropics/anthropic-sdk-python by daskuntal75, opened May 4 2026. Active Claude Max subscription users with extra_usage_enabled:false see API direct charges merged into subscription billing display with no source label. Users misdiagnose plan size, disable extra_usage thinking it stops all API charges (it doesn't), and generate support tickets. Extremely high commercial value — directly affects Anthropic revenue transparency and user trust."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "Anthropic API"
+    ]
+  },
+  {
+    "slug": "vercel-function-invocation-timeout-server-action-fails-silently-on-timeout",
+    "title": "Vercel Server Action Fails Silently on FUNCTION_INVOCATION_TIMEOUT",
+    "description": "Debug why Next.js Server Actions using Vercel Functions silently fail when exceeding invocation time limits, with no client-side error indication, blocking production debugging for deployed apps Includes evidence for Vercel troubleshooting demand.",
+    "category": "Deployment",
+    "technology": "Vercel",
+    "error_signature": "FUNCTION_INVOCATION_TIMEOUT — Server Action fails silently on timeout",
+    "search_intent": "Debug why Next.js Server Actions using Vercel Functions silently fail when exceeding invocation time limits, with no client-side error indication, blocking production debugging for deployed apps",
+    "common_causes": [
+      "GitHub issue #71161 on vercel/next.js by elie222, opened Oct 11 2024. Label: bug. Next.js uses Vercel Function Invocations for Server Actions under the hood; exceeding the timeout causes silent failure without propagating the actual error to the client UI. High commercial value as deployment failures directly block paid Vercel teams shipping to production. This specific TIMEOUT→silent behavior is distinct from generic Vercel build failures in covered-errors.md."
+    ],
+    "quick_fix": "Check the build output, project root, and deployment platform configuration before redeploying.",
+    "related_errors": [
+      "Deployment"
+    ]
+  },
+  {
+    "slug": "openai-api-insufficient-quota-in-exceptions-py-missing-exception-class-for-429-quota-exceeded-errors",
+    "title": "OpenAI Python SDK Missing insufficient_quota Exception in _exceptions.py",
+    "description": "Add dedicated insufficient_quota exception to OpenAI Python SDK so applications can catch quota-specific errors separately from generic rate-limit errors, enabling proper retry logic and user-facing messaging for paid API accounts Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "insufficient_quota in _exceptions.py — missing exception class for 429 quota exceeded errors",
+    "search_intent": "Add dedicated insufficient_quota exception to OpenAI Python SDK so applications can catch quota-specific errors separately from generic rate-limit errors, enabling proper retry logic and user-facing messaging for paid API accounts",
+    "common_causes": [
+      "GitHub issue #1671 on openai/openai-python by akshit0201, opened Aug 22 2024. Enhancement request (enhancement+sdk labels). The SDK currently does not expose a dedicated insufficient_quota exception, forcing developers to parse raw API error strings. High commercial value since insufficient_quota directly blocks paying OpenAI API users who hit usage caps. Only result found for this query — distinct from existing covered-openai-errors covering generic 429 messages."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "litellm-chatgpt-provider-db-registered-models-skip-chatgptresponsesapiconfig-streaming-requests-fail-with-stream-must-be-set-to-true",
+    "title": "Claude Code ChatGPT Provider Streaming Fails Without Explicit Stream Config",
+    "description": "Fix LiteLLM chatgpt provider where database-registered models bypass ChatGPTResponsesAPIConfig causing streaming requests to fail with explicit error 'Stream must be set to true', breaking integration between Claude Code and OpenRouter-hosted ChatGPT-compatible endpoints Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "chatgpt provider: DB-registered models skip ChatGPTResponsesAPIConfig — streaming requests fail with 'Stream must be set to true'",
+    "search_intent": "Fix LiteLLM chatgpt provider where database-registered models bypass ChatGPTResponsesAPIConfig causing streaming requests to fail with explicit error 'Stream must be set to true', breaking integration between Claude Code and OpenRouter-hosted ChatGPT-compatible endpoints",
+    "common_causes": [
+      "GitHub issue #28044 on BerriAI/litellm by RomainGehrig, opened May 16 2026 (2 days ago, most recent find today). Labels: llm translation. When models are registered via LiteLLM's config database, the chatgpt provider skips applying ChatGPTResponsesAPIConfig entirely. Streaming then fails because the required stream parameter is not passed. Directly impacts developers building AI agent pipelines integrating multiple providers."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "LiteLLM"
+    ]
   }
 ]
