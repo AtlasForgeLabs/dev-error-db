@@ -18221,5 +18221,69 @@
     "related_errors": [
       "LiteLLM"
     ]
+  },
+  {
+    "slug": "anthropic-api-batches-retrieve-batches-results-returns-notfounderror-404-intermittently-seconds-after-successful-creation-server-side-propagation-delay-across-anthropic-infrastructure-nodes",
+    "title": "Anthropic Batch API Intermittent NotFoundError (404) Due to Server-Side Propagation Delay",
+    "description": "Handle transient 404 Not Found errors when calling Anthropic Batch API retrieve/results endpoints shortly after batch creation Includes evidence for Anthropic API troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Anthropic API",
+    "error_signature": "batches.retrieve() / batches.results() returns NotFoundError (404) intermittently seconds after successful creation — server-side propagation delay across Anthropic infrastructure nodes",
+    "search_intent": "Handle transient 404 Not Found errors when calling Anthropic Batch API retrieve/results endpoints shortly after batch creation",
+    "common_causes": [
+      "GitHub Issue #1432 on anthropics/anthropic-sdk-python by AlgoApi (Apr 21 2026), detailed case studies. Three failure cases observed: (1) retrieve() returns 404 within 1s of create(), (2) results() returns 404 after batch status confirmed as ended, (3) create() itself returns 404. All eventually succeed — indicates distributed state inconsistency. Strong commercial impact (paid batch API, production-crashing). Category mapping: direct Anthropic API error."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Anthropic API"
+    ]
+  },
+  {
+    "slug": "openai-api-server-error-in-background-response-payload-has-no-corresponding-typed-exception-retries-backoff-logic-cannot-work-for-background-true-runs-due-to-opaque-error-code-string",
+    "title": "OpenAI Responses API Background Mode Lacks Stable Error Code Mapping",
+    "description": "Fix retry/error-handling logic when OpenAI Responses API background polling returns status=failed without raising a typed SDK exception Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "server_error in background response payload has no corresponding typed exception; retries/backoff logic cannot work for background=True runs due to opaque error.code string",
+    "search_intent": "Fix retry/error-handling logic when OpenAI Responses API background polling returns status=failed without raising a typed SDK exception",
+    "common_causes": [
+      "GitHub Issue #3212 on openai/openai-python by adnanboz (May 8 2026), 3 comments from multiple contributors. The Responses API in background mode returns 200 OK even when status=failed, so HTTP status-code dispatching never triggers an exception. error.code like 'server_error' or 'rate_limit_exceeded' is undocumented and does not map to SDK exception classes (InternalServerError, RateLimitError). This breaks any production system relying on isinstance checks for retry decisions. Category mapping: direct OpenAI API error."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "vercel-middleware-routes-are-not-exempted-from-scoperoutestoserviceownership-breaking-deploy-outputs-in-services-mode-deployments",
+    "title": "Vercel Services-Mode Middleware Routes Break Deploy Outputs",
+    "description": "Fix middleware route scoping bug that causes deployment failures in Vercel Services-Mode Includes evidence for Vercel troubleshooting demand.",
+    "category": "Deployment",
+    "technology": "Vercel",
+    "error_signature": "Middleware routes are not exempted from scopeRoutesToServiceOwnership, breaking deploy outputs in Services-Mode deployments",
+    "search_intent": "Fix middleware route scoping bug that causes deployment failures in Vercel Services-Mode",
+    "common_causes": [
+      "GitHub Issue #16296 on vercel/vercel by mikhailocampo (May 12 2026), has 1 linked PR. This is a direct deployment-blocking error in Vercel's new Services-Mode architecture. Middleware routes fail to be properly excluded from ownership scope checks, causing deploy output corruption. Category mapping: Deployment (Vercel-specific). HIGH commercial value as build/deploy failures directly block paying teams."
+    ],
+    "quick_fix": "Check the build output, project root, and deployment platform configuration before redeploying.",
+    "related_errors": [
+      "Deployment"
+    ]
+  },
+  {
+    "slug": "anthropic-api-beta-skills-list-hard-capped-at-100-items-with-broken-pagination-has-more-always-false-no-cursor-available",
+    "title": "Anthropic Beta Skills List Hard-Capped at 100 Items With Broken Pagination",
+    "description": "Fix broken pagination in Anthropic beta.skills.list endpoint returning only first 100 items regardless of total count Includes evidence for Anthropic API troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Anthropic API",
+    "error_signature": "beta.skills.list hard-capped at 100 items with broken pagination — has_more always false, no cursor available",
+    "search_intent": "Fix broken pagination in Anthropic beta.skills.list endpoint returning only first 100 items regardless of total count",
+    "common_causes": [
+      "GitHub Issue #1391 on anthropics/anthropic-sdk-python by RahulBalakavi (Apr 15 2026). The API endpoint caps results at 100 and the pagination mechanism (has_more flag + cursor) is completely broken. Users with more than 100 registered skills cannot access them. Clear error signature, actionable fix needed. Category mapping: direct Anthropic API error."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Anthropic API"
+    ]
   }
 ]
