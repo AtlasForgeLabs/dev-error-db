@@ -17933,5 +17933,85 @@
     "related_errors": [
       "OpenAI API"
     ]
+  },
+  {
+    "slug": "claude-code-mcp-sdk-mcp-error-32000-connection-closed",
+    "title": "MCP Server Cancels All Tasks When Client Sends notifications/cancelled — MCP error -32000 Connection Closed",
+    "description": "开发者在 MCP 客户端/服务器交互中取消请求后，服务端整个接收循环崩溃，后续所有请求都报 Connection closed，导致 Claude Code 或自定义 MCP 客户端完全不可用 Includes evidence for Claude Code / MCP SDK troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code / MCP SDK",
+    "error_signature": "MCP error -32000: Connection closed",
+    "search_intent": "开发者在 MCP 客户端/服务器交互中取消请求后，服务端整个接收循环崩溃，后续所有请求都报 Connection closed，导致 Claude Code 或自定义 MCP 客户端完全不可用",
+    "common_causes": [
+      "GitHub Issue #2610 on modelcontextprotocol/python-sdk (updated 2026-05-18). RequestResponder.__exit__ leaks CancelledError killing stdio receive loop. Affects mcp 1.26.0 and 1.27.1 confirmed with FastMCP 3.1.x and Claude Code as host. This is a critical reliability issue for anyone using Claude Code or custom MCP integrations in production workflows. Exact root cause and fix identified. High commercial impact because MCP/AI coding tool failure directly blocks development."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "anthropic-api-you-ve-reached-your-usage-limit-please-try-again-later",
+    "title": "Anthropic Usage Limit Labels Are Ambiguous — Users Can't Distinguish Which Limit Was Hit",
+    "description": "开发者遇到 Anthropic API 使用限制报错，错误消息无法区分具体是哪个配额被触发（会话级、周级、API RPM/TPM），需要知道重置时间以便调整调用策略 Includes evidence for Anthropic API troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Anthropic API",
+    "error_signature": "You've reached your usage limit. Please try again later.",
+    "search_intent": "开发者遇到 Anthropic API 使用限制报错，错误消息无法区分具体是哪个配额被触发（会话级、周级、API RPM/TPM），需要知道重置时间以便调整调用策略",
+    "common_causes": [
+      "GitHub Issue #1492 on anthropics/anthropic-sdk-python (updated 2026-05-04). Multiple independent limits (session daily budget, weekly all-models, weekly Sonnet-specific, API rate limits) all surface identical \"Usage Limit\" messages with no reset info or actionable guidance. Enterprise/API users building on Claude face hard revenue impact when quota hits without knowing which one and when it resets."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Anthropic API"
+    ]
+  },
+  {
+    "slug": "vercel-next-js-function-invocation-failed-server-error",
+    "title": "Vercel Next.js app/not-found.tsx Throws FUNCTION_INVOCATION_FAILED Instead of Rendering Custom Error Page",
+    "description": "在 Vercel 部署的 Next.js 项目中启用了 cacheComponents 时，app/not-found.tsx 页面抛出 SERVER_INVOKE_FUNCTION_FAILED 而不是渲染自定义错误页面，用户看不到友好的 404/500 错误页面 Includes evidence for Vercel / Next.js troubleshooting demand.",
+    "category": "Deployment",
+    "technology": "Vercel / Next.js",
+    "error_signature": "FUNCTION_INVOCATION_FAILED server error",
+    "search_intent": "在 Vercel 部署的 Next.js 项目中启用了 cacheComponents 时，app/not-found.tsx 页面抛出 SERVER_INVOKE_FUNCTION_FAILED 而不是渲染自定义错误页面，用户看不到友好的 404/500 错误页面",
+    "common_causes": [
+      "GitHub Issue #93902 on vercel/next.js (updated 2026-05-17). Regression where not-found.tsx throws FUNCTION_INVOCATION_FAILED server error instead of rendering custom error page when cacheComponents are enabled. Affects production deployments on Vercel — customers see raw error instead of friendly UI. Strong commercial value as it blocks proper error UX on deployed apps. P0 technology."
+    ],
+    "quick_fix": "Check the build output, project root, and deployment platform configuration before redeploying.",
+    "related_errors": [
+      "Deployment"
+    ]
+  },
+  {
+    "slug": "github-copilot-remote-toggle-stops-working-in-long-running-sessions-off-on-cycle-does-not-recover",
+    "title": "GitHub Copilot CLI /remote Toggle Stops Working in Long-Running Sessions — No Recovery via Off/On Cycle",
+    "description": "开发者在使用 GitHub Copilot CLI 远程模式时，/remote 命令在长连接会话中失效，关闭再打开也无法恢复连接，导致远程编码会话中断 Includes evidence for GitHub Copilot troubleshooting demand.",
+    "category": "GitHub Copilot",
+    "technology": "GitHub Copilot",
+    "error_signature": "/remote toggle stops working in long-running sessions; off/on cycle does not recover",
+    "search_intent": "开发者在使用 GitHub Copilot CLI 远程模式时，/remote 命令在长连接会话中失效，关闭再打开也无法恢复连接，导致远程编码会话中断",
+    "common_causes": [
+      "GitHub Issue #3358 on github/copilot-cli (updated 2026-05-17). The remote toggle feature becomes unresponsive after long-running sessions. off/on cycle does not recover — requires full session restart. Directly impacts paid Copilot subscriptions as remote dev is a key workflow for enterprise developers."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "GitHub Copilot"
+    ]
+  },
+  {
+    "slug": "docker-compose-up-wait-exits-1-on-init-containers-successfully-completing",
+    "title": "Docker Compose up --wait Exits 1 Despite Init Containers Completing Successfully",
+    "description": "Docker Compose 中使用 --wait 参数等待初始化容器完成时，即使初始化容器成功运行完毕也返回退出码 1，CI/CD 流水线误判部署失败 Includes evidence for Docker troubleshooting demand.",
+    "category": "Docker",
+    "technology": "Docker",
+    "error_signature": "compose up --wait exits 1 on init containers successfully completing",
+    "search_intent": "Docker Compose 中使用 --wait 参数等待初始化容器完成时，即使初始化容器成功运行完毕也返回退出码 1，CI/CD 流水线误判部署失败",
+    "common_causes": [
+      "GitHub Issue #10596 on docker/compose (updated 2026-05-12). Bug where init containers completing successfully still result in exit code 1. Affects production CI/CD pipelines using Docker Compose for orchestration with health checks. Clear commercial impact through false deployment failures."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Docker"
+    ]
   }
 ]
