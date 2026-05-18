@@ -18925,5 +18925,85 @@
     "related_errors": [
       "Ollama"
     ]
+  },
+  {
+    "slug": "claude-code-bug-claude-desktop-and-claude-ai-fail-to-connect-to-custom-oauth-protected-mcp-server-opens-about-blank-page-instead-of-authorization-endpoint-infinite-open-claude-dialog-loop",
+    "title": "Claude Desktop and claude.ai fail to connect to custom OAuth-protected MCP server — infinite about:blank loop",
+    "description": "Fix Claude Desktop/claude.ai OAuth MCP connection failure where about:blank opens instead of redirecting to the OAuth authorization server Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "[BUG] Claude Desktop and claude.ai fail to connect to custom OAuth-protected MCP server — opens about:blank page instead of authorization endpoint; infinite 'Open Claude?' dialog loop",
+    "search_intent": "Fix Claude Desktop/claude.ai OAuth MCP connection failure where about:blank opens instead of redirecting to the OAuth authorization server",
+    "common_causes": [
+      "GitHub Issue #11814 on anthropics/claude-code repo by @jsbattig (Nov 2025). Fully spec-compliant MCP server with OAuth 2.1/RFC 8414/RFC 9728 fails to initiate OAuth flow in Claude Desktop and claude.ai web. Claude Code CLI works fine via --transport http, confirming server-side correctness. Mapped to AI Coding Tools category since this is a Claude Code platform-level bug affecting enterprise developers."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "claude-code-claude-code-403-forbidden-529-too-many-connections-when-calling-anthropic-api",
+    "title": "Claude Code CLI reports 403 Forbidden and 529 Too Many Connections during API calls",
+    "description": "Resolve Claude Code 403 and 529 API errors that block code generation and AI-assisted development workflows Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Claude Code 403 Forbidden / 529 Too Many Connections when calling Anthropic API",
+    "search_intent": "Resolve Claude Code 403 and 529 API errors that block code generation and AI-assisted development workflows",
+    "common_causes": [
+      "Codersera blog (May 2026) documents Claude Code common errors including 403 auth failures and 529 server overload errors from Anthropic API. These errors directly affect paying users of Claude Code Pro/Team plans, causing complete workflow blockage. High commercial value since both errors indicate production-facing API issues. Mapped to Anthropic API because the root cause is Anthropic-side authentication/quota throttling."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "github-copilot-error-github-copilot-could-not-authenticate-401-unauthorized-token-misconfigured-or-expired-despite-completing-all-setup-instructions",
+    "title": "GitHub Copilot returns 401 Unauthorized even after enabling tokens and permissions in VS Code",
+    "description": "Fix GitHub Copilot 401 auth errors in VS Code that prevent code completion despite correct token configuration Includes evidence for GitHub Copilot troubleshooting demand.",
+    "category": "GitHub Copilot",
+    "technology": "GitHub Copilot",
+    "error_signature": "[error] GitHub Copilot could not authenticate: 401 Unauthorized — token misconfigured or expired despite completing all setup instructions",
+    "search_intent": "Fix GitHub Copilot 401 auth errors in VS Code that prevent code completion despite correct token configuration",
+    "common_causes": [
+      "GitHub Community Discussion #167934 (Jul 2025) reports persistent 401 errors for GitHub Copilot in VS Code despite following all enablement steps. Stack Overflow question #77374105 confirms invalid_copilot_token / missing_token 403 patterns. Multiple V2EX threads (Jan 2026) discuss Copilot being down globally. Substantial community activity indicates ongoing search volume. Direct commercial impact as paid subscription tool becomes unusable."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "GitHub Copilot"
+    ]
+  },
+  {
+    "slug": "litellm-litellm-proxy-ratelimiterror-timeout-error-model-not-found-requests-to-100-plus-llm-apis-fail-due-to-misconfigured-rpm-tpm-limits-or-missing-model-list-entries",
+    "title": "LiteLLM Proxy rate limit exceeded, timeout, and model not found errors",
+    "description": "Fix LiteLLM proxy rate limiting, request timeouts, and unknown model errors blocking AI API routing for production workloads Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "LiteLLM proxy: RateLimitError / timeout error / model_not_found — requests to 100+ LLM APIs fail due to misconfigured RPM/TPM limits or missing model_list entries",
+    "search_intent": "Fix LiteLLM proxy rate limiting, request timeouts, and unknown model errors blocking AI API routing for production workloads",
+    "common_causes": [
+      "Official liteLLM documentation (docs.litellm.ai) covers proxy timeout configuration and rate limiting. Multiple Chinese-language troubleshooting guides (CSDN, cnblogs) document real-world deployment failures. AWS Samples bedrock-litellm repo provides rate-limit configuration examples. Enterprise proxy usage means billing impact when errors occur. Category mapped to LiteLLM as this is a proxy-specific error, not originating from any single upstream provider."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "LiteLLM"
+    ]
+  },
+  {
+    "slug": "github-copilot-github-copilot-error-code-32603-json-rpc-internal-error-in-jetbrains-ide-when-using-proxy-or-corporate-firewall",
+    "title": "JetBrains IDEs report GitHub Copilot error code -32603 Internal Error behind proxy/firewall",
+    "description": "Resolve JetBrains IDE Copilot -32603 internal error caused by proxy/Firewall/IDE network configuration conflicts Includes evidence for GitHub Copilot troubleshooting demand.",
+    "category": "GitHub Copilot",
+    "technology": "GitHub Copilot",
+    "error_signature": "GitHub Copilot error code: -32603 (JSON-RPC Internal Error) in JetBrains IDE when using proxy or corporate firewall",
+    "search_intent": "Resolve JetBrains IDE Copilot -32603 internal error caused by proxy/Firewall/IDE network configuration conflicts",
+    "common_causes": [
+      "CSDN article (published 2 days ago, May 2026) provides deep-dive analysis of GitHub Copilot -32603 errors in IntelliJ IDEA, PyCharm, etc. The five-layer troubleshooting approach covers firewall settings, IDE proxy configs, and network isolation rules. Very recent source demonstrates active developer demand. Category mapped to GitHub Copilot per approved taxonomy since the affected product is the Copilot plugin."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "GitHub Copilot"
+    ]
   }
 ]
