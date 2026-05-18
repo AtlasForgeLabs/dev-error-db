@@ -18397,5 +18397,101 @@
     "related_errors": [
       "LiteLLM"
     ]
+  },
+  {
+    "slug": "vercel-next-js-turbopack-chunk-filenames-multiple-dots-cloudflare-waf-403-production-build-fails",
+    "title": "Turbopack production build generates chunk filenames with multiple dots triggering Cloudflare WAF 403 responses",
+    "description": "Fix production build deployments failing behind Cloudflare WAF because Turbopack generates chunk filenames with multiple consecutive dots that trigger firewall rules Includes evidence for Vercel / Next.js troubleshooting demand.",
+    "category": "Deployment",
+    "technology": "Vercel / Next.js",
+    "error_signature": "Turbopack chunk filenames multiple dots Cloudflare WAF 403 production build fails",
+    "search_intent": "Fix production build deployments failing behind Cloudflare WAF because Turbopack generates chunk filenames with multiple consecutive dots that trigger firewall rules",
+    "common_causes": [
+      "GitHub Issue #93790 opened by sintijab on May 12, 2026. Three-stack intersection error (Vercel deploy + Turbopack build + Cloudflare WAF). Labeled 'Bug' + 'Turbopack'. Maps to 'Deployment' category."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "Deployment"
+    ]
+  },
+  {
+    "slug": "vercel-next-js-app-not-found-tsx-throws-function-invocation-failed-server-error-cachecomponents-enabled",
+    "title": "[regression] app/not-found.tsx throws FUNCTION_INVOCATION_FAILED server error instead of rendering custom error page when cacheComponents enabled",
+    "description": "Fix Next.js regression causing expensive FUNCTION_INVOCATION_FAILED errors instead of serving custom error pages when cacheComponents feature is enabled Includes evidence for Vercel / Next.js troubleshooting demand.",
+    "category": "Deployment",
+    "technology": "Vercel / Next.js",
+    "error_signature": "app/not-found.tsx throws FUNCTION_INVOCATION_FAILED server error cacheComponents enabled",
+    "search_intent": "Fix Next.js regression causing expensive FUNCTION_INVOCATION_FAILED errors instead of serving custom error pages when cacheComponents feature is enabled",
+    "common_causes": [
+      "GitHub Issue #93902 opened by Grod56 on May 17, 2026. Each failed invocation triggers a Lambda call costing money on Vercel Pro/Biz plans. Labeled 'Error Handling' + 'Bug'. Maps to 'Deployment' per approved mapping for Vercel deployment/build/runtime errors."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Deployment"
+    ]
+  },
+  {
+    "slug": "github-actions-runsvc-sh-lands-as-0-bytes-after-auto-update-runner-version-ci-fails",
+    "title": "bin.<version>/runsvc.sh sometimes lands as 0 bytes after auto-update from 2.328.0 to 2.334.0",
+    "description": "Fix corrupted self-hosted runner binary preventing jobs from executing after automatic GitHub Actions runner upgrade Includes evidence for GitHub Actions troubleshooting demand.",
+    "category": "GitHub Actions",
+    "technology": "GitHub Actions",
+    "error_signature": "runsvc.sh lands as 0 bytes after auto-update runner version CI fails",
+    "search_intent": "Fix corrupted self-hosted runner binary preventing jobs from executing after automatic GitHub Actions runner upgrade",
+    "common_causes": [
+      "GitHub Issue #4421 opened by msutafas on May 15, 2026. Corrupted executable from atomic auto-update breaks all queued jobs until manual fix. Complete CI outage for affected runners. Blocks paid team workflows. Maps to 'GitHub Actions' category."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "GitHub Actions"
+    ]
+  },
+  {
+    "slug": "github-actions-completejobasync-hits-workflow-instance-not-found-worker-hangs-runner-slot-blocked",
+    "title": "Self-hosted Worker hangs holding runner slot after CompleteJobAsync hits 'workflow instance not found'",
+    "description": "Fix GitHub Actions self-hosted runner permanently hanging after CompleteJobAsync fails, consuming runner slots and blocking queued jobs across repositories Includes evidence for GitHub Actions troubleshooting demand.",
+    "category": "GitHub Actions",
+    "technology": "GitHub Actions",
+    "error_signature": "CompleteJobAsync hits workflow instance not found worker hangs runner slot blocked",
+    "search_intent": "Fix GitHub Actions self-hosted runner permanently hanging after CompleteJobAsync fails, consuming runner slots and blocking queued jobs across repositories",
+    "common_causes": [
+      "GitHub Issue #4418 opened by lbgraham on May 14, 2026. Worker acquires job slot but never releases it, causing cascading queue delays. Labels 'bug' in official actions/runner repo. Maps to 'GitHub Actions' category."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "GitHub Actions"
+    ]
+  },
+  {
+    "slug": "vercel-next-js-turbopack-hashed-server-external-aliases-become-unresolved-vercel-prebuilt-deployments-pnpm",
+    "title": "Next.js 16 Turbopack hashed server external aliases become unresolved in Vercel prebuilt deployments with pnpm",
+    "description": "Fix Vercel deployment failure where Turbopack aliased dependencies resolve incorrectly in prebuilt production builds using pnpm package manager Includes evidence for Vercel / Next.js troubleshooting demand.",
+    "category": "Deployment",
+    "technology": "Vercel / Next.js",
+    "error_signature": "Turbopack hashed server external aliases become unresolved Vercel prebuilt deployments pnpm",
+    "search_intent": "Fix Vercel deployment failure where Turbopack aliased dependencies resolve incorrectly in prebuilt production builds using pnpm package manager",
+    "common_causes": [
+      "GitHub Issue #93901 opened by yayoi111 on May 17, 2026. Production deploys fail silently or crash. Labelled 'Turbopack' in vercel/next.js. Directly impacts paid Vercel deployment pipelines. Maps to 'Deployment' per approved mapping."
+    ],
+    "quick_fix": "Check the build output, project root, and deployment platform configuration before redeploying.",
+    "related_errors": [
+      "Deployment"
+    ]
+  },
+  {
+    "slug": "litellm-fireworks-ai-rejects-mcp-tool-schemas-unsupported-json-schema-title-default-litellm",
+    "title": "[Bug]: Fireworks AI rejects MCP tool schemas with unsupported JSON Schema fields triggered by Coralogix DevRev MCP integrations",
+    "description": "Fix LiteLLM proxy passing invalid JSON Schema fields (title, default) to Fireworks AI when bridging MCP tools, causing API rejections for Coralogix/DevRev integration users Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "Fireworks AI rejects MCP tool schemas unsupported JSON Schema title default litellm",
+    "search_intent": "Fix LiteLLM proxy passing invalid JSON Schema fields (title, default) to Fireworks AI when bridging MCP tools, causing API rejections for Coralogix/DevRev integration users",
+    "common_causes": [
+      "GitHub Issue #28149 opened by apshada on May 18, 2026 (today). Fresh proxy-to-model compatibility bug. MCP tool schemas contain fields Fireworks AI doesn't accept. Affects enterprise integration users spending money on both LiteLLM proxy and Fireworks AI. Maps to 'LiteLLM' per approved mapping."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "LiteLLM"
+    ]
   }
 ]
