@@ -18557,5 +18557,101 @@
     "related_errors": [
       "AI Coding Tools"
     ]
+  },
+  {
+    "slug": "claude-code-oauth-token-revoked-run-login-oauth-request-failed-internal-server-error-during-re-authentication",
+    "title": "Claude Code OAuth Token Revoked — Cannot Re-login After /login",
+    "description": "Fix Claude Code stuck in auth loop after token revocation; cannot refresh OAuth session via /login command Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "OAuth token revoked → run /login; OAuth Request Failed / Internal server error during re-authentication",
+    "search_intent": "Fix Claude Code stuck in auth loop after token revocation; cannot refresh OAuth session via /login command",
+    "common_causes": [
+      "GitHub Issue #4107 on anthropics/claude-code reports OAuth token revocation requiring /login, which leads to 'OAuth Request Failed' internal server error. HN discussion (news.ycombinator.com) confirms same pattern. Affects paid subscription users who lose access to coding agent. Category: AI Coding Tools per mapping rules."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "vercel-build-failed-command-failed-with-exit-code-1",
+    "title": "Vercel Build Failed 'Command failed with exit code 1' — Environment Parity Breakdown",
+    "description": "Diagnose and fix Vercel deployment build failures caused by environment differences between local and cloud build containers Includes evidence for Vercel troubleshooting demand.",
+    "category": "Deployment",
+    "technology": "Vercel",
+    "error_signature": "Build Failed: Command failed with exit code 1",
+    "search_intent": "Diagnose and fix Vercel deployment build failures caused by environment differences between local and cloud build containers",
+    "common_causes": [
+      "FlowQL comprehensive guide covers 7 common exit code 1 causes on Vercel. Already published as 'Vercel build command failed' in covered-errors.md but this specific focus on environment parity breakdown (case-sensitivity, peer dependency warnings treated as fatal, TypeScript strict mode mismatch) is distinct from the generic entry. Real source pages found and fetched. Category: Deployment per mapping rules. Note: duplicate_risk assessment needed — partially overlaps with existing 'Vercel build command failed' entry."
+    ],
+    "quick_fix": "Check the build output, project root, and deployment platform configuration before redeploying.",
+    "related_errors": [
+      "Deployment"
+    ]
+  },
+  {
+    "slug": "cursor-ai-model-not-found-model-name-is-not-valid-block",
+    "title": "Cursor IDE 'AI Model Not Found — Model name is not valid block'",
+    "description": "Fix Cursor IDE model loading error caused by broken auto-mode model mapping in version 2.4.7+; ghost models fail to load Includes evidence for Cursor troubleshooting demand.",
+    "category": "Cursor",
+    "technology": "Cursor",
+    "error_signature": "AI Model Not Found: Model name is not valid block",
+    "search_intent": "Fix Cursor IDE model loading error caused by broken auto-mode model mapping in version 2.4.7+; ghost models fail to load",
+    "common_causes": [
+      "dredyson.com detailed guide documents specific error 'AI Model Not Found - Model name is not valid block' triggered by Cursor 2.4.7+ Auto Mode attempting to load non-existent models from broken autoModels.json config. Affects paying Cursor subscription users unable to use AI coding features. DEBUG logs show ModelLoader attempting to load 'block-v2-32k' which doesn't exist in registry. Category: Cursor per mapping rules. Not a duplicate of existing 'model not available' — this is a distinct config corruption variant."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Cursor"
+    ]
+  },
+  {
+    "slug": "vercel-serverless-function-has-exceeded-the-unzipped-maximum-size-of-250-mb",
+    "title": "Vercel Serverless Function Exceeded 250 MB Unzipped Maximum Size",
+    "description": "Fix Vercel deployment failure caused by serverless function bundle exceeding the 250MB unzipped size limit Includes evidence for Vercel troubleshooting demand.",
+    "category": "Deployment",
+    "technology": "Vercel",
+    "error_signature": "Serverless Function has exceeded the unzipped maximum size of 250 MB",
+    "search_intent": "Fix Vercel deployment failure caused by serverless function bundle exceeding the 250MB unzipped size limit",
+    "common_causes": [
+      "fixdevs.com guide documents this specific Vercel constraint error alongside other deployment failures. Also confirmed in 32blog guide covering Next.js/Vercel deployment errors. Distinct from general build failures — this is a hard platform constraint on function bundle size. Affects production deployments for apps with heavy dependencies. Category: Deployment per mapping rules. Different from covered 'Vercel build command failed' — this is a specific size-limit error with unique troubleshooting path."
+    ],
+    "quick_fix": "Check the build output, project root, and deployment platform configuration before redeploying.",
+    "related_errors": [
+      "Deployment"
+    ]
+  },
+  {
+    "slug": "claude-code-datadog-mcp-oauth-fails-with-invalid-scope-error-works-in-claude-code-with-identical-config",
+    "title": "MCP Server OAuth Authentication Failure — Invalid Scope Error",
+    "description": "Fix MCP server OAuth authentication failures where valid configs work in Claude Code client but fail on specific third-party MCP servers (e.g., Datadog invalid_scope) Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Datadog MCP OAuth fails with invalid_scope error (works in Claude Code with identical config)",
+    "search_intent": "Fix MCP server OAuth authentication failures where valid configs work in Claude Code client but fail on specific third-party MCP servers (e.g., Datadog invalid_scope)",
+    "common_causes": [
+      "Factory-AI/factory GitHub Issue #1086 (created 2026-05-05) reports Datadog auth failing with invalid_scope error specifically for MCP OAuth flow, even with identical config that works in Claude Code native integration. mapbox/mcp-devkit-server Issue #114 (created 2026-05-15) reports inability to authenticate hosted endpoint via Claude Code. Multiple MCP OAuth integration issues being reported across repos. Category: AI Coding Tools per mapping rules. High growth area as more teams adopt MCP."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "docker-got-permission-denied-while-trying-to-connect-to-the-docker-daemon-socket-at-unix-var-run-docker-sock",
+    "title": "Docker Permission Denied While Connecting to Daemon Socket",
+    "description": "Fix Docker permission denied error when running docker commands without sudo; need to add user to docker group Includes evidence for Docker troubleshooting demand.",
+    "category": "Docker",
+    "technology": "Docker",
+    "error_signature": "Got permission denied while trying to connect to the Docker daemon socket at unix:///var/run/docker.sock",
+    "search_intent": "Fix Docker permission denied error when running docker commands without sudo; need to add user to docker group",
+    "common_causes": [
+      "tutorials.technology detailed guide (March 2026 update) provides complete diagnosis of docker.sock permission denied with full error string. Covers root cause (dockerd runs as root, socket permissions), multiple OS-specific fixes (Ubuntu, Debian, RHEL). Elementor blog also covers related Docker volume mount permission denied. Both 'daemon not running' and 'permission denied' are already in covered-errors.md but the specific socket-level diagnostic content and the volume-mount permission denied variant are distinct and highly searched. Category: Docker per mapping rules."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Docker"
+    ]
   }
 ]
