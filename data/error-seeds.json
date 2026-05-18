@@ -17837,5 +17837,101 @@
     "related_errors": [
       "Cloudflare"
     ]
+  },
+  {
+    "slug": "claude-code-error-429-type-error-error-type-rate-limit-error-message-rate-limited-free-ultrareview-1-of-3-consumed-before-failure",
+    "title": "Claude Code /ultrareview Rate Limit Error Drains Free Attempt Quota",
+    "description": "User wants to fix rate-limited /ultrareview command that still debits their 3 free attempts despite server-side throttling error Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Error: 429 {\"type\":\"error\",\"error\":{\"type\":\"rate_limit_error\",\"message\":\"Rate limited\"}} — Free ultrareview 1 of 3 consumed before failure",
+    "search_intent": "User wants to fix rate-limited /ultrareview command that still debits their 3 free attempts despite server-side throttling error",
+    "common_causes": [
+      "GitHub issue in anthropics/claude-code (#53323): user hit transient 429 from Anthropic backend during /ultrareview call; Claude Code debited one free attempt at job start rather than refunding on failure. Multiple corroborating comments confirm reproducible behavior. Category mapped to AI Coding Tools per approved category table."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "claude-code-weekly-limits-depleting-significantly-faster-after-5-hour-session-limit-doubling-update-users-report-80-usage-after-3-days-with-normal-light-usage",
+    "title": "Claude Code Weekly Usage Limits Deplete Faster After 5-Hour Session Limit Increase",
+    "description": "Paid Claude Code user wants to understand why weekly quota drains faster since May 2026 update and how to manage/reduce unexpected limit depletion Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Weekly limits depleting significantly faster after 5-hour session limit doubling update — users report 80% usage after 3 days with normal/light usage",
+    "search_intent": "Paid Claude Code user wants to understand why weekly quota drains faster since May 2026 update and how to manage/reduce unexpected limit depletion",
+    "common_causes": [
+      "GitHub issue in anthropics/claude-code (#57547): multiple users confirmed weekly quota drains disproportionately after the increased 5-hour limit change. User reports hitting 80% weekly usage within 3 days. 6+ 👍 reactions, active discussion. Direct billing/subscription impact → high commercial value. Category: AI Coding Tools."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "claude-code-api-error-server-is-temporarily-limiting-requests-not-your-usage-limit-rate-limited-free-ultrareview-1-of-3-emitted-before-failure",
+    "title": "Claude Code Ultrareview Quota Debited Despite API Rate Limit Failure",
+    "description": "Developer wants fix for /ultrareview failing with upstream rate-limit error but still consuming a free attempt count Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "API Error: Server is temporarily limiting requests (not your usage limit) · Rate limited — Free ultrareview 1 of 3 emitted before failure",
+    "search_intent": "Developer wants fix for /ultrareview failing with upstream rate-limit error but still consuming a free attempt count",
+    "common_causes": [
+      "GitHub issue in anthropics/claude-code (#56252): same root bug as #53323 but triggered by concurrent API throttling not /ultrareview-specific. Detailed reproduction with large branch context (106 files, +10210/-1226). Comment includes exact error string and suggested retry-with-backoff mitigation. Category: AI Coding Tools."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "anthropic-api-valueerror-bad-response-code-expected-200-status-code-400-headers-exception-type-internalserverexception-async-bedrock-cross-region-inference-profile-sse-decoding-crash",
+    "title": "Anthropic Bedrock Cross-Region SSE Events Raise Raw ValueError Instead of APIStatusError",
+    "description": "Developer using AsyncAnthropicBedrock needs proper exception type for non-200 SSE error frames from AWS Bedrock instead of raw Python ValueError crashes Includes evidence for Anthropic API troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Anthropic API",
+    "error_signature": "ValueError: Bad response code, expected 200: {'status_code': 400, 'headers': {':exception-type': 'internalServerException'}} — async bedrock cross-region inference profile SSE decoding crash",
+    "search_intent": "Developer using AsyncAnthropicBedrock needs proper exception type for non-200 SSE error frames from AWS Bedrock instead of raw Python ValueError crashes",
+    "common_causes": [
+      "PR #1555 open on anthropics/anthropic-sdk-python (created 2026-05-16): Bedrock returns non-200 status codes inside SSE event frames causing unhandled ValueError in AWSEventStreamDecoder. Affects production inference workloads. High commercial value due to Bedrock enterprise usage. Category: Anthropic API per approved mapping."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Anthropic API"
+    ]
+  },
+  {
+    "slug": "ollama-500-internal-server-error-mlx-runner-failed-error-failed-to-initialize-mlx-ollama-pulling-x-z-image-turbo-model-on-rocky-linux-9-7-with-nvidia-rtx-4000-sff-ada",
+    "title": "Ollama 500 Internal Server Error — MLX Runner Fails on Linux NVIDIA GPUs",
+    "description": "Ollama operator on Linux with NVIDIA GPU getting MLX (Apple Silicon runner) fallback errors when pulling multi-modal models, blocking model deployment Includes evidence for Ollama troubleshooting demand.",
+    "category": "Ollama",
+    "technology": "Ollama",
+    "error_signature": "500 Internal Server Error: mlx runner failed: Error: failed to initialize MLX — ollama pulling x/z-image-turbo model on Rocky Linux 9.7 with NVIDIA RTX 4000 SFF Ada",
+    "search_intent": "Ollama operator on Linux with NVIDIA GPU getting MLX (Apple Silicon runner) fallback errors when pulling multi-modal models, blocking model deployment",
+    "common_causes": [
+      "GitHub issue in ollama/ollama (#16204) created 2026-05-17: running Ollama 0.24.0 on Rocky Linux 9.7 with NVIDIA RTX 4000 SFF Ada, pulling x/z-image-turbo model triggers MLX runner initialization failure. Developer had to set OLLAMA_GPU_RUNNER=cuda as workaround. Clear error signature, recent (yesterday), relevant for self-hosted LLM ops with commercial implications."
+    ],
+    "quick_fix": "Verify the model name, local service connectivity, and network access before retrying the model pull.",
+    "related_errors": [
+      "Ollama"
+    ]
+  },
+  {
+    "slug": "openai-api-background-responses-failures-lack-a-stable-code-name-that-maps-to-an-exception-class-run-terminates-without-proper-error-classification",
+    "title": "OpenAI Responses API Background Mode Failures Lack Stable Error Codes",
+    "description": "Developer using OpenAI Responses API background mode needs stable error codes/names to catch and handle termination failures programmatically instead of generic exceptions Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "Background responses failures lack a stable code/name that maps to an exception class — run terminates without proper error classification",
+    "search_intent": "Developer using OpenAI Responses API background mode needs stable error codes/names to catch and handle termination failures programmatically instead of generic exceptions",
+    "common_causes": [
+      "Feature request issue #3212 on openai/openai-python (created 2026-05-08, updated 2026-05-11): When background=True runs terminate abnormally, no stable error identifier exists for developers to distinguish between different failure modes. Impacts production API integrations. Recent activity makes this timely. Category: OpenAI API."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "OpenAI API"
+    ]
   }
 ]
