@@ -18749,5 +18749,21 @@
     "related_errors": [
       "GitHub Actions"
     ]
+  },
+  {
+    "slug": "openai-api-openai-rag-langchain-tool-calling-is-not-working-compatible-with-withstructuredoutput",
+    "title": "OpenAI RAG LangChain tool calling not working with withStructuredOutput()",
+    "description": "Fix incompatibility between OpenAI chat completion tool calling and LangChain withStructuredOutput() format in Node.js/RAG pipeline Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "OpenAI RAG LangChain tool calling is not working/compatible with withStructuredOutput()",
+    "search_intent": "Fix incompatibility between OpenAI chat completion tool calling and LangChain withStructuredOutput() format in Node.js/RAG pipeline",
+    "common_causes": [
+      "Stack Overflow Q79923286: Developer reports tool calling from OpenAI model fails when used with LangChain's withStructuredOutput() wrapper in a RAG pipeline using @chroma-core/openai. Uses TypeScript/Node.js stack. High commercial value — affects production AI agent systems using paid OpenAI APIs. Category: OpenAI API."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "OpenAI API"
+    ]
   }
 ]
