@@ -18285,5 +18285,117 @@
     "related_errors": [
       "Anthropic API"
     ]
+  },
+  {
+    "slug": "openai-api-client-images-edit-raises-400-error-when-passing-image-url-instead-of-file-object",
+    "title": "OpenAI Python client.images.edit() fails 400 error with image_url parameter",
+    "description": "Developer trying to use images/edit endpoint with image_url JSON input gets 400 error — doc claims it's supported but implementation rejects it Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "client.images.edit() raises 400 error when passing image_url instead of file object",
+    "search_intent": "Developer trying to use images/edit endpoint with image_url JSON input gets 400 error — doc claims it's supported but implementation rejects it",
+    "common_causes": [
+      "GitHub issue #3256 on openai/openai-python (zh0903, May 18 2026). Confirmed bug: OpenAI docs reference /images/edits supports image_url but library/API returns 400. Direct API failure on paid service. Mapped category: official OpenAI API error."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "claude-code-vscode-webview-emits-sdk-stream-ended-no-result-while-extension-host-sdk-still-receives-stream-chunks-ui-shows-unhandled-case-object-object",
+    "title": "Claude Code VSCode extension sdk_stream_ended_no_result stream inconsistency",
+    "description": "Developer sees broken stream handling in Claude Code VS Code extension — webview thinks stream ended no result but SDK host still receiving chunks, causing unhandled UI errors Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "VSCode Webview emits sdk_stream_ended_no_result while extension-host SDK still receives stream chunks; UI shows \"Unhandled case: [object Object]\"",
+    "search_intent": "Developer sees broken stream handling in Claude Code VS Code extension — webview thinks stream ended no result but SDK host still receiving chunks, causing unhandled UI errors",
+    "common_causes": [
+      "GitHub issue #60140 on anthropics/claude-code (whrazer, May 18 2026). Affects thousands of paid Claude Code users with VSCode integration. Stream corruption causing bad UX. Category: AI Coding Tools per mapping rules."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "github-actions-runners-rest-api-reports-busy-false-for-a-self-hosted-runner-that-is-actively-executing-a-job-broker-says-busy-rest-says-idle",
+    "title": "GitHub Actions REST API reports wrong runner busy state",
+    "description": "Enterprise team using self-hosted GitHub Actions runners finds REST API returning stale busy=false state while actual job execution confirms busy=true — causes scheduling conflicts and wasted capacity allocation Includes evidence for GitHub Actions troubleshooting demand.",
+    "category": "GitHub Actions",
+    "technology": "GitHub Actions",
+    "error_signature": "/runners REST API reports busy: false for a self-hosted runner that is actively executing a job (broker says busy, REST says idle)",
+    "search_intent": "Enterprise team using self-hosted GitHub Actions runners finds REST API returning stale busy=false state while actual job execution confirms busy=true — causes scheduling conflicts and wasted capacity allocation",
+    "common_causes": [
+      "GitHub issue #4422 on actions/runner (fabgo, May 14 2026). Critical discrepancy between broker state and REST API state for self-hosted runners. Blocks CI/CD pipeline efficiency for paid teams. Category: GitHub Actions per mapping rules."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "GitHub Actions"
+    ]
+  },
+  {
+    "slug": "claude-code-opus-4-7-standard-unavailable-in-vs-code-extension",
+    "title": "Claude Code Opus 4.7 standard model unavailable in VS Code extension",
+    "description": "Paid Claude Code user cannot select or access Opus 4.7 standard model via VS Code extension — likely a platform-specific availability bug blocking paid tier usage Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Opus 4.7 standard unavailable in VS Code extension",
+    "search_intent": "Paid Claude Code user cannot select or access Opus 4.7 standard model via VS Code extension — likely a platform-specific availability bug blocking paid tier usage",
+    "common_causes": [
+      "GitHub issue #60137 on anthropics/claude-code (martinjbaker, May 18 2026). Platform labels: macOS + VSCode. Area: model. Paid model suddenly unavailable — direct impact on subscription value. Category: AI Coding Tools."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "github-actions-bin-version-runsvc-sh-sometimes-lands-as-0-bytes-after-auto-update-from-2-328-0-2-334-0",
+    "title": "LiteLLM runsvc.sh becomes 0 bytes after auto-update breaking runner execution",
+    "description": "After automatic GitHub Actions runner update, the runsvc.sh executable becomes empty (0 bytes), causing runner service to fail to start and halting all CI builds on affected machines Includes evidence for GitHub Actions troubleshooting demand.",
+    "category": "GitHub Actions",
+    "technology": "GitHub Actions",
+    "error_signature": "bin.<version>/runsvc.sh sometimes lands as 0 bytes after auto-update from 2.328.0 → 2.334.0",
+    "search_intent": "After automatic GitHub Actions runner update, the runsvc.sh executable becomes empty (0 bytes), causing runner service to fail to start and halting all CI builds on affected machines",
+    "common_causes": [
+      "GitHub issue #4421 on actions/runner (msutafas, May 14 2026). File corruption during auto-update sequence leaves critical binary empty. Breaks entire CI infrastructure until manual intervention. Category: GitHub Actions."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "GitHub Actions"
+    ]
+  },
+  {
+    "slug": "litellm-fireworks-ai-rejects-mcp-tool-schemas-with-unsupported-json-schema-fields-title-default-triggered-by-coralogix-and-devrev-mcp-integrations",
+    "title": "LiteLLM Fireworks AI rejects MCP tool schemas with unsupported JSON Schema fields",
+    "description": "Using LiteLLM as proxy with MCP tool calling, Fireworks AI provider rejects tool schemas containing non-standard JSON Schema fields (title, default), breaking Coralogix and DevRev MCP integrations Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "Fireworks AI rejects MCP tool schemas with unsupported JSON Schema fields (title, default) — triggered by Coralogix & DevRev MCP integrations",
+    "search_intent": "Using LiteLLM as proxy with MCP tool calling, Fireworks AI provider rejects tool schemas containing non-standard JSON Schema fields (title, default), breaking Coralogix and DevRev MCP integrations",
+    "common_causes": [
+      "GitHub issue #28149 on BerriAI/litellm (apshada, May 18 2026). Proxy-level incompatibility between LiteLLM schema passing and Fireworks AI validation. Affects enterprise MCP workflows routed through LiteLLM. Category: LiteLLM per mapping rules."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "LiteLLM"
+    ]
+  },
+  {
+    "slug": "litellm-virtual-keys-with-tpm-rpm-limits-leak-litellm-params-into-provider-api-calls-breaking-fallback-chains",
+    "title": "LiteLLM virtual keys with tpm/rpm limits leak internal params into provider API calls",
+    "description": "Using LiteLLM virtual keys with token-per-minute/rate-per-minute limits causes internal _litellm_* parameters to be leaked into upstream provider API calls, corrupting requests and breaking automatic fallback routing Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "Virtual keys with tpm/rpm limits leak _litellm_* params into provider API calls, breaking fallback chains",
+    "search_intent": "Using LiteLLM virtual keys with token-per-minute/rate-per-minute limits causes internal _litellm_* parameters to be leaked into upstream provider API calls, corrupting requests and breaking automatic fallback routing",
+    "common_causes": [
+      "GitHub issue #28146 on BerriAI/litellm (alejandro-xux, May 18 2026). Internal parameter leakage breaks fallback chain reliability for production API proxies. Critical for teams relying on LiteLLM for billing control and routing. Category: LiteLLM."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "LiteLLM"
+    ]
   }
 ]
