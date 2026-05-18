@@ -18653,5 +18653,101 @@
     "related_errors": [
       "Docker"
     ]
+  },
+  {
+    "slug": "claude-code-silently-hangs-mcp-tool-calls-after-sse-drop-does-not-fail-or-reconnect",
+    "title": "Claude Code silent hang on MCP tool calls after SSE drop without reconnect",
+    "description": "Fix Claude Code hanging indefinitely when Server-Sent Events (SSE) stream drops during MCP tool calls, causing no automatic retry or failure notification Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "silently hangs MCP tool calls after SSE drop; does not fail or reconnect",
+    "search_intent": "Fix Claude Code hanging indefinitely when Server-Sent Events (SSE) stream drops during MCP tool calls, causing no automatic retry or failure notification",
+    "common_causes": [
+      "GitHub Issue #60061 in anthropics/claude-code, opened May 18 2026. v2.1.143 causes silent hangs on MCP tool calls after SSE stream drops. Client logs the drop but never fails or reconnects. Category: AI Coding Tools. Directly affects paid Claude Code subscription users doing productive work."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "github-actions-registration-token-endpoint-returns-502-ephemeral-runners-die-before-registering",
+    "title": "GitHub Actions ephemeral runners die before registering — 502 on token endpoint",
+    "description": "Fix ephemeral GitHub Actions runners failing to register when the token endpoint intermittently returns 502 errors Includes evidence for GitHub Actions troubleshooting demand.",
+    "category": "GitHub Actions",
+    "technology": "GitHub Actions",
+    "error_signature": "Registration token endpoint returns 502; ephemeral runners die before registering",
+    "search_intent": "Fix ephemeral GitHub Actions runners failing to register when the token endpoint intermittently returns 502 errors",
+    "common_causes": [
+      "GitHub Issue #4399 in actions/runner, opened May 5 2026. Burst 502 errors on the registration token endpoint cause ephemeral runners to crash before they can even register. Category: GitHub Actions per mapping rules. Blocks paid team CI/CD pipelines completely."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "GitHub Actions"
+    ]
+  },
+  {
+    "slug": "claude-code-eacces-permission-denied-tmp-claude-settings-hash-json-not-uid-namespaced-claude-code-panel-crashes-on-second-macos-user",
+    "title": "Claude Desktop settings not UID-namespaced — multi-user macOS hits EACCES crash",
+    "description": "Fix Claude Desktop settings file collision causing EACCES crashes in multi-user macOS environments due to missing UID namespacing Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "EACCES permission denied; /tmp/claude-settings-<hash>.json not UID-namespaced; Claude Code panel crashes on second macOS user",
+    "search_intent": "Fix Claude Desktop settings file collision causing EACCES crashes in multi-user macOS environments due to missing UID namespacing",
+    "common_causes": [
+      "GitHub Issue #60122 in anthropics/claude-code, opened May 18 2026. Claude Desktop stores shared settings in /tmp without UID namespace, so second macOS user on same machine gets EACCES and the Claude Code IDE panel crashes. Category: AI Coding Tools (desktop/auth area). Multi-user environment pain point."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "claude-code-context-budget-exhausted-blown-by-eagerly-materialized-mcp-tool-schemas-and-skill-listing",
+    "title": "Subagent context budget blown by eagerly-materialized MCP tool schemas and skill listing",
+    "description": "Fix excessive context consumption caused by eagerly loading full MCP tool schemas and skill listings into subagent context budget Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Context budget exhausted / blown by eagerly-materialized MCP tool schemas and skill listing",
+    "search_intent": "Fix excessive context consumption caused by eagerly loading full MCP tool schemas and skill listings into subagent context budget",
+    "common_causes": [
+      "GitHub Issue #60141 in anthropics/claude-code, opened May 18 2026. Each MCP tool schema and skill listing entry consumes significant context tokens when eagerly materialized in subagent contexts, leading to premature context exhaustion. Category: AI Coding Tools (agents/mcp/tools area). Affects paid Claude Code users running complex agent workflows."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "claude-code-oauth-generates-duplicate-prompt-parameter-in-microsoft-365-connector",
+    "title": "Microsoft 365 connector OAuth generates duplicate prompt parameter in Claude Code",
+    "description": "Fix duplicate 'prompt' parameter generation in OAuth flow when using Microsoft 365 connector integration with Claude Code Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "OAuth generates duplicate prompt parameter in Microsoft 365 connector",
+    "search_intent": "Fix duplicate 'prompt' parameter generation in OAuth flow when using Microsoft 365 connector integration with Claude Code",
+    "common_causes": [
+      "GitHub Issue #60152 in anthropics/claude-code, opened May 18 2026. The Microsoft 365 MCP connector produces a malformed OAuth URL with duplicate 'prompt' query parameter, breaking authentication. Category: AI Coding Tools (auth area). OAuth auth failures on paid services are high-value targets."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "github-actions-self-hosted-runner-gets-stuck-in-active-state-blocking-queued-jobs-across-multiple-repositories",
+    "title": "Self-hosted GitHub Actions runner stuck in active state blocks queued jobs",
+    "description": "Fix GitHub Actions self-hosted runner that remains in active state and prevents other queued jobs from being assigned Includes evidence for GitHub Actions troubleshooting demand.",
+    "category": "GitHub Actions",
+    "technology": "GitHub Actions",
+    "error_signature": "Self-hosted runner gets stuck in active state, blocking queued jobs across multiple repositories",
+    "search_intent": "Fix GitHub Actions self-hosted runner that remains in active state and prevents other queued jobs from being assigned",
+    "common_causes": [
+      "GitHub Issue #4312 in actions/runner, opened Mar 26 2026. A self-hosted runner enters a broken active state and monopolizes job assignment, blocking queued workflows across multiple repos. Category: GitHub Actions. Production CI/CD disruption."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "GitHub Actions"
+    ]
   }
 ]
