@@ -18493,5 +18493,69 @@
     "related_errors": [
       "LiteLLM"
     ]
+  },
+  {
+    "slug": "claude-code-mcperror-mcp-error-32001-request-timed-out",
+    "title": "MCP error -32001 (Request timed out) when connecting Claude to Node.js MCP server",
+    "description": "Fix MCP -32001 timeout error when Claude Desktop loses connection to custom Node.js/Express MCP server after initial handshake Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "McpError: MCP error -32001: Request timed out",
+    "search_intent": "Fix MCP -32001 timeout error when Claude Desktop loses connection to custom Node.js/Express MCP server after initial handshake",
+    "common_causes": [
+      "SO Q79703292 (score 2). Developer building Node.js Express TypeScript MCP server sees connection established successfully but terminated after ~60s with -32001 timeout. Root cause: Claude opens SSE GET to same path after POST, missing GET handler. Commercial value boost: paid Anthropic API users impacted. Category mapping: Claude Code → AI Coding Tools per SKILL.md category rules."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "claude-code-mcp-server-launches-correctly-and-sends-valid-initialize-response-over-stdin-stdout-but-claude-connection-closes-immediately-afterward-with-logs-showing-server-started-and-connected-then-disconnect",
+    "title": "MCP Server Exits Unexpectedly After Initial Response When Integrating with Claude Desktop",
+    "description": "Debug why custom MCP server built in C#/.NET exits immediately after successful initialization when connecting to Claude Desktop — find proper JSON-RPC 2.0 lifecycle handling Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "MCP server launches correctly and sends valid initialize response over stdin/stdout, but Claude connection closes immediately afterward with logs showing server started and connected then disconnect",
+    "search_intent": "Debug why custom MCP server built in C#/.NET exits immediately after successful initialization when connecting to Claude Desktop — find proper JSON-RPC 2.0 lifecycle handling",
+    "common_causes": [
+      "SO Q79646317 (score 2). Custom MCP server in C# .NET 9 builds correctly, sends valid JSON-RPC 2.0 initialize response, but Claude Desktop terminates the connection immediately. Distinct from -32001 timeout (Q79703292) — here the error happens within seconds rather than 60s. No good solution found yet, suggesting content gap potential. Category mapping: Claude Code → AI Coding Tools per SKILL.md rules."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "vercel-vercel-deployment-error-command-ci-npm-run-build-exited-with-1",
+    "title": "Vercel Deployment Error — Command \"npm run build\" Exited with 1",
+    "description": "Fix generic Vercel build failure where CI environment variable stripping hides actual npm build error details — need strategies to surface the real compilation/runtime error Includes evidence for Vercel troubleshooting demand.",
+    "category": "Deployment",
+    "technology": "Vercel",
+    "error_signature": "Vercel Deployment Error: Command \"CI='' npm run build\" exited with 1",
+    "search_intent": "Fix generic Vercel build failure where CI environment variable stripping hides actual npm build error details — need strategies to surface the real compilation/runtime error",
+    "common_causes": [
+      "SO Q69930017 (score not shown, multiple similar posts exist). Vercel deploy shows exit code 1 with CI='' prepended — classic opaque Vercel build failure. Multiple StackOverflow hits (Q69930017, Q66840942, Q67603386) indicate high search demand. Unlike already-covered 'Vercel build command failed' (too generic) and 'Vercel module not found', this focuses on debugging opaque exit-1 scenarios. Category mapping: Vercel → Deployment per SKILL.md rules."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "Deployment"
+    ]
+  },
+  {
+    "slug": "claude-code-enoent-no-such-file-or-directory-stat-c-users-error-accessing-directory-mcp-filesystem-server-path-resolution-bug-between-windows-paths-and-npx-cross-platform-execution",
+    "title": "Error Accessing Directory in MCP Filesystem Server - ENOENT Error (No such file or directory)",
+    "description": "Fix MCP filesystem server ENOENT error in Claude Desktop where Windows absolute paths get mangled during npx-based server launch Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "ENOENT: no such file or directory, stat 'C:\\Users\\...'. Error accessing directory — MCP filesystem server path resolution bug between Windows paths and npx cross-platform execution",
+    "search_intent": "Fix MCP filesystem server ENOENT error in Claude Desktop where Windows absolute paths get mangled during npx-based server launch",
+    "common_causes": [
+      "SO Q79549653 (score 2, 1k views). User configures claude_desktop_config.json with Windows paths (C:\\Users\\...\\Desktop) but MCP filesystem server resolves them incorrectly when launched via npx. Clear actionable fix exists (use forward slashes). Commercial value: Claude Pro/API users blocked from file tools. Category mapping: Claude Code → AI Coding Tools per SKILL.md rules."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
   }
 ]
