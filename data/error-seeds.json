@@ -19325,5 +19325,101 @@
     "related_errors": [
       "GitHub Copilot"
     ]
+  },
+  {
+    "slug": "openai-api-background-run-returns-status-failed-with-opaque-error-code-string-e-g-server-error-and-http-200-ok-no-typed-exception-raised-cannot-use-isinstance-e-ratelimiterror-or-isinstance-e-internalservererror",
+    "title": "Background responses failures lack a stable error code that maps to an SDK exception class",
+    "description": "Developer needs reliable error classification for OpenAI Responses API background polling to implement proper retry/backoff logic instead of treating everything as opaque server errors Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "Background run returns status='failed' with opaque error.code string (e.g. 'server_error') and HTTP 200 OK — no typed exception raised, cannot use isinstance(e, RateLimitError) or isinstance(e, InternalServerError)",
+    "search_intent": "Developer needs reliable error classification for OpenAI Responses API background polling to implement proper retry/backoff logic instead of treating everything as opaque server errors",
+    "common_causes": [
+      "GitHub openai-python issue #3212 (opened May 8, 2026 by adnanboz). Synchronous SDK path has deterministic HTTP→exception mapping via _make_status_error, but background=True path has none. Error payload uses undocumented free-form error.code ('server_error', 'rate_limit_exceeded') not guaranteed present. Community member diva0078 provided workaround using manual classification enum. 3 comments, active discussion — strong signal. Category: OpenAI API matches P0 technology directly."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "openai-api-openai-codex-responses-api-strict-rate-limits-cause-developers-to-rage-build-multi-account-rotation-tools-to-exceed-per-account-throughput-quotas",
+    "title": "Codex rate limits force developers to run dual-account workarounds",
+    "description": "Developer frustrated by Codex rate limits wants workaround to increase API throughput beyond single-account caps; community building unofficial tools to pool multiple API keys/quotas Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "OpenAI Codex/Responses API strict rate limits cause developers to rage-build multi-account rotation tools to exceed per-account throughput quotas",
+    "search_intent": "Developer frustrated by Codex rate limits wants workaround to increase API throughput beyond single-account caps; community building unofficial tools to pool multiple API keys/quotas",
+    "common_causes": [
+      "Reddit r/OpenAI post discussing how Codex rate limits led developer to build a tool running two accounts simultaneously. This is a direct commercial indicator: rate limits on paid API are so restrictive that users are spending engineering effort to circumvent them, signaling both high search volume for 'how to get around Codex rate limit' and potential demand for solutions. Category: OpenAI API."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "claude-code-claude-code-stops-working-or-crashes-due-to-new-anthropic-usage-limits-and-rate-caps-requires-workaround-tool-engram-to-bypass-or-manage-quota-restrictions",
+    "title": "Claude Code engram v3.4.0: keeping Claude Code running under new usage limits",
+    "description": "User needs to maintain Claude Code sessions without being killed by sudden API usage limits; looking for tools or configurations to extend session lifetime and avoid unexpected interruption Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Claude Code stops working or crashes due to new Anthropic usage limits and rate caps; requires workaround tool (engram) to bypass or manage quota restrictions",
+    "search_intent": "User needs to maintain Claude Code sessions without being killed by sudden API usage limits; looking for tools or configurations to extend session lifetime and avoid unexpected interruption",
+    "common_causes": [
+      "Reddit r/ClaudeAI post (May 2026) discussing engram v3.4.0 tool designed to keep Claude Code running within Anthropic's new strict usage limits. This reflects a growing ecosystem problem: AI coding tools are hitting hard quotas that break developer workflows during active coding sessions. Commercial value: developers using Claude Code pay per-use and lost sessions mean wasted API calls + disrupted productivity. Category: AI Coding Tools matches Claude Code → approved mapping."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "litellm-litellm-proxy-returns-timeout-rate-limit-exceeded-and-model-routing-failures-when-forwarding-requests-to-upstream-llm-providers",
+    "title": "LiteLLM proxy rate limiting and throughput errors from community discussions",
+    "description": "Developer configuring LiteLLM as API proxy needs to resolve rate limiting, connection timeouts, and provider routing errors affecting their unified LLM endpoint Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "LiteLLM proxy returns timeout, rate limit exceeded, and model routing failures when forwarding requests to upstream LLM providers",
+    "search_intent": "Developer configuring LiteLLM as API proxy needs to resolve rate limiting, connection timeouts, and provider routing errors affecting their unified LLM endpoint",
+    "common_causes": [
+      "Stack Overflow tag page for litellm showed active questions. LiteLLM serves as middleware proxy for multiple LLM APIs — errors here cascade across all dependent services. Rate limiting and timeout errors are particularly valuable because they indicate misconfiguration patterns that need specific fix documentation. Category: LiteLLM → approved mapping per P1 tier."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "LiteLLM"
+    ]
+  },
+  {
+    "slug": "cloudflare-cloudflare-returns-error-502-bad-gateway-when-asp-net-application-performs-protected-content-redirect-returning-302-then-immediately-resetting-the-connection",
+    "title": "Cloudflare 502 errors on ASP.NET protected-content redirect with origin 302 resets",
+    "description": "Developer behind Cloudflare proxy experiences 502 errors when ASP.NET app redirects authenticated content; origin server sends 302 followed by connection reset causing Cloudflare to fail the proxy Includes evidence for Cloudflare troubleshooting demand.",
+    "category": "Cloudflare",
+    "technology": "Cloudflare",
+    "error_signature": "Cloudflare returns Error 502 Bad Gateway when ASP.NET application performs protected-content redirect returning 302 then immediately resetting the connection",
+    "search_intent": "Developer behind Cloudflare proxy experiences 502 errors when ASP.NET app redirects authenticated content; origin server sends 302 followed by connection reset causing Cloudflare to fail the proxy",
+    "common_causes": [
+      "Stack Overflow question visible in browser tab showing Cloudflare 502 on ASP.NET with redirect loop pattern. This is a classic CDN-origin handshake failure specific to certain web frameworks. Commercial value: businesses using Cloudflare with .NET backend lose revenue when CDNs fail to proxy correctly. Category: Cloudflare → approved mapping per P0 tier. Note: existing covered-errors.md covers basic 522/525 but not 502 edge cases with origin resets."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "Cloudflare"
+    ]
+  },
+  {
+    "slug": "vercel-vercel-build-command-fails-during-deployment-pipeline-blocking-production-release",
+    "title": "Vercel build failed error searching across Reddit and Stack Overflow",
+    "description": "Developer needs to debug Vercel deployment failures after pushing code to Git; common errors include module resolution, runtime dependency mismatch, and build script timeout Includes evidence for Vercel troubleshooting demand.",
+    "category": "Deployment",
+    "technology": "Vercel",
+    "error_signature": "Vercel build command fails during deployment pipeline, blocking production release",
+    "search_intent": "Developer needs to debug Vercel deployment failures after pushing code to Git; common errors include module resolution, runtime dependency mismatch, and build script timeout",
+    "common_causes": [
+      "Reddit r/vercel build failed search returned active results on Stack Overflow. Vercel build errors remain perennially high-value because they block production deployments for paying teams. StackOverflow tagged questions for both Vercel and Docker show recent activity. Specific sub-errors vary by framework (Next.js, Node, etc.), each having distinct stack traces. Category: Deployment matches P0 Vercel technology directly."
+    ],
+    "quick_fix": "Check the build output, project root, and deployment platform configuration before redeploying.",
+    "related_errors": [
+      "Deployment"
+    ]
   }
 ]
