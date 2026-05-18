@@ -19117,5 +19117,85 @@
     "related_errors": [
       "AI Coding Tools"
     ]
+  },
+  {
+    "slug": "openai-api-you-exceeded-your-current-quota-or-insufficient-quota-code-http-429-but-must-not-retry-same-request-billing-limits-page-inspection-required",
+    "title": "OpenAI API 429 Classification: insufficient_quota vs Rate Limit — Don't Retry Billing Errors",
+    "description": "Classify OpenAI 429 errors into retryable (rate_limit_reached) vs non-retryable (insufficient_quota/billing); implement code-level classifier to prevent cost-burning retry loops Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "You exceeded your current quota OR insufficient_quota code — HTTP 429 but must NOT retry same request; billing/Limits page inspection required",
+    "search_intent": "Classify OpenAI 429 errors into retryable (rate_limit_reached) vs non-retryable (insufficient_quota/billing); implement code-level classifier to prevent cost-burning retry loops",
+    "common_causes": [
+      "In-depth article documents two fundamentally different OpenAI 429 classes sharing same HTTP status code. insufficient_quota requires billing/Limits page inspection; rate_limit_reached needs backoff+jitter. Devs waste money retrying billing errors. Covers Python/TS classifier pattern. Distinct from generic '429 rate limit' topic — focuses on critical misclassification causing cascading costs."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "claude-code-claude-code-cannot-connect-to-github-s-remote-mcp-server-using-oauth-dynamic-client-registration-not-supported",
+    "title": "Claude Code GitHub Remote MCP OAuth Failed — Cannot Connect via Dynamic Client Registration",
+    "description": "Fix Claude Code failing to authenticate with GitHub's remote MCP server; resolve Dynamic Client Registration failures and configure PAT fallback or new OAuth app Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Claude Code cannot connect to GitHub's remote MCP server using OAuth; Dynamic Client Registration not supported",
+    "search_intent": "Fix Claude Code failing to authenticate with GitHub's remote MCP server; resolve Dynamic Client Registration failures and configure PAT fallback or new OAuth app",
+    "common_causes": [
+      "Found on GitHub anthropics/claude-code repo. Developers report GitHub remote MCP does not support Dynamic Client Registration — example commands fail. Workaround requires registering a new GitHub OAuth app with callback URL, or falling back to PAT approach. Distinct from Cursor/Claude auth issues — specific to MCP protocol OAuth flow."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "github-copilot-copilot-pro-active-in-billing-but-getting-access-denied-quota-error-in-ide-after-switching-accounts-or-org-policy-change",
+    "title": "GitHub Copilot Pro Subscribed But Access Denied — Multi-Account Mismatch and Org Policy Override",
+    "description": "Resolve Copilot Pro showing subscribed yet returning access-denied errors caused by multi-account mismatch, enterprise org policies overriding subscriptions, or billing sync delays Includes evidence for GitHub Copilot troubleshooting demand.",
+    "category": "GitHub Copilot",
+    "technology": "GitHub Copilot",
+    "error_signature": "Copilot Pro active in billing but getting access denied / quota error in IDE after switching accounts or org policy change",
+    "search_intent": "Resolve Copilot Pro showing subscribed yet returning access-denied errors caused by multi-account mismatch, enterprise org policies overriding subscriptions, or billing sync delays",
+    "common_causes": [
+      "Community forum case (user radmandev): Copilot Pro confirmed active in Billing & Plans page but IDE denies access. Root causes verified: wrong account login after account switch, enterprise org admin blocking AI features, subscription changes taking minutes to propagate. Applies to both Pro ($10/mo) and Enterprise plans."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "GitHub Copilot"
+    ]
+  },
+  {
+    "slug": "openai-api-503-service-unavailable-openai-servers-temporarily-overloaded-distinguish-platform-capacity-event-from-per-account-rate-limits",
+    "title": "OpenAI API 503 Service Unavailable During Platform Outage — Circuit Breaker Pattern",
+    "description": "Handle OpenAI 503 during platform incidents without cascading failures; implement circuit breaker and identify if outage affects all users vs individual account Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "503 Service Unavailable — OpenAI servers temporarily overloaded; distinguish platform capacity event from per-account rate limits",
+    "search_intent": "Handle OpenAI 503 during platform incidents without cascading failures; implement circuit breaker and identify if outage affects all users vs individual account",
+    "common_causes": [
+      "reintech.io guide covers 503 errors alongside 429 rate limits with real Python backoff examples. Distinguishes global capacity events (check OpenAI Status page) vs account-level rate limits. Recommends circuit breakers, request queuing, and preserving user experience. No existing dev-error-db coverage for 503 patterns."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "vercel-function-invocation-timeout-vercel-function-request-reached-timeout-threshold-free-tier-returns-504-after-10-seconds",
+    "title": "Vercel Serverless Functions Hit 10s Free Tier Timeout — FUNCTION_INVOCATION_TIMEOUT 504 Error",
+    "description": "Fix Vercel deployment timing out on free tier (10s function limit); optimize Next.js API routes or plan upgrade path Includes evidence for Vercel troubleshooting demand.",
+    "category": "Deployment",
+    "technology": "Vercel",
+    "error_signature": "FUNCTION_INVOCATION_TIMEOUT — Vercel Function request reached timeout threshold; free tier returns 504 after 10 seconds",
+    "search_intent": "Fix Vercel deployment timing out on free tier (10s function limit); optimize Next.js API routes or plan upgrade path",
+    "common_causes": [
+      "Stack Overflow + Medium articles document widespread FUNCTION_INVOCATION_TIMEOUT on Vercel free tier. Next.js API routes exceed 10s limit → 504 ERROR. Real-time deployment logs reveal functions being killed. Affects free-tier teams deploying products commercially."
+    ],
+    "quick_fix": "Check the build output, project root, and deployment platform configuration before redeploying.",
+    "related_errors": [
+      "Deployment"
+    ]
   }
 ]
