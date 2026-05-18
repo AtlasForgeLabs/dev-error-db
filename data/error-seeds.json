@@ -19053,5 +19053,69 @@
     "related_errors": [
       "LiteLLM"
     ]
+  },
+  {
+    "slug": "claude-code-fetched-oauth-metadata-with-scope-none-no-scopes-stored-to-add-to-token-request-authentication-timeouts-every-5-minutes",
+    "title": "Claude Code MCP client ignores OAuth scopes — missing offline_access causes 5-minute auth timeout",
+    "description": "Fix Claude Code MCP OAuth authentication that times out every 5 minutes because offline_access scope is never requested, preventing refresh token issuance Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Fetched OAuth metadata with scope: NONE; No scopes stored to add to token request!; authentication timeouts every 5 minutes",
+    "search_intent": "Fix Claude Code MCP OAuth authentication that times out every 5 minutes because offline_access scope is never requested, preventing refresh token issuance",
+    "common_causes": [
+      "GitHub Issue #7744 on anthropics/claude-code: MCP client fails to read scopes_supported from /.well-known/oauth-protected-resource endpoint. Results in authorization URLs without scope parameter, no refresh tokens issued, forced re-auth every 5 min. Only Claude Code CLI affected — Claude Desktop/Web handle it correctly. 29 👍 reactions. Categorized as AI Coding Tools per SKILL.md mapping for Claude Code OAuth/MCP auth errors."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "claude-code-browser-opens-to-about-blank-open-claude-dialog-appears-immediately-there-was-an-error-connecting-to-servername",
+    "title": "Claude Desktop/Web infinite about:blank loop when connecting to OAuth-protected custom MCP servers",
+    "description": "Fix Claude Desktop and claude.ai web interface failing to initiate OAuth flow for custom MCP servers — browser stays on about:blank creating infinite reconnect loop, while Claude Code CLI works fine Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Browser opens to about:blank; 'Open Claude?' dialog appears immediately; There was an error connecting to [ServerName]",
+    "search_intent": "Fix Claude Desktop and claude.ai web interface failing to initiate OAuth flow for custom MCP servers — browser stays on about:blank creating infinite reconnect loop, while Claude Code CLI works fine",
+    "common_causes": [
+      "GitHub Issue #11814 on anthropics/claude-code: Custom spec-compliant FastAPI MCP server with OAuth 2.1 (RFC 8414, RFC 9728, RFC 7636) returns correct discovery metadata but Claude Desktop/Web never send requests. about:blank loop vs Claude Code CLI --transport http working perfectly. Closed as duplicate of #5826. Categorized as AI Coding Tools per SKILL.md mapping for Claude Code OAuth/MCP auth errors."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "claude-code-claude-code-attempts-oauth2-dynamic-client-registration-despite-the-mcp-being-configured-with-an-authorization-header",
+    "title": "Claude Code HTTP transport with Authorization header triggers unnecessary OAuth DCR attempt",
+    "description": "Resolve Claude Code forcing OAuth2 DCR flow even when MCP server has pre-configured Bearer token via Authorization header — causes unexpected authentication redirects for existing API-based MCP servers Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Claude Code attempts OAuth2 Dynamic Client Registration despite the MCP being configured with an Authorization header",
+    "search_intent": "Resolve Claude Code forcing OAuth2 DCR flow even when MCP server has pre-configured Bearer token via Authorization header — causes unexpected authentication redirects for existing API-based MCP servers",
+    "common_causes": [
+      "GitHub Issue #2831 on anthropics/claude-code: When MCP server configured with type=http and Authorization: Bearer header, Claude Code ignores it and tries OAuth2 DCR instead. Similar to prior issue #1763. Fixed in v1.0.40 but regression risk remains. Categorized as AI Coding Tools per SKILL.md mapping."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "claude-code-no-such-tool-available-mcp-azure-devops-core-list-projects",
+    "title": "MCP server OAuth tools hidden — No such tool available error on Azure DevOps MCP server",
+    "description": "Fix MCP servers requiring OAuth authentication not exposing their tools to Claude Code session — tools invisible despite server showing connected Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "No such tool available: mcp__azure-devops__core_list_projects",
+    "search_intent": "Fix MCP servers requiring OAuth authentication not exposing their tools to Claude Code session — tools invisible despite server showing connected",
+    "common_causes": [
+      "GitHub Issue #11585 on anthropics/claude-code: MCP server with OAuth shows as connected via 'claude mcp list' but its tools are not exposed to Claude sessions. Azure DevOps MCP specifically affected. User gets 'No such tool available' error. Opus model flagged as regression. Categorized as AI Coding Tools per SKILL.md mapping for Claude Code MCP errors."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
   }
 ]
