@@ -18061,5 +18061,101 @@
     "related_errors": [
       "Deployment"
     ]
+  },
+  {
+    "slug": "openai-api-api-rate-limit-reached-please-try-again-later",
+    "title": "API Rate Limit Reached — Troubleshooting Pay-per-Token Quota Exhaustion",
+    "description": "User needs to fix recurring API rate limit errors that block their AI orchestrator (e.g., OpenClaw, Telegram bot) mid-task despite having available credits/balance. Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "API rate limit reached. Please try again later.",
+    "search_intent": "User needs to fix recurring API rate limit errors that block their AI orchestrator (e.g., OpenClaw, Telegram bot) mid-task despite having available credits/balance.",
+    "common_causes": [
+      "r/openclaw thread (2 months ago) with 24+ comments: users report 'API rate limit reached' errors blocking orchestrators mid-sending; one user confirmed topping up $40 resolved it. Comments explain monthly billing limits can be hit even with credits. Covered-errors.md has generic 'rate limit error' but not the specific auth/billing-limit cross-over scenario with dollar-topup resolution."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "anthropic-api-api-rate-limit-reached-while-using-anthropic-credits-confusing-monthly-spend-cap-vs-token-balance",
+    "title": "Anthropic API Rate Limit Despite Having Credits — Monthly Billing Cap Confusion",
+    "description": "Developers confused why API calls fail with rate limit even after confirming sufficient Anthropic credits exist — need to understand billing caps vs token limits. Includes evidence for Anthropic API troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Anthropic API",
+    "error_signature": "API rate limit reached while using Anthropic credits; confusing monthly spend cap vs token balance",
+    "search_intent": "Developers confused why API calls fail with rate limit even after confirming sufficient Anthropic credits exist — need to understand billing caps vs token limits.",
+    "common_causes": [
+      "Same r/openclaw thread: user confirmed having Anthropic credits but still got rate limit. Comment explained setting monthly spend limits blocks API regardless of credit balance. Distinct from generic OpenAI rate limit — targets Anthropic-specific auth flow and confusion between credit balance and billing quota settings."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "Anthropic API"
+    ]
+  },
+  {
+    "slug": "litellm-litellm-ratelimiterror-rate-limit-exceeded-without-proper-retry-delay",
+    "title": "LiteLLM Retry Mechanism Not Pausing After Rate Limit — Immediate Re-requests Cause Cascading 429s",
+    "description": "Developers using LiteLLM proxy need to fix retry mechanism that doesn't respect rate limit headers or configured delays, causing cascading 429 errors. Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "litellm.RateLimitError: Rate limit exceeded without proper retry delay",
+    "search_intent": "Developers using LiteLLM proxy need to fix retry mechanism that doesn't respect rate limit headers or configured delays, causing cascading 429 errors.",
+    "common_causes": [
+      "GitHub issue #6011 (BerriAI/litellm): explicit report of retry mechanism not pausing for set delay after rate limit. User set retry count 3 with 30s delay but it didn't work. Also #20867 shows rate limit misreported as 'no deployments available', #25080 adds fallback config for rate limits. Strong commercial signal — LiteLLM is used in production by teams paying for API calls."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "LiteLLM"
+    ]
+  },
+  {
+    "slug": "claude-code-mcp-error-32603-authentication-failed-requires-authentication",
+    "title": "Claude Code MCP Server Authentication Failed — Auth Token Format Errors",
+    "description": "Users need to fix Claude Code failing to authenticate MCP servers, specifically GitHub MCP and custom connectors returning auth failure codes. Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "MCP error -32603: Authentication Failed: Requires authentication",
+    "search_intent": "Users need to fix Claude Code failing to authenticate MCP servers, specifically GitHub MCP and custom connectors returning auth failure codes.",
+    "common_causes": [
+      "Multiple r/ClaudeAI threads: 'Github MCP: Unable to authenticate' (9mo, 5 comments), 'Claude Code not authenticating MCPs' (6mo), 'MCP server works with mcp dev but fails in Claude Desktop' (2mo, 9 comments). Pattern: token format errors are 'almost always one of these'. High volume recurring issue across many MCP integrations."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "litellm-litellm-kills-request-after-60s-default-timeout-despite-router-settings-timeout-being-set-higher",
+    "title": "LiteLLM Proxy Timeout Killing Long Requests at Default 60 Seconds",
+    "description": "Users proxying long-running requests through LiteLLM face premature 60s kill; need to properly configure timeout propagation to underlying provider. Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "LiteLLM kills request after 60s default timeout despite router_settings.timeout being set higher",
+    "search_intent": "Users proxying long-running requests through LiteLLM face premature 60s kill; need to properly configure timeout propagation to underlying provider.",
+    "common_causes": [
+      "GitHub discussion #16108: user sets router_settings.timeout: 1800 but litellm_params timeout still defaults to 60s. Request gets killed mid-execution. Related: issue #14895 shows TCP connector limits cause timeouts in high-concurrency. Distinct from rate-limit timeout — this is about internal timeout config inheritance bug."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "LiteLLM"
+    ]
+  },
+  {
+    "slug": "claude-code-mcp-oauth-session-expires-daily-connector-loses-authorization-requiring-full-reconnect",
+    "title": "Todoist MCP Connector Loses Authorization Daily in Claude Desktop App",
+    "description": "Users of official Todoist MCP with Claude desktop app experience daily auth loss; need stable OAuth refresh or permanent fix. Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "MCP OAuth session expires daily — connector loses authorization requiring full reconnect",
+    "search_intent": "Users of official Todoist MCP with Claude desktop app experience daily auth loss; need stable OAuth refresh or permanent fix.",
+    "common_causes": [
+      "r/todoist thread (2 months ago, 27 comments): 'uses official Todoist MCP connector in Claude desktop app and loses authorization roughly once a day, requiring disconnect/reconnect.' Multiple users confirm same issue. OAuth token lifecycle management problem in desktop app MCP integration — distinct from general MCP auth failure (#3 above) as this is session-token-expiry specific."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
   }
 ]
