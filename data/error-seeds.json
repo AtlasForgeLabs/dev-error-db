@@ -19517,5 +19517,53 @@
     "related_errors": [
       "Deployment"
     ]
+  },
+  {
+    "slug": "anthropic-api-type-error-error-type-invalid-request-error-message-method-not-allowed",
+    "title": "Claude.ai custom MCP connector OAuth callback returns Method Not Allowed before /oauth/token",
+    "description": "Fix OAuth callback failing with Method Not Allowed when connecting self-hosted remote MCP server to Claude.ai custom connector Includes evidence for Anthropic API troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Anthropic API",
+    "error_signature": "{\"type\":\"error\",\"error\":{\"type\":\"invalid_request_error\",\"message\":\"Method Not Allowed\"}}",
+    "search_intent": "Fix OAuth callback failing with Method Not Allowed when connecting self-hosted remote MCP server to Claude.ai custom connector",
+    "common_causes": [
+      "Found at anthropics/claude-ai-mcp#313 (open May 18–19, 2026). Developer connects OAuth-protected remote MCP server via Settings → Connectors → Custom Connector. DCR succeeds, authorization code redirect works, but Claude.ai's /api/mcp/auth_callback returns invalid_request_error 'Method Not Allowed' before POST /oauth/token is ever called. Affects paid Claude Team/Pro subscribers configuring enterprise MCP integrations. No existing coverage in dev-error-db."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "Anthropic API"
+    ]
+  },
+  {
+    "slug": "openai-api-openai-api-key-exists-but-is-not-valid-for-the-official-openai-responses-endpoint",
+    "title": "OpenAI API key not valid for official Responses endpoint — CI secret rejected",
+    "description": "Fix invalid OpenAI API key for official Responses endpoint in GitHub Actions CI pipeline despite key being set in repository secrets Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "OPENAI_API_KEY exists but is not valid for the official OpenAI Responses endpoint",
+    "search_intent": "Fix invalid OpenAI API key for official Responses endpoint in GitHub Actions CI pipeline despite key being set in repository secrets",
+    "common_causes": [
+      "Found at MiaoDX/roboclaws#111 (opened May 19, 2026, ~6 hours ago, labeled blocked/ready-for-human). The OPENAI_API_KEY GitHub secret is confirmed present (timestamp verified), but requests to the official OpenAI Responses endpoint fail with invalid key error. Indicates a mismatch between how the key was generated/scoped vs what the Responses endpoint requires. Blocks CI/CD pipelines for teams paying for OpenAI API usage."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "litellm-budgetexceedederror-phantom-error-despite-downgrade-to-v1-83-10-dev-2-redis-spend-counter-leak-in-reserve-budget-for-request",
+    "title": "LiteLLM reserve_budget_for_request() leaks Redis counters causing phantom BudgetExceededError after upgrade",
+    "description": "Fix incorrect BudgetExceededError triggered by leaked Redis counters after upgrading LiteLLM, blocking AI proxy service Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "BudgetExceededError — phantom error despite downgrade to v1.83.10.dev.2; Redis spend counter leak in reserve_budget_for_request()",
+    "search_intent": "Fix incorrect BudgetExceededError triggered by leaked Redis counters after upgrading LiteLLM, blocking AI proxy service",
+    "common_causes": [
+      "Found at BerriAI/litellm#27639 (opened May 11, 2026, 3 comments). After upgrading to v1.84.0, phantom BudgetExceededError occurs even after rolling back to v1.83.10.dev.2. Root cause traced to reserve_budget_for_request() leaking Redis spend counters. Directly affects paid LiteLLM proxy deployments managing multi-model routing and budget controls across teams."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "LiteLLM"
+    ]
   }
 ]
