@@ -19005,5 +19005,53 @@
     "related_errors": [
       "GitHub Copilot"
     ]
+  },
+  {
+    "slug": "openai-api-codex-mid-session-rate-limit-tap-out-exceeded-rate-limit-during-active-session",
+    "title": "OpenAI Codex Mid-Session Rate Limit Block on Paid 20X Plans",
+    "description": "Fix Codex rate limit blocking production coding sessions despite having paid 20X plan Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "Codex mid-session rate limit tap-out / exceeded rate limit during active session",
+    "search_intent": "Fix Codex rate limit blocking production coding sessions despite having paid 20X plan",
+    "common_causes": [
+      "Reddit r/OpenAI post (2026-05-14) reports users hitting mid-session rate limits with paid OpenAI Codex plans, forcing them to build multi-account workarounds. Affects paying users on $200/mo plans — strong purchase intent and billing impact."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "anthropic-api-claude-code-hit-usage-limit-quota-exhausted-requiring-fallback-or-transfer-mechanisms",
+    "title": "Claude Code Anthropic API Usage Quota Exhaustion During Active Sessions",
+    "description": "Resolve Claude Code being blocked by Anthropic API usage/quota limits during active coding sessions Includes evidence for Anthropic API troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Anthropic API",
+    "error_signature": "Claude Code hit usage limit / quota exhausted requiring fallback or transfer mechanisms",
+    "search_intent": "Resolve Claude Code being blocked by Anthropic API usage/quota limits during active coding sessions",
+    "common_causes": [
+      "Reddit r/ClaudeAI (2026-05-18): 'Made claude code warn you, time before it hits usage to transfer the pending work, all dynamically' (24 upvotes, 13 comments). Also 'engram v3.4.0 — keep Claude Code running under the new limits' confirms ongoing quota pressure. High commercial value — developers lose billable hours."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "Anthropic API"
+    ]
+  },
+  {
+    "slug": "litellm-litellm-proxy-timeout-error-backend-overloaded-error-when-routing-requests-to-upstream-llm-providers",
+    "title": "LiteLLM Proxy Backend Timeout and Overloaded Errors When Routing LLM Requests",
+    "description": "Fix LiteLLM proxy timeout or backend overloaded errors when acting as a single entry point for multiple LLM provider backends Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "LiteLLM proxy timeout error / backend overloaded_error when routing requests to upstream LLM providers",
+    "search_intent": "Fix LiteLLM proxy timeout or backend overloaded errors when acting as a single entry point for multiple LLM provider backends",
+    "common_causes": [
+      "P1 discovery. GitHub BerriAI/litellm repo trending issues show recurring rate-limit, timeout, and overloaded errors when LiteLLM proxies to multiple provider endpoints. Directly impacts production deployments where teams use LiteLLM as their unified API gateway — strong enterprise commercial value."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "LiteLLM"
+    ]
   }
 ]
