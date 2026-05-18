@@ -19245,5 +19245,85 @@
     "related_errors": [
       "Deployment"
     ]
+  },
+  {
+    "slug": "claude-code-oauth-authentication-fails-all-subsequent-api-calls-fail-with-authentication-error-after-completing-oauth-flow-behind-corporate-proxy",
+    "title": "Claude Code OAuth Authentication Fails Behind Corporate Proxy",
+    "description": "Fix Claude Code OAuth login failure when connected through corporate proxy or VPN Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "OAuth authentication fails; all subsequent API calls fail with authentication_error after completing OAuth flow behind corporate proxy",
+    "search_intent": "Fix Claude Code OAuth login failure when connected through corporate proxy or VPN",
+    "common_causes": [
+      "GitHub Issue #11464 on anthropics/claude-code repo — Claude Code extension fails OAuth authentication in remote dev environment with corporate proxy. The OAuth flow completes but API calls fail with 401. Strong commercial signal: affects enterprise users in managed networks. Category: AI Coding Tools per category mapping rules."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "claude-code-api-error-529-type-overloaded-error-anthropic-capacity-saturated-for-requested-model",
+    "title": "Claude Code HTTP 529 Overloaded Error During Peak Hours",
+    "description": "Resolve Claude Code 529 overloaded error during peak hours or Opus Max usage Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "API Error: 529 {\"type\":\"overloaded_error\"} — Anthropic capacity saturated for requested model",
+    "search_intent": "Resolve Claude Code 529 overloaded error during peak hours or Opus Max usage",
+    "common_causes": [
+      "Comprehensive field guide from Codersera documenting Claude Code HTTP 529 overloaded_error — distinct from 429 quota errors. Occurs when Anthropic capacity is temporarily saturated for a specific model (especially Opus). Affects paying users on Max plan during peak hours. High commercial value as this blocks paid workflows on popular models."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "claude-code-http-401-authentication-error-mid-session-oauth-token-expired-or-revoked-every-subsequent-tool-call-returns-authentication-error",
+    "title": "Claude Code HTTP 401 OAuth Token Expired Mid-Session",
+    "description": "Fix Claude Code 401 auth failure caused by expired OAuth token without re-login Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "HTTP 401 authentication_error mid-session — OAuth token expired or revoked, every subsequent tool call returns authentication_error",
+    "search_intent": "Fix Claude Code 401 auth failure caused by expired OAuth token without re-login",
+    "common_causes": [
+      "Documented in Codersera Claude Code error guide — 401 auth failure occurs when OAuth token expires or is revoked, especially painful during autonomous runs. Fix: /logout then /login to refresh credentials. Truefoundry MCP auth guide confirms OAuth expiry patterns. Strong commercial impact."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "claude-code-mcp-32000-client-closed-mcp-server-process-dies-on-launch",
+    "title": "Claude Code MCP Server Startup Failure (-32000)",
+    "description": "Fix Claude Code MCP server crash (-32000) preventing external tool connections Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "MCP -32000 Client Closed — MCP server process dies on launch",
+    "search_intent": "Fix Claude Code MCP server crash (-32000) preventing external tool connections",
+    "common_causes": [
+      "Documented in Codersera Claude Code error guide. The transport failure -32000 Client Closed means MCP server subprocess died on launch before Claude could communicate. Common when MCP servers reference invalid tools, misconfigured stdio, or write to stdout corrupting JSON-RPC. Enterprise users rely on MCP to connect Claude to databases and internal APIs."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "github-copilot-ghost-text-suggestions-stop-appearing-copilot-icon-still-visible-but-no-responses-triggered-silent-rate-limit-exceeded",
+    "title": "GitHub Copilot Ghost Text Stops After Rate Limit Hit",
+    "description": "Restore GitHub Copilot suggestions after invisible rate limit blocks completions Includes evidence for GitHub Copilot troubleshooting demand.",
+    "category": "GitHub Copilot",
+    "technology": "GitHub Copilot",
+    "error_signature": "Ghost text suggestions stop appearing, Copilot icon still visible but no responses triggered — silent rate limit exceeded",
+    "search_intent": "Restore GitHub Copilot suggestions after invisible rate limit blocks completions",
+    "common_causes": [
+      "First-hand account on Tech Sifted: developer mid-refactor experienced silent Copilot failure. Root cause was rate limiting — VS Code restart cleared it. Subscription stays active (free tier 2000 completions/month or paid $10+/month), but users don't get notified of rate limits. Strong commercial signal affecting paying subscribers silently."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "GitHub Copilot"
+    ]
   }
 ]
