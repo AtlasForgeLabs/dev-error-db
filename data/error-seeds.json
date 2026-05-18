@@ -18013,5 +18013,53 @@
     "related_errors": [
       "Docker"
     ]
+  },
+  {
+    "slug": "github-actions-github-oauth-token-contains-invalid-characters-composer-rejects-github-token-due-to-hyphen-regex-miss-exposing-plaintext-tokens-in-job-logs",
+    "title": "GitHub Composer CVE-2026-45793: GITHUB_TOKEN Leaks to CI Logs via Regex Miss",
+    "description": "Fix GitHub Actions token leakage into CI logs caused by Composer's old regex rejecting new GITHUB_TOKEN format with hyphens Includes evidence for GitHub Actions troubleshooting demand.",
+    "category": "GitHub Actions",
+    "technology": "GitHub Actions",
+    "error_signature": "GitHub OAuth token contains invalid characters — Composer rejects GITHUB_TOKEN due to hyphen regex miss, exposing plaintext tokens in job logs",
+    "search_intent": "Fix GitHub Actions token leakage into CI logs caused by Composer's old regex rejecting new GITHUB_TOKEN format with hyphens",
+    "common_causes": [
+      "Source: lilting.ch detailed analysis of CVE-2026-45793 disclosed May 13, 2026. Composer 2.3.0–2.9.7 rejected new GH Actions tokens containing hyphens (ghs_<id>_...), then embedded rejected token in exception messages written to stderr saved as job logs. Secret masking fails because ANSI color codes and line wrapping break contiguous string matching. Critical for paid Teams/Enterprise using setup-php or Composer in CI."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "GitHub Actions"
+    ]
+  },
+  {
+    "slug": "github-actions-resource-not-accessible-by-integration-http-403-checkout-step-fails-after-adding-explicit-permissions-block-missing-contents-read",
+    "title": "GitHub Actions Explicit Permissions Gotcha: Resource Not Accessible (HTTP 403)",
+    "description": "Fix Permission Denied (403 Forbidden) errors when declaring explicit permissions causes all other permissions to default to none, breaking checkout and Docker push steps Includes evidence for GitHub Actions troubleshooting demand.",
+    "category": "GitHub Actions",
+    "technology": "GitHub Actions",
+    "error_signature": "Resource not accessible by integration (HTTP 403) — checkout step fails after adding explicit permissions block missing contents: read",
+    "search_intent": "Fix Permission Denied (403 Forbidden) errors when declaring explicit permissions causes all other permissions to default to none, breaking checkout and Docker push steps",
+    "common_causes": [
+      "Source: securebin.ai comprehensive guide. Nov 2023 feature: setting any permission explicitly revokes all others. Common trap causing checkout failures, release creation failures, and Docker image push failures. Directly affects paid Teams/Enterprise plans with private repos."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "GitHub Actions"
+    ]
+  },
+  {
+    "slug": "vercel-we-encountered-an-internal-error-please-try-again-during-deploying-outputs-phase",
+    "title": "Vercel Deployment Fails with Internal Error at Deploying Outputs Phase",
+    "description": "Fix Vercel deployment failure occurring after successful build during Deploying outputs phase — caused by region failures, corrupted config, or platform incidents Includes evidence for Vercel troubleshooting demand.",
+    "category": "Deployment",
+    "technology": "Vercel",
+    "error_signature": "We encountered an internal error. Please try again. (during Deploying outputs phase)",
+    "search_intent": "Fix Vercel deployment failure occurring after successful build during Deploying outputs phase — caused by region failures, corrupted config, or platform incidents",
+    "common_causes": [
+      "Source: fdaytalk.com comprehensive troubleshooting. Error specifically happens AFTER build succeeds. Root causes: region outage, invalid output dir, .vercel folder corruption, vercel.json misconfiguration, function region mismatch. High commercial value — deployment failures block production releases for paying customers."
+    ],
+    "quick_fix": "Check the build output, project root, and deployment platform configuration before redeploying.",
+    "related_errors": [
+      "Deployment"
+    ]
   }
 ]
