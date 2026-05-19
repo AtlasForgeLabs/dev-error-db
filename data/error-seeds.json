@@ -19565,5 +19565,117 @@
     "related_errors": [
       "LiteLLM"
     ]
+  },
+  {
+    "slug": "claude-code-false-extra-usage-required-for-1m-context-usage-limit-reached-error-with-no-actual-limits-hit",
+    "title": "False Usage Limit Reached Error with No Actual Limits Hit on Claude Max Plan",
+    "description": "Resolve spurious usage limit error messages on Claude Code Max plan when user hasn't actually hit their rate or usage limits Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "False 'Extra usage required for 1M context' / 'Usage limit reached' error with no actual limits hit",
+    "search_intent": "Resolve spurious usage limit error messages on Claude Code Max plan when user hasn't actually hit their rate or usage limits",
+    "common_causes": [
+      "GitHub anthropics/claude-code#60129 opened May 18, 2026: Users on the paid Max plan receive 'Usage limit reached' errors despite being well under their limits. This causes real disruption for paid subscribers who can't use the tool. P0 tech with billing-quota impact. Category: AI Coding Tools (Claude Code)."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "claude-code-max-plan-5h-usage-filled-0-100-in-just-5-minutes-after-refresh-apparent-rapid-quota-drain-without-proportional-activity",
+    "title": "Max Plan 5h Usage Fills 0-100% in Just 5 Minutes After Refresh",
+    "description": "Investigate and fix unexpected rapid quota depletion on Claude Code Max plan where the 5-hour window appears to expire in only 5 minutes Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "max plan 5h usage filled 0-100% in just 5 minutes after refresh — apparent rapid quota drain without proportional activity",
+    "search_intent": "Investigate and fix unexpected rapid quota depletion on Claude Code Max plan where the 5-hour window appears to expire in only 5 minutes",
+    "common_causes": [
+      "GitHub anthropics/claude-code#59472 opened May 16, 2026: Paid Max plan users report their 5-hour daily usage window vanishing within ~5 minutes of reset. This directly impacts paying customers and could indicate a server-side time-tracking bug. Strong billing impact = high commercial value."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "claude-code-usage-tracking-bug-quota-increased-from-64-to-100-with-no-active-tasks-running",
+    "title": "Serious Usage Tracking Bug: Quota Jumped from 64% to 100% With No Active Tasks",
+    "description": "Find why Claude Code usage counter jumps from 64% to 100% automatically when no prompts are being sent or tasks are actively running Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Usage tracking bug: quota increased from 64% to 100% with no active tasks running",
+    "search_intent": "Find why Claude Code usage counter jumps from 64% to 100% automatically when no prompts are being sent or tasks are actively running",
+    "common_causes": [
+      "GitHub anthropics/claude-code#59315 opened May 15, 2026: Dramatic example of usage tracking malfunction — 36% quota consumed in zero activity. External-labeled bug confirms reported by non-Anthropic sources. Severe impact on paid Max plan users who lose access unexpectedly."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "claude-code-cache-read-tokens-counted-at-full-rate-despite-cache-hits-on-max-20x-billing-system-not-applying-discounted-cache-read-pricing",
+    "title": "Opus 4.6 Cache Read Tokens Counted at Full Rate Despite Cache Hits on Max 20x",
+    "description": "Fix incorrect billing where Opus 4.6 cached read tokens are charged at full input rate instead of discounted cache-hit rate on Claude Code Max plan Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "cache_read tokens counted at full rate despite cache hits on Max 20x — billing system not applying discounted cache read pricing",
+    "search_intent": "Fix incorrect billing where Opus 4.6 cached read tokens are charged at full input rate instead of discounted cache-hit rate on Claude Code Max plan",
+    "common_causes": [
+      "GitHub anthropics/claude-code#59872 opened May 17, 2026: Users report that despite cache hits providing 20x speedup, the billing system charges the full token price rather than the reduced cache-read rate. Direct financial impact on paid users — every repeated interaction costs more than expected. Category: AI Coding Tools."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "openai-api-background-responses-failures-lack-a-stable-code-name-that-maps-to-an-exception-class-api-errors-cannot-be-programmatically-caught",
+    "title": "Background Responses Failures Lack Stable Error Code Mapping for Exception Handling",
+    "description": "Handle OpenAI API background response failures with proper error codes so applications can catch and retry specific error types reliably Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "Background responses failures lack a stable code/name that maps to an exception class — API errors cannot be programmatically caught",
+    "search_intent": "Handle OpenAI API background response failures with proper error codes so applications can catch and retry specific error types reliably",
+    "common_causes": [
+      "GitHub openai/openai-python#3212 opened May 8, 2026: Users report async/background API call failures don't produce consistent error codes, making it impossible to distinguish rate limits from server errors programmatically. Critical for production apps using OpenAI SDK. P0 tech + specific actionable error = high score."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "claude-code-session-usage-jumped-30-per-prompt-in-less-than-1-minute-of-entering-the-prompt-abnormal-token-consumption-spike",
+    "title": "Session Usage Jumps 30% Per Prompt in Less Than 1 Minute of Entering the Prompt",
+    "description": "Debug abnormally high token/usage consumption where each prompt triggers a 30% jump in session usage instantly upon submission Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "session usage jumped 30% per prompt in less than 1 minute of entering the prompt — abnormal token consumption spike",
+    "search_intent": "Debug abnormally high token/usage consumption where each prompt triggers a 30% jump in session usage instantly upon submission",
+    "common_causes": [
+      "GitHub anthropics/claude-code#59973 opened May 17, 2026: Multiple users report massive unexplained usage spikes per prompt, effectively burning through daily quotas prematurely. Occurs across VS Code and Windows platforms. High commercial value because it wastes paid-tier tokens."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "claude-code-rate-limits-field-still-missing-null-from-statusline-json-on-2-1-141-oauth-pro-firstparty",
+    "title": "rate_limits Field Missing/Null from statusLine JSON on Claude Code v2.1.141 with OAuth Pro",
+    "description": "Fix missing rate_limits field in Claude Code statusLine JSON output for OAuth Pro authenticated first-party users on v2.1.141 Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "rate_limits field still missing/null from statusLine JSON on 2.1.141 (OAuth Pro, firstParty)",
+    "search_intent": "Fix missing rate_limits field in Claude Code statusLine JSON output for OAuth Pro authenticated first-party users on v2.1.141",
+    "common_causes": [
+      "GitHub anthropics/claude-code#59462 opened May 16, 2026: The rate_limits field is absent from statusLine JSON, preventing external tooling from proactively handling rate limits before hitting them. Has repro steps attached. Important for developers building integrations on top of Claude Code. CDP direct fetch confirmed page accessible."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
   }
 ]
