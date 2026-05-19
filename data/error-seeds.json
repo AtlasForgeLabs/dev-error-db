@@ -21485,5 +21485,69 @@
     "related_errors": [
       "AI Coding Tools"
     ]
+  },
+  {
+    "slug": "vercel-function-invocation-timeout-vercel-serverless-function-exceeds-default-10s-timeout-hobby-plan-without-fluid-compute-request-drops-with-500-response",
+    "title": "Vercel FUNCTION_INVOCATION_TIMEOUT — Serverless Function Timeout on Hobby Plan",
+    "description": "Fix Vercel FUNCTION_INVOCATION_TIMEOUT by extending serverless function timeout, enabling Fluid Compute, or optimizing handler duration Includes evidence for Vercel troubleshooting demand.",
+    "category": "Deployment",
+    "technology": "Vercel",
+    "error_signature": "FUNCTION_INVOCATION_TIMEOUT — Vercel serverless function exceeds default 10s timeout (Hobby plan without Fluid Compute), request drops with 500 response",
+    "search_intent": "Fix Vercel FUNCTION_INVOCATION_TIMEOUT by extending serverless function timeout, enabling Fluid Compute, or optimizing handler duration",
+    "common_causes": [
+      "Source: 32blog.com en/vercel/vercel-deployment-errors-fix (web_fetch, status 200). Specific timeout error with clear cause/solution path. Commercial value: blocks production serverless functions for paying Hobby plan users, requires dashboard intervention. Distinct from generic build failures. Category mapping: Deployment."
+    ],
+    "quick_fix": "Check the build output, project root, and deployment platform configuration before redeploying.",
+    "related_errors": [
+      "Deployment"
+    ]
+  },
+  {
+    "slug": "github-actions-error-input-required-and-not-supplied-token-secrets-my-api-token-resolves-to-empty-string-curl-fails-with-401-token-undefined-in-workflow-step-despite-being-set-in-repository-settings",
+    "title": "GitHub Actions Secret Not Available — Empty Env Var in Workflow Despite Repository Config",
+    "description": "Fix GitHub Actions secret appearing empty in workflow steps — covers fork PR restrictions, environment protection rules, scope mismatches, case-sensitive naming Includes evidence for GitHub Actions troubleshooting demand.",
+    "category": "GitHub Actions",
+    "technology": "GitHub Actions",
+    "error_signature": "Error: Input required and not supplied: token / secrets.MY_API_TOKEN resolves to empty string / curl fails with 401 — token undefined in workflow step despite being set in repository settings",
+    "search_intent": "Fix GitHub Actions secret appearing empty in workflow steps — covers fork PR restrictions, environment protection rules, scope mismatches, case-sensitive naming",
+    "common_causes": [
+      "Source: fixdevs.com blog/github-actions-secret-not-available (web_fetch, status 200, ~4200 chars extracted). Covers 6 root causes: fork PR restrictions, wrong scope, case-sensitive names, empty values, if-condition usage, branch approval requirements. High commercial value: breaks auth flows for paid GitHub Team/Org plans. Distinct from existing 'permission denied publickey'. Category mapping: GitHub Actions."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "GitHub Actions"
+    ]
+  },
+  {
+    "slug": "openai-api-insufficient-quota-error-returned-by-openai-api-but-client-library-retries-as-rate-limit-429-causing-misleading-user-messages-after-extended-backoff-periods",
+    "title": "OpenAI API insufficient_quota Mistakenly Retried as Rate Limit Error",
+    "description": "Fix OpenAI client treating insufficient_quota as rate limit — stop unnecessary retries, surface correct billing/quota error to end users Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "insufficient_quota error returned by OpenAI API but client library retries as rate_limit (429), causing misleading user messages after extended backoff periods",
+    "search_intent": "Fix OpenAI client treating insufficient_quota as rate limit — stop unnecessary retries, surface correct billing/quota error to end users",
+    "common_causes": [
+      "Source: github.com/langchain-ai/langchainjs/issues/1929 (found via web_search, snippet confirmed). OpenAI insufficient_quota errors misclassified by LangChainJS retry logic as 429 rate limits. Causes wasted API calls and confusing UX during billing failures. High commercial value: incorrect error handling wastes tokens and degrades paid service experience. Distinct from generic 429/rate limit. Category mapping: OpenAI API."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "vercel-serverless-function-has-crashed-out-of-memory-hobby-plan-2-gb-limit-uncaught-exceptions-or-missing-env-vars-causing-db-api-connection-failures",
+    "title": "Vercel Serverless Function Crash — OOM on Hobby Plan (2 GB Limit)",
+    "description": "Fix Vercel serverless function crashes caused by out-of-memory on Hobby plan, identify whether unhandled exceptions or missing environment variables are the root cause Includes evidence for Vercel troubleshooting demand.",
+    "category": "Deployment",
+    "technology": "Vercel",
+    "error_signature": "Serverless Function has crashed — Out of memory (Hobby plan: 2 GB limit); uncaught exceptions or missing env vars causing DB/API connection failures",
+    "search_intent": "Fix Vercel serverless function crashes caused by out-of-memory on Hobby plan, identify whether unhandled exceptions or missing environment variables are the root cause",
+    "common_causes": [
+      "Source: 32blog.com en/vercel/vercel-deployment-errors-fix (web_fetch, status 200, extracted via normal_fetch). Specific OOM error tied to Hobby plan 2GB RAM limit. Many paid Hobby-tier users hit this in production. Distinct from general build failures. Category mapping: Deployment."
+    ],
+    "quick_fix": "Check the build output, project root, and deployment platform configuration before redeploying.",
+    "related_errors": [
+      "Deployment"
+    ]
   }
 ]
