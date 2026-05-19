@@ -19677,5 +19677,69 @@
     "related_errors": [
       "AI Coding Tools"
     ]
+  },
+  {
+    "slug": "github-copilot-weekly-rate-limit-exceeded-copilot-locked-out-for-44-hours-after-hitting-rate-limits-sub-30s-retry-windows-cycle-indefinitely",
+    "title": "GitHub Copilot Pro+ Users Hit Unexpected 44-Hour Weekly Rate Limit Lockouts",
+    "description": "Developer paying for Copilot Pro+ hits an unexpectedly long rate-limit block that breaks coding workflow for hours; needs workaround or faster resolution path. Includes evidence for GitHub Copilot troubleshooting demand.",
+    "category": "GitHub Copilot",
+    "technology": "GitHub Copilot",
+    "error_signature": "weekly rate limit exceeded — Copilot locked out for 44 hours after hitting rate limits; sub-30s retry windows cycle indefinitely",
+    "search_intent": "Developer paying for Copilot Pro+ hits an unexpectedly long rate-limit block that breaks coding workflow for hours; needs workaround or faster resolution path.",
+    "common_causes": [
+      "The Register (April 15, 2026) reported that after fixing a token undercounting bug, GitHub imposed strict rate limits. Paid Pro+ user John Clary experienced a 44-hour 'weekly rate limit' lockout. Multiple community discussion threads show dozens of complaints in two days about 'obscenely long rate limits' and multi-day waits. Severity elevated because it directly blocks paying enterprise/pro users."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "GitHub Copilot"
+    ]
+  },
+  {
+    "slug": "claude-code-authentication-error-401-oauth-token-expired-mid-autonomous-run-every-subsequent-tool-call-returns-auth-error-until-re-login",
+    "title": "Claude Code 401 Auth Failure Mid-Session During Autonomous Runs",
+    "description": "Developer running long autonomous Claude Code sessions hits sudden 401 auth failures; needs recovery procedure (/logout then /login, cache clearing, fresh token lifecycle management). Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "authentication_error (401) — OAuth token expired mid-autonomous run, every subsequent tool call returns auth error until re-login",
+    "search_intent": "Developer running long autonomous Claude Code sessions hits sudden 401 auth failures; needs recovery procedure (/logout then /login, cache clearing, fresh token lifecycle management).",
+    "common_causes": [
+      "DeepStation.ai and codersera.com both document 401 as a critical Claude Code failure mode. The painful variant: mid-session expiry during autonomous runs makes the session unrecoverable without manual intervention. Fixes require /logout + /login sequence plus cache clearing (rm -rf ~/.claude/auth). A documented 2026 regression where even fresh browser login can still 401. Directly impacts paid enterprise workflows."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "claude-code-connection-closed-mcp-server-name-error-32000-generic-json-rpc-server-error-indicating-mcp-subprocess-crashed-during-init",
+    "title": "Claude Code MCP Server Crashes With -32000 Generic Error",
+    "description": "Developer configures an MCP server for Claude Code but it immediately fails with -32000; needs systematic troubleshooting steps (command isolation, env vars, stdout pollution, Node.js event loop). Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Connection closed / MCP server <name>: error -32000 — generic JSON-RPC server error indicating MCP subprocess crashed during init",
+    "search_intent": "Developer configures an MCP server for Claude Code but it immediately fails with -32000; needs systematic troubleshooting steps (command isolation, env vars, stdout pollution, Node.js event loop).",
+    "common_causes": [
+      "codersera.com details -32000 as the JSON-RPC generic server-error code caused by MCP server process failing to start. Verified by GitHub issue GitNexus #1683: 'MCP error with Claude: Failed to reconnect to gitnexus: -32000'. Root causes include missing binary, wrong Node version, missing env var, console.log() polluting stdio transport. Not covered in dev-error-db's covered-errors.md."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "claude-code-connection-closed-picking-well-maintained-servers-avoids-a-lot-of-this-mcp-stdio-process-died-between-connect-and-first-tools-list-response",
+    "title": "Claude Code 'Client Closed' Connection Error After MCP Server Spawn",
+    "description": "MCP server launches but dies before responding. Developer needs to diagnose why child process exits (missing binary, Node.js init completes with no event-loop work, npx path issues on Windows). Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Connection closed (Picking well-maintained servers avoids a lot of this...) — MCP stdio process died between connect and first tools/list response",
+    "search_intent": "MCP server launches but dies before responding. Developer needs to diagnose why child process exits (missing binary, Node.js init completes with no event-loop work, npx path issues on Windows).",
+    "common_causes": [
+      "codersera.com docs identify 'Client Closed' as a distinct failure mode from -32000. Caused by OS pipe opening then child exiting immediately. Windows requires cmd /c wrapper for npx. Custom Node servers need process.stdin.resume(). Also evidenced by mcp-server-excel #653: '[MCP] namedrange list crashes session with Connection closed'. Distinct error from -32000, warrants separate entry."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
   }
 ]
