@@ -20669,5 +20669,101 @@
     "related_errors": [
       "Anthropic API"
     ]
+  },
+  {
+    "slug": "claude-code-bug-cli-crashes-exit-code-1-on-unhandled-mcperror-32001-aborterror-during-tool-use",
+    "title": "CLI crashes on unhandled McpError -32001 AbortError during tool_use in Claude Code",
+    "description": "Fix Claude Code CLI crashing with exit code 1 when McpError -32001 AbortError is not handled during tool execution — causes loss of work state Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "[BUG] CLI crashes (exit code 1) on unhandled McpError -32001 AbortError during tool_use",
+    "search_intent": "Fix Claude Code CLI crashing with exit code 1 when McpError -32001 AbortError is not handled during tool execution — causes loss of work state",
+    "common_causes": [
+      "GitHub Issue anthropics/claude-code#60456 describes unhandled McpError causing fatal CLI crashes during tool_use. Exit code 1 means lost session state. Unhandled exceptions in MCP protocol handling are high-value targets since they directly block developers using Claude Code in production workflows."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "claude-code-slack-mcp-tools-silently-deactivate-mid-session-1h-uptime-claude-mcp-list-still-reports-connected",
+    "title": "Slack MCP tools silently deactivate mid-session (~1h uptime) while still reporting Connected",
+    "description": "Fix Slack MCP tools deactivating silently after ~1 hour while MCP status still shows Connected — developers waste time debugging broken integrations that appear healthy Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Slack MCP tools silently deactivate mid-session (~1h uptime); claude mcp list still reports Connected",
+    "search_intent": "Fix Slack MCP tools deactivating silently after ~1 hour while MCP status still shows Connected — developers waste time debugging broken integrations that appear healthy",
+    "common_causes": [
+      "GitHub Issue anthropics/claude-code#60428 reports Slack MCP integration failing silently after about 1 hour, with no indication of failure until the user tries to use the tool. The 'Connected' status is misleading. High commercial value because it affects enterprise users who rely on Claude Code + Slack workflow automation."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "litellm-bug-router-aresponses-streaming-bypasses-mid-stream-fallback-midstreamfallbackerror-not-handled",
+    "title": "LiteLLM router streaming bypasses mid-stream fallback causing MidStreamFallbackError",
+    "description": "Fix LiteLLM router not properly handling mid-stream model fallback when primary model fails during streaming — causes dropped responses instead of transparent failover Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "[Bug]: Router.aresponses streaming bypasses mid-stream fallback (MidStreamFallbackError not handled)",
+    "search_intent": "Fix LiteLLM router not properly handling mid-stream model fallback when primary model fails during streaming — causes dropped responses instead of transparent failover",
+    "common_causes": [
+      "GitHub Issue BerriAI/litellm#28216 reports that LiteLLM router's aresponses method skips mid-stream fallback when model errors occur during streaming. The MidStreamFallbackError isn't caught, resulting in incomplete/corrupted responses. Affects production proxy setups that depend on automatic failover for SLA compliance."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "LiteLLM"
+    ]
+  },
+  {
+    "slug": "vercel-server-action-fails-silently-on-timeout-next-build-hangs-without-clear-function-invocation-timeout-error-message",
+    "title": "Server Action fails silently on timeout — Verbose debug reveals FUNCTION_INVOCATION_TIMEOUT",
+    "description": "Fix Next.js Server Actions timing out silently without throwing FUNCTION_INVOCATION_TIMEOUT — developers get no actionable error details when their API routes exceed timeout limits Includes evidence for Vercel troubleshooting demand.",
+    "category": "Deployment",
+    "technology": "Vercel",
+    "error_signature": "Server Action fails silently on timeout: next build hangs without clear FUNCTION_INVOCATION_TIMEOUT error message",
+    "search_intent": "Fix Next.js Server Actions timing out silently without throwing FUNCTION_INVOCATION_TIMEOUT — developers get no actionable error details when their API routes exceed timeout limits",
+    "common_causes": [
+      "GitHub Issue vercel/next.js#71161 documents Server Actions silently failing on timeout with no useful error message or FUNCTION_INVOCATION_TIMEOUT detail shown to developers. This blocks debugging for production deployments and costs developer hours searching for timeout resolution. Category maps to Deployment per approved category list."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Deployment"
+    ]
+  },
+  {
+    "slug": "docker-rootless-docker-not-working-after-update-to-version-29-5-0-slirp4netns-executable-file-not-found-in-path",
+    "title": "rootless Docker not working after upgrade to version 29.5.0 — slirp4netns executable not found",
+    "description": "Fix rootless Docker containers failing after upgrading to version 29.5.0 due to missing slirp4netns dependency — breaks container networking for rootless users Includes evidence for Docker troubleshooting demand.",
+    "category": "Docker",
+    "technology": "Docker",
+    "error_signature": "rootless Docker not working after update to version 29.5.0: '\"slirp4netns\": executable file not found in $PATH'",
+    "search_intent": "Fix rootless Docker containers failing after upgrading to version 29.5.0 due to missing slirp4netns dependency — breaks container networking for rootless users",
+    "common_causes": [
+      "GitHub Issue moby/moby#52641 reports rootless Docker completely broken after 29.5.0 upgrade — network namespace requires slirp4netns which is not installed/found. This is a hard breakage affecting production users who run rootless Docker. Category maps to Docker per approved category list."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Docker"
+    ]
+  },
+  {
+    "slug": "ollama-potential-oom-crash-during-gguf-metadata-parsing-in-v0-24-0-readstring-n-kv-allocation",
+    "title": "Ollama potential OOM crash during GGUF metadata parsing in recent versions",
+    "description": "Fix Ollama crash caused by unbounded memory allocation when parsing large GGUF model files — particularly affects loading quantized models on systems with limited RAM Includes evidence for Ollama troubleshooting demand.",
+    "category": "Ollama",
+    "technology": "Ollama",
+    "error_signature": "Potential OOM crash during GGUF metadata parsing in v0.24.0 (readString/n_kv allocation)",
+    "search_intent": "Fix Ollama crash caused by unbounded memory allocation when parsing large GGUF model files — particularly affects loading quantized models on systems with limited RAM",
+    "common_causes": [
+      "GitHub Issue ollama/ollama#16175 identifies unbounded allocation during GGUF metadata parsing leading to OOM crashes. Separately, issue #16147 confirms GGML_ASSERT(buffer) failures during multimodal model loading due to CUDA OOM. Both affect users running local LLMs who encounter silent crashes when loading larger models."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Ollama"
+    ]
   }
 ]
