@@ -20301,5 +20301,101 @@
     "related_errors": [
       "Deployment"
     ]
+  },
+  {
+    "slug": "claude-code-strict-mcp-config-with-empty-mcp-config-still-fetches-mcp-registry-from-api-anthropic-com-and-attempts-user-configured-servers",
+    "title": "Claude Code --strict-mcp-config still fetches MCP registry despite empty config",
+    "description": "Fix MCP server configuration being ignored when using strict mode; prevent unwanted network calls to MCP registry Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "--strict-mcp-config with empty --mcp-config still fetches MCP registry from api.anthropic.com and attempts user-configured servers",
+    "search_intent": "Fix MCP server configuration being ignored when using strict mode; prevent unwanted network calls to MCP registry",
+    "common_causes": [
+      "GitHub issue #60252 on anthropics/claude-code repo: --strict-mcp-config flag claims to only use MCP servers from --mcp-config but still reaches out to api.anthropic.com registry. Created 2026-05-18. Category mapping: Claude Code → AI Coding Tools per approved category rules."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "anthropic-api-api-error-server-is-temporarily-limiting-requests-not-your-usage-limit-rate-limited-ultrareview-quota-consumed-on-rate-limit-failure",
+    "title": "Anthropic Ultrareview quota decremented on API rate limit failure (non-user fault)",
+    "description": "Stop consuming free ultrareview quota when server-side rate limits cause errors rather than actual API usage Includes evidence for Anthropic API troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Anthropic API",
+    "error_signature": "API Error: Server is temporarily limiting requests (not your usage limit) · Rate limited — Ultrareview quota consumed on rate limit failure",
+    "search_intent": "Stop consuming free ultrareview quota when server-side rate limits cause errors rather than actual API usage",
+    "common_causes": [
+      "GitHub issue #56252 on anthropics/claude-code repo: When /ultrareview command fails due to server-side rate limiting, the free review quota still decrements (2 of 3 remaining instead of 3). This is a billing/ fairness bug affecting Claude Desktop CLI users. Category mapping: Anthropic API → Anthropic API per approved categories. High commercial value — impacts free-tier quota management."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "Anthropic API"
+    ]
+  },
+  {
+    "slug": "vercel-error-failed-to-collect-page-data-for-sitemap-xml-turbopack-build-fails-while-fetching-external-cms-data-works-with-webpack",
+    "title": "Vercel/Turbopack build fails 'Failed to collect page data' on CMS-fed sitemap routes",
+    "description": "Fix Next.js Turbopack build failures when app dir routes fetch data from external CMS (Sanity) during next build Includes evidence for Vercel troubleshooting demand.",
+    "category": "Deployment",
+    "technology": "Vercel",
+    "error_signature": "Error: Failed to collect page data for /sitemap.xml — Turbopack build fails while fetching external CMS data (works with --webpack)",
+    "search_intent": "Fix Next.js Turbopack build failures when app dir routes fetch data from external CMS (Sanity) during next build",
+    "common_causes": [
+      "GitHub issue #93144 on vercel/next.js repo: Turbopack default build fails on sitemap.xml/rss.xml routes that call external APIs. Switching to --webpack flag works as workaround. Reproducible in Next.js 16.2.3. Category mapping: Vercel/Next.js → Deployment. Strong commercial value as deployment failures block production releases."
+    ],
+    "quick_fix": "Check the build output, project root, and deployment platform configuration before redeploying.",
+    "related_errors": [
+      "Deployment"
+    ]
+  },
+  {
+    "slug": "claude-code-failed-to-parse-project-config-shared-via-mcp-json-mcpservers-does-not-adhere-to-mcp-server-configuration-schema",
+    "title": "Claude Code MCP server config schema validation failure for HTTP type servers",
+    "description": "Fix invalid schema validation causing MCP servers with type http configured in .mcp.json to be rejected by Claude Code Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "[Failed to parse] Project config (shared via .mcp.json) | mcpServers: Does not adhere to MCP server configuration schema",
+    "search_intent": "Fix invalid schema validation causing MCP servers with type http configured in .mcp.json to be rejected by Claude Code",
+    "common_causes": [
+      "GitHub issue #56254 on anthropics/claude-code repo: Claude Code rejects valid MCP server configurations (.mcp.json with type:http URL) with schema validation error. Affects developer workflow integrating external MCP tools. Platform: Windows. Category mapping: Claude Code → AI Coding Tools. Clear error signature with actionable fix demand."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "claude-code-chrome-mcp-will-not-connect-from-terminal-showing-false-positives-when-extension-is-uninstalled",
+    "title": "Claude Code Chrome MCP extension fails to connect from terminal",
+    "description": "Fix Chrome MCP server connection failures that block terminal-based workflows in Claude Code Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Chrome MCP will not connect from terminal — showing false positives when extension is uninstalled",
+    "search_intent": "Fix Chrome MCP server connection failures that block terminal-based workflows in Claude Code",
+    "common_causes": [
+      "GitHub issue #57051 on anthropics/claude-code repo: Users report Chrome MCP cannot connect from terminal, disrupting daily development workflow. The /chrome endpoint shows false positive status. Created 2026-05-07. Category mapping: Claude Code → AI Coding Tools. Directly impacts paid tool workflow."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "vercel-turbopack-crashes-in-pages-app-tsx-when-next-font-google-font-is-imported",
+    "title": "Vercel/Turbopack crashes when importing next/font in pages/_app.tsx",
+    "description": "Fix Turbopack compiler crash triggered by next/font/google imports in _app.tsx pages router component Includes evidence for Vercel troubleshooting demand.",
+    "category": "Deployment",
+    "technology": "Vercel",
+    "error_signature": "Turbopack crashes in pages/_app.tsx when next/font Google Font is imported",
+    "search_intent": "Fix Turbopack compiler crash triggered by next/font/google imports in _app.tsx pages router component",
+    "common_causes": [
+      "GitHub issue #93162 on vercel/next.js repo: Minimal reproducible crash — importing Geist_Mono from next/font/google causes Turbopack build to crash in _app.tsx. Works with webpack. Affects Next.js 16.x developers using Google Fonts in pages router. Category mapping: Vercel → Deployment. Fresh issue from April 2026."
+    ],
+    "quick_fix": "Check the build output, project root, and deployment platform configuration before redeploying.",
+    "related_errors": [
+      "Deployment"
+    ]
   }
 ]
