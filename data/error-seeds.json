@@ -21709,5 +21709,53 @@
     "related_errors": [
       "Docker"
     ]
+  },
+  {
+    "slug": "openai-api-rate-limit-reached-for-gpt-4-1-in-organization-org-id-on-tokens-per-min-tpm-limit-x-used-y-requested-z",
+    "title": "OpenAI API 429 TPM Rate Limit in Organization — Exact Error Fix",
+    "description": "Fix OpenAI rate limit error when hitting TPM (tokens per minute) limits in an organization workspace; needs strategy to manage or increase rate limits Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "Rate limit reached for gpt-4.1 in organization <org_id> on tokens per min (TPM): Limit X, Used Y, Requested Z",
+    "search_intent": "Fix OpenAI rate limit error when hitting TPM (tokens per minute) limits in an organization workspace; needs strategy to manage or increase rate limits",
+    "common_causes": [
+      "Source: continuedev/continue GitHub Issue #9563 (closed Jan 2026, 1.5k+ stars repo). Developer hit exact TPM rate limit error while using GPT-4.1 via Continue extension in VS Code/Cursor-like editor. Error message includes precise org ID, usage vs requested tokens, and retry time. Covers paid API billing limits for gpt-4.1 model. Category mapping: direct OpenAI API rate limit → 'OpenAI API'. Not in covered-errors.md (covered items use generic '429 Too Many Requests' or 'insufficient quota'; this is TPM-specific with org context)."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "vercel-function-invocation-timeout-504-error-on-vercel-serverless-function-request-reached-the-timeout-threshold",
+    "title": "Vercel FUNCTION_INVOCATION_TIMEOUT 504 — Serverless Function Timeouts",
+    "description": "Fix Vercel serverless functions timing out (FUNCTION_INVOCATION_TIMEOUT / 504); developer needs to optimize function code, adjust timeout settings, or match regions for database connectivity Includes evidence for Vercel troubleshooting demand.",
+    "category": "Deployment",
+    "technology": "Vercel",
+    "error_signature": "FUNCTION_INVOCATION_TIMEOUT — 504 error on Vercel serverless function; request reached the timeout threshold",
+    "search_intent": "Fix Vercel serverless functions timing out (FUNCTION_INVOCATION_TIMEOUT / 504); developer needs to optimize function code, adjust timeout settings, or match regions for database connectivity",
+    "common_causes": [
+      "Sources: Vercel official docs (vercel.com/docs/errors/function_invocation_timeout), Stack Overflow #68771480 (Next.js case where DB connection timed out due to region mismatch between Vercel functions (US Washington) and MySQL server). Community discussions show recurring FUNCTION_INVOCATION_FAILED pattern. Multiple affected pages exist with clear fix paths (timeout config, region matching, code optimization). Category mapping: Vercel deployment-specific function timeout → 'Deployment'. Distinct from covered Vercel items (build failed, module not found). High commercial value: production deployment failure on paid hosting."
+    ],
+    "quick_fix": "Check the build output, project root, and deployment platform configuration before redeploying.",
+    "related_errors": [
+      "Deployment"
+    ]
+  },
+  {
+    "slug": "cursor-mcp-connection-failed-unable-to-establish-a-connection-to-the-mcp-server-check-your-mcp-configuration-in-settings-mcp",
+    "title": "Cursor MCP Connection Failed: How to Fix in Under 5 Minutes",
+    "description": "Fix Cursor MCP Connection Failed error; developer needs to quickly restore AI assistant functionality by resolving port conflicts, zombie processes, or config path issues Includes evidence for Cursor troubleshooting demand.",
+    "category": "Cursor",
+    "technology": "Cursor",
+    "error_signature": "MCP Connection Failed — Unable to establish a connection to the MCP server. Check your MCP configuration in Settings > MCP.",
+    "search_intent": "Fix Cursor MCP Connection Failed error; developer needs to quickly restore AI assistant functionality by resolving port conflicts, zombie processes, or config path issues",
+    "common_causes": [
+      "Source: markaicode.com blog post targeting Cursor v0.46+. Covers port 3001 conflict (zombie process), wrong mcp.json command, firewall blocking localhost, relative path issues. Concrete fix commands provided (lsof, kill, restart). High commercial value: Cursor is a paid AI coding IDE. Category mapping: Cursor-specific MCP connection error → 'Cursor'. Not in covered-errors (covered items only have 'model not available' and 'OpenAI API key not working'). Distinct from Claude Code MCP OAuth issue (#2 above)."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Cursor"
+    ]
   }
 ]
