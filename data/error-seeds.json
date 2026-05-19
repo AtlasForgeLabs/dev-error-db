@@ -20157,5 +20157,53 @@
     "related_errors": [
       "Docker"
     ]
+  },
+  {
+    "slug": "openai-codex-burning-tokens-very-fast-weekly-limit-drained-70-in-a-single-day-on-normal-moderate-usage",
+    "title": "Codex App Tokens Burning Very Fast — Weekly Limit Exhausted in Single Day",
+    "description": "Users trying to understand why their Codex token usage spiked dramatically after extension update, preventing continued coding work Includes evidence for OpenAI Codex troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI Codex",
+    "error_signature": "Burning tokens very fast — weekly limit drained ~70% in a single day on normal moderate usage",
+    "search_intent": "Users trying to understand why their Codex token usage spiked dramatically after extension update, preventing continued coding work",
+    "common_causes": [
+      "GitHub issue openai/codex#14593 with 258 👍 reactions; multiple Pro/Plus/Business subscribers report severe token overconsumption (70% weekly limit in one day) triggered by v26.311.21342 extension update; persists through March–May 2026 with recent active comments today. Strong commercial value: affects paid subscription tiers directly."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "openai-codex-the-ui-that-shows-usage-limits-is-inconsistently-not-working-from-time-to-time-rate-limits-remaining-suddenly-disappear",
+    "title": "Codex Usage/Limits UI Inconsistently Broken — Rate Limits Not Displaying",
+    "description": "Paid Codex users unable to monitor remaining rate limits, causing anxiety and unpredictable billing Includes evidence for OpenAI Codex troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI Codex",
+    "error_signature": "The UI that shows usage / limits is inconsistently not working from time to time — rate limits remaining suddenly disappear",
+    "search_intent": "Paid Codex users unable to monitor remaining rate limits, causing anxiety and unpredictable billing",
+    "common_causes": [
+      "GitHub issue openai/codex#20829 opened April 3; 3+ comments confirming intermittent disappearance of rate limit display. Category: OpenAI API because this directly impacts pay-per-token usage visibility. Distinct from #14593 (token burn regression vs. UI display bug)."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "anthropic-api-compiled-grammar-is-too-large-error-needs-better-documentation-and-higher-limits-for-complex-schemas",
+    "title": "Anthropic SDK Structured Output Grammar Compilation Too Large Error",
+    "description": "Developers using structured outputs (JSON mode/function calling) with complex Pydantic schemas hitting hardcoded grammar size limits, blocking production deployments Includes evidence for Anthropic API troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Anthropic API",
+    "error_signature": "compiled grammar is too large error needs better documentation and higher limits for complex schemas",
+    "search_intent": "Developers using structured outputs (JSON mode/function calling) with complex Pydantic schemas hitting hardcoded grammar size limits, blocking production deployments",
+    "common_causes": [
+      "GitHub issue anthropics/anthropic-sdk-python#1185 opened Feb 18, 2026, still open, 11 comments. Affects paid API users deploying complex schema-based integrations. Clear fix demand (document limits + raise caps)."
+    ],
+    "quick_fix": "Check the build output, project root, and deployment platform configuration before redeploying.",
+    "related_errors": [
+      "Anthropic API"
+    ]
   }
 ]
