@@ -20509,5 +20509,69 @@
     "related_errors": [
       "AI Coding Tools"
     ]
+  },
+  {
+    "slug": "claude-code-claude-code-weekly-monthly-max-usage-limit-instantly-exhausted",
+    "title": "Claude Code Quota Exhaustion Too Fast — Users Hitting Usage Limits Way Faster Than Expected",
+    "description": "Fix Claude Code running out of quota unexpectedly, especially on Max ($100/mo) and Pro ($200/yr) plans; understand why tokens drain so fast and how to extend usage Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Claude Code weekly/monthly max usage limit instantly exhausted",
+    "search_intent": "Fix Claude Code running out of quota unexpectedly, especially on Max ($100/mo) and Pro ($200/yr) plans; understand why tokens drain so fast and how to extend usage",
+    "common_causes": [
+      "The Register reported (March 2026) that Anthropic admitted users are hitting usage limits 'way faster than expected'. Reddit r/ClaudeCode users report Max 5 exhausted within 1 hour. Prompt cache bugs silently inflating costs 10-20x confirmed by reverse-engineering. Affects paying Enterprise/Pro/Max users directly — billing/quota impact. Category maps to AI Coding Tools per SKILL.md rules."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "claude-code-error-mcp-server-connection-failed-no-client-info-found-sdk-auth-error-le",
+    "title": "Claude Code MCP Server OAuth Parsing Failure for Custom Connectors (NetSuite Bug)",
+    "description": "Fix Claude Code failing to complete OAuth authentication for custom MCP servers (like NetSuite); understand why MCP OAuth fails while Claude Desktop works fine Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "[ERROR] MCP server Connection failed | No client info found SDK auth error Le",
+    "search_intent": "Fix Claude Code failing to complete OAuth authentication for custom MCP servers (like NetSuite); understand why MCP OAuth fails while Claude Desktop works fine",
+    "common_causes": [
+      "Anthropic GitHub Issue #11862 confirms a known bug where Claude Code fails to parse OAuth metadata from MCP servers (specifically NetSuite), browser never opens, authentication fails. Same MCP server works in Claude Desktop. Affected area: auth + mcp. High enterprise commercial value — NetSuite integration is common in production environments."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "github-copilot-permissiveauthrequirederror-permissive-authentication-is-required-githubloginfailed-failed-to-fetch-models",
+    "title": "GitHub Copilot Chat PermissiveAuthRequiredError Sign-In Loop in VS Code",
+    "description": "Fix GitHub Copilot Chat stuck in persistent sign-in loop despite active Copilot subscription; resolve PermissiveAuthRequiredError in VS Code Includes evidence for GitHub Copilot troubleshooting demand.",
+    "category": "GitHub Copilot",
+    "technology": "GitHub Copilot",
+    "error_signature": "PermissiveAuthRequiredError: Permissive authentication is required | GitHubLoginFailed Failed to fetch models",
+    "search_intent": "Fix GitHub Copilot Chat stuck in persistent sign-in loop despite active Copilot subscription; resolve PermissiveAuthRequiredError in VS Code",
+    "common_causes": [
+      "DevActivity documented persistent auth loop affecting both Linux (Fedora) and Windows 11 environments. Verified with active Copilot Pro+ subscription. Root cause likely backend stable-client-specific issue. Reproduced in VS Code stable version (Insiders works). Directly blocks paying subscribers from using paid feature — strong commercial value. Category: GitHub Copilot per SKILL.md rules."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "GitHub Copilot"
+    ]
+  },
+  {
+    "slug": "github-copilot-user-not-authorized-your-token-has-expired-access-denied-by-organization-policy",
+    "title": "GitHub Copilot CLI User Not Authorized Despite Active Subscription",
+    "description": "Fix GitHub Copilot CLI returning 'User not authorized' errors despite valid individual or organizational subscription; resolve SSO/OIDC token issues and seat assignment problems Includes evidence for GitHub Copilot troubleshooting demand.",
+    "category": "GitHub Copilot",
+    "technology": "GitHub Copilot",
+    "error_signature": "User not authorized | Your token has expired | Access denied by organization policy",
+    "search_intent": "Fix GitHub Copilot CLI returning 'User not authorized' errors despite valid individual or organizational subscription; resolve SSO/OIDC token issues and seat assignment problems",
+    "common_causes": [
+      "InventiveHQ comprehensive guide documents multiple auth error variants: User not authorized, token expired, org policy block, SSO required. Covers gh auth status/refresh/logout/relogin workflow. Enterprise SAML SSO session timeout causes intermittent breaks. Paid Business ($19/user/mo) and Enterprise seats affected. Distinct from Copilot Chat UI issue (#3 above) — this is CLI-specific auth failure. Category: GitHub Copilot per SKILL.md rules."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "GitHub Copilot"
+    ]
   }
 ]
