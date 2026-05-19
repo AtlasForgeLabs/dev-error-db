@@ -21309,5 +21309,117 @@
     "related_errors": [
       "AI Coding Tools"
     ]
+  },
+  {
+    "slug": "anthropic-api-http-529-with-overloaded-error-capacity-overload-not-per-key-rate-limit",
+    "title": "Claude API HTTP 529 Overloaded Error: How to Fix Without Treating It Like 429",
+    "description": "Fix Claude API 529 overloaded_error without incorrectly applying 429 rate-limit strategies; understand how to distinguish capacity overload from quota exhaustion and retry properly with jittered backoff. Includes evidence for Anthropic API troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Anthropic API",
+    "error_signature": "HTTP 529 with overloaded_error — capacity overload, not per-key rate limit",
+    "search_intent": "Fix Claude API 529 overloaded_error without incorrectly applying 429 rate-limit strategies; understand how to distinguish capacity overload from quota exhaustion and retry properly with jittered backoff.",
+    "common_causes": [
+      "Fetched yingtui.ai blog post detailing production impact after Claude 4.7 release (May 2026). Spikes from <1/1000 to 12-30/1000 calls at peak. Distinct from 429: global capacity signal vs per-key rate limit. High commercial value — affects all paid Anthropic API users, billing impact."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "Anthropic API"
+    ]
+  },
+  {
+    "slug": "cloudflare-error-1101-worker-threw-exception-custom-domains-also-fail-workers-logs-tab-completely-empty-even-in-real-time-service-completely-unusable",
+    "title": "All Cloudflare Workers Returning Error 1101 With No Logs Since Early February 2026",
+    "description": "Fix Cloudflare Workers suddenly returning Error 1101 across all projects with zero logs available — cannot diagnose which worker or line caused the runtime exception because logging is broken too. Includes evidence for Cloudflare troubleshooting demand.",
+    "category": "Cloudflare",
+    "technology": "Cloudflare",
+    "error_signature": "Error 1101 — Worker threw exception; custom domains also fail; Workers Logs tab completely empty even in real-time; service completely unusable",
+    "search_intent": "Fix Cloudflare Workers suddenly returning Error 1101 across all projects with zero logs available — cannot diagnose which worker or line caused the runtime exception because logging is broken too.",
+    "common_causes": [
+      "Cloudflare Community thread reports total outage affecting all Workers projects with no diagnostic path since Error 1101 silences all invocation logs. Real-time logs completely empty. Custom domains bound to Workers also fail. Production deployment blocker for any business using Cloudflare Workers."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Cloudflare"
+    ]
+  },
+  {
+    "slug": "cursor-mcp-error-32000-connection-closed-cursor-silently-fails-to-start-mcp-server-via-npx",
+    "title": "Cursor MCP Server Silent Failure: MCP error -32000 Connection Closed Troubleshooting Guide",
+    "description": "Fix Cursor MCP servers failing with silent error -32000 Connection closed; need to discover exact underlying cause by running npx command manually outside Cursor IDE. Includes evidence for Cursor troubleshooting demand.",
+    "category": "Cursor",
+    "technology": "Cursor",
+    "error_signature": "MCP error -32000: Connection closed — Cursor silently fails to start MCP server via npx",
+    "search_intent": "Fix Cursor MCP servers failing with silent error -32000 Connection closed; need to discover exact underlying cause by running npx command manually outside Cursor IDE.",
+    "common_causes": [
+      "Exdst.com detailed troubleshooting guide showing Cursor silently swallowing MCP errors (-32000 Connection closed, -32001 Request timed out). Multiple popular MCP servers affected (@modelcontextprotocol/server-filesystem, @supabase/mcp-server-supabase, mcp-server-git, etc.). Users must run npx commands manually to surface root cause (npm ETARGET, missing version, etc.). Cursor is a paid subscription tool — direct commercial value."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Cursor"
+    ]
+  },
+  {
+    "slug": "github-actions-remote-permission-to-org-repo-git-denied-to-github-actions-bot-fatal-unable-to-access-https-github-com-org-repo-the-requested-url-returned-error-403",
+    "title": "GitHub Actions Permission Denied to GITHUB_TOKEN When Pushing Commits or Creating PRs",
+    "description": "Fix GitHub Actions workflow failing with permission denied when pushing commits, creating releases, or opening PRs — needs explicit permissions block or PAT workaround. Includes evidence for GitHub Actions troubleshooting demand.",
+    "category": "GitHub Actions",
+    "technology": "GitHub Actions",
+    "error_signature": "remote: Permission to org/repo.git denied to github-actions[bot] / fatal: unable to access 'https://github.com/org/repo/': The requested URL returned error: 403",
+    "search_intent": "Fix GitHub Actions workflow failing with permission denied when pushing commits, creating releases, or opening PRs — needs explicit permissions block or PAT workaround.",
+    "common_causes": [
+      "Codevup article dated April 16, 2026 explaining default GITHUB_TOKEN read-only restriction causing CI/CD push failures. Covers repository-level settings, workflow permissions blocks, and PAT workaround for cross-repo access. Blocks paid team deployments — strong commercial intent."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "GitHub Actions"
+    ]
+  },
+  {
+    "slug": "docker-failed-to-find-additional-contexts-target-docker-compose-up-build-generates-invalid-bake-config-with-empty-target-reference",
+    "title": "Docker Compose Build Fails with Invalid Bake Configuration When additional_contexts Not in depends_on",
+    "description": "Fix Docker Compose build failure where a service references another service via additional_contexts but doesn't declare it in depends_on, causing Docker Compose to generate an invalid bake configuration. Includes evidence for Docker troubleshooting demand.",
+    "category": "Docker",
+    "technology": "Docker",
+    "error_signature": "failed to find additional_contexts target — docker compose up --build generates invalid bake config with empty target reference",
+    "search_intent": "Fix Docker Compose build failure where a service references another service via additional_contexts but doesn't declare it in depends_on, causing Docker Compose to generate an invalid bake configuration.",
+    "common_causes": [
+      "GitHub issue in docker/compose repo (#13338) describing a bug where referencing a service in additional_contexts without listing it in depends_on triggers invalid bake config with empty target reference. Minimal reproducible case provided. Bug in widely-used multi-container orchestration tool — affects paid Docker Desktop Enterprise users and teams deploying production stacks."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "Docker"
+    ]
+  },
+  {
+    "slug": "vercel-build-failed-error-it-s-not-possible-to-provide-stdio-in-combination-with-one-of-stdin-stdout-stderr",
+    "title": "Vercel Build Failed: Cannot Provide stdio With stdin/stdout/stderr Combination",
+    "description": "Fix Vercel React/Vite deployment build failure caused by incompatible stdio configuration in package scripts; developer cannot deploy due to Vercel rejecting stdin/stdout/stderr alongside stdio. Includes evidence for Vercel troubleshooting demand.",
+    "category": "Deployment",
+    "technology": "Vercel",
+    "error_signature": "Build Failed Error: It's not possible to provide stdio in combination with one of stdin, stdout, stderr",
+    "search_intent": "Fix Vercel React/Vite deployment build failure caused by incompatible stdio configuration in package scripts; developer cannot deploy due to Vercel rejecting stdin/stdout/stderr alongside stdio.",
+    "common_causes": [
+      "Vercel Community forum post reporting build failure on React/Vite deployment. Specific technical error about incompatible process.stdin/stdout/stderr usage with execa stdio config in next.config. Affects deployed production sites — clear production blocker."
+    ],
+    "quick_fix": "Check the build output, project root, and deployment platform configuration before redeploying.",
+    "related_errors": [
+      "Deployment"
+    ]
+  },
+  {
+    "slug": "openrouter-openrouter-rate-limit-exceeded-or-quota-exhausted-model-routing-request-rejected-by-proxy",
+    "title": "OpenRouter Rate Limit and Quota Errors: Model Routing Failures for Paid Users",
+    "description": "Fix OpenRouter API rate limiting or quota exhaustion when calling models through the platform; understand tier-based limits and how to implement proper retry/backoff for production workloads. Includes evidence for OpenRouter troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "OpenRouter",
+    "error_signature": "OpenRouter rate limit exceeded OR quota exhausted — model routing request rejected by proxy",
+    "search_intent": "Fix OpenRouter API rate limiting or quota exhaustion when calling models through the platform; understand tier-based limits and how to implement proper retry/backoff for production workloads.",
+    "common_causes": [
+      "Web search results show ongoing community discussion around OpenRouter rate limiting and quota boundaries. OpenRouter sits between AI coding tools and model APIs — errors directly impact paying users who rely on unified model routing. When OpenRouter throttles, Cursor/Claude Code/Copilot users lose access to their chosen models. Commercial value high as OpenRouter offers tiered paid plans."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "LiteLLM"
+    ]
   }
 ]
