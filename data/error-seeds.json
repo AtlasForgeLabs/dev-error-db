@@ -19917,5 +19917,133 @@
     "related_errors": [
       "Cloudflare"
     ]
+  },
+  {
+    "slug": "litellm-rate-limit-error-message-body-leaks-full-sha-256-hash-of-api-key-security-vulnerability-exposed-through-error-response",
+    "title": "LiteLLM Rate Limit Error Body Leaks Full SHA-256 Secret Keys",
+    "description": "Developer encounters error where LiteLLM rate limit response body contains full SHA-256 secret key, potentially exposing credentials in logs and monitoring systems Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "Rate limit error message body leaks full SHA-256 hash of API key — security vulnerability exposed through error response",
+    "search_intent": "Developer encounters error where LiteLLM rate limit response body contains full SHA-256 secret key, potentially exposing credentials in logs and monitoring systems",
+    "common_causes": [
+      "Found on GitHub: BerriAI/litellm#27884 (May 2026 — very recent, 5 days ago). Title: '[Bug]: Rate limit error message body leaks full SHA-256 ...'. Extremely time-sensitive finding with security implications for production LiteLLM proxy users. New issue likely has minimal competition for ranking."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "LiteLLM"
+    ]
+  },
+  {
+    "slug": "claude-code-mcp-servers-requiring-oauth-authentication-don-t-gracefully-handle-missing-auth-tools-silently-disappear-without-clear-error-message",
+    "title": "Claude Code MCP Server Requires OAuth — Silent Failures Block Production Workflows",
+    "description": "Developer needs to connect Claude Code to an MCP server requiring OAuth (e.g., Azure DevOps, Slack, Google services) but the tool list appears empty with no explanation of why Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "MCP servers requiring OAuth authentication don't gracefully handle missing auth — tools silently disappear without clear error message",
+    "search_intent": "Developer needs to connect Claude Code to an MCP server requiring OAuth (e.g., Azure DevOps, Slack, Google services) but the tool list appears empty with no explanation of why",
+    "common_causes": [
+      "Found on GitHub: anthropics/claude-code#11585 (Nov 2025). Title: '[BUG] MCP servers requiring OAuth authentication don't gracefully handle missing auth'. User reports: 'This makes it impossible to use any MCP servers that require OAuth authentication (Azure DevOps, potentially Slack, Google services, etc.) with Claude Code.' High commercial value as it blocks AI coding workflows using authenticated MCP tools."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "claude-code-bug-github-mcp-oauth-flow-fails-on-claude-ai-code-web-client-inconsistently-provides-github-mcp-tools-for-private-repos",
+    "title": "GitHub MCP OAuth Flow Fails on claude.ai/code — Private Repo Access Broken",
+    "description": "Developer using Claude Code web (claude.ai/code) wants GitHub MCP tools to access private repositories but OAuth login flow silently breaks or returns inconsistent results Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "[BUG] GitHub MCP OAuth flow fails on claude.ai/code web client — inconsistently provides GitHub MCP tools for private repos",
+    "search_intent": "Developer using Claude Code web (claude.ai/code) wants GitHub MCP tools to access private repositories but OAuth login flow silently breaks or returns inconsistent results",
+    "common_causes": [
+      "Found on GitHub: anthropics/claude-code#45100 (Apr 2026). Very recent issue about Claude Code web inconsistently providing GitHub MCP tools. Related issues include #3433 (cannot connect to GitHub remote MCP server using OAuth) and #26917 (HTTP MCP servers requiring OAuth silently fail). Same error pattern across multiple dates shows persistent problem."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "litellm-rate-limit-error-reported-as-no-deployments-available-incorrect-error-classification-causes-wrong-troubleshooting-path",
+    "title": "LiteLLM Proxy Misreports Rate Limit Errors as No Deployments Available",
+    "description": "Developer running LiteLLM proxy hits provider rate limit (429) but sees misleading error 'No deployments available', leading them down wrong debugging path instead of fixing rate limits Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "Rate limit error reported as 'No deployments available' — incorrect error classification causes wrong troubleshooting path",
+    "search_intent": "Developer running LiteLLM proxy hits provider rate limit (429) but sees misleading error 'No deployments available', leading them down wrong debugging path instead of fixing rate limits",
+    "common_causes": [
+      "Found on GitHub: BerriAI/litellm#20867 (Feb 2026). User reports: 'When the rate limit is exceeded, aside from the usual log, the stack trace reports it as No deployments available.' This is critical because production teams rely on correct error diagnostics to quickly resolve billing/quota issues."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "LiteLLM"
+    ]
+  },
+  {
+    "slug": "openai-api-429-rate-limit-reached-for-gpt-4-1-in-organization-org-xxxxx-tokens-per-minute-quota-exceeded",
+    "title": "OpenAI API GPT-4.1 Organization Rate Limit Reached — 429 Errors Block Development",
+    "description": "Developer integrating GPT-4.1 via OpenAI API receives 429 rate limit errors when token throughput exceeds organizational TPM quota; needs solutions for burst handling and scaling Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "429 Rate limit reached for gpt-4.1 in organization org-XXXXX — tokens per minute quota exceeded",
+    "search_intent": "Developer integrating GPT-4.1 via OpenAI API receives 429 rate limit errors when token throughput exceeds organizational TPM quota; needs solutions for burst handling and scaling",
+    "common_causes": [
+      "Found on GitHub: continuedev/continue#9563 (Jan 2026) and Eclipse-Theia/theia#16818 (Jan 2026). Multiple IDE tools report identical 429 rate limit errors for gpt-4.1 within org context. The continuedev issue specifically mentions 'Rate Limit reached for gpt-4.1 in organization'. Directly impacts paid API usage."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "litellm-maxparallelrequests-do-not-limit-concurrent-requests-from-one-api-key-rate-limits-hit-despite-config",
+    "title": "LiteLLM Max Parallel Requests Config Not Actually Limiting Concurrent Calls",
+    "description": "Developer configured max_parallel_requests on a LiteLLM API key to control concurrency, but requests still exceed rate limits because the setting is ignored Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "MaxParallelRequests do not limit concurrent requests from one API Key — rate limits hit despite config",
+    "search_intent": "Developer configured max_parallel_requests on a LiteLLM API key to control concurrency, but requests still exceed rate limits because the setting is ignored",
+    "common_causes": [
+      "Found on GitHub: BerriAI/litellm#16011 (Oct 2025). Title: '[Bug]: Max Parallel Requests do not limit ...'. Description: 'LiteLLM is not able to properly rate limit requests from one API Key based on max parallel requests configuration.' Users configure this thinking it controls rate limits but it does not work as documented."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "LiteLLM"
+    ]
+  },
+  {
+    "slug": "claude-code-disabled-mcp-servers-still-trigger-oauth-authentication-popups-in-claude-code-interrupts-automated-headless-workflows",
+    "title": "Claude Code MCP Disabled Servers Still Trigger OAuth Popups — Annoying and Breakless Automation",
+    "description": "User disables certain MCP servers in Claude Code settings but disabled servers keep triggering OAuth popup prompts, breaking CI/CD automation and headless usage patterns Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Disabled MCP servers still trigger OAuth authentication popups in Claude Code — interrupts automated headless workflows",
+    "search_intent": "User disables certain MCP servers in Claude Code settings but disabled servers keep triggering OAuth popup prompts, breaking CI/CD automation and headless usage patterns",
+    "common_causes": [
+      "Found on GitHub: anthropics/claude-code#31648 (Mar 2026). Title: 'Disabled MCP servers still trigger OAuth authentication ...'. Describes: go to /mcp, disable several servers, confirm — but they still prompt for OAuth. Affects automation users and enterprise setups heavily."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "openai-api-bug-embedding-with-openai-api-429-rate-limit-rag-pipeline-fails-during-vector-storage",
+    "title": "OpenAI Embedding API Returns 429 Rate Limit Error — AnythingLLM RAG Pipeline Stalls",
+    "description": "Developer using AnythingLLM or similar RAG tools gets 429 errors during embedding generation, blocking document indexing and knowledge base building workflows Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "[BUG] embedding with OpenAI API, 429 Rate limit — RAG pipeline fails during vector storage",
+    "search_intent": "Developer using AnythingLLM or similar RAG tools gets 429 errors during embedding generation, blocking document indexing and knowledge base building workflows",
+    "common_causes": [
+      "Found on GitHub: Mintplex-Labs/anything-llm#3327 (Feb 2025). Title: '[BUG]: embedding with OpenAI API, 429 Rate limit'. Specific to embedding endpoint which has its own TPM quota separate from chat completions. Many developers unaware embeddings consume their own quota tier."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "OpenAI API"
+    ]
   }
 ]
