@@ -21181,5 +21181,133 @@
     "related_errors": [
       "Deployment"
     ]
+  },
+  {
+    "slug": "openai-api-429-quota-exceeded-chatgpt-plus-oauth-authentication-succeeds-but-third-party-codex-calls-to-openai-codex-gpt-5-4-return-429-despite-active-plus-subscription",
+    "title": "ChatGPT Plus OAuth returns 429 quota exceeded for third-party tool API calls",
+    "description": "Understand why ChatGPT Plus quota does not apply to third-party API calls; determine if separate credits required or if quota routing between first-party and third-party OAuth contexts is a product bug Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "429 quota exceeded — ChatGPT Plus OAuth authentication succeeds but third-party Codex calls to openai-codex/gpt-5.4 return 429 despite active Plus subscription",
+    "search_intent": "Understand why ChatGPT Plus quota does not apply to third-party API calls; determine if separate credits required or if quota routing between first-party and third-party OAuth contexts is a product bug",
+    "common_causes": [
+      "GitHub Issue #2951 in openai/openai-python (opened Mar 10 2026, AllinAI20260127). OAuth login works perfectly, but API calls via third-party tools get 429 quota. Directly affects paying Plus subscribers using non-Official clients. High commercial impact since it involves billing/quota on a paid subscription product. Category mapping: OpenAI API (quota/billing error on paid API service)."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "openai-api-http-200-ok-poll-returns-error-code-server-error-with-status-failed-no-typed-exception-raised-retry-backoff-logic-cannot-distinguish-server-error-vs-rate-limit-exceeded",
+    "title": "OpenAI Responses API background mode lacks typed exceptions for failed runs",
+    "description": "Fix unreliable error classification in OpenAI Python SDK when using /v1/responses background mode; needs stable error.type field mapped to SDK exception classes for proper retry logic Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "HTTP 200 OK poll returns error.code='server_error' with status='failed', no typed exception raised — retry/backoff logic cannot distinguish server_error vs rate_limit_exceeded",
+    "search_intent": "Fix unreliable error classification in OpenAI Python SDK when using /v1/responses background mode; needs stable error.type field mapped to SDK exception classes for proper retry logic",
+    "common_causes": [
+      "GitHub Issue #3212 in openai/openai-python (opened May 8 2026, adnanboz). Background API mode returns HTTP 200 even on failure; error.code is not documented as stable enum and does not map 1:1 to SDK exceptions (server_error ≠ InternalServerError). This blocks production retry/backoff strategies on paid usage. Category mapping: OpenAI API (direct pay-per-token API error handling gap)."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "claude-code-silent-anthropic-api-key-env-var-takes-precedence-over-max-subscription-auth-users-with-both-set-get-unexpected-api-key-billing-instead-of-their-included-max-quota",
+    "title": "Claude Code ANTHROPIC_API_KEY precedence silently shadows Max subscription auth",
+    "description": "Understand Claude Code auth priority when both API key and subscription exist; prevent unexpected billing by ensuring Max subscription takes priority over API key Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Silent ANTHROPIC_API_KEY env var takes precedence over Max subscription auth — users with both set get unexpected API-key billing instead of their included Max quota",
+    "search_intent": "Understand Claude Code auth priority when both API key and subscription exist; prevent unexpected billing by ensuring Max subscription takes priority over API key",
+    "common_causes": [
+      "GitHub Issue #53728 in anthropics/claude-code (opened Apr 27 2026, yellowhardhat). Environment variable precedence issue silently switches users to pay-per-API-key billing even though they have Max subscription with included quota. Critical cost impact — users unknowingly incur API charges. Tagged enhancement for area:auth + area:cost. Category mapping: AI Coding Tools (silent billing switch on paid subscription product)."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "anthropic-api-attributeerror-nonetype-object-has-no-attribute-errors-streaming-error-sse-event-crashes-sdk-instead-of-raising-typed-streamerror-exception",
+    "title": "Anthropic streaming SSE error event causes AttributeError on NoneType.errors",
+    "description": "Fix Anthropic Python SDK crash when streaming encounters error SSE events; need proper error handling to raise typed exception instead of AttributeError Includes evidence for Anthropic API troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Anthropic API",
+    "error_signature": "AttributeError: 'NoneType' object has no attribute errors — streaming error SSE event crashes SDK instead of raising typed StreamError exception",
+    "search_intent": "Fix Anthropic Python SDK crash when streaming encounters error SSE events; need proper error handling to raise typed exception instead of AttributeError",
+    "common_causes": [
+      "GitHub Issue #1472 in anthropics/anthropic-sdk-python (opened Apr 29 2026, sevakva). Streaming mode throws AttributeError instead of structured APIError when server returns error SSE events. Has 2 linked PRs indicating active fix effort. Affects paid API users running streaming workloads. Category mapping: Anthropic API (SDK error handling bug on paid streaming API)."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Anthropic API"
+    ]
+  },
+  {
+    "slug": "claude-code-bug-mcp-auth-not-automatically-launching-browser-on-windows-subsequent-mcp-integrations-atlassian-datadog-slack-fail-because-browser-auth-dialog-never-opens",
+    "title": "Claude Code MCP auth fails to launch browser automatically on Windows",
+    "description": "Fix Claude Code MCP OAuth flow on Windows where the first MCP auth may work but subsequent ones silently fail due to browser not auto-launching; regression identified Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "[BUG] mcp auth not automatically launching browser on Windows — subsequent MCP integrations (Atlassian, DataDog, Slack) fail because browser auth dialog never opens",
+    "search_intent": "Fix Claude Code MCP OAuth flow on Windows where the first MCP auth may work but subsequent ones silently fail due to browser not auto-launching; regression identified",
+    "common_causes": [
+      "GitHub Issue #59194 in anthropics/claude-code (opened May 15 2026, defconmike). Regression bug affecting Windows users. First MCP auth launches browser fine, subsequent ones (DataDog, Atlassian, Slack) fail without browser dialog. Tagged as regression + has repro. Directly impacts developers using Claude Code with MCP ecosystem integrations. Category mapping: AI Coding Tools (Claude Code MCP auth integration failure)."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "claude-code-bug-aws-auth-refresh-broken-on-versions-0-92-user-must-manually-click-auth-link-every-session-instead-of-automatic-refresh-regression-introduced-in-0-93-plus",
+    "title": "Claude Code AWS Bedrock Auth Refresh broken after v0.92",
+    "description": "Fix Claude Code AWS Bedrock authentication refresh mechanism broken in recent versions; restore automatic session token refresh for enterprise Bedrock users Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "[BUG] Aws Auth Refresh broken on versions >0.92 — user must manually click auth link every session instead of automatic refresh; regression introduced in 0.93+",
+    "search_intent": "Fix Claude Code AWS Bedrock authentication refresh mechanism broken in recent versions; restore automatic session token refresh for enterprise Bedrock users",
+    "common_causes": [
+      "GitHub Issue #52978 in anthropics/claude-code (opened Apr 25 2026, noopys). Regression bug breaking AWS Bedrock auth flow — automatic token refresh stopped working in v0.93+. Users forced into manual browser auth each session. Tagged api:bedrock + area:auth + regression + stale. Affects enterprise AWS users. Category mapping: AI Coding Tools (AWS auth regression on paid Claude Code product)."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "anthropic-api-billing-ui-conflates-api-direct-charges-with-subscription-overages-users-cannot-distinguish-whether-charges-come-from-pay-per-use-api-or-subscription-top-up",
+    "title": "Anthropic billing console conflates direct charges with subscription overages",
+    "description": "Need clear separation in billing dashboard between direct API charges and subscription-based overages; critical for cost management on paid API accounts Includes evidence for Anthropic API troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Anthropic API",
+    "error_signature": "Billing UI conflates API direct charges with subscription overages — users cannot distinguish whether charges come from pay-per-use API or subscription top-up",
+    "search_intent": "Need clear separation in billing dashboard between direct API charges and subscription-based overages; critical for cost management on paid API accounts",
+    "common_causes": [
+      "GitHub Issue #1490 in anthropics/anthropic-sdk-python (opened May 4 2026, daskuntal75). Billing console UX issue where two different charge types appear merged. 1 comment thread discussing severity. Affects enterprise cost-tracking workflows on paid Anthropic subscriptions. Category mapping: Anthropic API (billing/charging confusion on paid API platform)."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Anthropic API"
+    ]
+  },
+  {
+    "slug": "claude-code-gateway-model-discovery-silently-fails-when-auth-comes-from-apikeyhelper-models-list-appears-empty-despite-valid-credentials",
+    "title": "Claude Code gateway model discovery fails silently when auth uses apiKeyHelper",
+    "description": "Debug why Claude Code gateway returns no available models when authentication is provided via apiKeyHelper rather than direct config; silent failure makes troubleshooting difficult Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Gateway model discovery silently fails when auth comes from apiKeyHelper — models list appears empty despite valid credentials",
+    "search_intent": "Debug why Claude Code gateway returns no available models when authentication is provided via apiKeyHelper rather than direct config; silent failure makes troubleshooting difficult",
+    "common_causes": [
+      "GitHub Issue #56675 in anthropics/claude-code (opened May 6 2026, ericwinsor-aisi). Silent failure pattern — no error thrown, just empty model list. Has repro on Linux. Tags area:auth + area:providers + bug. Affects enterprise deployment scenarios using centralized auth. Category mapping: AI Coding Tools (model discovery failure on gateway deployment)."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
   }
 ]
