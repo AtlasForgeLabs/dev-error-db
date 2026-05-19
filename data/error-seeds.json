@@ -19741,5 +19741,85 @@
     "related_errors": [
       "AI Coding Tools"
     ]
+  },
+  {
+    "slug": "claude-code-claude-plugin-install-silently-strips-fields-from-claude-json-75-kb-1-5-kb-dropping-oauthaccount-organizationtype-and-forcing-re-oauth",
+    "title": "Claude Code Plugin Install Silently Strips Subscription State From .claude.json, Causing OAuth Re-Auth Loop",
+    "description": "Fix claude plugin install corrupting .claude.json config and losing subscription state, triggering endless OAuth prompts Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "claude plugin install silently strips fields from .claude.json (~75 KB → ~1.5 KB), dropping oauthAccount.organizationType and forcing re-OAuth",
+    "search_intent": "Fix claude plugin install corrupting .claude.json config and losing subscription state, triggering endless OAuth prompts",
+    "common_causes": [
+      "GitHub issue #60407 on anthropics/claude-code (2026-05-19). Running any plugin install deserializes-modifies-serializes .claude.json and drops ~50 keys including subscription tier, causing the CLI to treat account as un-subscribed. Category: Claude Code → 'AI Coding Tools'. Direct billing/subscription impact."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "vercel-next-js-16-turbopack-hashed-server-external-aliases-can-become-unresolved-in-vercel-prebuilt-deployments-with-pnpm",
+    "title": "Vercel Prebuilt Deploy Fails When Next.js 16 Turbopack Hashed Server External Aliases Become Unresolved with pnpm",
+    "description": "Fix production deployment failure on Vercel caused by Turbopack alias resolution breaking in prebuilt mode with pnpm + symlinks Includes evidence for Vercel troubleshooting demand.",
+    "category": "Deployment",
+    "technology": "Vercel",
+    "error_signature": "Next.js 16 Turbopack hashed server external aliases can become unresolved in Vercel prebuilt deployments with pnpm",
+    "search_intent": "Fix production deployment failure on Vercel caused by Turbopack alias resolution breaking in prebuilt mode with pnpm + symlinks",
+    "common_causes": [
+      "GitHub issue #93901 on vercel/next.js (2026-05-17). In real Vercel prebuilt deployment, runtime fails loading instrumentation code due to hashed symlink targets in server_external_packages.json. Production deploys blocked. Category: Deployment → 'Deployment'. High commercial impact — blocks live deployments."
+    ],
+    "quick_fix": "Check the build output, project root, and deployment platform configuration before redeploying.",
+    "related_errors": [
+      "Deployment"
+    ]
+  },
+  {
+    "slug": "claude-code-oauth-token-exchange-not-completed-in-2-1-143-with-non-dcr-as-cloudflare-access-for-saas",
+    "title": "Claude Code OAuth Token Exchange Fails with Cloudflare Access (SaaS OIDC) — accessToken Never Persisted",
+    "description": "Fix OAuth token exchange failure when Claude Code connects to remote MCP server behind Cloudflare Access SaaS Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "OAuth Token Exchange not completed in 2.1.143 with non-DCR AS (Cloudflare Access for SaaS)",
+    "search_intent": "Fix OAuth token exchange failure when Claude Code connects to remote MCP server behind Cloudflare Access SaaS",
+    "common_causes": [
+      "GitHub issue #60395 on anthropics/claude-code (2026-05-19). Browser authorization completes successfully via Cloudflare OTP flow, but subsequent POST to token endpoint either fails or response never persists — ~/.claude.json never receives accessToken. Regression suspected from v2.1.80. Category: Claude Code → 'AI Coding Tools' per approved mapping."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "claude-code-api-error-400-the-request-body-is-not-valid-json-no-low-surrogate-in-string-line-1-column-195621-char-195620",
+    "title": "Anthropic API 400 Error: No Low Surrogate in String — Invalid JSON Request Body Validation Failure",
+    "description": "Fix 400 error caused by invalid Unicode surrogate pair in large JSON request body sent to Anthropic/Claude API Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "API Error: 400 The request body is not valid JSON: no low surrogate in string: line 1 column 195621 (char 195620)",
+    "search_intent": "Fix 400 error caused by invalid Unicode surrogate pair in large JSON request body sent to Anthropic/Claude API",
+    "common_causes": [
+      "GitHub issue #60394 on anthropics/claude-code (2026-05-19). Claude Code sends oversized request body with malformed UTF-16 surrogate (no low surrogate after high surrogate). API rejects with 400 invalid_request_error. Affects users processing large context windows with non-ASCII characters. Category: API-level error → 'Anthropic API'."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "openai-api-client-images-edit-api-throws-400-error-when-passing-image-url-as-input-instead-of-file-object",
+    "title": "OpenAI Python SDK client.images.edit() Throws 400 When Passing image_url Instead of File Object",
+    "description": "Fix OpenAI images/edit endpoint 400 error when trying to pass URL-based image input as documented Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "client.images.edit() API throws 400 error when passing image_url as input instead of file object",
+    "search_intent": "Fix OpenAI images/edit endpoint 400 error when trying to pass URL-based image input as documented",
+    "common_causes": [
+      "GitHub issue #3256 on openai/openai-python (2026-05-18). Official docs claim /images/edits supports image_url parameter but the Python SDK throws 400 on URL input while file objects work. Developers following documentation hit this wall. Category: OpenAI API → 'OpenAI API'. Direct API usage blocker."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "OpenAI API"
+    ]
   }
 ]
