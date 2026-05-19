@@ -20765,5 +20765,117 @@
     "related_errors": [
       "Ollama"
     ]
+  },
+  {
+    "slug": "github-actions-error-denied-permission-denied-requesting-ghcr-io-your-org-your-image-or-unauthorized-authentication-required",
+    "title": "GitHub Actions Docker Push Permission Denied — GHCR Authentication Failure (2026)",
+    "description": "Fix Docker image push to GitHub Container Registry failing with permission denied or unauthorized errors in CI/CD pipelines Includes evidence for GitHub Actions troubleshooting demand.",
+    "category": "GitHub Actions",
+    "technology": "GitHub Actions",
+    "error_signature": "ERROR: denied: permission_denied requesting ghcr.io/your-org/your-image OR unauthorized: authentication required",
+    "search_intent": "Fix Docker image push to GitHub Container Registry failing with permission denied or unauthorized errors in CI/CD pipelines",
+    "common_causes": [
+      "Comprehensive 2026 article covering all root causes: missing packages: write scope, wrong GITHUB_TOKEN scope for private repos, Docker Hub secret misconfiguration, AWS ECR no basic auth credentials, and org-level package visibility issues. Covers GHCR, Docker Hub, and ECR registries. Distinct from covered 'npm ci lockfile error' and 'permission denied publickey'."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "GitHub Actions"
+    ]
+  },
+  {
+    "slug": "github-actions-permission-to-org-repo-git-denied-to-github-actions-bot-or-error-permission-denied-to-github-token",
+    "title": "How to fix \"Permission denied to github-token\" in GitHub Actions",
+    "description": "Fix GitHub Actions workflow that fails when pushing commits or creating PRs due to GITHUB_TOKEN read-only restrictions Includes evidence for GitHub Actions troubleshooting demand.",
+    "category": "GitHub Actions",
+    "technology": "GitHub Actions",
+    "error_signature": "Permission to org/repo.git denied to github-actions[bot] OR Error: Permission denied to github-token",
+    "search_intent": "Fix GitHub Actions workflow that fails when pushing commits or creating PRs due to GITHUB_TOKEN read-only restrictions",
+    "common_causes": [
+      "Multiple 2026 articles confirm this is a common error caused by GITHUB_TOKEN defaulting to read-only since GitHub's 2023 permission policy change. The error occurs when workflows try to push commits (requires contents: write) or interact with PRs. Source URLs provide copy-paste permission block fixes."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "GitHub Actions"
+    ]
+  },
+  {
+    "slug": "vercel-deployment-blocked-globally-due-to-single-region-infrastructure-failure-middleware-deployment-stuck",
+    "title": "Vercel Middleware Deployment Failure from Single Region Outage (Dubai dxb1)",
+    "description": "Fix deployments that fail globally when one Vercel region (like Dubai dxb1) has an infrastructure outage, blocking all Middleware deploys worldwide Includes evidence for Vercel troubleshooting demand.",
+    "category": "Deployment",
+    "technology": "Vercel",
+    "error_signature": "deployment blocked globally due to single region infrastructure failure middleware deployment stuck",
+    "search_intent": "Fix deployments that fail globally when one Vercel region (like Dubai dxb1) has an infrastructure outage, blocking all Middleware deploys worldwide",
+    "common_causes": [
+      "March 2026 incident: Dubai region (dxb1) infrastructure failure blocked deployments for all Vercel users worldwide for 10+ hours. Vercel's architecture deploys Middleware to all regions simultaneously, so one region failure blocks global deployments. Workaround: Redeploy without cache or use Instant Rollback. Postmortem available at johal.in."
+    ],
+    "quick_fix": "Check the build output, project root, and deployment platform configuration before redeploying.",
+    "related_errors": [
+      "Deployment"
+    ]
+  },
+  {
+    "slug": "vercel-function-invocation-timeout-or-504-error-connection-closed-serverless-function",
+    "title": "Vercel FUNCTION_INVOCATION_TIMEOUT and Serverless Function Errors with Fluid Compute",
+    "description": "Fix Vercel serverless function timeouts caused by deprecated 10-second limit, missing environment variables, or incorrect region routing Includes evidence for Vercel troubleshooting demand.",
+    "category": "Deployment",
+    "technology": "Vercel",
+    "error_signature": "FUNCTION_INVOCATION_TIMEOUT OR 504 ERROR connection closed serverless function",
+    "search_intent": "Fix Vercel serverless function timeouts caused by deprecated 10-second limit, missing environment variables, or incorrect region routing",
+    "common_causes": [
+      "Multiple 2026 sources confirm FUNCTION_INVOCATION_TIMEOUT as top runtime error. With Fluid Compute enabled, default timeout changed from 10s to 300s, but legacy projects retain old limits. Also covers REGION_MISMATCH causing database connection timeouts. Distinct from existing 'Vercel build command failed'."
+    ],
+    "quick_fix": "Check the build output, project root, and deployment platform configuration before redeploying.",
+    "related_errors": [
+      "Deployment"
+    ]
+  },
+  {
+    "slug": "claude-code-client-doesn-t-read-resource-metadata-from-www-authenticate-header-mcp-oauth",
+    "title": "MCP OAuth resource_metadata sub-path discovery failure in Claude Code",
+    "description": "Fix Claude Code not following RFC 9728 §5.1 spec for OAuth protected resource discovery when MCP server is hosted on a sub-path Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "client doesn't read resource_metadata from WWW-Authenticate header MCP OAuth",
+    "search_intent": "Fix Claude Code not following RFC 9728 §5.1 spec for OAuth protected resource discovery when MCP server is hosted on a sub-path",
+    "common_causes": [
+      "Active GitHub issue (#58802) filed against anthropics/claude-code repository. Claude Code fails to parse resource_metadata URL from WWW-Authenticate header for OAuth flows when the MCP server is at a sub-path, causing authentication failures. Directly impacts developers using MCP servers with custom paths."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "cursor-the-model-default-does-not-work-with-your-current-plan-or-api-key",
+    "title": "Cursor \"Model does not work with your current plan or API key\" error",
+    "description": "Fix Cursor IDE showing persistent model-unavailable error after switching providers or updating API keys, particularly Claude models Includes evidence for Cursor troubleshooting demand.",
+    "category": "Cursor",
+    "technology": "Cursor",
+    "error_signature": "the model default does not work with your current plan or API key",
+    "search_intent": "Fix Cursor IDE showing persistent model-unavailable error after switching providers or updating API keys, particularly Claude models",
+    "common_causes": [
+      "Active forum discussion and multiple blog posts confirm this is a recurring Cursor bug. Users report 'model default does not work with your current plan' messages persisting even after re-entering valid API keys. Caused by Auto Mode caching stale model-plan mappings. High commercial value as Cursor Pro users ($20/mo) affected."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Cursor"
+    ]
+  },
+  {
+    "slug": "github-actions-secret-name-is-case-sensitive-workflow-references-empty-value-secrets-my-api-key",
+    "title": "GitHub Actions Secrets Not Available — Case-Sensitive Secret Name Typos",
+    "description": "Fix GitHub Actions step failures where ${{ secrets.MY_SECRET }} returns empty due to case-sensitive secret name mismatches or organization-level secret hiding Includes evidence for GitHub Actions troubleshooting demand.",
+    "category": "GitHub Actions",
+    "technology": "GitHub Actions",
+    "error_signature": "secret name is case-sensitive workflow references EMPTY_VALUE secrets.MY_API_KEY",
+    "search_intent": "Fix GitHub Actions step failures where ${{ secrets.MY_SECRET }} returns empty due to case-sensitive secret name mismatches or organization-level secret hiding",
+    "common_causes": [
+      "Comprehensive 2026 debugging guide from securebin.ai covering all categories of GitHub Actions failures including YAML syntax, secrets unavailable, and permission issues. Secret name case-sensitivity is a frequently missed cause, along with org-level secret hiding preventing child repo access. Blocks CI/CD for paying teams."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "GitHub Actions"
+    ]
   }
 ]
