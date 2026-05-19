@@ -21117,5 +21117,69 @@
     "related_errors": [
       "LiteLLM"
     ]
+  },
+  {
+    "slug": "claude-code-http-403-unauthorized-not-authorized-to-use-this-copilot-feature",
+    "title": "GitHub MCP Returns 403 'not authorized to use this Copilot feature' on Claude Code Web",
+    "description": "Fix GitHub MCP authentication failure on Claude Code web (remote/cloud sessions) Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "HTTP 403 \"unauthorized: not authorized to use this Copilot feature\"",
+    "search_intent": "Fix GitHub MCP authentication failure on Claude Code web (remote/cloud sessions)",
+    "common_causes": [
+      "Open issue on anthropics/claude-code#59953 (May 17, 2026, 2 days ago). Claude Code 2.1.143 on web session — GitHub MCP server HTTP endpoint returns 403 entitlement failure. OAuth fallback triggers misleading 'Server Turned Down → Google Drive' page ending in Authentication timeout. Reproducible 100% across multiple attempts. Accounts lack Copilot feature entitlement. No gh CLI available in web env. Critical for paid Claude Code users who depend on GitHub automation. Not in covered-errors (different from generic OAuth or remote MCP connect failures). Category: AI Coding Tools per mapping for Claude Code."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "litellm-litellm-ratelimiterror-ratelimiterror-openaiexception-error-code-429-error-message-you-exceeded-your-current-quota-please-check-your-plan-and-billing-details",
+    "title": "LiteLLM Proxy RateLimitError Masks OpenAI 429 Quota Errors Without Billing Context",
+    "description": "Distinguish between LiteLLM proxy rate limiting and underlying OpenAI quota exhaustion for faster fix Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "litellm.RateLimitError: RateLimitError: OpenAIException - Error code: 429 - { 'error' : {'message': 'You exceeded your current quota , please check your plan and billing details.'}",
+    "search_intent": "Distinguish between LiteLLM proxy rate limiting and underlying OpenAI quota exhaustion for faster fix",
+    "common_causes": [
+      "Issue on BerriAI/litellm#5983 (reported in search results, no freshness filter available). Developer hit OpenAI 429 with 'exceeded current quota' message, but LiteLLM proxy wrapped it as RateLimitError without surfacing billing/quota context clearly. Causes confusion: developer doesn't know if it's their own proxy throttling vs platform-level quota exhaustion. Blocks production embedding pipeline. Strong commercial value as LiteLLM is used in enterprise deployments with paying OpenAI customers. Not covered by dev-error-db (no LiteLLM entries yet). Category: LiteLLM per mapping."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "LiteLLM"
+    ]
+  },
+  {
+    "slug": "langchain-openai-insufficient-quota-errors-mistaken-for-rate-limits-causing-unnecessary-retries",
+    "title": "LangChainJS Mistakes OpenAI insufficient_quota for rate_limit, Triggering Wasted Retries",
+    "description": "Prevent LangChain from retrying insufficient_quota errors instead of surfacing billing fix prompt to user Includes evidence for LangChain troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "LangChain",
+    "error_signature": "OpenAI insufficient_quota errors mistaken for rate limits causing unnecessary retries",
+    "search_intent": "Prevent LangChain from retrying insufficient_quota errors instead of surfacing billing fix prompt to user",
+    "common_causes": [
+      "Issue on langchain-ai/langchainjs#1929. LangChainJS incorrectly classifies OpenAI 'insufficient_quota' as a retriable 'rate_limit', resulting in misleading end-user messages only after extended retry periods. Users pay for nothing while system spins through retries. Requires manual code changes to distinguish quota vs rate-limit handling. Directly impacts paid API usage efficiency. Covered-errors.md has 'OpenAI API insufficient_quota' but this covers the LangChain-specific retry behavior which is distinct. Category: AI Coding Tools per mapping for LangChain framework."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "vercel-module-not-found-can-t-resolve-component-on-vercel-despite-working-locally-shadcn-ui-path-alias-issue",
+    "title": "Local Build Works But Vercel Fails: Module Resolution Mismatch with Path Aliases (shadcn-ui + tsconfig)",
+    "description": "Fix Vercel deploy failure caused by tsconfig path aliases not resolving correctly in build container Includes evidence for Vercel troubleshooting demand.",
+    "category": "Deployment",
+    "technology": "Vercel",
+    "error_signature": "Module not found: Can't resolve '<component>' on Vercel despite working locally (shadcn-ui path alias issue)",
+    "search_intent": "Fix Vercel deploy failure caused by tsconfig path aliases not resolving correctly in build container",
+    "common_causes": [
+      "Multiple reports on vercel/next.js#69390 and shadcn-ui/ui#3683. Build succeeds locally but Vercel cannot resolve components referenced via tsconfig.json path aliases (common with shadcn-ui setups). The RegisterForm component, etc. fail with 'Module not found: Can't resolve'. Developers lose deployed builds until manually correcting alias paths. High urgency as it blocks production deployment. Covers edge case beyond generic 'Vercel build command failed' in covered-errors. Category: Deployment per mapping for Vercel."
+    ],
+    "quick_fix": "Check the build output, project root, and deployment platform configuration before redeploying.",
+    "related_errors": [
+      "Deployment"
+    ]
   }
 ]
