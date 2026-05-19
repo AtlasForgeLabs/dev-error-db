@@ -20877,5 +20877,117 @@
     "related_errors": [
       "GitHub Actions"
     ]
+  },
+  {
+    "slug": "openai-api-oauth-succeeds-but-third-party-calls-return-429-quota-exceeded",
+    "title": "Third-party provider calls return 429 quota exceeded even after ChatGPT Plus OAuth succeeds",
+    "description": "Fix quota/rate-limit mismatch where ChatGPT Plus OAuth authenticates but downstream Codex/API calls get blocked by 429 rate limits Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "OAuth succeeds but third-party calls return 429 quota exceeded",
+    "search_intent": "Fix quota/rate-limit mismatch where ChatGPT Plus OAuth authenticates but downstream Codex/API calls get blocked by 429 rate limits",
+    "common_causes": [
+      "GitHub issue #2951 in openai/openai-python (opened Mar 10, 2026). Authenticated users hit 429 quota exceeded on third-party model calls despite successful OAuth flow. Affects paid subscribers trying to use external model integrations. Strong billing impact for users paying for API access. Maps to 'OpenAI API' category."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "cline-claude-code-reasoning-function-call-pairing-error-during-mcp-tool-use-on-gpt-5-3-codex-gpt-5-4-gpt-5-5",
+    "title": "Cline hits OpenAI native model reasoning/function_call pairing error during MCP tool use",
+    "description": "Fix reasoning/function_call pairing errors when using GPT-5 series models through Cline MCP integration Includes evidence for Cline (Claude Code) troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Cline (Claude Code)",
+    "error_signature": "reasoning/function_call pairing error during MCP/tool use on gpt-5.3-codex, gpt-5.4, gpt-5.5",
+    "search_intent": "Fix reasoning/function_call pairing errors when using GPT-5 series models through Cline MCP integration",
+    "common_causes": [
+      "GitHub issue #10656 in cline/cline (opened May 12, 2026). Latest Cline versions encounter errors combining reasoning capabilities with function calls when using new GPT-5 models via MCP. Multiple comments indicate active user frustration with paid model features failing. Maps to 'AI Coding Tools'."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "claude-code-anthropic-command-failed-with-exit-code-1-for-all-sonnet-models-via-claude-code-api-provider",
+    "title": "Claude Code API Provider fails with exit code 1 for all Sonnet models",
+    "description": "Fix complete model failure in Claude Code where all Anthropic Sonnet models return exit code 1, blocking all AI-assisted coding sessions Includes evidence for Claude Code (Anthropic) troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code (Anthropic)",
+    "error_signature": "Command failed with exit code 1 for all sonnet models via Claude Code API Provider",
+    "search_intent": "Fix complete model failure in Claude Code where all Anthropic Sonnet models return exit code 1, blocking all AI-assisted coding sessions",
+    "common_causes": [
+      "GitHub issue #10135 in cline/cline (opened Apr 4, 2026). All Sonnet models fail with exit code 1 through the Claude Code API Provider. 9 comments indicating persistent issue affecting paying users. Critical error — no Claude models work. Maps to 'AI Coding Tools'."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "openai-api-inconsistent-rate-limit-error-responses-between-responses-api-and-chat-completions-api",
+    "title": "Inconsistency between Responses API and Chat Completions API on rate limit errors",
+    "description": "Resolve discrepancy in how rate limit errors are returned by different OpenAI APIs so developers can handle throttling uniformly Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "Inconsistent rate limit error responses between Responses API and Chat Completions API",
+    "search_intent": "Resolve discrepancy in how rate limit errors are returned by different OpenAI APIs so developers can handle throttling uniformly",
+    "common_causes": [
+      "GitHub issue #2699 in openai/openai-python (opened Oct 20, 2025). Responses API and Chat Completions API handle rate limit errors differently, forcing developers to maintain separate error handling paths. Production impact for apps using both APIs. Maps to 'OpenAI API'."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "cline-claude-code-pydantic-validationerror-task-progress-parameter-incorrectly-passed-to-mcp-tool-calls",
+    "title": "Cline/MCP tool calls fail with Pydantic ValidationError due to incorrect task_progress parameter",
+    "description": "Fix Pydantic validation errors when Cline passes task_progress parameter to Jira MCP tool calls, blocking automated task management workflows Includes evidence for Cline (Claude Code) troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Cline (Claude Code)",
+    "error_signature": "Pydantic ValidationError: task_progress parameter incorrectly passed to MCP tool calls",
+    "search_intent": "Fix Pydantic validation errors when Cline passes task_progress parameter to Jira MCP tool calls, blocking automated task management workflows",
+    "common_causes": [
+      "GitHub issue #10737 in cline/cline (opened May 14, 2026). Cline's MCP integration incorrectly passes task_progress param to certain tool calls, causing Pydantic ValidationError. Active issue with comments. Directly impacts developers using AI coding assistants with project management integrations. Maps to 'AI Coding Tools'."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "litellm-timeouterror-timeout-on-upstream-api-provider-calls-through-litellm-proxy",
+    "title": "LiteLLM proxy timeout errors on upstream provider calls",
+    "description": "Fix or understand timeout errors occurring when LiteLLM proxy forwards requests to upstream LLM providers, causing cascading failures in production Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "TimeoutError / Timeout on upstream API provider calls through LiteLLM proxy",
+    "search_intent": "Fix or understand timeout errors occurring when LiteLLM proxy forwards requests to upstream LLM providers, causing cascading failures in production",
+    "common_causes": [
+      "Found on BerriAI/litellm GitHub issues search for is:open timeout. LiteLLM serves as a proxy layer for many enterprise teams routing traffic to multiple LLM providers. Timeouts at the proxy level cause widespread application failures for paying users. Commercial value high due to enterprise deployments."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "LiteLLM"
+    ]
+  },
+  {
+    "slug": "cline-claude-code-zod-literal-validation-failures-mcp-tool-parameters-with-integer-boolean-types-are-sent-as-strings",
+    "title": "MCP tool parameters sent as strings instead of integer/boolean types causing Zod validation failures",
+    "description": "Fix type serialization bug where Cline sends numeric and boolean parameters as strings to MCP servers, causing client-side validation failures Includes evidence for Cline (Claude Code) troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Cline (Claude Code)",
+    "error_signature": "Zod literal validation failures: MCP tool parameters with integer/boolean types are sent as strings",
+    "search_intent": "Fix type serialization bug where Cline sends numeric and boolean parameters as strings to MCP servers, causing client-side validation failures",
+    "common_causes": [
+      "GitHub issue #10203 in cline/cline (opened Apr 9, 2026). Type coercion bug in MCP protocol serialization causes downstream validation failures. 1 comment, VS Code specific label. Impacts developers using custom MCP servers with typed schemas. Distinct from the task_progress issue (#10737). Maps to 'AI Coding Tools'."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
   }
 ]
