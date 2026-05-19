@@ -20989,5 +20989,133 @@
     "related_errors": [
       "AI Coding Tools"
     ]
+  },
+  {
+    "slug": "litellm-error-message-rate-limit-exceeded-for-leaking-full-sha-256-key-in-response-body",
+    "title": "Rate Limit Exceeded for Proxy — Full SHA-256 Key Leaked in Error Body",
+    "description": "Fix LiteLLM proxy rate limit error that leaks internal API key SHA-256 hash in error message body, exposing credentials Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "Error: { \"message\": \"Rate limit exceeded for ...\", ... } leaking full SHA-256 key in response body",
+    "search_intent": "Fix LiteLLM proxy rate limit error that leaks internal API key SHA-256 hash in error message body, exposing credentials",
+    "common_causes": [
+      "Source: https://github.com/BerriAI/litellm/issues/27884 (6 days ago). Bug in litellm/proxy/hooks/parallel_request_limiter_v3.py around line 1261 where rate limit error response includes full SHA-256 key hash. High commercial value — security exposure + rate limit handling on paid proxy tier."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "LiteLLM"
+    ]
+  },
+  {
+    "slug": "claude-code-oauth-authentication-succeeds-but-mcp-reconnection-fails-tools-remain-missing-after-manual-restart-required",
+    "title": "OAuth Authentication Succeeds but MCP Tools Remain Missing After Token Store Refresh",
+    "description": "Fix Claude Code MCP OAuth tokens stored correctly but reconnection fails, tools not appearing until manual restart of Claude Code Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "OAuth Authentication Succeeds but MCP Reconnection Fails — tools remain missing after manual restart required",
+    "search_intent": "Fix Claude Code MCP OAuth tokens stored correctly but reconnection fails, tools not appearing until manual restart of Claude Code",
+    "common_causes": [
+      "Source: https://github.com/anthropics/claude-code/issues/10250. OAuth tokens correctly persisted to ~/.claude but MCP tools fail to reconnect. Requires manual claude exit/restart. Affects paying Claude Code users integrating custom MCP servers. Category: AI Coding Tools per mapping rules."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "claude-code-bug-custom-mcp-connector-oauth-tokens-fail-to-persist-quarri-mcp-server-requires-exit-then-claude-mcp-list-workaround",
+    "title": "Custom MCP Connector OAuth Tokens Fail to Persist Across Sessions in Claude Code",
+    "description": "Fix Claude Code failing to persist OAuth tokens for custom MCP connectors across sessions, forcing manual restart via /exit and claude mcp list Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "[BUG] Custom MCP connector OAuth tokens fail to persist — quarri MCP server requires /exit then claude mcp list workaround",
+    "search_intent": "Fix Claude Code failing to persist OAuth tokens for custom MCP connectors across sessions, forcing manual restart via /exit and claude mcp list",
+    "common_causes": [
+      "Source: https://github.com/anthropics/claude-code/issues/52565 (April 23, 2026). Recently reported bug — OAuth tokens not surviving session restarts. Workaround: /exit then claude mcp list. Directly affects paid Claude Code users with custom MCP integrations. Category: AI Coding Tools per mapping rules."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "github-copilot-github-copilot-sign-in-button-not-responding-stuck-in-sign-in-loop-authentication-provider-registration-timed-out",
+    "title": "GitHub Copilot Sign-In Loop in VS Code — Stuck Authenticating After Cache Corruption",
+    "description": "Fix GitHub Copilot getting stuck in sign-in loop in VS Code after cache corruption or credential mismatch; unable to activate extension Includes evidence for GitHub Copilot troubleshooting demand.",
+    "category": "GitHub Copilot",
+    "technology": "GitHub Copilot",
+    "error_signature": "GitHub Copilot sign-in button not responding / stuck in sign-in loop — authentication provider registration timed out",
+    "search_intent": "Fix GitHub Copilot getting stuck in sign-in loop in VS Code after cache corruption or credential mismatch; unable to activate extension",
+    "common_causes": [
+      "Sources: https://github.com/orgs/community/discussions/154128 (Mar 9, 2026), https://github.com/orgs/community/discussions/167353 (Dec 28, 2025), https://stackoverflow.com/questions/79638766. Multiple users report stuck-at-sign-in screen, broken sign-in button, extension activation timeout. Affects paying Copilot subscription users. Category: GitHub Copilot per mapping rules."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "GitHub Copilot"
+    ]
+  },
+  {
+    "slug": "claude-code-bug-http-mcp-servers-requiring-oauth-silently-fail-with-no-tools-shown-when-user-hasn-t-completed-authentication",
+    "title": "HTTP MCP Servers Requiring OAuth Silently Fail — No Tools Appear When Auth Not Completed",
+    "description": "Fix Claude Code silently failing when HTTP MCP servers need OAuth auth but haven't been completed — zero feedback that something went wrong Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "[BUG] HTTP MCP servers requiring OAuth silently fail with no tools shown when user hasn't completed authentication",
+    "search_intent": "Fix Claude Code silently failing when HTTP MCP servers need OAuth auth but haven't been completed — zero feedback that something went wrong",
+    "common_causes": [
+      "Source: https://github.com/anthropics/claude-code/issues/26917 (Feb 19, 2026). Claude Code configures HTTP MCP servers requiring OAuth but gives no indication when auth isn't done. Silent failure = users can't debug. Category: AI Coding Tools per mapping rules."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "litellm-error-root-litellm-call-failed-litellm-apiconnectionerror-ollamaexception-litellm-timeout-connection-timed-out-after-600-0-seconds",
+    "title": "litellm.Timeout: OllamaConnectionTimedOut — Connection Timed Out After 600 Seconds",
+    "description": "Fix LiteLLM hanging 600 seconds on Ollama connection timeout instead of raising proper error quickly; understand why stream_timeout and regular timeout settings don't work for watsonx/Ollama backends Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "ERROR :root: LiteLLM call failed: litellm.APIConnectionError: OllamaException - litellm.Timeout: Connection timed out after 600.0 seconds.",
+    "search_intent": "Fix LiteLLM hanging 600 seconds on Ollama connection timeout instead of raising proper error quickly; understand why stream_timeout and regular timeout settings don't work for watsonx/Ollama backends",
+    "common_causes": [
+      "Sources: https://github.com/BerriAI/litellm/issues/7996 (Jan 2025), https://github.com/BerriAI/litellm/issues/7870 (stream_timeout not working for watsonx). Users running LiteLLM proxy routing to Ollama/watsonx get stuck waiting 600s. High commercial value for teams using LiteLLM as paid proxy. Category: LiteLLM per mapping rules."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "LiteLLM"
+    ]
+  },
+  {
+    "slug": "litellm-ratelimiterror-rate-limit-exceeded-litellm-proxy-needs-automatic-fallback-configuration-for-model-groups-to-handle-rate-limit-errors-gracefully",
+    "title": "LiteLLM Proxy Rate Limit Handled Gracefully — Automatic Fallback Config for Model Groups",
+    "description": "Configure automatic fallback to secondary models when primary model group hits LiteLLM rate limits; avoid downtime on paid proxy tier Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "RateLimitError: Rate limit exceeded — LiteLLM proxy needs automatic fallback configuration for model groups to handle rate limit errors gracefully",
+    "search_intent": "Configure automatic fallback to secondary models when primary model group hits LiteLLM rate limits; avoid downtime on paid proxy tier",
+    "common_causes": [
+      "Source: https://github.com/BerriAI/litellm/issues/25080 (Apr 3, 2026). Feature request for automatic fallback config in LiteLLM proxy when rate limits hit. Also referenced in https://github.com/BerriAI/litellm/issues/20867 (Feb 10, 2026) where rate limit is reported as 'No deployments available'. Strong commercial value for enterprise proxy users."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "LiteLLM"
+    ]
+  },
+  {
+    "slug": "litellm-vertex-ai-429-rate-limit-error-during-streaming-not-surfaced-to-client-only-visible-in-litellm-debug-logs-causes-silent-streaming-failures",
+    "title": "Vertex AI 429 Rate Limit During Streaming Silently Hidden by LiteLLM",
+    "description": "Fix LiteLLM hiding 429 rate limit errors from Vertex AI during streaming requests; clients see hung responses instead of actionable error Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "Vertex AI 429 rate limit error during streaming not surfaced to client — only visible in LiteLLM debug logs, causes silent streaming failures",
+    "search_intent": "Fix LiteLLM hiding 429 rate limit errors from Vertex AI during streaming requests; clients see hung responses instead of actionable error",
+    "common_causes": [
+      "Source: https://github.com/BerriAI/litellm/issues/23707 (Mar 15, 2026). 429 error only visible in LiteLLM debug output, not propagated to calling client during streaming. Enterprise users relying on LiteLLM proxy get silent failures without visibility. Category: LiteLLM per mapping rules."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "LiteLLM"
+    ]
   }
 ]
