@@ -21549,5 +21549,85 @@
     "related_errors": [
       "Deployment"
     ]
+  },
+  {
+    "slug": "openai-api-background-response-status-failed-returns-opaque-error-code-without-sdk-exception-mapping-http-poll-returns-200-ok-so-no-typed-exception-raised",
+    "title": "Background Responses failures lack stable error code for retry logic",
+    "description": "How to programmatically classify and retry failed OpenAI Responses API background runs based on error code Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "background response status=failed returns opaque error.code without SDK exception mapping; HTTP poll returns 200 OK so no typed exception raised",
+    "search_intent": "How to programmatically classify and retry failed OpenAI Responses API background runs based on error code",
+    "common_causes": [
+      "GitHub issue openai/openai-python#3212 by adnanboz (May 8 2026). Describes that synchronous SDK has deterministic HTTP→exception mapping but background=True mode surfaces only free-form error.code string with no documented enum or SDK class mapping. Affects production retry/backoff logic where isinstance(e, InternalServerError) cannot work. Direct source evidence: complete issue body with code snippets and community workaround proposals."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "anthropic-api-error-code-413-request-exceeds-maximum-allowed-bytes-the-maximum-request-size-is-32-mb-prompt-is-too-long",
+    "title": "Vertex AI rejects ~2MB requests with 413 Prompt is too long error",
+    "description": "Fix incorrect 413 rejection of payloads well under 32MB limit on Anthropic Claude via Vertex AI Includes evidence for Anthropic API troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Anthropic API",
+    "error_signature": "Error code: 413 — Request exceeds maximum allowed bytes. The maximum request size is 32 MB; Prompt is too long",
+    "search_intent": "Fix incorrect 413 rejection of payloads well under 32MB limit on Anthropic Claude via Vertex AI",
+    "common_causes": [
+      "GitHub issue anthropics/anthropic-sdk-python#1028 by abhiwebshar (Sep 7 2025). Payloads as small as ~2MB consistently rejected with 413 error despite documented 32MB limit. Comprehensive root cause analysis in comments reveals Vertex AI misreports rate limit violations (429) as payload-size errors (413), specifically for Citations API format. Multiple regions affected. High value as it blocks legitimate large-context usage of Claude Sonnet 4 via enterprise Vertex AI deployment."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Anthropic API"
+    ]
+  },
+  {
+    "slug": "litellm-routerratelimiterror-no-retry-after-header-returned-when-all-deployments-in-cooldown-period",
+    "title": "No Retry-After header on LiteLLM RouterRateLimitError",
+    "description": "Add Retry-After header support to LiteLLM rate limit errors so clients can implement proper exponential backoff Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "RouterRateLimitError: No Retry-After header returned when all deployments in cooldown period",
+    "search_intent": "Add Retry-After header support to LiteLLM rate limit errors so clients can implement proper exponential backoff",
+    "common_causes": [
+      "GitHub issue BerriAI/litellm#27823 by b4lduin (May 13 2026). When LiteLLM proxy router exhausts all deployed endpoints, it raises RouterRateLimitError but provides no Retry-After header. Clients have no way to know when to retry, causing immediate hammering of cooldown deployments. Affects self-hosted LiteLLM proxy deployments managing multiple model providers. Labels: llm translation, high commercial impact for proxy operators who need predictable rate limiting behavior."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "LiteLLM"
+    ]
+  },
+  {
+    "slug": "litellm-tpm-limit-n-replica-deployment-level-tokens-per-minute-enforcement-is-per-pod-not-cross-pod-consistent",
+    "title": "Deployment-level TPM enforcement per-pod breaks effective rate limits",
+    "description": "Understand why LiteLLM TPM rate limits don't aggregate across pods and how to enforce correct per-deployment token limits Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "tpm_limit × N_replica — deployment-level tokens-per-minute enforcement is per-pod, not cross-pod consistent",
+    "search_intent": "Understand why LiteLLM TPM rate limits don't aggregate across pods and how to enforce correct per-deployment token limits",
+    "common_causes": [
+      "GitHub issue BerriAI/litellm#27736 by hula-la (May 12 2026). LiteLLM proxy sets tpm_limit at deployment level but enforcement happens per-replica pod, meaning a 4-replica deployment effectively has 4× the intended rate limit. This bypasses cost controls and can trigger upstream provider rate limits unexpectedly. Labels: bug, proxy. Critical for teams using LiteLLM proxy for budget management across distributed deployments."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "LiteLLM"
+    ]
+  },
+  {
+    "slug": "anthropic-api-anthropic-apistatuserror-error-code-424-the-system-encountered-an-unexpected-error-during-processing-try-your-request-again",
+    "title": "Anthropic Bedrock frequent server-side 424 errors with broken retry",
+    "description": "Fix recurring 424 server-side errors on Anthropic Bedrock and improve SDK retry handling for this error code Includes evidence for Anthropic API troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Anthropic API",
+    "error_signature": "anthropic.APIStatusError: Error code: 424 — The system encountered an unexpected error during processing. Try your request again.",
+    "search_intent": "Fix recurring 424 server-side errors on Anthropic Bedrock and improve SDK retry handling for this error code",
+    "common_causes": [
+      "GitHub issue anthropics/anthropic-sdk-python#432 by kevinlu1248 (Apr 2, 2024). Still open after 2 years. Bedrock API returns 424 errors frequently, SDK does not include 424 in automatic retry set. Community workaround PR (#583) filed but never merged. Latest comment (Mar 27 2026) notes the SDK still isn't fixed and suggests Anthropic should take ownership. Long-standing issue affecting production users on AWS Bedrock integration. Good fit — error has clear signature and blocks paid Anthropic Bedrock usage."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Anthropic API"
+    ]
   }
 ]
