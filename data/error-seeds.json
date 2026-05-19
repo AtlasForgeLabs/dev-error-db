@@ -20397,5 +20397,117 @@
     "related_errors": [
       "Deployment"
     ]
+  },
+  {
+    "slug": "openai-api-error-429-insufficient-quota-persists-even-after-manually-adding-credits-to-account",
+    "title": "OpenAI API 429 Error: insufficient_quota Persists After Adding Credits",
+    "description": "Fix persistent 429 insufficient_quota error despite having credits added to OpenAI billing account Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "Error 429: insufficient_quota — persists even after manually adding credits to account",
+    "search_intent": "Fix persistent 429 insufficient_quota error despite having credits added to OpenAI billing account",
+    "common_causes": [
+      "Multiple reports on OpenAI Developer Community (t/429-error-insufficient-quota-still-ongoing/674562, t/persistent-api-rate-limit-error-code-429-issues-despite-added-credits/662231) and Reddit r/replit show users getting 429 insufficient_quota despite manually adding funds. The prepaid billing system shift causes confusion where credits exist but requests are still rejected. Category mapping: direct OpenAI API billing/quota error."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "claude-code-oauth-fallback-renders-misleading-error-server-turned-down-instead-of-proper-authentication-error-message",
+    "title": "Claude Code OAuth Fallback Shows Misleading 'Server Turned Down' Instead of Auth Errors",
+    "description": "Understand and fix misleading OAuth error messages in Claude Code MCP GitHub integration Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "OAuth fallback renders misleading error: \"Server Turned Down\" instead of proper authentication error message",
+    "search_intent": "Understand and fix misleading OAuth error messages in Claude Code MCP GitHub integration",
+    "common_causes": [
+      "GitHub issue #59953 on anthropics/claude-code shows web session users seeing 'Server Turned Down' when MCP GitHub auth fails, making debugging difficult. Related: issue #11585 documents MCP servers requiring OAuth failing silently without log files. Covers re-authentication pain points unique to Claude Code. Category mapping: AI Coding Tools per SKILL rules for Claude Code-specific errors."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "github-copilot-error-github-copilot-could-not-connect-to-server-extension-activation-failed-timed-out-waiting-for-authentication-provider-to-register",
+    "title": "GitHub Copilot Authentication Timeout: 'Timed Out Waiting for Authentication Provider to Register'",
+    "description": "Fix GitHub Copilot VS Code extension activation failure due to authentication provider timeout during sign-in Includes evidence for GitHub Copilot troubleshooting demand.",
+    "category": "GitHub Copilot",
+    "technology": "GitHub Copilot",
+    "error_signature": "Error: GitHub Copilot could not connect to server. Extension activation failed: Timed out waiting for authentication provider to register",
+    "search_intent": "Fix GitHub Copilot VS Code extension activation failure due to authentication provider timeout during sign-in",
+    "common_causes": [
+      "Active reports on GitHub community discussions (#159860) and Microsoft Learn show developers stuck in login loops with timeout errors. Particularly affects GitHub Education users and enterprise accounts. The auth provider registration process hangs, preventing Copilot use entirely. Paid subscription affected. Category mapping: exact GitHub Copilot auth error per category rules."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "GitHub Copilot"
+    ]
+  },
+  {
+    "slug": "litellm-ratelimiterror-timeout-in-litellm-proxy-when-automatic-model-group-fallback-is-triggered-fallback-itself-triggers-another-rate-limit",
+    "title": "LiteLLM Proxy Rate Limit Exceeded During Auto-Fallback Between Model Groups",
+    "description": "Fix cascading rate limit errors in LiteLLM proxy when auto-fallback between model groups encounters its own RPM/TPM limits Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "RateLimitError / timeout in LiteLLM proxy when automatic model group fallback is triggered — fallback itself triggers another rate limit",
+    "search_intent": "Fix cascading rate limit errors in LiteLLM proxy when auto-fallback between model groups encounters its own RPM/TPM limits",
+    "common_causes": [
+      "GitHub issue #25080 (BerriAI/litellm, Apr 2026) documents the need for model group fallback configuration for rate limit errors. Issue #7358 reports async rate limit errors when using LiteLLM with PaperQA. The LiteLLM proxy retry/fallback logic can itself hit rate limits, creating cascading failures in production multi-model setups. Category mapping: exact LiteLLM proxy error per category rules."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "LiteLLM"
+    ]
+  },
+  {
+    "slug": "github-actions-permission-denied-for-mcp-servers-using-claude-code-action-in-github-actions-pipeline",
+    "title": "GitHub Actions Permission Denied When Using Claude Code MCP Servers in CI Pipelines",
+    "description": "Fix permission denied errors when running Claude Code with MCP servers inside GitHub Actions CI/CD workflows Includes evidence for GitHub Actions troubleshooting demand.",
+    "category": "GitHub Actions",
+    "technology": "GitHub Actions",
+    "error_signature": "Permission denied for MCP servers using Claude Code action in GitHub Actions pipeline",
+    "search_intent": "Fix permission denied errors when running Claude Code with MCP servers inside GitHub Actions CI/CD workflows",
+    "common_causes": [
+      "GitHub issue #647 on anthropics/claude-code-action reports repeated permission denied errors when using claude code MCP servers in GitHub Actions pipelines. This directly impacts paid team workflows where automated coding tasks via CI/CD are blocked. Category mapping: GitHub Actions CI/CD error per SKILL rules."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "GitHub Actions"
+    ]
+  },
+  {
+    "slug": "cursor-with-custom-model-api-key-get-request-error-configured-third-party-model-returns-request-failures",
+    "title": "Cursor Custom Model API Key Returns HTTP Request Error",
+    "description": "Fix API key request errors when configuring custom/third-party models in Cursor IDE settings Includes evidence for Cursor troubleshooting demand.",
+    "category": "Cursor",
+    "technology": "Cursor",
+    "error_signature": "With custom model API key get request error — configured third-party model returns request failures",
+    "search_intent": "Fix API key request errors when configuring custom/third-party models in Cursor IDE settings",
+    "common_causes": [
+      "Forum.cursor.com thread (t/with-custom-model-api-key-get-request-error/144251) documents users failing to use non-Cursor proprietary models due to API key request errors. Distinct from covered 'model not available' because it targets custom model API key validation specifically. Also corroborated by MiniMax-M2 issue #56 showing 'does not work with your current plan or api key' for third-party integrations. Category mapping: exact Cursor IDE config error."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Cursor"
+    ]
+  },
+  {
+    "slug": "claude-code-claude-code-cannot-connect-to-github-s-remote-mcp-server-requires-gh-cli-workaround",
+    "title": "Claude Code Cannot Connect to GitHub Remote MCP Server — Connection Refused Workaround Needed",
+    "description": "Resolve Claude Code remote GitHub MCP connection failures that force developers to abandon MCP integration and use gh CLI as workaround Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Claude Code cannot connect to GitHub's remote MCP server — requires gh CLI workaround",
+    "search_intent": "Resolve Claude Code remote GitHub MCP connection failures that force developers to abandon MCP integration and use gh CLI as workaround",
+    "common_causes": [
+      "GitHub issue #3433 on anthropics/claude-code documents complete failure to connect to GitHub's remote MCP server. The workaround is to use `gh CLI` for all GitHub operations within Claude Code sessions. This represents a significant workflow disruption for developers relying on Claude Code + GitHub integration. Reported by multiple users as a persistent blocker. Category mapping: AI Coding Tools per SKILL rules for Claude Code-specific MCP errors."
+    ],
+    "quick_fix": "Confirm the local service is running on the expected host and port, then retry the smallest request.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
   }
 ]
