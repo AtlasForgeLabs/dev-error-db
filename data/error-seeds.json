@@ -20205,5 +20205,101 @@
     "related_errors": [
       "Anthropic API"
     ]
+  },
+  {
+    "slug": "claude-code-hitting-pro-plan-limits-after-executing-just-1-or-2-standard-commands-massive-regression-from-historical-behavior-cli-completely-unusable",
+    "title": "[BUG] Sudden, severe Pro limit throttling — Claude Code draining quota after 1-2 commands",
+    "description": "Fix Claude Code suddenly draining Pro subscription quota extremely fast, rendering CLI unusable for standard workflows Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Hitting Pro plan limits after executing just 1 or 2 standard commands — massive regression from historical behavior, CLI completely unusable",
+    "search_intent": "Fix Claude Code suddenly draining Pro subscription quota extremely fast, rendering CLI unusable for standard workflows",
+    "common_causes": [
+      "GitHub issue #54387 (anthropics/claude-code, filed Apr 28 2026). Affected Pro user reports sudden backend regression causing quota exhaustion after 1-2 commands. High commercial value — directly affects paying customers who cannot use the product. Not in covered-errors list; distinct from generic insufficient_quota."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "claude-code-permission-required-domain-mcp-claude-in-chrome-tools-blocked-indefinitely-no-visible-ui-surface-to-approve-domain-in-extension-popup",
+    "title": "Chrome MCP returns permission_required with no UI to approve domain — Claude Code",
+    "description": "Fix Claude Code Chrome MCP tool returning permission_required error with no way to approve domains Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "permission_required: <domain> — mcp__Claude_in_Chrome__* tools blocked indefinitely, no visible UI surface to approve domain in extension popup",
+    "search_intent": "Fix Claude Code Chrome MCP tool returning permission_required error with no way to approve domains",
+    "common_causes": [
+      "Real GitHub issue (anthropics/claude-code#59723) filed May 16, 2026 by affected user. Error blocks cross-app workflow between Claude Code CLI and Chrome extension. Category mapping: AI Coding Tools covers Claude Code-specific errors. Niche but monetizing error for paying Pro/Team users."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "claude-code-ultrareview-quota-consumed-on-server-side-rate-limit-failures-free-attempt-quota-drained-even-when-ultrareview-endpoint-returns-rate-limit-error",
+    "title": "Ultrareview quota decremented on API rate limit failure — Claude Code consumes free attempts on server-side errors",
+    "description": "Fix Ultrareview feature consuming quota/credits when API rate limits trigger on server side instead of user action Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Ultrareview quota consumed on server-side rate limit failures — free attempt quota drained even when /ultrareview endpoint returns rate limit error",
+    "search_intent": "Fix Ultrareview feature consuming quota/credits when API rate limits trigger on server side instead of user action",
+    "common_causes": [
+      "Multiple related GitHub issues: #52686, #53323, #56252 (all anthropics/claude-code). Quota penalty on non-user-caused rate limit failures directly affects paying users. Category: AI Coding Tools. Strong commercial signal — billing/credit fairness issue on paid product."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "kubernetes-crashloopbackoff-imagepullbackoff-pod-enters-crash-restart-loop-or-fails-pulling-container-image-blocking-production-deployment",
+    "title": "CrashLoopBackOff + ImagePullBackOff — Kubernetes pod crash loop diagnostic playbook",
+    "description": "Diagnose and fix Kubernetes pods stuck in CrashLoopBackOff or ImagePullBackOff states in production environments Includes evidence for Kubernetes troubleshooting demand.",
+    "category": "Cloud Platforms",
+    "technology": "Kubernetes",
+    "error_signature": "CrashLoopBackOff / ImagePullBackOff — pod enters crash/restart loop or fails pulling container image, blocking production deployment",
+    "search_intent": "Diagnose and fix Kubernetes pods stuck in CrashLoopBackOff or ImagePullBackOff states in production environments",
+    "common_causes": [
+      "Tracer-Cloud/opensre#261 documents comprehensive K8s crash scenarios. ImagePullBackOff often caused by wrong registry credentials or non-existent images; CrashLoopBackOff stems from misconfigured startup commands, OOMKilled, or liveness probe failures. High enterprise value — cluster downtime costs hundreds/hours per incident. Category: Cloud Platforms."
+    ],
+    "quick_fix": "Verify the model name, local service connectivity, and network access before retrying the model pull.",
+    "related_errors": [
+      "Cloud Platforms"
+    ]
+  },
+  {
+    "slug": "vercel-middleware-invocation-failed-plus-function-invocation-failed-missing-module-error-at-runtime-build-pipeline-does-not-emit-clear-error-before-deploy",
+    "title": "MIDDLEWARE_INVOCATION_FAILED + FUNCTION_INVOCATION_FAILED — missing module at runtime on Vercel",
+    "description": "Fix Vercel runtime crashes from missing modules that pass build but fail during middleware invocation on deployed functions Includes evidence for Vercel troubleshooting demand.",
+    "category": "Deployment",
+    "technology": "Vercel",
+    "error_signature": "MIDDLEWARE_INVOCATION_FAILED + FUNCTION_INVOCATION_FAILED — missing-module error at runtime, build pipeline does not emit clear error before deploy",
+    "search_intent": "Fix Vercel runtime crashes from missing modules that pass build but fail during middleware invocation on deployed functions",
+    "common_causes": [
+      "GitHub issue vercel/next.js#93850 — developers deploying Next.js on Vercel hit functional invocations failing due to missing dependencies not caught at build time. Affects production deployments for paid team plans. Distinct from generic FUNCTION_INVOCATION_TIMEOUT as it involves build/deploy pipeline diagnostic gaps."
+    ],
+    "quick_fix": "Check the build output, project root, and deployment platform configuration before redeploying.",
+    "related_errors": [
+      "Deployment"
+    ]
+  },
+  {
+    "slug": "vercel-function-invocation-timeout-your-vercel-serverless-function-exceeded-the-time-limit-10s-free-60s-pro",
+    "title": "FUNCTION_INVOCATION_TIMEOUT — Vercel serverless function exceeds time limit (10s free / 60s pro)",
+    "description": "Fix Vercel serverless function timing out before completing processing, requires optimization or plan upgrade Includes evidence for Vercel troubleshooting demand.",
+    "category": "Deployment",
+    "technology": "Vercel",
+    "error_signature": "FUNCTION_INVOCATION_TIMEOUT — Your Vercel serverless function exceeded the time limit (10s free, 60s pro)",
+    "search_intent": "Fix Vercel serverless function timing out before completing processing, requires optimization or plan upgrade",
+    "common_causes": [
+      "Covered by Vercel official docs and third-party guides. Error affects deployment pipelines and paid function hosting. Category: Deployment. Commercial value high because it forces plan upgrades (Pro $20/mo minimum) or code rewrites. Covers works-locally-but-times-out-on-vercel pattern with strong conversion intent."
+    ],
+    "quick_fix": "Check the build output, project root, and deployment platform configuration before redeploying.",
+    "related_errors": [
+      "Deployment"
+    ]
   }
 ]
