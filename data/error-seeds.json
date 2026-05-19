@@ -21629,5 +21629,85 @@
     "related_errors": [
       "Anthropic API"
     ]
+  },
+  {
+    "slug": "litellm-midstreamfallbackerror-not-handled-in-router-aresponses-causing-unhandled-streaming-bypass-during-mid-call-provider-failure",
+    "title": "LiteLLM Router.aresponses Streaming Bypasses Mid-Stream Fallback on Errors",
+    "description": "Fix LiteLLM Router streaming fallback not triggering when provider fails mid-stream during aresponses(), losing graceful failover to backup models Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "MidStreamFallbackError not handled in Router.aresponses() causing unhandled streaming bypass during mid-call provider failure",
+    "search_intent": "Fix LiteLLM Router streaming fallback not triggering when provider fails mid-stream during aresponses(), losing graceful failover to backup models",
+    "common_causes": [
+      "Open GitHub issue #28216 on BerriAI/litellm (opened May 19, 2026 by cwang-otto). Critical bug for production multi-model setups: when primary model crashes mid-stream, the fallback mechanism is bypassed because MidStreamFallbackError is not caught. Directly affects billing optimization and reliability for teams paying per-token through LiteLLM proxy."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "LiteLLM"
+    ]
+  },
+  {
+    "slug": "github-copilot-can-t-subscribe-to-copilot-pro-pro-plus-student-plan-sign-ups-paused-pause-on-new-individual-sign-ups-since-late-april-opus-removed-from-10-mo-pro-tier",
+    "title": "GitHub Copilot Sign-Ups Paused May 2026: Unable to Subscribe to Pro or Student Plans",
+    "description": "Find workaround or alternative for accessing premium AI models after GitHub Copilot Pro sign-ups were suspended and Opus was moved to $39/mo tier Includes evidence for GitHub Copilot troubleshooting demand.",
+    "category": "GitHub Copilot",
+    "technology": "GitHub Copilot",
+    "error_signature": "Can't subscribe to Copilot Pro/Pro+/Student plan — sign-ups paused (pause on new individual sign-ups since late April, Opus removed from $10/mo Pro tier)",
+    "search_intent": "Find workaround or alternative for accessing premium AI models after GitHub Copilot Pro sign-ups were suspended and Opus was moved to $39/mo tier",
+    "common_causes": [
+      "TechSifted article (May 3, 2026) documenting three major Copilot changes: (1) Individual sign-ups paused for Pro, Pro+, Student plans — no end date announced; (2) Opus-family models removed from $10/mo Pro tier, moved to $39/mo Pro+ only — a 290% price jump for Opus access; (3) Rate limits now visible in VS Code and CLI. High urgency as many developers discover this when trying to onboard or upgrade. Clear commercial intent — subscription block = strong purchase signal."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "GitHub Copilot"
+    ]
+  },
+  {
+    "slug": "litellm-timeout-parameter-silently-dropped-on-completion-transformation-path-affects-anthropic-bedrock-vertex-causing-unexpected-request-hangs",
+    "title": "LiteLLM responses() Timeout Parameter Silently Dropped on Completion Path",
+    "description": "Debug why explicit timeout setting disappears when passing requests through LiteLLM's responses() wrapper, leading to indefinite hangs on slow providers Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "Timeout parameter silently dropped on completion transformation path (affects Anthropic, Bedrock, Vertex) causing unexpected request hangs",
+    "search_intent": "Debug why explicit timeout setting disappears when passing requests through LiteLLM's responses() wrapper, leading to indefinite hangs on slow providers",
+    "common_causes": [
+      "Open GitHub issue #28132 on BerriAI/litellm (opened May 17, 2026 by cwang-otto). Clients set explicit timeouts but LiteLLM drops them during internal transformation, causing requests to hang indefinitely. High commercial impact: timeout misconfiguration costs real money in pay-per-use LLM APIs."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "LiteLLM"
+    ]
+  },
+  {
+    "slug": "github-copilot-extension-activation-failed-timed-out-waiting-for-authentication-provider-to-register-github-copilot-cannot-connect-to-server",
+    "title": "GitHub Copilot Auth Extension Activation Fails: Timed Out Waiting for Authentication Provider",
+    "description": "Fix GitHub Copilot extension not connecting due to auth provider registration timeout, blocking AI coding features entirely Includes evidence for GitHub Copilot troubleshooting demand.",
+    "category": "GitHub Copilot",
+    "technology": "GitHub Copilot",
+    "error_signature": "Extension activation failed: Timed out waiting for authentication provider to register (GitHub Copilot cannot connect to server)",
+    "search_intent": "Fix GitHub Copilot extension not connecting due to auth provider registration timeout, blocking AI coding features entirely",
+    "common_causes": [
+      "Stack Overflow question #75904268 documenting VS Code GitHub Copilot auth connection failure. Error prevents IDE from registering Copilot authentication provider. Affects paid Copilot subscribers who lose code completions and chat. Multiple related reports including PR #11324. Commercial value high: direct loss of paid subscription utility."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "GitHub Copilot"
+    ]
+  },
+  {
+    "slug": "docker-fixme-error-in-api-docker-only-half-restores-network-interface-if-bridge-is-assigned-to-a-different-firewalld-zone-than-original",
+    "title": "Docker Only Half-Restores Network When Bridge Assigned to Firewalld Zone",
+    "description": "Fix Docker networking half-repair when bridge interfaces move between firewalld zones on Linux, causing partial connectivity loss Includes evidence for Docker troubleshooting demand.",
+    "category": "Docker",
+    "technology": "Docker",
+    "error_signature": "FIXME error in API — Docker only half-restores network interface if bridge is assigned to a different firewalld zone than original",
+    "search_intent": "Fix Docker networking half-repair when bridge interfaces move between firewalld zones on Linux, causing partial connectivity loss",
+    "common_causes": [
+      "Open GitHub issue #52642 on moby/moby (opened May 17, 2026 by sandnabba). Networking regression where Docker fails to fully restore bridge connectivity after firewall zone transitions. Area: networking/firewalld, version 29.4+. Has 3 active comments indicating ongoing investigation. Significant for enterprises using dynamic firewall policies with Docker-managed containers."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Docker"
+    ]
   }
 ]
