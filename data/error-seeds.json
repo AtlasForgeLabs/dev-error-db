@@ -21421,5 +21421,69 @@
     "related_errors": [
       "LiteLLM"
     ]
+  },
+  {
+    "slug": "claude-code-auth-failed-401-authentication-error-in-tool-calls-after-mid-session-token-expiry",
+    "title": "Claude Code HTTP 401 OAuth Token Expired Mid-Autonomous Run",
+    "description": "Fix 401 auth failure in Claude Code caused by OAuth token expiration during long autonomous runs; re-authenticate via /logout then /login Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Auth: failed (401) — authentication_error in tool calls after mid-session token expiry",
+    "search_intent": "Fix 401 auth failure in Claude Code caused by OAuth token expiration during long autonomous runs; re-authenticate via /logout then /login",
+    "common_causes": [
+      "Same source: https://codersera.com/blog/claude-code-common-errors-troubleshooting-2026/ documents that /login itself 401s as a documented 2026 regression. Fix: /logout (critical step people skip), then /login for fresh browser flow. Auth cache clear via rm -rf ~/.claude/auth when needed. Distinct from the 529 candidate above — different root cause (auth expiry vs capacity), different fix path."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "github-actions-warning-skip-output-my-secret-secret-is-not-found-or-input-required-and-not-supplied-token",
+    "title": "GitHub Actions Secret Not Available — Empty in Fork PR Workflows",
+    "description": "Fix GitHub Actions secrets appearing empty or undefined, especially in fork pull request workflows where secrets are blocked by default for security Includes evidence for GitHub Actions troubleshooting demand.",
+    "category": "GitHub Actions",
+    "technology": "GitHub Actions",
+    "error_signature": "Warning: Skip output MY_SECRET, secret is not found; or Input required and not supplied: token",
+    "search_intent": "Fix GitHub Actions secrets appearing empty or undefined, especially in fork pull request workflows where secrets are blocked by default for security",
+    "common_causes": [
+      "Fetched https://fixdevs.com/blog/github-actions-secret-not-available/ — comprehensive coverage of secret scope issues including fork PR restrictions (default behavior), organization-level secret scoping, wrong secret names, environment protection rules blocking access. Three concrete fix patterns: verify scope/name, use pull_request_target for trusted forks, use branch PRs instead. Strong commercial value because broken CI blocks paid team deployments. Verified NOT in covered-errors.md."
+    ],
+    "quick_fix": "Verify the model name, local service connectivity, and network access before retrying the model pull.",
+    "related_errors": [
+      "GitHub Actions"
+    ]
+  },
+  {
+    "slug": "vercel-build-failed-with-exit-code-1-module-header-not-found-file-named-header-tsx-on-vercel-linux-container",
+    "title": "Vercel Build Failed — Exit Code 1 Due to Case-Sensitive Import Paths",
+    "description": "Fix Vercel build failure where code works on case-insensitive macOS but fails on Vercel's case-sensitive Linux build environment due to import path casing mismatch Includes evidence for Vercel troubleshooting demand.",
+    "category": "Deployment",
+    "technology": "Vercel",
+    "error_signature": "Build failed with exit code 1 — module './Header' not found (file named header.tsx) on Vercel Linux container",
+    "search_intent": "Fix Vercel build failure where code works on case-insensitive macOS but fails on Vercel's case-sensitive Linux build environment due to import path casing mismatch",
+    "common_causes": [
+      "From search snippets + fetch of https://www.flowql.com/en/blog/guides/vercel-build-failed-guide/ — detailed guide covering 7 most common exit code 1 causes including Node version mismatches, TypeScript strict mode, dependency resolution, and critically, case-sensitivity differences between macOS (case-insensitive) and Vercel Linux (case-sensitive). Real-world impact: developers lose hours debugging 'it works on my machine' scenarios. Category mapped per approved table: Vercel → Deployment. Verified NOT in covered-errors.md beyond generic 'Vercel build command failed'."
+    ],
+    "quick_fix": "Check the build output, project root, and deployment platform configuration before redeploying.",
+    "related_errors": [
+      "Deployment"
+    ]
+  },
+  {
+    "slug": "claude-code-error-32000-connection-closed-mcp-server-stdio-transport-crashed-during-initialization",
+    "title": "MCP Server Error -32000 JSON-RPC Generic Failure in Claude Code",
+    "description": "Fix MCP server -32000 crash in Claude Code caused by missing dependencies, wrong Node version, or stdout corruption in JSON-RPC transport Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Error -32000: Connection closed — MCP server stdio transport crashed during initialization",
+    "search_intent": "Fix MCP server -32000 crash in Claude Code caused by missing dependencies, wrong Node version, or stdout corruption in JSON-RPC transport",
+    "common_causes": [
+      "From https://codersera.com/blog/claude-code-common-errors-troubleshooting-2026/ — -32000 is the JSON-RPC generic server-error code meaning MCP server process died. Common causes: failed to start (missing dependency/wrong Node env), threw during init, exited mid-handshake. Fixes include running server manually in terminal, using absolute paths, writing logs to console.error() instead of stdout. Critical for engineers who build custom MCP integrations. Distinct from 529 and 401 candidates above. Verified NOT in covered-errors.md."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
   }
 ]
