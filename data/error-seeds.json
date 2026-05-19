@@ -20045,5 +20045,117 @@
     "related_errors": [
       "OpenAI API"
     ]
+  },
+  {
+    "slug": "anthropic-api-mcp-oauth-calls-fail-when-coordinator-agent-dispatches-subagent-via-agent-toolset-20260401-vault-ids-parameter-not-available-in-subagent-context",
+    "title": "Managed Agents: vault_ids not inherited by subagents — MCP OAuth calls fail silently",
+    "description": "Fix MCP OAuth authentication failure for Dynamics 365 / Microsoft Graph MCP servers called from subagents dispatched via Claude managed agents Includes evidence for Anthropic API troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Anthropic API",
+    "error_signature": "MCP OAuth calls fail when coordinator agent dispatches subagent via agent_toolset_20260401 — vault_ids parameter not available in subagent context",
+    "search_intent": "Fix MCP OAuth authentication failure for Dynamics 365 / Microsoft Graph MCP servers called from subagents dispatched via Claude managed agents",
+    "common_causes": [
+      "Anthropic anthropic-sdk-python #1562 (2026-05-18): vault_ids configured on sessions.create not passed to subagent execution context. Any MCP tool call requiring OAuth credentials fails silently or returns auth error. Category: Anthropic API (Claude platform issue affecting paid managed agents feature). Distinct from any covered error."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "Anthropic API"
+    ]
+  },
+  {
+    "slug": "openai-api-sdk-parses-response-text-on-response-output-text-done-event-before-terminal-response-incomplete-status-incomplete-details-reason-not-yet-known",
+    "title": "Responses streaming structured output parses incomplete JSON before terminal incomplete status",
+    "description": "Fix incorrect parsing of structured output JSON when OpenAI API returns incomplete responses (truncation or max_tokens) Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "SDK parses response text on response.output_text.done event before terminal response.incomplete status — incomplete_details.reason not yet known",
+    "search_intent": "Fix incorrect parsing of structured output JSON when OpenAI API returns incomplete responses (truncation or max_tokens)",
+    "common_causes": [
+      "OpenAI openai-python #3263 (2026-05-18): Python SDK's streaming structured output helper auto-parses on done event before knowing if response will be marked incomplete. Affects paid API users using Pydantic models with responses API. Category: OpenAI API (direct API library error). Not covered in covered-errors.md (distinct from generic 429/model-not-found)."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "vercel-turbopack-build-fails-failed-to-collect-page-data-for-sitemap-xml-works-with-webpack-flag",
+    "title": "Turbopack build fails 'Failed to collect page data' on CMS-fed sitemap.xml in Next.js 16",
+    "description": "Fix Next.js Turbopack build crash when app/sitemap.ts fetches data from external CMS (Sanity, etc.) Includes evidence for Vercel troubleshooting demand.",
+    "category": "Deployment",
+    "technology": "Vercel",
+    "error_signature": "Turbopack build fails Failed to collect page data for /sitemap.xml — works with --webpack flag",
+    "search_intent": "Fix Next.js Turbopack build crash when app/sitemap.ts fetches data from external CMS (Sanity, etc.)",
+    "common_causes": [
+      "Vercel next.js #93144 (2026-04-23): Next.js 16.2.3 Turbopack fails to collect page data for CMS-fetched routes. Works around with --webpack. Affects Vercel-deployed apps using dynamic route generation. Category: Deployment (Vercel/Turbopack). Distinct from generic 'Vercel build command failed' covered error."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Deployment"
+    ]
+  },
+  {
+    "slug": "github-actions-cache-service-responded-with-429-during-upload-chunk-action-setup-java-cleanup-throws-unhandled-error",
+    "title": "GitHub Actions cache upload does not handle 429 — retry loops until job fails",
+    "description": "Fix GitHub Actions cache upload retry logic for transient 429 rate-limit errors returned by the cache service during post-job cleanup Includes evidence for GitHub Actions troubleshooting demand.",
+    "category": "GitHub Actions",
+    "technology": "GitHub Actions",
+    "error_signature": "Cache service responded with 429 during upload chunk — action/setup-java cleanup throws unhandled error",
+    "search_intent": "Fix GitHub Actions cache upload retry logic for transient 429 rate-limit errors returned by the cache service during post-job cleanup",
+    "common_causes": [
+      "Actions toolkit #1589 (2023-11-30): GitHub Actions cache upload receives 429 during chunk upload, no retry/backoff implemented. Blocks CI/CD pipelines for teams with large caches. Category: GitHub Actions. Still actively impacting — this is an upstream service-level pattern."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "GitHub Actions"
+    ]
+  },
+  {
+    "slug": "litellm-streamable-http-client-one-concurrent-request-httpstatuserror-tears-down-sibling-requests-transport-task-group-disruption",
+    "title": "MCP streamable HTTP client one concurrent error tears down all sibling requests",
+    "description": "Fix MCP Python SDK where a single HTTP error in a concurrent JSON-RPC session causes all other in-flight requests to fail simultaneously Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "streamable_http_client: one concurrent request HTTPStatusError tears down sibling requests — transport task group disruption",
+    "search_intent": "Fix MCP Python SDK where a single HTTP error in a concurrent JSON-RPC session causes all other in-flight requests to fail simultaneously",
+    "common_causes": [
+      "MCP Python SDK #2604 (2026-05-15): Transport task group design flaw — one failing request escapes and cancels unrelated sibling requests. Impacts MCP tool-use workflows (including LiteLLM proxy integrations using MCP as tool provider). Category: LiteLLM (context-dependent — MCP protocol errors affect LLM proxy chains)."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "LiteLLM"
+    ]
+  },
+  {
+    "slug": "langchain-chatopenai-fails-to-provide-thought-signatures-on-multi-turn-conversations-when-used-with-gemini-models-resulting-in-400-badrequesterror",
+    "title": "ChatOpenAI fails thought signatures with Gemini multi-turn conversations — 400 BadRequestError",
+    "description": "Fix LangChain ChatOpenAI integration producing invalid thought signatures for Google Gemini model responses in conversation history Includes evidence for LangChain troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "LangChain",
+    "error_signature": "ChatOpenAI fails to provide thought signatures on multi-turn conversations when used with Gemini models, resulting in 400 BadRequestError",
+    "search_intent": "Fix LangChain ChatOpenAI integration producing invalid thought signatures for Google Gemini model responses in conversation history",
+    "common_causes": [
+      "LangChain LangChain #37347 (2026-05-11): Multi-turn Gemini conversations break when ChatOpenAI's thought-signature feature generates incompatible formatting. Results in 400 BadRequestError blocking chat flows. Category: AI Coding Tools (LangChain framework error affecting paid AI workflows). New distinct error."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "docker-docker-compose-up-shows-read-pwd-is-a-directory-instead-of-permission-denied-while-trying-to-connect-to-the-docker-api",
+    "title": "Docker Compose misleading permission denied error hides root cause for docker socket access",
+    "description": "Fix Docker Compose error message so it shows the real permission-denied-for-docker-socket error instead of misleading 'is a directory' Includes evidence for Docker troubleshooting demand.",
+    "category": "Docker",
+    "technology": "Docker",
+    "error_signature": "docker compose up shows 'read <pwd>: is a directory' instead of 'permission denied while trying to connect to the docker API'",
+    "search_intent": "Fix Docker Compose error message so it shows the real permission-denied-for-docker-socket error instead of misleading 'is a directory'",
+    "common_causes": [
+      "Docker Compose #13649 (2026-03-20): User lacks docker socket permissions; docker ps shows correct error, but docker compose up masks it with 'read <pwd>: is a directory'. Confusing debugging for enterprise DevOps teams. Category: Docker (Compose v5.1.1). Not covered — different signature than existing Docker permission denied entry."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Docker"
+    ]
   }
 ]
