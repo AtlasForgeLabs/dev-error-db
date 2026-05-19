@@ -20573,5 +20573,101 @@
     "related_errors": [
       "GitHub Copilot"
     ]
+  },
+  {
+    "slug": "claude-code-login-selects-claude-ai-subscription-but-status-shows-anthropic-console-api-for-billing-user-incurs-hundreds-of-dollars-in-unauthorized-api-spend",
+    "title": "Claude Code auth silently reverts to Console API — $100s billed against wrong account",
+    "description": "Fix Claude Code defaulting to Console API billing instead of claude.ai Max subscription after login Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Login selects claude.ai subscription but /status shows Anthropic Console API for billing; user incurs hundreds of dollars in unauthorized API spend",
+    "search_intent": "Fix Claude Code defaulting to Console API billing instead of claude.ai Max subscription after login",
+    "common_causes": [
+      "GitHub Issue #60422 on anthropics/claude-code opened May 19, 2026. User reports explicit /login → select claude.ai → authorize flow followed by /status showing wrong billing path. Multiple commenters confirmed same pattern with ~$1,050 over 3 days loss. Mapping: Claude Code billing/authentication error → AI Coding Tools (approved category)."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "claude-code-launch-claude-cli-5-hour-usage-countdown-begins-immediately-even-with-zero-messages-sent-quota-consumed-without-user-interaction",
+    "title": "Claude Code 5h usage timer starts on CLI launch before any prompt sent",
+    "description": "Prevent Claude Code from starting usage countdown before first prompt; find flag or setting for blank launch Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Launch claude CLI → 5-hour usage countdown begins immediately even with zero messages sent; quota consumed without user interaction",
+    "search_intent": "Prevent Claude Code from starting usage countdown before first prompt; find flag or setting for blank launch",
+    "common_causes": [
+      "GitHub Issue #60159 on anthropics/claude-code opened May 18, 2026. User provides screenshots showing Opus model session starting with countdown timer immediately after launch. Area:cost label, platform:windows. Mapping: Claude Code subscription/quota behavior → AI Coding Tools (approved category)."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "openai-api-oauth-authentication-succeeds-for-third-party-tools-openclaw-codex-but-api-calls-return-429-quota-exceeded-despite-active-chatgpt-plus-subscription",
+    "title": "ChatGPT Plus OAuth succeeds but third-party Codex calls hit 429 quota exceeded",
+    "description": "Fix quota routing between first-party ChatGPT usage and third-party OAuth API access; determine if separate quota bucket exists Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "OAuth authentication succeeds for third-party tools (OpenClaw/Codex) but API calls return 429 quota exceeded despite active ChatGPT Plus subscription",
+    "search_intent": "Fix quota routing between first-party ChatGPT usage and third-party OAuth API access; determine if separate quota bucket exists",
+    "common_causes": [
+      "GitHub Issue #2951 on openai/openai-python opened Mar 10, 2026. Minimal repro with specific command sequence. Labels: bug. Distinct from other OpenAI rate-limit issues — this is about OAuth quota separation specifically. Mapping: OpenAI API quota/rate-limit → OpenAI API (approved category)."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "openai-api-background-run-status-failed-with-error-code-as-undocumented-free-form-string-http-poll-returns-200-ok-so-no-typed-exception-raised-cannot-differentiate-retryable-vs-non-retryable-errors-programmatically",
+    "title": "OpenAI Python SDK background Responses API returns opaque failures without typed exceptions",
+    "description": "Map background Responses API failure codes to SDK exception classes like synchronous mode does via _make_status_error Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "Background run status='failed' with error.code as undocumented free-form string; HTTP poll returns 200 OK so no typed exception raised; cannot differentiate retryable vs non-retryable errors programmatically",
+    "search_intent": "Map background Responses API failure codes to SDK exception classes like synchronous mode does via _make_status_error",
+    "common_causes": [
+      "GitHub Issue #3212 on openai/openai-python opened May 8, 2026. Well-documented feature request comparing sync vs async error handling contracts. 3 comments requesting contribution. Mapping: OpenAI SDK error handling → OpenAI API (approved category)."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "litellm-tpm-limit-n-replica-causes-deployments-with-multiple-replicas-to-exceed-intended-rate-limits-per-pod-enforcement-bypasses-aggregate-billing-controls",
+    "title": "LiteLLM deployment-level TPM enforcement is per-pod, not cross-pod — effective limit scaled by replica count",
+    "description": "Fix LiteLLM proxy TPM enforcement to be cluster-wide across all pods rather than per-instance; prevent quota bypass through horizontal scaling Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "tpm_limit × N_replica causes deployments with multiple replicas to exceed intended rate limits; per-pod enforcement bypasses aggregate billing controls",
+    "search_intent": "Fix LiteLLM proxy TPM enforcement to be cluster-wide across all pods rather than per-instance; prevent quota bypass through horizontal scaling",
+    "common_causes": [
+      "GitHub Issue #27736 on BerriAI/litellm opened May 12, 2026. Proxy deployment issue directly impacts billing/revenue when clients are supposed to be rate-limited but scale past intended limits. Tags: bug, proxy. Mapping: LiteLLM proxy rate-limiting → LiteLLM (approved category)."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "LiteLLM"
+    ]
+  },
+  {
+    "slug": "anthropic-api-mid-stream-server-sent-events-errors-return-http-200-status-code-instead-of-the-actual-error-code-429-500-etc-client-cannot-distinguish-successful-partial-response-from-error-failed-stream",
+    "title": "Anthropic SDK mid-stream SSE errors reported as status_code=200 instead of actual error code",
+    "description": "Fix Anthropic Python SDK to propagate actual error status codes on mid-stream SSE failures rather than returning 200 Includes evidence for Anthropic API troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Anthropic API",
+    "error_signature": "Mid-stream Server-Sent Events errors return HTTP 200 status_code instead of the actual error code (429/500/etc); client cannot distinguish successful partial response from error-failed stream",
+    "search_intent": "Fix Anthropic Python SDK to propagate actual error status codes on mid-stream SSE failures rather than returning 200",
+    "common_causes": [
+      "GitHub Issue #1258 on anthropics/anthropic-sdk-python closed Mar 31, 2026. 4 linked PRs suggesting fix merged. Still relevant as existing fix may have edge cases and affects streaming integrations. Mapping: Anthropic SDK SSE error handling → Anthropic API (approved category)."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Anthropic API"
+    ]
   }
 ]
