@@ -21757,5 +21757,69 @@
     "related_errors": [
       "Cursor"
     ]
+  },
+  {
+    "slug": "claude-code-mcp-oauth-claude-code-re-runs-dynamic-client-registration-post-oauth-register-on-every-authenticate-orphaning-previously-issued-client-id-and-refresh-token-causes-forced-re-auth-loop-with-self-hosted-oauth-servers",
+    "title": "MCP OAuth: Claude Code re-runs DCR on every authenticate, orphaning previously issued client_id",
+    "description": "Fix MCP OAuth re-authentication loop caused by DCR being called repeatedly instead of reusing persisted credentials Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "MCP OAuth: Claude Code re-runs Dynamic Client Registration (POST /oauth/register) on every authenticate, orphaning previously issued client_id and refresh_token; causes forced re-auth loop with self-hosted OAuth servers",
+    "search_intent": "Fix MCP OAuth re-authentication loop caused by DCR being called repeatedly instead of reusing persisted credentials",
+    "common_causes": [
+      "GitHub Issue #59460 (anthropics/claude-code), created 2026-05-15, 2 comments. Detailed reproduction with RFC 7591 DCR + OAuth 2.1 servers. Category: Claude Code = AI Coding Tools per category mapping rules."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "openai-api-rate-limit-does-not-exist-for-org-and-model-the-rate-limit-for-model-gpt-image-1-is-not-set-for-your-organization-post-to-v1-organization-projects-proj-xxxx-rate-limits-returns-invalid-request-error",
+    "title": "Bug Report: Loss of dynamic rate limit update for gpt-image-1 models via API",
+    "description": "Restore ability to dynamically update rate limits for GPT image models via the organization rate limits API Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "rate_limit_does_not_exist_for_org_and_model: The rate limit for model gpt-image-1 is not set for your organization — POST to v1/organization/projects/proj_XXXX/rate_limits returns invalid_request_error",
+    "search_intent": "Restore ability to dynamically update rate limits for GPT image models via the organization rate limits API",
+    "common_causes": [
+      "GitHub Issue #2755 (openai/openai-python), created 2025-11-19, 3 comments. Exact error code 'rate_limit_does_not_exist_for_org_and_model' returned when calling rate limit update API for gpt-image-1. Previously working functionality now broken. Affects production teams using image models. Category: OpenAI API. Not in covered-errors.md (which lists generic 429, insufficient_quota but not this specific image model rate-limit config error)."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "openai-api-apiconnectionerror-connection-error-fetchoptions-dispatcher-proxyagent-from-undici-silently-ignored-by-openai-node-sdk-causing-connection-errors-behind-corporate-proxies",
+    "title": "fetchOptions.dispatcher not working for undici v8.3.0 in openai-node SDK",
+    "description": "Fix openai-node SDK proxy support — dispatcher option not passed through to undici HTTP client when using ProxyAgent Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "APIConnectionError: Connection error — fetchOptions.dispatcher (ProxyAgent from undici) silently ignored by openai-node SDK causing connection errors behind corporate proxies",
+    "search_intent": "Fix openai-node SDK proxy support — dispatcher option not passed through to undici HTTP client when using ProxyAgent",
+    "common_causes": [
+      "GitHub Issue #1886 (openai/openai-node), created 2026-05-18, 0 comments. Brand new issue. Enterprise developers behind proxies cannot use the OpenAI Node SDK despite passing fetchOptions.dispatcher. This affects all paid users on corporate networks. Category: OpenAI API."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "claude-code-built-in-gmail-mcp-server-routes-through-google-drive-oauth-client-instead-of-gmail-specific-client-google-consent-shows-drive-scopes-only-gmail-calls-fail-with-403-forbidden",
+    "title": "Bug: Gmail MCP integration uses wrong OAuth client — cannot grant Gmail permissions",
+    "description": "Fix OAuth scope routing so Gmail MCP uses correct Gmail OAuth client to grant mail.google.com permissions Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "built-in Gmail MCP server routes through Google Drive OAuth client instead of Gmail-specific client; Google consent shows Drive scopes only, Gmail calls fail with 403 Forbidden",
+    "search_intent": "Fix OAuth scope routing so Gmail MCP uses correct Gmail OAuth client to grant mail.google.com permissions",
+    "common_causes": [
+      "GitHub Issue #51326 (anthropics/claude-code), created 2026-04-20, 2 comments. Real bug where built-in Gmail MCP is unusable because it authenticates via 'Claude for Google Drive' client. Distinct from other MCP auth issues — this is about wrong OAuth client mapping, not browser launch. Category: Claude Code = AI Coding Tools."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
   }
 ]
