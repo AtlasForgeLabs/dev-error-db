@@ -22349,5 +22349,101 @@
     "related_errors": [
       "OpenAI API"
     ]
+  },
+  {
+    "slug": "openai-api-insufficient-quota-you-are-out-of-money",
+    "title": "OpenAI API insufficient_quota 429 Error Blocks Production with Codex ACP",
+    "description": "Fix OpenAI API 429 insufficient_quota when running AI coding tools (Codex, Cursor) that depend on API key authentication Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "insufficient_quota — You are out of money",
+    "search_intent": "Fix OpenAI API 429 insufficient_quota when running AI coding tools (Codex, Cursor) that depend on API key authentication",
+    "common_causes": [
+      "Multiple reports found in Google search results (May 2026): OpenClaw community report showing rate limit despite available credits; Instagram posts referencing exact error payload including 'insufficient_quota' with empty param; JetBrains YouTrack LLM-26659 reporting PyCharm Codex ACP agent falling back to OpenAI API and failing with insufficient_quota. Category maps to OpenAI API since core error originates from OpenAI billing/rate-limiting layer."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "litellm-virtual-keys-with-tpm-rpm-limits-leak-litellm-params-rate-limit-enforcement-broken-at-proxy-layer",
+    "title": "LiteLLM Virtual Key TPM/RPM Limits Leak Internal Parameters to Clients",
+    "description": "Fix LiteLLM proxy leaking internal _litellm_* parameters through virtual key rate limiting boundaries, breaking per-key rate limit enforcement Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "Virtual keys with tpm/rpm limits leak _litellm_* params — rate limit enforcement broken at proxy layer",
+    "search_intent": "Fix LiteLLM proxy leaking internal _litellm_* parameters through virtual key rate limiting boundaries, breaking per-key rate limit enforcement",
+    "common_causes": [
+      "GitHub Issue #28146 in BerriAI/litellm (May 18, 2026). Virtual keys configured with TPM/RPM (tokens per minute / requests per minute) limits leak internal state parameters to downstream clients. Workaround requires sacrificing per-key rate limit enforcement. Recent release notes (v04/01/2026) also mention separate rate-limit v3 limiter leak fix (#25856), suggesting systemic design issues. Direct commercial impact on self-hosted LiteLLM deployments."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "LiteLLM"
+    ]
+  },
+  {
+    "slug": "claude-code-claude-code-cloud-environment-cannot-push-git-push-permission-denied",
+    "title": "Claude Code Web Session Loses GitHub Push Permission After Auth Loss",
+    "description": "Fix Claude Code losing GitHub push permissions during extended coding sessions, preventing commit workflow Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Claude Code cloud environment cannot push: git push permission denied",
+    "search_intent": "Fix Claude Code losing GitHub push permissions during extended coding sessions, preventing commit workflow",
+    "common_causes": [
+      "GitHub Issue #57009 in anthropics/claude-code repository (May 7, 2026). Reports that Claude Code web/cloud sessions lose GitHub push ability, returning permission denied errors after extended use or context window limits. Cross-referenced with related issue #33952 about same root cause in cloud environment."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "vercel-missing-next-public-supabase-url-vercel-build-command-fails-at-deploy-time",
+    "title": "Vercel Build Failed Due to Missing NEXT_PUBLIC Environment Variables",
+    "description": "Fix Vercel deployment build failures caused by missing or misconfigured NEXT_PUBLIC_ environment variables in Next.js projects Includes evidence for Vercel troubleshooting demand.",
+    "category": "Deployment",
+    "technology": "Vercel",
+    "error_signature": "Missing NEXT_PUBLIC_SUPABASE_URL — Vercel build command fails at deploy time",
+    "search_intent": "Fix Vercel deployment build failures caused by missing or misconfigured NEXT_PUBLIC_ environment variables in Next.js projects",
+    "common_causes": [
+      "Verytis error tracker page (May 7, 2026) documents the specific error pattern 'Vercel build failed because env variable is missing' with NEXT_PUBLIC_SUPABASE_URL as common culprit. Also supported by GitHub Issue #93162 in vercel/next.js reporting Turbopack build failures in pages/_app.tsx with Global CSS errors — a closely related Vercel-specific build problem. Category maps to Deployment per approved mappings."
+    ],
+    "quick_fix": "Check the build output, project root, and deployment platform configuration before redeploying.",
+    "related_errors": [
+      "Deployment"
+    ]
+  },
+  {
+    "slug": "litellm-assistant-message-missing-reasoning-content-litellm-strips-it-when-serializing-response-from-turn-1",
+    "title": "LiteLLM DeepSeek V4 Pro Fails in Multi-Turn Chat Due to Stripped reasoning_content",
+    "description": "Fix multi-turn chat failures when using DeepSeek V4 Pro through LiteLLM proxy where assistant messages lose reasoning content on sequential turns Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "Assistant message missing reasoning_content — LiteLLM strips it when serializing response from turn 1",
+    "search_intent": "Fix multi-turn chat failures when using DeepSeek V4 Pro through LiteLLM proxy where assistant messages lose reasoning content on sequential turns",
+    "common_causes": [
+      "GitHub Issue #26395 in BerriAI/litellm (April 23, 2026). Second conversation turn fails because LiteLLM strips reasoning_content field when serializing assistant messages between turns. Common configuration — many teams use LiteLLM as proxy for DeepSeek models. Specific, actionable error with clear symptom reproduction steps."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "LiteLLM"
+    ]
+  },
+  {
+    "slug": "claude-code-claude-ai-skips-oauth-discovery-entirely-post-oauth-token-endpoint-missing",
+    "title": "Claude Code Skips OAuth Discovery Entirely on claude.ai Web Client",
+    "description": "Fix Claude Code web client not performing OAuth discovery for MCP servers, causing connection failures when connecting to external authenticated services Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "claude.ai skips OAuth discovery entirely — POST /oauth/token endpoint missing",
+    "search_intent": "Fix Claude Code web client not performing OAuth discovery for MCP servers, causing connection failures when connecting to external authenticated services",
+    "common_causes": [
+      "GitHub Issue #217 in anthropics/claude-ai-mcp (April 22, 2026). FastMCP-based servers work from CLI Claude Code but fail from Claude.ai web interface. Root cause appears to be web client skipping OAuth flow-selection. This impacts any developer deploying MCP servers expecting cross-client compatibility. Maps to AI Coding Tools."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
   }
 ]
