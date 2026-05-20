@@ -23565,5 +23565,101 @@
     "related_errors": [
       "AI Coding Tools"
     ]
+  },
+  {
+    "slug": "claude-code-instantly-hitting-usage-limits-with-max-subscription",
+    "title": "[BUG] Instantly hitting usage limits with Max subscription — Claude Code quota exceeded immediately",
+    "description": "Fix Claude Code Max subscription instantly hitting usage/quota limits without explanation Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Instantly hitting usage limits with Max subscription",
+    "search_intent": "Fix Claude Code Max subscription instantly hitting usage/quota limits without explanation",
+    "common_causes": [
+      "GitHub Issues #16157 in anthropics/claude-code, open since Jan 3 2026, 1470 comments. Labeled area:api + area:cost + bug + oncall. Extremely high community engagement confirms widespread paid-user impact. Category: AI Coding Tools per approved mapping."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "claude-code-rate-limit-reached-despite-claude-max-subscription-and-only-16-usage",
+    "title": "[BUG] API Error: Rate limit reached despite Claude Max subscription and only 16% usage",
+    "description": "Fix spurious rate limiting in Claude Code when subscription is Max and actual usage is well under limit (16%) Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Rate limit reached despite Claude Max subscription and only 16% usage",
+    "search_intent": "Fix spurious rate limiting in Claude Code when subscription is Max and actual usage is well under limit (16%)",
+    "common_causes": [
+      "GitHub Issues #29579 in anthropics/claude-code, open since Feb 28 2026, 150 comments. Labeled area:api + area:auth + bug + has_repro + platform:vscode/windows. Distinct from general quota exhaustion — this is incorrect rate-limiting during active sessions. Category: Anthropic API per approved mapping. Not covered by existing entries."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "claude-code-auth-anthropic-com-does-not-resolve-via-dns",
+    "title": "Claude Code OAuth login fails with a timeout error. auth.anthropic.com does not resolve via DNS",
+    "description": "Fix Claude Code OAuth authentication failure caused by DNS resolution failure for auth.anthropic.com Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "auth.anthropic.com does not resolve via DNS",
+    "search_intent": "Fix Claude Code OAuth authentication failure caused by DNS resolution failure for auth.anthropic.com",
+    "common_causes": [
+      "GitHub Issues #33238 in anthropics/claude-code, open since Mar 11 2026, 149 comments. Labeled area:auth + bug + platform:windows. Authentication flow completely broken due to DNS failure. High commercial impact — prevents any paid usage. Category: AI Coding Tools per approved mapping."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "github-copilot-user-global-rate-limited-pro-plus-429-sorry-you-ve-exceeded-your-rate-limits",
+    "title": "GitHub Copilot Pro+ global rate limit error: user_global_rate_limited:pro_plus — 429 too many requests",
+    "description": "Understand and fix GitHub Copilot Pro+ unexpected global rate limiting that blocks normal usage even below usage threshold Includes evidence for GitHub Copilot troubleshooting demand.",
+    "category": "GitHub Copilot",
+    "technology": "GitHub Copilot",
+    "error_signature": "user_global_rate_limited:pro_plus — 429 Sorry, you've exceeded your rate limits",
+    "search_intent": "Understand and fix GitHub Copilot Pro+ unexpected global rate limiting that blocks normal usage even below usage threshold",
+    "common_causes": [
+      "GitHub Community discussion #190766, posted Mar 27 2026. Multiple confirmed reporters with full error stack traces including request IDs. Error code 'user_global_rate_limited:pro_plus' is highly specific. Includes Retry-After header (~3 hours). Covered-errors check: NOT listed in existing dev-error-db entries."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "GitHub Copilot"
+    ]
+  },
+  {
+    "slug": "vercel-function-invocation-timeout-vercel-function-reached-timeout-threshold",
+    "title": "Vercel FUNCTION_INVOCATION_TIMEOUT — Serverless function hits timeout after deploy",
+    "description": "Fix Vercel serverless function timing out with FUNCTION_INVOCATION_TIMEOUT error after deployment Includes evidence for Vercel troubleshooting demand.",
+    "category": "Deployment",
+    "technology": "Vercel",
+    "error_signature": "FUNCTION_INVOCATION_TIMEOUT — Vercel Function reached timeout threshold",
+    "search_intent": "Fix Vercel serverless function timing out with FUNCTION_INVOCATION_TIMEOUT error after deployment",
+    "common_causes": [
+      "Verified via web_fetch from 32blog.com article and Vercel official docs. Also referenced in GitHub community discussion #6564 (FUNCTION_INVOCATION_FAILED). Works-locally-fails-on-Vercel pattern affects paying Pro/$20/mo users. Covered-errors check: Vercel 'build command failed' exists but FUNCTION_INVOCATION_TIMEOUT is a distinct runtime error NOT in covered list."
+    ],
+    "quick_fix": "Check the build output, project root, and deployment platform configuration before redeploying.",
+    "related_errors": [
+      "Deployment"
+    ]
+  },
+  {
+    "slug": "vercel-module-not-found-import-path-case-mismatch-causes-build-failure-on-vercel-linux",
+    "title": "Vercel Module not found — File name case sensitivity mismatch between macOS/Windows and Linux",
+    "description": "Fix Vercel deployment failing due to file name case sensitivity differences between local dev (case-insensitive) and Vercel (Linux, case-sensitive) Includes evidence for Vercel troubleshooting demand.",
+    "category": "Deployment",
+    "technology": "Vercel",
+    "error_signature": "Module not found — import path case mismatch causes build failure on Vercel Linux",
+    "search_intent": "Fix Vercel deployment failing due to file name case sensitivity differences between local dev (case-insensitive) and Vercel (Linux, case-sensitive)",
+    "common_causes": [
+      "Verified via web_fetch from aimadetools.com and 32blog.com articles covering Vercel build failures. Specific error: import from './Components/Header' works locally but fails on Vercel Linux. Affects Next.js projects deploying to paid plans. Covered-errors check: 'Vercel module not found' exists but this adds the specific case-sensitivity context which is more actionable."
+    ],
+    "quick_fix": "Check the build output, project root, and deployment platform configuration before redeploying.",
+    "related_errors": [
+      "Deployment"
+    ]
   }
 ]
