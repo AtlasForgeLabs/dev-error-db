@@ -23149,5 +23149,133 @@
     "related_errors": [
       "LiteLLM"
     ]
+  },
+  {
+    "slug": "anthropic-api-elevated-error-rates-on-claude-haiku-4-5-model-requests",
+    "title": "Claude Haiku 4.5 Elevated Error Rates — Anthropic Platform Incident",
+    "description": "用户在使用 Claude Haiku 4.5 时遭遇大量请求失败（5xx/timeout），需要了解是否计划内故障以及如何降级或重试 Includes evidence for Anthropic API troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Anthropic API",
+    "error_signature": "Elevated error rates on Claude Haiku 4.5 model requests",
+    "search_intent": "用户在使用 Claude Haiku 4.5 时遭遇大量请求失败（5xx/timeout），需要了解是否计划内故障以及如何降级或重试",
+    "common_causes": [
+      "Source: r/ClaudeAI post published 3 hours ago (2026-05-20T08:49:16Z) — official Claude status update about elevated errors on Haiku 4.5. Status page at status.claude.com. This represents production-facing API failures affecting paid users. Distinct from general Claude API coverage because it targets a specific new model version."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "Anthropic API"
+    ]
+  },
+  {
+    "slug": "openai-api-background-response-exception-lacks-stable-code-name-mapping-ratelimiterror-cannot-be-caught-reliably",
+    "title": "Background responses failures lack stable code/name mapping in openai-python",
+    "description": "开发者无法通过标准 except RateLimitError 捕获异步调用中的 429 错误，需要稳定的异常代码来区分不同的 API 失败类型 Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "Background response exception lacks stable code/name mapping — RateLimitError cannot be caught reliably",
+    "search_intent": "开发者无法通过标准 except RateLimitError 捕获异步调用中的 429 错误，需要稳定的异常代码来区分不同的 API 失败类型",
+    "common_causes": [
+      "Source: GitHub openai/openai-python Issue #3212 — background task exceptions (RateLimitError, APITimeoutError) lack consistent code/name fields, making programmatic retry logic impossible. Maps to OpenAI API category via standard SDK error handling. Not in covered-errors.md."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "vercel-error-command-build-exited-with-127",
+    "title": "Vercel Build Command Exited with Code 127 — Missing Dependency",
+    "description": "在 Vercel 部署 Next.js 应用时构建命令退出码 127，表示命令未找到（如 bun、node_modules 未安装），用户需要排查具体缺失的依赖 Includes evidence for Vercel troubleshooting demand.",
+    "category": "Deployment",
+    "technology": "Vercel",
+    "error_signature": "Error: Command \"build\" exited with 127",
+    "search_intent": "在 Vercel 部署 Next.js 应用时构建命令退出码 127，表示命令未找到（如 bun、node_modules 未安装），用户需要排查具体缺失的依赖",
+    "common_causes": [
+      "Source: r/vercel Reddit thread — active discussion with 10+ comments showing this exact exit code 127 error blocking production deployments. Exit 127 specifically indicates 'command not found' which maps to dependency installation failures (bun not configured, npm install skipped). Covered separately from generic 'build failed' which is already in covered-errors.md."
+    ],
+    "quick_fix": "Check the build output, project root, and deployment platform configuration before redeploying.",
+    "related_errors": [
+      "Deployment"
+    ]
+  },
+  {
+    "slug": "cloudflare-a-timeout-occurred-error-524-when-calling-https-api-cloudflare-com-client-v4-zones",
+    "title": "Cloudflare API Returning Error 524 Timeout on Zone Endpoints",
+    "description": "用户调用 Cloudflare REST API 获取 zone 列表时持续收到 524 超时错误，影响自动化运维工具和监控脚本 Includes evidence for Cloudflare troubleshooting demand.",
+    "category": "Cloudflare",
+    "technology": "Cloudflare",
+    "error_signature": "A timeout occurred (Error 524) when calling https://api.cloudflare.com/client/v4/zones",
+    "search_intent": "用户调用 Cloudflare REST API 获取 zone 列表时持续收到 524 超时错误，影响自动化运维工具和监控脚本",
+    "common_causes": [
+      "Source: r/CloudFlare post from 2 months ago — constant 524 timeout when hitting api.cloudflare.com/client/v4/zones. Verified via browser and network tools. Direct API-level Cloudflare failure affecting automation pipelines. New variant compared to covered 522/525 origin-server 524s."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Cloudflare"
+    ]
+  },
+  {
+    "slug": "claude-code-mcp-server-filesystem-connection-fails-unauthorized-error-on-supabase-mcp-connector",
+    "title": "Supabase MCP Server Persistent Unauthorized Error in Claude Code",
+    "description": "开发者在 Claude Code 中集成 Supabase MCP Server 时反复遇到 Unauthorized 错误，导致 AI 代理无法读取数据库配置进行代码生成 Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "MCP server filesystem connection fails — Unauthorized error on Supabase MCP connector",
+    "search_intent": "开发者在 Claude Code 中集成 Supabase MCP Server 时反复遇到 Unauthorized 错误，导致 AI 代理无法读取数据库配置进行代码生成",
+    "common_causes": [
+      "Source: r/ClaudeCode thread with 5 comments — tested with both Claude Desktop and Claude Code CLI, same error. The Supabase MCP server returns persistent unauthorized despite valid credentials. Maps to AI Coding Tools category via Claude Code + MCP toolchain. Distinct from covered MCP auth discussions as it involves a specific third-party MCP server (Supabase)."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "github-actions-permission-denied-publickey-fatal-could-not-read-from-remote-repository",
+    "title": "GitHub Actions Private Submodule Checkout Failure — Permission Denied",
+    "description": "GitHub Actions workflow 中拉取私有子模块时认证失败，CI/CD 流程被阻断，需要配置正确的 token/SSH key Includes evidence for GitHub Actions troubleshooting demand.",
+    "category": "GitHub Actions",
+    "technology": "GitHub Actions",
+    "error_signature": "Permission denied (publickey). fatal: Could not read from remote repository",
+    "search_intent": "GitHub Actions workflow 中拉取私有子模块时认证失败，CI/CD 流程被阻断，需要配置正确的 token/SSH key",
+    "common_causes": [
+      "Source: r/devops and r/node threads — multiple reports of GitHub Actions failing to checkout private submodules due to SSH publickey authentication. Classic CI/CD blocker for teams using monorepos with private dependencies. Distinct from covered 'permission denied publickey' as specifically about submodule checkout context."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "GitHub Actions"
+    ]
+  },
+  {
+    "slug": "github-copilot-you-ve-reached-your-api-limit-on-first-try",
+    "title": "GitHub Copilot Free Tier Rate Limit Blocked on First Try",
+    "description": "用户使用 GitHub Copilot 时首次尝试即被拒绝并收到 'API limit reached' 消息，影响付费订阅用户的正常使用体验 Includes evidence for GitHub Copilot troubleshooting demand.",
+    "category": "GitHub Copilot",
+    "technology": "GitHub Copilot",
+    "error_signature": "\"You've reached your API limit\" on first try",
+    "search_intent": "用户使用 GitHub Copilot 时首次尝试即被拒绝并收到 'API limit reached' 消息，影响付费订阅用户的正常使用体验",
+    "common_causes": [
+      "Source: r/raycastapp thread with 7 comments — user reports Raycast integration with ChatGPT hits API limit immediately on first use. While focused on Raycast, the underlying issue is Copilot/API rate limiting behavior for free-tier users hitting limits unexpectedly. Relevant to enterprise developers evaluating Copilot reliability."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "GitHub Copilot"
+    ]
+  },
+  {
+    "slug": "claude-code-chrome-devtools-mcp-keeps-asking-permissions-repeatedly-no-way-to-auto-allow-in-claude-settings-json",
+    "title": "Chrome DevTools MCP Keeps Asking Permissions in Claude Code VSCode Extension",
+    "description": "在 VSCode 中使用 Claude Code 扩展配合 chrome-devtools-mcp 时，每次操作都需手动批准权限请求，严重影响工作流效率，用户需要配置静默自动授权 Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "chrome-devtools-mcp keeps asking permissions repeatedly — no way to auto-allow in .claude/settings.json",
+    "search_intent": "在 VSCode 中使用 Claude Code 扩展配合 chrome-devtools-mcp 时，每次操作都需手动批准权限请求，严重影响工作流效率，用户需要配置静默自动授权",
+    "common_causes": [
+      "Source: r/ClaudeAI thread with 4 comments — Win10 + VSCode setup where chrome-devtools-mcp in Claude Code extension fires repeated permission prompts. Workaround suggested via .claude/settings.local.json but unreliable. Represents a common MCP tool authorization pattern issue affecting developer productivity."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
   }
 ]
