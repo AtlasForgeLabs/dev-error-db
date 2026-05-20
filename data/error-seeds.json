@@ -23069,5 +23069,85 @@
     "related_errors": [
       "AI Coding Tools"
     ]
+  },
+  {
+    "slug": "cloudflare-cloudflare-error-524-a-timeout-occurred-streaming-response-incomplete-within-gateway-timeout",
+    "title": "Cloudflare 524 Timeout for Streaming API Endpoints Behind Proxy",
+    "description": "开发者在通过 Cloudflare 代理长流式 API（如 LLM streaming）时遇到 524 超时错误，需要配置或解决方案 Includes evidence for Cloudflare troubleshooting demand.",
+    "category": "Cloudflare",
+    "technology": "Cloudflare",
+    "error_signature": "Cloudflare Error 524: A Timeout Occurred — streaming response incomplete within gateway timeout",
+    "search_intent": "开发者在通过 Cloudflare 代理长流式 API（如 LLM streaming）时遇到 524 超时错误，需要配置或解决方案",
+    "common_causes": [
+      "多个近期 GitHub Issues（opencode#16180 May 2026, hermes-agent#23566 May 2026, n8n#26645 Mar 2026）报告 Cloudflare 524 超时问题，涉及 streaming API 场景。这是高商业价值的生产环境故障——影响付费 AI API 的端到端可用性。mapped to 'Cloudflare' approved category."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Cloudflare"
+    ]
+  },
+  {
+    "slug": "claude-code-fast-mode-unavailable-fast-cloudflare-terminates-connection-with-524-error-silent-session-exit-with-resume-link",
+    "title": "Claude Code Session Exit with Resume Link After 524 Cloudflare Error",
+    "description": "Claude Code 用户在 Fast Mode 下因 Cloudflare 524 连接中断导致静默退出，需了解如何处理和恢复会话 Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Fast mode unavailable: Fast ... Cloudflare terminates connection with 524 error → Silent session exit with resume link",
+    "search_intent": "Claude Code 用户在 Fast Mode 下因 Cloudflare 524 连接中断导致静默退出，需了解如何处理和恢复会话",
+    "common_causes": [
+      "GitHub anthropics/claude-code#24997 (2026-02-11) 明确记录该场景：Cloudflare 返回 524 错误导致 Claude Code 静默退出并提供 resume link。这是 P0 级 AI 编码工具故障，影响付费用户工作流。mapped to 'AI Coding Tools' approved category."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "anthropic-api-overloaded-error-model-unavailable-maintenance-mode",
+    "title": "Anthropic API Model Unavailable Due to Server Overload or Maintenance",
+    "description": "Anthropic API 用户在模型不可用（过载、维护期间）时收到错误，需要了解恢复时间和规避策略 Includes evidence for Anthropic API troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Anthropic API",
+    "error_signature": "overloaded_error / model unavailable / maintenance mode",
+    "search_intent": "Anthropic API 用户在模型不可用（过载、维护期间）时收到错误，需要了解恢复时间和规避策略",
+    "common_causes": [
+      "covered-errors.md 列出了 Anthropic API 401/429 等但尚未覆盖 overloaded_error/model unavailable 场景。这是高价值支付用户的常见问题，直接影响生产 API 调用。mapped to 'Anthropic API' approved category."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Anthropic API"
+    ]
+  },
+  {
+    "slug": "litellm-404-error-with-modal-endpoint-works-via-modal-client-and-postman-but-fails-through-litellm-proxy",
+    "title": "LiteLLM Modal Endpoint Returns Persistent 404 Error Despite Working Outside Proxy",
+    "description": "开发者通过 LiteLLM 代理调用 Modal Endpoint 时持续收到 404，但直接使用 Modal Client 和 Postman 正常，需要修复代理配置或排查兼容性问题 Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "404 Error with Modal Endpoint — works via Modal Client and PostMan but fails through LiteLLM proxy",
+    "search_intent": "开发者通过 LiteLLM 代理调用 Modal Endpoint 时持续收到 404，但直接使用 Modal Client 和 Postman 正常，需要修复代理配置或排查兼容性问题",
+    "common_causes": [
+      "GitHub BerriAI/litellm#25129 (2026-04-04) 明确报告此问题：Modal Endpoint 在外部可访问但经 LiteLLM 代理后返回 404。这是典型的代理路由/路径兼容性 bug，影响企业级部署。mapped to 'LiteLLM' approved category."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "LiteLLM"
+    ]
+  },
+  {
+    "slug": "litellm-stream-timeout-not-enforced-on-first-chunk-hanging-providers-cause-completions-to-fail",
+    "title": "LiteLLM Proxy stream_timeout Not Enforced on First Chunk",
+    "description": "使用 LiteLLM Proxy 的用户发现 stream_timeout 参数在首 chunk 未生效，导致慢启动 provider（如 Bedrock）请求被错误终止 Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "stream_timeout not enforced on first chunk; hanging providers cause completions to fail",
+    "search_intent": "使用 LiteLLM Proxy 的用户发现 stream_timeout 参数在首 chunk 未生效，导致慢启动 provider（如 Bedrock）请求被错误终止",
+    "common_causes": [
+      "GitHub BerriAI/litellm#19909 (2026-01-27) 确认 stream_timeout 在第一 chunk 不强制执行的问题。还有 #8652 (2025-02-18) 记录 Bedrock 模型的 Stream Timeout 失效。直接命中 P1 LiteLLM 类别，属于代理层计费/路由关键路径上的 bug。mapped to 'LiteLLM' approved category."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "LiteLLM"
+    ]
   }
 ]
