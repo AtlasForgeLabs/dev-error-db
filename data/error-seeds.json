@@ -21821,5 +21821,85 @@
     "related_errors": [
       "AI Coding Tools"
     ]
+  },
+  {
+    "slug": "claude-code-rapid-quota-consumption-in-claude-code-with-opus-4-7-1m-context-minutes-scale-90-plus-burn-from-few-prompts",
+    "title": "Claude Code Opus 4.7 1M Context Excessive Token Consumption – Rapid Quota Depletion",
+    "description": "Fix unexpected extreme token usage/quota exhaustion when using Claude Code with claude-opus-4-7[1m] model; users want to understand why small turns consume entire weekly quota Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Rapid quota consumption in Claude Code with Opus 4.7 1M context — minutes-scale 90%+ burn from few prompts",
+    "search_intent": "Fix unexpected extreme token usage/quota exhaustion when using Claude Code with claude-opus-4-7[1m] model; users want to understand why small turns consume entire weekly quota",
+    "common_causes": [
+      "GitHub Issue #54770 on anthropics/claude-code opened Apr 29 2026 by eburgagni89. Reproduced 2-for-2 on same project. Labels: area:cost, bug, platform:macos/vscode. Multiple linked duplicates (#54761, #54926, #56075, #58396 €450 consumed). Prompt caching hypothesis — CLAUDE.md + MEMORY.md + skills index rebilled each turn. High commercial value: Max 5x plan users losing hundreds of dollars per session."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "claude-code-tui-hangs-on-startup-after-connect-api-anthropic-com-443-einprogress-regression-between-2-1-126-good-and-2-1-129-bad-linux",
+    "title": "Claude Code TUI Hangs on Startup After connect() EINPROGRESS Regression",
+    "description": "Fix Claude Code TUI becoming unresponsive on startup due to network connection hang (EINPROGRESS) introduced in v2.1.127–v2.1.129 regression Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "TUI hangs on startup after connect(api.anthropic.com:443) = EINPROGRESS — regression between 2.1.126 (good) and 2.1.129 (bad), Linux",
+    "search_intent": "Fix Claude Code TUI becoming unresponsive on startup due to network connection hang (EINPROGRESS) introduced in v2.1.127–v2.1.129 regression",
+    "common_causes": [
+      "GitHub Issue #58031 on anthropics/claude-code opened May 11 2026 by gjadi-mej. Labels: api:anthropic, area:core, bug, has repro, platform:linux, regression. Open status with confirmed reproduction between known-good (2.1.126) and known-bad (2.1.129) versions. Blocks all Claude Code usage until fixed. Clear bisect path available for ranking article targeting specific versions."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "vercel-failed-to-load-external-module-require-in-the-middle-hash-cannot-find-module-require-in-the-middle-hash-next-js-16-turbopack-hashed-server-external-aliases-can-become-unresolved-in-vercel-prebuilt-deployments-with-pnpm",
+    "title": "Vercel Prebuilt Deploy Fails: Turbopack Hashed Server Aliases Unresolved with pnpm",
+    "description": "Fix Vercel deployment runtime 500 errors caused by Turbopack writing hashed symlinks under .next/node_modules that are not resolvable in the final prebuilt serverless artifact Includes evidence for Vercel troubleshooting demand.",
+    "category": "Deployment",
+    "technology": "Vercel",
+    "error_signature": "Failed to load external module require-in-the-middle-<hash>: Cannot find module 'require-in-the-middle-<hash>' — Next.js 16 Turbopack hashed server external aliases can become unresolved in Vercel prebuilt deployments with pnpm",
+    "search_intent": "Fix Vercel deployment runtime 500 errors caused by Turbopack writing hashed symlinks under .next/node_modules that are not resolvable in the final prebuilt serverless artifact",
+    "common_causes": [
+      "GitHub Issue #93901 on vercel/next.js opened May 17 2026 by yayoi111. Labels: Turbopack, Vercel (Deployed). Repro includes CI workflow generating raw 500 error at deployed production URL. Build uses next@16.2.6, pnpm 9.12.1, Node 22, Sentry + shiki packages. Switching to webpack avoids the issue. Blocks production deployment for paid Vercel teams."
+    ],
+    "quick_fix": "Check the build output, project root, and deployment platform configuration before redeploying.",
+    "related_errors": [
+      "Deployment"
+    ]
+  },
+  {
+    "slug": "claude-code-mcp-oauth-claude-code-re-runs-dcr-on-every-authenticate-orphaning-the-previously-issued-client-id-and-its-refresh-token",
+    "title": "Claude Code MCP OAuth DCR Re-run Orphaning Client IDs",
+    "description": "Fix Claude Code MCP OAuth authentication loop where Dynamic Client Registration (DCR) runs repeatedly instead of reusing cached credentials, causing orphaned client IDs and stale refresh tokens Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "MCP OAuth: Claude Code re-runs DCR on every authenticate, orphaning the previously-issued client_id and its refresh_token",
+    "search_intent": "Fix Claude Code MCP OAuth authentication loop where Dynamic Client Registration (DCR) runs repeatedly instead of reusing cached credentials, causing orphaned client IDs and stale refresh tokens",
+    "common_causes": [
+      "GitHub Issue #59460 on anthropics/claude-code opened May 16 2026 by aria-inboxia. Labels: area:auth, area:mcp, bug, has repro, platform:macos. Open with 2 comments. Regresses authentication flows for users integrating MCP servers via OAuth. Directly impacts paid Claude Code Max plan users who rely on MCP integrations."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "claude-code-parallel-claude-code-sessions-started-right-after-5-hour-limit-resets-first-3-4-work-the-rest-fail-with-server-is-temporarily-limiting-requests-not-your-usage-limit-rate-limited",
+    "title": "Claude Code Parallel Sessions Hit Rate Limit Despite Fresh 5-Hour Reset",
+    "description": "Understand and fix Claude Code rate limiting behavior where parallel sessions fail immediately despite having fresh 5-hour allowance and remaining within quoted usage limits Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Parallel Claude Code sessions started right after 5-hour limit resets — first 3-4 work, the rest fail with \"Server is temporarily limiting requests (not your usage limit) · Rate limited\"",
+    "search_intent": "Understand and fix Claude Code rate limiting behavior where parallel sessions fail immediately despite having fresh 5-hour allowance and remaining within quoted usage limits",
+    "common_causes": [
+      "GitHub Issue #53922 on anthropics/claude-code opened Apr 27 2026 by NowatariSoma. Labels: area:api, bug, external, has repro, platform:linux. Open with 8 comments. Distinct from #54770 (quota burn vs rate limiting). Addresses a different pain point: developers running multiple parallel Claude Code instances get rate-limited by Anthropic's backend, forcing sequential execution. Commercial impact: teams paying for higher tiers expecting concurrency."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
   }
 ]
