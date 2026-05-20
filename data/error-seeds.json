@@ -22013,5 +22013,69 @@
     "related_errors": [
       "Ollama"
     ]
+  },
+  {
+    "slug": "openai-api-non-streaming-openai-api-calls-hang-indefinitely-behind-nat-gateway-neither-side-knows-connection-is-dead-no-timeout-exception-raised-call-blocks-forever",
+    "title": "Non-streaming OpenAI API calls silently hang forever behind NAT — no TCP keepalive on default transport",
+    "description": "Fix OpenAI SDK silent hangs caused by missing TCP keepalive, affecting deployments behind AWS NAT Gateway, GCP Cloud NAT, and ISP routers Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "Non-streaming OpenAI API calls hang indefinitely behind NAT gateway — neither side knows connection is dead, no timeout exception raised, call blocks forever",
+    "search_intent": "Fix OpenAI SDK silent hangs caused by missing TCP keepalive, affecting deployments behind AWS NAT Gateway, GCP Cloud NAT, and ISP routers",
+    "common_causes": [
+      "GitHub openai-python #3269 (open, created 2026-05-19): httpx transport has no SO_KEEPALIVE, so NAT gateways silently drop idle TCP connections during long o-series/gpt-5.x reasoning calls taking 300–700s. Server generates response but client never receives it. Affects EKS, ECS, Cloud Run, GKE deployments and local dev behind routers. Fix: enable TCP keepalive on default transport. Category: OpenAI API."
+    ],
+    "quick_fix": "Check the build output, project root, and deployment platform configuration before redeploying.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "github-copilot-sessions-failed-to-resume-and-got-corrupted-after-upgrading-to-1-0-51-1",
+    "title": "GitHub Copilot CLI sessions fail to resume and get corrupted after upgrade to 1.0.51-1",
+    "description": "Restore working Copilot CLI sessions after version upgrade breaks session state, blocking paid Copilot Pro/Business developers from continued coding workflow Includes evidence for GitHub Copilot troubleshooting demand.",
+    "category": "GitHub Copilot",
+    "technology": "GitHub Copilot",
+    "error_signature": "Sessions failed to resume and got corrupted after upgrading to 1.0.51-1",
+    "search_intent": "Restore working Copilot CLI sessions after version upgrade breaks session state, blocking paid Copilot Pro/Business developers from continued coding workflow",
+    "common_causes": [
+      "GitHub copilot-cli #3416 (open, created 2026-05-20): Recent regression in version 1.0.51-1 corrupts session state preventing resume. Directly affects paid Copilot subscribers whose development work is interrupted. High commercial value — Copilot Pro at $20/mo per user, Enterprise significantly more. Category: GitHub Copilot."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "GitHub Copilot"
+    ]
+  },
+  {
+    "slug": "deployment-type-error-cannot-find-module-scope-shared-lib-index-or-its-corresponding-type-declarations-gettypescriptconfiguration-typescript-6-path-rewriting-deletes-baseurl-but-does-not-update-pathsbasepath",
+    "title": "Vercel Turbopack/Next.js TypeScript path alias resolution breaks in monorepos — Cannot find module",
+    "description": "Fix Next.js/Turbopack monorepo type-check step failing for shared tsconfig base path aliases between webpack compilation and TypeScript checker Includes evidence for Deployment troubleshooting demand.",
+    "category": "Deployment",
+    "technology": "Deployment",
+    "error_signature": "Type error: Cannot find module '@scope/shared-lib/index' or its corresponding type declarations. (getTypeScriptConfiguration: TypeScript 6 path rewriting deletes baseUrl but does not update pathsBasePath)",
+    "search_intent": "Fix Next.js/Turbopack monorepo type-check step failing for shared tsconfig base path aliases between webpack compilation and TypeScript checker",
+    "common_causes": [
+      "GitHub vercel/next.js #93336 (closed, created 2026-04-29): TypeScript 6 path rewriting bug in Next.js getTypeScriptConfiguration causes baseUrl deletion without updating pathsBasePath. Webpack compilation succeeds but TypeScript type-check fails immediately after, breaking every path alias in shared base tsconfig. Affects deployed projects in monorepo architecture. Category: Deployment (Vercel/Next.js)."
+    ],
+    "quick_fix": "Check the build output, project root, and deployment platform configuration before redeploying.",
+    "related_errors": [
+      "Deployment"
+    ]
+  },
+  {
+    "slug": "docker-error-response-from-daemon-cannot-overwrite-non-directory-some-path-in-image-with-directory",
+    "title": "Docker Compose v5.1.3 watch mode fails with 'cannot overwrite non-directory with directory' on symlinked paths",
+    "description": "Fix Docker Compose --watch sync error when relative symlinks point from container image paths to host directories, blocking hot-reload development workflow Includes evidence for Docker troubleshooting demand.",
+    "category": "Docker",
+    "technology": "Docker",
+    "error_signature": "Error response from daemon: cannot overwrite non-directory \"/some/path/in/image\" with directory \"/\"",
+    "search_intent": "Fix Docker Compose --watch sync error when relative symlinks point from container image paths to host directories, blocking hot-reload development workflow",
+    "common_causes": [
+      "GitHub docker/compose #13795 (open, created 2026-05-19): docker compose up --watch fails with daemon error when source paths involve relative symlinks. Occurs on folder structure changes between Git commits. Requires workaround via docker system prune or docker compose build --no-cache. Affects Docker Desktop Pro/Team/Premium subscribers doing containerized dev with watch mode. Category: Docker."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Docker"
+    ]
   }
 ]
