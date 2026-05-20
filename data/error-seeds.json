@@ -23469,5 +23469,101 @@
     "related_errors": [
       "AI Coding Tools"
     ]
+  },
+  {
+    "slug": "openai-api-error-code-429-rate-limit-exceeded-x-ratelimit-reset-requests-header-not-accessible-in-exception-object",
+    "title": "OpenAI Node.js SDK hides rate-limit headers (x-ratelimit-reset-requests) on 429 errors",
+    "description": "Fix Node.js SDK so 429 exceptions expose rate-limit headers (x-ratelimit-reset-requests, x-ratelimit-reset-tokens) for correct retry logic Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "Error code: 429 - rate_limit_exceeded — x-ratelimit-reset-requests header not accessible in exception object",
+    "search_intent": "Fix Node.js SDK so 429 exceptions expose rate-limit headers (x-ratelimit-reset-requests, x-ratelimit-reset-tokens) for correct retry logic",
+    "common_causes": [
+      "Source: https://github.com/openai/openai-node/issues/1477 — User reports that on 429 errors, the exception object contains status-code and error.message but NOT x-ratelimit-reset-requests or other rate-limit headers. Blocks implementing proper exponential back-off. Has active PR #1848 to fix serialization of headers in APIError.toJSON(). Official OpenAI repo (10.9k stars). Category = OpenAI API (direct SDK bug on paid service)."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "openai-api-openai-ratelimiterror-error-code-429-request-too-large-for-gpt-4o-in-organization-on-tokens-per-min-tpm-limit-30000-requested-68490",
+    "title": "GitHub MCP Server list_commits causes OpenAI 429 rate-limit via bloated context",
+    "description": "Understand how MCP server tool outputs bloat context windows and trigger API rate limits; find workarounds to trim response fields before sending to LLM Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "openai.RateLimitError: Error code: 429 - Request too large for gpt-4o in organization on tokens per min (TPM): Limit 30000, Requested 68490",
+    "search_intent": "Understand how MCP server tool outputs bloat context windows and trigger API rate limits; find workarounds to trim response fields before sending to LLM",
+    "common_causes": [
+      "Source: https://github.com/github/github-mcp-server/issues/142 — When list_commits() returns 30 results, each at 5-6KB, total context exceeds 64K tokens and triggers TPM 429 errors on OpenAI. Tier-1 API user affected. Issue actively discussed, recently closed May 21 2026 after minimal response trimming was added. Strong commercial value: affects paid API users + MCP ecosystem. Category = OpenAI API (root cause is rate limit triggered by tool output size)."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "openai-api-bug-full-llm-backtest-has-no-groq-rate-limit-handling-429-errors-will-crash-runs",
+    "title": "Crypto trader LLM backtest crashes from 429 rate-limit errors without handler",
+    "description": "Add 429 rate-limit error handling to prevent complete system crash during automated LLM backtesting workflows Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "[BUG] Full LLM backtest has no Groq rate-limit handling — 429 errors will crash runs",
+    "search_intent": "Add 429 rate-limit error handling to prevent complete system crash during automated LLM backtesting workflows",
+    "common_causes": [
+      "Source: https://github.com/vipulbms/crypto-trader-agent/issues/179 — Automated trading pipeline lacks rate-limit handling for LLM API calls; 429 errors from Groq (and similarly OpenAI) cause entire backtest run to crash. Direct financial impact when errors occur in production trading. Also see macktron/brainrot-quant 'OpenAI API Rate limit crash' (issue #4). These represent the same pattern: paid API dependency with no graceful degradation. Category = OpenAI API (rate limit error on paid LLM API)."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "litellm-litellm-rate-limit-exceeded-timeout-when-proxying-requests-through-litellm-router-to-upstream-providers",
+    "title": "LiteLLM proxy experiences rate-limit and timeout failures across multi-provider routing",
+    "description": "Debug LiteLLM proxy when it fails to properly surface upstream provider rate limits or times out while routing to multiple LLM providers Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "LiteLLM rate_limit_exceeded / timeout when proxying requests through litellm.Router to upstream providers",
+    "search_intent": "Debug LiteLLM proxy when it fails to properly surface upstream provider rate limits or times out while routing to multiple LLM providers",
+    "common_causes": [
+      "Source: GitHub search for 'LiteLLM rate_limit_exceeded OR timeout' found active issues including arielb1-sun-security/copilot-studio-test issue #1356 'LiteLLM issue summary - 2026-05-20' (created within 3 minutes of this scan) and innovateorange/Job-MCP issue #49 '[reliability] Per-user / per-key LLM rate limiting'. LiteLLM sits between apps and multiple API providers, so its own rate-limit/timeout bugs block all downstream consumers simultaneously. Category = LiteLLM (approved category for LiteLLM proxy-specific errors)."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "LiteLLM"
+    ]
+  },
+  {
+    "slug": "openai-api-rate-limit-reached-for-gpt-4-x-in-organization-on-tokens-per-min-tpm-limit-xxxxx-used-yyyyy-requested-zzzzz-please-try-again-in-w-wwws",
+    "title": "OpenAI TPM rate limit frequently blocked by agent frameworks and LLM wrappers",
+    "description": "Find solutions for managing OpenAI TPM (tokens-per-minute) rate limits when using multiple agent tools, LLM APIs, or concurrent batch processing Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "Rate limit reached for gpt-4.x in organization on tokens per min (TPM): Limit XXXXX, Used YYYYY, Requested ZZZZZ. Please try again in W.WWWs.",
+    "search_intent": "Find solutions for managing OpenAI TPM (tokens-per-minute) rate limits when using multiple agent tools, LLM APIs, or concurrent batch processing",
+    "common_causes": [
+      "Found across 48+ open GitHub issues covering opencode (exponential backoff), big-AGI (max TPM config), Job-MCP (per-user/per-key rate limiting), posit-dev/connect-extensions (TPM limits with R markdown), alexeygrigorev/github-project-scorer (TPM issue), brainrot-quant (API rate limit crash), MiroFish (Error 429), crypto-trader-agent (Groq 429 crash pattern). Consistent error message format with specific numeric limits. High commercial intent for teams running automated agents at scale. Category = OpenAI API (core rate limit error on paid service)."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "claude-code-mcp-auth-error-oauth-failed-claude-code-fails-to-authenticate-mcp-server-connection",
+    "title": "Claude Code MCP auth error blocks AI coding workflow",
+    "description": "Troubleshoot Claude Code failing to connect to MCP servers due to auth/OAuth failures, blocking AI-assisted development Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "MCP auth error / OAuth failed — Claude Code fails to authenticate MCP server connection",
+    "search_intent": "Troubleshoot Claude Code failing to connect to MCP servers due to auth/OAuth failures, blocking AI-assisted development",
+    "common_causes": [
+      "Search returned 10.3k GitHub issues matching 'Claude Code MCP error auth'. WebJamApps/web-jam-back issue #757 specifically discusses 'Claude Code automation recommendations (from claude-code-setup plugin)' opened within minutes. Zed editor issue #57319 shows MCP server configuration conflicts in dev environments. Strong signal of real developer pain with Claude Code's MCP integration. Category = AI Coding Tools (Claude Code is an AI coding tool per approved mappings)."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
   }
 ]
