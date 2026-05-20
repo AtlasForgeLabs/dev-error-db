@@ -23277,5 +23277,85 @@
     "related_errors": [
       "AI Coding Tools"
     ]
+  },
+  {
+    "slug": "openai-api-http-429-error-type-usage-limit-reached-message-the-usage-limit-has-been-reached-credential-pool-retries-same-exhausted-account-instead-of-immediate-rotation",
+    "title": "Codex usage_limit_reached 429 retries exhausted pool credential once before rotating",
+    "description": "Fix OpenAI Codex API returning 429 usage_limit_reached; credential pool keeps retrying exhausted OAuth accounts instead of rotating to available ones Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "HTTP 429 error.type=\"usage_limit_reached\" message \"The usage limit has been reached\" — credential pool retries same exhausted account instead of immediate rotation",
+    "search_intent": "Fix OpenAI Codex API returning 429 usage_limit_reached; credential pool keeps retrying exhausted OAuth accounts instead of rotating to available ones",
+    "common_causes": [
+      "GitHub issue hermes-agent#26388 (May 15, 2026) details how AIAgent._extract_api_error_context() ignores payload['type'], so OpenAI usage_limit_reached type is lost. Pool recovery treats all 429s as transient rate_limit, retrying exhausted credentials. Merged via PR #27162. High billing/quota impact on paid users."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "claude-code-github-mcp-oauth-flow-fails-specifically-in-claude-ai-code-web-sessions-standard-desktop-cli-oauth-works-but-web-hosted-sessions-cannot-complete-github-authentication",
+    "title": "Hosted GitHub MCP OAuth flow broken in claude.ai/code web sessions",
+    "description": "Resolve GitHub-hosted MCP OAuth authentication failure exclusively in Claude Code web (claude.ai/code) sessions while desktop variant succeeds Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "GitHub MCP OAuth flow fails specifically in claude.ai/code web sessions — standard Desktop CLI OAuth works but web-hosted sessions cannot complete GitHub authentication",
+    "search_intent": "Resolve GitHub-hosted MCP OAuth authentication failure exclusively in Claude Code web (claude.ai/code) sessions while desktop variant succeeds",
+    "common_causes": [
+      "GitHub issue anthropics/claude-code#60807 (May 20, 2026, open). Web sessions fail GitHub MCP OAuth while desktop and CLI variants succeed. Distinct platform-specific regression affecting paid enterprise users integrating GitHub MCP servers via web interface."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "claude-code-oauth-flow-never-initiates-browser-opens-to-about-blank-prompts-to-reopen-claude-desktop-creating-infinite-loop-web-ui-shows-there-was-an-error-connecting",
+    "title": "Claude Code & Desktop OAuth-protected MCP server infinite about:blank loop",
+    "description": "Fix Claude Desktop and claude.ai failing to establish OAuth flow for custom MCP servers despite all endpoints being spec-compliant and tested with curl Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "OAuth flow never initiates — browser opens to about:blank, prompts to reopen Claude Desktop, creating infinite loop; web UI shows 'There was an error connecting...'",
+    "search_intent": "Fix Claude Desktop and claude.ai failing to establish OAuth flow for custom MCP servers despite all endpoints being spec-compliant and tested with curl",
+    "common_causes": [
+      "GitHub issue anthropics/claude-code#11814 (Nov 18, 2025, closed duplicate). Server logs show zero requests initiated from Claude — failure happens before contacting server. Claude Code CLI --transport http works fine. OAuth 2.1 with PKCE fully compliant server rejected. Production MCP integrations broken."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "anthropic-api-http-529-overloaded-error-fires-when-anthropic-capacity-is-saturated-regardless-of-tier-distinct-from-429-rate-limit-all-three-dimensions-rpm-itpm-otpm-must-be-tracked-separately",
+    "title": "Anthropic API 529 overloaded_error vs 429 rate limit distinction for LLM clients",
+    "description": "Distinguish between Anthropic 429 rate-limit errors and 529 overloaded_server errors to implement correct retry/backoff strategies for production LLM applications Includes evidence for Anthropic API troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Anthropic API",
+    "error_signature": "HTTP 529 overloaded_error fires when Anthropic capacity is saturated regardless of tier; distinct from 429 rate limit — all three dimensions (RPM, ITPM, OTPM) must be tracked separately",
+    "search_intent": "Distinguish between Anthropic 429 rate-limit errors and 529 overloaded_server errors to implement correct retry/backoff strategies for production LLM applications",
+    "common_causes": [
+      "Respan.ai article (2026) documents Anthropic's three rate-limit dimensions (RPM/ITPM/OTPM) causing 429s, plus the separate 529 overloaded_error that fires on capacity saturation regardless of tier. Most client libraries conflate the two responses. Relevant for enterprise teams paying for higher throughput tiers."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "Anthropic API"
+    ]
+  },
+  {
+    "slug": "claude-code-mcp-server-http-sse-connection-times-out-immediately-after-oauth-authentication-completes-successfully-successful-login-followed-by-unreachable-sse-endpoint",
+    "title": "MCP server (HTTP/SSE type) times out after OAuth authentication completes",
+    "description": "Fix Claude Code MCP servers timing out post-OAuth handshake, where authentication succeeds but the SSE stream becomes unreachable Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "MCP server HTTP/SSE connection times out immediately after OAuth authentication completes successfully — successful login followed by unreachable SSE endpoint",
+    "search_intent": "Fix Claude Code MCP servers timing out post-OAuth handshake, where authentication succeeds but the SSE stream becomes unreachable",
+    "common_causes": [
+      "GitHub issue anthropics/claude-code#60521 (May 19, 2026, open). Distinct from general OAuth failures (#11814): here auth completes but subsequent SSE connection times out. Affects enterprise users with cloud-hosted MCP servers requiring OAuth-based auth."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
   }
 ]
