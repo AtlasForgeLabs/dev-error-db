@@ -22525,5 +22525,37 @@
     "related_errors": [
       "OpenAI API"
     ]
+  },
+  {
+    "slug": "litellm-budget-has-been-exceeded-enduser-id-current-cost-52-19-max-budget-50-0-db-spend-shows-0-001-while-redis-counter-reports-52-budgetexceedederror-http-429",
+    "title": "LiteLLM BudgetExceededError Phantom Redis Counter Inflation Blocks Production Users",
+    "description": "Fix phantom BudgetExceededError caused by leaking Redis spend counters in LiteLLM proxy — real database spend near $0 but users blocked at budget limit Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "Budget has been exceeded! EndUser=<id> Current cost: $52.19, Max budget: $50.0 — DB spend shows $0.001 while Redis counter reports $52 (BudgetExceededError HTTP 429)",
+    "search_intent": "Fix phantom BudgetExceededError caused by leaking Redis spend counters in LiteLLM proxy — real database spend near $0 but users blocked at budget limit",
+    "common_causes": [
+      "GitHub issue #27639 in BerriAI/litellm by nkhanpa-art (May 11, 2026). Reserve→finalize pipeline gap leaves orphaned budget reservations in Redis. With 4 replicas on EKS + Redis, ~6000+ end users hit intermittent 429 BudgetExceededError cycling every ~4 minutes. Cross-linked issue #28283 reports similar phantom inflation on v1.83.14-stable independent of the reservation feature. Official collaborator maltbae confirmed race condition hypothesis. Category: LiteLLM — proxy billing system bug affecting thousands of paying LLM proxy users."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "LiteLLM"
+    ]
+  },
+  {
+    "slug": "anthropic-api-streaming-error-sse-event-causes-attributeerror-nonetype-object-has-no-attribute-errors-in-anthropic-sdk-python",
+    "title": "Anthropic Streaming SSE Error Event Causes AttributeError NoneType",
+    "description": "Fix AttributeError crash when receiving streaming error SSE events via Anthropic Python SDK — breaks production streaming pipelines Includes evidence for Anthropic API troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Anthropic API",
+    "error_signature": "Streaming error SSE event causes AttributeError: 'NoneType' object has no attribute errors in anthropic-sdk-python",
+    "search_intent": "Fix AttributeError crash when receiving streaming error SSE events via Anthropic Python SDK — breaks production streaming pipelines",
+    "common_causes": [
+      "GitHub issue #1472 in anthropics/anthropic-sdk-python by sevakva (Apr 29, 2026). When streaming encounters an SSE error event, the SDK crashes with AttributeError because the error handler assumes a non-None attributes object. Has 3 linked PRs indicating active developer attention. Category: Anthropic API — SDK crash affecting streaming API users, blocks production inference pipelines."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Anthropic API"
+    ]
   }
 ]
