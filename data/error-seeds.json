@@ -21901,5 +21901,117 @@
     "related_errors": [
       "AI Coding Tools"
     ]
+  },
+  {
+    "slug": "claude-code-anthropic-api-api-error-server-is-temporarily-limiting-requests-not-your-usage-limit-rate-limited",
+    "title": "Claude Code 'Server is temporarily limiting requests' rate limited on fresh start — false rate limit",
+    "description": "Developer starts Claude Code after idle period and immediately gets rate-limited despite not hitting usage limits; wants to understand why and how to disable or work around the spurious throttle Includes evidence for Claude Code / Anthropic API troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code / Anthropic API",
+    "error_signature": "API Error: Server is temporarily limiting requests (not your usage limit) · Rate limited",
+    "search_intent": "Developer starts Claude Code after idle period and immediately gets rate-limited despite not hitting usage limits; wants to understand why and how to disable or work around the spurious throttle",
+    "common_causes": [
+      "Source: https://github.com/anthropics/claude-code/issues/60710 (opened 2026-05-19). Reproducible: stop using Claude Code for ~1 hour, resume, immediately hit throttling despite no quota exceeded. This is NOT a usage-quota error but an Anthropic backend artificial rate limit — affects paid users who expect full API access under their plan. Distinct from existing covered errors (which cover standard 429/quota exceeded)."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "vercel-function-invocation-timeout-an-error-occurred-with-your-deployment-504-gateway-timeout",
+    "title": "Vercel FUNCTION_INVOCATION_TIMEOUT 504 on production functions exceeding default maxDuration",
+    "description": "Production serverless function on Vercel exceeds the default 60s execution limit and returns 504 FUNCTION_INVOCATION_TIMEOUT; developer needs to configure maxDuration or optimize to reduce runtime Includes evidence for Vercel troubleshooting demand.",
+    "category": "Deployment",
+    "technology": "Vercel",
+    "error_signature": "FUNCTION_INVOCATION_TIMEOUT — An error occurred with your deployment / 504 Gateway Timeout",
+    "search_intent": "Production serverless function on Vercel exceeds the default 60s execution limit and returns 504 FUNCTION_INVOCATION_TIMEOUT; developer needs to configure maxDuration or optimize to reduce runtime",
+    "common_causes": [
+      "Source: Multiple real-world reports — recipe2video#117 (2026-05-18), kernelia#36 (2026-05-18), sendify#6 (2026-05-19), wardrobe-app#18 (2026-04-14). HIGH frequency pattern with dozens of similar occurrences. Paid Vercel Hobby/Pro/Enterprise plans still enforce per-function timeout; users burning compute on long inference or batch tasks get silent kill-shots. Clear fix (set maxDuration) but poor discoverability makes this a recurring search query."
+    ],
+    "quick_fix": "Check the build output, project root, and deployment platform configuration before redeploying.",
+    "related_errors": [
+      "Deployment"
+    ]
+  },
+  {
+    "slug": "openai-api-api-key-cannot-be-empty-please-create-one-at-https-platform-openai-com-and-try-again",
+    "title": "OpenAI Python SDK v2.34.0+ rejects api_key=\"\" breaking local server integrations (llama.cpp, LM Studio)",
+    "description": "Developer uses local OpenAI-compatible servers (llama.cpp, LM Studio, vLLM) with api_key=\"\" and gets credential validation error after upgrading openai-python SDK v2.34.0+; needs workaround or fix to reconnect Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "api_key cannot be empty. Please create one at https://platform.openai.com and try again.",
+    "search_intent": "Developer uses local OpenAI-compatible servers (llama.cpp, LM Studio, vLLM) with api_key=\"\" and gets credential validation error after upgrading openai-python SDK v2.34.0+; needs workaround or fix to reconnect",
+    "common_causes": [
+      "Source: https://github.com/openai/openai-python/pull/3274 (PR fixing issue #3224, created 2026-05-19). Regression introduced in v2.34.0: changed credential check from `is None` to `not self.api_key`, breaking all local-compatible-server use cases passing empty string as api_key. HIGH commercial value because affected users pay for OpenAI API but also run local fallbacks; the broken bridge forces costly downtime. Distinct from existing covered errors (standard invalid API key)."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "github-copilot-session-was-not-created-with-authentication-info-or-custom-provider-when-actual-cause-is-github-api-rate-limit",
+    "title": "GitHub Copilot CLI auth silently swallows REST quota/rate-limit errors — confusing message surface",
+    "description": "Developer authenticates with copilot CLI behind corporate firewall or heavy usage and hits GitHub API rate limit, but CLI hides the real 429/500 response and instead shows opaque 'Session was not created with authentication info' — unable to determine whether it's auth failure or rate limiting Includes evidence for GitHub Copilot troubleshooting demand.",
+    "category": "GitHub Copilot",
+    "technology": "GitHub Copilot",
+    "error_signature": "Session was not created with authentication info or custom provider (when actual cause is GitHub API rate limit)",
+    "search_intent": "Developer authenticates with copilot CLI behind corporate firewall or heavy usage and hits GitHub API rate limit, but CLI hides the real 429/500 response and instead shows opaque 'Session was not created with authentication info' — unable to determine whether it's auth failure or rate limiting",
+    "common_causes": [
+      "Source: https://github.com/github/copilot-cli/issues/3311 (created 2026-05-14). Bug: auth bootstrapper wraps the token validation request in a generic catch-all that swallows HTTP status codes and rewrites them as auth-info errors. Also reported via #3383 (copilot update fails with raw GitHub API rate limit error). Directly impacts paid Copilot subscribers. Clear actionable fix: surface actual HTTP error code and retry logic for transient 429s."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "GitHub Copilot"
+    ]
+  },
+  {
+    "slug": "kubernetes-aws-ecr-imagepullbackoff-failed-to-pull-image-rpc-error-code-unknown-desc-failed-to-pull-and-unpack-image-unauthorized-authentication-required",
+    "title": "EKS Kubernetes ImagePullBackOff caused by ECR registry authentication failure",
+    "description": "Developer deploying to EKS on AWS gets ImagePullBackOff because kubelet cannot authenticate to private ECR registry; needs correct aws-iam-authenticator or IRSA setup for pod-to-ECR pulls Includes evidence for Kubernetes / AWS ECR troubleshooting demand.",
+    "category": "Cloud Platforms",
+    "technology": "Kubernetes / AWS ECR",
+    "error_signature": "ImagePullBackOff — Failed to pull image: rpc error: code = Unknown desc = failed to pull and unpack image: unauthorized: authentication required",
+    "search_intent": "Developer deploying to EKS on AWS gets ImagePullBackOff because kubelet cannot authenticate to private ECR registry; needs correct aws-iam-authenticator or IRSA setup for pod-to-ECR pulls",
+    "common_causes": [
+      "Source: https://github.com/pramodhkumars7/ai-jenkins-pipeline-triage/issues/18 (created 2026-05-18). Root cause confirmed: kubelet lacks IAM role credentials to call ECR GetAuthorizationToken. Common in CI/CD pipelines where pipeline-generated images land on K8s pods without proper IRSA or node-role trust policies. Affects production deploys for teams using managed Kubernetes services."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "Cloud Platforms"
+    ]
+  },
+  {
+    "slug": "docker-permission-denied-docker-compose-watch-reads-folders-marked-as-ignored-in-dockerignore",
+    "title": "Docker Compose watch permission denied — ignores .dockerignore when listing files",
+    "description": "Developer runs docker compose watch and gets permission denied errors on read-only subdirectories that are listed in .dockerignore ignore patterns; the ignore rules are not respected by the watch filesystem listener Includes evidence for Docker troubleshooting demand.",
+    "category": "Docker",
+    "technology": "Docker",
+    "error_signature": "permission denied — docker compose watch reads folders marked as ignored in .dockerignore",
+    "search_intent": "Developer runs docker compose watch and gets permission denied errors on read-only subdirectories that are listed in .dockerignore ignore patterns; the ignore rules are not respected by the watch filesystem listener",
+    "common_causes": [
+      "Source: https://github.com/docker/compose/issues/13750 (created 2026-04-20). Bug: docker compose watch traverses hidden/ignored folders before checking .dockerignore, triggering EACCES on system paths (e.g., /proc, /sys, mounted volumes owned by root). Blocks hot-reload workflows entirely. Separate from #13795 (same issue tracker, different bug: daemon can't overwrite non-directory with directory). Both affect development velocity on paid Docker Desktop Pro/Team."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Docker"
+    ]
+  },
+  {
+    "slug": "ollama-ollama-fails-to-initialize-gpu-despite-nvidia-smi-working-correctly-from-within-container",
+    "title": "Ollama GPU initialization failure — nvidia-smi works but ollama refuses to use GPU",
+    "description": "Developer runs ollama inside a Docker/container environment where nvidia-smi reports GPUs fine but ollama falls back to CPU or crashes during model loading; needs to know correct NVIDIA driver/toolkit version pinning for Ollama 20.x Includes evidence for Ollama troubleshooting demand.",
+    "category": "Ollama",
+    "technology": "Ollama",
+    "error_signature": "Ollama fails to initialize GPU despite nvidia-smi working correctly from within container",
+    "search_intent": "Developer runs ollama inside a Docker/container environment where nvidia-smi reports GPUs fine but ollama falls back to CPU or crashes during model loading; needs to know correct NVIDIA driver/toolkit version pinning for Ollama 20.x",
+    "common_causes": [
+      "Source: https://github.com/ollama/ollama/issues/15400 (created 2026-04-07). Report confirms: nvidia-smi flawless inside container, other containers with NVIDIA work, but ollama refuses to init GPU. Occurs on Debian 13 (bookworm) with driver 550.163.163. Ollama has strict CUDA toolkit version requirements that often mismatch host container drivers. High commercial value: local LLM serving is growing rapidly; GPU acceleration matters for cost (CPU vs GPU inference can be 10-50x different)."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Ollama"
+    ]
   }
 ]
