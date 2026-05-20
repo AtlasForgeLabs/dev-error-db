@@ -22269,5 +22269,85 @@
     "related_errors": [
       "LiteLLM"
     ]
+  },
+  {
+    "slug": "anthropic-api-api-error-403-type-error-error-type-permission-error-message-permission-denied",
+    "title": "[Bug] Anthropic API Error: Permission Denied (403) on Login via Claude Code CLI",
+    "description": "Fix 403 permission_error when logging into Claude Code CLI — keychain entry deletion fails and login returns permission denied Includes evidence for Anthropic API troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Anthropic API",
+    "error_signature": "API Error: 403 {\"type\":\"error\",\"error\":{\"type\":\"permission_error\",\"message\":\"Permission denied\"}}",
+    "search_intent": "Fix 403 permission_error when logging into Claude Code CLI — keychain entry deletion fails and login returns permission denied",
+    "common_causes": [
+      "GitHub issue on claude-code repo: users on macOS get 403 permission_error during /login command. Root cause involves SecKeychainSearchCopyNext failing to delete keychain entries, followed by Anthropic API rejecting with permission_error. High commercial value: blocks authenticated API access entirely. Category mapping: Anthropic API because the core error is a permission_error from the API layer."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "Anthropic API"
+    ]
+  },
+  {
+    "slug": "claude-code-no-oauth-flow-is-in-progress-for-provider-call-mcp-provider-authenticate-first",
+    "title": "[BUG] MCP OAuth complete_authentication always fails with No OAuth flow is in progress",
+    "description": "Fix Claude Code MCP server OAuth flow where PKCE state is lost between authenticate and complete_authentication steps Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "\"No OAuth flow is in progress for {provider}. Call mcp__{provider}__authenticate first\"",
+    "search_intent": "Fix Claude Code MCP server OAuth flow where PKCE state is lost between authenticate and complete_authentication steps",
+    "common_causes": [
+      "GitHub bug report on claude-code repo: HTTP-type MCP servers with OAuth lose in-memory PKCE state before complete_authentication can consume it. Configured .mcp.json with oauth causes auth flow to fail silently. This blocks all MCP-based integrations (Asana, Datadog, Slack etc.) for enterprise users. Mapping to AI Coding Tools: Claude Code is a paid AI coding IDE, MCP auth is integral to its workflow."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "anthropic-api-overloaded-error-an-error-occurred-while-reading-the-stream-read-tcp-i-o-timeout",
+    "title": "Anthropic overloaded_error is not retried, halts session",
+    "description": "Fix Anthropic API 529 overloaded_error not being automatically retried, causing sessions to halt instead of retrying with backoff Includes evidence for Anthropic API troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Anthropic API",
+    "error_signature": "overloaded_error: An error occurred while reading the stream: read tcp: i/o timeout",
+    "search_intent": "Fix Anthropic API 529 overloaded_error not being automatically retried, causing sessions to halt instead of retrying with backoff",
+    "common_causes": [
+      "GitHub issue on anomalyco/opencode repo showing anthropic overloaded_error falling through parseStreamError() and becoming UnknownError instead of triggering exponential backoff retry logic. Directly affects paying API users with production-grade workflows. Mapping: Anthropic API because it concerns API-level error handling behavior."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "Anthropic API"
+    ]
+  },
+  {
+    "slug": "vercel-failed-to-load-external-module-require-in-the-middle-hash-cannot-find-module-require-in-the-middle-hash",
+    "title": "Next.js 16 Turbopack hashed aliases unresolved in Vercel prebuilt deployments with pnpm",
+    "description": "Fix Vercel prebuilt deployment failure where Turbopack hashed server external aliases become unresolved in production runtime Includes evidence for Vercel troubleshooting demand.",
+    "category": "Deployment",
+    "technology": "Vercel",
+    "error_signature": "Failed to load external module require-in-the-middle-<hash>: Cannot find module 'require-in-the-middle-<hash>'",
+    "search_intent": "Fix Vercel prebuilt deployment failure where Turbopack hashed server external aliases become unresolved in production runtime",
+    "common_causes": [
+      "Active GitHub issue on vercel/next.js (2 comments). pnpm + Next.js 16.2.6 + Turbopack causes instrumentation hook loading to fail in Vercel prebuilt deploys. Reproducible with minimal symlink repro repo. Production-deploy-blocker for teams using Vercel Enterprise. Category: Deployment (Vercel-specific Turbopack bundling issue)."
+    ],
+    "quick_fix": "Check the build output, project root, and deployment platform configuration before redeploying.",
+    "related_errors": [
+      "Deployment"
+    ]
+  },
+  {
+    "slug": "openai-api-sdk-does-not-raise-typed-exception-for-background-mode-failed-runs-returns-200-ok-with-free-form-error-code-string",
+    "title": "Background responses failures lack stable error code mapping in OpenAI Python SDK",
+    "description": "Get stable machine-readable error codes mapped to SDK exception classes for OpenAI Responses API background mode failures Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "SDK does not raise typed exception for background mode failed runs — returns 200 OK with free-form error.code string",
+    "search_intent": "Get stable machine-readable error codes mapped to SDK exception classes for OpenAI Responses API background mode failures",
+    "common_causes": [
+      "Feature request on openai-python repo (3 comments). When Responses API runs in background=True and status=failed, the SDK returns 200 OK with raw JSON containing undocumented error.code strings that don't map to any exception class. Blocks programmatic error handling for async API calls. Affects developers building production apps with OpenAI async features. Category: OpenAI API."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "OpenAI API"
+    ]
   }
 ]
