@@ -22445,5 +22445,85 @@
     "related_errors": [
       "AI Coding Tools"
     ]
+  },
+  {
+    "slug": "claude-code-an-image-in-the-conversation-could-not-be-processed-and-was-removed",
+    "title": "Claude Code image processing failures cause massive token waste via Anthropic API",
+    "description": "Developer experiencing repeated API errors where images fail to process, burning through their 5-hour usage window without getting actual image results; wants fix or workaround. Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "an image in the conversation could not be processed and was removed",
+    "search_intent": "Developer experiencing repeated API errors where images fail to process, burning through their 5-hour usage window without getting actual image results; wants fix or workaround.",
+    "common_causes": [
+      "GitHub Issue #60334 on anthropics/claude-code (updated 2026-05-20). User reports ~70% of usage window wasted due to image processing errors despite no images being present. Labeled area:cost + area:api — direct billing impact. Maps to Anthropic API category since the error originates from the underlying API endpoint."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "claude-code-deepseek-reasoner-does-not-support-this-tool-choice",
+    "title": "Claude Code WebSearch fails with 'deepseek-reasoner does not support this tool_choice' error",
+    "description": "User wants to use Claude Code WebSearch tool but encounters a 400 API error when deepseek-reasoner model is used; needs fix to restore search functionality for both Chinese and English queries. Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "deepseek-reasoner does not support this tool_choice",
+    "search_intent": "User wants to use Claude Code WebSearch tool but encounters a 400 API error when deepseek-reasoner model is used; needs fix to restore search functionality for both Chinese and English queries.",
+    "common_causes": [
+      "GitHub Issue #58590 on anthropics/claude-code (updated 2026-05-20). Real user report: API Error 400 blocks WebSearch for all queries. Category maps to AI Coding Tools per SKILL.md rules (Claude Code errors → AI Coding Tools). High commercial value as Claude Code is a paid subscription IDE tool."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "openai-api-non-streaming-openai-api-calls-hang-indefinitely-behind-nat-gateway-server-generates-response-but-client-never-receives-it",
+    "title": "OpenAI Python SDK non-streaming calls hang forever behind NAT — no TCP keepalive",
+    "description": "Developer running OpenAI API calls behind NAT gateway experiences infinite hangs on non-streaming calls (Responses API / completions.create()). Server-side succeeds but client blocks forever. Needs connection timeout or keepalive fix. Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "Non-streaming OpenAI API calls hang indefinitely behind NAT gateway — server generates response but client never receives it",
+    "search_intent": "Developer running OpenAI API calls behind NAT gateway experiences infinite hangs on non-streaming calls (Responses API / completions.create()). Server-side succeeds but client blocks forever. Needs connection timeout or keepalive fix.",
+    "common_causes": [
+      "GitHub Issue #3269 on openai/openai-python (updated 2026-05-19). Root cause identified: default httpx transport lacks TCP keepalive. Critical for any developer deploying AI APIs behind corporate NAT/firewall — direct production impact. OpenAI API category per mapping rules."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "anthropic-api-awseventstreamdecoder-emits-rate-limit-error-and-model-not-found-errors-as-completion-events-instead-of-proper-exceptions-causes-silent-failures",
+    "title": "Anthropic Bedrock SDK AttributeError on error SSE events — rate-limit/model-not-found silently swallowed",
+    "description": "Developer using Anthropic SDK with AWS Bedrock backend encounters incorrect behavior where Bedrock error responses (rate limits, model not found) are routed as completion events, preventing proper error handling in production pipelines. Includes evidence for Anthropic API troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Anthropic API",
+    "error_signature": "AWSEventStreamDecoder emits rate_limit_error and model_not_found errors as completion events instead of proper exceptions — causes silent failures",
+    "search_intent": "Developer using Anthropic SDK with AWS Bedrock backend encounters incorrect behavior where Bedrock error responses (rate limits, model not found) are routed as completion events, preventing proper error handling in production pipelines.",
+    "common_causes": [
+      "GitHub PR #1572 on anthropics/anthropic-sdk-python (updated 2026-05-19). Bug in AWSEventStreamDecoder routing Bedrock error payloads to wrong handler. Directly affects enterprise users running Claude on AWS Bedrock. Maps to Anthropic API — core SDK reliability issue. Fix PR already exists but not yet released."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "Anthropic API"
+    ]
+  },
+  {
+    "slug": "openai-api-jsondecodeerror-expecting-value-line-1-column-1-char-0-in-openai-streaming-py-line-259-json-loads-self-data",
+    "title": "OpenAI SDK streaming JSONDecodeError on SSE meta-only events",
+    "description": "Developer using OpenAI Python SDK streaming encounters JSONDecodeError when server sends SSE events containing only meta-fields (retry, id, event) without a data field. Needs robust parsing. Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "JSONDecodeError: Expecting value: line 1 column 1 (char 0) — in openai/_streaming.py line 259 json.loads(self.data)",
+    "search_intent": "Developer using OpenAI Python SDK streaming encounters JSONDecodeError when server sends SSE events containing only meta-fields (retry, id, event) without a data field. Needs robust parsing.",
+    "common_causes": [
+      "GitHub Issue #2722 on openai/openai-python (updated 2026-05-19). Long-standing issue affecting streaming consumers. Clear stack trace in _streaming.py. Production impact for real-time AI chat applications. Maps to OpenAI API category."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "OpenAI API"
+    ]
   }
 ]
