@@ -22077,5 +22077,117 @@
     "related_errors": [
       "Docker"
     ]
+  },
+  {
+    "slug": "claude-code-api-error-rate-limit-reached-session-usage-6-weekly-29-no-per-minute-docs",
+    "title": "Anthropic API rate limit reached despite low session/weekly usage in Claude Code",
+    "description": "User blocked by undocumented per-minute rate limits in Claude Code despite low overall usage; needs workaround or per-minute limit documentation Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "API Error: Rate limit reached (session usage 6%, weekly 29%, no per-minute docs)",
+    "search_intent": "User blocked by undocumented per-minute rate limits in Claude Code despite low overall usage; needs workaround or per-minute limit documentation",
+    "common_causes": [
+      "GitHub issue #39948 on anthropics/claude-code — user processing 148 PDFs hits rate limit at 6% session / 29% weekly usage, waited 3+ hours with no resolution. No short-term per-minute limit docs exist. High commercial value: Claude Code Pro/Pro+ subscription broken for paying users. Category: AI Coding Tools (Claude Code)."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "claude-code-agent-sdk-crashes-on-429-rate-limit-no-exponential-backoff-or-retry-implemented",
+    "title": "Claude Code Agent SDK crashes on 429 rate limit instead of graceful backoff",
+    "description": "Developer expects SDK to auto-retry on 429 but agent crashes outright; needs robust retry/backoff for production reliability Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Agent SDK crashes on 429 rate limit — no exponential backoff or retry implemented",
+    "search_intent": "Developer expects SDK to auto-retry on 429 but agent crashes outright; needs robust retry/backoff for production reliability",
+    "common_causes": [
+      "GitHub issue #812 on anthropics/claude-agent-sdk-python — title explicitly states SDK crashes on 429 instead of backing off/retrying. Production deployment blocker for paid teams using Claude Code SDK. No overlap with existing covered errors (which cover manual rate limit handling, not SDK-level crash behavior). Category: AI Coding Tools (Claude Code)."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "openai-api-error-code-429-insufficient-quota-you-exceeded-your-current-quota-please-check-your-plan-and-billing-details",
+    "title": "How to distinguish an OpenAI API \"quota exceeded\" 429 from a standard rate limit 429?",
+    "description": "Distinguish programmatic handling between quota exceeded 429 vs standard rate limit 429; prevent infinite retry loops on permanent quota errors Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "Error code: 429 - insufficient_quota: You exceeded your current quota, please check your plan and billing details",
+    "search_intent": "Distinguish programmatic handling between quota exceeded 429 vs standard rate limit 429; prevent infinite retry loops on permanent quota errors",
+    "common_causes": [
+      "Stack Overflow Q79761005 — developer encounters 429 with insufficient_quota on free tier, tenacity @retry keeps looping. Covers code field 'insufficient_quota' vs 'rate_limit_exceeded'. Distinct from covered '429 Too Many Requests' and 'insufficient quota' generic entries — this targets the nuanced programmatic detection question. Category: OpenAI API."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "cursor-model-not-available-this-model-provider-doesn-t-serve-your-region-visit-https-docs-cursor-com-account-regions",
+    "title": "Cursor 'Model not available' — region restriction blocks certain providers",
+    "description": "Paid Cursor subscription user cannot access Claude Sonnet 4.5 due to geographic region restriction; seeks workaround or alternative model provisioning Includes evidence for Cursor troubleshooting demand.",
+    "category": "Cursor",
+    "technology": "Cursor",
+    "error_signature": "Model not available: This model provider doesn't serve your region. Visit https://docs.cursor.com/account/regions",
+    "search_intent": "Paid Cursor subscription user cannot access Claude Sonnet 4.5 due to geographic region restriction; seeks workaround or alternative model provisioning",
+    "common_causes": [
+      "Blog + GitHub page documenting Cursor's region-based model restriction error. Users with paid Pro/Pro+ plans hit this unexpectedly. Distinct from covered 'Cursor model not available' entry which is generic — this one focuses on the REGION RESTRICTION angle (affects business users in restricted regions). Category: Cursor."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Cursor"
+    ]
+  },
+  {
+    "slug": "cloudflare-not-found-error-code-7003-could-not-route-to-client-v4-accounts-cloudflare-account-id-ai-v1-chat-completions-object-identifier-invalid",
+    "title": "Cloudflare Workers AI returns 7003 Not Found due to invalid object identifier",
+    "description": "Cloudflare Workers AI API call fails with 7003 routing error when CLOUDFLARE_ACCOUNT_ID placeholder not properly substituted in curl/base URL Includes evidence for Cloudflare troubleshooting demand.",
+    "category": "Cloudflare",
+    "technology": "Cloudflare",
+    "error_signature": "Not Found: error code 7003 Could not route to /client/v4/accounts/${CLOUDFLARE_ACCOUNT_ID}/ai/v1/chat/completions — object identifier invalid",
+    "search_intent": "Cloudflare Workers AI API call fails with 7003 routing error when CLOUDFLARE_ACCOUNT_ID placeholder not properly substituted in curl/base URL",
+    "common_causes": [
+      "GitHub issue #18552 on anomalyco/opencode — Cloudflare Workers AI returns 7003 error with templated $CLOUDFLARE_ACCOUNT_ID literally present in path. Developer confusion about proper credential substitution for Workers AI endpoint. Covers 7003 error code not in covered-errors (only 522/525 listed). Category: Cloudflare."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Cloudflare"
+    ]
+  },
+  {
+    "slug": "litellm-oauth-handler-overwrites-anthropic-beta-header-only-oauth-2025-04-20-retained-newer-beta-features-dropped-e-g-prompt-caching",
+    "title": "LiteLLM OAuth handler overwrites anthropic-beta header dropping client beta features",
+    "description": "Requests with newer Anthropic beta headers silently lose functionality when proxied through LiteLLM's OAuth handler; developers unaware of silent feature loss Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "oauth handler overwrites anthropic-beta header — only oauth-2025-04-20 retained, newer beta features dropped (e.g. prompt caching)",
+    "search_intent": "Requests with newer Anthropic beta headers silently lose functionality when proxied through LiteLLM's OAuth handler; developers unaware of silent feature loss",
+    "common_causes": [
+      "GitHub issue #22398 on BerriAI/litellm — optionally_handle_anthropic_oauth() replaces entire anthropic-beta header, stripping client-sent beta features. Silent bug affecting paid LiteLLM proxy deployments. Distinct from general rate-limit/error issues. Category: LiteLLM (proxy-specific)."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "LiteLLM"
+    ]
+  },
+  {
+    "slug": "litellm-keyerror-response-cloudflare-workers-ai-example-code-fails-when-using-litellm-provider",
+    "title": "Cloudflare Workers AI example code fails with KeyError 'response' in LiteLLM",
+    "description": "Developer follows LiteLLM docs for Cloudflare Workers AI setup but encounters KeyError because response structure changed; needs fix or updated example Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "KeyError: 'response' — Cloudflare Workers AI example code fails when using LiteLLM provider",
+    "search_intent": "Developer follows LiteLLM docs for Cloudflare Workers AI setup but encounters KeyError because response structure changed; needs fix or updated example",
+    "common_causes": [
+      "GitHub issue #25999 on BerriAI/litellm — sample usage from LiteLLM docs for Cloudflare Workers AI throws KeyError: 'response'. Breaking change in Cloudflare's API response format. Affects paid LiteLLM proxy users relying on Workers AI models. Distinct from general Cloudflare error coverage (7003, 5xx) as this targets LiteLLM integration-specific parsing bug. Category: LiteLLM."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "LiteLLM"
+    ]
   }
 ]
