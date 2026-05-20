@@ -22989,5 +22989,85 @@
     "related_errors": [
       "Docker"
     ]
+  },
+  {
+    "slug": "claude-code-error-an-unknown-error-occurred-unexpected-exit-code-1-crash-8ms-after-spawn-from-vs-code-parent-process",
+    "title": "Claude Code Binary Crashes Immediately When Spawned from VS Code — Works Fine in Terminal.app",
+    "description": "Fix Claude Code binary crashing on startup when run from VS Code integrated terminal or extension, while working fine in standalone Terminal.app Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "error: An unknown error occurred (Unexpected) — exit code 1, crash ~8ms after spawn from VS Code parent process",
+    "search_intent": "Fix Claude Code binary crashing on startup when run from VS Code integrated terminal or extension, while working fine in standalone Terminal.app",
+    "common_causes": [
+      "GitHub Issue #60436 in anthropics/claude-code, opened May 19 2026 (yesterday). Very detailed report showing v2.1.144 darwin-arm64 binary crashes immediately in any VS Code context. Extensively tested — ruled out env vars, TTY differences, binary corruption, auth issues. Crash tied specifically to VS Code Electron process tree. Claude Max subscriber with Opus model affected. High commercial value as Claude Max is a paid tier. Category mapped to AI Coding Tools."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "anthropic-api-overloaded-error-we-re-experiencing-high-demand-please-retry-after-x-seconds",
+    "title": "Anthropic API Overloaded Error — Client-side Retry Logic Fails on Rate Limit",
+    "description": "Fix handling of Anthropic API overloaded_error (429) responses when making multiple concurrent requests through SDK or proxy Includes evidence for Anthropic API troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Anthropic API",
+    "error_signature": "overloaded_error: We're experiencing high demand — please retry after X seconds",
+    "search_intent": "Fix handling of Anthropic API overloaded_error (429) responses when making multiple concurrent requests through SDK or proxy",
+    "common_causes": [
+      "GitHub Issue #672 in anthropics/anthropic-sdk-python shows client-side retry logic fails to properly handle Anthropic's overloaded_error. Affects production workflows using Claude API with automatic retries. High commercial value as API usage is pay-per-token and failures block paid operations. Category mapped to Anthropic API per approved mapping."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "Anthropic API"
+    ]
+  },
+  {
+    "slug": "claude-code-mcp-isn-t-available-over-remote-control-in-session-tool-list-frozen-at-boot-time-snapshot-after-mcp-server-restart",
+    "title": "No Way to Reconnect/Refresh MCP Tools Without Ending Session — Blocking Under Remote Control",
+    "description": "Find solution to refresh/reconnect MCP tools in an active Claude Code Remote Control session without killing the entire session Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "/mcp isn't available over Remote Control; in-session tool list frozen at boot-time snapshot after MCP server restart",
+    "search_intent": "Find solution to refresh/reconnect MCP tools in an active Claude Code Remote Control session without killing the entire session",
+    "common_causes": [
+      "GitHub Issue #60538 in anthropics/claude-code, opened May 19 2026 (yesterday). Details how the /mcp slash command is disabled under Remote Control and there is no CLI escape hatch to refresh the MCP tool catalog mid-session. Requires claude mcp remove+add which doesn't update live session cache. Directly impacts developers iterating on MCP server tool definitions. Category mapped to AI Coding Tools per approved mapping (Claude Code → AI Coding Tools)."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "openai-api-insufficient-quota-in-exceptions-py-sdk-does-not-raise-dedicated-insufficientquota-exception",
+    "title": "insufficient_quota Error in OpenAI Python SDK Exceptions Module",
+    "description": "Handle insufficient_quota errors from OpenAI API in Python code with proper exception type instead of generic APIError Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "insufficient_quota in _exceptions.py — SDK does not raise dedicated InsufficientQuota exception",
+    "search_intent": "Handle insufficient_quota errors from OpenAI API in Python code with proper exception type instead of generic APIError",
+    "common_causes": [
+      "GitHub Issue #1671 in openai/openai-python shows the SDK lacks a dedicated exception class for insufficient_quota errors, forcing developers to parse generic messages. This is an enhancement request but targets a real pain point for businesses paying per token who need to gracefully handle quota exhaustion. Category mapped to OpenAI API per approved mapping."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "claude-code-subprocess-initialization-did-not-complete-within-60000ms-check-authentication-and-network-connectivity",
+    "title": "Subprocess Initialization Timeout — Authentication and Network Connectivity Check Failed",
+    "description": "Resolve Claude Code subprocess timeout during initialization caused by auth failure or network connectivity issues Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Subprocess initialization did not complete within 60000ms — check authentication and network connectivity",
+    "search_intent": "Resolve Claude Code subprocess timeout during initialization caused by auth failure or network connectivity issues",
+    "common_causes": [
+      "GitHub Issue #60342 in anthropics/claude-code, opened May 18 2026. Reports subprocess timeout (60-second) during Claude Code initialization with vague error about authentication and network. Affects developers trying to start Claude Code sessions in constrained network environments. Duplicate risk checked against other Claude Code issues — this is a distinct error (timeout vs crash vs OAuth). Category mapped to AI Coding Tools."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
   }
 ]
