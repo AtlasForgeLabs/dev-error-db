@@ -22829,5 +22829,101 @@
     "related_errors": [
       "AI Coding Tools"
     ]
+  },
+  {
+    "slug": "anthropic-api-attributeerror-nonetype-object-has-no-attribute-model-bedrock-returns-rate-limit-error-sse-causing-sdk-crash-on-first-streaming-event",
+    "title": "Anthropic SDK Bedrock SSE stream crash: AttributeError on rate_limit_error",
+    "description": "Fix SDK crashing when AWS Bedrock cross-region inference profile returns HTTP 200 with rate_limit_error SSE payload, causing AttributeError on event.message access during AsyncAnthropicBedrock streaming Includes evidence for Anthropic API troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Anthropic API",
+    "error_signature": "AttributeError: 'NoneType' object has no attribute 'model' — Bedrock returns rate_limit_error SSE causing SDK crash on first streaming event",
+    "search_intent": "Fix SDK crashing when AWS Bedrock cross-region inference profile returns HTTP 200 with rate_limit_error SSE payload, causing AttributeError on event.message access during AsyncAnthropicBedrock streaming",
+    "common_causes": [
+      "Found in open GitHub issue #1472 on anthropics/anthropic-sdk-python (opened Apr 29, 2026). Production reproduction shows AsyncAnthropicBedrock streaming with global.anthropic.claude-opus-4-7 model intermittently crashes on first SSE event with rate_limit_error type. Multiple linked PRs attempted fixes. Category mapped to 'Anthropic API' as this is a direct SDK/API error affecting production AI billing workflows."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "Anthropic API"
+    ]
+  },
+  {
+    "slug": "vercel-pages-router-turbopack-route-loader-times-out-before-page-registration-despite-successful-chunk-compilation-deployment-hangs-indefinitely",
+    "title": "Next.js Pages Router Turbopack route loader times out before page registration despite successful chunks",
+    "description": "Fix Turbopack route loader timeout in Pages Router deployment builds where chunks succeed but page registration never completes, causing infinite hang Includes evidence for Vercel troubleshooting demand.",
+    "category": "Deployment",
+    "technology": "Vercel",
+    "error_signature": "Pages Router Turbopack route loader times out before page registration despite successful chunk compilation — deployment hangs indefinitely",
+    "search_intent": "Fix Turbopack route loader timeout in Pages Router deployment builds where chunks succeed but page registration never completes, causing infinite hang",
+    "common_causes": [
+      "Found in open GitHub issue #93758 on vercel/next.js (opened May 11, 2026). Affects Pages Router + Turbopack combination. Related labels include Internationalization, Linking, Runtime, and Turbopack. Blocked deployment workflow with 1 linked PR attempting fix. Category 'Deployment' maps to Vercel hosting environment."
+    ],
+    "quick_fix": "Check the build output, project root, and deployment platform configuration before redeploying.",
+    "related_errors": [
+      "Deployment"
+    ]
+  },
+  {
+    "slug": "vercel-turbopack-generates-external-module-references-with-hashes-that-don-t-match-installed-packages-when-node-modules-structure-differs-build-succeeds-but-runtime-fails-with-module-resolution-errors",
+    "title": "Vercel/Next.js Turbopack generates external module references with hashes that don't match installed packages",
+    "description": "Fix Turbopack hash generation mismatch between build-time module references and runtime installed packages in monorepo or custom node_modules setups Includes evidence for Vercel troubleshooting demand.",
+    "category": "Deployment",
+    "technology": "Vercel",
+    "error_signature": "Turbopack generates external module references with hashes that don't match installed packages when node_modules structure differs — build succeeds but runtime fails with module resolution errors",
+    "search_intent": "Fix Turbopack hash generation mismatch between build-time module references and runtime installed packages in monorepo or custom node_modules setups",
+    "common_causes": [
+      "Found in open GitHub issue #87737 on vercel/next.js (opened Dec 24, 2025). 25 comments indicate heavy community impact. Affects monorepo setups where workspace root detection is complex. Build appears to pass but produces broken output. Category 'Deployment' as it directly impacts production deployment reliability."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "Deployment"
+    ]
+  },
+  {
+    "slug": "github-actions-checkout-v6-credentials-don-t-work-with-docker-container-actions-authentication-fails-in-multi-container-ci-workflows-with-persistent-open-issue-and-13-plus-comments",
+    "title": "actions/checkout@v6 credentials don't work with Docker container actions — no workaround",
+    "description": "Fix GitHub Actions checkout action v6 credential passing to Docker container actions, blocking CI/CD pipelines that push to repos from within containerized job steps Includes evidence for GitHub Actions troubleshooting demand.",
+    "category": "GitHub Actions",
+    "technology": "GitHub Actions",
+    "error_signature": "checkout@v6 credentials don't work with Docker container actions — authentication fails in multi-container CI workflows with persistent open issue and 13+ comments",
+    "search_intent": "Fix GitHub Actions checkout action v6 credential passing to Docker container actions, blocking CI/CD pipelines that push to repos from within containerized job steps",
+    "common_causes": [
+      "Found in open GitHub issue #2386 on actions/checkout repo (opened Mar 12, 2026). Persistent blocker for teams using self-hosted or container-based runners with token-authenticated repo pushes. 13+ comments, no accepted workaround. Blocking CI/CD for paying team accounts strongly impacts commercial value. Category 'GitHub Actions' is exact match."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "GitHub Actions"
+    ]
+  },
+  {
+    "slug": "anthropic-api-sessions-stop-abruptly-when-budget-exhausted-with-no-x-budget-remaining-pct-header-or-webhook-alert-no-programmatic-way-to-subscribe-to-limit-events-or-throttle-automation-before-hard-stops",
+    "title": "No pre-limit usage alerts for Anthropic session/weekly budgets breaks production AI workflows",
+    "description": "Need advance warning (email/push/webhook/SSE) before Anthropic session or weekly budget exhaustion so production AI systems can self-throttle and avoid unexpected service disruption Includes evidence for Anthropic API troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Anthropic API",
+    "error_signature": "Sessions stop abruptly when budget exhausted with no X-Budget-Remaining-Pct header or webhook alert — no programmatic way to subscribe to limit events or throttle automation before hard stops",
+    "search_intent": "Need advance warning (email/push/webhook/SSE) before Anthropic session or weekly budget exhaustion so production AI systems can self-throttle and avoid unexpected service disruption",
+    "common_causes": [
+      "Found in open GitHub issue #1494 on anthropics/anthropic-sdk-python (opened May 4, 2026). Critical pain point for production AI operators building on the API with budgets. Suggested solution includes X-Budget-Remaining-Pct response header. No competing docs coverage. Category 'Anthropic API' fits billing/rate-limit domain. Not previously covered per covered-errors.md (only 401/429/quota listed, not absence of budget monitoring APIs)."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Anthropic API"
+    ]
+  },
+  {
+    "slug": "vercel-the-next-standalone-output-folder-doesn-t-contain-any-sourcemaps-production-deployments-via-standalone-mode-have-zero-debuggability",
+    "title": "Next.js standalone output folder missing all sourcemaps breaks production debugging",
+    "description": "Fix Next.js standalone mode output to include sourcemaps so production deployments retain ability to debug minified code in browser DevTools Includes evidence for Vercel troubleshooting demand.",
+    "category": "Deployment",
+    "technology": "Vercel",
+    "error_signature": "The .next/standalone/ output folder doesn't contain any sourcemaps — production deployments via standalone mode have zero debuggability",
+    "search_intent": "Fix Next.js standalone mode output to include sourcemaps so production deployments retain ability to debug minified code in browser DevTools",
+    "common_causes": [
+      "Found in open GitHub issue #89917 on vercel/next.js (opened Feb 12, 2026). Affects anyone using output: 'standalone' configuration (common for Docker/Vercel deployments). Sourcemap absence makes production debugging impossible. 4 comments showing community interest. Category 'Deployment' aligns with Vercel/Docker hosting context."
+    ],
+    "quick_fix": "Check the build output, project root, and deployment platform configuration before redeploying.",
+    "related_errors": [
+      "Deployment"
+    ]
   }
 ]
