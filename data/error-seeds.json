@@ -22189,5 +22189,85 @@
     "related_errors": [
       "LiteLLM"
     ]
+  },
+  {
+    "slug": "litellm-budgetexceedederror-http-429-budget-has-been-exceeded-enduser-id-current-cost-inflated-max-budget-50-0-db-spend-shows-0-001-while-redis-counter-reports-50-plus-after-4-min-of-normal-traffic",
+    "title": "LiteLLM reserve_budget_for_request() Leaks Redis Spend Counters Causing Phantom BudgetExceededError",
+    "description": "Fix phantom BudgetExceededError in LiteLLM proxy caused by Redis spend counter leaks; end users randomly blocked despite being within budget limits Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "BudgetExceededError (HTTP 429): \"Budget has been exceeded! EndUser=<id> Current cost: <inflated>, Max budget: 50.0\" — DB spend shows $0.001 while Redis counter reports $50+ after ~4 min of normal traffic",
+    "search_intent": "Fix phantom BudgetExceededError in LiteLLM proxy caused by Redis spend counter leaks; end users randomly blocked despite being within budget limits",
+    "common_causes": [
+      "GitHub Issue #27639 (BerriAI/litellm) opened May 11 2026 by nkhanpa-art, 5+ comments still open. Production deployment with 6000+ end users, 4 replicas on Kubernetes EKS, Redis cache enabled. Bug introduced in v1.83.10 dev branch. root cause: reserve_budget_for_request() atomically increments Redis counter but _finalize_budget_reservation() fails silently on error path leaving phantom reservations. Multiple confirmations of same issue by devdev999 (Litellm contributor), maltbae provided detailed race condition analysis and workaround, psarma89 cross-linked related issue #28283 showing same symptom independent of reservation feature."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "LiteLLM"
+    ]
+  },
+  {
+    "slug": "openai-api-background-responses-failures-lack-a-stable-code-name-that-maps-to-an-exception-class-status-failed-returns-opaque-error-code-e-g-server-error-with-no-sdk-exception-mapping-http-poll-returns-200-ok-so-no-typed-exception-raised",
+    "title": "OpenAI API Background Responses Failures Lack Stable Error Code Mapping",
+    "description": "How to handle background mode Responses API errors deterministically in Python SDK; map opaque error codes to typed exceptions for retry logic Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "Background responses failures lack a stable code/name that maps to an exception class — status=\"failed\" returns opaque error.code (e.g. \"server_error\") with no SDK exception mapping; HTTP poll returns 200 OK so no typed exception raised",
+    "search_intent": "How to handle background mode Responses API errors deterministically in Python SDK; map opaque error codes to typed exceptions for retry logic",
+    "common_causes": [
+      "GitHub Issue #3212 (openai/openai-python) opened May 8 2026 by adnanboz, 4 comments including active PR interest. Synchronous mode has deterministic HTTP-code→exception mapping via _make_status_error(), but background runs surface only free-form error.code strings (server_error, rate_limit_exceeded) not guaranteed to be stable enums. Direct commercial impact: paid API users cannot implement reliable retry/backoff for background runs."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "litellm-deployment-level-tpm-enforcement-is-per-pod-not-cross-pod-effective-limit-becomes-tpm-limit-n-replica-allowing-uncontrolled-token-consumption",
+    "title": "LiteLLM Deployment-Level TPM Enforcement Is Per-Pod Not Cross-Pod",
+    "description": "Fix TPM rate limiting that bypasses multi-replica deployments; each pod enforces its own TPM limit independently doubling/quadrupling effective throughput beyond intended cap Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "Deployment-level TPM enforcement is per-pod not cross-pod — effective limit becomes tpm_limit × N_replica allowing uncontrolled token consumption",
+    "search_intent": "Fix TPM rate limiting that bypasses multi-replica deployments; each pod enforces its own TPM limit independently doubling/quadrupling effective throughput beyond intended cap",
+    "common_causes": [
+      "GitHub Issue #27736 (BerriAI/litellm) opened May 12 2026 by hula-la, 1 comment. Critical billing impact for multi-replica LiteLLM proxy deployments — per-pod TPM enforcement means configured rate limits are multiplied by replica count, leading to unexpected costs. Label: bug + proxy. High commercial relevance for paid enterprise LiteLLM users deploying scaled infrastructure."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "LiteLLM"
+    ]
+  },
+  {
+    "slug": "anthropic-api-vertex-ai-incorrectly-rejecting-2mb-requests-with-413-32mb-limit-exceeded-error-despite-payload-well-under-stated-limits",
+    "title": "Anthropic SDK Vertex AI Incorrectly Rejecting Requests With 413 Limit Exceeded Error",
+    "description": "Fix Anthropic SDK / Vertex AI integration incorrectly rejecting valid-sized requests with 413 payload-too-large errors Includes evidence for Anthropic API troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Anthropic API",
+    "error_signature": "Vertex AI incorrectly rejecting ~2MB requests with 413 '32MB limit exceeded' error despite payload well under stated limits",
+    "search_intent": "Fix Anthropic SDK / Vertex AI integration incorrectly rejecting valid-sized requests with 413 payload-too-large errors",
+    "common_causes": [
+      "GitHub Issue #1028 (anthropics/anthropic-sdk-python) opened Sep 7 2025 by abhiwebshar, 2 comments still open. When accessing Anthropic models via Vertex AI endpoint, small payloads (~2MB) are rejected with 413 '32MB limit exceeded'. Labels indicate it targets both Anthropic API and cloud platform integration. Still active as of latest browse."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Anthropic API"
+    ]
+  },
+  {
+    "slug": "litellm-router-aresponses-streaming-bypasses-mid-stream-fallback-midstreamfallbackerror-not-handled-breaking-streaming-responses-when-primary-model-fails-mid-stream",
+    "title": "LiteLLM Router Streaming Bypasses Mid-Stream Fallback Handling",
+    "description": "Fix streaming fallback mechanism in LiteLLM router that drops mid-stream errors instead of gracefully switching to backup model Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "Router.aresponses streaming bypasses mid-stream fallback — MidStreamFallbackError not handled, breaking streaming responses when primary model fails mid-stream",
+    "search_intent": "Fix streaming fallback mechanism in LiteLLM router that drops mid-stream errors instead of gracefully switching to backup model",
+    "common_causes": [
+      "GitHub Issue #28216 (BerriAI/litellm) opened May 19 2026 by cwang-otto, yesterday labels: llm translation + SDK. Specific to Router.aresponses streaming path — MidStreamFallbackError is raised but not caught, causing stream termination rather than graceful model switch. Critical for production reliability when using multi-model failover configurations."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "LiteLLM"
+    ]
   }
 ]
