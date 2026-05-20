@@ -22765,5 +22765,69 @@
     "related_errors": [
       "Ollama"
     ]
+  },
+  {
+    "slug": "litellm-openai-api-keyerror-toc-detected-caused-by-unthrottled-concurrent-asyncio-gather-calls-triggering-http-429-too-many-requests-from-llm-api-empty-json-parse-returns-then-direct-dict-access-crashes",
+    "title": "LiteLLM Unthrottled concurrent LLM requests cause HTTP 429 and cascading KeyError crash",
+    "description": "Prevent LiteLLM library from flooding LLM endpoints with unbounded concurrent requests causing 429 errors; fix cascading KeyError crash when retries exhaust Includes evidence for LiteLLM / OpenAI API troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM / OpenAI API",
+    "error_signature": "KeyError: 'toc_detected' caused by unthrottled concurrent asyncio.gather calls triggering HTTP 429 Too Many Requests from LLM API — empty JSON parse returns {} then direct dict access crashes",
+    "search_intent": "Prevent LiteLLM library from flooding LLM endpoints with unbounded concurrent requests causing 429 errors; fix cascading KeyError crash when retries exhaust",
+    "common_causes": [
+      "GitHub issue #283 in VectifyAI/PageIndex opened May 20, 2026 (verified via CDP browser snapshot). Root cause: unthrottled asyncio.gather making concurrent LLM API calls without concurrency limits. When public/tier-limited endpoints return 429, fixed-delay retries all fire simultaneously, exhausting retry budget. Traceback confirms litellm.RateLimitError chain followed by KeyError on json_content['toc_detected']. High-value because it combines LiteLLM + OpenAI API 429 in an automated production scenario."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "LiteLLM"
+    ]
+  },
+  {
+    "slug": "openai-api-response-done-server-event-usage-object-does-not-match-actual-token-consumption-measuring-token-usage-via-openai-realtime-net-sdk-shows-discrepancy-between-reported-and-expected-values",
+    "title": "Azure OpenAI Realtime API token usage mismatch between response.done server event and actual consumption",
+    "description": "Understand why Azure OpenAI Realtime API token counts from the response.done event don't match expected/consumed tokens; fix billing measurement accuracy Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "response.done server event usage object does not match actual token consumption — measuring token usage via OpenAI.Realtime .NET SDK shows discrepancy between reported and expected values",
+    "search_intent": "Understand why Azure OpenAI Realtime API token counts from the response.done event don't match expected/consumed tokens; fix billing measurement accuracy",
+    "common_causes": [
+      "Stack Overflow question (id 79918080) asked Apr 1 2025: developer using Azure OpenAI Realtime C# SDK logs token usage from response_done events and finds discrepancies. Real-time audio sessions are high-value production use cases. Category: OpenAI API per mapping rules."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "litellm-azure-openai-authentication-error-401-connecting-azure-openai-via-litellm-v1-63-7-with-dspy-framework-fails-with-401-when-using-azure-ad-token-refresh-method",
+    "title": "Connecting Azure OpenAI via LiteLLM returning Authentication Error 401",
+    "description": "Fix 401 authentication failure when routing Azure OpenAI through LiteLLM proxy; authenticate properly using Azure AD tokens instead of api_key Includes evidence for LiteLLM / Azure OpenAI troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM / Azure OpenAI",
+    "error_signature": "Authentication Error 401 — Connecting Azure OpenAI via LiteLLM (v1.63.7) with DSPy framework fails with 401 when using Azure AD Token Refresh method",
+    "search_intent": "Fix 401 authentication failure when routing Azure OpenAI through LiteLLM proxy; authenticate properly using Azure AD tokens instead of api_key",
+    "common_causes": [
+      "Stack Overflow question (id 79538205) asked Mar 27 2025: developer using DSPy v2.6.4 with liteLLM v1.63.7 cannot connect to Azure OpenAI via Azure AD Token Refresh. Returns 401 Auth Error. Blocks enterprise Azure-based AI deployments."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "LiteLLM"
+    ]
+  },
+  {
+    "slug": "openai-api-langchain-openai-rag-langchain-tool-calling-is-not-working-compatible-with-withstructuredoutput-tool-calls-fail-silently-when-structured-output-format-is-enabled",
+    "title": "OpenAI RAG LangChain tool calling incompatible with withStructuredOutput()",
+    "description": "Make LangChain tool calling work together with OpenAI's structured output feature; resolve incompatibility between tool definitions and response_format=JSON_OBJECT Includes evidence for OpenAI API / LangChain troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "OpenAI API / LangChain",
+    "error_signature": "OpenAI RAG LangChain tool calling is not working/compatible with withStructuredOutput() — tool calls fail silently when structured output format is enabled",
+    "search_intent": "Make LangChain tool calling work together with OpenAI's structured output feature; resolve incompatibility between tool definitions and response_format=JSON_OBJECT",
+    "common_causes": [
+      "Stack Overflow question (id 79923286) asked Apr 10 2026: developer integrating chroma-core OpenAI embedding functions with LangChain structured output finds tool calling broken. Blocks production agentic pipelines. Category maps to AI Coding Tools (LangChain)."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
   }
 ]
