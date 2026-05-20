@@ -23357,5 +23357,37 @@
     "related_errors": [
       "AI Coding Tools"
     ]
+  },
+  {
+    "slug": "openai-api-background-responses-failures-return-opaque-error-code-e-g-server-error-rate-limit-exceeded-that-does-not-map-to-sdk-exception-classes-http-poll-returns-200-ok-so-no-typed-exception-raised",
+    "title": "Background responses failures lack stable error code mapped to SDK exception class",
+    "description": "How to handle OpenAI Responses API background mode failures with proper exception classification and retry logic Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "background responses failures return opaque error.code (e.g. \"server_error\", \"rate_limit_exceeded\") that does not map to SDK exception classes; HTTP poll returns 200 OK so no typed exception raised",
+    "search_intent": "How to handle OpenAI Responses API background mode failures with proper exception classification and retry logic",
+    "common_causes": [
+      "GitHub issue #3212 on openai/openai-python filed May 8 2026. Describes how synchronous mode has deterministic HTTP-status-to-exception-class mapping while background=true mode exposes only free-form error.code strings with no documented enum or corresponding SDK exception class. This blocks production retry/backoff logic for paid API users."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "claude-code-api-error-400-role-system-is-not-supported-on-this-model-client-builds-malformed-request-after-large-twice-compacted-session",
+    "title": "Claude Code 400 role system is not supported after large session compaction",
+    "description": "Repair Claude Code session state corruption where post-compaction request construction injects system-role message into messages array, making session permanently unrecoverable without /clear Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "API Error: 400 role 'system' is not supported on this model — client builds malformed request after large twice-compacted session",
+    "search_intent": "Repair Claude Code session state corruption where post-compaction request construction injects system-role message into messages array, making session permanently unrecoverable without /clear",
+    "common_causes": [
+      "GitHub issue #60947 on anthropics/claude-code filed May 20 2026. Detailed repro with 5355 transcript events, two compaction boundaries (manual preTokens:1001871, auto preTokens:974919). Session becomes unrecoverable in-place since /compact fails with same error. Verified via grep: 0 hits for '\"role\":\"system\"' in stored history. Bug is in request-build time synthesis path. High-severity data-loss bug affecting long-running production sessions."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
   }
 ]
