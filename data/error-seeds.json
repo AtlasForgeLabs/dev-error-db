@@ -22925,5 +22925,69 @@
     "related_errors": [
       "Deployment"
     ]
+  },
+  {
+    "slug": "anthropic-api-attributeerror-nonetype-object-has-no-attribute-model-usage-bedrock-cross-region-inference-sse-error-payload-returned-as-betarawmessagestartevent-with-none-message-field",
+    "title": "Anthropic SDK Streaming SSE Rate-Limit Error Causes AttributeError: NoneType Has No Attribute model",
+    "description": "Fix crash when Bedrock returns rate_limit_error inside streaming SSE response — SDK raises unhandled AttributeError instead of typed rate limit exception Includes evidence for Anthropic API troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Anthropic API",
+    "error_signature": "AttributeError: 'NoneType' object has no attribute 'model' / 'usage' — Bedrock cross-region inference SSE error payload returned as BetaRawMessageStartEvent with None message field",
+    "search_intent": "Fix crash when Bedrock returns rate_limit_error inside streaming SSE response — SDK raises unhandled AttributeError instead of typed rate limit exception",
+    "common_causes": [
+      "GitHub Issue #1472 on anthropics/anthropic-sdk-python opened Apr 29, 2026. Reproducible against global.anthropic.claude-opus-4-7 via AsyncAnthropicBedrock. Bedrock returns HTTP 200 with rate_limit_error in first SSE frame; SDK creates BetaRawMessageStartEvent with message=None; downstream access to event.message.model/usage crashes. 3 linked PRs indicate community fix activity. Category: Anthropic API (paid Bedrock usage impacts billing)."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "Anthropic API"
+    ]
+  },
+  {
+    "slug": "openai-api-background-responses-api-error-code-not-mapped-to-sdk-exception-class-rate-limit-exceeded-server-error-return-opaque-strings-without-typed-exceptions",
+    "title": "OpenAI Python SDK: Background Response API Lacks Stable Error Type Mapping",
+    "description": "Handle background mode API failures reliably — classify retries vs non-retriable errors based on error type Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "Background Responses API error.code not mapped to SDK exception class; rate_limit_exceeded, server_error return opaque strings without typed exceptions",
+    "search_intent": "Handle background mode API failures reliably — classify retries vs non-retriable errors based on error type",
+    "common_causes": [
+      "GitHub Issue #3212 on openai/openai-python opened May 8, 2026 (2 weeks ago, active with multiple contributors volunteering). Root cause: polling GET /v1/responses/{id} returns HTTP 200 even when run failed, so SDK never dispatches typed exceptions. Users must manually parse error.code string which is undocumented. Affects production systems using ChatGPT Codex Connector. Category: OpenAI API (paid per-token service)."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "openai-api-404-model-not-found-gpt-5-2-causes-websocket-fallback-plus-reconnect-loop-in-codex-cli",
+    "title": "OpenAI Codex CLI: 404 Model Not Found gpt-5.2 Triggers WebSocket Reconnect Loop",
+    "description": "Stop infinite reconnection loop when Codex CLI encounters unavailable model — recover cleanly instead of looping forever Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "404 \"Model not found gpt-5.2\" causes WebSocket fallback + reconnect loop in Codex CLI",
+    "search_intent": "Stop infinite reconnection loop when Codex CLI encounters unavailable model — recover cleanly instead of looping forever",
+    "common_causes": [
+      "GitHub Issue #22368 on openai/codex opened ~7 days ago. When model gpt-5.2 returns 404, Codex CLI falls back to WebSocket then enters reconnection loop. Affects developers using Codex app with new/ephemeral models. High frustration signal. Category: OpenAI API (subscription tool broken)."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "docker-docker-daemon-dies-due-to-healthcheck",
+    "title": "Docker Daemon Crashes Due to Healthcheck — Intermittent Service Disruption in Production",
+    "description": "Fix Docker daemon crashes caused by healthcheck mechanism causing intermittent service disruption Includes evidence for Docker troubleshooting demand.",
+    "category": "Docker",
+    "technology": "Docker",
+    "error_signature": "Docker Daemon dies due to healthcheck",
+    "search_intent": "Fix Docker daemon crashes caused by healthcheck mechanism causing intermittent service disruption",
+    "common_causes": [
+      "GitHub Issue #52330 on moby/moby closed May 17, 2026 but remained highly active with 10 comments. Docker daemon dying due to healthcheck — production impact when containers lose daemon connectivity. Though marked skipped, the discussion reveals a real bug pattern affecting enterprise deployments. Category: Docker (container runtime critical path)."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Docker"
+    ]
   }
 ]
