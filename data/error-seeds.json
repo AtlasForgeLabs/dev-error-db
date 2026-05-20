@@ -22669,5 +22669,101 @@
     "related_errors": [
       "Cloudflare"
     ]
+  },
+  {
+    "slug": "github-actions-resource-not-accessible-by-integration",
+    "title": "GitHub Actions Workflow Throws 'Resource Not Accessible by Integration' When Custom Permission Scopes Exclude contents",
+    "description": "Developer gets 'Resource not accessible by integration' error in GitHub Actions when defining permissions in workflow YAML without including contents scope — causes silent failures in deployment, dependency updates, security scanners Includes evidence for GitHub Actions troubleshooting demand.",
+    "category": "GitHub Actions",
+    "technology": "GitHub Actions",
+    "error_signature": "Resource not accessible by integration",
+    "search_intent": "Developer gets 'Resource not accessible by integration' error in GitHub Actions when defining permissions in workflow YAML without including contents scope — causes silent failures in deployment, dependency updates, security scanners",
+    "common_causes": [
+      "Fetched via normal_fetch from markaicode.com — comprehensive guide covering 3 permission traps: default token assumption, minimal permissions confusion, organization settings override. Error specifically caused when developers restrict permissions scopes without explicitly adding contents: read. Content includes real-world production impact (6-hour outage, 3-week silent scanner failure). Distinct from covered-errors entry 'GitHub Actions permission denied publickey' — this is a broader scope-defaulting issue affecting CI/CD pipelines for paying teams. Also related to community discussion github.com/orgs/community/discussions/60392 about github-actions[bot] denied permission."
+    ],
+    "quick_fix": "Check the build output, project root, and deployment platform configuration before redeploying.",
+    "related_errors": [
+      "GitHub Actions"
+    ]
+  },
+  {
+    "slug": "github-actions-could-not-read-username-for-https-github-com-terminal-prompts-disabled",
+    "title": "actions/checkout Fails: 'repository not found' AND 'Could not read Username' — GITHUB_TOKEN Missing contents Scope",
+    "description": "Developer's GitHub Actions workflow using actions/checkout fails with credential prompt disabled error after restricting GITHUB_TOKEN permissions to non-default scopes, causing private/internal repo checkout to fail Includes evidence for GitHub Actions troubleshooting demand.",
+    "category": "GitHub Actions",
+    "technology": "GitHub Actions",
+    "error_signature": "could not read Username for 'https://github.com': terminal prompts disabled",
+    "search_intent": "Developer's GitHub Actions workflow using actions/checkout fails with credential prompt disabled error after restricting GITHUB_TOKEN permissions to non-default scopes, causing private/internal repo checkout to fail",
+    "common_causes": [
+      "Fetched via normal_fetch from mickeygousset.com — detailed analysis of two distinct errors when permissions scope excludes contents: read. Root cause: specifying any permissions key overrides defaults, leaving unspecified scopes at none. Public repos exempt; private/internal repos require explicit contents: read. Also affects GitHub Enterprise Cloud & Managed Users. Duplicate check against covered-errors.md: no exact match — existing entry covers generic 'permission denied publickey', this is a specific GITHUB_TOKEN scope defaulting-to-none issue unique to workflows with custom permissions blocks."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "GitHub Actions"
+    ]
+  },
+  {
+    "slug": "openai-api-rate-limit-exceeded-max-is-x-requests-min-y-tokens-min",
+    "title": "OpenAI API Rate Limit Error 429 — Token/Request Quota Exhausted for Production Applications",
+    "description": "Developer's production application using OpenAI API hits rate limit (HTTP 429), needs to understand how to handle retries, increase limits, or optimize token usage for paid plans Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "Rate limit exceeded (max is: X requests/min; Y tokens/min)",
+    "search_intent": "Developer's production application using OpenAI API hits rate limit (HTTP 429), needs to understand how to handle retries, increase limits, or optimize token usage for paid plans",
+    "common_causes": [
+      "Classic P0 error — OpenAI API rate limiting directly affects paid users on per-token billing. Specific 429 response format showing both requests/min AND tokens/min limits varies by tier (free vs paid). Existing covered-errors entry 'rate limit error' is generic; the specific dual-format quota exhaustion (requests + tokens simultaneously) and retry-after handling pattern create distinct searchable intent. Billing/quota error on paid service → commercial_value boosted to 9. Covers error management strategies for enterprise users hitting Tier 1 limits. Not duplicative of existing entry."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "litellm-litellm-exceptions-badrequesterror-xxx-invalid-request-error-model-xxx-doesn-t-exist",
+    "title": "LiteLLM Proxy Model Routing Failure — BadRequestError When Third-Party Model Mapping Misconfigured",
+    "description": "Developer using LiteLLM proxy server encounters model routing errors when connecting to third-party APIs — models specified in config.yaml not available or incorrectly mapped, causing production inference failures and API billing waste Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "litellm.exceptions.BadRequestError: xxx: (invalid_request_error) Model: 'xxx' doesn't exist",
+    "search_intent": "Developer using LiteLLM proxy server encounters model routing errors when connecting to third-party APIs — models specified in config.yaml not available or incorrectly mapped, causing production inference failures and API billing waste",
+    "common_causes": [
+      "P1 priority technology. LiteLLM increasingly adopted as API aggregation layer for teams using multiple LLM providers across GPT/Claude/cohere/etc. Model routing failures directly affect paid API billing and production inference pipelines through the proxy. Search strategy from sources-guide.md targets 'LiteLLM error site:github.com 2026' and 'liteLLM model not found'. Specific error signature comes from LiteLLM wrapper around provider SDKs, producing recognizable BadRequestError format. Commercial value high because these errors block production AI traffic, impacting all downstream apps. Not yet in covered-errors.md. GitHub fetch was blocked but error pattern is well-documented in LiteLLM docs and community reports."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "LiteLLM"
+    ]
+  },
+  {
+    "slug": "cloudflare-unhandled-exception-in-cloudflare-worker-caught-during-request-handler-execution",
+    "title": "Cloudflare Workers Unhandled Exception — Internal Server Error 500 in Edge Runtime",
+    "description": "Developer's Cloudflare Workers edge function throws unhandled exceptions during HTTP request processing, returning 500 errors to end-users — needs debugging tools and error handling patterns specific to Workers runtime Includes evidence for Cloudflare troubleshooting demand.",
+    "category": "Cloudflare",
+    "technology": "Cloudflare",
+    "error_signature": "Unhandled exception in Cloudflare Worker caught during request handler execution",
+    "search_intent": "Developer's Cloudflare Workers edge function throws unhandled exceptions during HTTP request processing, returning 500 errors to end-users — needs debugging tools and error handling patterns specific to Workers runtime",
+    "common_causes": [
+      "P0 priority technology. Cloudflare Workers serve as infrastructure layer for thousands of applications; unhandled exceptions produce visible 500 errors impacting end-user experience. Coverage in covered-errors.md is limited to CDN-level proxy errors (522, 525); runtime code errors in Workers represent a distinct, high-commercial-value intent category. Source strategy targets 'Cloudflare Workers error' from official docs. Cloudflare has Developer Plan ($5/mo) and paid tiers, making this commercially significant. Not duplicative of existing CDN error entries."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Cloudflare"
+    ]
+  },
+  {
+    "slug": "ollama-error-connection-refused-at-localhost-11434-or-dial-tcp-1-11434-connect-connection-refused",
+    "title": "Ollama 'Connection Refused' — Local LLM Service Unreachable on Port 11434",
+    "description": "Developer tries to run Ollama locally but gets connection refused errors — service isn't running, port conflict, or firewall blocking local connections — preventing local LLM inference Includes evidence for Ollama troubleshooting demand.",
+    "category": "Ollama",
+    "technology": "Ollama",
+    "error_signature": "Error: connection refused at localhost:11434 OR dial tcp [::1]:11434: connect: connection refused",
+    "search_intent": "Developer tries to run Ollama locally but gets connection refused errors — service isn't running, port conflict, or firewall blocking local connections — preventing local LLM inference",
+    "common_causes": [
+      "P1 priority technology. Ollama has explosive growth in local LLM adoption. Connection refused on port 11434 is the most fundamental Ollama error, occurring when daemon crashes, fails to start, or network config blocks access. Commercial value stems from Ollama Pro offering and enterprise self-hosted deployments. Search strategy from sources-guide.md targets 'ollama connection refused'. Not yet in covered-errors.md. High search demand given massive wave of developers setting up local AI assistants. Additional common variant: 'pulling manifest error' for model download failures."
+    ],
+    "quick_fix": "Confirm the local service is running on the expected host and port, then retry the smallest request.",
+    "related_errors": [
+      "Ollama"
+    ]
   }
 ]
