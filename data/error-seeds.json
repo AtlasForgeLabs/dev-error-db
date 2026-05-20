@@ -23389,5 +23389,85 @@
     "related_errors": [
       "AI Coding Tools"
     ]
+  },
+  {
+    "slug": "claude-code-http-403-server-turned-down-github-mcp-oauth-flow-lands-on-api-anthropic-com-mcp-gdrive-google-install-instead-of-github-consent-screen",
+    "title": "Hosted GitHub MCP OAuth flow broken — redirects to wrong server in claude.ai/code",
+    "description": "Fix GitHub MCP OAuth authentication failure in Claude Code web sessions (claude.ai/code) where the authorization URL routes to the deprecated Google Drive MCP install page Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "HTTP 403 / Server Turned Down — GitHub MCP OAuth flow lands on api.anthropic.com/mcp/gdrive/google/install instead of GitHub consent screen",
+    "search_intent": "Fix GitHub MCP OAuth authentication failure in Claude Code web sessions (claude.ai/code) where the authorization URL routes to the deprecated Google Drive MCP install page",
+    "common_causes": [
+      "GitHub Issue #60807 (anthropics/claude-code): mcp__github__authenticate generates an authorization URL that redirects to the retired gdrive MCP endpoint, completely blocking GitHub API access in hosted web sessions. Regression — worked in previous version. Affects ALL claude.ai/code users. High commercial value: blocks paid-tier workflow."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "litellm-litellm-spendlogs-insert-fails-silently-on-pk-constraint-when-ollama-cloud-returns-short-sequential-ids-like-chatcmpl-213-that-collide-across-users",
+    "title": "LiteLLM spend logs silently dropped for Ollama Cloud requests — non-unique provider IDs",
+    "description": "Fix spend logging gap where Ollama Cloud requests via LiteLLM proxy never appear in spend logs/Request Log UI due to non-unique sequential ID collisions with existing rows Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "LiteLLM_SpendLogs INSERT fails silently on PK constraint when Ollama Cloud returns short sequential IDs like chatcmpl-213 that collide across users",
+    "search_intent": "Fix spend logging gap where Ollama Cloud requests via LiteLLM proxy never appear in spend logs/Request Log UI due to non-unique sequential ID collisions with existing rows",
+    "common_causes": [
+      "GitHub Issue #28376 (BerriAI/litellm): get_spend_logs_id() uses provider's response.id as PK, but Ollama Cloud returns globally sequential IDs (chatcmpl-N) not UUIDs. All Ollama Cloud spend becomes invisible once counter wraps. Direct financial/billing impact for team-managed LiteLLM proxies."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "LiteLLM"
+    ]
+  },
+  {
+    "slug": "litellm-bedrock-pass-through-converse-returns-http-200-ok-with-empty-response-body-on-v1-85-0-callers-receive-no-content-despite-successful-status-code",
+    "title": "LiteLLM Bedrock pass-through /converse returns 200 with empty body — silent data loss regression",
+    "description": "Fix regression in LiteLLM v1.85.0 where Bedrock AWS pass-through through the /converse endpoint returns 200 status but body is empty, causing silent data loss for clients consuming AI responses through LiteLLM proxy Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "Bedrock pass-through /converse returns HTTP 200 OK with empty response body on v1.85.0 — callers receive no content despite successful status code",
+    "search_intent": "Fix regression in LiteLLM v1.85.0 where Bedrock AWS pass-through through the /converse endpoint returns 200 status but body is empty, causing silent data loss for clients consuming AI responses through LiteLLM proxy",
+    "common_causes": [
+      "GitHub Issue #28388 (BerriAI/litellm): llm translation + proxy labels confirm Bedrock /converse endpoint regression. HTTP 200 with empty body looks like success but delivers nothing. Affects enterprise teams using AWS Bedrock via LiteLLM proxy."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "LiteLLM"
+    ]
+  },
+  {
+    "slug": "claude-code-http-429-rate-limit-error-no-explicit-recommendation-in-cli-to-start-a-new-conversation-or-switch-models-to-bypass-rate-limits",
+    "title": "Claude Code HTTP 429 rate limit — missing user-friendly recovery UX suggestion",
+    "description": "Claude Code hits 429 rate limit but provides no actionable recovery path; users want the CLI to suggest starting a new conversation or switching models to bypass rate limits faster Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "HTTP 429 rate limit error — no explicit recommendation in CLI to start a new conversation or switch models to bypass rate limits",
+    "search_intent": "Claude Code hits 429 rate limit but provides no actionable recovery path; users want the CLI to suggest starting a new conversation or switching models to bypass rate limits faster",
+    "common_causes": [
+      "GitHub Issue #60967 (anthropics/claude-code) opened May 21, 2026. Codersera field guide confirms 429 is distinct from 529 overload_error, Opus Max plan users hit rate limits frequently during peak hours. Commercial value: every 429 costs users time on paid subscription tier."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "claude-code-mcp-32000-json-rpc-generic-server-error-with-connection-closed-mcp-server-process-crashes-during-launch-or-initialization",
+    "title": "Claude Code MCP -32000 generic JSON-RPC error indicates server process crash",
+    "description": "Understand and fix MCP -32000 errors in Claude Code where external tool servers crash on startup; users need to identify root causes like missing dependencies, wrong Node version, or stdout corruption Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "MCP -32000 (JSON-RPC generic server-error) with 'Connection closed' — MCP server process crashes during launch or initialization",
+    "search_intent": "Understand and fix MCP -32000 errors in Claude Code where external tool servers crash on startup; users need to identify root causes like missing dependencies, wrong Node version, or stdout corruption",
+    "common_causes": [
+      "Codersera comprehensive troubleshooting guide details 5 distinct MCP -32000 failure modes: (1) failed to start, (2) threw during init, (3) exited mid-handshake, (4) Windows npx exec without cmd /c wrapper, (5) console.log() corrupting JSON-RPC stream on stdout. Very specific actionable errors with clear fixes. Distinct from 429/rate-limit topic."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
   }
 ]
