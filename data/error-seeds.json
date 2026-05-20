@@ -22557,5 +22557,117 @@
     "related_errors": [
       "Anthropic API"
     ]
+  },
+  {
+    "slug": "openai-api-azureopenai-with-aad-bearer-token-passed-via-api-key-returns-401-unauthorized-after-upgrading-to-2-34-0-plus",
+    "title": "AzureOpenAI AAD Bearer Token Returns 401 Unauthorized After SDK Upgrade",
+    "description": "Fix 401 authentication error when using Azure AD tokens with Azure OpenAI SDK after client upgrade Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "AzureOpenAI with AAD bearer token passed via api_key returns 401 Unauthorized after upgrading to 2.34.0+",
+    "search_intent": "Fix 401 authentication error when using Azure AD tokens with Azure OpenAI SDK after client upgrade",
+    "common_causes": [
+      "Open issue #3282 on openai/openai-python (created May 20, 2026). Users passing Azure AD access tokens via api_key param get 401 after upgrading from 2.33.0 to 2.34.0. SDK now consistently treats api_key as a raw api-key header instead of allowing bearer tokens. This breaks Azure API Management proxy setups. High commercial value — Azure OpenAI is a paid enterprise service and 401 blocks all API usage."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "litellm-reserve-budget-for-request-leaks-redis-spend-counters-phantom-budgetexceedederror-despite-actual-database-spend-being-near-0",
+    "title": "LiteLLM Redis Spend Counter Leak Causes Phantom BudgetExceededError (429)",
+    "description": "Fix LiteLLM proxy that incorrectly returns HTTP 429 BudgetExceededError for users who haven't exceeded their budget due to Redis counter accumulation bug Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "reserve_budget_for_request() leaks Redis spend counters — phantom BudgetExceededError despite actual database spend being near $0",
+    "search_intent": "Fix LiteLLM proxy that incorrectly returns HTTP 429 BudgetExceededError for users who haven't exceeded their budget due to Redis counter accumulation bug",
+    "common_causes": [
+      "Open issue #27639 on BerriAI/litellm (created May 11, 2026). After upgrading to v1.83.10.dev.2, end users randomly get HTTP 429 BudgetExceededError despite zero actual spend. The Redis atomic counter spend:end_user:<id> accumulates phantom reservations never finalized/decremented. Symptoms: some requests succeed while others fail for different users, cycling every ~4 minutes. High commercial value — this is a LiteLLM proxy billing/budget enforcement bug affecting paying enterprise deployments."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "LiteLLM"
+    ]
+  },
+  {
+    "slug": "openai-api-non-streaming-openai-api-calls-silently-hang-forever-behind-nat-default-httpx-transport-has-no-tcp-keepalive",
+    "title": "OpenAI SDK Non-Streaming Calls Hang Indefinitely Behind NAT Due to Missing TCP Keepalive",
+    "description": "Fix indefinite hanging on long OpenAI API calls caused by NAT gateway idle timeout dropping TCP connections without keepalive Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "Non-streaming OpenAI API calls silently hang forever behind NAT — default httpx transport has no TCP keepalive",
+    "search_intent": "Fix indefinite hanging on long OpenAI API calls caused by NAT gateway idle timeout dropping TCP connections without keepalive",
+    "common_causes": [
+      "Open issue #3269 on openai/openai-python (created May 19, 2026, labeled 'bug'). The default httpx transport has SO_KEEPALIVE off. During long non-streaming calls, NAT gateways silently drop idle TCP connections while server generates response — user never receives it. Affected: Responses API with reasoning models and completions.create(). This is a production-breaking bug affecting paying users with enterprise infra."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "anthropic-api-streaming-error-sse-event-causes-attributeerror-nonetype-object-has-no-attribute-model-when-bedrock-cross-region-inference-profiles-return-rate-limit-error-frames",
+    "title": "Anthropic Bedrock Streaming Errors Cause AttributeError Instead of Proper APIStatusError",
+    "description": "Fix unhandled streaming error SSE events from Bedrock that crash with AttributeError instead of raising typed APIStatusError exceptions Includes evidence for Anthropic API troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Anthropic API",
+    "error_signature": "Streaming error SSE event causes AttributeError: 'NoneType' object has no attribute 'model' when Bedrock cross-region inference profiles return rate_limit error frames",
+    "search_intent": "Fix unhandled streaming error SSE events from Bedrock that crash with AttributeError instead of raising typed APIStatusError exceptions",
+    "common_causes": [
+      "Issue #1472 on anthropics/anthropic-sdk-python (created Apr 29, 2026). In production, calling Bedrock cross-region inference profiles via AsyncAnthropicBedrock intermittently crashes on the first event with AttributeError because Bedrock returns HTTP 200 with an error SSE payload containing rate_limit_error. The parsed event object has message=None. Multiple related fixes exist (#1485, #1486, #1475, #1477) indicating ongoing severity. Anthropic Bedrock is a paid AWS service."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "Anthropic API"
+    ]
+  },
+  {
+    "slug": "anthropic-api-langchain-anthropic-base64-file-blocks-with-non-pdf-text-mime-types-fail-with-media-type-validation-error",
+    "title": "LangChain ChatAnthropic Fails on base64 File Blocks With Non-PDF Text Mime Types",
+    "description": "Fix Anthropic document block translation in LangChain that rejects CSV/text base64 content with invalid media_type validation errors Includes evidence for Anthropic API troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Anthropic API",
+    "error_signature": "langchain-anthropic: base64 file blocks with non-PDF text mime types fail with media_type validation error",
+    "search_intent": "Fix Anthropic document block translation in LangChain that rejects CSV/text base64 content with invalid media_type validation errors",
+    "common_causes": [
+      "Open issue #37576 on langchain-ai/langchain (created May 20, 2026). When sending base64-encoded text files (CSV, etc.) through ChatAnthropic, the SDK hard-codes mime_type='application/pdf' for all document blocks. Any non-PDF text mime type triggers a media_type validation error. This breaks multimodal workflows where users need to upload documents with various text-based mime types. Directly related to core-level bug #36939."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Anthropic API"
+    ]
+  },
+  {
+    "slug": "openai-api-background-responses-failures-lack-a-stable-code-name-that-maps-to-an-exception-class-asynchronous-mode-has-no-deterministic-error-contract",
+    "title": "Background Response Failures Lack Stable Error Code Mapping in OpenAI Python SDK",
+    "description": "Add stable error code mapping for background/async OpenAI API responses so callers can distinguish retryable vs non-retryable failures Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "Background responses failures lack a stable code/name that maps to an exception class — asynchronous mode has no deterministic error contract",
+    "search_intent": "Add stable error code mapping for background/async OpenAI API responses so callers can distinguish retryable vs non-retryable failures",
+    "common_causes": [
+      "Open issue #3212 on openai/openai-python (created May 8, 2026). Synchronous mode has a documented HTTP-code-to-exception contract; async background mode does not. No stable error code exists in the response body, making it impossible for SDK users to implement proper retry/error handling on async calls. Active discussion with community-provided workaround patterns."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "cloudflare-dns-recordresponse-union-type-discriminator-misclassifies-mx-records-as-arecord-losing-priority-field-r-asunion-returns-wrong-type-for-mx-dns-records",
+    "title": "Cloudflare Go SDK MX Records Misclassified as ARecords Losing Priority Field",
+    "description": "Fix Cloudflare Go SDK DNS RecordResponse union type so MX records are correctly discriminated with proper priority field values Includes evidence for Cloudflare troubleshooting demand.",
+    "category": "Cloudflare",
+    "technology": "Cloudflare",
+    "error_signature": "DNS RecordResponse union type discriminator misclassifies MX records as ARecord, losing priority field — r.AsUnion() returns wrong type for MX DNS records",
+    "search_intent": "Fix Cloudflare Go SDK DNS RecordResponse union type so MX records are correctly discriminated with proper priority field values",
+    "common_causes": [
+      "Open issue #4300 on cloudflare/cloudflare-go (created May 15, 2026). The REST API returns correct JSON but the Go SDK's union type discriminator resolves MX records as RecordResponseARecord. The Priority field is always 0 for MX records, losing actual priority values (e.g., 1, 5, 10). Production impact for teams managing DNS programmatically via Go. Category: Cloudflare since this is the official Cloudflare Go SDK."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Cloudflare"
+    ]
   }
 ]
