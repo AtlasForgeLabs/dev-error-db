@@ -25533,5 +25533,101 @@
     "related_errors": [
       "OpenAI API"
     ]
+  },
+  {
+    "slug": "openai-api-error-code-401-access-denied-due-to-invalid-subscription-key-or-wrong-api-endpoint-azureopenai-passes-aad-bearer-token-via-api-key-parameter-which-now-sends-api-key-header-instead-of-bearer-token",
+    "title": "AzureOpenAI with AAD bearer token passed via api_key returns 401 in openai-python v2.34.0",
+    "description": "Fix 401 Unauthorized when upgrading from openai==2.33.0 to 2.34.0 with Azure OpenAI + Azure AD authentication via APIM proxy Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "Error code: 401 - Access denied due to invalid subscription key or wrong API endpoint — AzureOpenAI passes AAD bearer token via api_key parameter which now sends api-key header instead of Bearer token",
+    "search_intent": "Fix 401 Unauthorized when upgrading from openai==2.33.0 to 2.34.0 with Azure OpenAI + Azure AD authentication via APIM proxy",
+    "common_causes": [
+      "GitHub issue #3282 (opened May 20, 2026) on openai/openai-python. Regression in v2.34.0 where azure_ad_token/api_key handling changed — api_key now consistently sends Authorization: api-key header while azure_ad_token sends Bearer, breaking existing Azure AD workflow. PR #3283 already linked. Strong commercial value: blocks enterprise production deployment with Azure + OpenAI integration."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "litellm-the-litellm-call-will-disconnect-after-60-70-seconds",
+    "title": "LiteLLM call disconnects after 60-70 seconds — proxy stream timeout issue",
+    "description": "Fix premature connection drops (~60-70s) in LiteLLM proxy streaming — likely proxy timeout or keep-alive configuration issue Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "The litellm call will disconnect after 60-70 seconds",
+    "search_intent": "Fix premature connection drops (~60-70s) in LiteLLM proxy streaming — likely proxy timeout or keep-alive configuration issue",
+    "common_causes": [
+      "GitHub issue #28474 (May 21, 2026) on BerriAI/litellm, labeled 'bug' and 'llm translation'. Affects production proxy serving with ~60-70s hard disconnect regardless of source model config. High commercial value: breaks any LiteLLM proxy deployment serving long-running LLM completions. No coverage in dev-error-db yet."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "LiteLLM"
+    ]
+  },
+  {
+    "slug": "litellm-gcp-iam-auth-fails-with-redis-cluster-sync-path-uses-redis-connect-func-which-rediscluster-bootstrap-ignores",
+    "title": "GCP IAM auth fails with Redis Cluster — LiteLLM sync path uses redis_connect_func which RedisCluster bootstrap ignores",
+    "description": "Fix GCP IAM authentication failure when running LiteLLM proxy with Redis Cluster — the sync auth path creates a standalone redis client via redis_connect_func that doesn't participate in Redis Cluster topology Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "GCP IAM auth fails with Redis Cluster — sync path uses redis_connect_func which RedisCluster bootstrap ignores",
+    "search_intent": "Fix GCP IAM authentication failure when running LiteLLM proxy with Redis Cluster — the sync auth path creates a standalone redis client via redis_connect_func that doesn't participate in Redis Cluster topology",
+    "common_causes": [
+      "GitHub issue #28379 (May 21, 2026) on BerriAI/litellm, labeled 'bug' and 'SDK'. Direct infrastructure compatibility error affecting production deployments combining GCP workload identity + Redis Cluster + LiteLLM proxy. High commercial value for enterprise cloud deployments."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "LiteLLM"
+    ]
+  },
+  {
+    "slug": "litellm-deleted-model-reappears-in-v2-model-info-across-multiple-litellm-instances",
+    "title": "LiteLLM delete model reappears in /v2/model/info across multiple instances with Redis state sync",
+    "description": "Fix persistent ghost model entries in LiteLLM dashboard when running multi-instance proxy — deletion not propagating through Redis-backed model registry Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "Deleted model reappears in /v2/model/info across multiple LiteLLM instances",
+    "search_intent": "Fix persistent ghost model entries in LiteLLM dashboard when running multi-instance proxy — deletion not propagating through Redis-backed model registry",
+    "common_causes": [
+      "GitHub issue #28443 (May 21, 2026) on BerriAI/litellm, labeled 'bug' and 'proxy'. Model registry inconsistency across distributed LiteLLM proxy instances. Business impact: admins see stale models affecting routing/quota allocation in production clusters."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "LiteLLM"
+    ]
+  },
+  {
+    "slug": "anthropic-api-bedrock-streaming-sse-events-errors-are-not-handled-gracefully",
+    "title": "Bedrock streaming SSE events errors not handled gracefully in Anthropic SDK",
+    "description": "Add proper error handling for malformed/corrupt SSE events during streaming when using Anthropic SDK with AWS Bedrock backend Includes evidence for Anthropic API troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Anthropic API",
+    "error_signature": "Bedrock streaming SSE events errors are not handled gracefully",
+    "search_intent": "Add proper error handling for malformed/corrupt SSE events during streaming when using Anthropic SDK with AWS Bedrock backend",
+    "common_causes": [
+      "GitHub issue #1477 (Apr 30, 2026) on anthropics/anthropic-sdk-python, labeled 'bedrock'. Streaming failures silently crash rather than returning structured error objects. 5 linked PRs indicate active developer interest. Affects enterprise Bedrock usage."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Anthropic API"
+    ]
+  },
+  {
+    "slug": "litellm-spend-logs-silently-dropped-when-provider-returns-non-unique-response-ids-ollama-cloud",
+    "title": "Spend logs silently dropped when provider returns non-unique response IDs (Ollama Cloud)",
+    "description": "Fix missing usage/spend tracking in LiteLLM proxy when upstream provider (e.g., Ollama Cloud) returns duplicate response IDs causing log collision Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "Spend logs silently dropped when provider returns non-unique response IDs (Ollama Cloud)",
+    "search_intent": "Fix missing usage/spend tracking in LiteLLM proxy when upstream provider (e.g., Ollama Cloud) returns duplicate response IDs causing log collision",
+    "common_causes": [
+      "GitHub issue #28376 (May 21, 2026) on BerriAI/litellm, labeled 'llm translation'. Silent logging failure means enterprises cannot track per-model spend — direct billing visibility loss. Growing concern as organizations add cost monitoring."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "LiteLLM"
+    ]
   }
 ]
