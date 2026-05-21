@@ -24749,5 +24749,117 @@
     "related_errors": [
       "AI Coding Tools"
     ]
+  },
+  {
+    "slug": "claude-code-mcp-tool-call-requires-approval-tools-blocked-in-ephemeral-container-despite-always-allow-ui-guaranteeing-no-approval-is-needed",
+    "title": "Claude Code Routines MCP connector permissions broken — \"requires approval\" on every tool call (regression ~2026-05-20)",
+    "description": "Fix Claude Code scheduled routines where MCP connector tool calls keep asking for permission even though they are set to 'Always allow', breaking enterprise automation workflows. Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "MCP tool call requires approval — tools blocked in ephemeral container despite Always Allow / UI guaranteeing no approval is needed",
+    "search_intent": "Fix Claude Code scheduled routines where MCP connector tool calls keep asking for permission even though they are set to 'Always allow', breaking enterprise automation workflows.",
+    "common_causes": [
+      "Multiple open GitHub issues (#61141, #61097, #61027, #61015) filed within last 48 hours affecting Team/Macro plans. Regression emerged ~2026-05-20. Remote/scheduled routines lose MCP permissions every run — writes to settings.json require approval, creating infinite approval loops. High commercial impact: enterprise team automation completely broken."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "claude-code-out-of-extra-usage-max-plan-5h-limit-shows-x-remaining-while-cli-usage-depletes-it-within-1-2-hours",
+    "title": "Claude Max plan session limits exhausted abnormally fast — 5h window depleted in 1-2 hours",
+    "description": "Users paying for Claude Max plan experiencing usage limits being consumed much faster than expected, especially via CLI (Claude Code). Need to understand if this is a bug or quota change. Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "out of extra usage — Max plan 5h limit shows X% remaining while CLI usage depletes it within 1-2 hours",
+    "search_intent": "Users paying for Claude Max plan experiencing usage limits being consumed much faster than expected, especially via CLI (Claude Code). Need to understand if this is a bug or quota change.",
+    "common_causes": [
+      "GitHub issue #38335 opened 2026-03-24, still open. Multiple related issues about instant usage limit hits on Max subscription (#16157, #57096). Directly affects paying subscribers; billing/quota error on paid service. Category mapping: Claude Code specific quota behavior → AI Coding Tools."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "anthropic-api-apistatuserror-with-status-code-200-when-api-sends-sse-error-event-like-overloaded-error-or-rate-limit-error-mid-stream",
+    "title": "Anthropic API streaming SSE errors return wrong HTTP status code (200 instead of 529/429)",
+    "description": "Developers using Anthropic Python SDK receive incorrect HTTP 200 status for streaming errors (overloaded, rate-limited), preventing proper error handling in production applications. Includes evidence for Anthropic API troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Anthropic API",
+    "error_signature": "APIStatusError with status_code=200 when API sends SSE error event like overloaded_error or rate_limit_error mid-stream",
+    "search_intent": "Developers using Anthropic Python SDK receive incorrect HTTP 200 status for streaming errors (overloaded, rate-limited), preventing proper error handling in production applications.",
+    "common_causes": [
+      "GitHub issue #1258 and PR #1263 in anthropic-sdk-python repo. When streaming starts fine (HTTP 200) then SSE error arrives, SDK reports status_code=200 instead of correct code (e.g., 529 for overloaded). Affects all Anthropic API callers using streaming. Category mapping: direct Anthropic API SDK error → Anthropic API."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "Anthropic API"
+    ]
+  },
+  {
+    "slug": "openai-api-accumulate-delta-assumes-indexed-list-entry-s-index-field-matches-its-physical-position-multiple-tool-calls-entries-with-same-index-in-first-streamed-chunk-corrupts-accumulated-state",
+    "title": "OpenAI SDK streaming tool_call delta accumulation breaks with duplicate indexes in first chunk",
+    "description": "Developers using OpenAI streaming API see corrupted tool_call outputs when the first chunk contains multiple tool_calls with duplicate index values. Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "accumulate_delta assumes indexed list entry's index field matches its physical position; multiple tool_calls entries with same index in first streamed chunk corrupts accumulated state",
+    "search_intent": "Developers using OpenAI streaming API see corrupted tool_call outputs when the first chunk contains multiple tool_calls with duplicate index values.",
+    "common_causes": [
+      "GitHub issue #3201 in openai-python repo (label: bug). The _deltas.py accumulate_delta function has a subtle indexing bug that produces incorrect accumulated tool_calls. Affects all streaming consumers of Chat Completions and Responses API with tool calling. Still open. Category mapping: OpenAI SDK library bug → OpenAI API."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "cloudflare-errors-node-available-via-api-not-exposed-to-sdk-task-success-check-leads-to-infinite-retries-when-scanning-returns-errors-instead-of-success-failure",
+    "title": "Cloudflare Go SDK does not expose URL scanner errors — infinite retry loops",
+    "description": "Developers using Cloudflare Go SDK cannot detect URL scan errors because the API returns an 'errors' array that the SDK model omits, causing silent infinite retry loops in production. Includes evidence for Cloudflare troubleshooting demand.",
+    "category": "Cloudflare",
+    "technology": "Cloudflare",
+    "error_signature": "errors node available via API not exposed to SDK; task.success check leads to infinite retries when scanning returns errors instead of success/failure",
+    "search_intent": "Developers using Cloudflare Go SDK cannot detect URL scan errors because the API returns an 'errors' array that the SDK model omits, causing silent infinite retry loops in production.",
+    "common_causes": [
+      "GitHub issue #4313 in cloudflare-go repo (open). The API returns per-task errors for URL Scanner but the Go SDK struct doesn't include the errors field. Force teams doing domain scanning to implement workaround. Category mapping: Cloudflare SDK/API mismatch → Cloudflare."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Cloudflare"
+    ]
+  },
+  {
+    "slug": "openrouter-oauth-authorization-code-flow-and-device-auth-requests-fail-without-standard-oauth-error-description-hint-error-fields-leaving-clients-unable-to-parse-failure-reasons",
+    "title": "OpenRouter OAuth flows missing error_description and hint fields",
+    "description": "Developers integrating OpenRouter OAuth (model provider auth via OpenRouter) get opaque errors without description or hint fields, making it impossible to programmatically handle auth failures. Includes evidence for OpenRouter troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "OpenRouter",
+    "error_signature": "OAuth authorization code flow and device/auth requests fail without standard OAuth error_description/hint error fields, leaving clients unable to parse failure reasons",
+    "search_intent": "Developers integrating OpenRouter OAuth (model provider auth via OpenRouter) get opaque errors without description or hint fields, making it impossible to programmatically handle auth failures.",
+    "common_causes": [
+      "Pull request #28471 in BerriAI/litellm repo (open, created 2026-05-21). Adds error_description and hint for OAuth flows — indicates these were missing before. OpenRouter used as model proxy/billing layer → LiteLLM category (proxy-specific behavior per mapping rules). Directly affects production integrations with model providers through OpenRouter."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "LiteLLM"
+    ]
+  },
+  {
+    "slug": "anthropic-api-413-request-exceeds-the-maximum-allowed-number-of-bytes-the-maximum-request-size-is-32-mb-when-actual-request-size-is-only-2mb-via-vertex-ai",
+    "title": "Anthropic SDK Vertex AI rejecting ~2MB requests with 413 '32MB limit exceeded' error",
+    "description": "Developers using Anthropic API through Vertex AI backend experience spurious 413 errors claiming 32MB limit exceeded on small ~2MB requests. May indicate a Vertex AI configuration bug or payload encoding issue. Includes evidence for Anthropic API troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Anthropic API",
+    "error_signature": "413 Request exceeds the maximum allowed number of bytes. The maximum request size is 32 MB — when actual request size is only ~2MB via Vertex AI",
+    "search_intent": "Developers using Anthropic API through Vertex AI backend experience spurious 413 errors claiming 32MB limit exceeded on small ~2MB requests. May indicate a Vertex AI configuration bug or payload encoding issue.",
+    "common_causes": [
+      "GitHub issue #1028 in anthropic-sdk-python repo (still open). Requests well under 32MB are rejected with 413 error via Vertex AI integration. Could be Vertex AI side or SDK-side encoding issue. Category mapping: Anthropic SDK + Vertex AI path → Anthropic API (vendor-agnostic SDK error)."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Anthropic API"
+    ]
   }
 ]
