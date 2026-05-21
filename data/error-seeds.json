@@ -25421,5 +25421,117 @@
     "related_errors": [
       "Deployment"
     ]
+  },
+  {
+    "slug": "claude-code-the-model-s-tool-call-could-not-be-parsed-retry-also-failed",
+    "title": "Opus 4.7 tool calls fail with parsing error (retry also failed) on Claude Code #61133",
+    "description": "Fix Opus 4.7 model returning unparseable tool call responses in Claude Code, blocking all agent operations Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "\"The model's tool call could not be parsed (retry also failed)\"",
+    "search_intent": "Fix Opus 4.7 model returning unparseable tool call responses in Claude Code, blocking all agent operations",
+    "common_causes": [
+      "GitHub Issue #61133 in anthropics/claude-code by goldeneggg, reported May 21, 2026, closed May 21, 2026. Opus 4.7 started returning tool call responses that Claude Code cannot parse, even after retry. This is a regression tied to the Opus 4.7 release and affects production agents that depend on structured tool calling. Not in covered-errors.md (which only lists generic 'model not available' for Cursor, not Opus 4.7 parsing failures). Category: AI Coding Tools per SKILL.md mapping."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "anthropic-api-sse-stream-error-returns-http-200-instead-of-actual-error-code-during-mid-stream-interruption",
+    "title": "Mid-stream SSE errors get status_code=200 instead of the actual error code (anthropic-sdk-python #1258)",
+    "description": "Fix incorrect HTTP status returned when Anthropic API SSE stream breaks mid-response, causing client-side parsing failures Includes evidence for Anthropic API troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Anthropic API",
+    "error_signature": "SSE stream error returns HTTP 200 instead of actual error code during mid-stream interruption",
+    "search_intent": "Fix incorrect HTTP status returned when Anthropic API SSE stream breaks mid-response, causing client-side parsing failures",
+    "common_causes": [
+      "GitHub Issue #1258 in anthropics/anthropic-sdk-python by sarth6, opened and closed March 31, 2026. When the Anthropic API SSE stream is interrupted mid-stream, the SDK catches the error but returns status_code=200 instead of propagating the actual error code (e.g., 500/529). This makes client-side error handling impossible because the response body contains an error but the HTTP code says success. Category mapping: direct Anthropic SDK/API error. Not in covered-errors.md."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Anthropic API"
+    ]
+  },
+  {
+    "slug": "claude-code-figma-mcp-gets-stuck-in-authenticate-only-tools-after-successful-oauth-never-exposing-real-tools-like-get-file-or-get-comments",
+    "title": "Figma MCP server never transitions from auth mode to operational mode #61265",
+    "description": "Fix Figma MCP OAuth flow completing but MCP server disconnecting and reconnecting with only auth placeholder tools instead of full Figma toolset Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Figma MCP gets stuck in authenticate-only tools after successful OAuth, never exposing real tools like get_file or get_comments",
+    "search_intent": "Fix Figma MCP OAuth flow completing but MCP server disconnecting and reconnecting with only auth placeholder tools instead of full Figma toolset",
+    "common_causes": [
+      "GitHub Issue #61265 in anthropics/claude-code by DaveLaFontaine, opened May 22, 2026. Detailed reproduction shows OAuth completes in browser → Claude Code disconnects MCP server → server reconnects with only mcp__figma__authenticate tools. ~/.claude/mcp-needs-auth-cache.json confirms token cached but never persisted to macOS Keychain or Claude Code credentials. Only ~15 min old, highly active. Duplicate check: no matching error in covered-errors.md. Category: AI Coding Tools."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "claude-code-oauth-flow-completes-code-consumed-by-localhost-callback-but-mcpoauth-credential-map-contains-zero-plugin-greptile-entries-plugin-permanently-stuck-in-needs-auth-state",
+    "title": "Greptile MCP plugin OAuth tokens not persisted in Claude Code #61262",
+    "description": "Fix Claude Code failing to persist OAuth tokens for Greptile MCP plugin despite successful OAuth flow, leaving plugin unusable Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "OAuth flow completes (code consumed by localhost callback) but mcpOAuth credential map contains zero plugin:greptile entries, plugin permanently stuck in needs_auth state",
+    "search_intent": "Fix Claude Code failing to persist OAuth tokens for Greptile MCP plugin despite successful OAuth flow, leaving plugin unusable",
+    "common_causes": [
+      "GitHub Issue #61262 in anthropics/claude-code by manty, opened May 22, 2026. Very detailed report: OAuth via RFC 9728 discovery completes end-to-end, code is consumed (verified by reusing it gives invalid_grant), but tokens never land in keychain Claude Code-credentials mcpOAuth map. Other plugins (sentinel-mcp, posthog, klaviyo, semrush) persist tokens correctly — greptile is uniquely affected. Has repro label, 3+ duplicate flags. Category: AI Coding Tools."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "openai-api-background-responses-api-errors-do-not-map-to-a-stable-exception-class-name-making-client-side-error-classification-unreliable",
+    "title": "Background responses failures lack stable error code mapping in openai-python #3212",
+    "description": "Add stable error code/classification for OpenAI Responses API background task failures so clients can handle retries differently Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "Background responses API errors do not map to a stable exception class name, making client-side error classification unreliable",
+    "search_intent": "Add stable error code/classification for OpenAI Responses API background task failures so clients can handle retries differently",
+    "common_causes": [
+      "GitHub Issue #3212 in openai/openai-python by adnanboz, opened May 8, 2026. Background responses failures from the OpenAI API lack a stable error code or name that maps to a Python exception class. While existing issues cover 429/rate-limit/general auth, this is specifically about the new Responses API async/background execution path. Not in covered-errors.md. Category: OpenAI API per SKILL.md mapping. Strong commercial value as Responses API is new paid surface."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "litellm-litellm-proxy-routes-requests-to-upstream-models-but-fails-to-propagate-error-details-when-upstream-timeout-auth-failures-occur-returning-generic-proxy-errors",
+    "title": "LiteLLM proxy timeout/error handling for routed model failures",
+    "description": "Improve LiteLLM proxy error propagation so timeout, auth, and rate-limit failures from upstream models are surfaced with correct error codes to callers Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "LiteLLM proxy routes requests to upstream models but fails to propagate error details when upstream timeout/auth failures occur, returning generic proxy errors",
+    "search_intent": "Improve LiteLLM proxy error propagation so timeout, auth, and rate-limit failures from upstream models are surfaced with correct error codes to callers",
+    "common_causes": [
+      "Found via GitHub litellm repository issues. LiteLLM is widely used as a proxy layer between applications and multiple LLM providers. Errors that occur during upstream model routing (timeout, auth failures, rate limits) often get swallowed or converted to generic proxy responses, making debugging extremely difficult for teams paying for multiple API models simultaneously. Not in covered-errors.md. Category: LiteLLM per SKILL.md mapping."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "LiteLLM"
+    ]
+  },
+  {
+    "slug": "openai-api-responses-api-and-chat-completions-api-handle-rate-limit-errors-differently-different-error-codes-headers-or-body-formats-breaking-unified-error-handling",
+    "title": "Inconsistency between Responses API and Chat Completions API on rate limit errors (openai-python #2699)",
+    "description": "Understand and unify rate limit error handling between OpenAI's Responses API and Chat Completions API so developers don't need separate error paths for each endpoint Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "Responses API and Chat Completions API handle rate limit errors differently (different error codes, headers, or body formats), breaking unified error handling",
+    "search_intent": "Understand and unify rate limit error handling between OpenAI's Responses API and Chat Completions API so developers don't need separate error paths for each endpoint",
+    "common_causes": [
+      "GitHub Issue #2699 in openai/openai-python by aloumakos, opened Oct 20, 2025. The two main OpenAI API surfaces (new Responses API vs legacy Chat Completions) return rate limit errors with inconsistent formats — different HTTP codes, different JSON structures, different header fields (like x-ratelimit-reset-tokens). Covered-errors.md lists general 'rate limit error' but not the specific cross-API inconsistency pattern. Category: OpenAI API. Commercially significant for teams using both APIs with shared error-handling middleware."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "OpenAI API"
+    ]
   }
 ]
