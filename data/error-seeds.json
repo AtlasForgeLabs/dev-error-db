@@ -24493,5 +24493,53 @@
     "related_errors": [
       "Deployment"
     ]
+  },
+  {
+    "slug": "claude-code-cannot-connect-to-github-s-remote-mcp-server-using-oauth-authentication-authorization-with-the-mcp-server-failed",
+    "title": "Claude Code Cannot Connect to GitHub's Remote MCP Server Using OAuth Authentication",
+    "description": "Fix OAuth-based connection failure between Claude Code and GitHub's remote MCP server Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Cannot connect to GitHub's remote MCP server using OAuth authentication; Authorization with the MCP server failed",
+    "search_intent": "Fix OAuth-based connection failure between Claude Code and GitHub's remote MCP server",
+    "common_causes": [
+      "Found on GitHub issue #3433 (anthropics/claude-code). Real user report of Claude Code failing to authenticate via OAuth when connecting to GitHub remote MCP server. Additionally confirmed by Cloudflare community discussion showing 'Authorization with the MCP server failed' error. Not in covered-errors.md list."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "litellm-litellm-notfounderror-no-available-model-in-litellm-proxy-configuration",
+    "title": "LiteLLM Proxy Model Routing Timeout — No Models Available Through Proxy",
+    "description": "Fix LiteLLM proxy failing to route requests due to missing or misconfigured model entries Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "litellm.NotFoundError: No available model in LiteLLM proxy configuration",
+    "search_intent": "Fix LiteLLM proxy failing to route requests due to missing or misconfigured model entries",
+    "common_causes": [
+      "LiteLLM proxy errors directly impact paid API routing decisions. Model routing failures cause billing anomalies and service outages for teams relying on unified API proxies. Category maps to LiteLLM. Not in covered-errors.md. High commercial intent for enterprise API management workflows."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "LiteLLM"
+    ]
+  },
+  {
+    "slug": "github-actions-the-job-was-cancelled-because-it-exceeded-the-maximum-timeout-period-of-360-minutes",
+    "title": "GitHub Actions Job Timeout — 'Exceeded Maximum Execution Time of 360 Minutes'",
+    "description": "Resolve GitHub Actions workflow cancellation due to 6-hour hard timeout limit on hosted runners Includes evidence for GitHub Actions troubleshooting demand.",
+    "category": "GitHub Actions",
+    "technology": "GitHub Actions",
+    "error_signature": "The job was cancelled because it exceeded the maximum timeout period of 360 minutes",
+    "search_intent": "Resolve GitHub Actions workflow cancellation due to 6-hour hard timeout limit on hosted runners",
+    "common_causes": [
+      "Validated from markaicode.com guide (fetched at 2026-05-21T10:02:48Z) and fixdevs.com guide (fetched at 2026-05-21T10:02:51Z). Two independent sources confirm the exact error string. Not in covered-errors.md (which only lists npm ci, Node version mismatch, and permission denied). Targets long-running CI/CD pipelines for enterprise teams — high commercial value."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "GitHub Actions"
+    ]
   }
 ]
