@@ -24141,5 +24141,69 @@
     "related_errors": [
       "Docker"
     ]
+  },
+  {
+    "slug": "claude-code-dynamic-client-registration-failed-http-403-error-incompatible-auth-server-does-not-support-dynamic-client-registration",
+    "title": "Claude Code fails to connect to MCP servers without Dynamic Client Registration — Incompatible auth server error",
+    "description": "Fix Claude Code OAuth/MCP connection failure when connecting to enterprise identity providers (Auth0, AWS Cognito) that don't support DCR Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Dynamic client registration failed: HTTP 403 / Error: Incompatible auth server: does not support dynamic client registration",
+    "search_intent": "Fix Claude Code OAuth/MCP connection failure when connecting to enterprise identity providers (Auth0, AWS Cognito) that don't support DCR",
+    "common_causes": [
+      "GitHub issue #3273 on anthropics/claude-code repo with 52+ 👍 reactions, open since Jul 2025, last comment 10 hours ago (May 21, 2026). Multiple real-world production repros including AWS Cognito + PKCE. Claude Code strictly requires DCR per spec's MAY clause, ignoring pre-registered clientId in .mcp.json. Covers GitHub MCP, Slack plugin, Cowork, and custom OAuth IdPs."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "claude-code-wrong-mcp-authentication-method-leads-to-credential-exposure-token-leakage-across-environments-excessive-permissions-in-claude-code-tool-integrations",
+    "title": "MCP Authentication security risks in Claude Code — wrong auth method can expose production credentials",
+    "description": "Understand and fix MCP authentication security misconfigurations in Claude Code that expose production secrets Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Wrong MCP authentication method leads to credential exposure, token leakage across environments, excessive permissions in Claude Code tool integrations",
+    "search_intent": "Understand and fix MCP authentication security misconfigurations in Claude Code that expose production secrets",
+    "common_causes": [
+      "Truefoundry technical blog post (May 2026) detailing real production incidents with Claude Code MCP auth — long-term access keys leaked during testing exposing both dev and prod ECS environments. Covers API key, Bearer token, OAuth, and AWS assume role methods. Commercial value: organizations integrating Claude Code into production workflows face credential risk."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "litellm-504-gateway-time-out-the-server-didn-t-respond-in-time-litellm-proxy-non-streaming-mode-only",
+    "title": "LiteLLM Proxy 504 Gateway Time-out for long non-streaming requests — Streaming works fine",
+    "description": "Fix 504 gateway timeout on LiteLLM proxy when using non-streaming mode for long-running LLM responses Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "504 Gateway Time-out — The server didn't respond in time (LiteLLM proxy, non-streaming mode only)",
+    "search_intent": "Fix 504 gateway timeout on LiteLLM proxy when using non-streaming mode for long-running LLM responses",
+    "common_causes": [
+      "GitHub issue #9551 on BerriAI/litellm (47.8k stars). OpenAI.InternalServerError with full 504 HTML body returned from LiteLLM proxy. Short requests work in both modes; only long non-streaming calls fail. Relevant for production LiteLLM deployments serving LangChain apps."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "LiteLLM"
+    ]
+  },
+  {
+    "slug": "cursor-connection-failed-if-the-problem-persists-cursor-http-2-connection-failure-on-corporate-vpn-proxy-networks",
+    "title": "Cursor Connection Failed Error — HTTP/2 protocol breaking AI features on corporate networks",
+    "description": "Fix Cursor IDE connection failure caused by HTTP/2 incompatibility on corporate networks, VPNs, or Zscaler proxies Includes evidence for Cursor troubleshooting demand.",
+    "category": "Cursor",
+    "technology": "Cursor",
+    "error_signature": "Connection failed. If the problem persists,... — Cursor HTTP/2 connection failure on corporate VPN/proxy networks",
+    "search_intent": "Fix Cursor IDE connection failure caused by HTTP/2 incompatibility on corporate networks, VPNs, or Zscaler proxies",
+    "common_causes": [
+      "DEV Community article published May 17, 2025 explaining Cursor's 'Connection failed' root cause: HTTP/2 protocol incompatibility on corporate networks, VPNs, and Zscaler proxies causing failures in code indexing and AI backend connections. Fix: disable HTTP/2 fallback to HTTP/1.1 in VS Code settings. Directly affects paid Cursor users blocked from AI coding features."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "Cursor"
+    ]
   }
 ]
