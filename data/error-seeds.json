@@ -23661,5 +23661,85 @@
     "related_errors": [
       "Deployment"
     ]
+  },
+  {
+    "slug": "claude-code-meta-ads-mcp-returns-500-error-on-all-tool-calls-after-successful-connection",
+    "title": "Meta Ads MCP returns 500 error on all tool calls after successful connection",
+    "description": "Fix external MCP server returning HTTP 500 errors within Claude Code despite successful initial connection — developer needs working API integration for Meta Ads management Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Meta Ads MCP returns 500 error on all tool calls after successful connection",
+    "search_intent": "Fix external MCP server returning HTTP 500 errors within Claude Code despite successful initial connection — developer needs working API integration for Meta Ads management",
+    "common_causes": [
+      "Found in anthropics/claude-code GitHub Issues #61006 (opened today). Marked as area:mcp + bug + external + platform:macos. External MCP server connects successfully but all subsequent tool calls fail with 500. High-value because MCP integrations are core to Claude Code Pro workflow for business users."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "anthropic-api-attributeerror-nonetype-object-has-no-attribute-errors",
+    "title": "Streaming error SSE event causes AttributeError in Anthropic Python SDK",
+    "description": "Fix Python SDK crash when receiving malformed SSE error events during streaming — developers calling Anthropic API via streaming get unhandled AttributeError Includes evidence for Anthropic API troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Anthropic API",
+    "error_signature": "AttributeError: 'NoneType' object has no attribute errors",
+    "search_intent": "Fix Python SDK crash when receiving malformed SSE error events during streaming — developers calling Anthropic API via streaming get unhandled AttributeError",
+    "common_causes": [
+      "Found in anthropics/anthropic-sdk-python GitHub Issues #1472 (opened Apr 29, 2026). Streaming error handling path dereferences NoneType.errors. Has 3 linked PRs indicating active development interest. Critical for any Python developer using streaming API calls to Anthropic models."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Anthropic API"
+    ]
+  },
+  {
+    "slug": "anthropic-api-billing-console-conflates-api-direct-charges-with-subscription-overages-users-cannot-distinguish-charge-sources",
+    "title": "Billing console conflates API direct charges with subscription overages",
+    "description": "Fix billing interface ambiguity where API pay-per-use charges appear indistinguishable from subscription overage fees — prevents accurate cost attribution for teams using both pricing models simultaneously Includes evidence for Anthropic API troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Anthropic API",
+    "error_signature": "Billing console conflates API direct charges with subscription overages — users cannot distinguish charge sources",
+    "search_intent": "Fix billing interface ambiguity where API pay-per-use charges appear indistinguishable from subscription overage fees — prevents accurate cost attribution for teams using both pricing models simultaneously",
+    "common_causes": [
+      "Found in anthropics/anthropic-sdk-python GitHub Issues #1490 (opened May 4, 2026). Directly affects billing accuracy for mixed-model users. Preceded by two related enhancement issues (#1494, #1492) from same author showing systemic billing UX problems. Strong commercial value due to payment/billing context."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "Anthropic API"
+    ]
+  },
+  {
+    "slug": "vercel-next-js-turbopack-build-fails-failed-to-collect-page-data-on-cms-fed-sitemap-xml",
+    "title": "Turbopack build fails 'Failed to collect page data' on CMS-fed sitemap.xml",
+    "description": "Fix Next.js Turbopack build failure specifically affecting CMS-driven sites generating dynamic sitemaps — common pattern for marketing/content businesses deploying on Vercel Includes evidence for Vercel / Next.js troubleshooting demand.",
+    "category": "Deployment",
+    "technology": "Vercel / Next.js",
+    "error_signature": "Turbopack build fails 'Failed to collect page data' on CMS-fed sitemap.xml",
+    "search_intent": "Fix Next.js Turbopack build failure specifically affecting CMS-driven sites generating dynamic sitemaps — common pattern for marketing/content businesses deploying on Vercel",
+    "common_causes": [
+      "Found in vercel/next.js GitHub Issues #93144 (opened Apr 23, 2026). Labeled as Turbopack. Turbopack vs webpack behavior divergence affects enterprise deployments. Content-management driven sites represent significant commercial use cases on Vercel."
+    ],
+    "quick_fix": "Check the build output, project root, and deployment platform configuration before redeploying.",
+    "related_errors": [
+      "Deployment"
+    ]
+  },
+  {
+    "slug": "vercel-next-js-turbopack-crashes-in-pages-app-tsx-when-next-font-is-imported",
+    "title": "Next.js Turbopack crashes in pages/_app.tsx when next/font is imported",
+    "description": "Fix Turbopack runtime crash triggered by importing next/font in _app.tsx — breaking font optimization for Pages Router projects migrating to or using Turbopack on Vercel Includes evidence for Vercel / Next.js troubleshooting demand.",
+    "category": "Deployment",
+    "technology": "Vercel / Next.js",
+    "error_signature": "Turbopack crashes in pages/_app.tsx when next/font is imported",
+    "search_intent": "Fix Turbopack runtime crash triggered by importing next/font in _app.tsx — breaking font optimization for Pages Router projects migrating to or using Turbopack on Vercel",
+    "common_causes": [
+      "Found in vercel/next.js GitHub Issues #93162 (opened Apr 23, 2026). Labeled CSS + Font(next/font) + Pages Router + Turbopack. Intersects multiple feature surfaces. Non-deterministic crash makes debugging difficult. Pages Router legacy codebases facing migration pressure."
+    ],
+    "quick_fix": "Check the build output, project root, and deployment platform configuration before redeploying.",
+    "related_errors": [
+      "Deployment"
+    ]
   }
 ]
