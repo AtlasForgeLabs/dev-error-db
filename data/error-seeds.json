@@ -24861,5 +24861,101 @@
     "related_errors": [
       "Anthropic API"
     ]
+  },
+  {
+    "slug": "openai-api-conway-proxy-returns-429-insufficient-quota-after-successful-usdc-topup-and-reprovision-payment-processed-but-inference-still-fails-with-429",
+    "title": "Conway proxy returns 429 insufficient_quota after successful USDC topup and reprovision",
+    "description": "用户在完成支付和充值后仍收到 429 insufficient_quota，需要解决方案恢复服务 Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "Conway proxy returns 429 insufficient_quota after successful USDC topup and reprovision — payment processed but inference still fails with 429",
+    "search_intent": "用户在完成支付和充值后仍收到 429 insufficient_quota，需要解决方案恢复服务",
+    "common_causes": [
+      "来源：GitHub Issues (Conway-Research/automaton#292)。描述 USDC 充值成功但推理仍返回 429 insufficient_quota 的错误。涉及付费用户的计费与API状态不一致问题。分类：OpenAI API（API billing/quota 错误）。"
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "openai-api-openai-api-error-code-429-your-organization-has-reached-its-maximum-usage-limit-insufficient-quota-treated-as-retryable-wasteful-credit-burn",
+    "title": "text-completion worker treats OpenAI insufficient_quota as retryable (should fail fast)",
+    "description": "开发者遇到 OpenAI 429 insufficient_quota 错误后，代码仍在重试消耗信用额度，需要知道如何快速失败避免浪费 Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "OpenAI API error code 429: Your organization has reached its maximum usage limit. insufficient_quota treated as retryable → wasteful credit burn",
+    "search_intent": "开发者遇到 OpenAI 429 insufficient_quota 错误后，代码仍在重试消耗信用额度，需要知道如何快速失败避免浪费",
+    "common_causes": [
+      "来源：GitHub Issues (trustgraph-ai/trustgraph#901)。明确描述 text-completion worker 将 OpenAI 的 insufficient_quota 视为可重试错误而非立即失败，导致无限消耗用户信用。属于付费 API 计费影响型错误。分类：OpenAI API（按规则表映射）。"
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "claude-code-failed-to-reconnect-sse-stream-streamable-http-error-failed-to-open-sse-stream",
+    "title": "[bridge-error] Failed to reconnect SSE stream: Streamable HTTP error: Failed to open SSE stream",
+    "description": "用户使用流式 AI 工具时 SSE 连接断开且无法重连，需要修复实时对话功能 Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Failed to reconnect SSE stream: Streamable HTTP error: Failed to open SSE stream",
+    "search_intent": "用户使用流式 AI 工具时 SSE 连接断开且无法重连，需要修复实时对话功能",
+    "common_causes": [
+      "来源：memnexus-ai/support issues (#336, #334, #329, #327) — 同一作者多次提交相同问题。错误发生在 SSE（Server-Sent Events）流式传输场景中，频繁出现于 AI coding agent 工具链。属于高频率复现的网络层错误。分类：AI Coding Tools（MCP/SSE 连接在 AI coding 工具链中常见）。"
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "github-actions-gh-pat-expired-workflow-triggered-by-cron-cannot-authenticate-due-to-expired-personal-access-token",
+    "title": "🔴 GH_PAT Expired — automated GitHub Actions CI/CD pipeline blocked by expired token",
+    "description": "GitHub Actions 因 PAT（Personal Access Token）过期而 CI/CD 流水线中断，需了解自动刷新令牌方案 Includes evidence for GitHub Actions troubleshooting demand.",
+    "category": "GitHub Actions",
+    "technology": "GitHub Actions",
+    "error_signature": "GH_PAT Expired — workflow triggered by cron cannot authenticate due to expired Personal Access Token",
+    "search_intent": "GitHub Actions 因 PAT（Personal Access Token）过期而 CI/CD 流水线中断，需了解自动刷新令牌方案",
+    "common_causes": [
+      "来源：GitHub Issues (POWERFULMOVES/PMOVES.AI#1566)。Bot 账号 github-actions[bot] 上报的定时检查发现 GH_PAT 已过期导致 pipeline 中断。这是一个通用模式：大量使用 GitHub Actions 的仓库都会面临 PAT 过期导致的部署阻塞。分类：GitHub Actions（CI/CD 失败直接影响付费团队交付）。"
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "GitHub Actions"
+    ]
+  },
+  {
+    "slug": "litellm-invalidhttpresponse-fetching-litellm-proxy-400-error-not-surfaced-to-user-retrying-fails-silently-must-start-new-session",
+    "title": "LiteLLM 400 Errors swallowed by opencode session — user sees no actionable feedback",
+    "description": "开发者在使用 LiteLLM 代理后端时遇到 400 错误但 opencode 不显示日志或错误信息，需要调试和解决请求格式问题 Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "InvalidHTTPResponse fetching litellm proxy — 400 error not surfaced to user, retrying fails silently, must start new session",
+    "search_intent": "开发者在使用 LiteLLM 代理后端时遇到 400 错误但 opencode 不显示日志或错误信息，需要调试和解决请求格式问题",
+    "common_causes": [
+      "来源：GitHub Issues (anomalyco/opencode#16052)。LiteLLM 返回 400 错误但 opencode 框架不展示日志内容，用户只能重启会话重试。这是代理层错误处理的典型痛点，影响开发体验和调试效率。分类：LiteLLM（按规则表映射）。"
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "LiteLLM"
+    ]
+  },
+  {
+    "slug": "litellm-litellm-notfounderror-geminiexception-error-generating-conversation-title-with-llm-invalid-model-name-or-configuration-passed-to-litellm-proxy",
+    "title": "litellm.NotFoundError: GeminiException — conversation title generation fails with invalid model config",
+    "description": "开发者配置 LiteLLM 代理后，Gemini 模型返回 NotFoundError 导致标题生成失败，需要正确的模型映射配置 Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "litellm.NotFoundError: GeminiException — Error generating conversation title with LLM: Invalid model name or configuration passed to LiteLLM proxy",
+    "search_intent": "开发者配置 LiteLLM 代理后，Gemini 模型返回 NotFoundError 导致标题生成失败，需要正确的模型映射配置",
+    "common_causes": [
+      "来源：GitHub Issues (OpenHands/OpenHands#13645)。OpenHands 项目使用 LiteLLM 代理调用 Gemini 模型时发生 NotFoundError，根因是模型名称或配置传递有误。这是多模型路由场景下的典型 LiteLLM 配置错误。分类：LiteLLM（代理配置错误）。"
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "LiteLLM"
+    ]
   }
 ]
