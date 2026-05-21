@@ -23917,5 +23917,117 @@
     "related_errors": [
       "AI Coding Tools"
     ]
+  },
+  {
+    "slug": "openai-api-ratelimiterror-raised-for-both-temporary-rate-limits-and-quota-exhaustion-insufficient-quota-429s-requiring-different-handling-strategies",
+    "title": "feat: add InsufficientQuotaError for insufficient_quota 429 responses",
+    "description": "Distinguish between temporary rate limits (retry-after delay) and quota exhaustion (insufficient_quota) in OpenAI API 429 responses for proper error handling Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "RateLimitError raised for both temporary rate limits AND quota exhaustion (insufficient_quota 429s), requiring different handling strategies",
+    "search_intent": "Distinguish between temporary rate limits (retry-after delay) and quota exhaustion (insufficient_quota) in OpenAI API 429 responses for proper error handling",
+    "common_causes": [
+      "GitHub PR openai/openai-python#3042 — Users cannot distinguish temporary rate limits from permanent quota exhaustion because both raise generic RateLimitError. Needs InsufficientQuotaError subclass. Commercial impact on paid API users who may be blocked indefinitely after quota max-out."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "github-copilot-execution-failed-error-session-was-not-created-with-authentication-info-or-custom-provider-caused-by-silent-rest-quota-rate-limit-failures-during-token-validation",
+    "title": "CLI auth flow silently swallows REST quota/rate-limit errors during token validation",
+    "description": "Debug misleading session auth error that actually stems from GitHub REST API quota (5000 req/hour) being hit during Copilot CLI token validation step Includes evidence for GitHub Copilot troubleshooting demand.",
+    "category": "GitHub Copilot",
+    "technology": "GitHub Copilot",
+    "error_signature": "Execution failed: Error: Session was not created with authentication info or custom provider (caused by silent REST quota/rate-limit failures during token validation)",
+    "search_intent": "Debug misleading session auth error that actually stems from GitHub REST API quota (5000 req/hour) being hit during Copilot CLI token validation step",
+    "common_causes": [
+      "GitHub Issue github/copilot-cli#3311 — When COPILOT_SDK_AUTH_TOKEN hits 429/quota at GET /copilot_internal/user, the error is swallowed and surfaced as confusing 'Session not created with auth info'. Most common trigger: hitting GitHub's standard 5000 req/hour REST quota. High commercial value for enterprise Copilot teams."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "GitHub Copilot"
+    ]
+  },
+  {
+    "slug": "docker-docker-29-5-clone-newtime-default-breaks-cloud-native-buildpacks-cnb-lifecycle-builds",
+    "title": "Docker 29.5 CLONE_NEWTIME default breaks CNB lifecycle builds",
+    "description": "Fix broken CNB/lifecycle container image builds caused by Docker 29.5 enabling CLONE_NEWTIME namespace flag by default Includes evidence for Docker troubleshooting demand.",
+    "category": "Docker",
+    "technology": "Docker",
+    "error_signature": "Docker 29.5 CLONE_NEWTIME default breaks Cloud Native Buildpacks (CNB) lifecycle builds",
+    "search_intent": "Fix broken CNB/lifecycle container image builds caused by Docker 29.5 enabling CLONE_NEWTIME namespace flag by default",
+    "common_causes": [
+      "GitHub Issue moby/moby#52671 — Open on May 20, 2026, very fresh. Docker 29.5 introduced a default behavior change for CLONE_NEWTIME that breaks CNB lifecycle builds. High commercial impact for enterprises using Docker + CNB pipeline. Category = Docker per mapping rules."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Docker"
+    ]
+  },
+  {
+    "slug": "github-actions-errors-from-initializing-the-gitcommandmanager-are-ignored-and-never-displayed",
+    "title": "GitHub Actions checkout gitCommandManager errors silently ignored",
+    "description": "Fix GitHub Actions checkout action where git initialization errors are silently swallowed without any error message, making debugging CI/CD failures extremely difficult Includes evidence for GitHub Actions troubleshooting demand.",
+    "category": "GitHub Actions",
+    "technology": "GitHub Actions",
+    "error_signature": "Errors from initializing the gitCommandManager are ignored and never displayed",
+    "search_intent": "Fix GitHub Actions checkout action where git initialization errors are silently swallowed without any error message, making debugging CI/CD failures extremely difficult",
+    "common_causes": [
+      "GitHub Issue actions/checkout#2435 — Open May 19, 2026 (very fresh). The checkout action ignores gitCommandManager init errors instead of surfacing them. Blocks debugging for paid team CI/CD pipelines. P0 technology, high commercial value. Distinct from covered-errors list item about 'permission denied publickey'."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "GitHub Actions"
+    ]
+  },
+  {
+    "slug": "vercel-error-err-module-not-found-cannot-find-module-var-task-apps-remix-build-imported-from-var-task",
+    "title": "Vercel build ERR_MODULE_NOT_FOUND at runtime: Cannot find module after deployment",
+    "description": "Fix Vercel deployment runtime error where deployed bundles reference missing modules causing 500 Internal Server Error after successful build Includes evidence for Vercel troubleshooting demand.",
+    "category": "Deployment",
+    "technology": "Vercel",
+    "error_signature": "Error [ERR_MODULE_NOT_FOUND]: Cannot find module '/var/task/apps/remix/build/...' imported from /var/task/...",
+    "search_intent": "Fix Vercel deployment runtime error where deployed bundles reference missing modules causing 500 Internal Server Error after successful build",
+    "common_causes": [
+      "GitHub Issue vercel/vercel#10893 — Recurring issue with Remix/Turborepo on Vercel where deployed edge functions fail with module-not-found at runtime. Previous fix attempted (issue #10494) but problem persists. Affects paid Vercel Pro/Business teams, blocking production deploys. Strong commercial intent."
+    ],
+    "quick_fix": "Check the build output, project root, and deployment platform configuration before redeploying.",
+    "related_errors": [
+      "Deployment"
+    ]
+  },
+  {
+    "slug": "aws-accessdenied-user-arn-aws-sts-xxxxx-assumed-role-yyy-role-zzz-is-not-authorized-to-perform-s3-listbucket-on-resource-arn-aws-s3-bucket-name",
+    "title": "AWS Lambda AccessDenied — s3:ListBucket unauthorised due to IAM propagation race condition",
+    "description": "Fix AWS Lambda getting AccessDenied on S3 ListBucket due to IAM role/permission propagation delays between CDK/Terraform deploy and Lambda execution Includes evidence for AWS troubleshooting demand.",
+    "category": "Cloud Platforms",
+    "technology": "AWS",
+    "error_signature": "AccessDenied: User: arn:aws:sts::XXXXX:assumed-role/YYY-role-ZZZ is not authorized to perform: s3:ListBucket on resource: arn:aws:s3:::bucket-name",
+    "search_intent": "Fix AWS Lambda getting AccessDenied on S3 ListBucket due to IAM role/permission propagation delays between CDK/Terraform deploy and Lambda execution",
+    "common_causes": [
+      "Multiple AWS-related issues — AWS CDK issue aws/aws-cdk#37939 shows IAM propagation race condition for OpenSearchPolicy; many StackOverflow/GitHub issues show AccessDenied on S3 ListBucket in Lambda. These are classic timing-race issues affecting production deployments. Category: Cloud Platforms per mapping rules."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "Cloud Platforms"
+    ]
+  },
+  {
+    "slug": "langchain-openai-error-ratelimiterror-rate-limit-reached-for-default-global-with-image-limits-in-organization-org-xxx-on-requests-per-min-limit-60-0-min-current-70-0-min",
+    "title": "LangChain rate limit error with OpenAI embedding API",
+    "description": "Fix OpenAI rate limit errors when using LangChain embeddings via text-embedding-ada-002, specifically when chunking texts across multiple concurrent requests Includes evidence for LangChain troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "LangChain",
+    "error_signature": "openai.error.RateLimitError: Rate limit reached for default-global-with-image-limits in organization org-xxx on requests per min. Limit: 60.0 / min. Current: 70.0 / min",
+    "search_intent": "Fix OpenAI rate limit errors when using LangChain embeddings via text-embedding-ada-002, specifically when chunking texts across multiple concurrent requests",
+    "common_causes": [
+      "Multiple related LangChain issues (#634, #6071, #15190, #9298) — Users consistently hit RateLimitError with OpenAI embedding models through LangChain. The SDK-level rate limiter doesn't properly account for LangChain's internal concurrency, causing bursts that exceed organization quotas. Affects paid API users running LangChain pipelines. Mapping: LangChain → AI Coding Tools per category rules."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
   }
 ]
