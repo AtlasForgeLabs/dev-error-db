@@ -24205,5 +24205,117 @@
     "related_errors": [
       "Cursor"
     ]
+  },
+  {
+    "slug": "anthropic-api-apistatuserror-with-status-code-200-when-anthropic-api-returns-overloaded-error-rate-limit-error-during-streaming-sse-event",
+    "title": "Anthropic SDK: Mid-stream SSE errors return HTTP 200 instead of correct error status code",
+    "description": "Fix incorrect status code for streaming errors in Anthropic Python SDK so retry/fallback logic based on status_code works correctly Includes evidence for Anthropic API troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Anthropic API",
+    "error_signature": "APIStatusError with status_code=200 when Anthropic API returns overloaded_error / rate_limit_error during streaming (SSE event)",
+    "search_intent": "Fix incorrect status code for streaming errors in Anthropic Python SDK so retry/fallback logic based on status_code works correctly",
+    "common_causes": [
+      "GitHub issue #1258 in anthropics/anthropic-sdk-python (sarth6, Mar 2026). When API returns HTTP 200 (streaming started fine) but then sends an SSE error event like overloaded_error, the SDK creates an APIStatusError with status_code=200 instead of 529. This breaks pydantic-ai FallbackModel which checks status_code >= 500 to decide whether to try the next model. Severity was confirmed by official collaborator dtmeadows and fixed in v0.87.0. High commercial value — impacts production AI workflow reliability."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "Anthropic API"
+    ]
+  },
+  {
+    "slug": "anthropic-api-anthropic-apistatuserror-type-error-error-details-none-type-overloaded-error-message-overloaded-during-streaming",
+    "title": "Anthropic overloaded_error during streaming not caught by max_retries in LangChain wrapper",
+    "description": "Understand why max_retries doesn't prevent overloaded_error interruptions during streaming with ChatAnthropic in LangChain, and find workaround patterns Includes evidence for Anthropic API troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Anthropic API",
+    "error_signature": "anthropic.APIStatusError: {'type': 'error', 'error': {'details': None, 'type': 'overloaded_error', 'message': 'Overloaded'}} during streaming",
+    "search_intent": "Understand why max_retries doesn't prevent overloaded_error interruptions during streaming with ChatAnthropic in LangChain, and find workaround patterns",
+    "common_causes": [
+      "GitHub issue #688 in anthropics/anthropic-sdk-python (Kevin-McIsaac, Oct 2024). User building RAG pipeline with LangChain gets 1-in-100 stream interruptions from overloaded_error. max_retries applies only to initial HTTP request, not mid-stream events. Officially confirmed intended behavior — callers must wrap stream iteration in try/except and retry the full request. Still relevant for SEO because many developers search for how to handle this exact pattern."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Anthropic API"
+    ]
+  },
+  {
+    "slug": "cloudflare-cloudflare-error-522-connection-timed-out",
+    "title": "Cloudflare Error 522 Connection Timed Out — Origin Server Not Responding",
+    "description": "Diagnose and fix Cloudflare Error 522 when visitors cannot reach website behind Cloudflare CDN — determine if origin server is down, firewall blocking Cloudflare IPs, or DNS misconfiguration Includes evidence for Cloudflare troubleshooting demand.",
+    "category": "Cloudflare",
+    "technology": "Cloudflare",
+    "error_signature": "Cloudflare Error 522: Connection timed out",
+    "search_intent": "Diagnose and fix Cloudflare Error 522 when visitors cannot reach website behind Cloudflare CDN — determine if origin server is down, firewall blocking Cloudflare IPs, or DNS misconfiguration",
+    "common_causes": [
+      "Content from elementor.com (Itamar Haim, Oct 2025) and multiple developer forums. Error 522 is a Cloudflare proxy timeout — Cloudflare connects to origin but server takes too long to respond. Causes include overloaded/offline origin server, firewall blocking Cloudflare IP ranges, incorrect DNS IP configs, or network connectivity issues. High commercial value for e-commerce sites relying on Cloudflare protection. Covers both 522 and related 520/524 errors."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Cloudflare"
+    ]
+  },
+  {
+    "slug": "docker-tls-handshake-timeout-when-using-docker-pull",
+    "title": "Docker pull fails with TLS handshake timeout when pulling images from registry",
+    "description": "Fix docker pull command hanging/failing with TLS handshake timeout — diagnose whether registry is reachable, certificate issues, or network proxy interfering with TLS negotiation Includes evidence for Docker troubleshooting demand.",
+    "category": "Docker",
+    "technology": "Docker",
+    "error_signature": "TLS handshake timeout when using docker pull",
+    "search_intent": "Fix docker pull command hanging/failing with TLS handshake timeout — diagnose whether registry is reachable, certificate issues, or network proxy interfering with TLS negotiation",
+    "common_causes": [
+      "GitHub issue #6062 in docker/cli (Dalzhim, May 2025, version 28.1). Specifically about TLS handshake timing out during docker pull, distinct from general daemon-not-running errors. Affects enterprise CI/CD pipelines where image downloads are critical path. Docker Enterprise customers pay for private registries — pull failures directly block deployments."
+    ],
+    "quick_fix": "Verify the model name, local service connectivity, and network access before retrying the model pull.",
+    "related_errors": [
+      "Docker"
+    ]
+  },
+  {
+    "slug": "docker-docker-model-runner-cannot-be-used-with-h-flag-to-connect-to-remote-server",
+    "title": "Docker model runner --H flag fails to connect to remote model serving server",
+    "description": "Fix Docker model runner's -H flag so it can connect to remote model serving daemons for distributed inference workloads Includes evidence for Docker troubleshooting demand.",
+    "category": "Docker",
+    "technology": "Docker",
+    "error_signature": "Docker model runner cannot be used with -H flag to connect to remote server",
+    "search_intent": "Fix Docker model runner's -H flag so it can connect to remote model serving daemons for distributed inference workloads",
+    "common_causes": [
+      "GitHub issue #6786 in docker/cli (blackblather, Feb 2026). New Docker model runner feature introduced for ML workloads cannot use -H flag to target remote model serving endpoints. Blocks teams trying to scale model inference across multiple nodes. High commercial value for enterprises running containerized ML inference at scale."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Docker"
+    ]
+  },
+  {
+    "slug": "openai-api-model-not-accessible-model-not-found-for-newly-released-openai-models-e-g-o3-mini",
+    "title": "OpenAI API new model (o3-mini) reported as not accessible after launch",
+    "description": "Troubleshoot when a brand-new OpenAI model release immediately triggers model_not_found or access errors in the API SDK despite official launch announcement Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "model not accessible / model_not_found for newly released OpenAI models (e.g., o3-mini)",
+    "search_intent": "Troubleshoot when a brand-new OpenAI model release immediately triggers model_not_found or access errors in the API SDK despite official launch announcement",
+    "common_causes": [
+      "GitHub issue #2111 in openai/openai-python (xarcraft-dev, Feb 2025). Developer reports o3-mini not accessible shortly after official launch — likely due to gradual rollout, quota provisioning delays, or endpoint not yet available in SDK version. Commercial value: developers who purchased credits plan deployments around new model releases; sudden unavailability blocks production workflows."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "vercel-prebuilt-output-bakes-absolute-paths-to-node-modules-pnpm-which-don-t-exist-on-vercel-s-build-machines-enoent",
+    "title": "Vercel prebuilt deployment fails ENOENT due to baked absolute paths in node_modules/.pnpm",
+    "description": "Fix Vercel deploy --prebuilt failing when local pnpm monorepo structure uses absolute paths that don't resolve on Vercel's remote build machine Includes evidence for Vercel troubleshooting demand.",
+    "category": "Deployment",
+    "technology": "Vercel",
+    "error_signature": "prebuilt output bakes absolute paths to node_modules/.pnpm/ which don't exist on Vercel's build machines → ENOENT",
+    "search_intent": "Fix Vercel deploy --prebuilt failing when local pnpm monorepo structure uses absolute paths that don't resolve on Vercel's remote build machine",
+    "common_causes": [
+      "Found in AtlasNexusOps/vercel-deployment GitHub README (community report, 2026). Local pnpm .pnpm store produces absolute node_modules paths baked into prebuilt output — these paths don't exist on Vercel's ephemeral build environment, causing cascading ENOENT errors during deploy. Workaround: use standard vercel --prod flow instead of --prebuilt. Targets teams using pnpm monorepos deploying to Vercel."
+    ],
+    "quick_fix": "Check the build output, project root, and deployment platform configuration before redeploying.",
+    "related_errors": [
+      "Deployment"
+    ]
   }
 ]
