@@ -25309,5 +25309,117 @@
     "related_errors": [
       "AI Coding Tools"
     ]
+  },
+  {
+    "slug": "anthropic-api-error-code-400-type-invalid-request-error-message-model-id-model-claude-sonnet-4-6-model-is-not-supported",
+    "title": "Managed Agents API returns \"model is not supported\" 400 for all Claude models",
+    "description": "Fix 400 error when creating Claude agent via Managed Agents beta API despite same API key working with Messages API Includes evidence for Anthropic API troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Anthropic API",
+    "error_signature": "Error code: 400 - {\"type\": \"invalid_request_error\", \"message\": \"`model.id`: model \\\"claude-sonnet-4-6\\\": model is not supported\"}",
+    "search_intent": "Fix 400 error when creating Claude agent via Managed Agents beta API despite same API key working with Messages API",
+    "common_causes": [
+      "GitHub issue anthropics/anthropic-sdk-python#1583 — all Claude models fail with 'model is not supported' on agents.create() / sessions.create() but work fine on Messages API with same key. Agent creation worked earlier the same day, suggesting a recent API change or outage. Strong commercial impact for paid users using Managed Agents beta."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Anthropic API"
+    ]
+  },
+  {
+    "slug": "litellm-sigv4-401-unauthorized-on-bedrock-claude-platform-route-signature-never-matches-due-to-duplicate-content-type-header-values",
+    "title": "LiteLLM Bedrock SigV4 returns 401 due to case-sensitive Content-Type header duplication",
+    "description": "Fix LiteLLM Bedrock authentication failure caused by case-sensitive Content-Type header key collision causing double headers in SigV4 signing Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "SigV4 401 Unauthorized on bedrock/claude_platform/* route — signature never matches due to duplicate Content-Type header values",
+    "search_intent": "Fix LiteLLM Bedrock authentication failure caused by case-sensitive Content-Type header key collision causing double headers in SigV4 signing",
+    "common_causes": [
+      "GitHub issue BerriAI/litellm#28491 — single-line fix needed: Content-Type uppercase conflicts with lowercase content-type in dict spread. botocore joins them into duplicate header, breaking AWS SigV4 signature match. One-line patch resolves production auth failures. Strong commercial impact for enterprise LiteLLM proxy users routing to AWS Bedrock."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "LiteLLM"
+    ]
+  },
+  {
+    "slug": "claude-code-session-terminates-automatically-shows-resume-this-session-with-claude-resume-id-without-any-error-logs-or-crash-dump",
+    "title": "Claude Code session crashes automatically during multi-subagent fan-out",
+    "description": "Prevent Claude Code Opus from crashing mid-session when spawning multiple subagent tasks Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Session terminates automatically; shows 'Resume this session with: claude --resume <id>' without any error logs or crash dump",
+    "search_intent": "Prevent Claude Code Opus from crashing mid-session when spawning multiple subagent tasks",
+    "common_causes": [
+      "GitHub issue anthropics/claude-code#61258 — user reports 3+ crashes per day on v2.1.147 when fanning out subagents. No stack trace, no CTRL+C involvement. Regression from previous version. Directly affects paid Opus users doing complex multi-task workflows."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "github-actions-listener-stops-polling-broker-after-first-job-s-busy-online-transition-runner-v2-334-0-windows-v2-flow",
+    "title": "GitHub Actions runner listener stops polling broker after Busy→Online transition on Windows",
+    "description": "Fix GitHub Actions self-hosted runner on Windows where listener stops accepting new jobs after completing the first one Includes evidence for GitHub Actions troubleshooting demand.",
+    "category": "GitHub Actions",
+    "technology": "GitHub Actions",
+    "error_signature": "Listener stops polling broker after first job's Busy→Online transition (runner v2.334.0, Windows, V2 flow)",
+    "search_intent": "Fix GitHub Actions self-hosted runner on Windows where listener stops accepting new jobs after completing the first one",
+    "common_causes": [
+      "GitHub issue actions/runner#4444 — self-hosted runner on Windows v2.334.0 stops receiving jobs after first job transitions from Busy back to Online. Blocks entire CI/CD pipeline for teams relying on self-hosted runners. High urgency for production environments."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "GitHub Actions"
+    ]
+  },
+  {
+    "slug": "cloudflare-error-cannot-convert-argument-to-a-bytestring-because-the-character-at-index-7-has-a-value-of-8230-which-is-greater-than-255",
+    "title": "Cloudflare Wrangler throws ByteString conversion error when setting secret with Unicode character",
+    "description": "Resolve wrangler secret put failure when input contains non-ASCII characters (Unicode > 255) Includes evidence for Cloudflare troubleshooting demand.",
+    "category": "Cloudflare",
+    "technology": "Cloudflare",
+    "error_signature": "[ERROR] Cannot convert argument to a ByteString because the character at index 7 has a value of 8230 which is greater than 255",
+    "search_intent": "Resolve wrangler secret put failure when input contains non-ASCII characters (Unicode > 255)",
+    "common_causes": [
+      "GitHub issue cloudflare/workers-sdk#13997 — npx wrangler secret put fails with ByteString conversion error when secret value contains Unicode character (ellipsis U+2026, value 8230). Users must avoid special chars in secrets, impacting production deployments on Cloudflare Workers Enterprise plan."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Cloudflare"
+    ]
+  },
+  {
+    "slug": "cursor-insufficient-balance-showing-balance-of-0-1-for-free-model-usage",
+    "title": "Cline free models return 'Insufficient balance' with negative $-0.1 balance",
+    "description": "Fix unexpected negative balance and access denial on Cline's free tier model endpoints Includes evidence for Cursor troubleshooting demand.",
+    "category": "Cursor",
+    "technology": "Cursor",
+    "error_signature": "\"Insufficient balance\" showing balance of $-0.1 for free model usage",
+    "search_intent": "Fix unexpected negative balance and access denial on Cline's free tier model endpoints",
+    "common_causes": [
+      "GitHub issue cline/cline#10952 — users attempting free agent usage get 'insufficient balance' error with $-0.1 balance displayed. Never used paid tier before. Affects Cline's free model offerings which drive adoption. Category mapped to AI Coding Tools as it involves third-party model routing provider."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Cursor"
+    ]
+  },
+  {
+    "slug": "vercel-turbopack-production-build-e-indexof-is-not-a-function-typeerror-cannot-read-properties-of-undefined-reading-tourl-when-web-worker-created-via-new-url-import-meta-url",
+    "title": "Turbopack Worker URL crash in Next.js 16.2 production builds causes Monaco editor failure",
+    "description": "Fix regression in Next.js 16.2 Turbopack where Web Worker instantiation via import.meta.url crashes in production, breaking language-service workers Includes evidence for Vercel troubleshooting demand.",
+    "category": "Deployment",
+    "technology": "Vercel",
+    "error_signature": "Turbopack production build: e.indexOf is not a function → TypeError: Cannot read properties of undefined (reading 'toUrl') when Web Worker created via new URL(..., import.meta.url)",
+    "search_intent": "Fix regression in Next.js 16.2 Turbopack where Web Worker instantiation via import.meta.url crashes in production, breaking language-service workers",
+    "common_causes": [
+      "GitHub issue vercel/next.js#94015 — confirmed regression in Turbopack 16.2. Production builds crash with Worker creation errors. GraphiQL Monaco editor completely broken. Reproducible via minimal reproduction repo. Affects Vercel-hosted Next.js deployments with dependency on Monaco or similar Worker-based editors."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Deployment"
+    ]
   }
 ]
