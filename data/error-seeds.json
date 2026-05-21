@@ -24077,5 +24077,69 @@
     "related_errors": [
       "AI Coding Tools"
     ]
+  },
+  {
+    "slug": "claude-code-streamable-http-error-error-posting-to-endpoint-mcp-tool-call-requires-approval",
+    "title": "Claude Code scheduled routines fail every MCP tool call with requires approval error",
+    "description": "Fix scheduled routines + custom MCP connectors breaking since ~2026-05-20 regression where unattended routine executions require human approval Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Streamable HTTP error: Error POSTing to endpoint: MCP tool call requires approval",
+    "search_intent": "Fix scheduled routines + custom MCP connectors breaking since ~2026-05-20 regression where unattended routine executions require human approval",
+    "common_causes": [
+      "GitHub issue #61015 opened May 21 2026 — massive community impact confirmed with multiple users reporting same regression affecting first-party Notion connector and custom OAuth MCPs. Routines fire but all tool calls silently fail. UI guarantees no approval needed. P0 regression, very high commercial value. Mapping correct per table rules."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "openai-api-status-failed-error-code-server-error-not-mapped-to-internalservererror-exception-in-background-true-mode",
+    "title": "Background responses failures lack a stable error code that maps to SDK exception classes",
+    "description": "Fix OpenAI Python SDK background mode so failed responses surface typed exceptions instead of opaque strings Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "status=\"failed\" error code \"server_error\" not mapped to InternalServerError exception in background=True mode",
+    "search_intent": "Fix OpenAI Python SDK background mode so failed responses surface typed exceptions instead of opaque strings",
+    "common_causes": [
+      "GitHub issue #3212 opened May 8 2026 — background=True polling returns 200 OK with status=failed but no stable error.code enum; synchronous path has deterministic _make_status_error dispatcher but background path lacks equivalent. Affects production retry/backoff logic heavily. Mapping is correct."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "openai-api-need-adjustable-exponential-backoff-for-openai-api-rate-limit-retries-with-max-retries",
+    "title": "Functionality to adjust exponential backoff associated with max_retries option",
+    "description": "Request ability to configure backoff delay/exponent in OpenAI Python SDK to handle 429 rate limits better Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "Need adjustable exponential backoff for OpenAI API rate limit retries with max_retries",
+    "search_intent": "Request ability to configure backoff delay/exponent in OpenAI Python SDK to handle 429 rate limits better",
+    "common_causes": [
+      "GitHub issue #1102 from openai/openai-python — Enhancement request for configurable backoff strategy in the retry logic used for 429 handling. Updated May 13 2026 recently showing continued relevance. No PR merged yet. Moderate competition, specific fix available in SDK code."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "docker-cannot-connect-to-the-docker-daemon-or-docker-sock-permission-denied-on-linux-macos",
+    "title": "Docker permission denied issues with Docker CLI and group configuration",
+    "description": "Fix Docker permission denied errors related to docker socket access and group membership configuration Includes evidence for Docker troubleshooting demand.",
+    "category": "Docker",
+    "technology": "Docker",
+    "error_signature": "Cannot connect to the Docker daemon or docker.sock permission denied on Linux/macOS",
+    "search_intent": "Fix Docker permission denied errors related to docker socket access and group membership configuration",
+    "common_causes": [
+      "Searched github.com/docker/cli issues filtered by permission denied and sorted by update date — persistent Docker permission issues reported. High frequency error affecting developer productivity daily. Category correctly mapped to Docker. Browser fetch returned search results page confirming active issues."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Docker"
+    ]
   }
 ]
