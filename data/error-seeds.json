@@ -23741,5 +23741,85 @@
     "related_errors": [
       "Deployment"
     ]
+  },
+  {
+    "slug": "claude-code-rate-limit-reset-calculation-incorrect-usage-spike-after-reset",
+    "title": "Claude Code Rate Limit Reset Calculation Incorrect — Usage Spike After Reset",
+    "description": "Dev hits unexpected rate limit immediately after reset; needs to understand how Claude Code calculates remaining budget and fix quota tracking Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "rate limit reset calculation incorrect — usage spike after reset",
+    "search_intent": "Dev hits unexpected rate limit immediately after reset; needs to understand how Claude Code calculates remaining budget and fix quota tracking",
+    "common_causes": [
+      "Issue #61014 opened May 21 2026 on anthropics/claude-code repo, labeled area:cost+bug+platform:macOS. Clear commercial value — affects paid Pro/Max subscribers with billing/quota errors. Category: Claude Code maps to 'AI Coding Tools'."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "claude-code-usage-limit-reached-repeatedly-without-active-use-pro-plan",
+    "title": "Usage Limit Reached Repeatedly Without Active Use — Claude Code Pro Plan Bug",
+    "description": "Paid Claude Code Pro user sees usage limits triggered despite not actively using the tool; suspects background processes consuming quota Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Usage limit reached repeatedly without active use — Pro plan",
+    "search_intent": "Paid Claude Code Pro user sees usage limits triggered despite not actively using the tool; suspects background processes consuming quota",
+    "common_causes": [
+      "Issue #61012 opened May 21 2026 on anthropics/claude-code, labeled area:cost+bug+platform:windows. Direct billing/quota impact on paying users. Very high commercial value."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "openai-api-gpt-5-1-gpt-5-4-responses-endpoint-silently-hangs-10-28-of-concurrent-requests",
+    "title": "GPT-5.1 / GPT-5.4 Responses Endpoint Silently Hangs 10–28% of Concurrent Requests",
+    "description": "Production systems experience intermittent silent failures on OpenAI responses API under concurrent load; need timeout handling and error recovery patterns Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "GPT-5.1 / GPT-5.4 /responses endpoint silently hangs 10-28% of concurrent requests",
+    "search_intent": "Production systems experience intermittent silent failures on OpenAI responses API under concurrent load; need timeout handling and error recovery patterns",
+    "common_causes": [
+      "Issue #3054 opened Apr 3 2026 on openai/openai-python. Affects production deployments using latest GPT models. Silent hangs = hard-to-debug error with clear business impact. Maps to 'OpenAI API'."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "github-actions-ephemeral-jit-runner-reports-lost-communication-despite-successful-job-completion-no-grace-period-before-broker-disconnect",
+    "title": "Ephemeral/JIT Runner Reports Lost Communication Despite Successful Job Completion",
+    "description": "Teams using ephemeral/self-hosted runners see jobs fail with 'lost communication' right after successful completion; need graceful shutdown handling to prevent false CI/CD failures Includes evidence for GitHub Actions troubleshooting demand.",
+    "category": "GitHub Actions",
+    "technology": "GitHub Actions",
+    "error_signature": "Ephemeral/JIT runner reports lost communication despite successful job completion — no grace period before broker disconnect",
+    "search_intent": "Teams using ephemeral/self-hosted runners see jobs fail with 'lost communication' right after successful completion; need graceful shutdown handling to prevent false CI/CD failures",
+    "common_causes": [
+      "Issue #4309 opened Mar 21 2026 on actions/runner. Affects self-hosted runner setups where transient network issues cause false failure reports. CI/CD blockage for paid teams. Maps to 'GitHub Actions'."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "GitHub Actions"
+    ]
+  },
+  {
+    "slug": "anthropic-api-pre-limit-usage-alerts-and-webhooks-notify-users-before-session-weekly-budgets-are-exhausted",
+    "title": "Pre-Limit Usage Alerts and Webhooks Needed — Notify Users Before Session/Weekly Budget Exhausted",
+    "description": "Enterprise Anthropic API users want proactive notifications before hitting usage limits to prevent service interruption during production workloads Includes evidence for Anthropic API troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Anthropic API",
+    "error_signature": "Pre-limit usage alerts and webhooks — notify users before session/weekly budgets are exhausted",
+    "search_intent": "Enterprise Anthropic API users want proactive notifications before hitting usage limits to prevent service interruption during production workloads",
+    "common_causes": [
+      "Issue #1494 opened May 5 2026 on anthropics/anthropic-sdk-python. Feature request for billing/alerting infrastructure. Strong commercial value as it addresses a pain point for enterprise API consumers managing costs."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Anthropic API"
+    ]
   }
 ]
