@@ -24637,5 +24637,117 @@
     "related_errors": [
       "AI Coding Tools"
     ]
+  },
+  {
+    "slug": "claude-code-could-not-be-parsed-retry-also-failed-opus-4-7-tool-calls-fail-repeatedly-starting-2026-05-20",
+    "title": "Claude Code Opus 4.7 tool call parsing fails with unrecoverable retry loop",
+    "description": "Claude Code Pro/Max users running Opus 4.7 encounter tool call parsing failures where retries also fail, leaving agents stuck. Regression started May 20, 2026. Labeled 'has repro' with detailed reproduction steps. Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "could not be parsed (retry also failed) — Opus 4.7 tool calls fail repeatedly starting 2026-05-20",
+    "search_intent": "Claude Code Pro/Max users running Opus 4.7 encounter tool call parsing failures where retries also fail, leaving agents stuck. Regression started May 20, 2026. Labeled 'has repro' with detailed reproduction steps.",
+    "common_causes": [
+      "Source: anthropics/claude-code#61133 (opened May 21, 2026, today). Labeled area:model, bug, has repro. Critical regression affecting all Opus 4.7 tool calls — parse errors in function calling format are not self-healing across retries. Directly impacts Pro/Max paying subscribers. Category: AI Coding Tools — model parsing failure in paid tier."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "openai-api-429-quota-exceeded-oauth-login-succeeds-but-third-party-codex-api-calls-return-429-quota-exceeded-despite-active-plus-subscription",
+    "title": "ChatGPT Plus OAuth returns 429 quota error for third-party Codex calls despite active subscription",
+    "description": "Plus subscribers using third-party tools (OpenClaw/Codex connectors) authenticated via OAuth hit 429 quota errors, unable to make API calls despite having active ChatGPT Plus plan. Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "429 quota exceeded — OAuth login succeeds but third-party Codex API calls return 429 quota exceeded despite active Plus subscription",
+    "search_intent": "Plus subscribers using third-party tools (OpenClaw/Codex connectors) authenticated via OAuth hit 429 quota errors, unable to make API calls despite having active ChatGPT Plus plan.",
+    "common_causes": [
+      "Source: openai/openai-python#2951 (opened Mar 10, 2026). Bug report confirms OAuth flow succeeds, request reaches openai-codex/gpt-5.4, returns 429 quota exceeded. Distinguishes from local gateway failures and non-Plus accounts. Questions whether Plus OAuth quota applies to third-party calls. High value: paid subscriber blocked, affects billing/usage routing. Category: OpenAI API — paid API, quota/billing failure."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "openai-api-status-failed-error-code-not-mapped-to-sdk-exception-class-http-poll-returns-200-ok-but-no-typed-exception-raised",
+    "title": "OpenAI Responses API background mode fails to surface typed exceptions for failed runs",
+    "description": "Developers using OpenAI Python SDK background responses API encounter opaque failure payloads instead of typed RetryableError/InternalServerError exceptions, breaking production retry/backoff logic. Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "Status='failed', error.code not mapped to SDK exception class; HTTP poll returns 200 OK but no typed exception raised",
+    "search_intent": "Developers using OpenAI Python SDK background responses API encounter opaque failure payloads instead of typed RetryableError/InternalServerError exceptions, breaking production retry/backoff logic.",
+    "common_causes": [
+      "Source: openai/openai-python#3212 (opened May 8, 2026). Issue shows background-mode response polling returns HTTP 200 with status='failed' payload; error.code is undocumented and not guaranteed to map 1:1 to SDK exception classes like InternalServerError or RateLimitError. Synchronous calls have clean _make_status_error dispatch, but background path has none. Requires stable enum field or documented mapping. Category: OpenAI API — pay-per-token API, affects production billing/usage."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "anthropic-api-attributeerror-nonetype-object-has-no-attribute-model-first-sse-frame-is-type-error-rate-limit-error-but-sdk-yields-betarawmessagestartevent-with-message-none",
+    "title": "Anthropic SDK Bedrock streaming crashes on rate limit error with AttributeError",
+    "description": "Producers using AsyncAnthropicBedrock cross-region inference profiles intermittently crash on first streaming event when Bedrock returns rate limit error as an SSE event stream; accessing event.message.model raises AttributeError. Includes evidence for Anthropic API troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Anthropic API",
+    "error_signature": "AttributeError: 'NoneType' object has no attribute 'model' — first SSE frame is type=error rate_limit_error, but SDK yields BetaRawMessageStartEvent with message=None",
+    "search_intent": "Producers using AsyncAnthropicBedrock cross-region inference profiles intermittently crash on first streaming event when Bedrock returns rate limit error as an SSE event stream; accessing event.message.model raises AttributeError.",
+    "common_causes": [
+      "Source: anthropics/anthropic-sdk-python#1472 (opened Apr 29, 2026, eu-west-1). Reproduced with global.anthropic.claude-opus-4-7 endpoint. Bedrock returns HTTP 200 with error SSE frame; SDK decodes it but hands caller a BetaRawMessageStartEvent whose message field is None. Multiple PRs linked (#1475, #1479, #1572) indicating ongoing work. Category: Anthropic API — Bedrock integration, rate limit error handling."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "Anthropic API"
+    ]
+  },
+  {
+    "slug": "claude-code-mcp-stdio-subprocess-reaped-plus-respawned-mid-conversation-no-shutdown-signal-to-the-server",
+    "title": "Claude Code MCP STDIO subprocess reaped mid-conversation without shutdown signal",
+    "description": "Users running Claude Code with MCP STDIO-based tools experience server processes getting OS-reaped during conversations, then respawned without graceful shutdown, causing hung connections and tool failures. Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "MCP STDIO subprocess reaped + respawned mid-conversation, no shutdown signal to the server",
+    "search_intent": "Users running Claude Code with MCP STDIO-based tools experience server processes getting OS-reaped during conversations, then respawned without graceful shutdown, causing hung connections and tool failures.",
+    "common_causes": [
+      "Source: anthropics/claude-code#61146 (opened May 21, 2026, today — very recent). Labeled area:mcp and bug. MCP servers use STDIO transport; when parent process signals cause SIGTERM/SIGKILL, child servers restart without prior termination handshake. Affects developers relying on custom MCP tools (GitHub, databases, etc.) within Claude Code sessions. Category: AI Coding Tools — MCP auth/tool integration."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "claude-code-remote-routines-lose-mcp-connector-permissions-every-run-tools-blocked-in-ephemeral-container",
+    "title": "Claude Code remote routines lose MCP connector permissions every run",
+    "description": "Users running scheduled webhooks/retrieval-routines in Claude Code web UI lose all MCP connector permissions on each invocation due to ephemeral container recreation, requiring manual permission grant every time. Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Remote routines lose MCP connector permissions every run — tools blocked in ephemeral container",
+    "search_intent": "Users running scheduled webhooks/retrieval-routines in Claude Code web UI lose all MCP connector permissions on each invocation due to ephemeral container recreation, requiring manual permission grant every time.",
+    "common_causes": [
+      "Source: anthropics/claude-code#61141 (opened May 21, 2026). Labeled area:mcp, area:permissions, area:routines, bug, regression. Affects webhook-triggered tasks and scheduled retrievals that depend on MCP connectors (GitHub, APIs). Permissions are lost because each routine run spawns a new ephemeral container with no persisted session state. Category: AI Coding Tools — MCP auth/session persistence."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "claude-code-token-expired-loop-after-multi-shop-switch-unrecoverable-from-client-side",
+    "title": "Claude Code Shopify MCP token-expired loop after multi-shop switch",
+    "description": "Merchants using Claude Code with Shopify MCP connector switch between multiple shop instances and get stuck in perpetual token-expired error loops that cannot be resolved without restarting the entire session. Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "token-expired loop after multi-shop switch, unrecoverable from client side",
+    "search_intent": "Merchants using Claude Code with Shopify MCP connector switch between multiple shop instances and get stuck in perpetual token-expired error loops that cannot be resolved without restarting the entire session.",
+    "common_causes": [
+      "Source: anthropics/claude-code#61139 (opened May 21, 2026). Labeled area:mcp, bug, platform:macos. Multi-shop MCP authentication fails to refresh tokens properly after context switches, creating infinite expiry-refresh cycles. Directly impacts merchants using Claude Code for store management workflows. Category: AI Coding Tools — MCP OAuth token management."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
   }
 ]
