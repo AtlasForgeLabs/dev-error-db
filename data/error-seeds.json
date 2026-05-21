@@ -25725,5 +25725,101 @@
     "related_errors": [
       "LiteLLM"
     ]
+  },
+  {
+    "slug": "claude-code-claude-code-oauth-authenticates-successfully-but-binds-to-organization-s-api-billing-instead-of-personal-max-subscription-status-shows-api-usage-billing-instead-of-max-plan",
+    "title": "Claude Code OAuth routes Max plan subscription to wrong Organization (API billing) instead of personal Max",
+    "description": "Fix Claude Code authentication routing so Max plan users are billed under their personal subscription, not an Organization API key Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Claude Code OAuth authenticates successfully but binds to Organization's API billing instead of personal Max subscription; /status shows 'API Usage Billing' instead of 'Max Plan'",
+    "search_intent": "Fix Claude Code authentication routing so Max plan users are billed under their personal subscription, not an Organization API key",
+    "common_causes": [
+      "GitHub issue #61166 on anthropics/claude-code (opened May 21, 2026). User confirms OAuth login works but billing context maps to wrong Organization UID persisted in ~/.config/anthropic/configs/default.json. Verified fix by manually clearing cached credentials. Category: AI Coding Tools per SKILL.md mapping for Claude Code."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "openai-api-chatgpt-plus-oauth-succeeds-but-third-party-codex-calls-return-429-quota-exceeded-plus-subscription-does-not-provide-usable-quota-for-third-party-tool-integration",
+    "title": "OpenAI ChatGPT Plus OAuth returns 429 quota exceeded for third-party tool calls despite active Plus subscription",
+    "description": "Understand whether ChatGPT Plus subscription quota applies to third-party OAuth tool calls and how to resolve 429 quota errors when using third-party tools like OpenClaw Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "ChatGPT Plus OAuth succeeds but third-party Codex calls return 429 quota exceeded — Plus subscription does not provide usable quota for third-party tool integration",
+    "search_intent": "Understand whether ChatGPT Plus subscription quota applies to third-party OAuth tool calls and how to resolve 429 quota errors when using third-party tools like OpenClaw",
+    "common_causes": [
+      "GitHub issue #2951 on openai/openai-python (opened Mar 10, 2026). Specific to third-party OAuth Codex usage. Issue confirmed as bug with Python library. Comments indicate multiple developers affected. Category: OpenAI API per SKILL.md. Strong commercial value — blocks production integrations for paying Plus subscribers."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "claude-code-ultrareview-fails-at-verify-stage-review-failed-dedupe-never-starts-yet-both-failed-runs-count-against-free-quota-3-free-runs-completion-reports-status-completed-with-empty-findings-array-making-failures-indistinguishable-from-clean-reviews",
+    "title": "UltraReview consumes free quota on failed runs without completing review or surfacing error status",
+    "description": "Prevent ultraReview from consuming free quota credits when run fails mid-pipeline and ensure failed runs report a distinct error status instead of falsely reporting completed+[] Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "/ultrareview fails at Verify stage (Review failed), Dedupe never starts, yet both failed runs count against free quota (3 free runs); completion reports status: completed with empty findings array [] making failures indistinguishable from clean reviews",
+    "search_intent": "Prevent ultraReview from consuming free quota credits when run fails mid-pipeline and ensure failed runs report a distinct error status instead of falsely reporting completed+[]",
+    "common_causes": [
+      "GitHub issue #61096 on anthropics/claude-code (opened May 21, 2026). Two consecutive failures each consumed one of three free ultrareview runs. Session IDs recorded. Duplicate risk flagged: github-actions bot identified 3 possible duplicates (#58036, #54115, #55615). Category: AI Coding Tools per SKILL.md. High commercial value — direct revenue impact on free-tier users who waste limited credits."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "claude-code-rate-limit-reset-calculation-incorrect-usage-spike-detected-immediately-after-rate-limit-resets-suggesting-burst-behavior-or-race-condition-in-token-accounting",
+    "title": "Rate limit reset calculation incorrect causing unexpected usage spike immediately after reset on Claude Code Pro",
+    "description": "Understand why usage spikes right after rate limit reset and how to avoid being unexpectedly throttled despite hitting reset Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Rate limit reset calculation incorrect — usage spike detected immediately after rate limit resets, suggesting burst behavior or race condition in token accounting",
+    "search_intent": "Understand why usage spikes right after rate limit reset and how to avoid being unexpectedly throttled despite hitting reset",
+    "common_causes": [
+      "GitHub issue #61014 on anthropics/claude-code (opened May 21, 2026). Affects Pro plan users experiencing sudden 429 errors right after expected reset window. Category: AI Coding Tools per SKILL.md. Commercial value: directly affects paid Pro users ability to maintain workflow continuity."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "claude-code-you-ve-hit-your-session-limit-resets-at-scheduled-time-pro-plan-user-unable-to-continue-working-despite-not-actively-using-the-service",
+    "title": "Usage limit reached repeatedly without active use on Claude Code Pro plan",
+    "description": "Resolve spurious session limit errors on Pro plan where user has not exceeded any visible usage thresholds Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "You've hit your session limit · resets at scheduled time — Pro plan user unable to continue working despite not actively using the service",
+    "search_intent": "Resolve spurious session limit errors on Pro plan where user has not exceeded any visible usage thresholds",
+    "common_causes": [
+      "GitHub issue #61012 on anthropics/claude-code (opened May 21, 2026). Affects Windows users on Pro plan experiencing premature session limits without active usage. Duplicate risk flagged by github-actions bot. Category: AI Coding Tools per SKILL.md."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "anthropic-api-no-built-in-mechanism-to-receive-alerts-or-webhooks-before-session-weekly-budget-limits-are-exhausted-users-discover-rate-limits-only-after-hitting-429",
+    "title": "Anthropic API SDK missing pre-limit usage alerts — no webhook before session/weekly budget exhaustion",
+    "description": "Get proactive notifications via alerts or webhooks before Anthropic API session or weekly budget caps are reached, enabling proactive scaling or budget management Includes evidence for Anthropic API troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Anthropic API",
+    "error_signature": "No built-in mechanism to receive alerts or webhooks before session/weekly budget limits are exhausted — users discover rate limits only after hitting 429",
+    "search_intent": "Get proactive notifications via alerts or webhooks before Anthropic API session or weekly budget caps are reached, enabling proactive scaling or budget management",
+    "common_causes": [
+      "GitHub issue #1494 on anthropics/anthropic-sdk-python (opened May 5, 2026). Enhancement request indicating lack of pre-limit notification. Category: Anthropic API per SKILL.md mapping. Commercial value: enterprise users need advance warning to prevent production disruptions."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "Anthropic API"
+    ]
   }
 ]
