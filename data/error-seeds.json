@@ -24429,5 +24429,69 @@
     "related_errors": [
       "LiteLLM"
     ]
+  },
+  {
+    "slug": "anthropic-api-error-code-413-request-exceeds-the-maximum-allowed-number-of-bytes-the-maximum-request-size-is-32-mb-but-payloads-of-2mb-are-rejected",
+    "title": "Anthropic Vertex AI 413 Payload Too Large: Incorrect rejection of requests well under documented 32MB limit",
+    "description": "Developer sends ~2MB document payload to Claude Sonnet 4 via Vertex AI and gets 413 error despite being well under the documented 32MB limit — debugging difficult because error misreports the cause Includes evidence for Anthropic API troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Anthropic API",
+    "error_signature": "Error code: 413 - Request exceeds the maximum allowed number of bytes. The maximum request size is 32 MB (but payloads of ~2MB are rejected)",
+    "search_intent": "Developer sends ~2MB document payload to Claude Sonnet 4 via Vertex AI and gets 413 error despite being well under the documented 32MB limit — debugging difficult because error misreports the cause",
+    "common_causes": [
+      "GitHub Issue #1028 on anthropics/anthropic-sdk-python opened Sep 7, 2025 by abhiwebshar. Detailed root-cause analysis reveals Vertex AI incorrectly maps Citations API rate limit violations (actual 429 rate_limit_error) to misleading 413 'Prompt is too long' errors. Payloads as small as 147KB are rejected with 413. Root cause: error misreporting, not actual payload size limit. Affects production use of large-context capabilities on Vertex AI. Also reports 403 errors around 200k tokens blocking full context window usage."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Anthropic API"
+    ]
+  },
+  {
+    "slug": "litellm-proxied-anthropic-response-is-buffered-response-is-sent-in-one-large-batch-despite-stream-true-setting-works-correctly-for-openai-models-under-same-config",
+    "title": "LiteLLM proxy buffers Anthropic streamed responses instead of sending deltas incrementally",
+    "description": "Production LiteLLM proxy user expects incremental streaming for Anthropic model calls but receives all content in a single buffered batch — breaks real-time chat UX Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "Proxied Anthropic Response is Buffered: response is sent in one large batch despite stream=true setting; works correctly for OpenAI models under same config",
+    "search_intent": "Production LiteLLM proxy user expects incremental streaming for Anthropic model calls but receives all content in a single buffered batch — breaks real-time chat UX",
+    "common_causes": [
+      "GitHub Issue #28384 on BerriAI/litellm opened May 20, 2026 (13 hours ago) by dogmd. The bug is Anthropic-specific — OpenAI proxied calls stream fine with identical settings. User confirmed no nginx buffering (proxy_buffering off). Involves LiteLLM v1.85.0 running on Kubernetes with PostgreSQL DB. High urgency: broken streaming is critical for any production chat application using Anthropic models through LiteLLM proxy."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "LiteLLM"
+    ]
+  },
+  {
+    "slug": "vercel-production-vite-build-produces-import-meta-env-dev-true-after-vite-resolveconfig-pre-scan-vercel-static-build-2-9-28-cli-54-2-0",
+    "title": "Vercel static-build production Vite build produces import.meta.env.DEV=true after vite.resolveConfig pre-scan",
+    "description": "Developer deploying Vite app to Vercel finds production build incorrectly has import.meta.env.DEV=true instead of false — causes dev-only code to ship to production Includes evidence for Vercel troubleshooting demand.",
+    "category": "Deployment",
+    "technology": "Vercel",
+    "error_signature": "Production Vite build produces import.meta.env.DEV=true after vite.resolveConfig pre-scan (@vercel/static-build@2.9.28, CLI 54.2.0)",
+    "search_intent": "Developer deploying Vite app to Vercel finds production build incorrectly has import.meta.env.DEV=true instead of false — causes dev-only code to ship to production",
+    "common_causes": [
+      "GitHub Issue #16380 on vercel/vercel opened today (May 21, 2026) by sunupupup. Specific to @vercel/static-build@2.9.28 with CLI 54.2.0. Build-time env variable DEV should be false in production but Vite's resolveConfig pre-scan fails to set it correctly. This is a production-relevant bug that could leak debug-only code to users."
+    ],
+    "quick_fix": "Check the build output, project root, and deployment platform configuration before redeploying.",
+    "related_errors": [
+      "Deployment"
+    ]
+  },
+  {
+    "slug": "vercel-cli-54-2-0-breaks-sveltekit-route-resolution-for-admin-routes",
+    "title": "Vercel CLI 54.2.0 breaks SvelteKit route resolution for /admin/* paths",
+    "description": "Developer upgrades Vercel CLI and discovers SvelteKit admin routes stop working — routing table changed between CLI versions causing deployment failures Includes evidence for Vercel troubleshooting demand.",
+    "category": "Deployment",
+    "technology": "Vercel",
+    "error_signature": "CLI 54.2.0 breaks SvelteKit route resolution for /admin/* routes",
+    "search_intent": "Developer upgrades Vercel CLI and discovers SvelteKit admin routes stop working — routing table changed between CLI versions causing deployment failures",
+    "common_causes": [
+      "GitHub Issue #16377 on vercel/vercel opened yesterday (May 20, 2026) by pietrobrighella. Version-specific regression (CLI 54.2.0). Affects SvelteKit projects deployed on Vercel with custom route patterns. Deployment/regression bugs tied to specific CLI versions have high search intent from developers who encounter the break after upgrade."
+    ],
+    "quick_fix": "Check the build output, project root, and deployment platform configuration before redeploying.",
+    "related_errors": [
+      "Deployment"
+    ]
   }
 ]
