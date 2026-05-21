@@ -25085,5 +25085,85 @@
     "related_errors": [
       "AI Coding Tools"
     ]
+  },
+  {
+    "slug": "openai-api-ratelimiterror-code-429-error-message-you-exceeded-your-current-quota-please-check-your-plan-and-billing-details",
+    "title": "OpenAI API Rate Limit 429 Error: insufficient_quota Exceeded Daily Quota",
+    "description": "Fix OpenAI API 429 rate limit error caused by exceeding daily/quota limits on paid accounts Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "RateLimitError: code: 429 - {'error': {'message': 'You exceeded your current quota, please check your plan and billing details.'}}",
+    "search_intent": "Fix OpenAI API 429 rate limit error caused by exceeding daily/quota limits on paid accounts",
+    "common_causes": [
+      "Multiple real reports from r/OpenAI, r/replit showing users getting 429 with insufficient_quota even on paid plans. One case shows relentless 429 blocking production calls. Category mapping: OpenAI API (paid pay-per-token service)."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "claude-code-bug-http-mcp-servers-requiring-oauth-silently-fail-when-dynamic-client-registration-dcr-is-not-enabled-no-tools-appear-no-error-shown",
+    "title": "Claude Code HTTP MCP Server OAuth Silent Failure with DCR Disabled",
+    "description": "Debug Claude Code silently failing to connect to OAuth-protected MCP servers without proper DCR configuration Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "[BUG] HTTP MCP servers requiring OAuth silently fail when Dynamic Client Registration (DCR) is not enabled — no tools appear, no error shown",
+    "search_intent": "Debug Claude Code silently failing to connect to OAuth-protected MCP servers without proper DCR configuration",
+    "common_causes": [
+      "Active GitHub issue #26917 (Feb 2026) and #46623 (Apr 2026) in anthropics/claude-code repo documenting HTTP MCP OAuth silent failures. Recent issue #269 on claude-ai-mcp (May 8 2026) confirms workaround needed. Category mapping: AI Coding Tools per SKILL.md rules."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "litellm-ratelimiterror-error-code-429-error-message-no-deployments-available-for-model",
+    "title": "LiteLLM Rate Limit Error Mislabeled as No Deployments Available",
+    "description": "Understand why LiteLLM masks rate limit 429 errors with misleading 'no deployments' message instead of surfacing the actual rate limit Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "RateLimitError: Error code: 429 - {'error': {'message': 'No deployments available for model…'}}",
+    "search_intent": "Understand why LiteLLM masks rate limit 429 errors with misleading 'no deployments' message instead of surfacing the actual rate limit",
+    "common_causes": [
+      "Active GitHub issue BerriAI/litellm#20867 (Feb 2026) shows LiteLLM incorrectly translating upstream 429 rate limits into 'no deployments' errors, causing confusion in debugging. Also related: #23707 (Vertex AI streaming 429 masking). Category mapping: LiteLLM (proxy billing/model routing)."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "LiteLLM"
+    ]
+  },
+  {
+    "slug": "vercel-build-failed-because-of-webpack-errors-deployment-failed-with-error-module-not-found",
+    "title": "Vercel Build Failed due to Webpack Errors in Production Deployments",
+    "description": "Resolve Vercel deployment failures caused by webpack build errors and missing modules in production builds Includes evidence for Vercel troubleshooting demand.",
+    "category": "Deployment",
+    "technology": "Vercel",
+    "error_signature": "Build failed because of webpack errors / Deployment Failed with error Module not found",
+    "search_intent": "Resolve Vercel deployment failures caused by webpack build errors and missing modules in production builds",
+    "common_causes": [
+      "Multiple active issues/discussions on next.js repo: #77173 (Mar 2025), lobehub#12298 (Feb 2026), vercel#13216 (Apr 2025) all report build/deploy failures. Very common pattern affecting teams shipping to production. Category mapping: Deployment per SKILL.md."
+    ],
+    "quick_fix": "Check the build output, project root, and deployment platform configuration before redeploying.",
+    "related_errors": [
+      "Deployment"
+    ]
+  },
+  {
+    "slug": "cursor-bug-cursor-ide-crashes-becomes-unresponsive-when-running-multiple-concurrent-claude-code-cli-instances-within-cursor",
+    "title": "Cursor IDE Crash with Concurrent Claude Code Instances",
+    "description": "Fix Cursor IDE crash caused by spawning concurrent Claude Code processes inside the editor Includes evidence for Cursor troubleshooting demand.",
+    "category": "Cursor",
+    "technology": "Cursor",
+    "error_signature": "[Bug] Cursor IDE crashes/becomes unresponsive when running multiple concurrent Claude Code CLI instances within Cursor",
+    "search_intent": "Fix Cursor IDE crash caused by spawning concurrent Claude Code processes inside the editor",
+    "common_causes": [
+      "GitHub issue claude-code#13661 (Dec 2025) directly documents Cursor IDE crashing with concurrent Claude Code instances. Issue #2426 also reports stability crashes during active coding sessions. Category mapping: Cursor (per SKILL.md approved categories)."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Cursor"
+    ]
   }
 ]
