@@ -24029,5 +24029,53 @@
     "related_errors": [
       "AI Coding Tools"
     ]
+  },
+  {
+    "slug": "claude-code-api-error-server-is-temporarily-limiting-requests-not-your-usage-limit-rate-limited",
+    "title": "Server-side rate limits break parallel agent workflows — request transparent auto-retry",
+    "description": "Fix server-side transient rate limiting that breaks parallel multi-agent workflows and forces manual re-dispatch of threads Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "API Error: Server is temporarily limiting requests (not your usage limit) · Rate limited",
+    "search_intent": "Fix server-side transient rate limiting that breaks parallel multi-agent workflows and forces manual re-dispatch of threads",
+    "common_causes": [
+      "GitHub issue #60562 on anthropics/claude-code by matisyahu3 (May 19, 2026). Max plan user reports Anthropic-side capacity throttling killing 8-thread parallel Agent dispatches. Error explicitly states 'not your usage limit' — this is platform-side, not account-quota. No auto-retry; users lose AFK work silently. Multiple related issues filed (#53922, #42947, #50841). Category mapped to AI Coding Tools per approved list for Claude Code."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "claude-code-billing-api-default-bug-unexpected-token-account-attribution-in-session-billing",
+    "title": "Billing API-default bug causes incorrect session cost attribution",
+    "description": "Fix billing API default behavior that incorrectly attributes tokens or charges wrong accounts/subscriptions during Claude Code sessions Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Billing API-default bug: unexpected token/account attribution in session billing",
+    "search_intent": "Fix billing API default behavior that incorrectly attributes tokens or charges wrong accounts/subscriptions during Claude Code sessions",
+    "common_causes": [
+      "GitHub issue #60422 on anthropics/claude-code by kghoff (May 19, 2026). Labels: area:auth, platform:macos, platform:vscode. Billing API exhibits unexpected default behavior causing incorrect cost attribution — directly impacts paying users' subscription billing. Occurs across macOS and VS Code platforms. Category: AI Coding Tools per approved list."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "claude-code-usage-limit-reached-repeatedly-without-active-use-pro-plan-quota-consumed-disproportionately",
+    "title": "Session usage quota consumed disproportionately on minimal Sonnet interactions",
+    "description": "Investigate why Claude Code Pro session quota drains rapidly during minimal/low-activity Sonnet conversations, blocking further usage Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Usage limit reached repeatedly without active use — Pro plan / quota consumed disproportionately",
+    "search_intent": "Investigate why Claude Code Pro session quota drains rapidly during minimal/low-activity Sonnet conversations, blocking further usage",
+    "common_causes": [
+      "GitHub issue #60760 on anthropics/claude-code by bharat-parihar (May 20, 2026). Users report session quota depleting far faster than expected on minimal Sonnet interactions under the Pro plan. Area:cost label confirmed — directly impacts paying subscribers. Distinct from #60562 (server-throttle), this is a billing/quota calculation bug. Category: AI Coding Tools per approved list."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
   }
 ]
