@@ -25165,5 +25165,101 @@
     "related_errors": [
       "Cursor"
     ]
+  },
+  {
+    "slug": "openai-api-oauth-login-succeeds-api-call-returns-429-quota-exceeded-despite-active-chatgpt-plus-subscription",
+    "title": "ChatGPT Plus OAuth succeeds but third-party tools return 429 quota exceeded",
+    "description": "Resolve 429 quota error when using third-party apps with ChatGPT Plus OAuth authentication Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "OAuth login succeeds → API call returns 429 quota exceeded despite active ChatGPT Plus subscription",
+    "search_intent": "Resolve 429 quota error when using third-party apps with ChatGPT Plus OAuth authentication",
+    "common_causes": [
+      "GitHub issue openai/openai-python#2951 — Auth flow works but quota routing fails for third-party Codex/OAuth integrations. Open since Mar 10 2026, confirmed by multiple commenters. Not in covered-errors.md. Category: OpenAI API — billing/quota routing failure on paid service."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "litellm-badrequesterror-ratelimiterror-unrecognized-request-arguments-supplied-litellm-rate-limit-descriptors-litellm-tpm-reserved-model-when-using-virtual-keys-with-tpm-rpm-limits-plus-fallback-chains",
+    "title": "LiteLLM Virtual Keys leak _litellm_* params breaking provider fallback chains",
+    "description": "Fix LiteLLM proxy fallback chain broken by leaked internal rate-limiting parameters into provider API calls Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "BadRequestError / RateLimitError: Unrecognized request arguments supplied: _litellm_rate_limit_descriptors, _litellm_tpm_reserved_model (when using virtual keys with tpm/rpm limits + fallback chains)",
+    "search_intent": "Fix LiteLLM proxy fallback chain broken by leaked internal rate-limiting parameters into provider API calls",
+    "common_causes": [
+      "GitHub issue BerriAI/litellm#28146 — Virtual key tpm/rpm limits cause internal _litellm_* params to leak into upstream provider requests (OpenAI, Anthropic both reject). Breaks fallback chains silently. Root cause in parallel_request_limiter_v3.py line 2027. Recently updated May 22 2026. Not in covered-errors.md. Category: LiteLLM — proxy billing/rate limiting bug in production multi-provider setup."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "LiteLLM"
+    ]
+  },
+  {
+    "slug": "openai-api-http-500-internal-server-error-an-error-occurred-while-processing-your-request-server-error-when-calling-responses-parse-with-gpt-5-and-pydantic-models-containing-decimal-decimal-fields",
+    "title": "responses.parse() returns HTTP 500 for Pydantic models with Decimal fields (gpt-5 only)",
+    "description": "Fix 500 error when using OpenAI Responses API structured output with Decimal type fields in Pydantic models Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "HTTP 500 Internal Server Error — An error occurred while processing your request (server_error) when calling responses.parse() with gpt-5 and Pydantic models containing decimal.Decimal fields",
+    "search_intent": "Fix 500 error when using OpenAI Responses API structured output with Decimal type fields in Pydantic models",
+    "common_causes": [
+      "GitHub issue openai/openai-python#2718 — Confirmed reproducible: string/float types work fine, Decimal type triggers server_error with gpt-5 (gpt-5-mini works). Linked PR #2733 strips unsupported JSON Schema keywords. Covers a narrow edge case (Decimal in schema), not in covered-errors.md. Category mapping: OpenAI API — direct OpenAI SDK/API bug affecting paid API users."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "anthropic-api-compiled-grammar-is-too-large-structured-output-validation-fails-for-complex-pydantic-schemas-with-claude",
+    "title": "Anthropic structured outputs 'compiled grammar is too large' error needs better documentation and higher limits",
+    "description": "Understand and fix structured output grammar size limit error when using complex schemas with Claude API Includes evidence for Anthropic API troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Anthropic API",
+    "error_signature": "compiled grammar is too large — Structured output validation fails for complex Pydantic schemas with Claude",
+    "search_intent": "Understand and fix structured output grammar size limit error when using complex schemas with Claude API",
+    "common_causes": [
+      "GitHub issue anthropics/anthropic-sdk-python#1185 — 11 comments, open since Feb 2026. Users hit hard limit on compiled grammar size for structured outputs with complex schemas. High search volume indicator (many comments). Not in covered-errors.md. Category: Anthropic API — structured output limitation on paid API."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Anthropic API"
+    ]
+  },
+  {
+    "slug": "anthropic-api-prompt-caching-not-activated-on-new-model-families-opus-4-5-haiku-4-5-cache-control-header-ignored-costing-more-tokens-than-expected",
+    "title": "Prompt caching not working on Opus 4.5 and Haiku 4.5 (works correctly on Sonnet 4.5)",
+    "description": "Fix prompt caching not being applied on Claude Opus 4.5 and Haiku 4.5 models despite cache_control parameter set Includes evidence for Anthropic API troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Anthropic API",
+    "error_signature": "prompt_caching not activated on new model families (Opus 4.5/Haiku 4.5) — Cache control header ignored, costing more tokens than expected",
+    "search_intent": "Fix prompt caching not being applied on Claude Opus 4.5 and Haiku 4.5 models despite cache_control parameter set",
+    "common_causes": [
+      "GitHub issue anthropics/anthropic-sdk-python#1085 — 7 comments, open since Nov 2025. Affects billing cost directly because uncached prompts consume full token count. New model-specific regression. Not in covered-errors.md. Category: Anthropic API — cache behavior bug affecting production costs."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Anthropic API"
+    ]
+  },
+  {
+    "slug": "anthropic-api-cache-misses-on-second-back-to-back-client-messages-create-40-rate-prompt-caching-efficiency-drops-significantly-on-consecutive-identical-calls",
+    "title": "Cache misses on second back-to-back client.messages.create() (~40% rate) in Anthropic API",
+    "description": "Investigate why prompt cache shows ~40% miss rate even for consecutive identical API calls with Anthropic Messages API Includes evidence for Anthropic API troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Anthropic API",
+    "error_signature": "Cache misses on second back-to-back client.messages.create() (~40% rate) — Prompt caching efficiency drops significantly on consecutive identical calls",
+    "search_intent": "Investigate why prompt cache shows ~40% miss rate even for consecutive identical API calls with Anthropic Messages API",
+    "common_causes": [
+      "GitHub issue anthropics/anthropic-sdk-python#1451 — Open Apr 26 2026, 3 comments. Directly affects production cost optimization for chatbots making repeated calls. New discovery with concrete metric (40% miss rate). Not in covered-errors.md. Category: Anthropic API — caching bug impacting production costs."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "Anthropic API"
+    ]
   }
 ]
