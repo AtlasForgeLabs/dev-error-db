@@ -24317,5 +24317,117 @@
     "related_errors": [
       "Deployment"
     ]
+  },
+  {
+    "slug": "claude-code-bug-pro-max-upgrade-fails-silently-no-bank-notification-paymentintent-voided-before-bank-is-contacted",
+    "title": "Claude Code Pro to Max Plan Upgrade Fails Silently — PaymentIntent Voided Before Bank Contact",
+    "description": "User cannot upgrade from Claude Pro ($20/mo) to Claude Max plan; payment fails without any bank notification or OTP prompt;怀疑 Anthropic 服务端 billing state machine bug Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "[BUG] Pro → Max upgrade fails silently — no bank notification, PaymentIntent voided before bank is contacted",
+    "search_intent": "User cannot upgrade from Claude Pro ($20/mo) to Claude Max plan; payment fails without any bank notification or OTP prompt;怀疑 Anthropic 服务端 billing state machine bug",
+    "common_causes": [
+      "GitHub issue #61081 on anthropics/claude-code opened May 21, 2026 by alamzebamir. Reported as 'invalid' by GitHub Actions bot (potential false auto-classification). User ruled out card validity, transaction limits, network issues. References prior bugs #55982, #59027, #55266 suggesting a recurring server-side payment processing failure. Category: AI Coding Tools because this is a paid subscription error in Claude Code ecosystem affecting paying users."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "claude-code-error-file-does-not-exist-note-your-current-working-directory-is-users-edgar-desktop-admin-app-ios-at-call-bunfs-root-src-entrypoints-cli-js-4299-9752",
+    "title": "Claude Code Session Burns Tokens Without Interaction — File Does Not Exist Error Repeating",
+    "description": "Claude Code automatically consumes 15% of user's 5-hour quota on session startup without any user input; repeated FileDoesNotExist errors suggest background process or config scanning bug wasting paid API tokens Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Error: File does not exist. Note: your current working directory is /Users/edgar/Desktop/admin-app-ios at call (/$bunfs/root/src/entrypoints/cli.js:4299:9752)",
+    "search_intent": "Claude Code automatically consumes 15% of user's 5-hour quota on session startup without any user input; repeated FileDoesNotExist errors suggest background process or config scanning bug wasting paid API tokens",
+    "common_causes": [
+      "GitHub issue #61084 on anthropics/claude-code opened May 21, 2026 by edgar5055. Labeled area:cost and platform:macos. Three identical errors logged within ~40 seconds showing the CLI repeatedly trying to access a non-existent file. This directly impacts paid users who get charged per token used. Category: AI Coding Tools since it's a Claude Code bug that wastes subscription credits."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "docker-docker-desktop-fails-to-start-service-jfs-failed-running-invalid-database",
+    "title": "Docker Desktop Fails to Start — Service JFS Failed with Invalid Database Error",
+    "description": "User's Docker Desktop won't launch after update (v4.59.1); internal JFS (Java File System?) database corruption prevents startup; needs fix for corrupted state Includes evidence for Docker troubleshooting demand.",
+    "category": "Docker",
+    "technology": "Docker",
+    "error_signature": "Docker Desktop fails to start: service jfs failed: running: invalid database",
+    "search_intent": "User's Docker Desktop won't launch after update (v4.59.1); internal JFS (Java File System?) database corruption prevents startup; needs fix for corrupted state",
+    "common_causes": [
+      "GitHub issue #7872 on docker/for-mac opened Apr 22, 2026 by ban5104. Version label version/4.59.1. One comment. The JFS service failure indicates internal storage engine corruption — common in desktop Docker after forced shutdowns or updates. Affects Docker Desktop Pro/Team paid licenses. Category: Docker (direct mapping)."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Docker"
+    ]
+  },
+  {
+    "slug": "docker-kernel-panic-in-ext4-es-scan-kswapd-freezes-entire-vm-linuxkit-6-12-76-docker-desktop-4-73-0",
+    "title": "Docker Desktop 4.73.0 Kernel Panic Freezes Entire LinuxKit VM",
+    "description": "Latest Docker Desktop (4.73.0) causes complete kernel panic freezing the embedded LinuxKit VM; affects all containers running on Mac; critical production blocker Includes evidence for Docker troubleshooting demand.",
+    "category": "Docker",
+    "technology": "Docker",
+    "error_signature": "Kernel panic in ext4_es_scan / kswapd freezes entire VM (linuxkit 6.12.76 / Docker Desktop 4.73.0)",
+    "search_intent": "Latest Docker Desktop (4.73.0) causes complete kernel panic freezing the embedded LinuxKit VM; affects all containers running on Mac; critical production blocker",
+    "common_causes": [
+      "GitHub issue #7877 on docker/for-mac opened May 17, 2026 by nosenuggetz. Only 3 new issues found in April-May 2026 window on docker/for-mac — this is one of the most severe recent reports. Kernel panic in ext4 filesystem scanner and swap daemon freezes the entire WSL/LinuxKit VM layer. Affects enterprise Docker Desktop license users. Category: Docker (direct mapping)."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Docker"
+    ]
+  },
+  {
+    "slug": "litellm-bug-bedrock-pass-through-converse-returns-200-with-empty-body-on-v1-85-0",
+    "title": "LiteLLM Bedrock Pass-Through Returns 200 with Empty Body on v1.85.0",
+    "description": "After upgrading to LiteLLM v1.85.0, AWS Bedrock proxy requests return HTTP 200 but with empty response body — clients receive success status but no content; silent data loss affecting production inference pipelines Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "[Bug]: Bedrock pass-through /converse returns 200 with empty body on v1.85.0",
+    "search_intent": "After upgrading to LiteLLM v1.85.0, AWS Bedrock proxy requests return HTTP 200 but with empty response body — clients receive success status but no content; silent data loss affecting production inference pipelines",
+    "common_causes": [
+      "GitHub issue #28388 on BerriAI/litellm opened May 26, 2026 by luiz-berto. Labels: bug, llm translation, proxy. A regression in v1.85.0 where the Bedrock passthrough layer fails to forward the actual API response body while still returning 200 OK. This silent failure pattern is particularly dangerous for production systems that won't detect the error. Category: LiteLLM (direct mapping)."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "LiteLLM"
+    ]
+  },
+  {
+    "slug": "litellm-bug-ui-crash-rangeerror-maximum-call-stack-size-exceeded-in-unfurlwildcardmodelsinlist",
+    "title": "LiteLLM UI Dashboard Crashes with RangeError Maximum Call Stack Size Exceeded",
+    "description": "LiteLLM dashboard UI completely crashes when rendering wildcard model lists; infinite recursion in frontend model list expansion function; blocks admin management of proxy models Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "[Bug]: UI Crash: RangeError: Maximum call stack size exceeded in unfurlWildcardModelsInList",
+    "search_intent": "LiteLLM dashboard UI completely crashes when rendering wildcard model lists; infinite recursion in frontend model list expansion function; blocks admin management of proxy models",
+    "common_causes": [
+      "GitHub issue #28446 on BerriAI/litellm opened May 21, 2026 by showmikb. Label: ui-dashboard + bug. The crash occurs in the frontend JavaScript when expanding wildcard model patterns (e.g., 'gpt-*') into concrete model names. If many wildcards are configured, recursive unfurling exhausts JS call stack. Directly affects teams managing LiteLLM proxy deployments. Category: LiteLLM (direct mapping)."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "LiteLLM"
+    ]
+  },
+  {
+    "slug": "litellm-mcp-gateway-tools-list-crashes-with-cancel-scope-runtimeerror-plus-schema-columns-drop-on-restart",
+    "title": "LiteLLM MCP Gateway tools/list Crashes with Cancel-Scope RuntimeError + Schema Columns Drop",
+    "description": "LiteLLM MCP (Model Context Protocol) gateway crashes when listing available tools; concurrent cancel-scope causes RuntimeError; schema migration drops columns on service restart breaking persisted tool configs Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "MCP Gateway: tools/list crashes with cancel-scope RuntimeError + schema columns drop on restart",
+    "search_intent": "LiteLLM MCP (Model Context Protocol) gateway crashes when listing available tools; concurrent cancel-scope causes RuntimeError; schema migration drops columns on service restart breaking persisted tool configs",
+    "common_causes": [
+      "GitHub issue #28391 on BerriAI/litellm opened May 21, 2026 by gnummynum. Labels include claude code (issues related to Claude Code usage via MCP). The MCP gateway is a recently added feature enabling Claude Code to discover LiteLLM-managed tools. Both the async cancellation bug and schema migration loss affect production MCP integrations. Category: LiteLLM (direct mapping)."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "LiteLLM"
+    ]
   }
 ]
