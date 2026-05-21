@@ -24541,5 +24541,101 @@
     "related_errors": [
       "GitHub Actions"
     ]
+  },
+  {
+    "slug": "openai-api-codex-exceeded-retry-limit-last-status-429-too-many-requests",
+    "title": "OpenAI Codex App 429 Rate Limit Exceeded — Retry Loop Blocks Paid Plus Users",
+    "description": "Paid Codex Plus subscriber gets stuck in infinite retry loop when hitting DDoS-rate limits; needs solution to stop repeated 429 blocking usage Includes evidence for OpenAI API / Codex troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API / Codex",
+    "error_signature": "exceeded retry limit, last status: 429 Too Many Requests",
+    "search_intent": "Paid Codex Plus subscriber gets stuck in infinite retry loop when hitting DDoS-rate limits; needs solution to stop repeated 429 blocking usage",
+    "common_causes": [
+      "GitHub issue #22122 on openai/codex repo (May 11, 2026). OpenAI collaborator confirmed this is a DDoS-protection rate limit (not usage cap), caused by too many concurrent requests/subagents. Classic paid-user production blocker affecting GPT-5 codex access."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "paperclip-autogen-like-agent-framework-stopreason-error-agent-transitions-to-error-state-after-provider-returns-429-rate-limit-no-retry-or-model-fallback-occurs",
+    "title": "Agent Runtime Dies on 429 Rate-Limit with No Recovery Path",
+    "description": "Production agents running Anthropic/OpenAI get permanently killed by transient 429 errors; users need automatic retry/fallback chain instead of manual intervention Includes evidence for Paperclip (AutoGen-like Agent Framework) troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "Paperclip (AutoGen-like Agent Framework)",
+    "error_signature": "stopReason=error; agent transitions to error state after provider returns 429/rate-limit; no retry or model fallback occurs",
+    "search_intent": "Production agents running Anthropic/OpenAI get permanently killed by transient 429 errors; users need automatic retry/fallback chain instead of manual intervention",
+    "common_causes": [
+      "GitHub issue #1861 on paperclipai/paperclip repo (Mar 26, 2026). Well-documented real-world impact: overnight agent kills causing hours of downtime. Multiple contributors submitted PRs with exponential backoff fixes (PR #1880, #2624). High commercial value as it affects multi-provider production workflows."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "litellm-litellm-terminates-stream-with-finish-reason-stop-instead-of-raising-429-resource-exhausted-client-receives-done-with-no-error-indication",
+    "title": "LiteLLM Silently Swallows Mid-Stream 429 Rate-Limit Errors During Streaming",
+    "description": "Users deploying LiteLLM proxy with Vertex AI/Gemini streaming see silent failures where 429 errors are hidden — stream appears successful but response is truncated. Need to detect and handle mid-stream rate limits properly. Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "LiteLLM terminates stream with finish_reason=\"stop\" instead of raising 429 RESOURCE_EXHAUSTED; client receives [DONE] with no error indication",
+    "search_intent": "Users deploying LiteLLM proxy with Vertex AI/Gemini streaming see silent failures where 429 errors are hidden — stream appears successful but response is truncated. Need to detect and handle mid-stream rate limits properly.",
+    "common_causes": [
+      "GitHub issue #23707 on BerriAI/litellm repo (Mar 16, 2026). Full reproducible scenario with log traces showing 429 being treated as success call. Particularly impactful for image generation tasks where thinking tokens complete but output is lost. Fixed via PR #23711 (closed May 19, 2026), but still relevant for users on older versions."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "LiteLLM"
+    ]
+  },
+  {
+    "slug": "litellm-litellm-timeout-connection-timed-out-timeout-passed-600-0-time-taken-600-006-seconds-error-returned-directly-to-user",
+    "title": "LiteLLM Timeout Silently Ignored for Bedrock and Vertex AI Providers",
+    "description": "Users of LiteLLM proxy with AWS Bedrock or Vertex AI hit timeouts but the timeout config is silently ignored, leaving requests hanging for 600s before surfacing to user Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "litellm.Timeout: Connection timed out. Timeout passed=600.0, time taken=600.006 seconds; error returned directly to user",
+    "search_intent": "Users of LiteLLM proxy with AWS Bedrock or Vertex AI hit timeouts but the timeout config is silently ignored, leaving requests hanging for 600s before surfacing to user",
+    "common_causes": [
+      "GitHub issue #23375 on BerriAI/litellm repo (Mar 11, 2026). Timeout parameter is completely ignored for Bedrock and Vertex AI providers in LiteLLM proxy layer, causing extreme latency. Distinct from issue #23707 which is about 429 swallowing."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "LiteLLM"
+    ]
+  },
+  {
+    "slug": "docker-error-failed-to-build-failed-to-solve-invalid-file-request-data-config-pu",
+    "title": "Docker Compose Build Fails with 'invalid file request' on Bind-Mounted Directories",
+    "description": "Developers using docker compose build with bind-mounted local directories encounter cryptic 'invalid file request' errors preventing container builds Includes evidence for Docker troubleshooting demand.",
+    "category": "Docker",
+    "technology": "Docker",
+    "error_signature": "ERROR: failed to build: failed to solve: invalid file request data/.config/pu...",
+    "search_intent": "Developers using docker compose build with bind-mounted local directories encounter cryptic 'invalid file request' errors preventing container builds",
+    "common_causes": [
+      "GitHub issue #13925 on NousResearch/hermes-agent repo (Apr 22, 2026). Docker Compose build failure triggered by .dockerignore and bind mount interactions. Common in enterprise deployment pipelines where host directories are mounted into builds."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Docker"
+    ]
+  },
+  {
+    "slug": "claude-code-claude-code-keeps-asking-for-permission-even-with-allow-setting-mcp-plugin-reports-permission-denied-repeatedly",
+    "title": "Claude Code MCP Permission Denied Keeps Prompts Despite Repeated Authorizations",
+    "description": "Claude Code users configuring MCP servers face persistent permission denied errors despite granting allow permissions; need fix for Claude Code MCP authorization behavior Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Claude Code keeps asking for permission even with 'Allow' setting; MCP plugin reports 'Permission denied' repeatedly",
+    "search_intent": "Claude Code users configuring MCP servers face persistent permission denied errors despite granting allow permissions; need fix for Claude Code MCP authorization behavior",
+    "common_causes": [
+      "Multiple Reddit sources confirm active complaints: r/ClaudeCode thread about 'keeps asking for permission', r/ClaudeAI report of 'ralph-loop plugin Permission denied' with MCP integration. Claude Code + MCP auth is a high-value combo as enterprises pay for Claude Code subscription + MCP tool integrations."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
   }
 ]
