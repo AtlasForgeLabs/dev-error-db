@@ -25629,5 +25629,101 @@
     "related_errors": [
       "LiteLLM"
     ]
+  },
+  {
+    "slug": "anthropic-api-attributeerror-nonetype-object-has-no-attribute-model-attributeerror-nonetype-object-has-no-attribute-usage-triggered-by-bedrock-sse-error-payload-type-error-error-type-rate-limit-error-message-rate-limited",
+    "title": "Bedrock cross-region streaming crashes with AttributeError on rate_limit_error SSE events — NoneType has no attribute 'model'",
+    "description": "Fix intermittent AttributeError crash in AsyncAnthropicBedrock streaming when first SSE event is a rate_limit_error; users cannot access event.message.model or event.message.usage because message is None Includes evidence for Anthropic API troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Anthropic API",
+    "error_signature": "AttributeError: 'NoneType' object has no attribute 'model'; AttributeError: 'NoneType' object has no attribute 'usage' — triggered by Bedrock SSE error payload {\"type\": \"error\", \"error\": {\"type\": \"rate_limit_error\", \"message\": \"Rate limited\"}}",
+    "search_intent": "Fix intermittent AttributeError crash in AsyncAnthropicBedrock streaming when first SSE event is a rate_limit_error; users cannot access event.message.model or event.message.usage because message is None",
+    "common_causes": [
+      "GitHub Issue #1472 on anthropics/anthropic-sdk-python (opened Apr 29, 2026). Reproducible with ~200 iterations against global.anthropic.claude-opus-4-7 on eu-west-1. SDK version 0.96.0. Multiple PRs linked (#1475, #1479, #1572). Still open. Direct impact on paid Bedrock inference usage. Category: Anthropic API because it affects the Anthropic Bedrock SDK and involves rate limit errors from Claude API."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "Anthropic API"
+    ]
+  },
+  {
+    "slug": "openai-api-error-code-401-error-code-401-message-access-denied-due-to-invalid-subscription-key-or-wrong-api-endpoint-make-sure-to-provide-a-valid-key-for-an-active-subscription-and-use-a-correct-regional-api-endpoint-for-your-resource",
+    "title": "AzureOpenAI with AAD bearer token returns 401 Unauthorized after upgrading to openai Python SDK v2.34.0",
+    "description": "Fix 401 Unauthorized error when using Azure AD bearer tokens passed via api_key parameter after upgrading to openai Python SDK 2.34.0+, specifically in Azure APIM proxy setups Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "Error code: 401 - {'error': {'code': '401', 'message': 'Access denied due to invalid subscription key or wrong API endpoint. Make sure to provide a valid key for an active subscription and use a correct regional API endpoint for your resource.'}}",
+    "search_intent": "Fix 401 Unauthorized error when using Azure AD bearer tokens passed via api_key parameter after upgrading to openai Python SDK 2.34.0+, specifically in Azure APIM proxy setups",
+    "common_causes": [
+      "GitHub Issue #3282 on openai/openai-python (opened May 20, 2026). Confirmed bug between v2.33.0 (works) and v2.34.0+ (fails). Root cause: v2.34.0 treats api_key header as api-key instead of Bearer token format. Affected users pass AAD tokens from azure.identity.ClientSecretCredential. PR #3283 submitted. High commercial value because Azure OpenAI is enterprise paid service; auth failure blocks production."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "litellm-budgetexceedederror-budget-has-been-exceeded-enduser-id-current-cost-52-195456-max-budget-50-0-actual-db-spend-shows-0-001-redis-counter-inflates-without-finalization-cycling-every-4-minutes",
+    "title": "reserve_budget_for_request() leaks Redis spend counters — phantom BudgetExceededError (HTTP 429) despite near-zero DB spend",
+    "description": "Fix phantom budget blocking in LiteLLM proxy where Redis spend:end_user:* counters accumulate unreleased reservations, causing random HTTP 429 BudgetExceededError for end users who haven't reached their budget Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "BudgetExceededError: Budget has been exceeded! EndUser=<id> Current cost: $52.195456, Max budget: $50.0 — actual DB spend shows $0.001; Redis counter inflates without finalization, cycling every ~4 minutes",
+    "search_intent": "Fix phantom budget blocking in LiteLLM proxy where Redis spend:end_user:* counters accumulate unreleased reservations, causing random HTTP 429 BudgetExceededError for end users who haven't reached their budget",
+    "common_causes": [
+      "GitHub Issue #27639 on BerriAI/litellm (opened May 11, 2026). Production impact: ~6000+ active end users. Multi-replica K8s/EKS deployment affected. Related issues #24675, #25386, #26233, #27736, #28283. Contributors confirmed same pattern on v1.83.14-stable predating budget_reservation.py feature. Critical billing infrastructure bug with strong commercial value."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "LiteLLM"
+    ]
+  },
+  {
+    "slug": "litellm-tpm-enforcement-allows-tpm-limit-n-replica-concurrent-requests-across-replicas-single-pod-limit-fails-to-apply-correctly-in-multi-pod-k8s-deployments",
+    "title": "Deployment-level TPM enforcement is per-pod not cross-pod — effective limit becomes tpm_limit × N_replica",
+    "description": "Fix LiteLLM proxy TPM rate limiting in distributed deployments where each replica independently enforces the limit, effectively multiplying the allowed throughput beyond intended cap Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "TPM enforcement allows tpm_limit × N_replica concurrent requests across replicas — single pod limit fails to apply correctly in multi-pod K8s deployments",
+    "search_intent": "Fix LiteLLM proxy TPM rate limiting in distributed deployments where each replica independently enforces the limit, effectively multiplying the allowed throughput beyond intended cap",
+    "common_causes": [
+      "GitHub Issue #27736 on BerriAI/litellm (opened May 12, 2026). Proxy-labeled bug. In multi-replica Kubernetes deployments, deployed TPM limits are enforced per-pod rather than globally, allowing far more throughput than intended. Affects production deployments using LiteLLM proxy with horizontal scaling. Strong commercial value for teams relying on rate limiting for cost control."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "LiteLLM"
+    ]
+  },
+  {
+    "slug": "claude-code-edit-file-hangs-for-4-minutes-then-times-out-with-unresponsive-only-when-filesystem-mcp-configured-via-command-npx-args-y-modelcontextprotocol-server-filesystem",
+    "title": "Filesystem MCP writes hang intermittently for 4 minutes then time out with unresponsive when launched via npx -y",
+    "description": "Fix intermittent MCP write hangs that block Claude Code Desktop editing operations; reads work fine but writes fail. Hypothesis: npx re-resolving package each stdio handshake causes race condition with Claude Desktop startup window. Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "edit_file hangs for 4 minutes, then times out with 'unresponsive' — only when Filesystem MCP configured via command: npx args: [-y, @modelcontextprotocol/server-filesystem]",
+    "search_intent": "Fix intermittent MCP write hangs that block Claude Code Desktop editing operations; reads work fine but writes fail. Hypothesis: npx re-resolving package each stdio handshake causes race condition with Claude Desktop startup window.",
+    "common_causes": [
+      "GitHub Issue #4026 on modelcontextprotocol/servers (opened Apr 23, 2026). macOS-specific with Node.js v22. Works reliably after switching to npm install -g + direct binary path. Labeled as bug. Affected users following official docs get broken experience. High commercial value for Claude Code/Claude Desktop subscribers."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "litellm-midstreamfallbackerror-not-handled-during-router-aresponses-streaming-mid-stream-model-fallback-silently-fails-without-retrying-on-secondary-model",
+    "title": "Router.aresponses streaming bypasses mid-stream fallback — MidStreamFallbackError not handled in async streaming",
+    "description": "Fix mid-stream fallback not triggering in LiteLLM Router when primary model fails during streaming; users see errors instead of automatic model switching Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "MidStreamFallbackError not handled during Router.aresponses() streaming — mid-stream model fallback silently fails without retrying on secondary model",
+    "search_intent": "Fix mid-stream fallback not triggering in LiteLLM Router when primary model fails during streaming; users see errors instead of automatic model switching",
+    "common_causes": [
+      "GitHub Issue #28216 on BerriAI/litellm (opened May 19, 2026). SDK-labeled bug. Mid-stream fallback is a critical reliability feature for LiteLLM Router — failing to trigger means entire streaming requests fail instead of automatically routing to backup models. Strong commercial value for production AI services requiring uptime."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "LiteLLM"
+    ]
   }
 ]
