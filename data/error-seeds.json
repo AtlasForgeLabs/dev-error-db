@@ -23821,5 +23821,101 @@
     "related_errors": [
       "Anthropic API"
     ]
+  },
+  {
+    "slug": "claude-code-remote-control-not-yet-enabled-for-your-account-seattier-null",
+    "title": "Claude Code Remote Control Disabled Despite Active Max Subscription",
+    "description": "Resolve false-negative auth state where Claude Code reports remote control disabled despite user having an active paid Max subscription Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "\"Remote Control not yet enabled for your account\" — seatTier: null",
+    "search_intent": "Resolve false-negative auth state where Claude Code reports remote control disabled despite user having an active paid Max subscription",
+    "common_causes": [
+      "GitHub Issue #60983 opened May 21 2026. macOS aarch64. seatTier returns null instead of 'max' on active paid account. Direct authentication failure impacting paying subscribers. Category mapped to AI Coding Tools per SKILL rules for Claude Code auth errors."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "claude-code-mcp-tool-call-requires-approval",
+    "title": "Claude Code Scheduled Routines Fail with \"MCP tool call requires approval\" on Custom Connectors",
+    "description": "Fix Claude Code scheduled routine / automated task failures when MCP tool calls require manual approval instead of running autonomously Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "\"MCP tool call requires approval\"",
+    "search_intent": "Fix Claude Code scheduled routine / automated task failures when MCP tool calls require manual approval instead of running autonomously",
+    "common_causes": [
+      "GitHub Issue #61015 opened May 21 2026 — regression ~2026-05-20. Affects web-based Claude Code users running scheduled routines with custom MCP connectors. Users expect autonomous execution during scheduled tasks but get approval prompts blocking automation. High commercial value: affects paying subscription users who rely on automation."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "litellm-upstream-provider-retry-after-header-not-forwarded-to-client-only-llm-provider-retry-after-is-returned",
+    "title": "LiteLLM Upstream Provider Retry-After Header Not Forwarded to Client",
+    "description": "Fix LiteLLM proxy bug where standard HTTP Retry-After headers from upstream providers are not passed through to the client, breaking proper rate limit handling Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "upstream provider \"retry-after\" header not forwarded to client — only \"llm_provider-retry-after\" is returned",
+    "search_intent": "Fix LiteLLM proxy bug where standard HTTP Retry-After headers from upstream providers are not passed through to the client, breaking proper rate limit handling",
+    "common_causes": [
+      "GitHub Issue #21553 opened Feb 2026, still open with updates as of May 21 2026. Affects LiteLLM proxy users routing requests through LiteLLM. Missing Retry-After header means clients cannot implement exponential backoff properly. Strong commercial value: affects production LiteLLM deployments. Maps to LiteLLM per approved categories."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "LiteLLM"
+    ]
+  },
+  {
+    "slug": "litellm-reserve-budget-for-request-leaks-redis-spend-counters-phantom-budgetexceedederror-after-upgrade-to-litellm-v1-84-0",
+    "title": "LiteLLM Phantom BudgetExceededError After Upgrade Due to Leaked Redis Spend Counters",
+    "description": "Diagnose and fix spurious BudgetExceededError in LiteLLM proxy caused by leaked Redis spending counters persisting from previous instances after upgrading versions Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "reserve_budget_for_request() leaks Redis spend counters — phantom BudgetExceededError after upgrade to LiteLLM v1.84.0",
+    "search_intent": "Diagnose and fix spurious BudgetExceededError in LiteLLM proxy caused by leaked Redis spending counters persisting from previous instances after upgrading versions",
+    "common_causes": [
+      "GitHub Issue #27639 opened May 11 2026, still open with 4 comments. Affects LiteLLM proxy deployments using Redis for budget tracking. After version upgrades, residual Redis counters cause false budget exhaustion errors. Clear error signature with specific version (v1.84.0). High commercial value: blocks proxy billing accuracy."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "LiteLLM"
+    ]
+  },
+  {
+    "slug": "github-actions-actions-artifact-blobclient-upload-fails-with-bad-request-through-https-proxy-no-proxy-transport-configured-artifact-uploadartifact-fails-with-unable-to-get-the-actions-runtime-token-env-variable",
+    "title": "GitHub Actions @actions/artifact Upload Fails with ACTIONS_RUNTIME_TOKEN Missing via HTTPS Proxy",
+    "description": "Fix GitHub Actions artifact upload failures caused by missing proxy transport configuration and missing ACTIONS_RUNTIME_TOKEN environment variable in CI/CD workflows Includes evidence for GitHub Actions troubleshooting demand.",
+    "category": "GitHub Actions",
+    "technology": "GitHub Actions",
+    "error_signature": "@actions/artifact BlobClient upload fails with \"Bad Request\" through HTTPS proxy — no proxy transport configured; artifact.uploadArtifact Fails with Unable to get the ACTIONS_RUNTIME_TOKEN env variable",
+    "search_intent": "Fix GitHub Actions artifact upload failures caused by missing proxy transport configuration and missing ACTIONS_RUNTIME_TOKEN environment variable in CI/CD workflows",
+    "common_causes": [
+      "Two distinct but related issues on actions/toolkit: #2377 (BlobClient Bad Request via HTTPS proxy, Apr 2026) and #2009 (ACTIONS_RUNTIME_TOKEN missing). Both affect enterprise users behind corporate proxies. Blocks CI/CD pipeline completions. Maps to GitHub Actions per approved categories."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "GitHub Actions"
+    ]
+  },
+  {
+    "slug": "claude-code-dns-probe-finished-nxdomain-claudemcpcontent-com-unreachable",
+    "title": "Claude.ai Visualize Feature Broken — claudemcpcontent.com DNS Resolution Failure",
+    "description": "Fix DNS resolution failure causing claude.ai visualize feature to be inaccessible; domain claudemcpcontent.com returns NXDOMAIN Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "DNS_PROBE_FINISHED_NXDOMAIN — claudemcpcontent.com unreachable",
+    "search_intent": "Fix DNS resolution failure causing claude.ai visualize feature to be inaccessible; domain claudemcpcontent.com returns NXDOMAIN",
+    "common_causes": [
+      "GitHub Issue #34820 opened Mar 2026, still open with 84 comments and active discussion as of May 21 2026. High visibility issue affecting visual tool access on claude.ai. DNS_PROBE_FINISHED_NXDOMAIN is a canonical search query. Maps to DNS category because the root cause is DNS resolution."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
   }
 ]
