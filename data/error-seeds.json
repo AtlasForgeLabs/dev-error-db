@@ -24957,5 +24957,133 @@
     "related_errors": [
       "LiteLLM"
     ]
+  },
+  {
+    "slug": "openai-api-you-exceeded-your-current-quota-insufficient-quota",
+    "title": "OpenAI API Billing Payment Method Declined Causes insufficient_quota Error",
+    "description": "User tries to activate OpenAI API billing but all payment methods are declined; subsequently gets insufficient_quota errors when calling API Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "You exceeded your current quota... insufficient_quota",
+    "search_intent": "User tries to activate OpenAI API billing but all payment methods are declined; subsequently gets insufficient_quota errors when calling API",
+    "common_causes": [
+      "Found on OpenAI Developer Community forum (community.openai.com). User in Oman reports all credit/debit cards declined during billing setup, resulting in insufficient_quota errors despite active cards. Related topics include card declines with corporate cards and difficulty adding credit cards. Covers country-specific billing restrictions and alternative activation methods."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "claude-code-error-sdk-auth-failed",
+    "title": "Claude Code Custom MCP Connector OAuth Tokens Fail to Persist",
+    "description": "Developer configures custom MCP connector in Claude Code via claude.json, OAuth authentication succeeds initially but tokens fail to persist across sessions causing SDK auth failures Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Error: SDK auth failed",
+    "search_intent": "Developer configures custom MCP connector in Claude Code via claude.json, OAuth authentication succeeds initially but tokens fail to persist across sessions causing SDK auth failures",
+    "common_causes": [
+      "Found on GitHub claude-code repository issues (#52565). Specific to Claude Code MCP configuration with OAuth token persistence bug. Affects developers integrating external tools via MCP in Claude Code terminal IDE. Category: AI Coding Tools per mapping rules."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "claude-code-sdk-auth-failed-incompatible-auth-server",
+    "title": "Claude Code HTTP MCP Servers with OAuth Auth Failed — Incompatible Auth Server",
+    "description": "Developer uses HTTP-based MCP servers with OAuth (e.g., Slack MCP at mcp.slack.com) in Claude Code; dynamic client registration (RFC 7591) fails with incompatible auth server error Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "SDK auth failed: Incompatible auth server",
+    "search_intent": "Developer uses HTTP-based MCP servers with OAuth (e.g., Slack MCP at mcp.slack.com) in Claude Code; dynamic client registration (RFC 7591) fails with incompatible auth server error",
+    "common_causes": [
+      "Found on GitHub claude-code repository issues (#52638). HTTP MCP server OAuth integration specifically fails when Claude Code attempts RFC 7591 dynamic client registration. Different from token persistence bug (distinct candidate). Affects developers building MCP integrations with OAuth-enabled services. Category: AI Coding Tools per mapping rules."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "litellm-model-pricing-fetches-fail-with-60s-abortsignal-timeout",
+    "title": "LiteLLM Gateway Startup Blocks 3 Minutes with Model Pricing Fetch Timeout",
+    "description": "Developer runs LiteLLM gateway; model pricing and OpenRouter pricing fetches hang for ~3 minutes due to 60-second AbortSignal timeout on internal network requests that should succeed Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "model-pricing fetches fail with 60s AbortSignal timeout",
+    "search_intent": "Developer runs LiteLLM gateway; model pricing and OpenRouter pricing fetches hang for ~3 minutes due to 60-second AbortSignal timeout on internal network requests that should succeed",
+    "common_causes": [
+      "Found on GitHub openclaw/openclaw issues (#72971). LiteLLM + OpenRouter both affected by timeout blocking gateway startup. Production impact — delays CI/CD pipeline initialization and team onboarding. Commercial value from proxy billing/routing context. Category: LiteLLM per mapping rules."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "LiteLLM"
+    ]
+  },
+  {
+    "slug": "claude-code-one-or-more-mcp-server-processes-or-remote-transports-failed-during-discovery-authentication-schema-validation-or-streaming",
+    "title": "Claude Code MCP Servers Failed to Connect During Discovery",
+    "description": "Developer starts Claude Code but one or more configured MCP servers fail to connect — covering failure across discovery, auth, schema validation, or streaming phases Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "one or more MCP server processes or remote transports failed during discovery, authentication, schema validation, or streaming",
+    "search_intent": "Developer starts Claude Code but one or more configured MCP servers fail to connect — covering failure across discovery, auth, schema validation, or streaming phases",
+    "common_causes": [
+      "Found as dedicated error page on easytool.me/wiki/errors, sourced from Google results showing recent developer discussions. Distinct from OAuth-specific bugs above — covers broader MCP server startup failure across all phases. Category: AI Coding Tools per mapping rules."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "docker-docker-compose-up-watch-copying-files-error-response-from-daemon-cannot-overwrite-non-directory",
+    "title": "Docker Compose Watch Fails: Error Response from Daemon Cannot Overwrite Non-Directory",
+    "description": "Developer uses docker compose up --watch for hot-reload but encounters daemon-level copy errors when file/directory state conflicts occur Includes evidence for Docker troubleshooting demand.",
+    "category": "Docker",
+    "technology": "Docker",
+    "error_signature": "docker compose up --watch: copying files: Error response from daemon: cannot overwrite non-directory",
+    "search_intent": "Developer uses docker compose up --watch for hot-reload but encounters daemon-level copy errors when file/directory state conflicts occur",
+    "common_causes": [
+      "Found on GitHub docker/compose issues (#13795, reported 2 days ago). Specific Docker Compose watch mode bug with concrete error message and daemon interaction. Recent report indicates active issue. Category: Docker per mapping rules."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Docker"
+    ]
+  },
+  {
+    "slug": "docker-network-service-crashed-or-was-terminated-restarting-service-daemon-is-running-open-pipe-dockerdesktoplinuxengine-the-system-cannot-find-the-file-specified",
+    "title": "Docker Desktop v4.73.0 Fails to Start — Network Service Crashes, Pipe Connection Error",
+    "description": "Developer upgrades to Docker Desktop v4.73.0 and cannot start the application; network service crashes repeatedly and pipe engine connection fails Includes evidence for Docker troubleshooting demand.",
+    "category": "Docker",
+    "technology": "Docker",
+    "error_signature": "Network service crashed or was terminated, restarting service; daemon is running: open //./pipe/dockerDesktopLinuxEngine: The system cannot find the file specified",
+    "search_intent": "Developer upgrades to Docker Desktop v4.73.0 and cannot start the application; network service crashes repeatedly and pipe engine connection fails",
+    "common_causes": [
+      "Found on Docker Community Forums (forums.docker.com, issue #151666, reported May 11 2026). Version-specific regression affecting Docker Desktop startup. Clear error signature with pipe connection failure. Category: Docker per mapping rules."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Docker"
+    ]
+  },
+  {
+    "slug": "claude-code-claude-only-accepts-oauth-but-n8n-only-provides-an-access-token",
+    "title": "n8n MCP Server OAuth Incompatibility with Claude Code — Access Token vs OAuth Only",
+    "description": "Developer connects n8n instance MCP server to Claude Code; Claude Code requires OAuth flow but n8n only provides access tokens, creating an incompatibility that blocks integration Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Claude only accepts OAuth, but n8n only provides an Access Token",
+    "search_intent": "Developer connects n8n instance MCP server to Claude Code; Claude Code requires OAuth flow but n8n only provides access tokens, creating an incompatibility that blocks integration",
+    "common_causes": [
+      "Found on n8n Community forum (community.n8n.io, post #296356, posted ~21 hours ago). Active discussion with solutions provided. Represents a growing category of AI agent integration friction between workflow automation platforms and Claude Code MCP. Category: AI Coding Tools per mapping rules."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
   }
 ]
