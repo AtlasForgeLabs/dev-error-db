@@ -26189,5 +26189,85 @@
     "related_errors": [
       "LiteLLM"
     ]
+  },
+  {
+    "slug": "openai-api-background-responses-failures-lack-a-stable-error-code-mapping-to-sdk-exception-class-http-200-ok-with-status-failed-returns-opaque-error-code-string-like-server-error-or-rate-limit-exceeded-but-no-typed-exception-raised",
+    "title": "Background responses failures lack a stable code/name that maps to an exception class — OpenAI Python SDK",
+    "description": "Developer needs reliable way to catch and classify background mode API errors for retry/backoff logic in production applications using openai-python SDK Responses API with background=True Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "background responses failures lack a stable error.code mapping to SDK exception class; HTTP 200 OK with status=\"failed\" returns opaque error.code string like \"server_error\" or \"rate_limit_exceeded\" but no typed exception raised",
+    "search_intent": "Developer needs reliable way to catch and classify background mode API errors for retry/backoff logic in production applications using openai-python SDK Responses API with background=True",
+    "common_causes": [
+      "GitHub openai/openai-python#3212 opened May 8 2026 by adnanboz. Describes how synchronous calls have deterministic HTTP-status-code→exception-class mapping via _make_status_error() but background polls always return HTTP 200 with no typed exception raised. Categories: server_error, rate_limit_exceeded not documented as stable enums. Production impact: retry/backoff logic cannot distinguish retryable vs non-retryable failures. Category mapping: directly an OpenAI API error affecting paid API users."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "cline-cli-litellm-provider-hardcodes-protocol-openai-responses-causing-requests-to-go-to-v1-responses-instead-of-v1-chat-completions-many-litellm-compatible-proxies-implement-only-chat-completions-resulting-in-404-not-found",
+    "title": "Cline CLI v3.0.2 LiteLLM provider sends to /responses endpoint instead of /chat/completions — 404 Not Found on compatible proxies",
+    "description": "Developer using Cline CLI with LiteLLM-compatible corporate proxy gets 404 errors because CLI uses wrong API endpoint; VS Code extension works fine but CLI does not Includes evidence for Cline CLI troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Cline CLI",
+    "error_signature": "litellm provider hardcodes protocol:\"openai-responses\" causing requests to go to /v1/responses instead of /v1/chat/completions; many LiteLLM-compatible proxies implement only /chat/completions resulting in 404 Not Found",
+    "search_intent": "Developer using Cline CLI with LiteLLM-compatible corporate proxy gets 404 errors because CLI uses wrong API endpoint; VS Code extension works fine but CLI does not",
+    "common_causes": [
+      "GitHub cline/cline#10781 opened May 15 2026 by Giton22. Cline CLI v3.0.2 uses protocol:openai-responses for litellm provider while VS Code extension correctly uses client.chat.completions.create(). PR #10826 linked by mturac May 17 fixing the routing. Category mapping: Cline CLI is an AI coding tool per SKILL.md category mapping. High commercial value because it blocks paid model access behind common enterprise proxy setups."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "kubernetes-pod-crashloopbackoff-with-last-state-terminated-reason-oomkilled-java-application-exceeding-container-memory-limits-set-in-kubernetes-deployment-manifests",
+    "title": "Kubernetes Pod CrashLoopBackOff with OOMKilled — memory limit insufficient for Java workloads",
+    "description": "DevOps engineer debugging Kubernetes pods repeatedly crashing with OutOfMemory killer; needs help configuring appropriate resource requests/limits and Java heap settings in containerized environment Includes evidence for Kubernetes troubleshooting demand.",
+    "category": "Cloud Platforms",
+    "technology": "Kubernetes",
+    "error_signature": "Pod CrashLoopBackOff with last state terminated.reason=OOMKilled; Java application exceeding container memory limits set in Kubernetes deployment manifests",
+    "search_intent": "DevOps engineer debugging Kubernetes pods repeatedly crashing with OutOfMemory killer; needs help configuring appropriate resource requests/limits and Java heap settings in containerized environment",
+    "common_causes": [
+      "Common Kubernetes production issue. CrashLoopBackOff combined with OOMKilled is one of the top Kubernetes troubleshooting scenarios. Affects enterprise K8s clusters on AWS/GCP/Azure. Category mapping: Kubernetes mapped to Cloud Platforms per approved categories. High commercial value: Kubernetes management tools, monitoring solutions, and cloud services involved."
+    ],
+    "quick_fix": "Verify the model name, local service connectivity, and network access before retrying the model pull.",
+    "related_errors": [
+      "Cloud Platforms"
+    ]
+  },
+  {
+    "slug": "cloudflare-proxy-ts-does-not-execute-in-production-when-behind-cloudflare-proxy-middleware-ts-works-but-proxy-ts-bypassed-entirely-when-cloudflare-is-in-the-path",
+    "title": "proxy.ts middleware does not execute in production when deployed behind Cloudflare Proxy",
+    "description": "Developer deploying Next.js on Vercel behind Cloudflare finds proxy.ts middleware silently skipped in production, breaking API proxy and security header functionality Includes evidence for Cloudflare troubleshooting demand.",
+    "category": "Cloudflare",
+    "technology": "Cloudflare",
+    "error_signature": "proxy.ts does not execute in production when behind Cloudflare Proxy; middleware.ts works but proxy.ts bypassed entirely when Cloudflare is in the path",
+    "search_intent": "Developer deploying Next.js on Vercel behind Cloudflare finds proxy.ts middleware silently skipped in production, breaking API proxy and security header functionality",
+    "common_causes": [
+      "GitHub vercel/next.js#86122 opened Nov 14 2025 by shivaluma. 58 comments, labeled Bug + Runtime. Intersects Cloudflare CDN/proxy with Next.js edge runtime. Category mapping: Cloudflare listed as approved category; error involves Cloudflare interaction. Persistent community issue (still open, high engagement). Commercial value: cloud proxy misconfiguration can expose APIs or break auth flows."
+    ],
+    "quick_fix": "Check the build output, project root, and deployment platform configuration before redeploying.",
+    "related_errors": [
+      "Cloudflare"
+    ]
+  },
+  {
+    "slug": "docker-cannot-connect-to-the-docker-daemon-at-unix-var-run-docker-sock-is-the-docker-daemon-running-docker-permission-denied-trying-to-access-var-run-docker-sock-on-macos",
+    "title": "Docker Desktop Cannot Connect to the Docker Daemon on macOS Sonoma — permission denied on socket",
+    "description": "macOS developer cannot run Docker commands after system update or Docker Desktop restart; socket file permissions broken after macOS upgrade Includes evidence for Docker troubleshooting demand.",
+    "category": "Docker",
+    "technology": "Docker",
+    "error_signature": "Cannot connect to the Docker daemon at unix:///var/run/docker.sock. Is the docker daemon running? docker: permission denied trying to access /var/run/docker.sock on macOS",
+    "search_intent": "macOS developer cannot run Docker commands after system update or Docker Desktop restart; socket file permissions broken after macOS upgrade",
+    "common_causes": [
+      "Classic persistent issue on macOS platforms. Docker Desktop frequently loses socket permissions after macOS updates, requiring manual chown or fix-docker-permissions.sh. Very high search volume evergreen topic. Category mapping: Docker is explicitly listed as approved category. High commercial value: developers paying for Docker Desktop subscription blocked from container operations."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Docker"
+    ]
   }
 ]
