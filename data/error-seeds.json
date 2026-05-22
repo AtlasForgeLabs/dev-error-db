@@ -26093,5 +26093,101 @@
     "related_errors": [
       "LiteLLM"
     ]
+  },
+  {
+    "slug": "claude-code-plan-silently-reverted-to-free-despite-active-paid-subscription-double-charged-for-overlapping-billing-period",
+    "title": "Double-charged after Max 5x plan silently downgraded to Free mid-cycle",
+    "description": "Fix unexpected subscription downgrade to Free mid-cycle causing double charge and loss of paid access Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Plan silently reverted to Free despite active paid subscription; double charged for overlapping billing period",
+    "search_intent": "Fix unexpected subscription downgrade to Free mid-cycle causing double charge and loss of paid access",
+    "common_causes": [
+      "GitHub issue #61339 on anthropics/claude-code opened May 22, 2026 by M2316. Paid Max 5x subscription ($100 charge on May 4) silently downgraded to Free plan only 7 days into a fresh 30-day cycle, forcing forced re-purchase resulting in $110 double charge. No notification email, no in-app warning, no refund. Root cause likely: new subscription inherited old cycle expiration timer instead of starting fresh 30-day period. area:cost + bug labels, 5 comments, author actively fighting auto-duplicate-closure bot. High commercial value — directly affects paying users."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "claude-code-browser-extension-is-not-connected-please-ensure-the-claude-browser-extension-is-installed-and-running",
+    "title": "Chrome MCP bridge fails after ~30s idle due to MV3 service worker dormancy",
+    "description": "Fix Chrome MCP extension returning empty browser list after idle period — misleading error message when extension IS installed Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Browser extension is not connected. Please ensure the Claude browser extension is installed and running",
+    "search_intent": "Fix Chrome MCP extension returning empty browser list after idle period — misleading error message when extension IS installed",
+    "common_causes": [
+      "GitHub issue #61347 on anthropics/claude-code opened May 22, 2026 by jjongsta. MV3 service worker goes dormant after ~30s idle, causing claude-in-chrome extension to stop checking in to the bridge. CLI shows misleading auth/install error while extension IS installed, signed in, and paired. Has repro steps, labeled bug+has repro+area:mcp+area:chrome+area:browser-extension. Extension version 1.0.71/1.0.72, Claude Code CLI 2.1.148, Chrome 148. Strong signal — multiple enterprise testers confirming ($50 acceptance-test target mentioned). Not yet covered on dev-error-db."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "claude-code-unable-to-connect-to-api-connectionrefused-for-10-times-takes-3m-and-then-fails-with-an-error",
+    "title": "Claude Code ConnectionRefused on Linux after reinstall — blocks all models on paid plan",
+    "description": "Fix persistent ConnectionRefused error when using Claude Code CLI on Linux after uninstall/reinstall — works on other machines Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Unable to connect to API (ConnectionRefused) for 10 times (takes 3m) and then fails with an error",
+    "search_intent": "Fix persistent ConnectionRefused error when using Claude Code CLI on Linux after uninstall/reinstall — works on other machines",
+    "common_causes": [
+      "GitHub issue #61320 on anthropics/claude-code opened May 21/22, 2026 by PonyLucky. After reinstalling Claude Code v2.1.147 on Linux (previously uninstalled 2 months ago), all model calls fail with ConnectionRefused for 10 retries (3 minutes) before final error. User deleted all config files (~/.claude.json, ~/.claude/, etc.) but problem persists. Works on another laptop with same account. No keyring or bun installed. api:anthropic + area:networking + platform:linux labels, 2 comments. Blocks paid subscription usage entirely. Distinct from duplicate reports (#56711, #56242, #60041) per author assertion."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "openai-api-http-poll-returns-200-ok-but-status-failed-or-incomplete-with-no-typed-sdk-exception-raised",
+    "title": "OpenAI Responses API background mode fails without raising typed exception",
+    "description": "Handle background Responses API failures (server_error, rate_limit_exceeded) that return 200 OK with opaque error codes Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "HTTP poll returns 200 OK but status='failed' or 'incomplete' with no typed SDK exception raised",
+    "search_intent": "Handle background Responses API failures (server_error, rate_limit_exceeded) that return 200 OK with opaque error codes",
+    "common_causes": [
+      "GitHub issue #3212 on openai/openai-python opened May 8, 2026 by adnanboz. When Responses API runs in background=True mode and a run terminates in status=failed, the SDK does not surface a stable machine-readable identifier that callers can map to existing exception classes. HTTP poll returns 200 OK so status-code dispatcher never invoked. The free-form error.code string (server_error, rate_limit_exceeded) does not correspond 1:1 to any SDK exception class. 3+ developers interested in contributing fix. Affects retry/backoff logic built around isinstance checks. Not in covered-errors list."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "litellm-string-valued-timeout-produces-misleading-security-scan-failed-500",
+    "title": "LiteLLM panw_prisma_airs string timeout produces misleading Security scan failed 500",
+    "description": "Fix misclassified 500 error caused by passing string timeout instead of numeric value — confusing users about root cause Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "string-valued timeout produces misleading 'Security scan failed' 500",
+    "search_intent": "Fix misclassified 500 error caused by passing string timeout instead of numeric value — confusing users about root cause",
+    "common_causes": [
+      "GitHub issue #28540 on BerriAI/litellm opened May 22, 2026 by scthornton. String-valued timeout parameter passed to panw_prisma_airs provider triggers cascading error chain that surfaces as 'Security scan failed' 500 instead of clear validation error. llm translation label. Fresh report (1 hour old) with high specificity. Affects production proxy configurations using Prisma AIRS scanner. Not a common error signature — low competition if covered correctly."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "LiteLLM"
+    ]
+  },
+  {
+    "slug": "litellm-opentelemetry-integration-crashes-with-unhashable-type-list-when-guardrail-mode-is-a-list",
+    "title": "OpenTelemetry integration crashes with unhashable type list when guardrail mode is list",
+    "description": "Fix crash in LiteLLM OpenTelemetry guardrail integration when guardrail mode is configured as a Python list instead of single value Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "OpenTelemetry integration crashes with 'unhashable type: ''list'' when guardrail mode is a list'",
+    "search_intent": "Fix crash in LiteLLM OpenTelemetry guardrail integration when guardrail mode is configured as a Python list instead of single value",
+    "common_causes": [
+      "GitHub issue #28486 on BerriAI/litellm opened May 22, 2026 by kenany. Passguardrails_mode as list causes Python TypeError crash ('unhashable type: list') in OpenTelemetry instrumentation path. bug + llm translation + proxy labels. Directly impacts observability setups for production LLM proxies. Clean, specific error signature with reproduction path. Not in covered errors list."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "LiteLLM"
+    ]
   }
 ]
