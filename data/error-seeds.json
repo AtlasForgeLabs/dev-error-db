@@ -26653,5 +26653,69 @@
     "related_errors": [
       "LiteLLM"
     ]
+  },
+  {
+    "slug": "claude-code-needs-authentication-mcp-oauth-token-saved-in-keychain-codex-mcp-credentials-but-not-read-at-startup-runtime-stamps-mcp-needs-auth-cache-json-despite-valid-keychain-entry",
+    "title": "[BUG] HTTP MCP OAuth tokens written to macOS Keychain but not loaded at session start — re-auth required every session",
+    "description": "Fix Claude Code requiring manual MCP server re-authentication after every session restart, even when OAuth tokens are confirmed present in macOS Keychain Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "! Needs authentication — MCP OAuth token saved in Keychain (Codex MCP Credentials) but not read at startup; runtime stamps mcp-needs-auth-cache.json despite valid keychain entry",
+    "search_intent": "Fix Claude Code requiring manual MCP server re-authentication after every session restart, even when OAuth tokens are confirmed present in macOS Keychain",
+    "common_causes": [
+      "Found in anthropics/claude-code#57674 (open, created 2026-05-09). Detailed Keychain-level evidence proves tokens ARE persisted but NOT restored at session launch. Affects all HTTP MCP servers using Codex MCP Credentials service. High commercial value — breaks paid Claude Code Pro/Max workflows daily. Category maps to AI Coding Tools per SKILL rules."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "claude-code-api-error-401-invalid-authentication-credentials-oauth-post-https-platform-claude-com-v1-oauth-token-returns-http-400-during-refresh-after-early-server-side-revocation-repeated-login-prompts-every-few-hours",
+    "title": "[BUG] OAuth refresh returns 400 after early 401 before local expiresAt — concurrent sessions forced to /login",
+    "description": "Fix Claude Code OAuth session rejection causing repeated 401 errors and forced re-login loops even before local token expiry Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "API Error: 401 Invalid authentication credentials — OAuth POST https://platform.claude.com/v1/oauth/token returns HTTP 400 during refresh after early server-side revocation, repeated /login prompts every few hours",
+    "search_intent": "Fix Claude Code OAuth session rejection causing repeated 401 errors and forced re-login loops even before local token expiry",
+    "common_causes": [
+      "Found in anthropics/claude-code#54443 (open, created 2026-04-28). Server-side early revocation causes OAuth refresh to fail with HTTP 400. Users experience repeated 401 prompts every few hours. Strongly overlaps with prior issue #52202 (early-revocation path). Maps to AI Coding Tools category per SKILL rules. High commercial value — affects paying Pro/Max users."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "openai-api-429-too-many-requests-error-message-misleadingly-indicates-rate-limiting-but-actually-caused-by-depleted-api-billing-quota-prepay-model-confused-interpretation-blocks-debugging",
+    "title": "AutoGPT Misinterprets 429 Too Many Requests as Rate Limiting Instead of Insufficient API Quota",
+    "description": "Distinguish between OpenAI 429 rate-limit errors vs insufficient billing quota errors; auto-detection fails because both return same HTTP code Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "429 Too Many Requests — error message misleadingly indicates rate limiting but actually caused by depleted API billing quota (prepay model); confused interpretation blocks debugging",
+    "search_intent": "Distinguish between OpenAI 429 rate-limit errors vs insufficient billing quota errors; auto-detection fails because both return same HTTP code",
+    "common_causes": [
+      "Found in Significant-Gravitas/AutoGPT#7028. OpenAI changed billing to prepay model, causing quota depletion to surface as 429 instead of informative billing error. This is a genuine error ambiguity that confuses thousands of developers. Not yet covered in dev-error-db (existing entries cover standard 429 but not this quota-vs-rate-limit confusion). Maps to OpenAI API category. Strong commercial value — involves paid API billing impact."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "github-actions-permission-denied-or-unauthorized-authentication-required-docker-image-push-fails-in-github-actions-ci-cd-pipeline-due-to-github-token-permissions-configuration",
+    "title": "GitHub Actions Docker Push Permission Denied / Unauthorized Fix (2026)",
+    "description": "Fix Docker registry authentication failures in GitHub Actions workflow that block deployment pipelines for teams using private registries Includes evidence for GitHub Actions troubleshooting demand.",
+    "category": "GitHub Actions",
+    "technology": "GitHub Actions",
+    "error_signature": "permission denied OR unauthorized: authentication required — Docker image push fails in GitHub Actions CI/CD pipeline due to GITHUB_TOKEN permissions configuration",
+    "search_intent": "Fix Docker registry authentication failures in GitHub Actions workflow that block deployment pipelines for teams using private registries",
+    "common_causes": [
+      "Found via web search — devopsboys.com blog post dated 2026 covering updated Docker Push permission denied patterns specific to 2026. Also corroborated by Stack Overflow Q79750835. Covers GITHUB_TOKEN scopes, artifact access, and Docker socket auth. Fresh 2026 guidance suggests evolving patterns. Category: GitHub Actions per approved list. Commercial value: CI/CD pipeline failure blocks paid team deployments."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "GitHub Actions"
+    ]
   }
 ]
