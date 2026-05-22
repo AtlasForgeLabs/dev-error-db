@@ -25885,5 +25885,69 @@
     "related_errors": [
       "GitHub Actions"
     ]
+  },
+  {
+    "slug": "openai-api-tool-choices-other-than-auto-are-not-supported-with-model-on-gpt5",
+    "title": "GPT5 Models | Tool choices other than auto are not supported with model",
+    "description": "Fix error when specifying explicit tool_choice (e.g., 'required', 'none', or function name) with GPT-5 models, forcing fallback to auto mode Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "Tool choices other than 'auto' are not supported with model on GPT5",
+    "search_intent": "Fix error when specifying explicit tool_choice (e.g., 'required', 'none', or function name) with GPT-5 models, forcing fallback to auto mode",
+    "common_causes": [
+      "GitHub Issue #2537 on openai/openai-python (opened Aug 9, 2025, by hayescode). GPT-5 models reject non-auto tool choices, breaking function calling patterns for developers who need deterministic tool invocation. 17 comments indicate active community engagement. High value: function calling is core to paid API usage."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "openai-api-error-item-rs-abcd-of-type-reasoning-was-provided-without-its-required",
+    "title": "Error: Item of type reasoning was provided without its required content when using CodeInterpreter",
+    "description": "Fix CodeInterpreter error where reasoning-type items must be paired with content items in the OpenAI Responses API, avoiding validation failures in multi-step reasoning workflows Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "Error: Item 'rs_ABCD' of type 'reasoning' was provided without its required...",
+    "search_intent": "Fix CodeInterpreter error where reasoning-type items must be paired with content items in the OpenAI Responses API, avoiding validation failures in multi-step reasoning workflows",
+    "common_causes": [
+      "GitHub Issue #2561 on openai/openai-python (opened Aug 15, 2025, by fitzjalen). The Responses API enforces a constraint: reasoning items must be accompanied by their paired message content. Breaking change affecting developers building agentic workflows. 6 comments showing broad interest."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "vercel-module-not-found-can-t-resolve-components-header-import-path-casing-mismatch",
+    "title": "Module Not Found: Case-Sensitive Filesystem Breaking Vercel Deployments",
+    "description": "Fix Vercel deployment failures caused by macOS/Windows case-insensitive filesystem masking import path casing mismatches that fail on Vercel's Linux environment Includes evidence for Vercel troubleshooting demand.",
+    "category": "Deployment",
+    "technology": "Vercel",
+    "error_signature": "Module not found — Can't resolve './Components/Header' (import path casing mismatch)",
+    "search_intent": "Fix Vercel deployment failures caused by macOS/Windows case-insensitive filesystem masking import path casing mismatches that fail on Vercel's Linux environment",
+    "common_causes": [
+      "32blog.com Vercel guide identifies 'file name casing mismatch' as a top build error. import Header from './Components/Header' works on Mac/Windows but fails on Vercel Linux with 'module not found'. Very common pattern for Next.js/React devs migrating from macOS. Moderate competition, specific actionable error."
+    ],
+    "quick_fix": "Check the build output, project root, and deployment platform configuration before redeploying.",
+    "related_errors": [
+      "Deployment"
+    ]
+  },
+  {
+    "slug": "openai-api-responses-create-hangs-indefinitely-with-gpt-5-models-direct-rest-api-call-completes-successfully",
+    "title": "responses.create() hangs indefinitely with GPT-5 models while direct REST API call completes successfully",
+    "description": "Fix SDK hang bug where responses.create() blocks forever with GPT-5 models, while identical requests succeed via raw REST API — requiring migration away from Python SDK Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "responses.create() hangs indefinitely with GPT-5 models; direct REST API call completes successfully",
+    "search_intent": "Fix SDK hang bug where responses.create() blocks forever with GPT-5 models, while identical requests succeed via raw REST API — requiring migration away from Python SDK",
+    "common_causes": [
+      "GitHub Issue #2725 on openai/openai-python (opened Nov 1, 2025, by pietroperona). The Python SDK hangs on responses.create() with GPT-5 models but raw HTTP works fine. This directly impacts developer productivity and signals deep library bugs. 3 comments, 1 linked PR shows active fix effort."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "OpenAI API"
+    ]
   }
 ]
