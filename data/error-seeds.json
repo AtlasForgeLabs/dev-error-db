@@ -26493,5 +26493,69 @@
     "related_errors": [
       "AI Coding Tools"
     ]
+  },
+  {
+    "slug": "claude-code-authentication-successful-but-server-reconnection-failed",
+    "title": "Claude Code OAuth Reconnection Fails After Successful Auth — MCP Streamable-HTTP Transport Bug",
+    "description": "Fix MCP server reconnection failure after OAuth authentication succeeds in Claude Code using streamable-http transport Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Authentication successful, but server reconnection failed",
+    "search_intent": "Fix MCP server reconnection failure after OAuth authentication succeeds in Claude Code using streamable-http transport",
+    "common_causes": [
+      "Found on GitHub anthropics/claude-code#10250 (browser CDP fetch). OAuth auth passes green but subsequent MCP server reconnection fails, requiring full Claude Code restart. Also corroborated by codersera.com 2026 troubleshooting guide covering Claude Code 529/401/MCP errors. Category maps to AI Coding Tools per approved list. High commercial value: blocks paid developers from using Claude Code mid-session."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "claude-code-authentication-error-401-mid-session-autonomous-run",
+    "title": "Claude Code HTTP 401 Mid-Session OAuth Token Expiration Breaks Autonomous Runs",
+    "description": "Fix Claude Code 401 auth failure that occurs mid-autonomous-run when OAuth token expires, causing every subsequent tool call to fail until re-login Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "authentication_error (401) mid-session autonomous run",
+    "search_intent": "Fix Claude Code 401 auth failure that occurs mid-autonomous-run when OAuth token expires, causing every subsequent tool call to fail until re-login",
+    "common_causes": [
+      "Source: codersera.com 2026 guide fetched successfully. 401 in Claude Code means expired/revoked OAuth token or missing scope for new feature. Critical variant: mid-session expiry during autonomous runs makes session unrecoverable without /logout then /login. Cache clearing at ~/.claude/auth may be needed. Distinct from basic 401 coverage. Commercial value: breaks long-running paid coding sessions."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "claude-code-connection-closed-picking-well-maintained-servers-avoids-a-lot-of-this-mcp-32000",
+    "title": "Claude Code MCP Error -32000 Generic Server Crash — JSON-RPC Transport Failure",
+    "description": "Debug and fix Claude Code MCP -32000 generic server error where MCP server process crashed during initialization or exited mid-handshake Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Connection closed. (Picking well-maintained servers avoids a lot of this.) MCP -32000",
+    "search_intent": "Debug and fix Claude Code MCP -32000 generic server error where MCP server process crashed during initialization or exited mid-handshake",
+    "common_causes": [
+      "Source: codersera.com 2026 guide fetched successfully. -32000 is JSON-RPC generic server-error meaning MCP server process died — missing dependency, wrong Node version, missing env var, or stdout contamination. Fixes include running server manually in terminal, using absolute paths, setting explicit env vars, moving console.log() to console.error(). Distinct subcategory from covered-errors. High commercial value: MCP integrations are core to Claude Code's paid value proposition."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "cloudflare-error-520-web-server-is-returning-an-unknown-error",
+    "title": "Cloudflare Error 520 Web Server Returns Unknown Error — Origin Server Troubleshooting Guide",
+    "description": "Troubleshoot and fix Cloudflare 520 error caused by origin server crashes, header size limits, firewall blocking, or short idle timeouts Includes evidence for Cloudflare troubleshooting demand.",
+    "category": "Cloudflare",
+    "technology": "Cloudflare",
+    "error_signature": "Error 520: Web Server Is Returning an Unknown Error",
+    "search_intent": "Troubleshoot and fix Cloudflare 520 error caused by origin server crashes, header size limits, firewall blocking, or short idle timeouts",
+    "common_causes": [
+      "Source: Hostinger tutorial fetched successfully with full diagnostic detail. Error 520 catches multiple root causes: origin server crash, non-whitelisted Cloudflare IPs blocked by firewall, TCP idle timeout < 300s, request headers exceeding 16KB limit, connection resets. Distinct from covered-errors which only has 522/525. 520 is equally common and has clear diagnostic path. Commercial impact: downtime for paying Cloudflare customers."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Cloudflare"
+    ]
   }
 ]
