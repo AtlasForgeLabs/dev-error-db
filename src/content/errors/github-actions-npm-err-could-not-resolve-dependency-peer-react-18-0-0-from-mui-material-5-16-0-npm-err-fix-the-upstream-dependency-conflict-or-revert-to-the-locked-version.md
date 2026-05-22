@@ -1,0 +1,81 @@
+---
+title: "GitHub Actions npm ci Lockfile Out of Sync After Dependency Update"
+description: "Fix npm ci lockfile resolution errors blocking GitHub Actions CI/CD pipeline Includes evidence for GitHub Actions troubleshooting demand."
+category: "GitHub Actions"
+technology: "GitHub Actions"
+error_signature: "npm ERR! Could not resolve dependency: peer react@\"^18.0.0\" from @mui/material@5.16.0 npm ERR! Fix the upstream dependency conflict, or revert to the locked version"
+common_causes:
+  - "npm ci strict lockfile enforcement is a frequent blocker in automated CI/CD. When packages update peer dependencies without bumping semver-major, CI pipelines fail silently or loudly with resolution errors. Very common in React/MUI/TypeScript projects. Covered-errors.md has 'npm ci lockfile error' but not the specific peer dependency conflict pattern. Commercial value: blocked deploys for teams on Pro/Business plans ($0-$2000+/mo)."
+quick_fix: "Compare the failing environment with a known working setup, then change one configuration value at a time."
+related_errors:
+  - "GitHub Actions"
+updated: "2026-05-22"
+published_at: "2026-05-22T12:39:47.621Z"
+updated_at: "2026-05-22T12:39:47.621Z"
+---
+
+## What this error means
+
+`npm ERR! Could not resolve dependency: peer react@"^18.0.0" from @mui/material@5.16.0 npm ERR! Fix the upstream dependency conflict, or revert to the locked version` is a GitHub Actions failure pattern reported for developers trying to fix npm ci lockfile resolution errors blocking github actions ci/cd pipeline. Based on the imported evidence, treat this as a tool-specific troubleshooting page rather than a generic API error.
+
+## Why this happens
+
+npm ci strict lockfile enforcement is a frequent blocker in automated CI/CD. When packages update peer dependencies without bumping semver-major, CI pipelines fail silently or loudly with resolution errors. Very common in React/MUI/TypeScript projects. Covered-errors.md has 'npm ci lockfile error' but not the specific peer dependency conflict pattern. Commercial value: blocked deploys for teams on Pro/Business plans ($0-$2000+/mo).
+
+## Common causes
+
+- npm ci strict lockfile enforcement is a frequent blocker in automated CI/CD. When packages update peer dependencies without bumping semver-major, CI pipelines fail silently or loudly with resolution errors. Very common in React/MUI/TypeScript projects. Covered-errors.md has 'npm ci lockfile error' but not the specific peer dependency conflict pattern. Commercial value: blocked deploys for teams on Pro/Business plans ($0-$2000+/mo).
+
+## Quick fixes
+
+1. Confirm the exact error signature matches `npm ERR! Could not resolve dependency: peer react@"^18.0.0" from @mui/material@5.16.0 npm ERR! Fix the upstream dependency conflict, or revert to the locked version`.
+2. Check the GitHub Actions account, local tool state, and provider configuration involved in the failing workflow.
+3. Compare the failing environment with a known working setup, then change one configuration value at a time.
+
+## Platform/tool-specific checks
+
+- Verify the command, editor, extension, or API client that produced the error.
+- Compare local settings with CI, deployment, or editor-level settings when the error appears in only one environment.
+- Avoid deleting credentials, local model data, or project settings until the failing scope is clear.
+
+## Step-by-step troubleshooting
+
+1. Capture the exact error message and the command, editor action, or request that triggered it.
+2. Check whether the failure is account/auth, quota/rate, model/provider, local runtime, or deployment configuration.
+3. Review the source evidence below and compare it with your environment.
+4. Apply one change at a time and rerun the smallest failing action.
+5. Keep the working fix documented for the team or deployment environment.
+
+## How to prevent it
+
+- Keep provider/tool configuration documented.
+- Record non-secret diagnostics such as tool version, provider name, model name, and command path.
+- Add a lightweight check before CI or production workflows depend on the tool.
+
+## Sources checked
+
+- https://docs.npmjs.com/cli/v10/commands/npm-ci
+
+Evidence note: npm ci strict lockfile enforcement is a frequent blocker in automated CI/CD. When packages update peer dependencies without bumping semver-major, CI pipelines fail silently or loudly with resolution errors. Very common in React/MUI/TypeScript projects. Covered-errors.md has 'npm ci lockfile error' but not the specific peer dependency conflict pattern. Commercial value: blocked deploys for teams on Pro/Business plans ($0-$2000+/mo).
+
+## Related errors
+
+- GitHub Actions
+
+## FAQ
+
+### What should I check first?
+
+Start with the exact `npm ERR! Could not resolve dependency: peer react@"^18.0.0" from @mui/material@5.16.0 npm ERR! Fix the upstream dependency conflict, or revert to the locked version` text and the smallest action that reproduces it.
+
+### Can I ignore this error?
+
+No. Treat it as a failed GitHub Actions workflow until the root cause is understood.
+
+### Is this guaranteed to have one fix?
+
+No. The imported evidence supports the troubleshooting path above, but tool behavior can vary by account, plan, version, provider, and local configuration.
+
+### How do I know the fix worked?
+
+Rerun the same command, editor action, or request. The fix is working when that action completes without `npm ERR! Could not resolve dependency: peer react@"^18.0.0" from @mui/material@5.16.0 npm ERR! Fix the upstream dependency conflict, or revert to the locked version`.

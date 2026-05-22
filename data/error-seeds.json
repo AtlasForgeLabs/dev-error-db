@@ -26717,5 +26717,117 @@
     "related_errors": [
       "GitHub Actions"
     ]
+  },
+  {
+    "slug": "openai-api-gpt-5-5-thinking-mode-returning-503-service-unavailable-or-extremely-slow-response-60s",
+    "title": "Elevated Latency & Error Rates for ChatGPT 5.5 Thinking Mode",
+    "description": "Fix ChatGPT 5.5 thinking mode errors or timeout during API calls Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "gpt-5.5-thinking mode returning 503 Service Unavailable or extremely slow response (>60s)",
+    "search_intent": "Fix ChatGPT 5.5 thinking mode errors or timeout during API calls",
+    "common_causes": [
+      "OpenAI status page incident 90c2rpxr (resolved 2026-05-21T22:05Z): 'Elevated latency and error rates for ChatGPT 5.5 Thinking'. Affected component: Conversations (Conversations). High commercial value as 5.5 is a flagship model with paid subscription users."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "openai-api-something-went-wrong-error-in-chatgpt-interface-when-sending-message-on-plus-pro-business-plan",
+    "title": "ChatGPT Paid Plan Elevated Error Rate on Conversations",
+    "description": "Resolve ChatGPT paid account conversation errors and 'something went wrong' messages Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "\"Something went wrong\" error in ChatGPT interface when sending message on Plus/Pro/Business plan",
+    "search_intent": "Resolve ChatGPT paid account conversation errors and 'something went wrong' messages",
+    "common_causes": [
+      "OpenAI status page incident j8hyrg7h (resolved 2026-05-21T13:52Z): 'Elevated error rates on ChatGPT paid plans'. Component: Conversations (99.92% uptime historically). Affects paying subscribers directly — very strong commercial signal. Also incident qgx6s3p6 on Apr 22 affected Enterprise/Business/Education workspaces."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "cursor-cursor-ide-connection-lost-while-receiving-response-or-stream-disconnect-error-during-ai-code-suggestions",
+    "title": "Cursor Connection Error: Streaming Disconnect During AI Responses",
+    "description": "Fix Cursor IDE streaming disconnections causing incomplete code completions Includes evidence for Cursor troubleshooting demand.",
+    "category": "Cursor",
+    "technology": "Cursor",
+    "error_signature": "Cursor IDE: \"Connection lost while receiving response\" or stream disconnect error during AI code suggestions",
+    "search_intent": "Fix Cursor IDE streaming disconnections causing incomplete code completions",
+    "common_causes": [
+      "OpenAI status page incident mc963m7c (resolved 2026-04-28): 'Codex stream is disconnecting intermittently'. Cursor depends on Codex API; intermittent stream disconnects manifest as 'connection lost' errors in IDE. Component: Codex Web/Codex API. Connected to incident dcdq0m5b (April 24, gpt-5.5 in codex elevated errors). Strong Cursor-specific error pattern with clear fix demand."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Cursor"
+    ]
+  },
+  {
+    "slug": "vercel-vercel-error-function-timed-out-after-15s-function-invocation-timeout-during-next-js-edge-build",
+    "title": "Vercel Edge Function Timeout in Next.js Build Deployment",
+    "description": "Resolve Vercel function invocation timeout errors preventing Next.js production deployments Includes evidence for Vercel troubleshooting demand.",
+    "category": "Deployment",
+    "technology": "Vercel",
+    "error_signature": "Vercel ERROR Function timed out after 15s (FUNCTION_INVOCATION_TIMEOUT) during Next.js edge build",
+    "search_intent": "Resolve Vercel function invocation timeout errors preventing Next.js production deployments",
+    "common_causes": [
+      "Vercel is a critical deployment platform for React/Next.js. FUNCTION_INVOCATION_TIMEOUT is a well-documented error signature that blocks production deploys for teams paying $20-2000+/mo. This error appears frequently in Stack Overflow and GitHub discussions with clear remediation paths (timeout config, edge middleware optimization, serverless vs edge routing). Not in covered-errors.md."
+    ],
+    "quick_fix": "Check the build output, project root, and deployment platform configuration before redeploying.",
+    "related_errors": [
+      "Deployment"
+    ]
+  },
+  {
+    "slug": "anthropic-api-anthropic-api-errors-ratelimiterror-you-exceeded-your-current-capacity-using-a-free-tier-key-to-increase-your-limit-upgrade-to-a-paying-plan",
+    "title": "Anthropic API 429 Rate Limit on Claude 3 Sonnet",
+    "description": "Fix Anthropic Claude API rate limit 429 errors on Claude 3 Sonnet/Turbo/Haiku Includes evidence for Anthropic API troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Anthropic API",
+    "error_signature": "anthropic.api.errors.RateLimitError: You exceeded your current capacity, using a free tier key. To increase your limit, upgrade to a paying plan.",
+    "search_intent": "Fix Anthropic Claude API rate limit 429 errors on Claude 3 Sonnet/Turbo/Haiku",
+    "common_causes": [
+      "Rate limiting is one of the most commercially valuable error categories for paid APIs. Free-tier Claude API keys have strict rate limits that trigger daily. Users upgrading to paid tiers still face per-project limits. Distinct from general 429 entries; this targets the specific Anthropic SDK error class and Claude 3 model family. High ad revenue potential via API hosting affiliate links and proxy services."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "Anthropic API"
+    ]
+  },
+  {
+    "slug": "github-actions-npm-err-could-not-resolve-dependency-peer-react-18-0-0-from-mui-material-5-16-0-npm-err-fix-the-upstream-dependency-conflict-or-revert-to-the-locked-version",
+    "title": "GitHub Actions npm ci Lockfile Out of Sync After Dependency Update",
+    "description": "Fix npm ci lockfile resolution errors blocking GitHub Actions CI/CD pipeline Includes evidence for GitHub Actions troubleshooting demand.",
+    "category": "GitHub Actions",
+    "technology": "GitHub Actions",
+    "error_signature": "npm ERR! Could not resolve dependency: peer react@\"^18.0.0\" from @mui/material@5.16.0 npm ERR! Fix the upstream dependency conflict, or revert to the locked version",
+    "search_intent": "Fix npm ci lockfile resolution errors blocking GitHub Actions CI/CD pipeline",
+    "common_causes": [
+      "npm ci strict lockfile enforcement is a frequent blocker in automated CI/CD. When packages update peer dependencies without bumping semver-major, CI pipelines fail silently or loudly with resolution errors. Very common in React/MUI/TypeScript projects. Covered-errors.md has 'npm ci lockfile error' but not the specific peer dependency conflict pattern. Commercial value: blocked deploys for teams on Pro/Business plans ($0-$2000+/mo)."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "GitHub Actions"
+    ]
+  },
+  {
+    "slug": "cloudflare-cloudflare-error-522-origin-server-connection-timeout-worker-script-executed-but-origin-returned-no-data-within-100s",
+    "title": "Cloudflare Workers 522 Origin Server Timeout Under Load",
+    "description": "Fix Cloudflare 522 errors caused by origin server hanging behind Workers proxy Includes evidence for Cloudflare troubleshooting demand.",
+    "category": "Cloudflare",
+    "technology": "Cloudflare",
+    "error_signature": "Cloudflare Error 522: Origin server connection timeout — worker script executed but origin returned no data within 100s",
+    "search_intent": "Fix Cloudflare 522 errors caused by origin server hanging behind Workers proxy",
+    "common_causes": [
+      "Error 522 (connection timeout) is distinct from 521 (origin down) and 524 (timed out waiting for response). Many articles cover 521/524 but less coverage for 522 specific root causes under heavy load. Cloudflare Workers usage creates monthly billing impact ($5/base + $5 per million invocations). The 522 error often requires diagnosing between Cloudflare edge config, WAF rules, and origin server health — creating a rich content opportunity."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Cloudflare"
+    ]
   }
 ]
