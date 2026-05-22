@@ -27373,5 +27373,85 @@
     "related_errors": [
       "Docker"
     ]
+  },
+  {
+    "slug": "cloudflare-typeerror-missing-parameter-name-at-index-11-catchall-cloudflare-error-1101-worker-threw-exception",
+    "title": "Cloudflare Pages Functions catchall routes return 1101 due to path-to-regexp v6/v8 syntax mismatch",
+    "description": "Fix Cloudflare Pages Functions returning 1101 error on all URLs when using [[name]].ts catchall route files (wrangler 4.77+) Includes evidence for Cloudflare troubleshooting demand.",
+    "category": "Cloudflare",
+    "technology": "Cloudflare",
+    "error_signature": "TypeError: Missing parameter name at index 11: /:catchall* → Cloudflare Error 1101 Worker threw exception",
+    "search_intent": "Fix Cloudflare Pages Functions returning 1101 error on all URLs when using [[name]].ts catchall route files (wrangler 4.77+)",
+    "common_causes": [
+      "GitHub issue #13643 on cloudflare/workers-sdk is a deterministic, reproducible bug: wrangler emits path-to-regexp v6 syntax (/\\:name*) in the routes manifest, but bundles v8 which rejects it. Affects ALL Pages projects using documented catchall filename convention. Clear error signature, specific workaround exists (rename to _middleware.ts), and cross-verified across two wrangler versions (4.77.0, 4.84.1). Very high commercial value — breaks live deployments."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Cloudflare"
+    ]
+  },
+  {
+    "slug": "vercel-error-invariant-failed-to-find-source-route-store-lang-c-sitemap-xml-for-prerender-store-lang-c-sitemap-xml",
+    "title": "Next.js sitemap.xml route handler build fails with Invariant error — regression 16.1.7→16.2.0",
+    "description": "Fix Next.js build/deployment failure with sitemap.xml route handlers in nested dynamic route groups (regression from 16.1.7 to 16.2.0+) Includes evidence for Vercel troubleshooting demand.",
+    "category": "Deployment",
+    "technology": "Vercel",
+    "error_signature": "Error: Invariant: failed to find source route /[store]/[lang]/c/sitemap.xml for prerender /[store]/[lang]/c/sitemap.xml",
+    "search_intent": "Fix Next.js build/deployment failure with sitemap.xml route handlers in nested dynamic route groups (regression from 16.1.7 to 16.2.0+)",
+    "common_causes": [
+      "GitHub issues #94024 and #94041 on vercel/next.js describe a race condition bug in parallel prerendering introduced between Next.js 16.1.7 and 16.2.0. Dynamic force-static sitemap.xml route handlers under nested route groups fail on Vercel but succeed locally. Only consistent on Vercel with 3 parallel build workers. Specific conditions identified (nested groups + sibling [slug] route). Strong commercial impact for production deployments."
+    ],
+    "quick_fix": "Check the build output, project root, and deployment platform configuration before redeploying.",
+    "related_errors": [
+      "Deployment"
+    ]
+  },
+  {
+    "slug": "litellm-no-fallback-model-group-found-for-original-model-group-primary-available-model-group-fallbacks-none",
+    "title": "LiteLLM proxy team-scoped model fallback fails with public-to-internal name mismatch",
+    "description": "Fix LiteLLM proxy fallback not triggering for team-scoped BYOK models due to public vs internal model name mismatch in Router.async_function_with_fallbacks Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "No fallback model group found for original model_group=primary. Available Model Group Fallbacks=None",
+    "search_intent": "Fix LiteLLM proxy fallback not triggering for team-scoped BYOK models due to public vs internal model name mismatch in Router.async_function_with_fallbacks",
+    "common_causes": [
+      "GitHub issue #28019 on BerriAI/litellm documents a routing bug: POST /fallback requires internal model names (model_name_team_uuid) but runtime requests use public names (e.g. gpt-4.1). The fallback lookup does direct string comparison before name resolution, so it never matches. Root cause identified in code (Router.async_function_with_fallbacks). Workaround available via model_aliases. Strong commercial value — directly impacts production proxy billing and failover reliability."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "LiteLLM"
+    ]
+  },
+  {
+    "slug": "anthropic-api-attributeerror-nonetype-object-has-no-attribute-model-usage-when-receiving-type-error-sse-frame-with-rate-limit-error",
+    "title": "Streaming error SSE event causes AttributeError on rate_limit_error frames — anthropic SDK",
+    "description": "Fix AttributeError crash when Anthropic Bedrock streaming returns a rate_limit_error SSE event on the first frame Includes evidence for Anthropic API troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Anthropic API",
+    "error_signature": "AttributeError: 'NoneType' object has no attribute 'model' / 'usage' when receiving type=error SSE frame with rate_limit_error",
+    "search_intent": "Fix AttributeError crash when Anthropic Bedrock streaming returns a rate_limit_error SSE event on the first frame",
+    "common_causes": [
+      "GitHub issue #1472 on anthropics/anthropic-sdk-python documents a production crash: Bedrock cross-region inference profiles return HTTP 200 with an error-type SSE frame containing rate_limit_error, but the SDK wraps it in BetaRawMessageStartEvent with message=None, causing downstream AttributeError. Reproducible via minimal code against global.anthropic.claude-opus-4-7. Strong commercial value — impacts production API usage and paid billing."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "Anthropic API"
+    ]
+  },
+  {
+    "slug": "docker-error-response-from-daemon-watcher-add-path-permission-denied",
+    "title": "Docker Compose Watch ignores permission-denied on folders listed in ignore config",
+    "description": "Fix Docker Compose --watch scanning ignored folders and crashing with permission denied errors on root-owned directories Includes evidence for Docker troubleshooting demand.",
+    "category": "Docker",
+    "technology": "Docker",
+    "error_signature": "Error response from daemon: watcher.Add(\"/path\"): permission denied",
+    "search_intent": "Fix Docker Compose --watch scanning ignored folders and crashing with permission denied errors on root-owned directories",
+    "common_causes": [
+      "GitHub issue #13750 on docker/compose shows that docker compose up --watch raises permission denied for folders in the ignore list if they lack read permissions (e.g., root-owned dirs). Affects Docker Compose v5.1.3, Docker Engine 29.4.0+. Concrete reproduction steps with minimal compose file. Significant for developers who mount root-owned volumes in their watch paths."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Docker"
+    ]
   }
 ]
