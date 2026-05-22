@@ -25821,5 +25821,69 @@
     "related_errors": [
       "Anthropic API"
     ]
+  },
+  {
+    "slug": "claude-code-connectionrefused-issue-can-t-use-ai-at-all-on-a-paid-plan",
+    "title": "Claude Code ConnectionRefused error blocks all AI usage on paid plan",
+    "description": "Resolve network connectivity error that completely blocks paid Claude Code users from accessing AI features Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "ConnectionRefused issue. Can't use AI at all on a PAID plan",
+    "search_intent": "Resolve network connectivity error that completely blocks paid Claude Code users from accessing AI features",
+    "common_causes": [
+      "GitHub issue #61320 in anthropics/claude-code by PonyLucky, opened May 22 2026. Labeled api:anthropic + area:networking + bug + platform:linux. Direct revenue-blocking error on a paid subscription product — extremely high commercial value. 2 comments indicate user frustration."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "openai-api-aad-bearer-token-passed-via-api-key-works-in-2-33-0-but-returns-401-in-2-34-0-and-after",
+    "title": "AzureOpenAI with AAD bearer token returns 401 in SDK v2.34.0+ (Regression)",
+    "description": "Fix sudden 401 authentication failure when upgrading azure-openai SDK that previously worked on older versions Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "AAD bearer token passed via api_key works in 2.33.0 but returns 401 in 2.34.0 and after",
+    "search_intent": "Fix sudden 401 authentication failure when upgrading azure-openai SDK that previously worked on older versions",
+    "common_causes": [
+      "GitHub issue #3282 in openai/openai-python by pfijen, opened May 20 2026. Regression in SDK v2.34.0 breaking Azure AD OAuth auth flow. Affects enterprise users who rely on AAD token-based auth — high commercial value due to billing/production impact."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "claude-code-mcp-connector-to-m365-not-working",
+    "title": "Claude Code MCP connector to M365 broken on latest version",
+    "description": "Fix Microsoft 365 MCP integration that stopped working in recent Claude Code release Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "MCP connector to M365 Not Working",
+    "search_intent": "Fix Microsoft 365 MCP integration that stopped working in recent Claude Code release",
+    "common_causes": [
+      "GitHub issue #61332 in anthropics/claude-code by ssarnobat400, opened May 22 2026 (minutes ago). Tagged area:mcp + bug + platform:windows. MCP connectors are premium features requiring subscription. High commercial value as M365 enterprise workflows are heavily monetized. 1 comment indicates active investigation."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "github-actions-org-level-self-hosted-runner-never-dispatched-despite-correct-runner-group-repo-access",
+    "title": "GitHub Actions org-level self-hosted runner never dispatched despite correct permissions",
+    "description": "Fix self-hosted runner not receiving any jobs despite being properly configured with correct repository and group permissions Includes evidence for GitHub Actions troubleshooting demand.",
+    "category": "GitHub Actions",
+    "technology": "GitHub Actions",
+    "error_signature": "Org-level self-hosted runner never dispatched despite correct runner group repo access",
+    "search_intent": "Fix self-hosted runner not receiving any jobs despite being properly configured with correct repository and group permissions",
+    "common_causes": [
+      "GitHub issue #4429 in actions/runner by cnosari, opened May 18 2026. Labeled bug. Critical operational issue for organizations paying for GitHub Actions minutes — runners exist but never process work. Affects enterprise teams with self-hosted infrastructure. Specific actionable error pattern."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "GitHub Actions"
+    ]
   }
 ]
