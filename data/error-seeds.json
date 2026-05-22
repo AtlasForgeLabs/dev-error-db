@@ -27197,5 +27197,85 @@
     "related_errors": [
       "GitHub Actions"
     ]
+  },
+  {
+    "slug": "openai-api-non-streaming-api-calls-silently-hang-forever-behind-nat-default-httpx-transport-has-no-tcp-keepalive-connection-blocks-indefinitely-while-server-generates-response",
+    "title": "OpenAI API Python SDK: Non-streaming calls hang forever behind NAT gateway",
+    "description": "Fix OpenAI API Python SDK hanging calls behind NAT/EKS/Gateway environments where TCP keepalive is missing and idle connections get dropped silently Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "Non-streaming API calls silently hang forever behind NAT — default httpx transport has no TCP keepalive; connection blocks indefinitely while server generates response",
+    "search_intent": "Fix OpenAI API Python SDK hanging calls behind NAT/EKS/Gateway environments where TCP keepalive is missing and idle connections get dropped silently",
+    "common_causes": [
+      "GitHub Issue #3269 in openai/openai-python (open, May 19 2026, 0 comments, recently updated). Root cause: _DefaultHttpxClient creates httpx without SO_KEEPALIVE socket option. Fix PR #3287 exists (May 20 2026, open). Affects enterprise users on EKS/ECS/Cloud Run with paid API quotas at risk during hangs. Category: OpenAI API (directly matches table mapping)."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "cloudflare-minor-service-outage-cloudflare-page-indicator-shows-minor-severity-updated-2026-05-22t18-52-06-999z",
+    "title": "Cloudflare Minor Service Outage affecting production",
+    "description": "Identify what Cloudflare services are currently experiencing outages or degradation so affected sites can diagnose root cause and implement mitigation Includes evidence for Cloudflare troubleshooting demand.",
+    "category": "Cloudflare",
+    "technology": "Cloudflare",
+    "error_signature": "Minor Service Outage — Cloudflare page indicator shows 'minor' severity (updated 2026-05-22T18:52:06.999Z)",
+    "search_intent": "Identify what Cloudflare services are currently experiencing outages or degradation so affected sites can diagnose root cause and implement mitigation",
+    "common_causes": [
+      "Direct fetch from https://www.cloudflarestatus.com/api/v2/status.json confirmed active minor outage on Cloudflare platform. Recent incidents include Audit Log Delays (active), resolved Dashboard/API issues, DNS .internal zone issues, and increased 5xx errors to us-east-1. Cloud real-time status indicates ongoing infrastructure problems affecting paying enterprises. Category: Cloudflare per exact mapping."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Cloudflare"
+    ]
+  },
+  {
+    "slug": "anthropic-api-model-is-not-supported-on-agents-create-or-sessions-create-via-managed-agents-beta-api-while-same-models-work-on-messages-api",
+    "title": "Anthropic Managed Agents: \"model is not supported\" for all Claude models",
+    "description": "Fix Anthropic Managed Agents API rejecting all Claude models with 'model is not supported' error despite working on standard Messages API with same key Includes evidence for Anthropic API troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Anthropic API",
+    "error_signature": "model is not supported (on agents.create() or sessions.create() via Managed Agents beta API, while same models work on Messages API)",
+    "search_intent": "Fix Anthropic Managed Agents API rejecting all Claude models with 'model is not supported' error despite working on standard Messages API with same key",
+    "common_causes": [
+      "GitHub Issue #1583 in anthropics/anthropic-sdk-python (open, May 21 2026). SDK version 0.103.1 on Python 3.13. Affects Managed Agents beta feature — developers building multi-agent systems hit blocking error on creation. High commercial value as this impacts agent orchestration workflows with paid API billing. Category: Anthropic API per exact mapping."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Anthropic API"
+    ]
+  },
+  {
+    "slug": "docker-service-jfs-failed-running-invalid-database-docker-desktop-crashes-at-startup-after-disk-resize-permission-error-on-docker-raw",
+    "title": "Docker Desktop crashes on macOS: service jfs failed — invalid database",
+    "description": "Fix Docker Desktop 4.59.1 crashing on startup on macOS Apple Silicon with JFS service database corruption preventing engine from starting Includes evidence for Docker troubleshooting demand.",
+    "category": "Docker",
+    "technology": "Docker",
+    "error_signature": "service jfs failed: running: invalid database; Docker Desktop crashes at startup after disk resize permission error on Docker.raw",
+    "search_intent": "Fix Docker Desktop 4.59.1 crashing on startup on macOS Apple Silicon with JFS service database corruption preventing engine from starting",
+    "common_causes": [
+      "GitHub Issue #7872 in docker/for-mac (open, Apr 22 2026, 1 comment). Docker Desktop 4.59.1 on macOS 26.4.1 Apple Silicon arm64. Sequence: permission denied on Docker.raw → fixed ownership → progressed further → then JFS service database error. Enterprise Docker Desktop users unable to start containers. Covered-errors.md lists generic 'cannot connect to daemon' but NOT this specific JFS invalid database variant on macOS ARM. Category: Docker per exact mapping."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Docker"
+    ]
+  },
+  {
+    "slug": "anthropic-api-mcp-connector-model-intermittently-emits-tool-use-instead-of-mcp-tool-use-for-tools-declared-in-mcp-toolset-with-configs-tool-enabled-true",
+    "title": "Anthropic MCP Connector: model intermittently emits tool_use instead of mcp_tool_use",
+    "description": "Fix Anthropic MCP connector beta returning wrong content block type (tool_use vs mcp_tool_use) causing tool invocation failures in LLM agent tool declarations Includes evidence for Anthropic API troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Anthropic API",
+    "error_signature": "MCP connector: model intermittently emits tool_use instead of mcp_tool_use for tools declared in mcp_toolset with configs.<tool>.enabled: true",
+    "search_intent": "Fix Anthropic MCP connector beta returning wrong content block type (tool_use vs mcp_tool_use) causing tool invocation failures in LLM agent tool declarations",
+    "common_causes": [
+      "GitHub Issue #1581 in anthropics/anthropic-sdk-python (open, May 21 2026). Under mcp-client-2025-11-20 MCP connector beta, intermittent behavioral regression in content block type emission. Impacts LLM-driven agent workflows using MCP tool protocols. Category: Anthropic API per exact mapping — this is a direct Anthropic SDK/MCP protocol issue."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Anthropic API"
+    ]
   }
 ]
