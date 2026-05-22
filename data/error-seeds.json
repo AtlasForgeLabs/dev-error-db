@@ -27101,5 +27101,101 @@
     "related_errors": [
       "LiteLLM"
     ]
+  },
+  {
+    "slug": "claude-code-authentication-successful-but-server-reconnection-failed-you-may-need-to-manually-restart-claude-code-for-the-changes-to-take-effect-failed-to-connect",
+    "title": "Claude Code Custom MCP OAuth Token Not Persisting Across Restarts",
+    "description": "Fix Claude Code custom MCP connector failing to persist OAuth tokens across app restarts, showing 'Failed to connect' instead of reconnecting automatically Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Authentication successful, but server reconnection failed. You may need to manually restart Claude Code for the changes to take effect. ✗ Failed to connect",
+    "search_intent": "Fix Claude Code custom MCP connector failing to persist OAuth tokens across app restarts, showing 'Failed to connect' instead of reconnecting automatically",
+    "common_causes": [
+      "Multiple GitHub issues confirm: custom MCP OAuth connectors in Claude Code fail to persist tokens after app restart. Issue #52564 (Apr 2026) shows Settings → Connectors silently reports 'Connected' but no tools load. The root cause is divergent token storage code paths between managed and custom connectors. Reported by 3+ independent users across Windows/macOS (Quarri, Daily Bread Agent, Quizlar servers). Severity: active regression. Maps to AI Coding Tools."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "openai-api-error-429-insufficient-quota-i-just-signed-up-and-paid-but-got-error-429-my-limit-is-still-untouched",
+    "title": "OpenAI API 429 Error on Paid Account Despite Unlimited Quota",
+    "description": "Fix receiving 429 insufficient quota errors on newly activated paid OpenAI accounts that should have unlimited usage Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "Error 429: Insufficient Quota - I just signed-up and paid, but got error-429. My limit is still untouched",
+    "search_intent": "Fix receiving 429 insufficient quota errors on newly activated paid OpenAI accounts that should have unlimited usage",
+    "common_causes": [
+      "OpenAI Developer Community post #1085018 (Jan 2025): User reports signing up and paying for OpenAI but immediately receiving 429 insufficient_quota errors despite having unused tier limits. Community posts confirm this is a recurring issue tied to activation timing delays. Also found related Sentry reports and Stack Overflow threads. High commercial value — directly blocks paying users from API access. Note: Basic 429 page is covered in covered-errors.md, but this specific paid-account activation edge case is NOT."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "cursor-error-mcp-server-ide-failed-to-fetch-tools-mcp-error-32000-connection-closed-repeats-indefinitely",
+    "title": "Cursor IDE Integration Fails: Option Disappears After Brief Availability",
+    "description": "Fix Cursor IDE Claude Code extension disconnecting immediately after launch, /ide command returns no available IDEs Includes evidence for Cursor troubleshooting demand.",
+    "category": "Cursor",
+    "technology": "Cursor",
+    "error_signature": "[ERROR] MCP server \"ide\" Failed to fetch tools: MCP error -32000: Connection closed ... (repeats indefinitely)",
+    "search_intent": "Fix Cursor IDE Claude Code extension disconnecting immediately after launch, /ide command returns no available IDEs",
+    "common_causes": [
+      "GitHub issue #20826 documents Cursor IDE integration failure with repeated WS-IDE reconnection loop. On Windows 11/Cursor 2.4.21/Claude Code 2.1.19, the IDE disconnected flash appears briefly then the Cursor option vanishes entirely from /ide menu. Verified TCP connection and .lock files exist. Confirmed active by user follow-up comments (Feb 2026). Distinct from Claude Code general MCP issues as it specifically targets Cursor IDE bridge. Maps to AI Coding Tools."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Cursor"
+    ]
+  },
+  {
+    "slug": "litellm-litellm-timeout-connection-timed-out-timeout-passed-timeout-timeout-0-1-time-taken-0-101-seconds",
+    "title": "LiteLLM Timeout Silently Ignored for Bedrock and Vertex AI Deployments",
+    "description": "Fix LiteLLM silently ignoring configured timeout values when proxying requests to AWS Bedrock and Google Vertex AI, causing unpredictable request latency Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "litellm.Timeout: Connection timed out. Timeout passed=Timeout(timeout=0.1), time taken=0.101 seconds",
+    "search_intent": "Fix LiteLLM silently ignoring configured timeout values when proxying requests to AWS Bedrock and Google Vertex AI, causing unpredictable request latency",
+    "common_causes": [
+      "GitHub issue #23375 (Mar 2026): LiteLLM's timeout parameter is silently ignored for Bedrock and Vertex AI model groups. Despite setting timeout=0.1s, actual request takes 0.101s and gets terminated — behavior inconsistent with expected semantics. Additionally, issue #25080 (Apr 2026) discusses lack of automatic fallback configuration when rate limits are exceeded. This affects production deployments relying on LiteLLM proxy for cost management. Maps to LiteLLM category."
+    ],
+    "quick_fix": "Check the build output, project root, and deployment platform configuration before redeploying.",
+    "related_errors": [
+      "LiteLLM"
+    ]
+  },
+  {
+    "slug": "litellm-rate-limit-error-reported-as-no-deployments-available-for-litellm-proxy",
+    "title": "LiteLLM Rate Limit Error Misreported as 'No Deployments Available'",
+    "description": "Fix LiteLLM proxy incorrectly reporting rate limit errors as deployment unavailability, confusing debugging for teams using multi-provider routing Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "Rate limit error reported as \"No deployments available for litellm proxy\"",
+    "search_intent": "Fix LiteLLM proxy incorrectly reporting rate limit errors as deployment unavailability, confusing debugging for teams using multi-provider routing",
+    "common_causes": [
+      "GitHub issue #20867 (Feb 2026): When upstream provider hits rate limit, LiteLLM proxy masks the real HTTP 429 response and instead logs 'No deployments available', making it impossible to distinguish between actual capacity exhaustion vs simple rate limiting. Teams running multi-provider fallback setups cannot properly diagnose which upstream failed. Stack trace shown on exceeding rate limit. Critical for SREs debugging LLM routing failures. Maps to LiteLLM."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "LiteLLM"
+    ]
+  },
+  {
+    "slug": "github-actions-workflow-succeeds-on-main-but-fails-on-pr-with-secret-not-found-error",
+    "title": "GitHub Actions Secret Not Found on Pull Request Workflows",
+    "description": "Fix GitHub Actions workflows failing on pull requests due to repository secrets not being accessible in fork/PR context, while succeeding on direct branch pushes Includes evidence for GitHub Actions troubleshooting demand.",
+    "category": "GitHub Actions",
+    "technology": "GitHub Actions",
+    "error_signature": "Workflow succeeds on main but fails on PR with 'secret not found' error",
+    "search_intent": "Fix GitHub Actions workflows failing on pull requests due to repository secrets not being accessible in fork/PR context, while succeeding on direct branch pushes",
+    "common_causes": [
+      "GitHub community discussion #176252 (Oct 2025): Workflow succeeds on main branch but consistently fails on PR with 'secret not found'. This is a well-known security restriction but still causes frequent confusion and production blockers for teams using PR-based CI. Multiple referenced discussions show persistent community struggle. Distinct angle from basic 429/permalink permission errors — focuses on the PR vs main secret accessibility gap. Maps to GitHub Actions."
+    ],
+    "quick_fix": "Verify the model name, local service connectivity, and network access before retrying the model pull.",
+    "related_errors": [
+      "GitHub Actions"
+    ]
   }
 ]
