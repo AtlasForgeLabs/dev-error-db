@@ -26877,5 +26877,69 @@
     "related_errors": [
       "LiteLLM"
     ]
+  },
+  {
+    "slug": "claude-code-failed-to-connect-http-mcp-server-returning-rfc-6750-401-bearer-error-invalid-token-without-rfc-9728-resource-metadata-hint-surfaces-as-failed-to-connect-instead-of-triggering-oauth-dance",
+    "title": "Claude Code MCP OAuth 401 Without resource_metadata Hint Surfaces as 'Failed to connect' Instead of Triggering OAuth Dance",
+    "description": "Fix Claude Code MCP HTTP server OAuth auth flow when remote server sends standard 401 without RFC 9728 resource_metadata parameter Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Failed to connect — HTTP MCP server returning RFC 6750 401 (Bearer error=\"invalid_token\") without RFC 9728 resource_metadata= hint surfaces as 'Failed to connect' instead of triggering OAuth dance",
+    "search_intent": "Fix Claude Code MCP HTTP server OAuth auth flow when remote server sends standard 401 without RFC 9728 resource_metadata parameter",
+    "common_causes": [
+      "GitHub Issue #61376 opened May 22, 2026 by @new-horizons-pioneer. Full reproduction with hosted FastAPI MCP server (api.speak-up.pro) implementing RFC 8414 DCR+authorize+token+revoke but missing RFC 9728 PRM layer. Client treats optional resource_metadata as mandatory, blocking first-call OAuth discovery. Labels: area:auth, area:mcp, bug. Candidate verified against covered-errors.md — this OAuth-specific MCP gateway error is not already published."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "claude-code-background-claude-print-spawns-silently-burn-max5-quota-no-per-account-rate-limit-visibility-users-lose-token-budget-without-awareness-or-warnings",
+    "title": "Background claude --print Silently Burns Max5 Quota With No Rate-Limit Visibility",
+    "description": "Understand why Claude Code CLI background processes consume unlimited Max5 subscription quota and how to monitor/rate-limit them Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Background claude --print spawns silently burn Max5 quota; no per-account rate-limit visibility — users lose token budget without awareness or warnings",
+    "search_intent": "Understand why Claude Code CLI background processes consume unlimited Max5 subscription quota and how to monitor/rate-limit them",
+    "common_causes": [
+      "GitHub Issue #60921 opened by user on anthropics/claude-code. Background '--print' mode burns through Max5 tier tokens invisibly. Addresses quota exhaustion for paid subscribers. Related to pre-limit alerts issue #1494 but focused on runtime token leakage from background processes. Covers a revenue impact scenario: paying Max5 users getting unexpectedly throttled. Not in covered-errors.md."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "anthropic-api-bedrock-streaming-sse-events-errors-are-not-handled-gracefully-causes-unhandled-exceptions-and-dropped-responses-during-streaming-calls-via-bedrock-proxy",
+    "title": "Anthropic Bedrock Streaming SSE Events Errors Not Handled Gracefully",
+    "description": "Handle streaming SSE errors gracefully when using Anthropic API via AWS Bedrock (e.g., unexpected disconnection, malformed SSE frames) Includes evidence for Anthropic API troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Anthropic API",
+    "error_signature": "Bedrock streaming SSE events errors are not handled gracefully — causes unhandled exceptions and dropped responses during streaming calls via Bedrock proxy",
+    "search_intent": "Handle streaming SSE errors gracefully when using Anthropic API via AWS Bedrock (e.g., unexpected disconnection, malformed SSE frames)",
+    "common_causes": [
+      "GitHub Issue #1477 opened Apr 30, 2026 by @sevakva on anthropics/anthropic-sdk-python. Related to Issue #1472: Streaming error SSE event causes AttributeError: 'NoneType' object has no attribute. Both concern Bedrock streaming instability with 5 linked/3 linked PRs respectively. Commercially critical: production ML systems relying on Bedrock proxy lose inference results. Not in covered-errors.md."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Anthropic API"
+    ]
+  },
+  {
+    "slug": "anthropic-api-remoteprotocolerror-streaming-v1-messages-drops-mid-stream-during-long-code-execution-plus-skills-runs-losing-partial-responses",
+    "title": "Streaming /v1/messages Drops Mid-Stream With RemoteProtocolError on Long Runs",
+    "description": "Fix intermittent streaming disconnections (RemoteProtocolError) on long-running /v1/messages API calls with code_execution and tools Includes evidence for Anthropic API troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Anthropic API",
+    "error_signature": "RemoteProtocolError — Streaming /v1/messages drops mid-stream during long code_execution + skills runs, losing partial responses",
+    "search_intent": "Fix intermittent streaming disconnections (RemoteProtocolError) on long-running /v1/messages API calls with code_execution and tools",
+    "common_causes": [
+      "GitHub Issue #1470 opened Apr 29, 2026 by @ypang-anytimeai on anthropics/anthropic-sdk-python. Long-running streaming sessions with code_execution skill consistently drop with WebSocket-level protocol errors. Affects production AI agent pipelines running multi-step reasoning. 3 weeks ago still open. Not in covered-errors.md."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Anthropic API"
+    ]
   }
 ]
