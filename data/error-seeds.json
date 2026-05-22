@@ -25949,5 +25949,53 @@
     "related_errors": [
       "OpenAI API"
     ]
+  },
+  {
+    "slug": "anthropic-api-model-intermittently-emits-tool-use-instead-of-mcp-tool-use-for-tools-declared-in-mcp-toolset",
+    "title": "MCP connector intermittently emits wrong tool format causing client parse failures",
+    "description": "Developers using the new mcp_toolset beta feature encounter intermittent parsing errors when model returns generic tool_use events instead of expected mcp_tool_use events Includes evidence for Anthropic API troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Anthropic API",
+    "error_signature": "model intermittently emits tool_use instead of mcp_tool_use for tools declared in mcp_toolset",
+    "search_intent": "Developers using the new mcp_toolset beta feature encounter intermittent parsing errors when model returns generic tool_use events instead of expected mcp_tool_use events",
+    "common_causes": [
+      "Source: GitHub Issue #1581 on anthropics/anthropic-sdk-python (opened May 21, 2026, yesterday, updated today). Beta mcp_toolset has non-deterministic emission problem — sometimes model correctly uses mcp_tool_use but falls back to generic tool_use, causing client-side parse errors breaking MCP integration flows. Very recent active issue. Category: Anthropic API → SDK/mcp_toolset behavior."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Anthropic API"
+    ]
+  },
+  {
+    "slug": "ollama-partial-offload-segfaults-in-ggml-backend-tensor-set-on-amd-radeon-rx-9070",
+    "title": "AMD Radeon RX 9070 partial offload segfaults in ggml_backend_tensor_set",
+    "description": "Developers with new AMD GPUs (Radeon RX 9070) experience segfaults when Ollama partially offloads model inference to GPU via ggml backend tensor operations Includes evidence for Ollama troubleshooting demand.",
+    "category": "Ollama",
+    "technology": "Ollama",
+    "error_signature": "partial offload segfaults in ggml_backend_tensor_set on AMD Radeon RX 9070",
+    "search_intent": "Developers with new AMD GPUs (Radeon RX 9070) experience segfaults when Ollama partially offloads model inference to GPU via ggml backend tensor operations",
+    "common_causes": [
+      "Source: GitHub Issue #16261 on ollama/ollama (opened May 22, 2026, within last hour). Crash in ggml_backend_tensor_set function triggered during partial GPU offload on AMD Radeon RX 9070 — a newly released GPU. Segfault represents a hard blocking error preventing model loading entirely on this hardware. High search demand as new GPU adoption grows. Duplicate check: not in covered-errors.md. Category: Ollama → local LLM serving with hardware-specific error."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Ollama"
+    ]
+  },
+  {
+    "slug": "ollama-bufio-scanner-token-too-long-status-code-1-error-from-the-python-api-llama-server-response",
+    "title": "Ollama Python API error: llama-server response bufio.Scanner token too long",
+    "description": "Developers integrating Ollama via Python API get token-too-long errors when llama-server outputs responses exceeding bufio.Scanner buffer limits, breaking LLM pipeline processing Includes evidence for Ollama troubleshooting demand.",
+    "category": "Ollama",
+    "technology": "Ollama",
+    "error_signature": "bufio.Scanner: token too long (status code: -1) — Error from the python API: llama-server response",
+    "search_intent": "Developers integrating Ollama via Python API get token-too-long errors when llama-server outputs responses exceeding bufio.Scanner buffer limits, breaking LLM pipeline processing",
+    "common_causes": [
+      "Source: GitHub Issue #16243 on ollama/ollama (opened May 21, 2026, yesterday). Specific runtime error where llama-server response exceeds internal scanner buffer, returning status code -1. Concrete error signature with actionable fix path (configuring scanner buffer size or streaming response handling). Duplicate check vs covered-errors.md: no matching entry. Category: Ollama → Ollama local LLM serving."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Ollama"
+    ]
   }
 ]
