@@ -27277,5 +27277,101 @@
     "related_errors": [
       "Anthropic API"
     ]
+  },
+  {
+    "slug": "claude-code-account-does-not-have-permission-to-open-attachment-smol-bin-vhdx-error-access-is-denied-0x80070005-hcswaitforoperationresult-failed-with-hresult-0x80070005-access-is-denied-failed-to-start-claude-s-workspace-vm-service-not-running",
+    "title": "Claude Desktop Cowork Fails to Start Workspace on Windows — VHDX Permission Denied 0x80070005",
+    "description": "Fix Claude Code Cowork VM startup failing on Windows due to Hyper-V VHDX disk permission denial when attaching virtual disks Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Account does not have permission to open attachment 'smol-bin.vhdx'. Error: Access is denied. (0x80070005); HcsWaitForOperationResult failed with HRESULT 0x80070005 (Access is denied); Failed to start Claude's workspace. VM service not running.",
+    "search_intent": "Fix Claude Code Cowork VM startup failing on Windows due to Hyper-V VHDX disk permission denial when attaching virtual disks",
+    "common_causes": [
+      "GitHub issue #61559 in anthropics/claude-code shows CoworkVMService successfully creates the VM session but crashes when Hyper-V attempts to attach VHDX files (smol-bin.vhdx, rootfs.vhdx). User confirmed Hyper-V components enabled, reinstalled multiple times, permissions set correctly. Error 0x80070005 is a classic Windows ACL/Hyper-V isolation issue on new builds. Affects paying Claude Code/Claude Desktop users unable to use Cowork features. Category mapping: AI Coding Tools (Claude Code is an AI coding assistant tool)."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "openai-api-background-responses-failures-status-failed-status-incomplete-via-get-poll-returning-200-ok-surface-opaque-error-code-strings-without-typed-sdk-exceptions-retry-backoff-logic-cannot-distinguish-rate-limit-exceeded-vs-server-error",
+    "title": "OpenAI SDK Background Responses Failures Lack Stable Error Codes Mapping to Exception Classes",
+    "description": "Fix Python SDK for Responses API background mode so failed runs raise proper typed exceptions (RateLimitError, InternalServerError) instead of opaque string codes Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "Background responses failures (status=failed / status=incomplete via GET poll returning 200 OK) surface opaque error.code strings without typed SDK exceptions; retry/backoff logic cannot distinguish rate_limit_exceeded vs server_error",
+    "search_intent": "Fix Python SDK for Responses API background mode so failed runs raise proper typed exceptions (RateLimitError, InternalServerError) instead of opaque string codes",
+    "common_causes": [
+      "GitHub issue #3212 in openai/openai-python reports that background=true Responses API polling returns HTTP 200 with body {\"status\": \"failed\", \"error\": {\"code\": \"server_error\"}} but no typed exception is raised because the SDK only dispatches on HTTP status codes, not response-body error codes. Synchronous calls work fine. Directly impacts paid API users running async batch inference who need proper error classification. Category mapping: OpenAI API (official repo, paid API error)."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "vercel-vercel-build-hangs-after-completion-when-builders-leave-active-event-loop-handles-leaked-timeout-handles-orphan-child-processes-cli-exits-indefinitely-instead-of-failing-fast",
+    "title": "Vercel Build Hanging After Completion When Builders Leave Active Event-Loop Handles",
+    "description": "Fix Vercel CLI hanging builds by detecting leaked timer handles and orphan processes after build() returns, exiting immediately instead of hanging forever Includes evidence for Vercel troubleshooting demand.",
+    "category": "Deployment",
+    "technology": "Vercel",
+    "error_signature": "vercel build hangs after completion when builders leave active event-loop handles (leaked Timeout handles / orphan child processes); CLI exits indefinitely instead of failing fast",
+    "search_intent": "Fix Vercel CLI hanging builds by detecting leaked timer handles and orphan processes after build() returns, exiting immediately instead of hanging forever",
+    "common_causes": [
+      "GitHub PR #16412 in vercel/vercel addresses a regression from inc-6608 where `vercel build` hangs indefinitely after build completion if custom builders leave active event-loop handles behind (e.g., setInterval without clear). The PR adds assertBuildProcessIdle() detection using async_hooks to catch leaked Timeout handles and orphan child processes, then kills the CLI immediately. This blocks CI/CD pipelines for teams with custom builders. Category mapping: Deployment (Vercel build/deployment tool error blocking production deploys)."
+    ],
+    "quick_fix": "Check the build output, project root, and deployment platform configuration before redeploying.",
+    "related_errors": [
+      "Deployment"
+    ]
+  },
+  {
+    "slug": "openai-api-azureopenai-client-uses-example-resource-azure-openai-com-instead-of-correct-resource-openai-azure-com-subdomain-order-copy-paste-of-example-code-hits-dns-resolution-or-tls-handshake-errors-against-real-resources",
+    "title": "Azure OpenAI Example Client Uses Swapped Endpoint Hostname Causing DNS/TLS Failures",
+    "description": "Fix Azure OpenAI example endpoint URL typo causing DNS/TLS failures when developers copy-paste working example code Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "AzureOpenAI client uses example-resource.azure.openai.com instead of correct {resource}.openai.azure.com subdomain order — copy-paste of example code hits DNS resolution or TLS handshake errors against real resources",
+    "search_intent": "Fix Azure OpenAI example endpoint URL typo causing DNS/TLS failures when developers copy-paste working example code",
+    "common_causes": [
+      "GitHub PR #3298 in openai/openai-python corrects swapped Azure endpoint hostname in examples/azure.py. Second AzureOpenAI client uses the wrong subdomain format (example-resource.azure.openai.com instead of {resource}.openai.azure.com). Developers copying the example hit immediate DNS/TLS errors against their own Azure resources. Affects paid Azure OpenAI users who follow docs/examples. Category mapping: OpenAI API (paid Azure OpenAI integration error, directly blocks usage)."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "litellm-deployment-over-defined-rpm-limit-deployment-over-defined-tpm-limit-dashboard-callbacks-attribute-these-to-upstream-vendor-vendor-rate-limit-instead-of-litellm-router-litellm-rate-limit",
+    "title": "LiteLLM Router-Side Rate-Limit Errors Mislabelled as Vendor Rate Limit Instead of litellm_rate_limit",
+    "description": "Fix LiteLLM rate-limit categorization so router-side deployment throttling is properly labelled for correct dashboard attribution and alerting routing Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "Deployment over defined rpm limit / Deployment over defined tpm limit — dashboard/callbacks attribute these to upstream vendor (VENDOR_RATE_LIMIT) instead of LiteLLM router (LITELLM_RATE_LIMIT)",
+    "search_intent": "Fix LiteLLM rate-limit categorization so router-side deployment throttling is properly labelled for correct dashboard attribution and alerting routing",
+    "common_causes": [
+      "GitHub PR #27708 in BerriAI/litellm identifies that PR #27687 made RateLimitError default category be VENDOR_RATE_LIMIT, causing router-side raises in lowest_tpm_rpm_v2.py (5 instances) and model_rate_limit_check.py (4 instances) to silently misattribute themselves as vendor errors. This breaks dashboards and callback-based alerting that rely on error categories to split litellm-side vs. vendor-side throttles. All 9 raises previously emitted category=vendor_rate_limit; fix makes them emit litellm_rate_limit with correct rate_limit_type. Impacts enterprise LiteLLM proxy operators monitoring rate limits. Category mapping: LiteLLM (proxy/routing layer error affecting commercial deployments)."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "LiteLLM"
+    ]
+  },
+  {
+    "slug": "docker-mount-home-runner-local-share-containers-storage-overlay-home-runner-local-share-containers-storage-overlay-flags-0x1000-permission-denied-docker-in-docker-manifest-generation-fails-in-github-actions-runners",
+    "title": "GitHub Actions Docker Manifest Generation Fails with mount Overlay Permission Denied",
+    "description": "Fix rootless overlay mount failures in GitHub Actions CI causing docker-in-docker manifest generation to crash with permission denied errors Includes evidence for Docker troubleshooting demand.",
+    "category": "Docker",
+    "technology": "Docker",
+    "error_signature": "mount /home/runner/.local/share/containers/storage/overlay:/home/runner/.local/share/containers/storage/overlay, flags: 0x1000: permission denied — docker-in-docker manifest generation fails in GitHub Actions runners",
+    "search_intent": "Fix rootless overlay mount failures in GitHub Actions CI causing docker-in-docker manifest generation to crash with permission denied errors",
+    "common_causes": [
+      "GitHub PR #104 in devcontainers/features documents docker-in-docker failing in ubuntu 26.04 on GitHub Actions runners due to rootless overlay mount permission denied. Fix forces vfs storage driver to work around the limitation. Error is reproducible in CI pipelines and affects any workflow using dockerd within GH Actions. The root cause is changes in Ubuntu 26.04 kernel handling of unprivileged overlay mounts. Category mapping: Docker (container runtime error specifically triggered in CI environment)."
+    ],
+    "quick_fix": "Verify the model name, local service connectivity, and network access before retrying the model pull.",
+    "related_errors": [
+      "Docker"
+    ]
   }
 ]
