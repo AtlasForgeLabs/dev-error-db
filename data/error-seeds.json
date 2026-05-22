@@ -26829,5 +26829,53 @@
     "related_errors": [
       "Cloudflare"
     ]
+  },
+  {
+    "slug": "claude-code-you-ve-hit-your-session-limit-resets-7-30pm-asia-nicosia",
+    "title": "Claude Code session limit resets incorrectly — user waits 4+ hours after mobile app shows reset",
+    "description": "Fix Claude Code hitting session limit prematurely or resetting incorrectly despite mobile showing usage restored; user must wait 4+ hours unnecessarily. Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "You've hit your session limit · resets 7:30pm (Asia/Nicosia)",
+    "search_intent": "Fix Claude Code hitting session limit prematurely or resetting incorrectly despite mobile showing usage restored; user must wait 4+ hours unnecessarily.",
+    "common_causes": [
+      "GitHub Issue #61452 opened May 22, 2026 (today). User reports hitting limit within minutes using max x5 plan, no tools used. Mobile app showed usage reset but desktop CLI still blocked for 4+ hours. Multiple commenters confirming same bug. Labeled as duplicate of #40513/#61050/#54009 indicating this is a recurring paid-user-facing issue. Category: AI Coding Tools per mapping rules for Claude Code."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "claude-code-dynamic-context-injection-does-not-work-as-documented",
+    "title": "Claude Code dynamic context injection does not work as documented",
+    "description": "Developers expect Claude Code to dynamically inject contextual information into sessions per documentation, but the feature fails silently or incorrectly. Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Dynamic context injection does not work as documented",
+    "search_intent": "Developers expect Claude Code to dynamically inject contextual information into sessions per documentation, but the feature fails silently or incorrectly.",
+    "common_causes": [
+      "GitHub Issue #61461 opened May 22, 2026 (today). Reports that dynamic context injection — a core feature for providing project-specific guidance — is broken. Opened on macOS. This directly impacts paid users who rely on custom context for their development workflows. Category: AI Coding Tools per mapping rules for Claude Code."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "litellm-litellm-timeouts-with-ollama-models-request-taking-too-long-to-process",
+    "title": "LiteLLM proxy timeouts when routing requests through Ollama local models",
+    "description": "Fix LiteLLM proxy timing out when proxying requests to local Ollama models, causing task execution failures in AI agent frameworks (CrewAI, AutoGen, LangGraph). Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "LiteLLM timeouts with Ollama models — request taking too long to process",
+    "search_intent": "Fix LiteLLM proxy timing out when proxying requests to local Ollama models, causing task execution failures in AI agent frameworks (CrewAI, AutoGen, LangGraph).",
+    "common_causes": [
+      "Found via initial search: community.crewai.com thread #4231 discussing LiteLLM timeout issues specifically with Ollama models. Users report getting much slower than expected response times with local models through the LiteLLM proxy, leading to agent tasks timing out completely. This affects teams using LiteLLM as a cost-management layer between multiple AI backends. Category: LiteLLM per mapping rules."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "LiteLLM"
+    ]
   }
 ]
