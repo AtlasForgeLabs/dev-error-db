@@ -26269,5 +26269,133 @@
     "related_errors": [
       "Docker"
     ]
+  },
+  {
+    "slug": "openai-api-insufficient-quota-you-exceeded-your-current-quota-please-check-your-plan-and-billing-details",
+    "title": "How to Distinguish OpenAI insufficient_quota vs True Rate Limit Errors (429)",
+    "description": "Fix API returning 429 due to account quota exhaustion rather than rate limiting; user needs to know it's a billing issue, not a retry issue. Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "insufficient_quota: You exceeded your current quota, please check your plan and billing details.",
+    "search_intent": "Fix API returning 429 due to account quota exhaustion rather than rate limiting; user needs to know it's a billing issue, not a retry issue.",
+    "common_causes": [
+      "Multiple reports on langchainjs (#1929), Azure Samples (#2249), DeepWiki (#166), Roo-Code (#5350) confirm OpenAI returns 429 status for both true rate limits AND account quota exhaustion (insufficient_quota). These are semantically different — quota errors require billing action, not backoff. Category mapping: OpenAI API → approved. Source URLs show consistent pattern across projects."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "anthropic-api-rate-limit-error-429-rate-limit-exceeded-despite-dashboard-showing-available-quota",
+    "title": "Anthropic 429 Rate Limit Despite Available Dashboard Quota — Claude Code Max Plan",
+    "description": "Fix unexpected 429 errors on Claude Code Max plan even when dashboard shows sufficient available quota; requires debugging discrepancy between dashboard counters and actual API enforcement. Includes evidence for Anthropic API troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Anthropic API",
+    "error_signature": "rate_limit_error: 429 Rate Limit Exceeded despite dashboard showing available quota",
+    "search_intent": "Fix unexpected 429 errors on Claude Code Max plan even when dashboard shows sufficient available quota; requires debugging discrepancy between dashboard counters and actual API enforcement.",
+    "common_causes": [
+      "Directly reported by multiple users in anthopic/claude-code repo. Issue #56342 (2026-05-05) documents 'Rate limit 429 errors despite dashboard showing available quota - Two Max accounts'. Issue #44310 (2026-04-06) shows persistent behavior. Issue #22876 (2026-02-03) confirms pattern repeats. High-value because Max plan users pay premium prices but get hit with unexplained rate limits. Category: Anthropic API (approved). Not a duplicate — distinct from standard rate limit pages because the fix involves understanding per-account/per-model sub-limits, not simple backoff."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "Anthropic API"
+    ]
+  },
+  {
+    "slug": "anthropic-api-429-rate-limit-errors-running-multiple-claude-code-sessions-in-parallel",
+    "title": "Claude Code 429 Rate Limit with Multiple Parallel Sessions on Max Plan",
+    "description": "Fix rate limiting triggered by running multiple Claude Code instances concurrently; user wants to know if concurrent usage reduces per-session rate limits. Includes evidence for Anthropic API troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Anthropic API",
+    "error_signature": "429 rate limit errors running multiple Claude Code sessions in parallel",
+    "search_intent": "Fix rate limiting triggered by running multiple Claude Code instances concurrently; user wants to know if concurrent usage reduces per-session rate limits.",
+    "common_causes": [
+      "Issue #46037 (2026-04-10) in anthropic/claude-code: 'Unexpected 429 rate limit errors in Claude Code (Max plan). Running multiple Claude Code sessions (~3 in parallel). Only one session works at a time.' Distinct from #56342 — this is about concurrency causing rate limits, not dashboard mismatch. Category: Anthropic API (approved). Important for power users paying for Max plan who need multi-threaded coding workflows."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "Anthropic API"
+    ]
+  },
+  {
+    "slug": "claude-code-incompatible-auth-server-does-not-support-dynamic-client-registration-dcr-silent-failure-with-no-error-message",
+    "title": "HTTP OAuth MCP Servers Silently Fail When Lacking Dynamic Client Registration Support",
+    "description": "Fix silent failure when adding HTTP OAuth MCP servers that don't support DCR; Claude Code gives no error, tools never load into session. Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Incompatible auth server: does not support dynamic client registration (DCR); silent failure with no error message",
+    "search_intent": "Fix silent failure when adding HTTP OAuth MCP servers that don't support DCR; Claude Code gives no error, tools never load into session.",
+    "common_causes": [
+      "Issue #46623 (2026-04-11): 'When adding an HTTP MCP server that requires OAuth but doesn't support Dynamic Client Registration (DCR), Claude Code silently fails with no error message.' Supported by issue #44535 (2026-04-06) showing 'needs authentication' stuck state with empty error. Issue #283 (2026-01-25) in claude-plugins-official: 'Incompatible auth server: does not support dynamic client registration'. Category: AI Coding Tools (approved) — MCP OAuth auth failures. Critical because 'silent failure' means developers can't diagnose the problem at all."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "github-actions-permission-denied-when-pushing-from-github-actions-workflow-requires-personal-access-token-workaround",
+    "title": "GitHub Actions Permission Denied When Pushing Back — PAT Bypass Required",
+    "description": "Fix permission denied errors in GitHub Actions workflows when attempting to commit and push changes back to repository. Includes evidence for GitHub Actions troubleshooting demand.",
+    "category": "GitHub Actions",
+    "technology": "GitHub Actions",
+    "error_signature": "Permission denied when pushing from GitHub Actions workflow; requires Personal Access Token workaround",
+    "search_intent": "Fix permission denied errors in GitHub Actions workflows when attempting to commit and push changes back to repository.",
+    "common_causes": [
+      "Community discussion #156921 (2025-04-17) reports persistent 'Permission denied' when committing/pushing from GitHub Actions. Supported by #141776 documenting permissions: write-all not functioning properly, #26694 showing github-actions[bot] denied despite PAT, #319 in actions-gh-pages. Category: GitHub Actions (approved). High commercial value — blocks automated release/deployment pipelines for teams relying on self-modifying workflows."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "GitHub Actions"
+    ]
+  },
+  {
+    "slug": "cursor-we-encountered-an-issue-when-using-your-api-key-streaming-error",
+    "title": "OpenAI API key validation fails silently in Cursor IDE integration",
+    "description": "Fix API key rejected by Cursor IDE despite being valid elsewhere (works in other apps); need resolution for paid Cursor subscription users. Includes evidence for Cursor troubleshooting demand.",
+    "category": "Cursor",
+    "technology": "Cursor",
+    "error_signature": "We encountered an issue when using your API key: Streaming error",
+    "search_intent": "Fix API key rejected by Cursor IDE despite being valid elsewhere (works in other apps); need resolution for paid Cursor subscription users.",
+    "common_causes": [
+      "Verified via GitHub search results (kio-gateway issue #53, 2026-01-23) confirming Cursor IDE rejects valid API keys with 'Streaming error'. Also supported by openai/codex #4092 showing similar auth issues with valid keys. Distinct from 'OpenAI API key not working' in covered-errors.md which refers to invalid keys. Category: Cursor (approved). Strong signal for paid Cursor users who have verified keys."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Cursor"
+    ]
+  },
+  {
+    "slug": "claude-code-github-mcp-server-2-hours-to-fail-authentication-no-progress-indicator-during-auth-process",
+    "title": "GitHub MCP Server Auth Fails After 2 Hours — Poor UX in Claude Code",
+    "description": "Fix extremely slow GitHub OAuth authentication flow in Claude Code MCP server; user spends hours with no feedback when auth fails. Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "GitHub MCP Server: 2 hours to fail authentication; no progress indicator during auth process",
+    "search_intent": "Fix extremely slow GitHub OAuth authentication flow in Claude Code MCP server; user spends hours with no feedback when auth fails.",
+    "common_causes": [
+      "Issue #19281 (2026-01-19) in anthropic/claude-code: 'Spent 2 hours trying to configure the GitHub MCP server with Claude Code, ultimately unsuccessfully. The experience was frustrating.' Users need to understand why GitHub OAuth takes 2 hours to fail and how to expedite diagnosis. Category: AI Coding Tools (approved) — MCP-related auth failures fall under Claude Code ecosystem."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "litellm-litellm-rate-limit-errors-cause-proxy-to-crash-fail-instead-of-falling-back-to-secondary-model-group",
+    "title": "LiteLLM Model Group Fallback Configuration for Graceful Rate Limit Handling",
+    "description": "Configure automatic model group fallback in LiteLLM when primary provider hits rate limits; prevent complete service outage. Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "LiteLLM rate limit errors cause proxy to crash/fail instead of falling back to secondary model group",
+    "search_intent": "Configure automatic model group fallback in LiteLLM when primary provider hits rate limits; prevent complete service outage.",
+    "common_causes": [
+      "BerriAI/litellm issue #25080 (2026-04-03) requests automatic fallback configuration for rate limit errors. The proxy is described as critical component handling authentication, rate limiting, and load balancing. Issue #8248 shows health check loop bugs compounding reliability issues. Category: LiteLLM (approved). Commercial value high — LiteLLM proxy is used by production systems routing thousands of LLM requests; a single rate-limited provider should not bring down the entire pipeline."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "LiteLLM"
+    ]
   }
 ]
