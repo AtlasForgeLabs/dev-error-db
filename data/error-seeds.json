@@ -27021,5 +27021,85 @@
     "related_errors": [
       "Cloudflare"
     ]
+  },
+  {
+    "slug": "claude-code-background-claude-print-spawns-silently-burn-max5-quota-no-per-account-rate-limit-visibility-fork-loop-dispatcher-produces-thousands-of-spawns-consuming-84-of-max5-5h-window-with-no-warning",
+    "title": "Background claude --print spawns silently consume Max5 usage quota with no per-account rate-limit visibility",
+    "description": "Fix runaway Claude Code SDK/spawn loops that silently consume Max subscription quota without any per-account rate-limit warnings or visibility controls Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Background claude --print spawns silently burn Max5 quota; no per-account rate-limit visibility. Fork-loop dispatcher produces thousands of spawns consuming 84% of Max5 5h-window with no warning.",
+    "search_intent": "Fix runaway Claude Code SDK/spawn loops that silently consume Max subscription quota without any per-account rate-limit warnings or visibility controls",
+    "common_causes": [
+      "GitHub Issue #60921 on anthropics/claude-code (open since May 20, 2026). User reports webhook-feedback-loop producing ~4051 claude --print spawns over 5 hours consuming 84% of Max5 plan 5h-window. Labels: area:cost, area:cli, area:api. Not in covered-errors.md. Distinct from fork-bomb issues — this is multi-process orchestration loop pattern."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "anthropic-api-apiresponseerror-request-too-fast-try-again-later-anthropic-overloaded-error",
+    "title": "Anthropic API Server Overloaded Error blocks production LLM responses",
+    "description": "Handle Anthropic API server-overloaded / rate-limit errors in production workflows to avoid blocking LLM-powered applications Includes evidence for Anthropic API troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Anthropic API",
+    "error_signature": "APIResponseError: Request too fast, try again later. Anthropic overloaded_error",
+    "search_intent": "Handle Anthropic API server-overloaded / rate-limit errors in production workflows to avoid blocking LLM-powered applications",
+    "common_causes": [
+      "GitHub Issue #1547 on anthropics/anthropic-sdk-python (active discussion). User reports Server Overloaded Error causing billing for cache entries past explicit cache_control breakpoint at 1.25x multiplier. Directly impacts paid API billing. Not in covered-errors.md."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "Anthropic API"
+    ]
+  },
+  {
+    "slug": "litellm-rate-limit-error-message-body-leaks-full-sha-256-hash-of-api-key-via-litellm-proxy-hooks-parallel-request-limiter-v3-py",
+    "title": "LiteLLM proxy rate limit error message leaks full SHA-256 hash of API keys",
+    "description": "Fix LiteLLM proxy to mask sensitive data (SHA-256 hashes, API keys) in rate limit error responses exposed to end-users Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "Rate limit error message body leaks full SHA-256 hash of API key via litellm/proxy/hooks/parallel_request_limiter_v3.py",
+    "search_intent": "Fix LiteLLM proxy to mask sensitive data (SHA-256 hashes, API keys) in rate limit error responses exposed to end-users",
+    "common_causes": [
+      "GitHub Issue #27884 on BerriAI/litellm (opened May 13, 2026). Rate limit error from parallel_request_limiter_v3.py line ~1261 exposes SHA-256 hash in error message body sent to client. Security-sensitive error affecting production LiteLLM proxy deployments. Clear commercial impact for teams running self-hosted LLM proxies."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "LiteLLM"
+    ]
+  },
+  {
+    "slug": "litellm-stream-timeout-not-enforced-on-first-chunk-timeout-should-raise-error-at-n-seconds-but-actual-behavior-delays-error-raising-significantly-beyond-configured-timeout",
+    "title": "LiteLLM stream_timeout not enforced on first chunk causes silent hangs in production APIs",
+    "description": "Fix LiteLLM stream_timeout enforcement so timeout errors trigger at correct time rather than being ignored on first chunk, preventing silent hangs in production API calls Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "stream_timeout not enforced on first chunk; timeout should raise error at N seconds but actual behavior delays error raising significantly beyond configured timeout",
+    "search_intent": "Fix LiteLLM stream_timeout enforcement so timeout errors trigger at correct time rather than being ignored on first chunk, preventing silent hangs in production API calls",
+    "common_causes": [
+      "GitHub Issue #19909 on BerriAI/litellm (opened Jan 27, 2026). LiteLLM fails to enforce stream_timeout on first chunk — timeout error only raised much later than expected. Affects teams with strict SLA requirements on LLM API responses. Production-grade bug with clear commercial impact."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "LiteLLM"
+    ]
+  },
+  {
+    "slug": "litellm-retry-mechanism-not-pausing-for-set-delay-after-rate-limit-is-hit-immediate-retries-instead-of-respecting-configured-backoff-window",
+    "title": "LiteLLM Retry mechanism ignores set delay after rate limit hit causing immediate retry storms",
+    "description": "Fix LiteLLM retry mechanism to properly pause/respect configured delay after hitting rate limits, avoiding retry storms that waste API quota Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "Retry mechanism not pausing for set delay after rate limit is hit — immediate retries instead of respecting configured backoff window",
+    "search_intent": "Fix LiteLLM retry mechanism to properly pause/respect configured delay after hitting rate limits, avoiding retry storms that waste API quota",
+    "common_causes": [
+      "GitHub Issue #6011 on BerriAI/litellm. When LiteLLM proxy hits per-minute rate limits, its retry logic does not pause for the configured delay before attempting again. Results in wasted API calls and accelerated quota exhaustion. Affects production proxy deployments handling significant traffic."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "LiteLLM"
+    ]
   }
 ]
