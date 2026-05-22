@@ -26941,5 +26941,85 @@
     "related_errors": [
       "Anthropic API"
     ]
+  },
+  {
+    "slug": "vercel-error-invariant-failed-to-find-source-route-store-lang-c-sitemap-xml-for-prerender-store-lang-c-sitemap-xml-only-reproducible-on-vercel-remote-builder-with-turbopack-parallel-workers",
+    "title": "Next.js sitemap.xml Build Fails with Turbopack Parallel Prerender Race Condition",
+    "description": "Fix Next.js 16.2.0 regression causing sitemap.xml builds to fail when using force-static dynamic routing on Vercel; local next build succeeds but cloud deployment fails Includes evidence for Vercel troubleshooting demand.",
+    "category": "Deployment",
+    "technology": "Vercel",
+    "error_signature": "Error: Invariant: failed to find source route /[store]/[lang]/c/sitemap.xml for prerender /[store]/[lang]/c/sitemap.xml — only reproducible on Vercel remote builder with Turbopack parallel workers",
+    "search_intent": "Fix Next.js 16.2.0 regression causing sitemap.xml builds to fail when using force-static dynamic routing on Vercel; local next build succeeds but cloud deployment fails",
+    "common_causes": [
+      "GitHub vercel/next.js #94041 (open since 2026-05-22, just reported today). Regresssion from 16.1.7 → 16.2.0. Only reproduces on Vercel with 3 parallel Turbopack workers, not locally. Indicates production-deployment-blocking race condition. Category: Deployment (affects production deployments on paid Vercel plans)."
+    ],
+    "quick_fix": "Check the build output, project root, and deployment platform configuration before redeploying.",
+    "related_errors": [
+      "Deployment"
+    ]
+  },
+  {
+    "slug": "openai-api-responses-api-background-runs-return-http-200-ok-with-status-failed-but-no-typed-exception-error-code-e-g-server-error-rate-limit-exceeded-does-not-map-1-1-to-any-sdk-exception-class",
+    "title": "OpenAI SDK Background Responses Failures Lack Stable Error Codes",
+    "description": "Fix OpenAI Python SDK so background-mode Responses API failures raise proper typed exceptions like RateLimitError / InternalServerError instead of opaque free-form error codes Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "Responses API background runs return HTTP 200 OK with status=\"failed\" but no typed exception; error.code (e.g. \"server_error\", \"rate_limit_exceeded\") does not map 1:1 to any SDK exception class",
+    "search_intent": "Fix OpenAI Python SDK so background-mode Responses API failures raise proper typed exceptions like RateLimitError / InternalServerError instead of opaque free-form error codes",
+    "common_causes": [
+      "GitHub openai/openai-python #3212 (open since 2026-05-08). User reports that synchronous calls get clean HTTP code → exception mapping via _make_status_error(), but background=True polling returns 200 OK with no dispatched exception. Callers cannot use isinstance() checks for retry/backoff logic. Category: OpenAI API (paid API, billing/quota impact)."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "vercel-vercel-cli-54-2-0-causes-sveltekit-nested-admin-routes-to-render-root-plus-error-svelte-404-page-instead-of-correct-page-build-output-shows-all-routes-present-but-runtime-matches-wrong-pattern",
+    "title": "Vercel CLI 54.2.0 Breaks SvelteKit Route Resolution Producing 404 Errors",
+    "description": "Fix Vercel CLI 54.2.0 regression where SvelteKit app deploys successfully but all admin/* routes silently fall through to 404 error page in production Includes evidence for Vercel troubleshooting demand.",
+    "category": "Deployment",
+    "technology": "Vercel",
+    "error_signature": "Vercel CLI 54.2.0 causes SvelteKit nested /admin/* routes to render root +error.svelte (404 page) instead of correct page; build output shows all routes present but runtime matches wrong pattern",
+    "search_intent": "Fix Vercel CLI 54.2.0 regression where SvelteKit app deploys successfully but all admin/* routes silently fall through to 404 error page in production",
+    "common_causes": [
+      "GitHub vercel/vercel #16377 (open since 2026-05-20). CLI regression 53.3.2 → 54.2.0 specifically breaks SvelteKit nested route groups. Build output config is correct but runtime behavior differs. Affects production deployments on Vercel Teams/Enterprise plans. Category: Deployment (deployment runtime error on paid service)."
+    ],
+    "quick_fix": "Check the build output, project root, and deployment platform configuration before redeploying.",
+    "related_errors": [
+      "Deployment"
+    ]
+  },
+  {
+    "slug": "anthropic-api-awseventstreamdecoder-emits-every-decoded-frame-as-serversentevent-event-completion-even-for-bedrock-error-payloads-like-rate-limit-error-and-model-not-found-causing-client-code-to-process-error-events-as-completions",
+    "title": "Anthropic Bedrock SSE Error Events Not Handled Properly in SDK",
+    "description": "Fix Anthropic SDK for Bedrock so error SSE events (rate_limit_error, model_not_found) are properly decoded as error events rather than being misclassified as completion events Includes evidence for Anthropic API troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Anthropic API",
+    "error_signature": "AWSEventStreamDecoder emits every decoded frame as ServerSentEvent(event=completion) even for Bedrock error payloads like rate_limit_error and model-not-found, causing client code to process error events as completions",
+    "search_intent": "Fix Anthropic SDK for Bedrock so error SSE events (rate_limit_error, model_not_found) are properly decoded as error events rather than being misclassified as completion events",
+    "common_causes": [
+      "GitHub anthropics/anthropic-sdk-python PR #1572 (open since 2026-05-19). AWS Bedrock delivers error payloads over HTTP 200 event stream with type=error, but the decoder strips the event type header. This means rate limiting and model-not-found errors are processed as successful completions. Category: Anthropic API (Bedrock integration with pay-per-token model)."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "Anthropic API"
+    ]
+  },
+  {
+    "slug": "cloudflare-cloudflare-go-union-type-discriminator-resolves-mx-records-as-recordresponsearecord-instead-of-recordresponsemxrecord-r-priority-always-returns-0-for-mx-records-despite-api-returning-correct-value",
+    "title": "Cloudflare Go SDK Misclassifies DNS MX Records as ARecord Losing Priority Field",
+    "description": "Fix Cloudflare Go SDK DNS deserialization bug where MX records lose their priority field because union type discriminator incorrectly picks ARecord type Includes evidence for Cloudflare troubleshooting demand.",
+    "category": "Cloudflare",
+    "technology": "Cloudflare",
+    "error_signature": "cloudflare-go union type discriminator resolves MX records as RecordResponseARecord instead of RecordResponseMXRecord; r.Priority always returns 0 for MX records despite API returning correct value",
+    "search_intent": "Fix Cloudflare Go SDK DNS deserialization bug where MX records lose their priority field because union type discriminator incorrectly picks ARecord type",
+    "common_causes": [
+      "GitHub cloudflare/cloudflare-go #4300 (open since 2026-05-15, 3 comments). Confirmed bug in v4.6.0 raw REST API returns correct priority but SDK deserializes incorrectly. Workaround requires manual raw HTTP calls. Affects developers integrating Cloudflare DNS programmatically via Go. Category: Cloudflare (CDN/DNS service used by enterprises)."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Cloudflare"
+    ]
   }
 ]
