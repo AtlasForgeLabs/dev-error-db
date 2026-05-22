@@ -26589,5 +26589,69 @@
     "related_errors": [
       "OpenAI API"
     ]
+  },
+  {
+    "slug": "openai-api-rate-limit-reached-for-gpt-5-4-in-organization-org-xxx-on-tokens-per-min-limit-500000-min-current-487234-min-error-type-rate-limit-exceeded-vs-error-type-insufficient-quota",
+    "title": "OpenAI API 429 rate_limit_exceeded vs insufficient_quota — Developers Confuse Two Different Errors",
+    "description": "Distinguish between OpenAI API 429 rate limit errors (retry with backoff) and credit exhaustion errors (add funds), avoid retrying when out of money Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "Rate limit reached for gpt-5.4 in organization org-xxx on tokens per min. Limit: 500000 / min. Current: 487234 / min. (error.type: rate_limit_exceeded) vs (error.type: insufficient_quota)",
+    "search_intent": "Distinguish between OpenAI API 429 rate limit errors (retry with backoff) and credit exhaustion errors (add funds), avoid retrying when out of money",
+    "common_causes": [
+      "Detailed Respan guide (May 2026) explains how both rate_limit_exceeded and insufficient_quota return HTTP 429 but require different actions. Most developers incorrectly retry insufficient_quota errors instead of topping up credits. Covers RPM/TPM/RPD/TPD four-dimension limits, retry-after-ms header usage, and gateway fallback patterns."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "openai-api-tokens-per-min-tpm-rate-limit-exceeded-single-call-with-100k-context-tokens-consumes-large-fraction-of-tpm-budget",
+    "title": "OpenAI API TPM Exhaustion from Long-Context Calls on GPT-5.x Models",
+    "description": "Understand and manage OpenAI TPM (tokens per minute) limits when using long-context models like GPT-5.4/GPT-5.5 with 100k+ input tokens Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "tokens_per_min (TPM) rate limit exceeded — single call with 100k context tokens consumes large fraction of TPM budget",
+    "search_intent": "Understand and manage OpenAI TPM (tokens per minute) limits when using long-context models like GPT-5.4/GPT-5.5 with 100k+ input tokens",
+    "common_causes": [
+      "Respan guide (May 2026) documents new TPM dimension introduced by OpenAI as primary constraint for long-context workloads. A single GPT-5.5 call with 100k context can exhaust most of a Tier 1 account's TPM budget immediately. Tokens reserved at submission time block remaining budget. Per-process token bucket fails in multi-process deployments. Covers estimated token tracking with tiktoken before sending."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "github-copilot-github-copilot-agent-mode-in-visual-studio-unable-to-edit-any-files-after-most-recent-visual-studio-update-previously-worked-without-problems",
+    "title": "GitHub Copilot Agent Mode Not Working After Latest VS Code Update",
+    "description": "Restore GitHub Copilot agent mode functionality in VS Code/Visual Studio after breaking change from latest IDE update, where Copilot cannot edit files despite being enabled Includes evidence for GitHub Copilot troubleshooting demand.",
+    "category": "GitHub Copilot",
+    "technology": "GitHub Copilot",
+    "error_signature": "GitHub Copilot agent mode in Visual Studio unable to edit any files after most recent Visual Studio update; previously worked without problems",
+    "search_intent": "Restore GitHub Copilot agent mode functionality in VS Code/Visual Studio after breaking change from latest IDE update, where Copilot cannot edit files despite being enabled",
+    "common_causes": [
+      "Microsoft Learn community Q&A reports agent mode stopped working after VS Code update. Copilot chat extension and commands broken while basic suggestions may still work. Affected paid Copilot Business/Enterprise users lose coding assistant capability entirely until fix applied. Official Microsoft answers forum source with high authority."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "GitHub Copilot"
+    ]
+  },
+  {
+    "slug": "litellm-504-gateway-timeout-users-receive-error-in-browser-console-after-approximately-60-seconds-when-using-certain-llm-models",
+    "title": "LiteLLM Proxy 504 Gateway Timeout on Long-Running LLM Calls",
+    "description": "Fix LiteLLM proxy returning 504 Gateway Timeout errors when LLM model calls exceed default timeout threshold, causing users to see browser console errors Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "504 Gateway Timeout — users receive error in browser console after approximately 60 seconds when using certain LLM models",
+    "search_intent": "Fix LiteLLM proxy returning 504 Gateway Timeout errors when LLM model calls exceed default timeout threshold, causing users to see browser console errors",
+    "common_causes": [
+      "open-webui GitHub issue #16781 reports consistent 504 Gateway Timeout after ~60 seconds with long-running LLM calls through LiteLLM/Open WebUI stack. Google search confirms multiple documentation pages discuss request_timeout config (default 600s recommended in prod docs). Production impact: users cannot use models that take longer than timeout. Covered in LiteLLM best practices docs."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "LiteLLM"
+    ]
   }
 ]
