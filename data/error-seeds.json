@@ -25997,5 +25997,101 @@
     "related_errors": [
       "Ollama"
     ]
+  },
+  {
+    "slug": "github-actions-w-temp-runner-file-commands-set-env-xxxx-permission-denied",
+    "title": "GitHub Actions v2.332.0 Container Jobs Fail with Permission Denied on GITHUB_ENV After Upgrade",
+    "description": "Fix container jobs failing with permission denied errors after upgrading GitHub Actions runner from v2.330.0 to v2.332.0, especially with non-root container users on ARC/Kubernetes Includes evidence for GitHub Actions troubleshooting demand.",
+    "category": "GitHub Actions",
+    "technology": "GitHub Actions",
+    "error_signature": "/__w/_temp/_runner_file_commands/set_env_XXXX: Permission denied",
+    "search_intent": "Fix container jobs failing with permission denied errors after upgrading GitHub Actions runner from v2.330.0 to v2.332.0, especially with non-root container users on ARC/Kubernetes",
+    "common_causes": [
+      "GitHub issue #4302 on actions/runner opened Mar 16, 2026. Upgrading ARC runners to v2.332.0 causes UID mismatches between runner and job containers. Root cause: Ubuntu 22.04→24.04 base image change (git 2.43+ stricter safe.directory) and container hooks v0.8.1 breaking workspace ownership. Blocks all container-based CI/CD with non-root users. Category: GitHub Actions (official repo)."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "GitHub Actions"
+    ]
+  },
+  {
+    "slug": "litellm-deployment-level-tpm-enforcement-is-per-pod-not-cross-pod-effective-limit-becomes-tpm-limit-n-replica",
+    "title": "LiteLLM Deployment-Level TPM Enforcement Is Per-Pod Instead of Cross-Pod",
+    "description": "Fix LiteLLM rate-limiting where TPM limits apply independently per pod replica, effectively multiplying the intended rate limit by number of replicas and allowing far more requests than configured Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "Deployment-level TPM enforcement is per-pod, not cross-pod: effective limit becomes tpm_limit × N_replica",
+    "search_intent": "Fix LiteLLM rate-limiting where TPM limits apply independently per pod replica, effectively multiplying the intended rate limit by number of replicas and allowing far more requests than configured",
+    "common_causes": [
+      "GitHub issue #27736 on BerriAI/litellm opened May 12, 2026. Critical bug in LiteLLM deployment mode: each pod replica enforces TPM independently, so a cluster with N pods allows N× the intended throughput. No centralized token accounting. Bug label with proxy tag. Affects enterprises running multi-replica LiteLLM deployments behind load balancers."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "LiteLLM"
+    ]
+  },
+  {
+    "slug": "litellm-anthropic-proxied-response-is-buffered-delta-json-lines-sent-in-one-large-batch-despite-stream-true-configuration",
+    "title": "LiteLLM Proxied Anthropic Responses Buffered Despite stream=true Setting",
+    "description": "Fix LiteLLM proxy buffering Anthropic SSE streams instead of sending real-time deltas, when both OpenAI and Anthropic share same proxy config Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "Anthropic proxied response is buffered: delta JSON lines sent in one large batch despite stream=true configuration",
+    "search_intent": "Fix LiteLLM proxy buffering Anthropic SSE streams instead of sending real-time deltas, when both OpenAI and Anthropic share same proxy config",
+    "common_causes": [
+      "GitHub issue #28384 on BerriAI/litellm opened May 20, 2026. User runs LiteLLM v1.85.0 in Kubernetes with Anthropic + OpenAI models. Streaming works for OpenAI but Anthropic responses arrive as single batch. Config includes proxy_buffering off in nginx, Redis cache, Prometheus callbacks. Not a network issue — pure LiteLLM proxy behavior difference between providers. High-value P1 tech with 47.9k GitHub stars."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "LiteLLM"
+    ]
+  },
+  {
+    "slug": "cursor-the-model-gpt-4-does-not-work-with-your-current-plan-or-api-key",
+    "title": "Cursor 'Model Does Not Work with Your Current Plan or API Key' With Custom Models",
+    "description": "Fix Cursor IDE refusing to use custom models (GPT-4, Claude) when custom API key (BYOK) mode is enabled, particularly breaking Agent and Edit features that depend on custom models Includes evidence for Cursor troubleshooting demand.",
+    "category": "Cursor",
+    "technology": "Cursor",
+    "error_signature": "The model gpt-4 does not work with your current plan or api key",
+    "search_intent": "Fix Cursor IDE refusing to use custom models (GPT-4, Claude) when custom API key (BYOK) mode is enabled, particularly breaking Agent and Edit features that depend on custom models",
+    "common_causes": [
+      "Found across multiple sources: Cursor community forum (#76097), Stack Overflow (#79544040), and developer blog analysis (#3390 on githubissues.com). Users report model access loss specifically when entering BYOK API keys in Settings → Models. Cursor's Auto mode gets confused when API permissions change. Agent and Edit features depend on custom models but fail with BYOK. Known product limitation rather than transient bug — strong search demand, high commercial value for Cursor paid subscribers."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Cursor"
+    ]
+  },
+  {
+    "slug": "github-actions-jit-token-expiration-with-long-running-sequential-workflows",
+    "title": "GitHub Actions JIT Token Expires During Long Sequential Workflow Runs",
+    "description": "Fix self-hosted runner JWT authentication tokens expiring during long sequential workflow runs (hours-long pipelines), causing intermittent runner registration failures mid-pipeline Includes evidence for GitHub Actions troubleshooting demand.",
+    "category": "GitHub Actions",
+    "technology": "GitHub Actions",
+    "error_signature": "JIT Token Expiration with Long-Running Sequential Workflows",
+    "search_intent": "Fix self-hosted runner JWT authentication tokens expiring during long sequential workflow runs (hours-long pipelines), causing intermittent runner registration failures mid-pipeline",
+    "common_causes": [
+      "GitHub issue #4248 on actions/runner opened Feb 15, 2026. Self-hosted runners on long-running workflows experience JIT token expiration because the runner's auto-refresh cycle doesn't trigger fast enough before the token expires. Blocks CI/CD pipelines that run for extended periods (CI artifacts, large integration test suites). Affects Enterprise and Team plan customers with self-hosted infrastructure."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "GitHub Actions"
+    ]
+  },
+  {
+    "slug": "litellm-fallbacks-on-streaming-do-not-work-with-pydantic-ai-when-gemini-3-preview-throws-429-rate-limit-error",
+    "title": "LiteLLM Streaming Fallbacks Don't Work When Gemini 3 Preview Returns 429 Rate Limit",
+    "description": "Fix LiteLLM streaming fallback mechanism failing to route to backup models when primary Gemini 3 Preview returns HTTP 429, leaving clients without any response during peak usage Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "Fallbacks on STREAMING do not work with Pydantic-AI when Gemini 3 Preview throws 429 rate limit error",
+    "search_intent": "Fix LiteLLM streaming fallback mechanism failing to route to backup models when primary Gemini 3 Preview returns HTTP 429, leaving clients without any response during peak usage",
+    "common_causes": [
+      "GitHub issue #20870 on BerriAI/litellm opened Feb 10, 2026. When using LiteLLM proxy with Pydantic-AI, streaming responses fail entirely on 429 from Gemini 3 Preview instead of falling back to configured secondary models. Non-streaming paths work correctly. Bug+proxy+llm translation labels. Only 6 comments, relatively low resolution. Strong P1 candidate for enterprises depending on Gemini via LiteLLM."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "LiteLLM"
+    ]
   }
 ]
