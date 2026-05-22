@@ -26557,5 +26557,37 @@
     "related_errors": [
       "Cloudflare"
     ]
+  },
+  {
+    "slug": "anthropic-api-error-code-413-prompt-is-too-long-when-payload-is-only-2mb-well-under-documented-32mb-limit",
+    "title": "Anthropic Vertex AI Incorrectly Rejects ~2MB Requests with 413 'Prompt Is Too Long' When Limit Is 32MB",
+    "description": "Fix Anthropic Vertex AI 413 error rejecting legitimate payloads under 32MB; differentiate between real prompt length limits vs incorrect rate-limit misreporting as 413 Includes evidence for Anthropic API troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Anthropic API",
+    "error_signature": "Error code: 413 - Prompt is too long (when payload is only ~2MB, well under documented 32MB limit)",
+    "search_intent": "Fix Anthropic Vertex AI 413 error rejecting legitimate payloads under 32MB; differentiate between real prompt length limits vs incorrect rate-limit misreporting as 413",
+    "common_causes": [
+      "GitHub Issue #1028 on anthropics/anthropic-sdk-python (opened Sep 8, 2025). Author found Vertex AI incorrectly maps Citations API rate limit violations (429) to 413 payload errors. Payloads of 147KB–2MB are rejected with 'Request exceeds the maximum allowed number of bytes'. Root cause: error misreporting at the Vertex AI layer, not an actual payload size issue. Maps to 'Anthropic API' as the error originates from Anthropic's cloud-serving channel via Vertex AI. High value because document processing workloads in enterprise are completely blocked."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "Anthropic API"
+    ]
+  },
+  {
+    "slug": "openai-api-insufficient-quota-missing-exception-class-in-exceptions-py-causing-confusing-error-responses",
+    "title": "OpenAI SDK insufficient_quota Exception Class Not Properly Defined in _exceptions.py",
+    "description": "Understand and fix insufficient_quota error returned by OpenAI API; find proper exception handling for quota exceeded scenarios Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "insufficient_quota — missing exception class in _exceptions.py causing confusing error responses",
+    "search_intent": "Understand and fix insufficient_quota error returned by OpenAI API; find proper exception handling for quota exceeded scenarios",
+    "common_causes": [
+      "GitHub Issue #1671 on openai/openai-python (opened Aug 23, 2024). Enhancement request: insufficient_quota exception is not defined in the Python SDK's _exceptions.py, making it hard for developers to catch and handle quota errors programmatically. Directly impacts paid API users who need reliable error handling for billing/quota edge cases. Distinct from general 429 rate limiting — this is about the SDK's lack of proper exception support for the insufficient_quota error type. Category: 'OpenAI API'."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "OpenAI API"
+    ]
   }
 ]
