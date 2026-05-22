@@ -27453,5 +27453,85 @@
     "related_errors": [
       "Docker"
     ]
+  },
+  {
+    "slug": "openai-api-http-429-plus-error-code-insufficient-quota-classified-as-rate-limit-retryable-true-instead-of-billing-retryable-false",
+    "title": "OpenAI API 429 insufficient_quota Misclassified as rate_limit Instead of Billing",
+    "description": "Fix OpenAI 429 classification so billing exhaustion triggers fallback immediately instead of burning retries on doomed calls Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "HTTP 429 + error.code=insufficient_quota classified as rate_limit (retryable=True) instead of billing (retryable=False)",
+    "search_intent": "Fix OpenAI 429 classification so billing exhaustion triggers fallback immediately instead of burning retries on doomed calls",
+    "common_causes": [
+      "NousResearch/hermes-agent PR #29478 (May 20, 2026): OpenAI returns HTTP 429 with code 'insufficient_quota' for billing exhaustion. The _classify_by_status method short-circuits on status_code==429 returning rate_limit (retryable=True), blocking the _classify_by_error_code path that would correctly classify as FailoverReason.billing (retryable=False). Verified in production May 2026."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "anthropic-api-sse-error-returned-from-server-type-error-error-details-null-type-overloaded-error-message-overloaded-request-id-req",
+    "title": "Anthropic overloaded_error SSE Event Crashes Copilot Chat with Visible Error Wall",
+    "description": "Handle transient overloaded_error SSE events gracefully with auto-retry and user-friendly message instead of showing raw JSON error in chat UI Includes evidence for Anthropic API troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Anthropic API",
+    "error_signature": "SSE error returned from server: '{\"type\":\"error\",\"error\":{\"details\":null,\"type\":\"overloaded_error\",\"message\":\"Overloaded\"},\"request_id\":\"req_...\"}'",
+    "search_intent": "Handle transient overloaded_error SSE events gracefully with auto-retry and user-friendly message instead of showing raw JSON error in chat UI",
+    "common_causes": [
+      "Umbraco.AI Issue #174 (May 20, 2026): When Anthropic API returns overloaded_error via SSE (transient load-shedding), the client crashes with raw JSON in the Copilot sidebar. Users perceive this as product bug. Fix requires special-casing overloaded_error in SSE handler with exponential backoff retry."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Anthropic API"
+    ]
+  },
+  {
+    "slug": "docker-mount-home-runner-local-share-containers-storage-overlay-permission-denied",
+    "title": "GitHub Actions Docker Rootless Overlay Mount Permission Denied Blocker",
+    "description": "Fix Docker rootless overlay mount failure in GitHub Actions CI runner environment causing manifest generation to fail Includes evidence for Docker troubleshooting demand.",
+    "category": "Docker",
+    "technology": "Docker",
+    "error_signature": "mount /home/runner/.local/share/containers/storage/overlay:...: permission denied",
+    "search_intent": "Fix Docker rootless overlay mount failure in GitHub Actions CI runner environment causing manifest generation to fail",
+    "common_causes": [
+      "docker-nixpkgs PR #104 (May 20, 2026): GitHub Actions runner suddenly breaks rootless overlay mount for Podman containers. Workaround is switching to vfs storage driver. Error blocks CI pipelines generating container images. Covers both the overlay mount error and related unixgram permission denied errors in GHA environment."
+    ],
+    "quick_fix": "Verify the model name, local service connectivity, and network access before retrying the model pull.",
+    "related_errors": [
+      "Docker"
+    ]
+  },
+  {
+    "slug": "kubernetes-failed-to-run-hollowkubelet-failed-to-create-kubelet-open-dev-kmsg-operation-not-permitted",
+    "title": "Kubernetes Kubelet Fails with /dev/kmsg Operation Not Permitted on CI Runners",
+    "description": "Bypass kubelet OOM watcher requiring /dev/kmsg access on restricted environments like GitHub Actions CI runners where /dev/kmsg is blocked by sandbox Includes evidence for Kubernetes troubleshooting demand.",
+    "category": "Cloud Platforms",
+    "technology": "Kubernetes",
+    "error_signature": "Failed to run HollowKubelet: failed to create kubelet: open /dev/kmsg: operation not permitted",
+    "search_intent": "Bypass kubelet OOM watcher requiring /dev/kmsg access on restricted environments like GitHub Actions CI runners where /dev/kmsg is blocked by sandbox",
+    "common_causes": [
+      "nanokube Issue #4 (Mar 15, 2026): Kubelet's OOM watcher needs /dev/kmsg which GitHub Actions runners block due to security sandbox. KubeletInUserNamespace feature gate doesn't help since not running in user namespace. Requires patching upstream check or making OOM watcher optional at project level. Blocks E2E testing on GHA runners."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Cloud Platforms"
+    ]
+  },
+  {
+    "slug": "ollama-api-returned-404-not-found-not-found-error-model-ollama-qwen2-5-coder-7b-not-found",
+    "title": "Ollama Model via OpenAI-Compatible Endpoint Returns 404 not_found_error with Provider Prefix",
+    "description": "Fix Ollama model naming convention — client rejects 'provider/model' format (404) and also rejects bare model names (invalid_model_syntax), leaving no valid way to specify local Ollama models Includes evidence for Ollama troubleshooting demand.",
+    "category": "Ollama",
+    "technology": "Ollama",
+    "error_signature": "api returned 404 Not Found (not_found_error): model 'ollama/qwen2.5-coder:7b' not found",
+    "search_intent": "Fix Ollama model naming convention — client rejects 'provider/model' format (404) and also rejects bare model names (invalid_model_syntax), leaving no valid way to specify local Ollama models",
+    "common_causes": [
+      "ultraworkers/claw-code Issue #3051 (May 21, 2026): Claw-code tool uses OpenAI-compatible endpoint pointing to Ollama. Adding 'ollama/' prefix causes 404 not_found_error; removing prefix causes invalid_model_syntax claiming DASHSCOPE_API_KEY needed. No viable model string works for local Ollama. Recent issue from May 2026 shows active developer pain."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Ollama"
+    ]
   }
 ]
