@@ -26397,5 +26397,101 @@
     "related_errors": [
       "LiteLLM"
     ]
+  },
+  {
+    "slug": "kiro-claude-code-429-temporary-suspicious-activity-rate-limit-restriction",
+    "title": "Kiro (Formerly Claude Code) — 429 Suspicious Activity Rate Limit Restriction",
+    "description": "User gets 429 rate-limit error when using Kiro/Claude Code for normal CSV data analysis; wants to know why they're flagged as suspicious and how to regain access Includes evidence for Kiro (Claude Code) troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Kiro (Claude Code)",
+    "error_signature": "429 Temporary suspicious activity rate limit restriction",
+    "search_intent": "User gets 429 rate-limit error when using Kiro/Claude Code for normal CSV data analysis; wants to know why they're flagged as suspicious and how to regain access",
+    "common_causes": [
+      "GitHub Issue #8770 on kirodotdev/Kiro (opened 2026-05-22T15:01Z). Reporter states 'My account got 429 error: Due to suspicious activity, temporary request limits were imposed. I only used Claude Code for normal CSV data analysis, no bots, scraping or abuse.' Covers real user impact on paid AI coding tool. Category maps to AI Coding Tools per SKILL approved list."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "github-copilot-tokens-burning-very-fast-following-extension-update",
+    "title": "OpenAI Codex Extension Burning Tokens Very Fast After Update",
+    "description": "Users report that the OpenAI Codex desktop extension rapidly depletes token usage after an update — just 1–2 prompts drop usage by 1%. Users want to understand why tokens are consumed excessively and how to fix/prevent it Includes evidence for GitHub Copilot troubleshooting demand.",
+    "category": "GitHub Copilot",
+    "technology": "GitHub Copilot",
+    "error_signature": "tokens burning very fast following extension update",
+    "search_intent": "Users report that the OpenAI Codex desktop extension rapidly depletes token usage after an update — just 1–2 prompts drop usage by 1%. Users want to understand why tokens are consumed excessively and how to fix/prevent it",
+    "common_causes": [
+      "GitHub Issue #14593 on openai/codex (opened 2026-03-13). Reported by cy-ooi88 with 586 comments — extremely high engagement. Labels: bug, rate-limits. Directly affects paying GitHub Copilot/Codex subscribers. Maps to GitHub Copilot category."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "GitHub Copilot"
+    ]
+  },
+  {
+    "slug": "anthropic-api-anthropic-overloaded-error-or-rate-limit-exceeded-or-quota-exhausted",
+    "title": "Anthropic API Overloaded Error — Frequent Quota & Rate Limit Hits",
+    "description": "API consumers hit Anthropic's overloaded_error, rate limits, or quota errors during production use. Need specific fixes for each error type to maintain API reliability Includes evidence for Anthropic API troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Anthropic API",
+    "error_signature": "anthropic overloaded_error OR rate limit exceeded OR quota exhausted",
+    "search_intent": "API consumers hit Anthropic's overloaded_error, rate limits, or quota errors during production use. Need specific fixes for each error type to maintain API reliability",
+    "common_causes": [
+      "GitHub search returned 68.1k open issues for anthropic rate limit/overloaded/quota queries (as of 2026-05-22). Active, continuously surfacing problem across many repos. Paid API billing error with clear commercial value. Category maps to Anthropic API."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "Anthropic API"
+    ]
+  },
+  {
+    "slug": "cursor-commits-land-on-main-when-cursor-implementer-skips-feature-branch-creation",
+    "title": "Cursor IDE Commits Landing on Main When Feature Branch Creation Is Skipped",
+    "description": "Developers using Cursor's automated agent face accidental main-branch writes when the agent skips creating a feature branch. Need to understand how this happens and prevent data loss Includes evidence for Cursor troubleshooting demand.",
+    "category": "Cursor",
+    "technology": "Cursor",
+    "error_signature": "commits land on main when Cursor implementer skips feature branch creation",
+    "search_intent": "Developers using Cursor's automated agent face accidental main-branch writes when the agent skips creating a feature branch. Need to understand how this happens and prevent data loss",
+    "common_causes": [
+      "GitHub Issue #2572 on character-ai/larch (opened 2026-05-22T13:42Z), labeled IN PROGRESS. Describes a critical bug where Cursor's code implementation agent writes directly to main instead of a feature branch. High-stakes for teams using Cursor for automated development. Category maps to Cursor."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Cursor"
+    ]
+  },
+  {
+    "slug": "litellm-litellm-badrequesterror-azureexception-badrequesterror-unknown-parameter-stream-options-include-usage",
+    "title": "LiteLLM BadRequestError — Unknown Parameter stream_options.include_usage with Azure",
+    "description": "Developers integrating third-party APIs via LiteLLM proxy encounter BadRequestError when Azure backend rejects stream_options.include_usage parameter. Need compatible configuration or workaround Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "litellm.BadRequestError: AzureException BadRequestError: Unknown parameter: stream_options.include_usage",
+    "search_intent": "Developers integrating third-party APIs via LiteLLM proxy encounter BadRequestError when Azure backend rejects stream_options.include_usage parameter. Need compatible configuration or workaround",
+    "common_causes": [
+      "GitHub Issue #234 on BigPizzaV3/CodexPlusPlus (opened 2026-05-22T10:03Z). Concrete Azure+LiteLLM integration failure with exact error trace. Affects production deployments using LiteLLM as model routing proxy. Category maps to LiteLLM."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "LiteLLM"
+    ]
+  },
+  {
+    "slug": "claude-code-claude-code-session-stopped-resumed-requirement-root-cause-classification-from-logs",
+    "title": "Claude Code Session Mid-Execution Stopped — Root Cause Analysis Needed",
+    "description": "Developers experience Claude Code sessions abruptly stopping mid-task and requiring manual restart. Want to classify root causes systematically from logs to prevent recurrence Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Claude Code session stopped/resumed requirement — root cause classification from logs",
+    "search_intent": "Developers experience Claude Code sessions abruptly stopping mid-task and requiring manual restart. Want to classify root causes systematically from logs to prevent recurrence",
+    "common_causes": [
+      "GitHub Issue #204 on squne121/loop-protocol (opened 2026-05-22T11:40Z). Title: '調査: issue-refinement-loop / Claude Code セッションの途中停止・再開要求の根本原因をログから分類する'. Real diagnostic effort showing genuine pain point. Category maps to AI Coding Tools."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
   }
 ]
