@@ -28861,5 +28861,85 @@
     "related_errors": [
       "Deployment"
     ]
+  },
+  {
+    "slug": "claude-code-usage-credits-required-for-long-context-requests",
+    "title": "Claude Code Max plan usage credits incorrectly required for standard 400k context",
+    "description": "Fix unexpected billing error on Max plan where standard 400k context is incorrectly flagged as needing extra usage credits beyond included allowance Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Usage credits required for long context requests",
+    "search_intent": "Fix unexpected billing error on Max plan where standard 400k context is incorrectly flagged as needing extra usage credits beyond included allowance",
+    "common_causes": [
+      "Found on anthropics/claude-code issue #61808 (open, May 23 2026). Issue tagged api:anthropic, area:cost, area:model. Direct billing impact for paid users upgrading to Max plan. Category mapped per SKILL.md: Claude Code → AI Coding Tools."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "claude-code-false-usage-limit-and-request-blocked",
+    "title": "Claude Code usage limit falsely triggered despite remaining weekly/hourly quota",
+    "description": "Resolve false positive usage limit blocking requests when user still has available weekly and hourly rate limit quota Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "False Usage Limit and Request blocked",
+    "search_intent": "Resolve false positive usage limit blocking requests when user still has available weekly and hourly rate limit quota",
+    "common_causes": [
+      "Found on anthropics/claude-code issue #61703 (open, May 23 2026), tagged area:desktop, bug. Also related to #50321 showing identical pattern: 'Usage limit reached - while still having 93% weekly limit and 100% 5-hour limit'. Strong evidence of recurring false-limit bug impacting paying Max plan users."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "claude-code-headless-sessions-billing-misrepresented-by-model-repeated-false-confirmations-led-to-80-plus-unexpected-charges",
+    "title": "Claude Code CLI headless sessions generate unexpected billing charges from false confirmations",
+    "description": "User charged €80+ unexpectedly because claude -p headless mode model gave false confirmation prompts that silently executed expensive operations without proper user consent Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "headless sessions billing misrepresented by model — repeated false confirmations led to €80+ unexpected charges",
+    "search_intent": "User charged €80+ unexpectedly because claude -p headless mode model gave false confirmation prompts that silently executed expensive operations without proper user consent",
+    "common_causes": [
+      "Found on anthropics/claude-code issue #61704 (open, May 23 2026, linked PR + 5 comments). Tagged area:cost, area:model, bug. Critical pricing transparency issue with real financial impact. Very relevant for users deploying Claude Code in automation/headless contexts."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "claude-code-subagents-fail-with-prompt-is-too-long-when-user-has-many-mcp-servers-tool-definitions-exceed-200k",
+    "title": "Claude Code subagents fail with 'prompt is too long' when many MCP servers registered",
+    "description": "Subagent execution fails due to prompt exceeding token limit when multiple MCP server tool definitions fill context space — need guidance on managing MCP configs or reducing prompt size Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Subagents fail with 'prompt is too long' when user has many MCP servers (tool definitions exceed 200k)",
+    "search_intent": "Subagent execution fails due to prompt exceeding token limit when multiple MCP server tool definitions fill context space — need guidance on managing MCP configs or reducing prompt size",
+    "common_causes": [
+      "Found on anthropics/claude-code issue #37793 (open, Mar 23 2026, 17 comments). Tagged area:agents, area:mcp, bug, has repro. Growing MCP ecosystem makes this increasingly relevant. Enterprise users with many custom tools face this blocker."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "claude-code-auto-compaction-triggers-at-6-context-usage-on-opus-4-6-1m-context",
+    "title": "Claude Code auto-compaction triggers at only ~6% of 1M context window on Opus 4.6",
+    "description": "Compaction activates prematurely at 6% instead of near 90%, severely degrading effective context window for 1M-capable models — need to understand if this is expected behavior or a bug and how to adjust threshold Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Auto-compaction triggers at ~6% context usage on Opus 4.6 (1M context)",
+    "search_intent": "Compaction activates prematurely at 6% instead of near 90%, severely degrading effective context window for 1M-capable models — need to understand if this is expected behavior or a bug and how to adjust threshold",
+    "common_causes": [
+      "Found on anthropics/claude-code issue #42375 (open, Apr 2 2026, 9 comments). Tagged area:core, bug, has repro, regression. Affects max-context users who pay premium for 1M windows but get ~60k effective tokens before compaction fires."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
   }
 ]
