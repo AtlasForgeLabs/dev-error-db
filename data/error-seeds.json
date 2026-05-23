@@ -27821,5 +27821,85 @@
     "related_errors": [
       "Deployment"
     ]
+  },
+  {
+    "slug": "claude-code-mcp-oauth-completes-but-token-is-not-honored-server-stays-in-needs-authentication",
+    "title": "Claude Code MCP OAuth token not honored — server stuck in 'Needs authentication'",
+    "description": "Fix OAuth 2.1/PKCE auth flow for remote MCP servers where Claude Code reports success but tools never become available Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "MCP OAuth completes but token is not honored — server stays in 'Needs authentication'",
+    "search_intent": "Fix OAuth 2.1/PKCE auth flow for remote MCP servers where Claude Code reports success but tools never become available",
+    "common_causes": [
+      "GitHub Issue anthropics/claude-code#60260 (open, created 2026-05-18, 3 comments). Has repro label, area:auth + area:mcp labels. OAuth flow succeeds in browser, curl bypass works perfectly, only Claude Code bridging fails. High commercial value — developers using corporate MCP tools with Claude Code Enterprise/Claude Pro cannot access any MCP tools. Category mapping: Claude Code → AI Coding Tools per SKILL.md category table."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "anthropic-api-mcp-connector-model-intermittently-emits-tool-use-instead-of-mcp-tool-use-for-tools-declared-in-mcp-toolset-conversation-stalls-on-client-side",
+    "title": "Anthropic SDK MCP connector intermittently emits tool_use instead of mcp_tool_use",
+    "description": "Debug why Anthropic SDK with MCP beta returns plain tool_use instead of expected mcp_tool_use, causing agent loops to hang Includes evidence for Anthropic API troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Anthropic API",
+    "error_signature": "MCP connector model intermittently emits tool_use instead of mcp_tool_use for tools declared in mcp_toolset — conversation stalls on client side",
+    "search_intent": "Debug why Anthropic SDK with MCP beta returns plain tool_use instead of expected mcp_tool_use, causing agent loops to hang",
+    "common_causes": [
+      "GitHub Issue anthropics/anthropic-sdk-python#1581 (open, created 2026-05-21, 1 comment, 2605 related MCP/Auth issues in claude-code repo). Affects claude-sonnet-4-6 and other 4.x models under streaming API. Intermittent bug with multi-turn agentic loops mixing local function tools + mcp_toolset. This causes API billing charges for failed turns plus developer time wasted debugging. Category mapping: Anthropic SDK/MCP errors → Anthropic API per SKILL.md category table."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Anthropic API"
+    ]
+  },
+  {
+    "slug": "vercel-vercel-build-typescript-errors-property-body-does-not-exist-on-type-response-vercel-build-produces-ts-errors-even-when-tsc-tsup-succeed-locally",
+    "title": "Vercel build TS errors with hono/turborepo/drizzle — vercel build fails tsc/tsup pass",
+    "description": "Resolve Vercel deployment build failures caused by stricter TypeScript type checking compared to local tsc/tsup builds Includes evidence for Vercel troubleshooting demand.",
+    "category": "Deployment",
+    "technology": "Vercel",
+    "error_signature": "vercel build TypeScript errors: Property 'body' does not exist on type 'Response' — vercel build produces TS errors even when tsc/tsup succeed locally",
+    "search_intent": "Resolve Vercel deployment build failures caused by stricter TypeScript type checking compared to local tsc/tsup builds",
+    "common_causes": [
+      "GitHub Issue vercel/vercel#13892 (open, updated 2026-05-04, 5 comments). v5+ vercel CLI runs its own TypeScript compilation that differs from tsc/tsup, producing false-positive errors on Response.body type. Production deployments fail while local dev succeeds. Direct billing/deployment impact. Category mapping: Vercel errors → Deployment per SKILL.md category table."
+    ],
+    "quick_fix": "Check the build output, project root, and deployment platform configuration before redeploying.",
+    "related_errors": [
+      "Deployment"
+    ]
+  },
+  {
+    "slug": "claude-code-api-error-400-type-error-error-type-invalid-request-error-message-could-not-process-image",
+    "title": "Claude Code API Error 400 Could not process image — image download/upload chain breaks",
+    "description": "Fix Claude Code 400 invalid_request_error when Claude attempts to download an image (from Notion), upload it elsewhere (to LinkedIn), and then chokes — blocking all subsequent messages Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "API Error: 400 {\"type\":\"error\",\"error\":{\"type\":\"invalid_request_error\",\"message\":\"Could not process image\"}}",
+    "search_intent": "Fix Claude Code 400 invalid_request_error when Claude attempts to download an image (from Notion), upload it elsewhere (to LinkedIn), and then chokes — blocking all subsequent messages",
+    "common_causes": [
+      "GitHub Issue anthropics/claude-code#60706 (open, created 2026-05-19, 1 comment). Labels: bug, platform:macos, platform:vscode, area:model, area:agents. Image processing pipeline failure affects both Claude Pro and Team users who use code-based media handling (download→upload workflows). Blocks entire Claude session until workaround found. Category mapping: Claude Code → AI Coding Tools per SKILL.md category table."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "cloudflare-waf-challenge-403-response-lacks-access-control-allow-origin-cors-headers-despite-response-header-transform-rule-configured-cross-origin-fetch-calls-fail",
+    "title": "Cloudflare WAF challenge responses lack CORS headers — Response Header Transform Rules don't apply to 403 challenges",
+    "description": "Understand why Cloudflare Response Header Transform Rules don't apply to WAF challenge block responses, breaking cross-origin JavaScript fetch() calls Includes evidence for Cloudflare troubleshooting demand.",
+    "category": "Cloudflare",
+    "technology": "Cloudflare",
+    "error_signature": "WAF challenge 403 response lacks Access-Control-Allow-Origin CORS headers despite Response Header Transform Rule configured — cross-origin fetch() calls fail",
+    "search_intent": "Understand why Cloudflare Response Header Transform Rules don't apply to WAF challenge block responses, breaking cross-origin JavaScript fetch() calls",
+    "common_causes": [
+      "GitHub Issue cloudflare/cloudflare-docs#30834 (open, created 2026-05-15, assigned to elithrar). Documentation states transform rules 'will also apply to default Cloudflare error pages' but this claim is misleading for WAF challenge 403s. Corporate developers behind WAF cannot make cross-origin requests. Assigned to Cloudflare docs team — indicates recognized edge case. Category mapping: Cloudflare WAF/docs errors → Cloudflare per SKILL.md category table."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Cloudflare"
+    ]
   }
 ]
