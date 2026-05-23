@@ -46,7 +46,7 @@ if (existsSync(distDir)) {
   assert(homepage.includes('/editorial-methodology/'), 'homepage links editorial methodology');
   assert(homepage.includes('/source-policy/'), 'homepage links source policy');
   assert(homepage.includes('/troubleshooting-methodology/'), 'homepage links troubleshooting methodology');
-  assert(homepage.includes('Pages with public source URLs'), 'homepage shows source-backed count');
+  assert(homepage.includes('Recently updated source-backed errors'), 'homepage links source-backed error examples');
 
   const sitemap = readFileSync(path.join(rootDir, 'dist', 'sitemap-0.xml'), 'utf8');
   for (const route of trustRoutes) {

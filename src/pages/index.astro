@@ -26,10 +26,6 @@ const deploymentFailures = getEntriesByCategories(errors, ['Deployment', 'GitHub
 const aiCodingErrors = getEntriesByCategories(errors, ['AI Coding Tools', 'GitHub Copilot', 'Cursor'], 10);
 const topCategories = [...categoryGroups].sort((a, b) => b.entries.length - a.entries.length).slice(0, 12);
 const revenueHubLinks = getExistingRevenueHubLinks(categoryGroups);
-const totalCategories = categoryGroups.length;
-const totalErrors = errors.length;
-const totalTechnologies = new Set(errors.map((entry) => entry.data.technology)).size;
-const sourceBackedErrors = errors.filter((entry) => /https?:\/\//.test(entry.body)).length;
 const recentlyUpdatedSourceBacked = sortedByUpdated.filter((entry) => /https?:\/\//.test(entry.body)).slice(0, 8);
 const structuredData = [
   {
@@ -71,25 +67,6 @@ const structuredData = [
       Match exact error signatures, read source-backed troubleshooting notes where available, and move from symptoms to
       safe checks for API errors, deployment failures, Docker, npm, Python, AI coding tools, and GitHub Actions.
     </p>
-  </section>
-
-  <section class="stats-strip" aria-label="Site statistics">
-    <article>
-      <h2>{totalErrors}</h2>
-      <p>Error pages</p>
-    </article>
-    <article>
-      <h2>{totalCategories}</h2>
-      <p>Topic clusters</p>
-    </article>
-    <article>
-      <h2>{totalTechnologies}</h2>
-      <p>Technologies covered</p>
-    </article>
-    <article>
-      <h2>{sourceBackedErrors}</h2>
-      <p>Pages with public source URLs</p>
-    </article>
   </section>
 
   <section class="intent-grid" aria-labelledby="why-developers-heading">
