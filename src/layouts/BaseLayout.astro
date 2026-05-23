@@ -39,6 +39,7 @@ const ogImageUrl = absoluteUrl(DEFAULT_OG_IMAGE, siteUrl);
 const structuredDataList = (Array.isArray(structuredData) ? structuredData : structuredData ? [structuredData] : []).filter(
   Boolean
 );
+const isHomePage = Astro.url.pathname === '/' || Astro.url.pathname === '';
 ---
 
 <!doctype html>
@@ -46,6 +47,12 @@ const structuredDataList = (Array.isArray(structuredData) ? structuredData : str
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=JetBrains+Mono:wght@400;500;600&family=Sora:wght@600;700&display=swap"
+      rel="stylesheet"
+    />
     <title>{pageTitle}</title>
     <meta name="description" content={metaDescription} />
     <meta name="google-site-verification" content="xrCmk8sMkiAERs-Kt--HK5plyvfDTqAJhUV9ZhW3kVY" />
@@ -84,7 +91,16 @@ gtag('config', '${GA4_MEASUREMENT_ID}');`}
       ))
     }
   </head>
-  <body>
+  <body class:list={{ 'page-home': isHomePage }}>
+    {
+      isHomePage && (
+        <div class="site-ambient" aria-hidden="true">
+          <span class="site-ambient__orb site-ambient__orb--cyan" />
+          <span class="site-ambient__orb site-ambient__orb--violet" />
+          <span class="site-ambient__orb site-ambient__orb--indigo" />
+        </div>
+      )
+    }
     <header class="site-header">
       <a class="brand" href="/">Dev Error DB</a>
       <nav aria-label="Primary navigation">
