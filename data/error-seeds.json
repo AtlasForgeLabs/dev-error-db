@@ -29037,5 +29037,85 @@
     "related_errors": [
       "Deployment"
     ]
+  },
+  {
+    "slug": "claude-code-api-error-overloaded-error-529-on-claude-max-plan",
+    "title": "Frequent 529 Overloaded errors on Claude Max plan ($100/month)",
+    "description": "Fix frequent Anthropic overloaded errors (529) experienced by paying $100/month Claude Max subscribers causing unusable sessions during peak load Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "API Error: overloaded_error (529) on Claude Max plan",
+    "search_intent": "Fix frequent Anthropic overloaded errors (529) experienced by paying $100/month Claude Max subscribers causing unusable sessions during peak load",
+    "common_causes": [
+      "Found on anthropics/claude-code#41651 (closed May 12, 2026) and #35517 (closed May 6, 2026). High-value paid subscription users experiencing API overloaded errors on Opus 4.6. Also found subagent spawning overload (#35517) indicating system-level scaling issues. Category: Anthropic API since root cause is Anthropic's API serving."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "claude-code-api-error-rate-limit-reached-rate-limit-consumed-disproportionately-to-token-usage",
+    "title": "Rate limit consumed disproportionately to token usage on Claude Code",
+    "description": "Understand why Claude Code Pro/Max users hit rate limits before expected token usage threshold, blocking further requests until reset Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "API Error: Rate limit reached — rate limit consumed disproportionately to token usage",
+    "search_intent": "Understand why Claude Code Pro/Max users hit rate limits before expected token usage threshold, blocking further requests until reset",
+    "common_causes": [
+      "Found on anthropics/claude-code#60787 (opened May 20, 2026), #61014 (opened May 21, 2026), and #57073 (opened May 8, 2026). Rate limits trigger prematurely — e.g., at 72% or even lower of token usage despite being on higher tiers. Multiple duplicate/recent issues indicate ongoing systemic problem affecting paid subscriptions."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "claude-code-meta-mcp-oauth-fails-redirect-uris-are-not-registered-for-this-client",
+    "title": "meta-ads MCP OAuth fails with redirect_uris not registered for this client",
+    "description": "Resolve Meta Ads MCP server OAuth configuration error preventing Claude Code from authenticating with Facebook/Meta advertising APIs Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Meta MCP OAuth fails: redirect_uris are not registered for this client",
+    "search_intent": "Resolve Meta Ads MCP server OAuth configuration error preventing Claude Code from authenticating with Facebook/Meta advertising APIs",
+    "common_causes": [
+      "Found on anthropics/claude-code#59924 (closed May 23, 2026) and #55556 (closed May 6, 2026). Pattern matches multiple third-party MCP connector OAuth failures. Affects developers building marketing automation tools. Category: AI Coding Tools via Claude Code MCP ecosystem."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "litellm-false-positive-guardrails-feature-unavailable-error-when-guardrails-are-not-configured-in-litellm",
+    "title": "False guardrails feature unavailable error when not configured in LiteLLM 1.82.3",
+    "description": "Fix LiteLLM proxy returning spurious 'guardrails feature unavailable' error messages when guardrails integration was never set up, confusing production deployments Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "False-positive guardrails feature unavailable error when guardrails are not configured in LiteLLM",
+    "search_intent": "Fix LiteLLM proxy returning spurious 'guardrails feature unavailable' error messages when guardrails integration was never set up, confusing production deployments",
+    "common_causes": [
+      "Found on BerriAI/litellm#24734 (opened Mar 28, 2026). LiteLLM proxy returns misleading error about missing guardrails even when they're not intended to be used. This affects production proxy deployments billing API calls through LiteLLM. Duplicate PR also filed. Category: LiteLLM proxy configuration error."
+    ],
+    "quick_fix": "Check the build output, project root, and deployment platform configuration before redeploying.",
+    "related_errors": [
+      "LiteLLM"
+    ]
+  },
+  {
+    "slug": "litellm-cost-per-token-in-cost-calculator-py-returns-0-0-0-0-instead-of-raising-error-for-unknown-unrecognized-models",
+    "title": "cost_per_token returns silently wrong values for unrecognized models in LiteLLM",
+    "description": "Detect when LiteLLM proxy routes requests to models it doesn't recognize pricing for — silent zero-cost masking real token costs impacts billing accuracy Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "cost_per_token() in cost_calculator.py returns (0.0, 0.0) instead of raising error for unknown/unrecognized models",
+    "search_intent": "Detect when LiteLLM proxy routes requests to models it doesn't recognize pricing for — silent zero-cost masking real token costs impacts billing accuracy",
+    "common_causes": [
+      "Found on BerriAI/litellm#27581 (opened May 10, 2026). When LiteLLM encounters an unrecognized model, cost_per_token returns (0.0, 0.0) silently rather than raising an error. This can cause production deployments to underbill or misreport API costs. Category: LiteLLM SDK behavior bug."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "LiteLLM"
+    ]
   }
 ]
