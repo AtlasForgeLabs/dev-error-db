@@ -1,5 +1,6 @@
 import { existsSync, readFileSync } from 'node:fs';
 import { readdir } from 'node:fs/promises';
+import { execFileSync } from 'node:child_process';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -29,6 +30,9 @@ for (const file of requiredDistFiles) {
   assert(existsSync(path.join(rootDir, file)), `${file} exists after build`);
 }
 
+const adsTxt = existsSync(path.join(rootDir, 'public/ads.txt')) ? readFileSync(path.join(rootDir, 'public/ads.txt'), 'utf8') : '';
+assert(adsTxt.includes('google.com, pub-'), 'ads.txt contains Google seller line');
+
 if (existsSync(distDir)) {
   const htmlFiles = await listFiles(distDir, (file) => file.endsWith('.html'));
   const routes = new Set(htmlFiles.map(htmlRoute));
@@ -36,6 +40,7 @@ if (existsSync(distDir)) {
   const homepage = htmlByRoute.get('/') ?? '';
 
   assert(!hasLocalAssetOrCanonicalUrl(htmlByRoute), 'built pages do not use localhost URLs for canonical, scripts, styles, or assets');
+  assert(allCanonicalsUseProductionDomain(htmlByRoute), 'canonical URLs use https://dev-error-db.com');
   assert(!hasPlaceholderLeak(htmlByRoute), 'built pages do not expose placeholder null or undefined values');
 
   for (const route of trustRoutes) {
@@ -63,7 +68,11 @@ if (existsSync(distDir)) {
     const html = htmlByRoute.get(route) ?? '';
     assert(html.includes('Before you change production'), `${route} has production safety section`);
     assert(html.includes('Evidence and references'), `${route} has evidence section`);
+    assert(html.includes('Evidence status'), `${route} has derived evidence status`);
+    assert(html.includes('Source count'), `${route} has source count`);
     assert(html.includes('When to avoid this fix'), `${route} has avoid-fix section`);
+    assert(html.includes('Diagnostic flow for this page'), `${route} has diagnostic flow`);
+    assert(html.includes('Related error pages') || html.includes('Related troubleshooting hubs'), `${route} has related real errors or hubs`);
     assert(visibleTextLength(html) > 1800, `${route} has substantial visible content`);
   }
 
@@ -77,11 +86,21 @@ if (existsSync(distDir)) {
   const brokenLinks = findBrokenInternalLinks(htmlByRoute, routes);
   assert(brokenLinks.length === 0, `no broken internal links in built HTML${brokenLinks.length ? `: ${brokenLinks.slice(0, 5).join(', ')}` : ''}`);
 
-  const emptyEvidencePages = errorRoutes.filter((route) => {
+  const unsafeExternalLinks = findUnsafeExternalLinks(htmlByRoute);
+  assert(unsafeExternalLinks.length === 0, `external links use target blank with noopener noreferrer${unsafeExternalLinks.length ? `: ${unsafeExternalLinks.slice(0, 5).join(', ')}` : ''}`);
+
+  const genericRelatedLabels = errorRoutes.filter((route) => {
     const html = htmlByRoute.get(route) ?? '';
-    return html.includes('Evidence and references') && !/<a\s+[^>]*href=/.test(html);
+    const relatedBlock = html.match(/<h2[^>]*>Related error pages<\/h2>([\s\S]*?)(?:<\/aside>|<h2|$)/i)?.[1] ?? '';
+    return /<li>\s*(?:API error|Deployment error|Rate limit error|Timeout error|Permission error)\s*<\/li>/i.test(relatedBlock);
   });
-  assert(emptyEvidencePages.length === 0, 'no empty evidence sections in representative error pages');
+  assert(genericRelatedLabels.length === 0, 'related error sections do not render generic labels as pages');
+
+  try {
+    execFileSync('node', ['scripts/thin-content-audit.mjs'], { cwd: rootDir, stdio: 'inherit' });
+  } catch {
+    errors.push('thin-content audit failed');
+  }
 } else {
   errors.push('dist is missing; run npm run build before npm run check');
 }
@@ -133,13 +152,25 @@ function joinHtml(htmlByRoute) {
 
 function hasLocalAssetOrCanonicalUrl(htmlByRoute) {
   for (const html of htmlByRoute.values()) {
-    const attributes = [...html.matchAll(/\s(?:href|src|content)="([^"]+)"/g)].map((match) => match[1]);
+    const attributes = [...html.matchAll(/\s(?:href|src)="([^"]+)"/g)].map((match) => match[1]);
     if (attributes.some((value) => /^https?:\/\/(?:localhost|127\.0\.0\.1|0\.0\.0\.0)(?::\d+)?\b/i.test(value))) {
       return true;
     }
   }
 
   return false;
+}
+
+function allCanonicalsUseProductionDomain(htmlByRoute) {
+  for (const html of htmlByRoute.values()) {
+    for (const match of html.matchAll(/<link\s+rel="canonical"\s+href="([^"]+)"/g)) {
+      if (!match[1].startsWith('https://dev-error-db.com/')) {
+        return false;
+      }
+    }
+  }
+
+  return true;
 }
 
 function hasPlaceholderLeak(htmlByRoute) {
@@ -185,4 +216,20 @@ function findBrokenInternalLinks(htmlByRoute, routes) {
   }
 
   return broken;
+}
+
+function findUnsafeExternalLinks(htmlByRoute) {
+  const unsafe = [];
+
+  for (const [route, html] of htmlByRoute) {
+    for (const match of html.matchAll(/<a\s+([^>]*href="https?:\/\/[^"]+"[^>]*)>/g)) {
+      const tag = match[1];
+      if (!/target="_blank"/.test(tag) || !/rel="[^"]*\bnoopener\b[^"]*\bnoreferrer\b[^"]*"/.test(tag)) {
+        unsafe.push(route);
+        break;
+      }
+    }
+  }
+
+  return unsafe;
 }

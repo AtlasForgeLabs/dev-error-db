@@ -1,5 +1,6 @@
 import type { CollectionEntry } from 'astro:content';
 import { parsePageTimestamp, sortByUpdatedTimestamp } from './dates';
+import { deriveEvidenceSchema } from './evidence';
 
 type ErrorEntry = CollectionEntry<'errors'>;
 export const DEFAULT_PAGE_SIZE = 20;
@@ -522,6 +523,10 @@ export function findRelatedEntries(entry: ErrorEntry, allEntries: ErrorEntry[], 
   const usedSlugs = new Set([currentSlug]);
 
   for (const related of explicitRelated) {
+    if (isGenericRelatedLabel(related)) {
+      continue;
+    }
+
     const match = findEntryByRelatedLabel(related, allEntries, usedSlugs);
 
     if (match) {
@@ -597,6 +602,7 @@ function relatedScore(entry: ErrorEntry, candidate: ErrorEntry) {
   const sameCategory = categoryLabelFor(candidate) === categoryLabelFor(entry);
   const sameRawCategory = candidate.data.category === entry.data.category;
   const sameTechnology = candidate.data.technology === entry.data.technology;
+  const candidateEvidence = deriveEvidenceSchema(candidate);
   const sourceText = searchableText(entry);
   const candidateText = searchableText(candidate);
 
@@ -624,7 +630,41 @@ function relatedScore(entry: ErrorEntry, candidate: ErrorEntry) {
 
   score += Math.min(overlap * 8, 32);
 
+  if (candidateEvidence.source_backed) {
+    score += 12;
+  } else if (candidateEvidence.evidence_status === 'partial_source') {
+    score += 6;
+  }
+
+  const candidateUpdated = parsePageTimestamp(candidate)?.getTime() ?? 0;
+  if (candidateUpdated > Date.now() - 45 * 86_400_000) {
+    score += 4;
+  }
+
   return score;
+}
+
+function isGenericRelatedLabel(value: string) {
+  const normalized = normalizeLookup(value);
+  const genericLabels = new Set([
+    'api-error',
+    'authentication-error',
+    'build-error',
+    'ci-error',
+    'cloud-error',
+    'configuration-error',
+    'connection-error',
+    'deployment-error',
+    'docker-error',
+    'github-actions-error',
+    'model-error',
+    'permission-error',
+    'quota-error',
+    'rate-limit-error',
+    'timeout-error',
+  ]);
+
+  return genericLabels.has(normalized) || /^[a-z0-9]+-errors?$/.test(normalized);
 }
 
 export function buildRelatedClusters(entry: ErrorEntry, allEntries: ErrorEntry[]) {

@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "astro dev",
-    "build": "astro build",
+    "build": "node --import ./scripts/astro-build-enoent-patch.mjs ./node_modules/astro/astro.js build",
     "preview": "astro preview",
     "discover:errors": "node automation/discovery/discovery-pipeline.mjs",
     "import:candidates": "node automation/import/import-candidates.mjs",
@@ -20,6 +20,7 @@
     "expand:imported": "node automation/expand/expand-imported-candidates.mjs --write",
     "generate:errors": "node scripts/generate-error-pages.mjs",
     "check": "node scripts/validate-adsense-readiness.mjs",
+    "audit:thin-content": "node scripts/thin-content-audit.mjs",
     "pipeline:health": "node automation/pipeline/health.mjs",
     "pipeline:validate": "node automation/pipeline/validate.mjs",
     "publish:safe": "node automation/publish/safe-publish.mjs",
@@ -27,7 +28,6 @@
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.6.0",
-    "astro": "^5.15.0"
-  },
-  "devDependencies": {}
+    "astro": "^5.18.1"
+  }
 }

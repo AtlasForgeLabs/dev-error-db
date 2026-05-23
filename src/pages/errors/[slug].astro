@@ -1,5 +1,5 @@
 ---
-import { getCollection, render } from 'astro:content';
+import { getCollection } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import {
   buildRelatedClusters,
@@ -12,41 +12,9 @@ import {
 } from '../../lib/taxonomy';
 import { absoluteUrl, SITE_NAME } from '../../lib/seo';
 import { formatPublicDate, getUpdatedTimestamp, sortByUpdatedTimestamp } from '../../lib/dates';
-
-function extractFaqItems(markdownBody: string) {
-  const faqStart = markdownBody.indexOf('\n## FAQ');
-
-  if (faqStart === -1) {
-    return [];
-  }
-
-  const faqSection = markdownBody.slice(faqStart);
-  const blocks = faqSection.split('\n### ').slice(1);
-
-  return blocks
-    .map((block) => {
-      const [questionLine, ...answerLines] = block.split('\n');
-      const answer = answerLines
-        .join(' ')
-        .replace(/`/g, '')
-        .replace(/\[(.*?)\]\((.*?)\)/g, '$1')
-        .replace(/\s+/g, ' ')
-        .trim();
-
-      return {
-        question: questionLine.trim(),
-        answer,
-      };
-    })
-    .filter((item) => item.question.length > 0 && item.answer.length > 0)
-    .slice(0, 6);
-}
-
-function extractSourceUrls(markdownBody: string) {
-  return [...markdownBody.matchAll(/https?:\/\/[^\s)\]]+/g)]
-    .map((match) => match[0].replace(/[.,]+$/, ''))
-    .filter((url, index, urls) => urls.indexOf(url) === index);
-}
+import { buildDataAwareFaqItems } from '../../lib/faq';
+import { deriveEvidenceSchema, evidenceStatusDescription, evidenceStatusLabel, stripGeneratedEvidenceAndFaq } from '../../lib/evidence';
+import { renderTrustedMarkdown } from '../../lib/markdown';
 
 export async function getStaticPaths() {
   const errors = await getCollection('errors');
@@ -60,13 +28,11 @@ export async function getStaticPaths() {
 const { entry } = Astro.props;
 const allErrors = await getCollection('errors');
 const publicCategory = categoryLabelFor(entry);
-const { Content } = await render(entry);
+const evidence = deriveEvidenceSchema(entry);
+const articleHtml = renderTrustedMarkdown(stripGeneratedEvidenceAndFaq(entry.body));
 const relatedErrors = findRelatedEntries(entry, allErrors);
 const relatedClusters = buildRelatedClusters(entry, allErrors);
 const referenceLinks = referenceLinksFor(entry);
-const sameCategoryLinks = allErrors
-  .filter((candidate) => entrySlug(candidate) !== entrySlug(entry) && categoryLabelFor(candidate) === publicCategory)
-  .slice(0, 0);
 const entryTokens = new Set(
   `${entry.data.error_signature} ${entry.data.title}`
     .toLowerCase()
@@ -85,18 +51,18 @@ const similarSignatureLinks = allErrors
   })
   .filter((item) => item.overlap >= 2)
   .sort((a, b) => b.overlap - a.overlap || (sortByUpdatedTimestamp([a.candidate, b.candidate])[0] === b.candidate ? 1 : -1))
-  .slice(0, 0)
+  .slice(0, 4)
   .map((item) => item.candidate);
+const relatedHubLinks = [
+  { label: publicCategory, path: categoryPathFor(publicCategory) },
+  { label: entry.data.technology, path: categoryPathFor(publicCategory) },
+].filter((hub, index, hubs) => hubs.findIndex((candidate) => candidate.label === hub.label) === index);
 const canonical = absoluteUrl(errorPath(entry));
 const updatedIso = getUpdatedTimestamp(entry) ?? new Date(0).toISOString();
 const publishedIso = entry.data.published_at ? (getUpdatedTimestamp({ data: { updated_at: entry.data.published_at } }) ?? updatedIso) : updatedIso;
-const faqItems = extractFaqItems(entry.body);
-const sourceUrls = extractSourceUrls(entry.body);
-const hasSourceEvidence = sourceUrls.length > 0;
-const verificationStatus = hasSourceEvidence ? 'Source-backed' : 'General troubleshooting guidance';
-const sourceStatusDescription = hasSourceEvidence
-  ? 'This page includes public source URLs in the imported troubleshooting record. Verify that the source still matches your version and environment.'
-  : 'This page does not expose source URLs in the page body. Treat it as general guidance and verify against official documentation before changing systems.';
+const faqItems = buildDataAwareFaqItems(entry, evidence);
+const verificationStatus = evidenceStatusLabel(evidence.evidence_status);
+const sourceStatusDescription = evidenceStatusDescription(evidence);
 const structuredData = [
   {
     '@context': 'https://schema.org',
@@ -108,11 +74,14 @@ const structuredData = [
     datePublished: publishedIso,
     about: [entry.data.technology, publicCategory],
     articleSection: publicCategory,
+    isBasedOn: evidence.evidence_sources.map((source) => source.source_url),
     author: {
       '@type': 'Organization',
       name: SITE_NAME,
     },
-    citation: referenceLinks.map((link) => link.url).filter((url) => url.startsWith('https://')),
+    citation: [...evidence.evidence_sources.map((source) => source.source_url), ...referenceLinks.map((link) => link.url)].filter((url) =>
+      url.startsWith('https://')
+    ),
   },
   ...(faqItems.length > 0
     ? [
@@ -156,8 +125,9 @@ const structuredData = [
       <h1>{entry.data.title}</h1>
       <p>{entry.data.description}</p>
       <div class="badge-row" aria-label="Page evidence status">
-        <span class={hasSourceEvidence ? 'status-badge status-badge--source' : 'status-badge'}>{verificationStatus}</span>
+        <span class={evidence.source_backed ? 'status-badge status-badge--source' : 'status-badge'}>{verificationStatus}</span>
         <span class="status-badge">Last updated {formatPublicDate(updatedIso)}</span>
+        <span class="status-badge">{evidence.source_count} source{evidence.source_count === 1 ? '' : 's'}</span>
         <span class="status-badge">Needs local verification</span>
       </div>
       <dl class="facts">
@@ -181,6 +151,10 @@ const structuredData = [
           <dt>Verification status</dt>
           <dd>{verificationStatus}</dd>
         </div>
+        <div>
+          <dt>Evidence</dt>
+          <dd>{evidence.source_count} public source URL{evidence.source_count === 1 ? '' : 's'}</dd>
+        </div>
       </dl>
     </header>
 
@@ -195,7 +169,18 @@ const structuredData = [
       </ul>
     </section>
 
-    <Content />
+    <div class="article-body" set:html={articleHtml} />
+
+    <section class="trust-panel" aria-labelledby="diagnostic-flow-heading">
+      <h2 id="diagnostic-flow-heading">Diagnostic flow for this page</h2>
+      <ol>
+        <li>Match <code>{entry.data.error_signature}</code> exactly before applying the quick fix.</li>
+        <li>Compare the failing environment with {entry.data.technology} versions, account scope, provider settings, and deployment context.</li>
+        <li>Check the listed common causes in order, starting with the cause that best matches your logs.</li>
+        <li>Use the evidence status below to decide whether to confirm against public sources or official documentation.</li>
+        <li>Apply one reversible change, rerun the smallest failing action, and keep rollback notes.</li>
+      </ol>
+    </section>
 
     <aside class="trust-panel" aria-labelledby="evidence-heading">
       <h2 id="evidence-heading">Evidence and references</h2>
@@ -203,7 +188,39 @@ const structuredData = [
         This page is labeled <strong>{verificationStatus}</strong>. Use the exact error signature, technology, category,
         and last-updated date above to compare this guide with your local environment before changing production systems.
       </p>
-      {hasSourceEvidence && <p>Imported source URLs found on this page: {sourceUrls.length}</p>}
+      <dl class="facts">
+        <div>
+          <dt>Evidence status</dt>
+          <dd>{verificationStatus}</dd>
+        </div>
+        <div>
+          <dt>Source count</dt>
+          <dd>{evidence.source_count}</dd>
+        </div>
+        <div>
+          <dt>Source domains</dt>
+          <dd>{evidence.source_domains.length ? evidence.source_domains.join(', ') : 'No public source URL found in this Markdown record'}</dd>
+        </div>
+        <div>
+          <dt>Last checked</dt>
+          <dd>{evidence.last_checked ? formatPublicDate(evidence.last_checked) : 'No dedicated last-checked field; using page update date only'}</dd>
+        </div>
+      </dl>
+      {
+        evidence.evidence_sources.length > 0 && (
+          <ul>
+            {evidence.evidence_sources.map((source) => (
+              <li>
+                <a href={source.source_url} target="_blank" rel="noopener noreferrer">
+                  {source.source_label}
+                </a>
+                <span> ({source.source_type.replace(/_/g, ' ')})</span>
+              </li>
+            ))}
+          </ul>
+        )
+      }
+      <h3>General references</h3>
       <ul>
         {referenceLinks.map((link) => (
           <li>
@@ -225,7 +242,7 @@ const structuredData = [
     {
       relatedErrors.length > 0 && (
         <aside class="related" aria-labelledby="related-heading">
-          <h2 id="related-heading">Related troubleshooting pages</h2>
+          <h2 id="related-heading">Related error pages</h2>
           <ul>
             {relatedErrors.map((related) => (
               <li>
@@ -258,20 +275,6 @@ const structuredData = [
       )
     }
     {
-      sameCategoryLinks.length > 0 && (
-        <aside class="related" aria-labelledby="same-category-heading">
-          <h2 id="same-category-heading">More in {publicCategory}</h2>
-          <ul>
-            {sameCategoryLinks.map((related) => (
-              <li>
-                <a href={errorPath(related)}>{related.data.title}</a>
-              </li>
-            ))}
-          </ul>
-        </aside>
-      )
-    }
-    {
       similarSignatureLinks.length > 0 && (
         <aside class="related" aria-labelledby="similar-signature-heading">
           <h2 id="similar-signature-heading">Similar error signatures</h2>
@@ -285,5 +288,28 @@ const structuredData = [
         </aside>
       )
     }
+    {
+      relatedHubLinks.length > 0 && (
+        <aside class="related" aria-labelledby="related-hubs-heading">
+          <h2 id="related-hubs-heading">Related troubleshooting hubs</h2>
+          <ul>
+            {relatedHubLinks.map((hub) => (
+              <li>
+                <a href={hub.path}>{hub.label}</a>
+              </li>
+            ))}
+          </ul>
+        </aside>
+      )
+    }
+    <aside class="trust-panel" aria-labelledby="faq-heading">
+      <h2 id="faq-heading">FAQ</h2>
+      {faqItems.map((item) => (
+        <section>
+          <h3>{item.question}</h3>
+          <p>{item.answer}</p>
+        </section>
+      ))}
+    </aside>
   </article>
 </BaseLayout>

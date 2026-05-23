@@ -32,6 +32,7 @@ const seoHealth = buildSeoHealth(parsedPages);
 const crawlStats = await inspectBuiltHtml();
 const monetizationStats = await inspectMonetization();
 const analyticsStats = await inspectAnalytics();
+const thinAuditStats = readThinAuditStats();
 
 const runtimeDir = path.join(rootDir, 'automation', 'runtime');
 mkdirSync(runtimeDir, { recursive: true });
@@ -103,6 +104,17 @@ print('category_intro_coverage', `${crawlStats.categoryPagesWithIntro}/${crawlSt
 print('faq_unique_question_ratio', String(crawlStats.faqUniqueQuestionRatio));
 print('error_page_relevant_link_density', String(crawlStats.errorPageRelevantLinkDensity));
 print('schema_counts', JSON.stringify(crawlStats.schemaCounts));
+
+console.log('\nThin-content audit snapshot:');
+print('audit_report_exists', thinAuditStats.exists ? 'yes' : 'no');
+if (thinAuditStats.exists) {
+  print('thin_pages', String(thinAuditStats.thin_pages));
+  print('broken_internal_links', String(thinAuditStats.broken_internal_links));
+  print('unsafe_external_links', String(thinAuditStats.unsafe_external_links));
+  print('faq_unique_question_ratio', String(thinAuditStats.faq_unique_question_ratio));
+  print('faq_repeated_question_count', String(thinAuditStats.faq_repeated_question_count));
+  print('faq_repeated_answer_count', String(thinAuditStats.faq_repeated_answer_count));
+}
 
 console.log('\nRecent pages by effective updated timestamp:');
 for (const page of seoHealth.timestamp_health.recent_pages_by_updated_at.slice(0, 5)) {
@@ -228,6 +240,26 @@ function buildTimestampHealth(pages) {
     invalid_timestamp_count: invalidPages.length,
     invalid_pages: invalidPages.map((page) => page.urlPath),
     recent_pages_by_updated_at: recent,
+  };
+}
+
+function readThinAuditStats() {
+  const auditPath = path.join(rootDir, 'automation', 'runtime', 'thin-content-audit-report.json');
+
+  if (!existsSync(auditPath)) {
+    return { exists: false };
+  }
+
+  const report = JSON.parse(readFileSync(auditPath, 'utf8'));
+
+  return {
+    exists: true,
+    thin_pages: report.thin_pages?.length ?? 0,
+    broken_internal_links: report.broken_internal_links?.length ?? 0,
+    unsafe_external_links: report.unsafe_external_links?.length ?? 0,
+    faq_unique_question_ratio: report.faq?.unique_question_ratio ?? 0,
+    faq_repeated_question_count: report.faq?.repeated_question_count ?? 0,
+    faq_repeated_answer_count: report.faq?.repeated_answer_count ?? 0,
   };
 }
 

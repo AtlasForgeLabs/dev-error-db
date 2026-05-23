@@ -8,5 +8,6 @@ automation/expand/output/
 automation/import/output/
 automation/publish/output/
 automation/runtime/*.json
+automation/runtime/*.md
 !automation/runtime/.gitkeep
 !automation/runtime/README.md

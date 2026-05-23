@@ -241,9 +241,13 @@ Dev Error DB must be useful enough for users and reviewers to understand its pur
 - Keep trust pages live and linked: About, Contact, Privacy Policy, Terms, Disclaimer, Editorial Methodology, Source Policy, and Troubleshooting Methodology.
 - Homepage and hubs should explain how to use the database, how source-backed pages are labeled, and what to check before applying fixes.
 - Error detail pages should expose the exact signature, technology, category, quick fix, last updated date, source-backed/general guidance label, safety notes, and related pages.
+- Evidence labels must be derived from existing Markdown/body data only. Use `source_backed`, `partial_source`, `general_guidance`, and `needs_source` honestly; never add invented source URLs or fake verification to change a label.
+- FAQ wording should be data-aware and varied by title, technology, category, signature, causes, quick fix, and evidence status. Repeated generic FAQ blocks are a low-value-content risk.
+- Related error links must resolve to real error pages. Generic category labels should be shown as related troubleshooting hubs, not as error pages.
 - Category pages should include unique diagnostic workflows, common causes, representative source-backed errors when available, related categories, and safe debugging checklists.
 - If source-backed data is missing, do not cover the gap with invented references or fake certainty.
-- Run `npm run build`, `npm run check`, and `npm run report` before publishing content quality changes.
+- `npm run build` uses `scripts/astro-build-enoent-patch.mjs` only to ignore Astro temporary `manifest_*.mjs` cleanup ENOENT errors after static pages are generated. Do not broaden that patch to hide real build errors.
+- Run `npm run build`, `npm run check`, `npm run report`, `npm run audit:thin-content`, and `npm run pipeline:validate` before publishing content quality changes.
 
 ## How OpenClaw Should Operate
 

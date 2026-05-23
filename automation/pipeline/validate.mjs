@@ -95,7 +95,10 @@ async function validateSeoArchitecture() {
     ['homepage deployment section', 'src/pages/index.astro', 'Deployment troubleshooting'],
     ['homepage AI coding section', 'src/pages/index.astro', 'AI coding assistant errors'],
     ['error trust section', 'src/pages/errors/[slug].astro', 'Evidence and references'],
+    ['error derived evidence schema', 'src/pages/errors/[slug].astro', 'deriveEvidenceSchema'],
+    ['error data-aware FAQ', 'src/pages/errors/[slug].astro', 'buildDataAwareFaqItems'],
     ['category overview section', 'src/pages/categories/[category].astro', 'Troubleshooting overview'],
+    ['category evidence counts', 'src/pages/categories/[category].astro', 'Partial-source pages'],
     ['category CollectionPage schema', 'src/pages/categories/[category].astro', 'CollectionPage'],
     ['homepage WebSite schema', 'src/pages/index.astro', 'WebSite'],
     ['latest archive route', 'src/pages/latest.astro', 'Latest developer error fixes'],
@@ -103,6 +106,8 @@ async function validateSeoArchitecture() {
     ['report internal link density', 'scripts/report.mjs', 'average_links_per_built_page'],
     ['report AdSense presence', 'scripts/report.mjs', 'indexHasAdSense'],
     ['report GA4 presence', 'scripts/report.mjs', 'indexHasGa4'],
+    ['thin-content audit script', 'scripts/thin-content-audit.mjs', 'FAQ unique question ratio'],
+    ['derived evidence utility', 'src/lib/evidence.ts', 'evidence_status'],
   ];
 
   for (const [name, relativePath, needle] of sourceChecks) {

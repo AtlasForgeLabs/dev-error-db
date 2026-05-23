@@ -21,6 +21,20 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       source text wholesale, claim endorsement, or stretch a source beyond what
       it supports.
     </p>
+    <h2>Evidence labels</h2>
+    <p>
+      Dev Error DB derives page evidence labels at build time from existing
+      Markdown records. A source-backed page has public URLs under a Sources
+      checked section. A partial-source page has public URLs but lacks a
+      complete source block. A general guidance page has no public source URL in
+      the current record. A needs-source page has a source section without a
+      usable public URL.
+    </p>
+    <p>
+      These labels are metadata for reader caution, not a guarantee that a fix
+      is correct for every version, provider, account, or deployment
+      environment.
+    </p>
     <h2>Missing evidence</h2>
     <p>
       If a page lacks source-backed detail, the template should either omit the
