@@ -28797,5 +28797,69 @@
     "related_errors": [
       "AI Coding Tools"
     ]
+  },
+  {
+    "slug": "anthropic-api-overloaded-error-your-api-request-is-overloaded",
+    "title": "Anthropic API OverloadedError: How to Fix 'Your API Request Is Overloaded' / 429",
+    "description": "Fix Anthropic API 429 OverloadedError caused by high traffic, implement retry/backoff strategy to continue API usage on paid plans Includes evidence for Anthropic API troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Anthropic API",
+    "error_signature": "overloaded_error: Your API request is overloaded",
+    "search_intent": "Fix Anthropic API 429 OverloadedError caused by high traffic, implement retry/backoff strategy to continue API usage on paid plans",
+    "common_causes": [
+      "Found via initial GitHub API search (tier_0 attempted, limited by anonymous rate limit). OverloadedError is the standard Anthropic rate-limit response during peak traffic — affects paying users on Pro/API tiers with clear billing impact."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "Anthropic API"
+    ]
+  },
+  {
+    "slug": "openai-api-httperror-429-too-many-requests-rate-limit-reached-for-requests-exceeded-token-rate-limit-of-your-current-pricing-tier",
+    "title": "Azure OpenAI / OpenAI API 429 Too Many Requests — Rate Limit Exceeded Fix",
+    "description": "Resolve OpenAI API 429 rate limit errors affecting production AI integrations — increase quota, implement exponential backoff, adjust TPM/RPM limits Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "HTTPError: 429 Too Many Requests / rate limit reached for requests / exceeded token rate limit of your current pricing tier",
+    "search_intent": "Resolve OpenAI API 429 rate limit errors affecting production AI integrations — increase quota, implement exponential backoff, adjust TPM/RPM limits",
+    "common_causes": [
+      "Multiple GitHub issues confirmed: azure-rest-api-specs#34250 (Azure OpenAI rate limit issues), spacy-llm#388 (429 rate limit with LLM integration), anything-llm#3327 (embedding rate limit). Covers both OpenAI and Azure OpenAI billing impacts."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "cursor-model-service-unavailable-model-not-available-all-models-affected",
+    "title": "Cursor 'Model Not Available' Error — All AI Models Unavailable in Editor",
+    "description": "Fix Cursor editor where no AI models work despite correct network — requires troubleshooting model provider API key status, subscription tier, or backend outage Includes evidence for Cursor troubleshooting demand.",
+    "category": "Cursor",
+    "technology": "Cursor",
+    "error_signature": "model service unavailable / model not available (all models affected)",
+    "search_intent": "Fix Cursor editor where no AI models work despite correct network — requires troubleshooting model provider API key status, subscription tier, or backend outage",
+    "common_causes": [
+      "Found on forum.cursor.com (#118551, #118498) with multiple user reports describing identical symptoms: switching models yields 'not available' repeatedly. Commercially critical — breaks paid Cursor users entirely."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Cursor"
+    ]
+  },
+  {
+    "slug": "vercel-403-error-in-preview-panel-even-though-site-is-working",
+    "title": "Vercel '403 Error in Preview Panel Even Though Site Works'",
+    "description": "Fix Vercel preview deployment returning 403 forbidden despite successful build — check preview settings, team/org permissions, domain restrictions, and environment variable exposure Includes evidence for Vercel troubleshooting demand.",
+    "category": "Deployment",
+    "technology": "Vercel",
+    "error_signature": "403 Error in Preview Panel even though site is working",
+    "search_intent": "Fix Vercel preview deployment returning 403 forbidden despite successful build — check preview settings, team/org permissions, domain restrictions, and environment variable exposure",
+    "common_causes": [
+      "Found on r/vercel (score 8, new post). Distinct from general 'build failed' coverage. Specific to preview panel auth — affects team collaboration and staging workflows on paid plans."
+    ],
+    "quick_fix": "Check the build output, project root, and deployment platform configuration before redeploying.",
+    "related_errors": [
+      "Deployment"
+    ]
   }
 ]
