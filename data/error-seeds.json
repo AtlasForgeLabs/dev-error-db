@@ -28749,5 +28749,53 @@
     "related_errors": [
       "GitHub Copilot"
     ]
+  },
+  {
+    "slug": "claude-code-current-session-limit-already-at-100-despite-no-activity-usage-limit-reached-message-while-limits-far-from-being-reached",
+    "title": "Claude Code Pro usage limit fills without active use (phantom consumption)",
+    "description": "User pays for Claude Pro plan but usage quota fills up overnight with no active sessions, losing access unexpectedly Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Current session limit already at 100% despite no activity; Usage limit reached message while limits far from being reached",
+    "search_intent": "User pays for Claude Pro plan but usage quota fills up overnight with no active sessions, losing access unexpectedly",
+    "common_causes": [
+      "GitHub issue #61012 (anthropics/claude-code) — detailed bug report from Pro subscriber showing session + weekly quotas reaching 76–100% with zero local app activity, logged out of all devices. Multiple corroborating comments from other affected users. Category: AI Coding Tools (Claude Code is Cursor-class paid IDE tool). Not in covered-errors.md."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "claude-code-remote-session-create-failed-request-failed-with-status-code-403",
+    "title": "UltraPlan remote session create fails with 403 on Max subscription (authenticated user blocked)",
+    "description": "Paid Claude Code Max subscriber unable to launch remote sessions despite confirmed subscription and correct auth Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Remote session create failed: Request failed with status code 403",
+    "search_intent": "Paid Claude Code Max subscriber unable to launch remote sessions despite confirmed subscription and correct auth",
+    "common_causes": [
+      "GitHub issue #61839 (anthropics/claude-code) — freshly opened (May 23), labels include area:auth, area:cowork, bug. User verified 'subscriptionType': 'max' via claude auth status yet receives HTTP 403 on every attempt. Clear error signature with reproducible steps. High revenue impact (Max = highest paid tier). Not in covered-errors.md."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "claude-code-mcp-per-server-timeout-not-enforced-on-individual-tool-calls-stdio-hangs-indefinitely",
+    "title": "Anthropic Claude Code MCP per-server timeout not enforced on individual tool calls (stdio hangs indefinitely)",
+    "description": "Developer using Claude Code with custom MCP tools experiences infinite hangs because server-level timeouts don't apply to individual tool invocations Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "MCP per-server timeout not enforced on individual tool calls (stdio hangs indefinitely)",
+    "search_intent": "Developer using Claude Code with custom MCP tools experiences infinite hangs because server-level timeouts don't apply to individual tool invocations",
+    "common_causes": [
+      "GitHub issue #53641 (anthropics/claude-code) — recently closed (completed) May 24, labels: area:mcp, bug, has repro. While resolved, the error pattern ('stdio hangs indefinitely') represents a significant UX blocker for teams using custom MCP servers. Distinct from general timeout/rate-limit topics. Good for capturing users searching before fix ships."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
   }
 ]
