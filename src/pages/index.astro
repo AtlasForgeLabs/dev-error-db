@@ -29,6 +29,8 @@ const revenueHubLinks = getExistingRevenueHubLinks(categoryGroups);
 const totalCategories = categoryGroups.length;
 const totalErrors = errors.length;
 const totalTechnologies = new Set(errors.map((entry) => entry.data.technology)).size;
+const sourceBackedErrors = errors.filter((entry) => /https?:\/\//.test(entry.body)).length;
+const recentlyUpdatedSourceBacked = sortedByUpdated.filter((entry) => /https?:\/\//.test(entry.body)).slice(0, 8);
 const structuredData = [
   {
     '@context': 'https://schema.org',
@@ -64,10 +66,10 @@ const structuredData = [
 >
   <section class="hero hero--compact">
     <p class="eyebrow">Developer troubleshooting hub</p>
-    <h1>Fix developer errors faster</h1>
+    <h1>Developer troubleshooting database and error fix guide</h1>
     <p>
-      Find concise troubleshooting guides for developer error fixes, API errors, deployment issues, Docker daemon failures,
-      npm install problems, Python environment errors, AI coding tools, and GitHub Actions failures.
+      Match exact error signatures, read source-backed troubleshooting notes where available, and move from symptoms to
+      safe checks for API errors, deployment failures, Docker, npm, Python, AI coding tools, and GitHub Actions.
     </p>
   </section>
 
@@ -84,24 +86,42 @@ const structuredData = [
       <h2>{totalTechnologies}</h2>
       <p>Technologies covered</p>
     </article>
+    <article>
+      <h2>{sourceBackedErrors}</h2>
+      <p>Pages with public source URLs</p>
+    </article>
   </section>
 
   <section class="intent-grid" aria-labelledby="why-developers-heading">
-    <h2 id="why-developers-heading">Why developers use Dev Error DB</h2>
+    <h2 id="why-developers-heading">How to use Dev Error DB</h2>
     <div class="feature-grid">
       <article>
-        <h3>Fast error meaning</h3>
-        <p>Start with what the message usually means, then move into the quickest safe checks before deeper debugging.</p>
+        <h3>Match the exact signature</h3>
+        <p>Search or browse for the exact message first. Similar wording can point to a different provider, SDK, or runtime path.</p>
       </article>
       <article>
-        <h3>Practical fix paths</h3>
-        <p>Pages prioritize quick fixes, common causes, step-by-step troubleshooting, and prevention notes for real workflows.</p>
+        <h3>Check evidence and scope</h3>
+        <p>Use source-backed labels, technology, category, and update dates to decide whether the page matches your environment.</p>
       </article>
       <article>
-        <h3>Crawlable topic depth</h3>
-        <p>Category hubs connect API errors, Docker issues, cloud platform problems, deployment failures, and AI coding assistant errors.</p>
+        <h3>Apply one safe change</h3>
+        <p>Collect non-secret diagnostics, change one variable at a time, and keep a rollback path before touching production.</p>
       </article>
     </div>
+  </section>
+
+  <section class="search-entry" aria-labelledby="search-entry-heading">
+    <h2 id="search-entry-heading">Find an error</h2>
+    <form action="/errors/" method="get">
+      <label for="homepage-error-search">Error message, tool, provider, or technology</label>
+      <div>
+        <input id="homepage-error-search" name="q" type="search" placeholder="429 rate limit, module not found, function timeout" />
+        <button type="submit">Search</button>
+      </div>
+    </form>
+    <p>
+      Search is static-friendly and falls back to the crawlable error archive. Use quotes from the exact error when possible.
+    </p>
   </section>
 
   <section class="filters" aria-labelledby="top-categories-heading">
@@ -123,7 +143,7 @@ const structuredData = [
   </section>
 
   <section class="filters" aria-labelledby="revenue-hubs-heading">
-    <h2 id="revenue-hubs-heading">High-value developer troubleshooting hubs</h2>
+    <h2 id="revenue-hubs-heading">High-value troubleshooting hubs</h2>
     <p>
       Start with the strongest revenue-focused hubs for API failures, AI coding assistant problems, CI/CD breakage,
       Docker issues, deployment failures, Cloudflare errors, LiteLLM routing, and Ollama model runtime errors.
@@ -138,6 +158,56 @@ const structuredData = [
         ))
       }
     </div>
+  </section>
+
+  <section class="link-columns" aria-labelledby="source-backed-heading">
+    <h2 id="source-backed-heading">Recently updated source-backed errors</h2>
+    <p>
+      These pages include public source URLs in the imported page body. They still require local verification, but they
+      are stronger starting points than generic checklists.
+    </p>
+    <ul>
+      {
+        recentlyUpdatedSourceBacked.map((entry) => (
+          <li>
+            <a href={`/errors/${entrySlug(entry)}/`}>{entry.data.title}</a> ({formatPublicDate(getUpdatedTimestamp(entry))})
+          </li>
+        ))
+      }
+    </ul>
+  </section>
+
+  <section class="intent-grid" aria-labelledby="methodology-heading">
+    <h2 id="methodology-heading">How we build troubleshooting guidance</h2>
+    <div class="feature-grid">
+      <article>
+        <h3>Structured inputs</h3>
+        <p>Pages should start from a real error signature, category, technology, common causes, and update fields.</p>
+      </article>
+      <article>
+        <h3>Source labels</h3>
+        <p>When a record includes public references, the page labels that evidence instead of hiding it in a generic template.</p>
+      </article>
+      <article>
+        <h3>Correction path</h3>
+        <p>Outdated or unsupported claims can be reported through the contact page with the page URL and public source.</p>
+      </article>
+    </div>
+    <p>
+      Read the <a href="/editorial-methodology/">editorial methodology</a>,
+      <a href="/source-policy/">source policy</a>, and
+      <a href="/troubleshooting-methodology/">troubleshooting methodology</a>.
+    </p>
+  </section>
+
+  <section class="latest-pages" aria-labelledby="before-fix-heading">
+    <h2 id="before-fix-heading">What to check before applying a fix</h2>
+    <ul>
+      <li>Confirm the exact error signature and the smallest command, request, CI job, or editor action that reproduces it.</li>
+      <li>Record versions for the runtime, package manager, SDK, CLI, provider, operating system, and deployment target.</li>
+      <li>Redact secrets before sharing logs, issue links, screenshots, stack traces, or request payloads.</li>
+      <li>Test one change at a time in local or staging before applying it to production.</li>
+    </ul>
   </section>
 
   <section class="topic-nav" aria-labelledby="topic-nav-heading">

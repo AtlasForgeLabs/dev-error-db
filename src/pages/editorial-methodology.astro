@@ -1,0 +1,39 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Editorial Methodology"
+  description="How Dev Error DB turns structured error records and public evidence into static developer troubleshooting pages."
+>
+  <section class="content-page">
+    <h1>Editorial Methodology</h1>
+    <p>
+      Dev Error DB is built from structured error records rather than ad hoc
+      keyword pages. Each page should start with a recognizable error signature,
+      a technology, a category, update dates, common causes, and a concise
+      troubleshooting path.
+    </p>
+    <h2>What source-backed means</h2>
+    <p>
+      Source-backed means a page includes public references or imported evidence
+      that support the existence of the error pattern. Sources may include
+      official documentation, public issue reports, public release notes, or
+      other public developer troubleshooting material.
+    </p>
+    <h2>What is not allowed</h2>
+    <p>
+      Pages must not invent error data, fake commands, fake sources, fake
+      version support, fake provider policies, or guaranteed fixes. Private
+      logs, secrets, customer data, and unsupported claims are not acceptable
+      public page sources.
+    </p>
+    <h2>Update process</h2>
+    <p>
+      Pages include update fields from the content record when available. Older
+      records may only have a legacy updated date. Corrections are accepted by
+      email and should include the page URL, the incorrect claim, and a public
+      source or reproducible context.
+    </p>
+  </section>
+</BaseLayout>

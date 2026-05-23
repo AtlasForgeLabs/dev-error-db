@@ -1,0 +1,37 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Source Policy"
+  description="Dev Error DB source policy for public references, source-backed troubleshooting labels, and missing evidence handling."
+>
+  <section class="content-page">
+    <h1>Source Policy</h1>
+    <p>
+      Dev Error DB prefers public, durable, developer-relevant sources. The best
+      references are official documentation, public issue trackers, release
+      notes, changelogs, vendor status or support pages, and reproducible public
+      examples.
+    </p>
+    <h2>How sources are used</h2>
+    <p>
+      Sources are used to confirm that an error signature or failure pattern is
+      real and to shape the debugging checklist. The site should not copy
+      source text wholesale, claim endorsement, or stretch a source beyond what
+      it supports.
+    </p>
+    <h2>Missing evidence</h2>
+    <p>
+      If a page lacks source-backed detail, the template should either omit the
+      unsupported section or label the guidance as general troubleshooting. It
+      should not display empty source lists, null values, or invented references.
+    </p>
+    <h2>Corrections</h2>
+    <p>
+      Send source corrections to
+      <a href="mailto:contact@dev-error-db.com">contact@dev-error-db.com</a>.
+      Include the page URL and the public source that supports the change.
+    </p>
+  </section>
+</BaseLayout>

@@ -23,6 +23,8 @@ Validation proves that generated or edited content is safe to publish as a stati
 Required checks:
 
 - `npm run build`
+- `npm run check`
+- `npm run report`
 - Confirm `dist/sitemap-index.xml` exists.
 - Confirm `dist/sitemap-0.xml` exists.
 - Confirm homepage, category pages, error pages, and legal pages are in the sitemap.
@@ -30,6 +32,9 @@ Required checks:
 - Confirm `public/robots.txt` allows crawling and points to the sitemap.
 - Confirm category pages are not thin one-item hubs unless the category is strategically necessary and scheduled for expansion.
 - Confirm no generated page contains placeholder text or unsupported claims.
+- Confirm built pages do not expose visible `null` or `undefined`.
+- Confirm representative error pages include safety, evidence, and avoid-fix sections.
+- Confirm trust and methodology pages are present and linked.
 
 ## Failure Handling
 

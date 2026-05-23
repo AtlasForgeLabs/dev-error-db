@@ -89,7 +89,7 @@ async function main() {
 async function validateSeoArchitecture() {
   const checks = [];
   const sourceChecks = [
-    ['homepage revenue H1', 'src/pages/index.astro', 'Fix developer errors faster'],
+    ['homepage recovery H1', 'src/pages/index.astro', 'Developer troubleshooting database and error fix guide'],
     ['homepage popular topics', 'src/pages/index.astro', 'Popular troubleshooting topics'],
     ['homepage API failures', 'src/pages/index.astro', 'Common API failures'],
     ['homepage deployment section', 'src/pages/index.astro', 'Deployment troubleshooting'],

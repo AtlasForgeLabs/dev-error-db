@@ -89,11 +89,14 @@ Content must:
 - avoid AI fluff
 - avoid repetitive wording
 - prioritize clarity and usefulness
+- clearly distinguish source-backed evidence from general troubleshooting guidance
+- hide missing fields instead of rendering null, undefined, empty lists, or placeholders
 
 Do NOT:
 - generate generic filler
 - overuse marketing language
 - create fake troubleshooting steps
+- invent error data, fake sources, fake commands, fake provider policies, fake version support, fake metrics, or guaranteed fixes
 
 ---
 
@@ -226,9 +229,21 @@ When generating pages, Codex must:
 
 After generating pages, Codex must:
 - run `npm run build`
+- run `npm run check`
 - verify sitemap generation
 - check internal links when routing or related links change
 - summarize generated files and validation output
+
+## AdSense Content Quality Rules
+
+Dev Error DB must be useful enough for users and reviewers to understand its purpose without relying on the volume of generated pages.
+
+- Keep trust pages live and linked: About, Contact, Privacy Policy, Terms, Disclaimer, Editorial Methodology, Source Policy, and Troubleshooting Methodology.
+- Homepage and hubs should explain how to use the database, how source-backed pages are labeled, and what to check before applying fixes.
+- Error detail pages should expose the exact signature, technology, category, quick fix, last updated date, source-backed/general guidance label, safety notes, and related pages.
+- Category pages should include unique diagnostic workflows, common causes, representative source-backed errors when available, related categories, and safe debugging checklists.
+- If source-backed data is missing, do not cover the gap with invented references or fake certainty.
+- Run `npm run build`, `npm run check`, and `npm run report` before publishing content quality changes.
 
 ## How OpenClaw Should Operate
 

@@ -1,0 +1,31 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Disclaimer"
+  description="Disclaimer for Dev Error DB troubleshooting content, source-backed labels, general guidance, and production safety."
+>
+  <section class="content-page">
+    <h1>Disclaimer</h1>
+    <p>
+      Dev Error DB provides developer troubleshooting information for
+      educational and diagnostic use. The site helps narrow possible causes and
+      checks for error messages, but it cannot guarantee that any fix applies to
+      every environment.
+    </p>
+    <h2>Source-backed does not mean guaranteed</h2>
+    <p>
+      A source-backed page means the page includes public or otherwise safe
+      references used to understand the error pattern. It does not mean the
+      underlying issue is still open, that a vendor has endorsed this site, or
+      that the same fix will work for your project.
+    </p>
+    <h2>Production safety</h2>
+    <p>
+      Before changing production systems, capture non-secret diagnostics, test
+      the smallest change in a safe environment, keep a rollback path, and avoid
+      exposing credentials in logs, tickets, screenshots, or support requests.
+    </p>
+  </section>
+</BaseLayout>

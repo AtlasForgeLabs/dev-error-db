@@ -19,6 +19,7 @@
     "expand:imported:dry": "node automation/expand/expand-imported-candidates.mjs --dry-run",
     "expand:imported": "node automation/expand/expand-imported-candidates.mjs --write",
     "generate:errors": "node scripts/generate-error-pages.mjs",
+    "check": "node scripts/validate-adsense-readiness.mjs",
     "pipeline:health": "node automation/pipeline/health.mjs",
     "pipeline:validate": "node automation/pipeline/validate.mjs",
     "publish:safe": "node automation/publish/safe-publish.mjs",

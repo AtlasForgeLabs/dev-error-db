@@ -1,0 +1,39 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Troubleshooting Methodology"
+  description="The Dev Error DB debugging workflow for matching error signatures, collecting safe diagnostics, testing fixes, and avoiding production risk."
+>
+  <section class="content-page">
+    <h1>Troubleshooting Methodology</h1>
+    <p>
+      Dev Error DB pages are written around a simple debugging workflow: match
+      the exact error signature, identify the technology and execution context,
+      collect safe diagnostics, test the smallest likely fix, and document the
+      result.
+    </p>
+    <h2>What to collect before debugging</h2>
+    <ul>
+      <li>The exact error text and stack trace with secrets redacted.</li>
+      <li>The command, API request, CI job, editor action, or deployment step that failed.</li>
+      <li>Tool, SDK, runtime, operating system, and provider versions when available.</li>
+      <li>Whether the failure reproduces locally, in CI, in staging, or only in production.</li>
+    </ul>
+    <h2>Safe fix workflow</h2>
+    <ol>
+      <li>Reproduce the smallest failing action.</li>
+      <li>Compare the page evidence with official documentation or your local logs.</li>
+      <li>Change one variable at a time.</li>
+      <li>Verify the same action succeeds before expanding the change.</li>
+      <li>Keep a rollback path for production or shared environments.</li>
+    </ol>
+    <h2>When to pause</h2>
+    <p>
+      Pause before applying a fix if it deletes data, rotates credentials,
+      changes billing or quotas, relaxes security controls, or touches
+      production infrastructure without a tested rollback path.
+    </p>
+  </section>
+</BaseLayout>
