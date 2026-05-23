@@ -28397,5 +28397,53 @@
     "related_errors": [
       "Deployment"
     ]
+  },
+  {
+    "slug": "anthropic-api-web-search-20250209-dynamic-filtering-causes-excessive-pause-turn-at-110-content-blocks-batch-processing-impractical",
+    "title": "Anthropic web_search_20250209 dynamic filtering causes 55% failure with pause_turn at ~110 content blocks",
+    "description": "Fix Anthropic API web_search tool getting stuck in internal loop, returning pause_turn without usable output, causing 55%+ failure rate in batch processing Includes evidence for Anthropic API troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Anthropic API",
+    "error_signature": "web_search_20250209 dynamic filtering causes excessive pause_turn at ~110 content blocks — batch processing impractical",
+    "search_intent": "Fix Anthropic API web_search tool getting stuck in internal loop, returning pause_turn without usable output, causing 55%+ failure rate in batch processing",
+    "common_causes": [
+      "GitHub issue #1237 on anthropics/anthropic-sdk-python. The web_search_20250209 tool with Messages API enters internal code_execution loop during dynamic filtering, hitting 10-iteration server limit and returning stop_reason: 'pause_turn' with ~110 content blocks but zero usable output. 55-60% failure rate in production, ~$0.15-0.25 wasted per attempt, average 32 min/request including retries. Workaround: set allowed_callers: ['direct'] to disable dynamic filtering. Cross-ecosystem impact (Pydantic AI #2600, LiteLLM #17737, LangChain #33920, Vercel AI SDK #11855). Production batch of 35 requests takes 9+ hours, only 50-60% completes. Category: Anthropic API (critical production-blocking error on paid API)."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "Anthropic API"
+    ]
+  },
+  {
+    "slug": "litellm-responses-bridge-normalize-function-tools-and-drop-unsupported-tool-types-invalid-tools-0-function-name-empty-string-tools-0-type-unknown-variant-custom",
+    "title": "LiteLLM Responses API → Chat Completions bridge drops function tool names, rejects unsupported tool types",
+    "description": "Fix LiteLLM Responses API bridge dropping nested function tool names and forwarding Responses-only tool types that downstream providers (DeepSeek, GLM, MiniMax) reject Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "Responses bridge: normalize function tools and drop unsupported tool types — Invalid 'tools[0].function.name': empty string; tools[0].type: unknown variant 'custom'",
+    "search_intent": "Fix LiteLLM Responses API bridge dropping nested function tool names and forwarding Responses-only tool types that downstream providers (DeepSeek, GLM, MiniMax) reject",
+    "common_causes": [
+      "GitHub PR #28696 on BerriAI/litellm (created May 23 2026, same day). Two bugs in transform_responses_api_tools_to_chat_completion_tools: Bug 1 reads tool name only from top level, ignoring nested 'function' object, producing empty string name that triggers Invalid tools[0].function.name errors. Bug 2 passes unrecognized tool types (custom, shell, file_search, code_interpreter) unchanged, triggering Unknown variant rejection. Affects cross-provider routing for DeepSeek, GLM/Z.AI, MiniMax. Fresh open PR indicates unpatched production bug. Category: LiteLLM (proxy routing error on paid multi-model gateway)."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "LiteLLM"
+    ]
+  },
+  {
+    "slug": "anthropic-api-pydantic-core-pydantic-core-validationerror-authorizationerrorresponse-error-input-should-be-invalid-request-unauthorized-client-access-denied-unsupported-response-type-invalid-scope-server-error-or-temporarily-unavailable",
+    "title": "Anthropic SDK MCP auth missing invalid_target OAuth error code (pydantic ValidationError)",
+    "description": "Fix MCP SDK OAuth authorization error codes missing 'invalid_target' (RFC 8707), causing pydantic validation error instead of correct OAuth response Includes evidence for Anthropic API troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Anthropic API",
+    "error_signature": "pydantic_core._pydantic_core.ValidationError: AuthorizationErrorResponse error Input should be 'invalid_request', 'unauthorized_client', 'access_denied', 'unsupported_response_type', 'invalid_scope', 'server_error' or 'temporarily_unavailable'",
+    "search_intent": "Fix MCP SDK OAuth authorization error codes missing 'invalid_target' (RFC 8707), causing pydantic validation error instead of correct OAuth response",
+    "common_causes": [
+      "GitHub issue #2641 on modelcontextprotocol/python-sdk (opened May 18 2026). The MCP SDK's AuthorizationErrorCode Literal type is missing 'invalid_target' defined by RFC 8707 §2 for resource-indicator mismatches. When any provider raises AuthorizeError(error='invalid_target'), pydantic rejects it with ValidationError, masking the real cause as generic server_error. Affects FastMCP's OAuthProxy and any MCP proxy fronting multiple resources. Category: Anthropic API / MCP ecosystem (auth error framework used with Claude API integration)."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "Anthropic API"
+    ]
   }
 ]
