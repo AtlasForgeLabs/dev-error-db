@@ -27901,5 +27901,85 @@
     "related_errors": [
       "Cloudflare"
     ]
+  },
+  {
+    "slug": "openai-api-insufficientquotaerror-429-insufficient-quota-response-treated-as-generic-ratelimiterror",
+    "title": "OpenAI API insufficient_quota 429 returns generic RateLimitError instead of specific exception",
+    "description": "Fix billing/quota exhaustion handling — users need to distinguish between temporary rate limits (retry) vs. account-level quota exhaustion (switch key/alert) Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "InsufficientQuotaError: 429 insufficient_quota response treated as generic RateLimitError",
+    "search_intent": "Fix billing/quota exhaustion handling — users need to distinguish between temporary rate limits (retry) vs. account-level quota exhaustion (switch key/alert)",
+    "common_causes": [
+      "PR #3042 merged 2026-05-21 adds dedicated InsufficientQuotaError subclass of RateLimitError to openai-python SDK. Previously both error types raised same RateLimitError, forcing developers to parse error codes manually. Commercial value: high — affects paying OpenAI users hitting billing limits. Category mapping: direct match to OpenAI API approved category."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "claude-code-api-error-claude-code-is-unable-to-respond-to-this-request-which-appears-to-violate-our-usage-policy-cyber-related-safeguards-block-routine-sysadmin-commands-and-poison-entire-session",
+    "title": "Claude Code cyber safeguards false positive: security audit commands blocked + session poisoning",
+    "description": "Fix false-positive cybersecurity filter blocking legitimate sysadmin/security-audit work on owned infrastructure; fix session context poisoning that persists across follow-up messages Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "API Error: Claude Code is unable to respond to this request, which appears to violate our Usage Policy — cyber-related safeguards block routine sysadmin commands and poison entire session",
+    "search_intent": "Fix false-positive cybersecurity filter blocking legitimate sysadmin/security-audit work on owned infrastructure; fix session context poisoning that persists across follow-up messages",
+    "common_causes": [
+      "Issue #61185 open 2026-05-21, 5 comments. Claude Code Pro user reports three related bugs: SUID enumeration command blocked, subsequent non-security messages also blocked (context poisoning), and Write() tool calls blocked when document mentions security terminology. All while running as root on owned Proxmox node. Commercial value: very high — Pro subscribers lose productive work sessions. Category: AI Coding Tools matches Claude Code per category rules."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "openai-api-dns-or-tls-error-when-connecting-to-azure-openai-example-code-uses-https-example-resource-azure-openai-com-instead-of-correct-https-example-endpoint-openai-azure-com",
+    "title": "Azure OpenAI example code has swapped endpoint hostname causing DNS/TLS errors",
+    "description": "Fix connection errors caused by incorrect Azure OpenAI endpoint format in official Python SDK examples Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "DNS or TLS error when connecting to Azure OpenAI — example code uses https://example-resource.azure.openai.com/ instead of correct https://example-endpoint.openai.azure.com/",
+    "search_intent": "Fix connection errors caused by incorrect Azure OpenAI endpoint format in official Python SDK examples",
+    "common_causes": [
+      "PR #3298 submitted 2026-05-22 fixes swapped Azure endpoint hostname in examples/azure.py. Users copy-pasting the example will hit DNS resolution or TLS handshake failures. Commercial value: medium-high — Azure OpenAI users hitting auth/connection errors. Category: OpenAI API per mapping rules."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "vercel-function-invocation-timeout-or-slow-cold-start-on-vercel-python-functions-due-to-unnecessary-files-in-bundle-uv-installer-metadata-unused-vendor-files",
+    "title": "Vercel Python function cold start times suboptimal due to bundle bloat",
+    "description": "Reduce Python function cold start latency on Vercel Serverless Functions — remove unused files from deployment bundle to improve invocation speed Includes evidence for Vercel troubleshooting demand.",
+    "category": "Deployment",
+    "technology": "Vercel",
+    "error_signature": "FUNCTION_INVOCATION_TIMEOUT or slow cold start on Vercel Python functions due to unnecessary files in bundle (uv installer metadata, unused vendor files)",
+    "search_intent": "Reduce Python function cold start latency on Vercel Serverless Functions — remove unused files from deployment bundle to improve invocation speed",
+    "common_causes": [
+      "PR #16400 merged 2026-05-22 introduces shouldStripVendorFile, PYTHONDONTWRITEBYTECODE, UV_NO_INSTALLER_METADATA flags. Cold starts are critical for serverless billing — each extra second costs money. Commercial value: high — Vercel paying users affected by slow deployments. Category: Deployment matches Vercel."
+    ],
+    "quick_fix": "Check the build output, project root, and deployment platform configuration before redeploying.",
+    "related_errors": [
+      "Deployment"
+    ]
+  },
+  {
+    "slug": "claude-code-dangerouslyskippermissions-setting-does-not-work-in-vs-code-still-prompts-for-permission-even-when-setting-is-enabled",
+    "title": "Claude Code dangerously skip permissions setting broken in VS Code extension",
+    "description": "Fix VS Code extension ignoring the dangerouslySkipPermissions configuration option — users want automated workflow without repeated permission prompts Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "dangerouslySkipPermissions setting does not work in VS Code — still prompts for permission even when setting is enabled",
+    "search_intent": "Fix VS Code extension ignoring the dangerouslySkipPermissions configuration option — users want automated workflow without repeated permission prompts",
+    "common_causes": [
+      "Issue #61000 open 2026-05-20, 1 comment. claude-code v2.1.126 on macOS VS Code. Permission-skip setting ineffective, blocking automated CI/CD-style workflows. Commercial value: medium-high — users enabling automation get interrupted by interactive permission prompts. Category: AI Coding Tools per Claude Code mapping."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
   }
 ]
