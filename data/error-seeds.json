@@ -27533,5 +27533,53 @@
     "related_errors": [
       "Ollama"
     ]
+  },
+  {
+    "slug": "anthropic-api-error-code-413-request-exceeds-the-maximum-allowed-number-of-bytes-the-maximum-request-size-is-32-mb-but-payload-is-only-2mb",
+    "title": "Vertex AI Rejecting ~2MB Requests with Misleading 413 32MB Limit Error via Anthropic SDK",
+    "description": "Fix Anthropic Claude API 413 rejection when sending documents via Vertex AI proxy — payload well under documented 32MB limit but consistently rejected Includes evidence for Anthropic API troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Anthropic API",
+    "error_signature": "Error code: 413 - 'Request exceeds the maximum allowed number of bytes. The maximum request size is 32 MB' (but payload is only ~2MB)",
+    "search_intent": "Fix Anthropic Claude API 413 rejection when sending documents via Vertex AI proxy — payload well under documented 32MB limit but consistently rejected",
+    "common_causes": [
+      "GitHub Issue #1028 on anthropics/anthropic-sdk-python (created 2025-09-07, open, 2 comments). Payloads as small as ~147KB get rejected with 413 error claiming 32MB limit. Same code works fine via direct Anthropic API. Works with prompt caching enabled. Affects enterprise customers using Claude Sonnet 4 for document analysis via Google Cloud Vertex AI."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Anthropic API"
+    ]
+  },
+  {
+    "slug": "anthropic-api-you-ve-reached-your-usage-limit-please-try-again-later-no-limit-type-identifier-no-reset-time",
+    "title": "Anthropic Usage Limit Label Ambiguity — No Distinction Between Session/Weekly/API Rate Limits",
+    "description": "Understand which specific Anthropic usage limit was hit and when it resets; identify actionable guidance for quota management Includes evidence for Anthropic API troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Anthropic API",
+    "error_signature": "You've reached your usage limit. Please try again later. (no limit type identifier, no reset time)",
+    "search_intent": "Understand which specific Anthropic usage limit was hit and when it resets; identify actionable guidance for quota management",
+    "common_causes": [
+      "GitHub Issue #1492 on anthropics/anthropic-sdk-python (created 2026-05-04, open, 1 comment). Multiple independent limits (session daily budget, weekly all-models budget, weekly Sonnet budget, API RPM/TPM) all surface identical message. Developers cannot distinguish limit types programmatically. High commercial value because it blocks paid API users from understanding their billing state."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "Anthropic API"
+    ]
+  },
+  {
+    "slug": "vercel-build-failed-the-environment-variables-provided-for-your-serverless-functions-exceed-the-limit-of-4kb",
+    "title": "Vercel Build Fails — Environment Variables Exceed 4KB Serverless Functions Limit",
+    "description": "Fix Vercel build failure caused by environment variable size exceeding the 4KB hard limit for serverless functions Includes evidence for Vercel troubleshooting demand.",
+    "category": "Deployment",
+    "technology": "Vercel",
+    "error_signature": "Build Failed — The Environment Variables provided for your Serverless Functions exceed the limit of 4KB",
+    "search_intent": "Fix Vercel build failure caused by environment variable size exceeding the 4KB hard limit for serverless functions",
+    "common_causes": [
+      "GitHub Issue #8105 on vercel/vercel (open, active discussion). Serverless function environment variables silently grow past 4KB causing deployment failures. Related to existing 'build command failed' entry but is a distinct error category — not a syntax/build error but a platform-enforced size limit with no progressive warning before failure."
+    ],
+    "quick_fix": "Check the build output, project root, and deployment platform configuration before redeploying.",
+    "related_errors": [
+      "Deployment"
+    ]
   }
 ]
