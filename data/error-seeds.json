@@ -27981,5 +27981,69 @@
     "related_errors": [
       "AI Coding Tools"
     ]
+  },
+  {
+    "slug": "claude-code-error-no-such-tool-available-mcp-plugin-telegram-telegram-reply-fd-0u-unix-none-stdin-pipe-broken",
+    "title": "Claude Code MCP stdio servers lose stdin pipe after ~10–20 minutes — process orphaned to PID 1",
+    "description": "Fix broken MCP server pipe causing tools to become unavailable after 10–20 min idle or active use in Claude Code sessions Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Error: No such tool available: mcp__plugin_telegram_telegram__reply | FD 0u unix -> (none) [stdin pipe BROKEN]",
+    "search_intent": "Fix broken MCP server pipe causing tools to become unavailable after 10–20 min idle or active use in Claude Code sessions",
+    "common_causes": [
+      "Source: github.com/anthropics/claude-code/issues/37482 (updated 2026-05-23). MCP stdio servers lose stdin pipe — child process survives orphaned to PID 1 with broken stdin socket. Causes stateful servers (Telegram bot, Linear) to die mid-session while others spawn zombie processes. Impact: recurring for long-running developer sessions."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "anthropic-api-attributeerror-nonetype-object-has-no-attribute-model-bedrock-error-payload-routed-as-completion-event-in-streaming",
+    "title": "Anthropic Bedrock streaming: error SSE events cause AttributeError crashing client instead of raising APIStatusError",
+    "description": "Fix Bedrock streaming crash when API returns error SSE frames (rate_limit_error, overloaded_error) — should raise typed APIStatusError instead of AttributeError Includes evidence for Anthropic API troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Anthropic API",
+    "error_signature": "AttributeError: 'NoneType' object has no attribute 'model' — Bedrock error payload routed as completion event in streaming",
+    "search_intent": "Fix Bedrock streaming crash when API returns error SSE frames (rate_limit_error, overloaded_error) — should raise typed APIStatusError instead of AttributeError",
+    "common_causes": [
+      "Sources: github.com/anthropics/anthropic-sdk-python/issues/1472/1572/1479 (updated 2026-05-19). Bedrock delivers error payloads via HTTP 200 SSE frames, decoder hardcodes them as 'completion', causing cast failures on message fields. Cross-region inference profiles reliably trigger this. Production-breaking for AWS Bedrock users."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "Anthropic API"
+    ]
+  },
+  {
+    "slug": "docker-docker-in-docker-v2-and-v3-feature-fails-now-for-previously-perfectly-working-devcontainer-configurations",
+    "title": "[docker-in-docker] v2 and v3 feature fails now for previously perfectly working devcontainer configurations",
+    "description": "Fix docker-in-docker devcontainer feature regression on Ubuntu 26.04 LTS with Docker Engine 29.5.0 — features that worked before now break Includes evidence for Docker troubleshooting demand.",
+    "category": "Docker",
+    "technology": "Docker",
+    "error_signature": "[docker-in-docker] v2 and v3 feature fails now for previously perfectly working devcontainer configurations",
+    "search_intent": "Fix docker-in-docker devcontainer feature regression on Ubuntu 26.04 LTS with Docker Engine 29.5.0 — features that worked before now break",
+    "common_causes": [
+      "Source: github.com/devcontainers/features/issues/1662 (updated 2026-05-22). Breaking change in devcontainer docker-in-docker feature v2/v3 on new Ubuntu/Docker versions. Blocks containerized dev workflows for teams relying on official Microsoft devcontainers image. Production-facing dev environment issue."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Docker"
+    ]
+  },
+  {
+    "slug": "litellm-unknown-provider-openai",
+    "title": "Unknown provider 'openai' — OpenRouter / LiteLLM provider auth chain failures",
+    "description": "Fix unknown provider error when routing through OpenRouter/LiteLLM proxy — provider auth chain misconfiguration blocks API calls Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "Unknown provider 'openai'",
+    "search_intent": "Fix unknown provider error when routing through OpenRouter/LiteLLM proxy — provider auth chain misconfiguration blocks API calls",
+    "common_causes": [
+      "Source: github.com/fathah/hermes-desktop/issues/294 (updated recently). Error surfaced in OpenRouter-based project; indicates provider registration/routing bug in LiteLLM or OpenRouter proxy layer. Directly impacts developers building multi-model apps who rely on unified proxy endpoints."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "LiteLLM"
+    ]
   }
 ]
