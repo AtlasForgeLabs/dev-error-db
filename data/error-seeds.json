@@ -28941,5 +28941,101 @@
     "related_errors": [
       "AI Coding Tools"
     ]
+  },
+  {
+    "slug": "claude-code-authorization-url-redirects-to-google-drive-mcp-install-page-instead-of-github-oauth-consent-screen-in-claude-ai-code-web-sessions",
+    "title": "Hosted GitHub MCP OAuth Flow Broken — Redirects to Wrong Provider in Claude Code Web Sessions",
+    "description": "Fix GitHub MCP server OAuth authentication redirecting to wrong identity provider in Claude Code web interface Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Authorization URL redirects to Google Drive MCP install page instead of GitHub OAuth consent screen in claude.ai/code web sessions",
+    "search_intent": "Fix GitHub MCP server OAuth authentication redirecting to wrong identity provider in Claude Code web interface",
+    "common_causes": [
+      "GitHub issue #60807 on anthropics/claude-code: In Claude Code on the web (claude.ai/code), the GitHub MCP server is installed but unauthenticated. When the OAuth flow is initiated, the authorization URL redirects to the Google Drive MCP install page instead of the GitHub OAuth consent screen. High commercial value — affects paying Claude Code users trying to integrate GitHub repos directly."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "claude-code-oauth-flow-never-initiates-opens-about-blank-page-and-immediately-prompts-to-reopen-claude-desktop-creating-an-infinite-loop",
+    "title": "Custom MCP Server OAuth 2.1 Auth Causes Infinite Loop in Claude Desktop and claude.ai",
+    "description": "Resolve OAuth 2.1 authentication infinite loop preventing custom MCP server connections in Claude Code web and desktop interfaces Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "OAuth flow never initiates — opens about:blank page and immediately prompts to reopen Claude Desktop, creating an infinite loop",
+    "search_intent": "Resolve OAuth 2.1 authentication infinite loop preventing custom MCP server connections in Claude Code web and desktop interfaces",
+    "common_causes": [
+      "GitHub issue #11814 on anthropics/claude-code: A fully spec-compliant custom MCP server with OAuth 2.1 authentication fails to connect in both Claude Desktop and claude.ai web interface. The same server works perfectly with Claude Code CLI using --transport http. Enterprise-facing error affecting custom integrations."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "openai-api-openai-failed-to-embed-failed-to-embed-429-too-many-requests",
+    "title": "OpenAI Embedding API Returns 429 Rate Limit Error on Large File Uploads",
+    "description": "Fix rate limiting when uploading large text files (.txt ~29MB) through systems that use OpenAI embeddings via things-llm Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "OpenAI Failed to embed: [failed_to_embed]: 429 Too Many Requests",
+    "search_intent": "Fix rate limiting when uploading large text files (.txt ~29MB) through systems that use OpenAI embeddings via things-llm",
+    "common_causes": [
+      "GitHub issue #3327 on Mintplex-Labs/anything-llm: System returns 'OpenAI Failed to embed: [failed_to_embed]: 429' when processing large files. Rate limits block batch/embedding operations critical for RAG pipelines. Strong commercial value for businesses using AI document processing."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "claude-code-the-github-remote-mcp-does-not-support-dynamic-client-registration-at-the-moment-so-example-command-will-not-work",
+    "title": "GitHub Remote MCP Server Does Not Support Dynamic Client Registration for OAuth",
+    "description": "Find working OAuth configuration method for connecting Claude Code to GitHub's remote MCP server as alternative to broken Dynamic Client Registration Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "The GitHub remote MCP does not support Dynamic Client Registration at the moment so example command will not work",
+    "search_intent": "Find working OAuth configuration method for connecting Claude Code to GitHub's remote MCP server as alternative to broken Dynamic Client Registration",
+    "common_causes": [
+      "GitHub issue #3433 on anthropics/claude-code: Claude MCP docs reference Dynamic Client Registration which GitHub remote MCP doesn't currently support. Users must fall back to Personal Access Token approach or register a new GitHub OAuth app. Directly blocks developers setting up Claude Code + GitHub integration."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "openai-api-openai-ratelimiterror-error-code-429-application-halts-if-rate-limit-is-reached",
+    "title": "OpenAI API Rate Limit Halts Application Code Without Retry Handling",
+    "description": "Implement proper rate limit handling with retries for OpenAI API calls in production applications to prevent crashes Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "openai.RateLimitError: Error code: 429 - application halts if rate limit is reached",
+    "search_intent": "Implement proper rate limit handling with retries for OpenAI API calls in production applications to prevent crashes",
+    "common_causes": [
+      "GitHub issue #614 on assafelovic/gpt-researcher: Code halts completely when OpenAI rate limit (429) is hit because no exponential backoff or retry logic exists. Production apps crash rather than gracefully degrade. Search demand driven by gpt-researcher and similar AI agent tools gaining traction."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "vercel-pipeline-started-failing-on-vercel-cli-version-update-for-manual-build-and-deployments",
+    "title": "Vercel Pipeline Deployment Fails After CLI Version Update",
+    "description": "Resolve CI/CD pipeline deployment failures triggered by Vercel CLI version upgrades blocking automated Next.js builds Includes evidence for Vercel troubleshooting demand.",
+    "category": "Deployment",
+    "technology": "Vercel",
+    "error_signature": "Pipeline started failing on Vercel CLI version update for manual build and deployments",
+    "search_intent": "Resolve CI/CD pipeline deployment failures triggered by Vercel CLI version upgrades blocking automated Next.js builds",
+    "common_causes": [
+      "GitHub issue #15043 on vercel/vercel: Pipelines using vercel build command for manual builds fail after CLI updates. Developers building and deploying Next.js to Vercel via GitLab CI experience sudden build failures. Strong commercial value for deployed SaaS products relying on Vercel CI/CD."
+    ],
+    "quick_fix": "Check the build output, project root, and deployment platform configuration before redeploying.",
+    "related_errors": [
+      "Deployment"
+    ]
   }
 ]
