@@ -27581,5 +27581,85 @@
     "related_errors": [
       "Deployment"
     ]
+  },
+  {
+    "slug": "github-copilot-e-32603-response-content-type-is-missing-status-200-http-200-response-does-not-appear-to-originate-from-github",
+    "title": "GitHub Copilot Auth Failure on macOS: Response Content-Type Missing (Status 200)",
+    "description": "Fix GitHub Copilot authentication failures across multiple editors (Neovim/copilot.vim, Zed) on macOS where auth endpoint returns malformed responses despite valid TLS Includes evidence for GitHub Copilot troubleshooting demand.",
+    "category": "GitHub Copilot",
+    "technology": "GitHub Copilot",
+    "error_signature": "E-32603 Response content-type is missing (status=200); HTTP 200 response does not appear to originate from GitHub",
+    "search_intent": "Fix GitHub Copilot authentication failures across multiple editors (Neovim/copilot.vim, Zed) on macOS where auth endpoint returns malformed responses despite valid TLS",
+    "common_causes": [
+      "GitHub Issue copilot.vim#283 (May 2026): M4 Max MacBook Pro, copilot.vim 1.59.0 + LSP 1.485.0. Auth fails with E-32603 error — 200 response but missing content-type header. Same network works on different Macs. Investigating upstream Copilot language-server auth response changes. Affects paid subscription users unable to use feature."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "GitHub Copilot"
+    ]
+  },
+  {
+    "slug": "openai-api-error-429-you-exceeded-your-current-quota-please-check-your-plan-and-billing-details-even-with-1-2-requests-min-traffic",
+    "title": "OpenAI API ChatGPT Returns 429 Rate Limit Exceeded Even for Low Traffic (1-2 req/min)",
+    "description": "Debug random 429 errors occurring on low-traffic Node.js app using OpenAI gpt-4o-mini, determine root cause and whether retry logic or delays help Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "Error: 429 - You exceeded your current quota, please check your plan and billing details (even with 1-2 requests/min traffic)",
+    "search_intent": "Debug random 429 errors occurring on low-traffic Node.js app using OpenAI gpt-4o-mini, determine root cause and whether retry logic or delays help",
+    "common_causes": [
+      "Stack Overflow Q79816500 (Nov 2025): Node.js integration with OpenAI Chat Completions API. App works fine initially then randomly throws 429 even at 1-2 req/min. Using official OpenAI npm package with gpt-4o-mini. Asks about random occurrence cause, retry strategy, and usage-checking via API. Covers single-user dev environment unexpectedly hitting quotas."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "docker-error-failed-to-create-sandbox-create-runtime-sandboxd-error-status-500-failed-to-create-network-cannot-connect-to-the-docker-daemon-at-unix-docker-sock-is-the-docker-daemon-running",
+    "title": "Docker Sandboxes v0.30.0 on Windows: Cannot Self-Connect to docker.sock (Daemon Running But Unreachable)",
+    "description": "Fix Docker Sandboxes sbx run failing on Windows 11 because sandboxd in-process moby backend cannot connect to its own socket immediately after starting Includes evidence for Docker troubleshooting demand.",
+    "category": "Docker",
+    "technology": "Docker",
+    "error_signature": "ERROR: failed to create sandbox: create runtime: sandboxd error: status 500: failed to create network: Cannot connect to the Docker daemon at unix://...docker.sock. Is the docker daemon running?",
+    "search_intent": "Fix Docker Sandboxes sbx run failing on Windows 11 because sandboxd in-process moby backend cannot connect to its own socket immediately after starting",
+    "common_causes": [
+      "GitHub Issue docker/sbx-releases#157 (May 2026): Docker Sandboxes v0.30.0 on Windows 11. sandboxd logs show socket serving correctly, but connecting goroutine 10ms later fails with daemon-not-running error. Secondary issue: stale socket files persist on restart ('file cannot be accessed by system'). Reproduced with Docker Desktop 29.4.3 + WSL2. Affects Docker Desktop/Sandboxes paid enterprise users."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Docker"
+    ]
+  },
+  {
+    "slug": "claude-code-error-invalid-scope-error-description-the-following-scopes-are-invalid-offline-access-subsequent-auth-gives-requested-resource-invalid",
+    "title": "Claude Code MCP OAuth Failed: offline_access Scope Invalid — Requested Resource Invalid",
+    "description": "Fix Claude Code MCP authentication failure when connecting to self-hosted instance where oauth2 authorize rejects offline_access scope then callback gives 'requested resource invalid' Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "error=invalid_scope error_description='The following scopes are invalid: offline_access'; subsequent auth gives 'requested resource invalid'",
+    "search_intent": "Fix Claude Code MCP authentication failure when connecting to self-hosted instance where oauth2 authorize rejects offline_access scope then callback gives 'requested resource invalid'",
+    "common_causes": [
+      "GitHub Issue keeper.sh#376 (May 2026): User connects Claude Code to Keeper MCP server (self-hosted via Docker). OAuth flow fails because provider rejects 'offline_access' scope. Removing scope allows redirect to token exchange but Claude Code reports 'requested resource invalid'. Affects developers using AI coding tools with enterprise/self-hosted identity providers. Category mapped to AI Coding Tools per SKILL.md rules."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "litellm-ratelimiterror-silently-emitted-category-vendor-rate-limit-for-router-side-rpm-tpm-enforcement-instead-of-category-litellm-rate-limit",
+    "title": "LiteLLM Router-Side Rate-Limit Errors Silently Labeled as Vendor Rate Limit",
+    "description": "Fix LiteLLM router strategy incorrectly attributing self-imposed rate limits (deployment over defined rpm/tpm limit) to upstream vendors, preventing correct dashboards/alerts for proxy-side throttling Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "RateLimitError silently emitted category='vendor_rate_limit' for router-side rpm/tpm enforcement instead of category='litellm_rate_limit'",
+    "search_intent": "Fix LiteLLM router strategy incorrectly attributing self-imposed rate limits (deployment over defined rpm/tpm limit) to upstream vendors, preventing correct dashboards/alerts for proxy-side throttling",
+    "common_causes": [
+      "GitHub PR BerriAI/litellm#27708 (May 2026): Follow-up to unified rate-limit error work (#27687). Router-side raises in lowest_tpm_rpm_v2.py and model_rate_limit_check.py (9 total) emit category=vendor_rate_limit instead of litellm_rate_limit. This breaks monitoring dashboards and callbacks that split litellm vs vendor throttles. 82 tests pass. Active pull request indicates ongoing developer pain point with production observability."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "LiteLLM"
+    ]
   }
 ]
