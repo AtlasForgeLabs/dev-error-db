@@ -27661,5 +27661,101 @@
     "related_errors": [
       "LiteLLM"
     ]
+  },
+  {
+    "slug": "openai-api-model-not-supported-with-responses-api-supported-models-are-gpt-image-1-gpt-image-1-mini-gpt-image-1-5",
+    "title": "OpenAI SDK sends conflicting model field causing 400 Bad Request on Azure OpenAI (gpt-image-1.5)",
+    "description": "Fix 400 error when deploying gpt-image-1.5 on Azure OpenAI with mismatched deployment and model names Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "Model not supported with Responses API. Supported models are: ['gpt-image-1', 'gpt-image-1-mini', 'gpt-image-1.5']",
+    "search_intent": "Fix 400 error when deploying gpt-image-1.5 on Azure OpenAI with mismatched deployment and model names",
+    "common_causes": [
+      "GitHub issue #2892 and PR #2905 confirm SDK sends model field in request body after extracting it for URL routing, causing Azure backend to reject deployment-name mismatches. Labels=bug, 4 comments. Category mapping: directly impacts paid Azure OpenAI users with billing and deployment failure. Tier bonus +1 applied."
+    ],
+    "quick_fix": "Check the build output, project root, and deployment platform configuration before redeploying.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "kubernetes-net-err-http2-protocol-error-206-partial-content-recv-buffer-stuck-with-zerowindow-flag",
+    "title": "Kong Ingress Controller serves partial HTTP2 content on large requests TCP ZeroWindow deadlock",
+    "description": "Fix large file proxy failures above 100KB returning partial content instead of full response in Kong Kubernetes deployments Includes evidence for Kubernetes troubleshooting demand.",
+    "category": "Cloud Platforms",
+    "technology": "Kubernetes",
+    "error_signature": "net::ERR_HTTP2_PROTOCOL_ERROR 206 Partial Content; recv buffer stuck with ZeroWindow flag",
+    "search_intent": "Fix large file proxy failures above 100KB returning partial content instead of full response in Kong Kubernetes deployments",
+    "common_causes": [
+      "GitHub issue #7933 shows production issue where Kong proxy receives large files but stops forwarding them TCP receive buffer gets stuck, ZeroWindow sent upstream, connection deadlocks. Affects enterprise Kubernetes deployments using Kong ingress controller. Category mapping Kubernetesingress context to Cloud Platforms per approved category table."
+    ],
+    "quick_fix": "Check the build output, project root, and deployment platform configuration before redeploying.",
+    "related_errors": [
+      "Cloud Platforms"
+    ]
+  },
+  {
+    "slug": "anthropic-api-skill-md-file-must-be-exactly-in-the-top-level-folder",
+    "title": "Anthropic beta.skills.create undocumented file path requirement fails with confusing multi-step 400 errors",
+    "description": "Fix confusing 400 errors when uploading skills to Anthropic API - first error is wrong, second error is still misleading Includes evidence for Anthropic API troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Anthropic API",
+    "error_signature": "SKILL.md file must be exactly in the top-level folder.",
+    "search_intent": "Fix confusing 400 errors when uploading skills to Anthropic API - first error is wrong, second error is still misleading",
+    "common_causes": [
+      "GitHub issue #1575 shows developer hitting two sequential 400 errors with cryptic messages before finally discovering the hidden constraint (directory name must match name frontmatter). No docs or README mention this. Affects paid API users building Claude skills. Tier bonus +1 applied."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Anthropic API"
+    ]
+  },
+  {
+    "slug": "vercel-client-side-cache-key-collision-for-repeated-search-param-keys-results-in-stale-render-suspense-never-re-suspends",
+    "title": "Next.js v16 client router cache collision breaks repeated search param navigation",
+    "description": "Fix Next.js route cache serving stale data when navigating between URLs with different repeated search params like color=red&color=green vs color=red&color=blue Includes evidence for Vercel troubleshooting demand.",
+    "category": "Deployment",
+    "technology": "Vercel",
+    "error_signature": "client-side cache key collision for repeated search param keys results in stale render, Suspense never re-suspends",
+    "search_intent": "Fix Next.js route cache serving stale data when navigating between URLs with different repeated search params like color=red&color=green vs color=red&color=blue",
+    "common_causes": [
+      "PR #93368 fixes regression introduced in Next.js v16.2.0 (issue #92152). Object.fromEntries collapses repeated params, server uses Record preserving arrays, cache keys disagree. Affects Next.js deployments with dynamic filtering UIs. Vercel P0 tech, tier bonus +1 applied."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Deployment"
+    ]
+  },
+  {
+    "slug": "docker-docker-compose-pull-does-not-update-images-used-in-volumes-with-type-image",
+    "title": "Docker Compose pull fails to update images used in volumes with type=image",
+    "description": "Fix docker compose pull silently skipping volume images so containers run stale image versions Includes evidence for Docker troubleshooting demand.",
+    "category": "Docker",
+    "technology": "Docker",
+    "error_signature": "docker compose pull does not update images used in volumes with type=image",
+    "search_intent": "Fix docker compose pull silently skipping volume images so containers run stale image versions",
+    "common_causes": [
+      "GitHub issue #13809 shows docker compose pull not pulling new image versions when images are mounted as volume sources. Users expect pull to update all referenced images. Production deployments may silently use outdated code. Docker P0 tech, tier bonus +1 applied."
+    ],
+    "quick_fix": "Verify the model name, local service connectivity, and network access before retrying the model pull.",
+    "related_errors": [
+      "Docker"
+    ]
+  },
+  {
+    "slug": "vercel-notfound-prerender-leaves-holes-in-flight-data-that-never-resolve-resulting-in-reported-hydration-errors",
+    "title": "Next.js prerendered notFound causes hydration errors when cacheComponents enabled",
+    "description": "Fix Next.js notFound() prerender causing broken page hydration and flight data holes with cacheComponents enabled Includes evidence for Vercel troubleshooting demand.",
+    "category": "Deployment",
+    "technology": "Vercel",
+    "error_signature": "notFound() prerender leaves holes in Flight data that never resolve resulting in reported hydration errors",
+    "search_intent": "Fix Next.js notFound() prerender causing broken page hydration and flight data holes with cacheComponents enabled",
+    "common_causes": [
+      "PR #94037 relands previous fix #93988 after #92231 static prerender approach caused connection-closed issues with incomplete Flight data. Affects production Next.js deployments using cacheComponents with notFound error pages. Vercel P0 tech, tier bonus +1 applied."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Deployment"
+    ]
   }
 ]
