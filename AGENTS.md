@@ -149,6 +149,38 @@ Frontmatter should include:
 
 ---
 
+# Hybrid Indexability Architecture
+
+Dev Error DB uses a static-first hybrid model to scale the error corpus without mass 404s or AdSense review regressions.
+
+Indexability statuses (derived from existing Markdown fields only):
+
+- `indexable_html` — source-backed or high-value records that should remain crawlable static pages.
+- `data_only` — long-tail/low-source records that can live in JSON indexes without a new HTML route when safe.
+- `legacy_preserved` — slugs listed in `config/legacy-published-slugs.json` that keep HTML for backward compatibility.
+- `pending_review` — incomplete or unclear records; remain conservative and usually keep HTML.
+
+Build outputs under `dist/data/errors/`:
+
+- `index.json`, `indexability-summary.json`
+- `categories/{category}.json`, `technologies/{technology}.json`
+
+Controls (environment overrides at build time):
+
+- `MAX_STATIC_ERROR_PAGES` (default `0` = no cap)
+- `ENABLE_DATA_ONLY_FOR_NEW_RECORDS` (default `true`)
+- `PRESERVE_LEGACY_ERROR_ROUTES` (default `true`)
+
+Agent rules:
+
+- Never remove existing published error Markdown or live error URLs in routine work.
+- Never add sitemap or hub links to records without generated HTML.
+- Never convert the site to client-only JSON rendering for SEO pages.
+- Update `config/legacy-published-slugs.json` only with explicit human approval when intentionally publishing new static routes at scale.
+- Run `npm run build`, `npm run check`, `npm run report`, `npm run pipeline:validate`, and `npm run audit:thin-content` after hybrid architecture changes.
+
+---
+
 # UI Rules
 
 Style:

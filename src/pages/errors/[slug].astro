@@ -15,23 +15,26 @@ import { formatPublicDate, getUpdatedTimestamp, sortByUpdatedTimestamp } from '.
 import { buildDataAwareFaqItems } from '../../lib/faq';
 import { deriveEvidenceSchema, evidenceStatusDescription, evidenceStatusLabel, stripGeneratedEvidenceAndFaq } from '../../lib/evidence';
 import { renderTrustedMarkdown } from '../../lib/markdown';
+import { buildErrorCatalog } from '../../lib/error-catalog';
 
 export async function getStaticPaths() {
   const errors = await getCollection('errors');
+  const catalog = buildErrorCatalog(errors);
 
-  return errors.map((entry) => ({
+  return catalog.staticEntries.map((entry) => ({
     params: { slug: entry.id.replace(/\.mdx?$/, '') },
-    props: { entry },
+    props: { entry, staticSlugList: [...catalog.staticSlugs] },
   }));
 }
 
-const { entry } = Astro.props;
+const { entry, staticSlugList } = Astro.props;
+const staticSlugs = new Set(staticSlugList);
 const allErrors = await getCollection('errors');
 const publicCategory = categoryLabelFor(entry);
 const evidence = deriveEvidenceSchema(entry);
 const articleHtml = renderTrustedMarkdown(stripGeneratedEvidenceAndFaq(entry.body));
-const relatedErrors = findRelatedEntries(entry, allErrors);
-const relatedClusters = buildRelatedClusters(entry, allErrors);
+const relatedErrors = findRelatedEntries(entry, allErrors, 12, staticSlugs);
+const relatedClusters = buildRelatedClusters(entry, allErrors, staticSlugs);
 const referenceLinks = referenceLinksFor(entry);
 const entryTokens = new Set(
   `${entry.data.error_signature} ${entry.data.title}`
@@ -40,7 +43,7 @@ const entryTokens = new Set(
     .filter((token) => token.length >= 3)
 );
 const similarSignatureLinks = allErrors
-  .filter((candidate) => entrySlug(candidate) !== entrySlug(entry))
+  .filter((candidate) => entrySlug(candidate) !== entrySlug(entry) && staticSlugs.has(entrySlug(candidate)))
   .map((candidate) => {
     const candidateTokens = `${candidate.data.error_signature} ${candidate.data.title}`
       .toLowerCase()

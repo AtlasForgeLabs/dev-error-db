@@ -16,6 +16,7 @@ import {
 import { formatPublicDate, getUpdatedTimestamp, sortByUpdatedTimestamp } from '../../lib/dates';
 import { SITE_URL } from '../../lib/seo';
 import { deriveEvidenceSchema } from '../../lib/evidence';
+import { buildErrorCatalog } from '../../lib/error-catalog';
 
 function countBy(values: string[]) {
   const counts = new Map<string, number>();
@@ -38,21 +39,26 @@ export async function getStaticPaths() {
 }
 
 const { group } = Astro.props;
+const allEntries = await getCollection('errors');
+const catalog = buildErrorCatalog(allEntries);
+const staticSlugSet = catalog.staticSlugs;
+const linkableEntries = group.entries.filter((entry) => staticSlugSet.has(entrySlug(entry)));
+const dataOnlyCount = group.entries.length - linkableEntries.length;
 const pageTitle = `${group.label} error troubleshooting cluster`;
-const pageDescription = `${group.entries.length} ${group.label} error troubleshooting page${
-  group.entries.length === 1 ? '' : 's'
+const pageDescription = `${linkableEntries.length} crawlable ${group.label} troubleshooting page${
+  linkableEntries.length === 1 ? '' : 's'
 } with concise explanations, common causes, quick fixes, and related developer errors.`;
-const allGroups = getCategoryGroups(await getCollection('errors'));
+const allGroups = getCategoryGroups(allEntries);
 const hubProfile = revenueHubProfileFor(group.label);
 const technologyCounts = countBy(group.entries.map((entry) => entry.data.technology));
-const sortedEntries = sortEntriesByUpdated(group.entries);
+const sortedEntries = sortEntriesByUpdated(linkableEntries);
 const latestEntries = sortedEntries.slice(0, 6);
 const entriesWithEvidence = sortedEntries.map((entry) => ({ entry, evidence: deriveEvidenceSchema(entry) }));
 const allSourceBackedEntries = entriesWithEvidence.filter((item) => item.evidence.source_backed).map((item) => item.entry);
 const partialSourceEntries = entriesWithEvidence.filter((item) => item.evidence.evidence_status === 'partial_source').map((item) => item.entry);
 const sourceBackedEntries = allSourceBackedEntries.slice(0, 6);
-const popularEntries = getTrendingEntries(group.entries, 6);
-const topFixes = getEntriesBySearchSignals(group.entries, ['how to fix', 'failed', 'permission denied', 'timeout', 'quota', 'rate limit', 'not found'], 8);
+const popularEntries = getTrendingEntries(linkableEntries, 6);
+const topFixes = getEntriesBySearchSignals(linkableEntries, ['how to fix', 'failed', 'permission denied', 'timeout', 'quota', 'rate limit', 'not found'], 8);
 const pagination = paginateEntries(sortedEntries, 1, DEFAULT_PAGE_SIZE);
 const relatedCategories = getRelatedCategoryGroups(group, allGroups, 5);
 const oldestDate = sortByUpdatedTimestamp(sortedEntries).at(-1);
@@ -100,7 +106,7 @@ const structuredData = [
     '@context': 'https://schema.org',
     '@type': 'ItemList',
     name: `${group.label} troubleshooting pages`,
-    itemListElement: sortedEntries.slice(0, 30).map((entry, index) => ({
+    itemListElement: linkableEntries.slice(0, 30).map((entry, index) => ({
       '@type': 'ListItem',
       position: index + 1,
       name: entry.data.title,
@@ -125,13 +131,19 @@ const structuredData = [
       This {group.label} troubleshooting hub collects real error signatures, quick fixes, common causes, and
       step-by-step debugging paths for developers who need a practical answer instead of a broad overview.
     </p>
-    <p class="count-line">{group.entries.length} article{group.entries.length === 1 ? '' : 's'} in this category.</p>
+    <p class="count-line">
+      {linkableEntries.length} crawlable article{linkableEntries.length === 1 ? '' : 's'} in this category.
+      {dataOnlyCount > 0 && (
+        <span> {dataOnlyCount} additional record{dataOnlyCount === 1 ? '' : 's'} are indexed in JSON only (no standalone HTML route).</span>
+      )}
+    </p>
     <ul class="stats-list">
       <li><strong>Technologies covered:</strong> {technologyCounts.length}</li>
       <li><strong>Date range:</strong> {oldestDate ? formatPublicDate(getUpdatedTimestamp(oldestDate)) : 'n/a'} to {newestDate ? formatPublicDate(getUpdatedTimestamp(newestDate)) : 'n/a'}</li>
       <li><strong>Latest updates:</strong> {latestEntries.length}</li>
       <li><strong>Source-backed pages:</strong> {allSourceBackedEntries.length}</li>
       <li><strong>Partial-source pages:</strong> {partialSourceEntries.length}</li>
+      {dataOnlyCount > 0 && <li><strong>Data-only index records:</strong> {dataOnlyCount}</li>}
     </ul>
 
     <section class="latest-pages" aria-labelledby="overview-heading">

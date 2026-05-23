@@ -1,11 +1,11 @@
 ---
-import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { ARCHIVE_PAGE_SIZE, entrySlug, paginateEntries, sortEntriesByUpdated } from '../lib/taxonomy';
 import { formatPublicDate, getUpdatedTimestamp } from '../lib/dates';
 import { SITE_URL } from '../lib/seo';
+import { getStaticErrorEntries } from '../lib/published-errors';
 
-const allErrors = sortEntriesByUpdated(await getCollection('errors'));
+const allErrors = sortEntriesByUpdated(await getStaticErrorEntries());
 const pagination = paginateEntries(allErrors, 1, ARCHIVE_PAGE_SIZE);
 const structuredData = {
   '@context': 'https://schema.org',

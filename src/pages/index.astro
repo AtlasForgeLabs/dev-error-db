@@ -1,5 +1,4 @@
 ---
-import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import {
   categoryPathFor,
@@ -13,8 +12,10 @@ import {
 } from '../lib/taxonomy';
 import { formatPublicDate, getUpdatedTimestamp } from '../lib/dates';
 import { SITE_URL } from '../lib/seo';
+import { loadErrorCatalog } from '../lib/published-errors';
 
-const errors = await getCollection('errors');
+const catalog = await loadErrorCatalog();
+const errors = catalog.staticEntries;
 const categoryGroups = getCategoryGroups(errors);
 const sortedByUpdated = sortEntriesByUpdated(errors);
 const latestPages = sortedByUpdated.slice(0, 20);

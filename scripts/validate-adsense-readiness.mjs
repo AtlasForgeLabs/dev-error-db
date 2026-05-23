@@ -101,6 +101,12 @@ if (existsSync(distDir)) {
   } catch {
     errors.push('thin-content audit failed');
   }
+
+  try {
+    execFileSync('node', ['scripts/hybrid-architecture-validate.mjs'], { cwd: rootDir, stdio: 'inherit' });
+  } catch {
+    errors.push('hybrid architecture validation failed');
+  }
 } else {
   errors.push('dist is missing; run npm run build before npm run check');
 }

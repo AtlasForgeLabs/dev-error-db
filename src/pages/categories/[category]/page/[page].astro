@@ -10,18 +10,22 @@ import {
   sortEntriesByUpdated,
 } from '../../../../lib/taxonomy';
 import { formatPublicDate, getUpdatedTimestamp } from '../../../../lib/dates';
+import { buildErrorCatalog } from '../../../../lib/error-catalog';
 
 export async function getStaticPaths() {
-  const groups = getCategoryGroups(await getCollection('errors'));
+  const entries = await getCollection('errors');
+  const catalog = buildErrorCatalog(entries);
+  const groups = getCategoryGroups(entries);
   const paths = [];
 
   for (const group of groups) {
-    const totalPages = Math.max(1, Math.ceil(group.entries.length / DEFAULT_PAGE_SIZE));
+    const linkableEntries = group.entries.filter((entry) => catalog.staticSlugs.has(entrySlug(entry)));
+    const totalPages = Math.max(1, Math.ceil(linkableEntries.length / DEFAULT_PAGE_SIZE));
 
     for (let page = 2; page <= totalPages; page += 1) {
       paths.push({
         params: { category: group.slug, page: String(page) },
-        props: { group, page },
+        props: { group: { ...group, entries: linkableEntries }, page },
       });
     }
   }

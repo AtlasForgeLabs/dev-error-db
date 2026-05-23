@@ -1,5 +1,5 @@
 import { readdir, readFile, stat } from 'node:fs/promises';
-import { existsSync, mkdirSync, readFileSync, statSync, writeFileSync } from 'node:fs';
+import { existsSync, mkdirSync, readFileSync, readdirSync, statSync, writeFileSync } from 'node:fs';
 import { execFileSync } from 'node:child_process';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
@@ -33,6 +33,7 @@ const crawlStats = await inspectBuiltHtml();
 const monetizationStats = await inspectMonetization();
 const analyticsStats = await inspectAnalytics();
 const thinAuditStats = readThinAuditStats();
+const hybridStats = readHybridIndexabilityStats();
 
 const runtimeDir = path.join(rootDir, 'automation', 'runtime');
 mkdirSync(runtimeDir, { recursive: true });
@@ -65,7 +66,24 @@ print('dist/sitemap-0.xml', sitemapExists ? 'yes' : 'no');
 print('sitemap urls', String(sitemapStats.totalUrls));
 print('sitemap duplicate urls', String(sitemapStats.duplicateUrls));
 print('sitemap missing error urls', String(sitemapStats.missingErrorUrls));
+print('generated static error pages', String(hybridStats.generatedStaticErrorPages));
+print('generated non-error html pages', String(hybridStats.generatedNonErrorPages));
 print('Build reminder', buildReminder());
+
+console.log('\nHybrid indexability:');
+print('indexability summary exists', hybridStats.summaryExists ? 'yes' : 'no');
+print('json index exists', hybridStats.indexExists ? 'yes' : 'no');
+print('total error records', String(hybridStats.totalRecords));
+print('indexable_html records', String(hybridStats.indexableHtml));
+print('data_only records', String(hybridStats.dataOnly));
+print('legacy_preserved records', String(hybridStats.legacyPreserved));
+print('pending_review records', String(hybridStats.pendingReview));
+print('json category indexes', String(hybridStats.jsonCategoryIndexes));
+print('json technology indexes', String(hybridStats.jsonTechnologyIndexes));
+print('max_static_error_pages', String(hybridStats.maxStaticErrorPages));
+print('preserve_legacy_error_routes', hybridStats.preserveLegacyErrorRoutes ? 'yes' : 'no');
+print('enable_data_only_for_new_records', hybridStats.enableDataOnlyForNewRecords ? 'yes' : 'no');
+print('projected_reduction_if_strict_data_only', String(hybridStats.projectedReduction));
 
 console.log('\nMonetization:');
 print('ads.txt exists', monetizationStats.adsTxtExists ? 'yes' : 'no');
@@ -243,6 +261,60 @@ function buildTimestampHealth(pages) {
   };
 }
 
+function readHybridIndexabilityStats() {
+  const summaryPath = path.join(rootDir, 'dist', 'data', 'errors', 'indexability-summary.json');
+  const indexPath = path.join(rootDir, 'dist', 'data', 'errors', 'index.json');
+  const categoriesDir = path.join(rootDir, 'dist', 'data', 'errors', 'categories');
+  const technologiesDir = path.join(rootDir, 'dist', 'data', 'errors', 'technologies');
+
+  if (!existsSync(summaryPath) || !existsSync(indexPath)) {
+    return {
+      summaryExists: false,
+      indexExists: false,
+      totalRecords: errorFiles.length,
+      generatedStaticErrorPages: 0,
+      generatedNonErrorPages: 0,
+      indexableHtml: 0,
+      dataOnly: 0,
+      legacyPreserved: 0,
+      pendingReview: 0,
+      jsonCategoryIndexes: 0,
+      jsonTechnologyIndexes: 0,
+      maxStaticErrorPages: 0,
+      preserveLegacyErrorRoutes: true,
+      enableDataOnlyForNewRecords: true,
+      projectedReduction: 0,
+    };
+  }
+
+  const summary = JSON.parse(readFileSync(summaryPath, 'utf8'));
+  const htmlFiles = existsSync(path.join(rootDir, 'dist'))
+    ? readdirSync(path.join(rootDir, 'dist'), { recursive: true }).filter((file) => String(file).endsWith('.html'))
+    : [];
+  const errorDetailHtmlCount = htmlFiles.filter((file) => {
+    const normalized = String(file).replace(/\\/g, '/');
+    return /^errors\/[^/]+\/index\.html$/.test(normalized);
+  }).length;
+
+  return {
+    summaryExists: true,
+    indexExists: true,
+    totalRecords: summary.total_records ?? errorFiles.length,
+    generatedStaticErrorPages: summary.generated_static_error_pages ?? errorDetailHtmlCount,
+    generatedNonErrorPages: Math.max(0, htmlFiles.length - errorDetailHtmlCount),
+    indexableHtml: summary.indexable_html ?? 0,
+    dataOnly: summary.data_only ?? 0,
+    legacyPreserved: summary.legacy_preserved ?? 0,
+    pendingReview: summary.pending_review ?? 0,
+    jsonCategoryIndexes: existsSync(categoriesDir) ? readdirSync(categoriesDir).filter((file) => file.endsWith('.json')).length : 0,
+    jsonTechnologyIndexes: existsSync(technologiesDir) ? readdirSync(technologiesDir).filter((file) => file.endsWith('.json')).length : 0,
+    maxStaticErrorPages: summary.max_static_error_pages ?? 0,
+    preserveLegacyErrorRoutes: summary.preserve_legacy_error_routes !== false,
+    enableDataOnlyForNewRecords: summary.enable_data_only_for_new_records !== false,
+    projectedReduction: summary.projected_reduction_if_strict_data_only ?? 0,
+  };
+}
+
 function readThinAuditStats() {
   const auditPath = path.join(rootDir, 'automation', 'runtime', 'thin-content-audit-report.json');
 
@@ -296,10 +368,15 @@ async function inspectSitemaps() {
   }
 
   const uniqueUrls = new Set(urls);
-  const expectedErrorUrls = errorFiles.map((file) => {
-    const slug = path.basename(file, '.md');
-    return `https://dev-error-db.com/errors/${slug}/`;
-  });
+  const indexPath = path.join(distDir, 'data', 'errors', 'index.json');
+  const expectedErrorUrls = existsSync(indexPath)
+    ? JSON.parse(readFileSync(indexPath, 'utf8'))
+        .records.filter((record) => record.has_static_page && record.url)
+        .map((record) => record.url)
+    : errorFiles.map((file) => {
+        const slug = path.basename(file, '.md');
+        return `https://dev-error-db.com/errors/${slug}/`;
+      });
   const missingErrorUrls = expectedErrorUrls.filter((url) => !uniqueUrls.has(url)).length;
 
   return {

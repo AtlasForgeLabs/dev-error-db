@@ -108,6 +108,12 @@ async function validateSeoArchitecture() {
     ['report GA4 presence', 'scripts/report.mjs', 'indexHasGa4'],
     ['thin-content audit script', 'scripts/thin-content-audit.mjs', 'FAQ unique question ratio'],
     ['derived evidence utility', 'src/lib/evidence.ts', 'evidence_status'],
+    ['indexability classifier', 'src/lib/indexability.ts', 'indexable_html'],
+    ['hybrid config', 'src/lib/hybrid-config.ts', 'PRESERVE_LEGACY_ERROR_ROUTES'],
+    ['error catalog builder', 'src/lib/error-catalog.ts', 'buildErrorCatalog'],
+    ['hybrid JSON index route', 'src/pages/data/errors/index.json.ts', 'buildCompactIndexPayload'],
+    ['hybrid architecture validator', 'scripts/hybrid-architecture-validate.mjs', 'has_static_page'],
+    ['report hybrid metrics', 'scripts/report.mjs', 'Hybrid indexability'],
   ];
 
   for (const [name, relativePath, needle] of sourceChecks) {

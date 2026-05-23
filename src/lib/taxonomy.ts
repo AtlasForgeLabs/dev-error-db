@@ -516,11 +516,24 @@ export function getRelatedCategoryGroups(
     .map((item) => item.group);
 }
 
-export function findRelatedEntries(entry: ErrorEntry, allEntries: ErrorEntry[], limit = 12) {
+export function findRelatedEntries(
+  entry: ErrorEntry,
+  allEntries: ErrorEntry[],
+  limit = 12,
+  staticSlugs?: Set<string>
+) {
   const currentSlug = entrySlug(entry);
   const explicitRelated = entry.data.related_errors ?? [];
   const matches: ErrorEntry[] = [];
   const usedSlugs = new Set([currentSlug]);
+
+  const canLink = (candidate: ErrorEntry) => {
+    const slug = entrySlug(candidate);
+    if (staticSlugs && !staticSlugs.has(slug)) {
+      return false;
+    }
+    return true;
+  };
 
   for (const related of explicitRelated) {
     if (isGenericRelatedLabel(related)) {
@@ -529,7 +542,7 @@ export function findRelatedEntries(entry: ErrorEntry, allEntries: ErrorEntry[], 
 
     const match = findEntryByRelatedLabel(related, allEntries, usedSlugs);
 
-    if (match) {
+    if (match && canLink(match)) {
       matches.push(match);
       usedSlugs.add(entrySlug(match));
     }
@@ -555,7 +568,7 @@ export function findRelatedEntries(entry: ErrorEntry, allEntries: ErrorEntry[], 
 
     const candidateSlug = entrySlug(item.candidate);
 
-    if (usedSlugs.has(candidateSlug)) {
+    if (usedSlugs.has(candidateSlug) || !canLink(item.candidate)) {
       continue;
     }
 
@@ -667,9 +680,14 @@ function isGenericRelatedLabel(value: string) {
   return genericLabels.has(normalized) || /^[a-z0-9]+-errors?$/.test(normalized);
 }
 
-export function buildRelatedClusters(entry: ErrorEntry, allEntries: ErrorEntry[]) {
+export function buildRelatedClusters(entry: ErrorEntry, allEntries: ErrorEntry[], staticSlugs?: Set<string>) {
   const currentSlug = entrySlug(entry);
-  const candidates = allEntries.filter((candidate) => entrySlug(candidate) !== currentSlug);
+  const candidates = allEntries.filter((candidate) => {
+    const slug = entrySlug(candidate);
+    if (slug === currentSlug) return false;
+    if (staticSlugs && !staticSlugs.has(slug)) return false;
+    return true;
+  });
   const sourceText = searchableText(entry);
   const clusters = [
     {
