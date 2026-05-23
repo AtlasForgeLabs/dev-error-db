@@ -29117,5 +29117,69 @@
     "related_errors": [
       "LiteLLM"
     ]
+  },
+  {
+    "slug": "github-copilot-copilot-usage-based-billing-spikes-costs-from-39-month-flat-rate-to-hundreds-or-thousands-of-dollars-unexpected-billing-surges-after-april-27-2026-migration-to-token-based-pricing",
+    "title": "GitHub Copilot Usage-Based Billing Causes Massive Overages — $39/Month Spiking to $942+",
+    "description": "User wants to understand why Copilot bill exploded and how to cap/control per-request costs under new usage-based pricing model. Includes evidence for GitHub Copilot troubleshooting demand.",
+    "category": "GitHub Copilot",
+    "technology": "GitHub Copilot",
+    "error_signature": "Copilot usage-based billing spikes costs from $39/month flat-rate to hundreds or thousands of dollars; unexpected billing surges after April 27, 2026 migration to token-based pricing.",
+    "search_intent": "User wants to understand why Copilot bill exploded and how to cap/control per-request costs under new usage-based pricing model.",
+    "common_causes": [
+      "Multiple high-engagement posts on r/GithubCopilot report identical experiences: $39/mo plan suddenly generating $942+ bills after Copilot migrated to usage-based/token billing in late April 2026. Token counting ambiguity and lack of hard caps create production billing risk. Category: GitHub Copilot (paid subscription tool)."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "GitHub Copilot"
+    ]
+  },
+  {
+    "slug": "github-copilot-ghcp-github-copilot-for-business-licensed-users-cannot-access-billable-premium-requests-licensing-conflict-between-enterprise-seat-license-and-individual-paid-tier-after-april-2026-pricing-change",
+    "title": "GHCP Enterprise Licensed Users Blocked from Using Billable Premium Requests",
+    "description": "Enterprise user needs to understand how to properly enable billable premium requests with their GHCP license; searching for fix/workaround. Includes evidence for GitHub Copilot troubleshooting demand.",
+    "category": "GitHub Copilot",
+    "technology": "GitHub Copilot",
+    "error_signature": "GHCP (GitHub Copilot for Business) licensed users cannot access billable premium requests — licensing conflict between enterprise seat license and individual paid tier after April 2026 pricing change.",
+    "search_intent": "Enterprise user needs to understand how to properly enable billable premium requests with their GHCP license; searching for fix/workaround.",
+    "common_causes": [
+      "r/GithubCopilot post (May 23, 2026, 3 hours ago) showing auth/licensing mismatch bug. Distinct from billing spike — this is a functional block preventing the paid feature from working. High urgency for paying enterprise customers."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "GitHub Copilot"
+    ]
+  },
+  {
+    "slug": "github-copilot-copilot-transitions-from-flat-rate-subscription-to-token-usage-based-pricing-breaking-existing-mental-models-and-budget-planning-for-millions-of-paying-users",
+    "title": "GitHub Copilot Moving to Usage-Based Billing — New Pricing Model Breaks User Expectations",
+    "description": "Users need to understand new token-based billing mechanics, estimate costs, and compare old vs. new pricing tiers. Includes evidence for GitHub Copilot troubleshooting demand.",
+    "category": "GitHub Copilot",
+    "technology": "GitHub Copilot",
+    "error_signature": "Copilot transitions from flat-rate subscription to token/usage-based pricing, breaking existing mental models and budget planning for millions of paying users.",
+    "search_intent": "Users need to understand new token-based billing mechanics, estimate costs, and compare old vs. new pricing tiers.",
+    "common_causes": [
+      "Official pinned megathread on r/GithubCopilot (Apr 27, 2026) — source-of-truth for pricing change. 147 upvotes, 163 comments. Foundational error page topic underlying all downstream billing complaints."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "GitHub Copilot"
+    ]
+  },
+  {
+    "slug": "claude-code-claude-code-enters-extended-thinking-pass-and-hangs-for-20-plus-minutes-with-no-progress-indicator-leaving-developers-stranded-without-knowing-whether-it-is-computing-or-frozen",
+    "title": "Claude Code Extended Thinking Mode Times Out Silently — 20+ Minute Hang Without Progress Indicator",
+    "description": "Developer needs to understand extended-thinking behavior, how long it can take, and how to control/interrupt it when debugging complex code. Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Claude Code enters extended-thinking pass and hangs for 20+ minutes with no progress indicator, leaving developers stranded without knowing whether it is computing or frozen.",
+    "search_intent": "Developer needs to understand extended-thinking behavior, how long it can take, and how to control/interrupt it when debugging complex code.",
+    "common_causes": [
+      "r/ClaudeAI post (May 23, 2026, 2 hours ago) describing Claude Code hanging in deep extended-thinking for over 20 min on video encoding debugging task. No ETA shown, no interrupt mechanism found. High commercial value for AI coding tool users hitting runtime deadlocks."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
   }
 ]
