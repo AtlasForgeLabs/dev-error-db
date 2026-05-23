@@ -28045,5 +28045,149 @@
     "related_errors": [
       "LiteLLM"
     ]
+  },
+  {
+    "slug": "openai-api-429-quota-exceeded-for-gpt-4-via-chatgpt-plus-oauth-third-party-codex",
+    "title": "ChatGPT Plus OAuth succeeds but third-party Codex returns 429 quota exceeded",
+    "description": "Fix 429 quota error when using OpenAI Python SDK with ChatGPT Plus OAuth token through third-party apps Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "429 quota exceeded for gpt-4 via ChatGPT Plus OAuth third-party Codex",
+    "search_intent": "Fix 429 quota error when using OpenAI Python SDK with ChatGPT Plus OAuth token through third-party apps",
+    "common_causes": [
+      "GitHub Issue #2951 on openai/openai-python repo (open, 5 comments). User's ChatGPT Plus OAuth authentication succeeds but API calls return 429 quota error — appears to be a billing context mismatch between first-party ChatGPT usage and third-party OAuth Codex tokens. Strong commercial value as paid API users hit production-blocking quota errors."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "claude-code-mcp-auth-not-automatically-launching-browser-on-windows-no-errors-just-no-activity-after-clicking-authenticate",
+    "title": "Claude Code v2.1.141 MCP OAuth browser launch broken on Windows Git Bash",
+    "description": "Fix MCP OAuth authentication flow where Claude Code fails to launch browser for Atlassian, DataDog, Slack, SourceGraph integrations on Windows with Git Bash + SSH Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "mcp auth not automatically launching browser on Windows — no errors, just no activity after clicking Authenticate",
+    "search_intent": "Fix MCP OAuth authentication flow where Claude Code fails to launch browser for Atlassian, DataDog, Slack, SourceGraph integrations on Windows with Git Bash + SSH",
+    "common_causes": [
+      "GitHub Issue #59194 on anthropics/claude-code (open, bug + regression label, platform:windows). Regression introduced in v2.1.141 — auto-updated on 2026-05-14. Browser-open logic no longer falls back to cmd.exe /c start when BROWSER is unset and DISPLAY empty in Git Bash/MSYS2 under SSH/PLink context. Clear work-around available but affects paying pro/teams users doing daily MCP auth."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "claude-code-api-error-server-is-temporarily-limiting-requests-not-your-usage-limit-rate-limited-ultrareview-free-quota-still-consumed",
+    "title": "Claude Code Ultrareview quota decremented even on API rate limit failure",
+    "description": "Fix ultrareview command consuming free quota even when the command fails due to upstream server-side rate limiting (user did not actually consume the tool) Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "API Error: Server is temporarily limiting requests (not your usage limit) · Rate limited — Ultrareview free quota still consumed",
+    "search_intent": "Fix ultrareview command consuming free quota even when the command fails due to upstream server-side rate limiting (user did not actually consume the tool)",
+    "common_causes": [
+      "GitHub Issue #56252 on anthropics/claude-code (open, duplicate label). On Windows, user gets 'Rate limited' response from upstream API but ultrareview count drops from 3 to 2 — quota should not decrement on server-side failures. Direct financial impact on Claude Pro/Team subscription users with limited free trial quotas."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "anthropic-api-copy-credentials-carries-over-inherited-api-key-even-when-replacing-with-credentials-provider-accesstokenauth-short-circuits",
+    "title": "Anthropic SDK copy() leaks inherited api_key — AccessTokenAuth silently disabled",
+    "description": "Fix anthropic SDK client.copy() method that propagates parent api_key into child clients, preventing credential provider (OAuth, GCP, AWS) authentication from working Includes evidence for Anthropic API troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Anthropic API",
+    "error_signature": "copy(credentials=...) carries over inherited api_key even when replacing with credentials provider; AccessTokenAuth short-circuits",
+    "search_intent": "Fix anthropic SDK client.copy() method that propagates parent api_key into child clients, preventing credential provider (OAuth, GCP, AWS) authentication from working",
+    "common_causes": [
+      "PR #1557 on anthropics/anthropic-sdk-python (open, created 2026-05-17). Root cause: copy() always passes api_key=api_key or self.api_key into new client. When caller tries to replace a static key client with a credentials provider, the copied client still sends X-Api-Key so AccessTokenAuth short-circuits. Fix involves stopping propagation unless explicitly passed."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "Anthropic API"
+    ]
+  },
+  {
+    "slug": "anthropic-api-mcp-oauth-calls-fail-in-subagents-vault-ids-parameter-exists-only-on-sessions-create-no-mechanism-to-pass-credentials-when-dispatching-subagents-via-agent-toolset",
+    "title": "Anthropic Managed Agents: vault_ids not inherited by subagent MCP OAuth calls",
+    "description": "Fix subagent dispatch pattern where coordinator agent's vault-based OAuth credentials cannot reach subagent's MCP tool execution context Includes evidence for Anthropic API troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Anthropic API",
+    "error_signature": "MCP OAuth calls fail in subagents — vault_ids parameter exists only on sessions.create, no mechanism to pass credentials when dispatching subagents via agent_toolset",
+    "search_intent": "Fix subagent dispatch pattern where coordinator agent's vault-based OAuth credentials cannot reach subagent's MCP tool execution context",
+    "common_causes": [
+      "Issue #1562 on anthropics/anthropic-sdk-python (open, 1 comment, created 2026-05-18). Coordinator agents with vault_ids can call MCP tools directly but any subagent dispatched via agent_toolset cannot inherit those credentials. Makes vault-backed MCP tools completely unusable in multi-agent patterns. Strong B2B enterprise use case."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "Anthropic API"
+    ]
+  },
+  {
+    "slug": "claude-code-weekly-limits-are-draining-much-faster-after-the-5-hour-limit-update",
+    "title": "Claude Code weekly limits draining faster after 5-hour usage limit update",
+    "description": "Understand and fix unexpected weekly usage consumption after Anthropic doubled the 5-hour short-term allowance in a recent Claude Code update Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Weekly Limits Are Draining Much Faster After the 5-Hour Limit Update",
+    "search_intent": "Understand and fix unexpected weekly usage consumption after Anthropic doubled the 5-hour short-term allowance in a recent Claude Code update",
+    "common_causes": [
+      "GitHub Issue #57547 on anthropics/claude-code (open, bug + area:cost labels, macOS). Since the recent update that doubled the 5-hour usage window, the weekly cap drains much faster during normal development. Affects paying Claude Pro/Team subscribers experiencing cost shock. Strong commercial angle around pricing transparency."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "litellm-litellm-rate-limit-errors-emitted-as-vendor-rate-limit-dashboards-callbacks-attribute-router-side-throttles-to-upstream-vendor-instead-of-litellm-proxy",
+    "title": "LiteLLM router-side rate-limit errors mislabeled as vendor rate limit",
+    "description": "Fix LiteLLM rate-limit error categorization where router-side RPM/TPM throttling triggers (deployment-level and model-level) are falsely reported as vendor/third-party rate limits Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "litellm_rate_limit errors emitted as vendor_rate_limit — dashboards/callbacks attribute router-side throttles to upstream vendor instead of LiteLLM proxy",
+    "search_intent": "Fix LiteLLM rate-limit error categorization where router-side RPM/TPM throttling triggers (deployment-level and model-level) are falsely reported as vendor/third-party rate limits",
+    "common_causes": [
+      "PR #27708 on BerriAI/litellm (open PR, created 2026-05-12, 4 comments). This is a follow-up to unified rate-limit error work (#27687). 9 router-side raises across lowest_tpm_rpm_v2.py and model_rate_limit_check.py emit wrong category. Impacts dashboards, callbacks, and alerting for enterprises routing traffic through LiteLLM proxy."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "LiteLLM"
+    ]
+  },
+  {
+    "slug": "cloudflare-cloudflare-workers-deployment-fails-with-unhelpful-errors-for-setinterval-at-module-scope-database-pool-creation-at-module-scope-auth-instance-at-module-scope",
+    "title": "Cloudflare Workers deployment gives generic errors masking module scope restrictions",
+    "description": "Fix unclear error messages when deploying SolidStart/Vinxi apps to Cloudflare Workers — errors don't mention module scope restriction which is the actual cause of build/deploy failure Includes evidence for Cloudflare troubleshooting demand.",
+    "category": "Cloudflare",
+    "technology": "Cloudflare",
+    "error_signature": "Cloudflare Workers deployment fails with unhelpful errors for setInterval at module scope, Database Pool creation at module scope, Auth instance at module scope",
+    "search_intent": "Fix unclear error messages when deploying SolidStart/Vinxi apps to Cloudflare Workers — errors don't mention module scope restriction which is the actual cause of build/deploy failure",
+    "common_causes": [
+      "Issue #522 on nksaraf/vinxi (open, created 2026-04-12). Developer deploying to Cloudflare Workers got opaque error messages; root cause was module scope restrictions (setInterval, DB pool, auth instances declared outside handler functions). Had to switch to Vercel because CF Workers error experience was 'pretty frustrating'. Good commercial content opportunity — many developers face this exact pain point."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "Cloudflare"
+    ]
+  },
+  {
+    "slug": "github-actions-error-eacces-permission-denied-open-w-temp-runner-file-commands-save-state",
+    "title": "Self-hosted GitHub Actions runner EACCES permission denied in container checkout",
+    "description": "Fix self-hosted Linux runner permissions error when running GitHub Actions workflows inside containers — checkout step throws permission denied saving state files Includes evidence for GitHub Actions troubleshooting demand.",
+    "category": "GitHub Actions",
+    "technology": "GitHub Actions",
+    "error_signature": "Error: EACCES: permission denied, open '/__w/_temp/_runner_file_commands/save_state_*'",
+    "search_intent": "Fix self-hosted Linux runner permissions error when running GitHub Actions workflows inside containers — checkout step throws permission denied saving state files",
+    "common_causes": [
+      "Issue #1014 on actions/checkout (open since 2022-11-17, active discussions until 2026-05-12, 29 comments). Occurs on self-hosted Ubuntu 20.04 runners running workflows inside containers with custom Docker images. The checkout action cannot write temporary files due to user mapping differences. Persistent issue affecting enterprise CI/CD pipelines."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "GitHub Actions"
+    ]
   }
 ]
