@@ -28445,5 +28445,165 @@
     "related_errors": [
       "Anthropic API"
     ]
+  },
+  {
+    "slug": "openai-api-rate-limit-exceeded-for-images-gpt-image-1",
+    "title": "OpenAI Image Generation Rate Limit Exceeded (429) Without Feedback Options",
+    "description": "Developer needs to understand OpenAI image generation rate limiting behavior and how to handle 429 errors gracefully in production apps Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "Rate limit exceeded for images - gpt-image-1",
+    "search_intent": "Developer needs to understand OpenAI image generation rate limiting behavior and how to handle 429 errors gracefully in production apps",
+    "common_causes": [
+      "Source #2269 on openai/openai-python reports rate limit quota exhaustion after failed image generations still consuming tokens, with lack of proper feedback/error status from the API. Covers both billing impact (charged despite failure) and rate limit confusion for GPT-Image-1."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "vercel-turbopack-production-build-generates-chunk-filenames-with-multiple-dots-that-trigger-waf-403-responses",
+    "title": "Vercel Turbopack Production Build Generates WAF-Friendly Filenames That Trigger 403",
+    "description": "Developer deploying Next.js with Turbopack encounters 403 behind reverse proxy/WAF due to generated chunk filenames Includes evidence for Vercel troubleshooting demand.",
+    "category": "Deployment",
+    "technology": "Vercel",
+    "error_signature": "Turbopack production build generates chunk filenames with multiple dots that trigger WAF 403 responses",
+    "search_intent": "Developer deploying Next.js with Turbopack encounters 403 behind reverse proxy/WAF due to generated chunk filenames",
+    "common_causes": [
+      "Source vercel/next.js #93790 documents how Turbopack-generated chunk filenames containing multiple dots are flagged by WAF/reverse proxies as path traversal attempts, blocking production deployment with 403 errors. High commercial value since it blocks paid deployments."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "Deployment"
+    ]
+  },
+  {
+    "slug": "litellm-litellm-proxy-ui-and-features-broken-incomplete-over-success",
+    "title": "LiteLLM Proxy Accumulated Bugs Break Core Documentation Features",
+    "description": "Developer running LiteLLM proxy encounters broken UI features, incomplete functionality after proxy upgrade, affecting monitoring and debugging capabilities Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "LiteLLM proxy UI and features broken/incomplete over success",
+    "search_intent": "Developer running LiteLLM proxy encounters broken UI features, incomplete functionality after proxy upgrade, affecting monitoring and debugging capabilities",
+    "common_causes": [
+      "Source BerriAI/litellm #24825 documents the community report that proxy and UI have accumulated numerous bugs and broken/incomplete features over time. Users cannot rely on core documented features working correctly. Strong signal for troubleshooting error content demand."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "LiteLLM"
+    ]
+  },
+  {
+    "slug": "cloudflare-bug-routes-inheritance-silently-transfers-ownership-of-custom-domains-between-env-workers-on-every-deploy-wrangler-4-x",
+    "title": "Cloudflare Wrangler Routes Inheritance Silently Transfers Custom Domain Ownership Between Environments",
+    "description": "Developer deploying Workers via Wrangler discovers unexpected custom domain ownership changes when deploying to different environments due to routes inheritance bug Includes evidence for Cloudflare troubleshooting demand.",
+    "category": "Cloudflare",
+    "technology": "Cloudflare",
+    "error_signature": "[bug] routes inheritance silently transfers ownership of custom domains between env Workers on every deploy (Wrangler 4.x)",
+    "search_intent": "Developer deploying Workers via Wrangler discovers unexpected custom domain ownership changes when deploying to different environments due to routes inheritance bug",
+    "common_causes": [
+      "Source cloudflare/workers-sdk #13925 documents a critical bug in Wrangler 4.81.0 where route inheritance causes silent transfer of custom domain ownership between environment Workers on each deploy. Affects production environments and has serious business impact."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Cloudflare"
+    ]
+  },
+  {
+    "slug": "langchain-deepseek-get-request-payload-missing-reasoning-content-causes-http-400-in-multi-turn-agent-conversations",
+    "title": "LangChain DeepSeek Integration Missing reasoning_content Causes 400 Error in Multi-turn Agent Calls",
+    "description": "Developer using LangChain with DeepSeek models encounters 400 Bad Request in multi-turn agent conversations due to missing reasoning_content field Includes evidence for LangChain troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "LangChain",
+    "error_signature": "deepseek:_get_request_payload missing reasoning_content causes HTTP 400 in multi-turn agent conversations",
+    "search_intent": "Developer using LangChain with DeepSeek models encounters 400 Bad Request in multi-turn agent conversations due to missing reasoning_content field",
+    "common_causes": [
+      "Source langchain-ai/langchain #37178 confirms DeepSeek model integration omits reasoning_content from response, causing subsequent API calls to fail with HTTP 400 errors in multi-turn agent workflows. Clear technical error with identifiable root cause."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "openai-api-http-429-with-error-code-insufficient-quota-billed-account-exhausts-credits-but-receives-429-status-instead-of-402-causing-client-sdks-to-treat-it-as-rate-limit-instead-of-billing-failure",
+    "title": "OpenAI API 429 insufficient_quota Misclassified as Billing vs Rate Limit",
+    "description": "Fix false rate_limit classification when OpenAI returns insufficient_quota as 429; understand how to distinguish quota exhaustion from rate limiting Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "HTTP 429 with error.code 'insufficient_quota' — billed account exhausts credits but receives 429 status instead of 402, causing client SDKs to treat it as rate_limit instead of billing_failure",
+    "search_intent": "Fix false rate_limit classification when OpenAI returns insufficient_quota as 429; understand how to distinguish quota exhaustion from rate limiting",
+    "common_causes": [
+      "NousResearch/hermes-agent#29478 documents that OpenAI's documented behavior returns insufficient_quota (HTTP 402 equivalent) as HTTP 429. Client error classifiers in agent frameworks like LiteLLM, OpenClaw misclassify it as rate_limit, triggering unnecessary cooldowns and wrong recovery paths. Source URLs confirm this is a widespread pattern across multiple codebases."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "claude-code-custom-mcp-server-with-oauth-2-1-authentication-fails-to-connect-in-claude-code-claude-desktop-oauth-flow-opens-about-blank-page-and-creates-infinite-restart-loop-instead-of-initiating-auth-prompt",
+    "title": "Claude Code Custom MCP OAuth 2.1 Connection Failure (Infinite Loop Bug)",
+    "description": "Fix OAuth 2.1 connection failure for custom MCP servers in Claude Code; resolve infinite restart loop during authentication flow Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Custom MCP server with OAuth 2.1 authentication fails to connect in Claude Code/Claude Desktop — OAuth flow opens about:blank page and creates infinite restart loop instead of initiating auth prompt",
+    "search_intent": "Fix OAuth 2.1 connection failure for custom MCP servers in Claude Code; resolve infinite restart loop during authentication flow",
+    "common_causes": [
+      "anthropics/claude-code#11814 details spec-compliant OAuth 2.1 MCP servers failing in both Claude Desktop and claude.ai web interface while working perfectly via CLI --transport http. The about:blank + infinite loop bug blocks enterprise MCP integrations entirely."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "openai-api-usage-limit-reached-error-from-openai-codex-provider-confusion-between-subscription-based-usage-caps-and-api-rate-limits-leads-to-failed-completions-when-free-tier-quota-is-exhausted",
+    "title": "OpenAI Codex Provider Returns Usage Limit Reached Error (Subscription Quota)",
+    "description": "Resolve \"usage limit reached\" error in Cursor/OpenAI Codex provider; switch to standard OpenAI API provider or increase plan to continue using models Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "\"usage limit reached\" error from OpenAI Codex provider — Confusion between subscription-based usage caps and API rate limits leads to failed completions when free-tier quota is exhausted",
+    "search_intent": "Resolve \"usage limit reached\" error in Cursor/OpenAI Codex provider; switch to standard OpenAI API provider or increase plan to continue using models",
+    "common_causes": [
+      "cline/cline#8910 reports real users hitting usage limit errors in Cursor's built-in Codex provider. Distinguishing this from standard API key errors is valuable because many users conflate subscription usage limits with API rate limits."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "anthropic-api-sse-event-type-overloaded-error-from-anthropic-api-surfaces-raw-json-blob-type-error-error-type-overloaded-error-in-copilot-chat-bubble-instead-of-user-safe-error-message",
+    "title": "Anthropic API Overloaded Error (SSE) Surfaces Raw JSON to User",
+    "description": "Handle Anthropic mid-stream SSE overloaded_error gracefully; prevent raw JSON leak to end-user UI; add proper error classification and retry logic Includes evidence for Anthropic API troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Anthropic API",
+    "error_signature": "SSE event type 'overloaded_error' from Anthropic API surfaces raw JSON blob '{\"type\":\"error\",\"error\":{\"type\":\"overloaded_error\",...}}' in Copilot chat bubble instead of user-safe error message",
+    "search_intent": "Handle Anthropic mid-stream SSE overloaded_error gracefully; prevent raw JSON leak to end-user UI; add proper error classification and retry logic",
+    "common_causes": [
+      "Umbraco.AI#174 documents Anthropic's documented transient server-side load-shedding error leaking as raw JSON into the end-user Copilot UI. Fix involves adding provider error classification system in the client layer to map overloaded_error to user-safe messages plus stable categories."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Anthropic API"
+    ]
+  },
+  {
+    "slug": "litellm-openai-s-unknown-parameter-400-errors-get-misclassified-as-429-ratelimiterror-when-the-rejected-field-name-contains-rate-limit-substring-e-g-litellm-rate-limit-descriptors",
+    "title": "LiteLLM 400 Error Misclassified as RateLimitError on Substring Match",
+    "description": "Stop false positive rate_limit classification when OpenAPI rejects unknown parameters containing rate_limit in their names; fix exception mapping in LiteLLM proxy Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "OpenAI's Unknown parameter 400 errors get misclassified as 429 RateLimitError when the rejected field name contains 'rate_limit' substring (e.g., _litellm_rate_limit_descriptors)",
+    "search_intent": "Stop false positive rate_limit classification when OpenAPI rejects unknown parameters containing rate_limit in their names; fix exception mapping in LiteLLM proxy",
+    "common_causes": [
+      "BerriAI/litellm#27915 identifies a regex-based substring match that catches too broadly: any upstream 400 containing 'rate_limit' in the field name gets routed to RateLimitError path. Causes incorrect retry/backoff behavior for genuine parameter errors."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "LiteLLM"
+    ]
   }
 ]
