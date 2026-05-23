@@ -27757,5 +27757,69 @@
     "related_errors": [
       "Deployment"
     ]
+  },
+  {
+    "slug": "vercel-blocked-scope-returns-http-451-error-user-receives-team-access-required-to-deploy-message-with-manual-approval-gate",
+    "title": "Vercel Blocked Scopes — Deploy Returns 451 Due to Fair Use Violation",
+    "description": "Fix blocked deployment when Vercel marks project/team as blocked due to fair use violation; restore ability to deploy Includes evidence for Vercel troubleshooting demand.",
+    "category": "Deployment",
+    "technology": "Vercel",
+    "error_signature": "Blocked scope returns HTTP 451 error; user receives \"Team access required to deploy.\" message with manual approval gate",
+    "search_intent": "Fix blocked deployment when Vercel marks project/team as blocked due to fair use violation; restore ability to deploy",
+    "common_causes": [
+      "Fetched from Vercel docs error list (vercel.com/docs/errors/error-list). Covers the 'Blocked scopes' section: deployments return HTTP 451 when platform flags account for ToS/fair use violations. This is a high-commercial-value scenario — blocked deployments directly prevent production access and require contacting registration@vercel.com for resolution."
+    ],
+    "quick_fix": "Check the build output, project root, and deployment platform configuration before redeploying.",
+    "related_errors": [
+      "Deployment"
+    ]
+  },
+  {
+    "slug": "github-actions-secondary-rate-limit-triggered-too-many-concurrent-requests-exceeds-100-concurrent-limit-or-900-points-minute-rest-endpoint-threshold",
+    "title": "GitHub Actions GITHUB_TOKEN Secondary Rate Limit — Concurrent Requests Exceeded",
+    "description": "Resolve secondary rate limit error in GitHub Actions workflow caused by excessive concurrent API calls; understand point calculation for secondary limits Includes evidence for GitHub Actions troubleshooting demand.",
+    "category": "GitHub Actions",
+    "technology": "GitHub Actions",
+    "error_signature": "Secondary rate limit triggered: too many concurrent requests (exceeds 100 concurrent limit) or 900 points/minute REST endpoint threshold",
+    "search_intent": "Resolve secondary rate limit error in GitHub Actions workflow caused by excessive concurrent API calls; understand point calculation for secondary limits",
+    "common_causes": [
+      "GITHUB_TOKEN primary rate limit is only 1,000 requests/hour (vs 5,000 for PAT). Secondary rate limits include 100 concurrent request cap, 900 points/minute for REST, and 60s CPU/60s wall time per minute. Fetched from official GitHub docs. High commercial value because CI/CD pipeline failures affect paid GitHub teams and enterprise orgs."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "GitHub Actions"
+    ]
+  },
+  {
+    "slug": "cursor-environment-configuration-failed-agent-defaults-to-base-image-with-warning-signs-instead-of-running-in-configured-environment",
+    "title": "Cursor Cloud Agent Environment Configuration Failure — Env Setup Defaulting to Base Image",
+    "description": "Debug why Cursor cloud agent falls back to default base image after environment configuration fails; fix Dockerfile-based env setup with build secrets Includes evidence for Cursor troubleshooting demand.",
+    "category": "Cursor",
+    "technology": "Cursor",
+    "error_signature": "Environment configuration failed — agent defaults to base image with warning signs instead of running in configured environment",
+    "search_intent": "Debug why Cursor cloud agent falls back to default base image after environment configuration fails; fix Dockerfile-based env setup with build secrets",
+    "common_causes": [
+      "From Cursor changelog (composer-2-5) dated 2026-05-20. Multi-repo environments support environment configuration as code via Dockerfiles, including build secrets for private registries. New behavior shows clear warnings and falls back to base image when config fails — this creates friction for enterprise teams using cloud agents with custom environments."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Cursor"
+    ]
+  },
+  {
+    "slug": "vercel-invalid-route-source-pattern-path-to-regexp-syntax-vs-regexp-confusion-for-negative-lookaheads-in-vercel-json",
+    "title": "Vercel Invalid Route Source Pattern — Negative Lookahead Regex Syntax Mismatch",
+    "description": "Fix invalid route source pattern error in vercel.json where negative lookahead regex `(?!pattern)` doesn't work — must use `((?!pattern).*)` syntax with path-to-regexp Includes evidence for Vercel troubleshooting demand.",
+    "category": "Deployment",
+    "technology": "Vercel",
+    "error_signature": "Invalid route source pattern — path-to-regexp syntax vs RegExp confusion for negative lookaheads in vercel.json",
+    "search_intent": "Fix invalid route source pattern error in vercel.json where negative lookahead regex `(?!pattern)` doesn't work — must use `((?!pattern).*)` syntax with path-to-regexp",
+    "common_causes": [
+      "Fetched from Vercel docs error list. Vercel routes use path-to-regexp library (not standard RegExp). Negative lookaheads require wrapping in a group: `/feedback/(?!general)` → `/feedback/((?!general).*)`. Common migration trap affecting paying users who misconfigure their vercel.json."
+    ],
+    "quick_fix": "Check the build output, project root, and deployment platform configuration before redeploying.",
+    "related_errors": [
+      "Deployment"
+    ]
   }
 ]
