@@ -1,0 +1,81 @@
+---
+title: "GitHub Copilot CLI v1.0.51 Remote Sessions Not Enabled — Configuration Bug After Update"
+description: "After upgrading GitHub Copilot CLI to v1.0.51, the /remote on command shows a misleading admin-only error even when the user hasn't changed any org policies. Users need to re-enable or configure remote sessions. Includes evidence for GitHub Copilot troubleshooting demand."
+category: "GitHub Copilot"
+technology: "GitHub Copilot"
+error_signature: "Remote sessions are not enabled. Contact your organization administrator to enable remote sessions. (after updating to Copilot v1.0.51)"
+common_causes:
+  - "Issue github/copilot-cli #3442. Regression introduced in v1.0.51 update. Affects enterprise users managing remote AI coding sessions. Commercial value: Copilot is a paid subscription tool; remote session failures block productive workflows for teams."
+quick_fix: "Compare the failing environment with a known working setup, then change one configuration value at a time."
+related_errors:
+  - "GitHub Copilot"
+updated: "2026-05-23"
+published_at: "2026-05-23T16:39:50.890Z"
+updated_at: "2026-05-23T16:39:50.890Z"
+---
+
+## What this error means
+
+`Remote sessions are not enabled. Contact your organization administrator to enable remote sessions. (after updating to Copilot v1.0.51)` is a GitHub Copilot failure pattern reported for developers trying to after upgrading github copilot cli to v1.0.51, the /remote on command shows a misleading admin-only error even when the user hasn't changed any org policies. users need to re-enable or configure remote sessions.. Based on the imported evidence, treat this as a tool-specific troubleshooting page rather than a generic API error.
+
+## Why this happens
+
+Issue github/copilot-cli #3442. Regression introduced in v1.0.51 update. Affects enterprise users managing remote AI coding sessions. Commercial value: Copilot is a paid subscription tool; remote session failures block productive workflows for teams.
+
+## Common causes
+
+- Issue github/copilot-cli #3442. Regression introduced in v1.0.51 update. Affects enterprise users managing remote AI coding sessions. Commercial value: Copilot is a paid subscription tool; remote session failures block productive workflows for teams.
+
+## Quick fixes
+
+1. Confirm the exact error signature matches `Remote sessions are not enabled. Contact your organization administrator to enable remote sessions. (after updating to Copilot v1.0.51)`.
+2. Check the GitHub Copilot account, local tool state, and provider configuration involved in the failing workflow.
+3. Compare the failing environment with a known working setup, then change one configuration value at a time.
+
+## Platform/tool-specific checks
+
+- Verify the command, editor, extension, or API client that produced the error.
+- Compare local settings with CI, deployment, or editor-level settings when the error appears in only one environment.
+- Avoid deleting credentials, local model data, or project settings until the failing scope is clear.
+
+## Step-by-step troubleshooting
+
+1. Capture the exact error message and the command, editor action, or request that triggered it.
+2. Check whether the failure is account/auth, quota/rate, model/provider, local runtime, or deployment configuration.
+3. Review the source evidence below and compare it with your environment.
+4. Apply one change at a time and rerun the smallest failing action.
+5. Keep the working fix documented for the team or deployment environment.
+
+## How to prevent it
+
+- Keep provider/tool configuration documented.
+- Record non-secret diagnostics such as tool version, provider name, model name, and command path.
+- Add a lightweight check before CI or production workflows depend on the tool.
+
+## Sources checked
+
+- https://github.com/github/copilot-cli/issues/3442
+
+Evidence note: Issue github/copilot-cli #3442. Regression introduced in v1.0.51 update. Affects enterprise users managing remote AI coding sessions. Commercial value: Copilot is a paid subscription tool; remote session failures block productive workflows for teams.
+
+## Related errors
+
+- GitHub Copilot
+
+## FAQ
+
+### What should I check first?
+
+Start with the exact `Remote sessions are not enabled. Contact your organization administrator to enable remote sessions. (after updating to Copilot v1.0.51)` text and the smallest action that reproduces it.
+
+### Can I ignore this error?
+
+No. Treat it as a failed GitHub Copilot workflow until the root cause is understood.
+
+### Is this guaranteed to have one fix?
+
+No. The imported evidence supports the troubleshooting path above, but tool behavior can vary by account, plan, version, provider, and local configuration.
+
+### How do I know the fix worked?
+
+Rerun the same command, editor action, or request. The fix is working when that action completes without `Remote sessions are not enabled. Contact your organization administrator to enable remote sessions. (after updating to Copilot v1.0.51)`.

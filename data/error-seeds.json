@@ -28605,5 +28605,149 @@
     "related_errors": [
       "LiteLLM"
     ]
+  },
+  {
+    "slug": "anthropic-api-server-writes-additional-cache-entries-past-explicit-cache-control-breakpoint-billing-1-25x-for-tokens-that-are-never-read-by-downstream-models",
+    "title": "Cache Control Breakpoint Exceeded — Billing 1.25x for Unused Tokens",
+    "description": "Understand and fix unexpected token billing overcharge caused by prompt caching extending beyond configured cache_control breakpoint, wasting money on cached-but-unread tokens Includes evidence for Anthropic API troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Anthropic API",
+    "error_signature": "Server writes additional cache entries past explicit cache_control breakpoint, billing 1.25x for tokens that are never read by downstream models",
+    "search_intent": "Understand and fix unexpected token billing overcharge caused by prompt caching extending beyond configured cache_control breakpoint, wasting money on cached-but-unread tokens",
+    "common_causes": [
+      "Bug report anthropics/anthropic-sdk-python#1547 (May 15, 2026, open). When developers use cache_control breakpoints to limit cached context size, the Anthropic server still processes additional tokens and bills at 1.25x rate even though downstream models never read them. This directly increases costs per request for enterprise users sending large documents with partial caching. High commercial value — exact error signature with measurable billing impact. Maps to 'Anthropic API'."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Anthropic API"
+    ]
+  },
+  {
+    "slug": "openai-api-azureopenai-with-aad-bearer-token-passed-via-api-key-works-in-2-33-0-but-returns-401-unauthorized-in-2-34-0",
+    "title": "AzureOpenAI AAD Bearer Token Returns 401 in SDK v2.34+ — Breaking Regression",
+    "description": "Fix Azure OpenAI authentication regression where AAD bearer tokens stopped working after SDK upgrade, causing production auth failures Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "AzureOpenAI with AAD bearer token passed via api_key works in 2.33.0 but returns 401 Unauthorized in 2.34.0",
+    "search_intent": "Fix Azure OpenAI authentication regression where AAD bearer tokens stopped working after SDK upgrade, causing production auth failures",
+    "common_causes": [
+      "GitHub issue openai/openai-python#3282 (May 20, 2026). This is a breaking SDK regression affecting Azure OpenAI enterprise users who authenticate via AAD bearer tokens. The 401 error blocks all API calls after upgrading past v2.33.0. Directly maps to 'OpenAI API' category since it impacts paid Azure OpenAI usage and billing."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "openai-api-responses-streaming-structured-output-parses-incomplete-json-before-terminal-incomplete-status-producing-malformed-parsed-results",
+    "title": "Incomplete Streaming Structured Output Parses Partial JSON Before Terminal Status",
+    "description": "Fix parsing race condition where intermediate incomplete SSE events trigger premature JSON parse on partial response data before the terminal 'incomplete' status arrives Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "Responses streaming structured output parses incomplete JSON before terminal incomplete status, producing malformed parsed results",
+    "search_intent": "Fix parsing race condition where intermediate incomplete SSE events trigger premature JSON parse on partial response data before the terminal 'incomplete' status arrives",
+    "common_causes": [
+      "GitHub issue openai/openai-python#3263 (May 18, 2026, open). Structured output streaming sends intermediate events containing partial JSON fragments. The parser attempts to parse these before receiving the terminal incomplete event, yielding corrupted structured outputs. Affects any application using gpt-5.x family responses with structured outputs in streaming mode. Maps to 'OpenAI API' — impacts production LLM applications relying on reliable structured output parsing. Has 2 linked PRs indicating active community interest."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "anthropic-api-bedrock-and-vertex-client-make-status-error-missing-413-529-status-codes-returns-generic-apistatuserror-instead-of-requesttoolargeerror-overloadederror",
+    "title": "Anthropic OverloadedError Not Mapped for Bedrock and Vertex Clients",
+    "description": "Fix missing error type mapping so Bedrock/Vertex users get specific typed exceptions (413→RequestTooLargeError, 529→OverloadedError) matching canonical Anthropic client behavior Includes evidence for Anthropic API troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Anthropic API",
+    "error_signature": "Bedrock and Vertex client _make_status_error missing 413/529 status codes — returns generic APIStatusError instead of RequestTooLargeError / OverloadedError",
+    "search_intent": "Fix missing error type mapping so Bedrock/Vertex users get specific typed exceptions (413→RequestTooLargeError, 529→OverloadedError) matching canonical Anthropic client behavior",
+    "common_causes": [
+      "Pull request anthropics/anthropic-sdk-python#1544 (May 14, 2026, still open). Canonical Anthropic SDK already handles 529 overloaded and 413 request-too-large errors, but Bedrock/Vertex path bypasses this. Enterprise users on AWS Bedrock and GCP Vertex AI receive generic errors without actionable retry logic. Maps to 'Anthropic API' category — affects paid Bedrock/Vertex usage pricing and requires proper error handling."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "Anthropic API"
+    ]
+  },
+  {
+    "slug": "anthropic-api-claude-code-api-error-500-status-code-no-body-non-fatal-lock-acquisition-failed-for-users-local-share-claude-versions",
+    "title": "Anthropic API 500 Server Error — Non-Fatal Lock Acquisition Failure",
+    "description": "User encounters Anthropic API 500 internal server error when using Claude Code desktop app; needs to understand if this is transient or requires action. Includes evidence for Anthropic API / Claude Code troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Anthropic API / Claude Code",
+    "error_signature": "API Error: 500 status code (no body). NON-FATAL: Lock acquisition failed for /Users/.../.local/share/claude/versions/",
+    "search_intent": "User encounters Anthropic API 500 internal server error when using Claude Code desktop app; needs to understand if this is transient or requires action.",
+    "common_causes": [
+      "Fresh issue from anthropics/claude-code #61827 filed today (2026-05-23) with complete environment info, stack trace, and feedback ID. Labels include 'area:api' and 'api:anthropic'. High commercial value as paid API service returning 500 errors to paying users. Category maps directly to Anthropic API."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Anthropic API"
+    ]
+  },
+  {
+    "slug": "cloudflare-python-workers-multipart-form-data-body-parsing-fails-at-1-mb-undocumented-limit-upload-file-1024-kb-succeeds-1040-kb-fails-before-reaching-application-code",
+    "title": "Cloudflare Workers Python Workers Multipart/form-data Upload Limit ~1MB Undocumented",
+    "description": "Developer building Cloudflare Worker with Python runtime hits silent upload failure when sending files above 1MB via multipart/form-data; no documentation warning about this limit exists. Includes evidence for Cloudflare troubleshooting demand.",
+    "category": "Cloudflare",
+    "technology": "Cloudflare",
+    "error_signature": "Python Workers: multipart/form-data body parsing fails at ~1 MB (undocumented limit). Upload file <=1024 KB succeeds, >=1040 KB fails before reaching application code.",
+    "search_intent": "Developer building Cloudflare Worker with Python runtime hits silent upload failure when sending files above 1MB via multipart/form-data; no documentation warning about this limit exists.",
+    "common_causes": [
+      "Issue cloudflare/workerd #6127 (opened Feb 21, 2026). Binary search confirms threshold between 1024KB-1040KB. Complete minimal reproduction with curl commands provided. No compatibility flag or workaround documented. High commercial value for paid Cloudflare Workers users uploading data."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Cloudflare"
+    ]
+  },
+  {
+    "slug": "openai-api-websocket-base-url-replace-replaces-all-occurrences-of-http-in-url-corrupting-proxy-configs-https-proxy-com-forward-target-http-backend-wss-proxy-com-forward-target-ws-backend",
+    "title": "OpenAI Python SDK websocket_base_url Derivation Corrupts URLs with http:// in Query Params",
+    "description": "Developer using OpenAI Python SDK with a reverse-proxy base URL encounters WebSocket connection failure because the SDK incorrectly replaces all 'http://' substrings instead of only the scheme prefix. Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "websocket_base_url.replace() replaces ALL occurrences of http:// in URL, corrupting proxy configs: https://proxy.com/forward?target=http://backend → wss://proxy.com/forward?target=ws://backend",
+    "search_intent": "Developer using OpenAI Python SDK with a reverse-proxy base URL encounters WebSocket connection failure because the SDK incorrectly replaces all 'http://' substrings instead of only the scheme prefix.",
+    "common_causes": [
+      "Issue openai/openai-python #3294 (opened May 21, 2026). Minimal reproducible example provided, exact code snippet showing the bug. Clear suggested fix included. Affects production proxy setups connecting through intermediaries. Category maps to OpenAI API per skill rules."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "litellm-litellm-teammembership-litellm-budget-table-missing-default-causes-validationerror-401-response",
+    "title": "LiteLLM Proxy Team Membership Missing Default Causes ValidationError Leading to 401 Unauthorized",
+    "description": "Teams running LiteLLM proxy encounter 401 Unauthorized errors due to Pydantic v2 Optional field handling changes where missing default values break team membership validation. Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "LiteLLM_TeamMembership.litellm_budget_table missing default causes ValidationError → 401 response",
+    "search_intent": "Teams running LiteLLM proxy encounter 401 Unauthorized errors due to Pydantic v2 Optional field handling changes where missing default values break team membership validation.",
+    "common_causes": [
+      "PR BerriAI/litellm #28699 fixing issue #28689. Root cause is Pydantic v2 breaking change where Optional[T] without default is required. Directly impacts LiteLLM proxy deployments with team-based billing. Strong commercial value as it affects paid multi-team deployments and proxy routing."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "LiteLLM"
+    ]
+  },
+  {
+    "slug": "github-copilot-remote-sessions-are-not-enabled-contact-your-organization-administrator-to-enable-remote-sessions-after-updating-to-copilot-v1-0-51",
+    "title": "GitHub Copilot CLI v1.0.51 Remote Sessions Not Enabled — Configuration Bug After Update",
+    "description": "After upgrading GitHub Copilot CLI to v1.0.51, the /remote on command shows a misleading admin-only error even when the user hasn't changed any org policies. Users need to re-enable or configure remote sessions. Includes evidence for GitHub Copilot troubleshooting demand.",
+    "category": "GitHub Copilot",
+    "technology": "GitHub Copilot",
+    "error_signature": "Remote sessions are not enabled. Contact your organization administrator to enable remote sessions. (after updating to Copilot v1.0.51)",
+    "search_intent": "After upgrading GitHub Copilot CLI to v1.0.51, the /remote on command shows a misleading admin-only error even when the user hasn't changed any org policies. Users need to re-enable or configure remote sessions.",
+    "common_causes": [
+      "Issue github/copilot-cli #3442. Regression introduced in v1.0.51 update. Affects enterprise users managing remote AI coding sessions. Commercial value: Copilot is a paid subscription tool; remote session failures block productive workflows for teams."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "GitHub Copilot"
+    ]
   }
 ]
