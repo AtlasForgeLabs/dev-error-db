@@ -28189,5 +28189,69 @@
     "related_errors": [
       "GitHub Actions"
     ]
+  },
+  {
+    "slug": "claude-code-session-limits-exhausted-abnormally-fast-claude-max-5-hour-usage-window-consumed-within-1-2-hours-instead-of-full-window",
+    "title": "Claude Max plan session limits exhausted abnormally fast — 5-hour window consumed in 1-2 hours",
+    "description": "Understand why Claude Max plan session window is depleting prematurely since March 2026; find workarounds or fixes for abnormal token consumption rate Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Session limits exhausted abnormally fast — Claude Max 5-hour usage window consumed within 1-2 hours instead of full window",
+    "search_intent": "Understand why Claude Max plan session window is depleting prematurely since March 2026; find workarounds or fixes for abnormal token consumption rate",
+    "common_causes": [
+      "GitHub Issue #38335 on anthropics/claude-code (created 2026-03-24, 728 comments): Users report Claude Max plan 5-hour session window being depleted in 1-2 hours with normal workload. Some report single prompt jumps from 21% to 100% usage. Cross-referenced reports on Reddit r/ClaudeCode and r/Anthropic. This is a billing/quota error on a paid subscription — directly impacts paying users. Maps to AI Coding Tools per approved category mapping."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "github-copilot-authentication-failed-mcpoautherror-listen-eaddrinuse-address-already-in-use-127-0-0-1-19878",
+    "title": "GitHub Copilot CLI /mcp re-auth fails with MCPOAuthError EADDRINUSE",
+    "description": "Fix OAuth re-authentication failure in GitHub Copilot CLI MCP server when eager-startup OAuth flow conflicts with user-initiated re-auth Includes evidence for GitHub Copilot troubleshooting demand.",
+    "category": "GitHub Copilot",
+    "technology": "GitHub Copilot",
+    "error_signature": "Authentication failed: MCPOAuthError: listen EADDRINUSE: address already in use 127.0.0.1:19878",
+    "search_intent": "Fix OAuth re-authentication failure in GitHub Copilot CLI MCP server when eager-startup OAuth flow conflicts with user-initiated re-auth",
+    "common_causes": [
+      "GitHub Issue #3462 on github/copilot-cli (created 2026-05-22): When HTTP MCP server configured with auth.redirectPort, eager OAuth startup binds the callback port, then /mcp re-auth tries to bind same port → EADDRINUSE. Only workaround: wait 5 min timeout or remove server from mcp-config.json. Regression introduced by fix for #3418. Maps to GitHub Copilot category per approved mapping table."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "GitHub Copilot"
+    ]
+  },
+  {
+    "slug": "claude-code-sse-streaming-hangs-indefinitely-no-timeout-esc-partially-works-but-queue-auto-restart-mechanism-immediately-starts-next-queued-prompt-without-returning-control",
+    "title": "Claude Code SSE streaming hangs indefinitely with no client-side timeout or heartbeat detection",
+    "description": "Fix Claude Code hanging during SSE streaming where silent connection death causes indefinite wait; needs client-side timeout or heartbeat Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "SSE streaming hangs indefinitely (no timeout) — ESC partially works but queue auto-restart mechanism immediately starts next queued prompt without returning control",
+    "search_intent": "Fix Claude Code hanging during SSE streaming where silent connection death causes indefinite wait; needs client-side timeout or heartbeat",
+    "common_causes": [
+      "GitHub Issue #33949 on anthropics/claude-code (created 2026-03-13, 37 comments): Deep investigation reveals root cause — no client-side timeout or heartbeat detection for SSE connections. After 1,571 session JSONL files analyzed with 148,444 tool calls, two separate code bugs identified in cli.js. Related to legacy issue #26224 (28 comments) and #6836 (150+ reports). Critical for production/enterprise Claude Code usage. Maps to AI Coding Tools per approved mapping."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "litellm-prisma-migrations-not-applied-with-docker-non-root-image-prisma-warning-doesn-t-know-which-engines-to-download-for-linux-distro-wolfi-falling-back-to-debian-builds",
+    "title": "LiteLLM Prisma migrations fail with non-root Docker image on Alpine-based distros",
+    "description": "Fix LiteLLM proxy Prisma migration failure when running in non-root Docker container on Alpine/Wolfi-based images Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "Prisma migrations not applied with docker non_root image — Prisma warning: doesn't know which engines to download for Linux distro wolfi, falling back to debian builds",
+    "search_intent": "Fix LiteLLM proxy Prisma migration failure when running in non-root Docker container on Alpine/Wolfi-based images",
+    "common_causes": [
+      "GitHub Issue #18851 on BerriAI/litellm (created 2026-01-09, 5 comments): Running LiteLLM proxy in non-root Docker image based on Alpine/Wolfi causes Prisma migrate deploy to fallback to debian-built engines with warnings. Database version works but UI migration fails. Affects self-hosted LiteLLM proxy deployments — operational blocker for teams using minimal Docker images. Maps to LiteLLM per approved category mapping."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "LiteLLM"
+    ]
   }
 ]
