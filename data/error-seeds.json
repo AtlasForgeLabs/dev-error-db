@@ -28349,5 +28349,53 @@
     "related_errors": [
       "Cloudflare"
     ]
+  },
+  {
+    "slug": "claude-code-claude-code-process-exited-with-code-4294967295",
+    "title": "Claude Code VSCode extension crashes when trying to resume any conversation (exit code 4294967295)",
+    "description": "Fix Claude Code VSCode extension crash when resuming previous conversations; CLI works fine but VSCode extension always fails with unexplained exit code Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Claude Code process exited with code 4294967295",
+    "search_intent": "Fix Claude Code VSCode extension crash when resuming previous conversations; CLI works fine but VSCode extension always fails with unexplained exit code",
+    "common_causes": [
+      "GitHub Issue #61724 opened May 23, 2026 by user amaau — developer reports Claude Code VSCode extension consistently crashes (exit code 4294967295) when resuming any prior conversation. Bug has persisted across multiple Claude Code (v2.1.145+) and VSCode (v1.121.0) updates for 2-3 months. Debug logs reveal broken symlink on managed-settings.json and ENOENT errors on .claude/skills directories. This blocks paid users from using the primary VSCode workflow. Category mapping: AI Coding Tools (Claude Code is Anthropic's flagship paid AI coding IDE)."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "claude-code-no-az-login-device-code-flow-available-no-service-principal-credentials-injected-into-sandbox-env-no-federated-identity-assertion-exposed",
+    "title": "Claude Code Azure CLI non-interactive auth path missing in cloud sessions",
+    "description": "Add non-interactive Azure CLI authentication support in Claude Code cloud sessions so users can run ad-hoc azure commands without switching to desktop session Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "no az login device-code flow available, no service-principal credentials injected into sandbox env, no federated identity assertion exposed",
+    "search_intent": "Add non-interactive Azure CLI authentication support in Claude Code cloud sessions so users can run ad-hoc azure commands without switching to desktop session",
+    "common_causes": [
+      "GitHub Issue #60305 in anthropics/claude-code opened May 18, 2026 by user DKTouchstone — Cloud session users building on Azure cannot authenticate az CLI non-interactively. No OIDC token issuer exposed for federation, no service-principal credentials injection, no az login device-code flow. Current workarounds: Azure MCP server for read ops only, GitHub Actions OIDC for write ops (requires PR workflow), fall back to desktop session for ad-hoc azure work. Blocking SaaS developers using phone-driven cloud sessions. Category mapping: AI Coding Tools (Claude Code cloud sessions with enterprise auth requirements)."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "vercel-received-slug-drp-slugs-9ca6cb0ae51f1-typeerror-c-join-is-not-a-function",
+    "title": "%%drp internal params leak into generateStaticParams() during Next.js build with Cache Components",
+    "description": "Fix internal placeholder param %%drp:slugs:...%% leaking as catch-all segment params during Next.js production build with Cache Components + Parallel Routes, causing prerender failure Includes evidence for Vercel troubleshooting demand.",
+    "category": "Deployment",
+    "technology": "Vercel",
+    "error_signature": "Received slug: %%drp:slugs:9ca6cb0ae51f1%% TypeError: c.join is not a function",
+    "search_intent": "Fix internal placeholder param %%drp:slugs:...%% leaking as catch-all segment params during Next.js production build with Cache Components + Parallel Routes, causing prerender failure",
+    "common_causes": [
+      "GitHub Issue #93897 opened May 16, 2026 by user alexortizl — During Next.js 16.3.0-canary.21 production build with Turbopack + Cache Components + Parallel Routes, internal param placeholder %%drp:slugs:9ca6cb0ae51f1%% leaks into catch-all segment params as string instead of string array. Calling .join() fails with TypeError: c.join is not a function. Blocks production build/export. Areas: Partial Prerendering, Dynamic Routes, Parallel & Intercepting Routes."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "Deployment"
+    ]
   }
 ]
