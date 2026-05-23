@@ -28253,5 +28253,101 @@
     "related_errors": [
       "LiteLLM"
     ]
+  },
+  {
+    "slug": "litellm-invalid-input-1-id-chatcmpl-dfa2da3a-1586-4ff7-b64e-f59c692a5d11-expected-an-id-that-begins-with-msg",
+    "title": "LiteLLM /v1/responses replays chatcmpl-* message IDs breaking OpenAI Responses validation",
+    "description": "Fix LiteLLM Response API bridge passing Chat Completions-style chatcmpl-* IDs as message item IDs into native OpenAI Responses endpoint, causing OpenAI to reject the request Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "Invalid 'input[1].id': 'chatcmpl-dfa2da3a-1586-4ff7-b64e-f59c692a5d11'. Expected an ID that begins with 'msg'",
+    "search_intent": "Fix LiteLLM Response API bridge passing Chat Completions-style chatcmpl-* IDs as message item IDs into native OpenAI Responses endpoint, causing OpenAI to reject the request",
+    "common_causes": [
+      "GitHub Issue #27333 in BerriAI/litellm, addressed by PR #28692 (May 23, 2026). Cross-provider handoff (Claude/LiteLLM → OpenAI Responses) fails because bridged output retains chatcmpl-* IDs. OpenAI Responses spec requires msg_* prefixed IDs. High production value — breaks agent multi-step tool call workflows."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "LiteLLM"
+    ]
+  },
+  {
+    "slug": "anthropic-api-bug-append-messages-inside-tool-runner-loop-causes-infinite-loop-advanced-usage-docs-example",
+    "title": "Claude Code beta tool_runner infinite loop when append_messages called in loop",
+    "description": "Fix infinite loop in Anthropic SDK tool runner when calling append_messages() inside the loop iteration — tool results never reach history causing model to re-call same tool Includes evidence for Anthropic API troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Anthropic API",
+    "error_signature": "[Bug] append_messages() inside tool runner loop causes infinite loop (advanced usage docs example)",
+    "search_intent": "Fix infinite loop in Anthropic SDK tool runner when calling append_messages() inside the loop iteration — tool results never reach history causing model to re-call same tool",
+    "common_causes": [
+      "GitHub Issue #1536 in anthropics/anthropic-sdk-python, fixed by PR #1594 (opened May 23, 2026). Root cause: _messages_modified flag set by append_messages bypasses auto-append of assistant message + tool result. This matches the official documentation example. Not in covered-errors.md."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Anthropic API"
+    ]
+  },
+  {
+    "slug": "openai-api-openai-notfounderror-error-code-404-resource-not-found-azure-openai-preview-api-version-builds-incorrect-url-with-duplicated-openai-deployments-path",
+    "title": "Azure OpenAI preview API version causes NotFoundError 404 due to double path segment injection",
+    "description": "Fix Azure OpenAI SDK build_request adding /deployments/{model} to base_url that already contains /openai/v1/, producing malformed URLs like /openai/v1/openai/deployments/gpt-5-chat/chat/completions when using preview api-version Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "openai.NotFoundError: Error code: 404 - Resource not found — Azure OpenAI preview api-version builds incorrect URL with duplicated /openai/deployments/ path",
+    "search_intent": "Fix Azure OpenAI SDK build_request adding /deployments/{model} to base_url that already contains /openai/v1/, producing malformed URLs like /openai/v1/openai/deployments/gpt-5-chat/chat/completions when using preview api-version",
+    "common_causes": [
+      "Specific error pattern discovered while fetching openai-python issue list. Root cause: Azure changed preview API version to use base_url approach, but SDK still appends /deployments/{model} regardless of whether base_url already includes the path prefix. Causes 404 on gpt-5 and other newer models. Requires conditional logic to skip appending when /deployments already present in base_url path."
+    ],
+    "quick_fix": "Check the build output, project root, and deployment platform configuration before redeploying.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "openai-api-websocket-base-url-derivation-corrupts-urls-containing-http-in-query-params-str-replace-replaces-all-occurrences-instead-of-only-scheme-prefix",
+    "title": "OpenAI Python SDK websocket_base_url corrupts URLs containing http:// in query parameters",
+    "description": "Fix OpenAI Python SDK WebSocket URL derivation incorrectly rewriting http:// → ws:// inside query parameters when using proxy or custom base_url endpoints Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "websocket_base_url derivation corrupts URLs containing http:// in query params — str.replace() replaces ALL occurrences instead of only scheme prefix",
+    "search_intent": "Fix OpenAI Python SDK WebSocket URL derivation incorrectly rewriting http:// → ws:// inside query parameters when using proxy or custom base_url endpoints",
+    "common_causes": [
+      "GitHub Issue #3294 in openai/openai-python, fixed by PR #3301 (created May 23, 2026). Uses str.replace('http://', 'ws://') which corrupts URLs with http:// embedded in query params. Blocks developers using proxy middlewares. Not in covered-errors.md."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "cloudflare-workers-error-a-file-or-directory-could-not-be-found-missing-file-or-directory-xdg-open",
+    "title": "Wrangler deploy crashes with 'Missing file or directory: xdg-open' in headless Linux servers",
+    "description": "Fix Cloudflare Wrangler deployment crash on headless Linux when browser-based OAuth login fails due to missing xdg-open binary Includes evidence for Cloudflare Workers troubleshooting demand.",
+    "category": "Cloudflare",
+    "technology": "Cloudflare Workers",
+    "error_signature": "[ERROR] A file or directory could not be found. Missing file or directory: xdg-open",
+    "search_intent": "Fix Cloudflare Wrangler deployment crash on headless Linux when browser-based OAuth login fails due to missing xdg-open binary",
+    "common_causes": [
+      "GitHub Issue #14023 in cloudflare/workers-sdk (opened May 23, 2026). Wrangler tries to launch system browser for OAuth login; fails in Docker/headless environments without xdg-open. Affects paying teams deploying Worker scripts via CI. Not in covered-errors.md."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "Cloudflare"
+    ]
+  },
+  {
+    "slug": "cloudflare-workers-wrangler-login-hangs-until-120s-oauth-timeout-oauth-provider-redirect-with-error-code-not-shown-to-user",
+    "title": "Cloudflare Wrangler login hangs indefinitely on OAuth callback rejection",
+    "description": "Debug Cloudflare Wrangler CLI login command hanging when OAuth callback returns an error (not access_denied), waiting full 120s timeout instead of surfacing the actual OAuth error to the user Includes evidence for Cloudflare Workers troubleshooting demand.",
+    "category": "Cloudflare",
+    "technology": "Cloudflare Workers",
+    "error_signature": "wrangler login hangs until 120s OAuth timeout — OAuth provider redirect with error code not shown to user",
+    "search_intent": "Debug Cloudflare Wrangler CLI login command hanging when OAuth callback returns an error (not access_denied), waiting full 120s timeout instead of surfacing the actual OAuth error to the user",
+    "common_causes": [
+      "Related GitHub PR #14022 in cloudflare/workers-sdk (opened May 23, 2026). When OAuth provider rejects the callback, Wrangler writes no HTTP response; server.close() blocks until connections end. Users see generic timeout, not the actual OAuth error_description (RFC 6749 §4.1.2.1). Affects every developer authenticating with Cloudflare."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "Cloudflare"
+    ]
   }
 ]
