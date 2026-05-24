@@ -29565,5 +29565,101 @@
     "related_errors": [
       "Cloud Platforms"
     ]
+  },
+  {
+    "slug": "claude-code-github-mcp-refuses-changes-oauth-app-credential-vs-github-app-installation-token-identity-mismatch",
+    "title": "Claude Code GitHub MCP OAuth vs GitHub App Permission Mismatch",
+    "description": "Fix Claude Code GitHub MCP failing to push/pull changes due to OAuth App vs GitHub App token identity confusion Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "GitHub MCP refuses changes — OAuth App credential vs GitHub App installation token identity mismatch",
+    "search_intent": "Fix Claude Code GitHub MCP failing to push/pull changes due to OAuth App vs GitHub App token identity confusion",
+    "common_causes": [
+      "Discovered via DuckDuckGo search result from github.com/anthropics/claude-code/issues/61189. Confirmed: Claude GitHub App installed repo access ≠ MCP path OAuth App credential. Two independent identities, only App has repo write permissions. Very specific technical root cause with clear fix. Category: Claude Code → AI Coding Tools."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "claude-code-401-unauthorized-oauth-token-expired-mid-session",
+    "title": "Claude Code OAuth Token Expiry — 401 Unauthorized After Auth Refresh",
+    "description": "Resolve Claude Code 401 auth errors caused by expired OAuth tokens during active coding sessions Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "401 Unauthorized — OAuth token expired mid-session",
+    "search_intent": "Resolve Claude Code 401 auth errors caused by expired OAuth tokens during active coding sessions",
+    "common_causes": [
+      "Fetched from codersera.com confirming 401 triggers from OAuth token expiration. Fix involves /logout then /login to re-authenticate. High commercial impact since auth failure blocks all paid API calls. Category mapping: Claude Code → AI Coding Tools."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "cursor-model-does-not-work-with-your-current-plan-o4-mini-unavailable-despite-free-tier-access",
+    "title": "Cursor 'Model Does Not Work With Your Current Plan' — o4-mini Plan Compatibility Error",
+    "description": "Fix Cursor refusing to use o4-mini model with error that it does not work with the current plan even though it should be available for free Includes evidence for Cursor troubleshooting demand.",
+    "category": "Cursor",
+    "technology": "Cursor",
+    "error_signature": "model does not work with your current plan — o4-mini unavailable despite free tier access",
+    "search_intent": "Fix Cursor refusing to use o4-mini model with error that it does not work with the current plan even though it should be available for free",
+    "common_causes": [
+      "Fetched from dredyson.com detailed walkthrough. Root cause: manual model entry required (case-sensitive 'o4-mini'), service hiccup during rollout, usage-based billing must be enabled. Commercial impact: cursor subscription $20/mo, affects new model feature adoption. Category: Cursor → Cursor (exact match)."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Cursor"
+    ]
+  },
+  {
+    "slug": "claude-code-mcp-32000-client-closed-server-process-died-on-launch",
+    "title": "Claude Code MCP Server Dies On Launch — -32000 JSON-RPC Error",
+    "description": "Fix Claude Code MCP servers crashing immediately after launch with JSON-RPC -32000 errors Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "MCP -32000 Client Closed — server process died on launch",
+    "search_intent": "Fix Claude Code MCP servers crashing immediately after launch with JSON-RPC -32000 errors",
+    "common_causes": [
+      "Fetched from codersera.com. MCP -32000 occurs when an MCP server writes to stdout and corrupts JSON-RPC protocol, or crashes on launch. Corporate proxy scenarios also cited. Strong signal from community troubleshooting guides. Category: Claude Code → AI Coding Tools."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "cursor-model-not-available-this-model-provider-doesn-t-serve-your-region",
+    "title": "Cursor 'Model Not Available — Provider Doesn't Serve Your Region' Regional Restriction Error",
+    "description": "Fix Cursor blocking access to Claude/Gemini models due to regional availability restrictions enforced by API providers Includes evidence for Cursor troubleshooting demand.",
+    "category": "Cursor",
+    "technology": "Cursor",
+    "error_signature": "Model Not Available — This model provider doesn't serve your region",
+    "search_intent": "Fix Cursor blocking access to Claude/Gemini models due to regional availability restrictions enforced by API providers",
+    "common_causes": [
+      "Discovered via DuckDuckGo results showing multiple Chinese-language guides (zhuanlan.zhihu.com, itlanyan.com) for this exact error. Root cause: model providers require usage within defined regions. Forum thread confirmed widespread reports. Strong commercial value for international developers. Category: Cursor → Cursor (exact match)."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Cursor"
+    ]
+  },
+  {
+    "slug": "claude-code-mcp-authentication-misconfiguration-unintended-access-boundary-expansion-through-cloudforward-headers",
+    "title": "Claude Code MCP Authentication Misconfiguration Risk — AWS IAM & CloudFront Header Leakage",
+    "description": "Fix Claude Code MCP authentication setup to prevent unintended system exposure when connecting internal services like AWS IAM databases Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "MCP authentication misconfiguration — unintended access boundary expansion through CloudForward headers",
+    "search_intent": "Fix Claude Code MCP authentication setup to prevent unintended system exposure when connecting internal services like AWS IAM databases",
+    "common_causes": [
+      "Fetched from truefoundry.com detailed MCP auth guide highlighting real-world security risk of loose MCP config. Describes how CloudForward header misconfig expands access boundaries beyond expected scope. Connected to production security incidents. Growing concern with enterprise MCP adoption. Category: Claude Code → AI Coding Tools."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
   }
 ]
