@@ -29181,5 +29181,85 @@
     "related_errors": [
       "AI Coding Tools"
     ]
+  },
+  {
+    "slug": "ollama-error-failed-to-load-model-500-internal-server-error-mlx-runner-failed-error-failed-to-initialize-mlx",
+    "title": "Getting '500 Internal Server Error: mlx runner failed: failed to initialize MLX' on Linux",
+    "description": "Resolve Ollama model loading failure caused by Apple Silicon MLX runner being incorrectly selected on Linux systems with NVIDIA GPU Includes evidence for Ollama troubleshooting demand.",
+    "category": "Ollama",
+    "technology": "Ollama",
+    "error_signature": "Error: failed to load model: 500 Internal Server Error: mlx runner failed: Error: failed to initialize MLX",
+    "search_intent": "Resolve Ollama model loading failure caused by Apple Silicon MLX runner being incorrectly selected on Linux systems with NVIDIA GPU",
+    "common_causes": [
+      "GitHub issue #16204 on ollama/ollama reports MLX (Apple Silicon framework) being erroneously selected as the GPU runner on Linux Rocky Linux 9.7 with NVIDIA RTX 4000 SFF Ada, causing model load failure. Affects developers running local LLM serving in production environments. Category maps to Ollama as a core local LLM inference error."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Ollama"
+    ]
+  },
+  {
+    "slug": "litellm-v1-models-wildcard-expansion-fails-to-find-team-scoped-wildcard-deployment-models-team-models-openai-does-not-resolve-correctly-when-check-provider-endpoint-true",
+    "title": "/v1/models wildcard discovery does not expand team BYOK routes using litellm_credential_name",
+    "description": "Fix LiteLLM proxy /v1/models endpoint so wildcard team BYOK routes properly expand and discover models stored under litellm_credential_name Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "/v1/models wildcard expansion fails to find team-scoped wildcard deployment models; team.models = ['openai/*'] does not resolve correctly when check_provider_endpoint=true",
+    "search_intent": "Fix LiteLLM proxy /v1/models endpoint so wildcard team BYOK routes properly expand and discover models stored under litellm_credential_name",
+    "common_causes": [
+      "GitHub issue #28264 on BerriAI/litellm describes a bug where /v1/models wildcard expansion does not correctly resolve team-scoped wildcard deployment configurations (team.models = ['openai/*']). This blocks developers managing multiple model providers through LiteLLM proxy. Category maps to LiteLLM as a core proxy routing error affecting paid enterprise deployments."
+    ],
+    "quick_fix": "Check the build output, project root, and deployment platform configuration before redeploying.",
+    "related_errors": [
+      "LiteLLM"
+    ]
+  },
+  {
+    "slug": "docker-error-response-from-daemon-failed-to-set-up-container-networking-could-not-find-a-network-matching-network-mode-overlay-network-name-network-overlay-network-name-not-found",
+    "title": "Sporadic failure in container networking setup: overlay network not found during docker compose initialization",
+    "description": "Fix sporadic Docker Swarm overlay networking failures in docker-compose when defining services on overlay networks, where the network disappears between initialization steps Includes evidence for Docker troubleshooting demand.",
+    "category": "Docker",
+    "technology": "Docker",
+    "error_signature": "Error response from daemon: failed to set up container networking: could not find a network matching network mode <overlay-network-name>: network <overlay-network-name> not found",
+    "search_intent": "Fix sporadic Docker Swarm overlay networking failures in docker-compose when defining services on overlay networks, where the network disappears between initialization steps",
+    "common_causes": [
+      "GitHub issue #12862 on docker/compose describes an intermittent failure where overlay network definitions in docker-compose fail during container initialization, producing 'network not found' errors. Affected users deploying multi-service containers on Docker Swarm. Category maps to Docker as a core container orchestration error. Note: closed as not planned by maintainers, but still highly searched with clear error signature."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Docker"
+    ]
+  },
+  {
+    "slug": "openai-api-background-task-responses-fail-without-stable-error-code-error-type-values-that-can-be-mapped-to-python-exception-classes-for-programmatic-handling",
+    "title": "Background responses lack stable code/name that maps to exception classes",
+    "description": "Enable reliable error handling for async/background OpenAI API calls by providing consistent error codes and names that map to library exception classes Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "Background task responses fail without stable error_code/error_type values that can be mapped to Python exception classes for programmatic handling",
+    "search_intent": "Enable reliable error handling for async/background OpenAI API calls by providing consistent error codes and names that map to library exception classes",
+    "common_causes": [
+      "GitHub issue #3212 on openai/openai-python requests that background/async response failures expose stable error codes and names that correspond to exception classes, improving error handling in production workflows. Category maps to OpenAI API. Not yet in covered-errors.md."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "langchain-chatopenrouter-init-creates-brand-new-httpx-client-asyncclient-per-instance-with-no-caching-under-per-request-instantiation-patterns-this-leaks-tls-keep-alive-sockets-and-pool-state-to-openrouter-ai",
+    "title": "langchain-openrouter ChatOpenRouter creates fresh httpx clients per instantiation causing resource leaks",
+    "description": "Fix resource leak in langchain-openrouter where each model instantiation creates unclosed httpx connections, especially problematic with FastAPI dependency injection and LangGraph factory graphs Includes evidence for LangChain troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "LangChain",
+    "error_signature": "ChatOpenRouter.__init__ creates brand-new httpx.Client/AsyncClient per instance with no caching; under per-request instantiation patterns this leaks TLS keep-alive sockets and pool state to openrouter.ai",
+    "search_intent": "Fix resource leak in langchain-openrouter where each model instantiation creates unclosed httpx connections, especially problematic with FastAPI dependency injection and LangGraph factory graphs",
+    "common_causes": [
+      "GitHub issues #37497/#37498 on langchain-ai/langchain report LangChain OpenRouter wrapper creating new httpx clients per instantiation without pooling, same class of bug fixed previously for AzureChatOpenAI (#32489). Impacts developers building LLM applications that create model instances per request. Category maps to AI Coding Tools since LangChain is listed in approved category mapping table."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
   }
 ]
