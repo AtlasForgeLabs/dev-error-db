@@ -30333,5 +30333,53 @@
     "related_errors": [
       "Ollama"
     ]
+  },
+  {
+    "slug": "anthropic-api-400-invalid-signature-in-thinking-block-messages-n-content-m-invalid-signature-in-thinking-block",
+    "title": "Anthropic API returns 400 'Invalid signature in thinking block' with no recovery path",
+    "description": "Fix broken multi-turn conversation when extended thinking signatures invalidate mid-session on Claude Sonnet/Opus 4.x Includes evidence for Anthropic API troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Anthropic API",
+    "error_signature": "400: Invalid `signature` in `thinking` block — messages.N.content.M: Invalid `signature` in `thinking` block",
+    "search_intent": "Fix broken multi-turn conversation when extended thinking signatures invalidate mid-session on Claude Sonnet/Opus 4.x",
+    "common_causes": [
+      "GitHub issue #1598 on anthropics/anthropic-sdk-python (created 2026-05-23). Reproducible on claude-sonnet-4-6/claude-opus-4 with 20+ turn conversations using extended thinking. Each subsequent message fails permanently once triggered. Paid API usage affected; no documented recovery path. Category mapping: direct Anthropic API contract error → Anthropic API."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Anthropic API"
+    ]
+  },
+  {
+    "slug": "claude-code-couldn-t-reach-the-mcp-server-requests-never-reach-server-zero-inbound-traffic-during-connection-attempts",
+    "title": "Claude Code MCP server connection always fails with 'Couldn't reach the MCP server'",
+    "description": "Fix remote MCP server connection failure via Claude.ai web connector Settings → Integrations → Custom MCP Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Couldn't reach the MCP server — requests never reach server, zero inbound traffic during connection attempts",
+    "search_intent": "Fix remote MCP server connection failure via Claude.ai web connector Settings → Integrations → Custom MCP",
+    "common_causes": [
+      "GitHub issue #62093 on anthropics/claude-code (created 2026-05-24). Remote MCP server with OAuth 2.1 + PKCE passes all health checks, curl from external IPs returns HTTP 200, local CLI works with 165 tools loaded, but web connector fails before reaching server. Suggests Anthropic relay infrastructure failure. High commercial value — breaks Claude Code Pro/Max paid subscriptions for MCP integrations. Category: Claude Code is an AI coding tool → AI Coding Tools."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "litellm-401-client-is-not-connected-to-the-query-engine-every-request-returns-401-until-process-restart-after-prisma-engine-death",
+    "title": "LiteLLM Proxy becomes permanently broken after Prisma query-engine subprocess death",
+    "description": "Fix LiteLLM proxy permanent outage when Prisma database query-engine dies — requires manual restart instead of self-healing Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "401 Client is not connected to the query engine — every request returns 401 until process restart after Prisma engine death",
+    "search_intent": "Fix LiteLLM proxy permanent outage when Prisma database query-engine dies — requires manual restart instead of self-healing",
+    "common_causes": [
+      "GitHub PR #28757 (fixing #28322) on BerriAI/litellm (created 2026-05-24). Two compounding defects: non-atomic recreate_prisma_client leaves half-built client installed, and watchdog reconnect respects cooldown set by failing path. Result: virtual-key auth proxy stuck on 401s until full restart. Affects production LiteLLM proxy deployments serving multiple teams/models. Category: LiteLLM proxy configuration/deployment error → LiteLLM."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "LiteLLM"
+    ]
   }
 ]
