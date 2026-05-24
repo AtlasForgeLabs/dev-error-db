@@ -29501,5 +29501,69 @@
     "related_errors": [
       "Ollama"
     ]
+  },
+  {
+    "slug": "claude-code-session-expired-connection-closed-claude-code-unable-to-stay-logged-in-on-vps-ssh-token-expires-or-connection-resets-during-remote-sessions",
+    "title": "Claude Code Login/Subscription Issue on VPS — Token Expired After SSH Reconnect",
+    "description": "Developer needs to re-authenticate Claude Code on a headless VPS without browser login; wants clean session recovery after SSH disconnects Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "session expired / connection closed — Claude Code unable to stay logged in on VPS/SSH; token expires or connection resets during remote sessions",
+    "search_intent": "Developer needs to re-authenticate Claude Code on a headless VPS without browser login; wants clean session recovery after SSH disconnects",
+    "common_causes": [
+      "Reddit r/ClaudeAI post reports active Claude subscription but CLI session appears broken on VPS; browser login works locally but remote auth fails. Real payment-subscriber pain point. Category: AI Coding Tools (Claude Code specific auth flow)."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "openrouter-openrouter-returns-429-at-step-n-of-langgraph-workflow-workflow-crashes-restart-from-step-1-retry-storm-across-workers",
+    "title": "OpenRouter 429 Rate Limit Crashes LangGraph Workflow Mid-Pipeline",
+    "description": "Engineering team needs architecture for handling external API rate limits (OpenRouter 429) within LangGraph agent workflows to prevent lost progress and cascading retries Includes evidence for OpenRouter troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "OpenRouter",
+    "error_signature": "OpenRouter returns 429 at step N of LangGraph workflow → workflow crashes → restart from step 1 → retry storm across workers",
+    "search_intent": "Engineering team needs architecture for handling external API rate limits (OpenRouter 429) within LangGraph agent workflows to prevent lost progress and cascading retries",
+    "common_causes": [
+      "Blog article on ezthrottle.network documents real production failure pattern where OpenRouter 429 errors mid-worfklow cause total LangGraph state loss and retry storms. Category mapped to LiteLLM because it involves proxy/routing-level rate limit handling and queue-per-URL architecture needed at the proxy layer."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "LiteLLM"
+    ]
+  },
+  {
+    "slug": "vercel-code-runs-fine-under-vercel-dev-locally-but-breaks-when-deployed-backend-apis-fail-on-vercel-serverless-runtime-despite-passing-local-tests",
+    "title": "Vercel Build Works Locally But Fails on Deploy — Back-end API Breakage",
+    "description": "Developer troubleshooting deployment-specific failures where local dev environment succeeds but production deploy fails, often due to serverless runtime differences or missing env vars Includes evidence for Vercel troubleshooting demand.",
+    "category": "Deployment",
+    "technology": "Vercel",
+    "error_signature": "code runs fine under `vercel dev` locally but breaks when deployed; backend APIs fail on Vercel serverless runtime despite passing local tests",
+    "search_intent": "Developer troubleshooting deployment-specific failures where local dev environment succeeds but production deploy fails, often due to serverless runtime differences or missing env vars",
+    "common_causes": [
+      "Reddit r/Vercel thread describes repeated cases of locally working code breaking on deployment, particularly for backend APIs. High commercial value: deployment blockers affect paying teams using paid plans. Category: Deployment (Vercel specific)."
+    ],
+    "quick_fix": "Check the build output, project root, and deployment platform configuration before redeploying.",
+    "related_errors": [
+      "Deployment"
+    ]
+  },
+  {
+    "slug": "kubernetes-checkout-service-down-cascading-failure-across-dependent-services-in-multiple-namespaces-single-kubectl-describe-insufficient-for-root-cause-identification",
+    "title": "Kubernetes Cascading Namespace Failure — Multi-step Service Dependency Crash",
+    "description": "SRE/DevOps engineer debugging multi-service cascade failures in K8s cluster; needs systematic approach to trace cross-namespace dependency chains Includes evidence for Kubernetes troubleshooting demand.",
+    "category": "Cloud Platforms",
+    "technology": "Kubernetes",
+    "error_signature": "checkout-service down → cascading failure across dependent services in multiple namespaces; single kubectl describe insufficient for root cause identification",
+    "search_intent": "SRE/DevOps engineer debugging multi-service cascade failures in K8s cluster; needs systematic approach to trace cross-namespace dependency chains",
+    "common_causes": [
+      "Reddit r/kubernetes discusses real-world cascading failure debugging requiring multi-step investigation across namespaces. Classic production incident pattern. Category: Cloud Platforms (Kubernetes)."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Cloud Platforms"
+    ]
   }
 ]
