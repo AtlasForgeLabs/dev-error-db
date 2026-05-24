@@ -29661,5 +29661,101 @@
     "related_errors": [
       "AI Coding Tools"
     ]
+  },
+  {
+    "slug": "openai-api-401-unauthorized-azureopenai-requests-started-failing-after-upgrading-openai-python-sdk-from-2-33-0-to-2-34-0-plus",
+    "title": "AzureOpenAI with AAD bearer token returns 401 after SDK upgrade",
+    "description": "Fix authentication 401 error on Azure OpenAI after upgrading the official Python SDK Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "401 Unauthorized — AzureOpenAI requests started failing after upgrading openai Python SDK from 2.33.0 to 2.34.0+",
+    "search_intent": "Fix authentication 401 error on Azure OpenAI after upgrading the official Python SDK",
+    "common_causes": [
+      "Regression bug in openai-python SDK 2.34.0 where AAD bearer tokens passed via api_key auth suddenly return 401. This breaks Azure deployments for any team using managed identities or service principals — very high commercial value for enterprise users. Not yet in covered-errors list."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "claude-code-usage-session-limits-hit-during-active-coding-tasks-forcing-a-hard-stop-before-task-completion-claude-max-subscriber-forced-to-switch-to-competitor-tooling",
+    "title": "Paid Claude Code Max plan usage limits interrupt real work mid-task",
+    "description": "Understand Claude Code token quota behavior for Max subscribers and find ways to extend session limits or get graceful continuation Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Usage/session limits hit during active coding tasks, forcing a hard stop before task completion; Claude Max subscriber forced to switch to competitor tooling",
+    "search_intent": "Understand Claude Code token quota behavior for Max subscribers and find ways to extend session limits or get graceful continuation",
+    "common_causes": [
+      "GitHub issue filed against anthropics/claude-code by a paying ~$100/month Max subscriber whose sessions are being cut short mid-workflow. Churn risk for paid AI coding tools. Freshly created (May 23). Distinct from general quota errors because it focuses on session-length interruption rather than total monthly cap."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "anthropic-api-sse-error-returned-from-server-type-error-error-type-overloaded-error-raw-json-leaked-into-copilot-ui",
+    "title": "Anthropic overloaded_error SSE event surfaces as raw JSON to user",
+    "description": "Handle Anthropic overloaded_error gracefully instead of surfacing raw JSON error wall to end users Includes evidence for Anthropic API troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Anthropic API",
+    "error_signature": "SSE error returned from server: {\"type\":\"error\",\"error\":{\"type\":\"overloaded_error\",…}} — raw JSON leaked into Copilot UI",
+    "search_intent": "Handle Anthropic overloaded_error gracefully instead of surfacing raw JSON error wall to end users",
+    "common_causes": [
+      "Umbraco.AI agent client was not handling transient overloaded_error SSE events, displaying ugly raw JSON errors to users. While this is an application-level bug, it reveals how developers commonly mishandle this specific API error code. High ranking value because overloaded_error is documented but confusing — many devs will search for the exact error message text."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Anthropic API"
+    ]
+  },
+  {
+    "slug": "openai-api-non-streaming-openai-api-calls-responses-api-completions-create-hang-indefinitely-behind-nat-gateway-default-httpx-transport-has-no-tcp-keepalive",
+    "title": "Non-streaming OpenAI calls silently hang forever behind NAT",
+    "description": "Fix silent hangs when making non-streaming calls to OpenAI API from behind NAT/firewall environments Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "Non-streaming OpenAI API calls (Responses API / completions.create()) hang indefinitely behind NAT gateway — default httpx transport has no TCP keepalive",
+    "search_intent": "Fix silent hangs when making non-streaming calls to OpenAI API from behind NAT/firewall environments",
+    "common_causes": [
+      "Subtle but severe bug in openai-python SDK — non-streaming calls appear to hang forever when deployed behind NAT gateways or corporate firewalls because httpx default transport lacks TCP keepalive. Developers waste hours debugging connectivity before finding root cause. Medium competition because few existing pages address this exact scenario."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "ollama-error-pull-model-manifest-file-does-not-exist-immediate-failure-under-1-second-despite-ollama-serve-running-correctly",
+    "title": "Ollama pull manifest fails with 'file does not exist' on macOS Apple Silicon",
+    "description": "Fix Ollama model pull failing with 'file does not exist' error on fresh macOS Apple Silicon installations Includes evidence for Ollama troubleshooting demand.",
+    "category": "Ollama",
+    "technology": "Ollama",
+    "error_signature": "Error: pull model manifest: file does not exist — immediate failure under 1 second despite ollama serve running correctly",
+    "search_intent": "Fix Ollama model pull failing with 'file does not exist' error on fresh macOS Apple Silicon installations",
+    "common_causes": [
+      "Critical block for new Ollama users on Mac Mini M4 Pro — model downloads fail immediately with a misleading 'file does not exist' error even though the serve process is running and accepting connections. Very high search volume potential because it blocks onboarding. Fresh report (May 23)."
+    ],
+    "quick_fix": "Verify the model name, local service connectivity, and network access before retrying the model pull.",
+    "related_errors": [
+      "Ollama"
+    ]
+  },
+  {
+    "slug": "ollama-500-internal-server-error-llama-server-process-has-terminated-exit-status-1-error-loading-model-missing-tensor-blk-48-ffn-down-exps-weight",
+    "title": "Ollama 500 Internal Server Error: missing tensor when loading large models",
+    "description": "Fix Ollama crashing with 500 error when pulling/loading Qwen3.5 or other large models due to missing tensor weights Includes evidence for Ollama troubleshooting demand.",
+    "category": "Ollama",
+    "technology": "Ollama",
+    "error_signature": "500 Internal Server Error: llama-server process has terminated: exit status 1: error loading model: missing tensor 'blk.48.ffn_down_exps.weight'",
+    "search_intent": "Fix Ollama crashing with 500 error when pulling/loading Qwen3.5 or other large models due to missing tensor weights",
+    "common_causes": [
+      "Fresh Ollama rc23 regression where llama-server crashes when loading certain quantized large models (e.g., qwen3.5:122b) with missing tensor weight errors. Occurs on Docker-hosted Ollama. High interest because large-model inference is a primary use case for local LLMs. Not in covered-errors list."
+    ],
+    "quick_fix": "Verify the model name, local service connectivity, and network access before retrying the model pull.",
+    "related_errors": [
+      "Ollama"
+    ]
   }
 ]
