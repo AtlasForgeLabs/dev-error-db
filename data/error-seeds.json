@@ -30061,5 +30061,101 @@
     "related_errors": [
       "Deployment"
     ]
+  },
+  {
+    "slug": "vercel-pipeline-started-failing-on-vercel-cli-50-17-0-for-manual-build-and-deployments",
+    "title": "Vercel Pipeline Build Failures After CLI 50.17.0 Upgrade — Manual Deploy Broken for Over a Month",
+    "description": "Fix Vercel CLI 50.17.0 regression causing pipeline build/deployment failures for custom GitLab CI pipelines deploying Next.js to Vercel, persisting for over a month Includes evidence for Vercel troubleshooting demand.",
+    "category": "Deployment",
+    "technology": "Vercel",
+    "error_signature": "Pipeline started failing on Vercel CLI 50.17.0 for manual build and deployments",
+    "search_intent": "Fix Vercel CLI 50.17.0 regression causing pipeline build/deployment failures for custom GitLab CI pipelines deploying Next.js to Vercel, persisting for over a month",
+    "common_causes": [
+      "GitHub issue #15043 on vercel/vercel (https://github.com/vercel/vercel/issues/15043) and community discussion #6714 (https://github.com/vercel/community/discussions/6714). Vercel CLI 50.17.0 introduced a regression that breaks manual builds in CI/CD pipelines. Affects paying teams relying on automated deployments — production-blocking with no workaround visible. Community discussions also report similar sudden build failures even for previously successful re-deployments."
+    ],
+    "quick_fix": "Check the build output, project root, and deployment platform configuration before redeploying.",
+    "related_errors": [
+      "Deployment"
+    ]
+  },
+  {
+    "slug": "claude-code-mcp-auth-not-automatically-launching-browser-oauth-mcp-authentication-flows-broken-after-auto-update-to-v2-1-141",
+    "title": "Claude Code MCP Auth Not Launching Browser After v2.1.141 Update — OAuth/Authentication Broken on Windows",
+    "description": "Fix Claude Code MCP/OAuth authentication failure where the browser doesn't launch after automatic update, blocking login workflows on Windows (Git Bash/MSYS2/SSH context) Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "mcp auth not automatically launching browser (OAuth/MCP authentication flows broken after auto-update to v2.1.141)",
+    "search_intent": "Fix Claude Code MCP/OAuth authentication failure where the browser doesn't launch after automatic update, blocking login workflows on Windows (Git Bash/MSYS2/SSH context)",
+    "common_causes": [
+      "GitHub issue #59194 on anthropics/claude-code (https://github.com/anthropics/claude-code/issues/59194). Reported as a regression introduced by auto-update to v2.1.141 on 2026-05-14. Affects all Windows users running Claude Code in Git Bash/MSYS2 under SSH/PLink sessions — OAuth and MCP auth flows completely broken. This is a high-value paid AI coding tool, errors here block developer workflows entirely."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "cursor-provider-error-when-using-gemini-vertex-google-ai-studio-api-key-in-cursor-server-side-model-name-mapping-bug-byok-failure",
+    "title": "Cursor Gemini BYOK PROVIDER_ERROR — Model Name Mapping Bug Blocks External API Key Usage",
+    "description": "Fix Provider error in Cursor IDE when trying to use own Gemini API key (Bring Your Own Key), caused by internal model name mapping bug affecting Gemini 3.x and Gemma 4 models Includes evidence for Cursor troubleshooting demand.",
+    "category": "Cursor",
+    "technology": "Cursor",
+    "error_signature": "PROVIDER_ERROR when using Gemini/Vertex/Google AI Studio API key in Cursor — server-side model name mapping bug (BYOK failure)",
+    "search_intent": "Fix Provider error in Cursor IDE when trying to use own Gemini API key (Bring Your Own Key), caused by internal model name mapping bug affecting Gemini 3.x and Gemma 4 models",
+    "common_causes": [
+      "Reported on Cursor community forum (https://forum.cursor.com/t/gemini-api-key-doesnt-work-with-the-latest-cursor-version/146784) and analyzed on dredyson.com (May 2, 2026). Affects Cursor Pro paid users who want to use their own Gemini API keys instead of plan-included requests. The BYOK feature is broken by a server-side model name mapping bug specific to Gemini 3.x and Gemma 4 models. This blocks paying users from accessing their own API credits."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Cursor"
+    ]
+  },
+  {
+    "slug": "claude-code-mcp-server-disconnected-connection-closed-inside-wsl-windows-subsystem-for-linux",
+    "title": "Claude Code Reports 'MCP Server Disconnected' Inside WSL — Stdio Spawning Cross-Boundary Failure",
+    "description": "Fix Claude Code showing 'MCP server disconnected' or 'Connection closed' for working MCP servers launched from WSL2, caused by stdio spawning issues across the Windows/Linux boundary Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "MCP server disconnected / Connection closed inside WSL (Windows Subsystem for Linux)",
+    "search_intent": "Fix Claude Code showing 'MCP server disconnected' or 'Connection closed' for working MCP servers launched from WSL2, caused by stdio spawning issues across the Windows/Linux boundary",
+    "common_causes": [
+      "Article published on startdebugging.net (May 2026): https://startdebugging.net/2026/05/fix-claude-code-reports-mcp-server-disconnected-inside-wsl/. Covers root causes including npx/node ENOENT, mirrored networking for HTTP servers, and VMMem reaping when launching Claude Code from WSL2. Affects hybrid Windows/WSL development setups common among enterprise AI coding tool users."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "cloudflare-522-connection-timeout-when-fetching-session-with-getsession-during-ssr-cloudflare-worker",
+    "title": "Cloudflare Error 522 During SSR Session Fetch with Cloudflare Workers — getSession Connection Timeout",
+    "description": "Fix Cloudflare Error 522 (origin connection timed out) occurring specifically when calling getSession() during server-side rendering with Cloudflare Workers, blocking user authentication flows in production Includes evidence for Cloudflare troubleshooting demand.",
+    "category": "Cloudflare",
+    "technology": "Cloudflare",
+    "error_signature": "\"522 Connection timeout\" when fetching session with getSession during SSR [Cloudflare Worker]",
+    "search_intent": "Fix Cloudflare Error 522 (origin connection timed out) occurring specifically when calling getSession() during server-side rendering with Cloudflare Workers, blocking user authentication flows in production",
+    "common_causes": [
+      "GitHub discussion #2644 on better-auth/better-auth (https://github.com/better-auth/better-auth/discussions/2644). Error 522 occurs when Cloudflare times out contacting the origin server during SSR session retrieval. Affects developers using Cloudflare Workers as edge functions — production-grade auth integration. The error directly impacts paying users unable to authenticate, creating immediate business impact."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "Cloudflare"
+    ]
+  },
+  {
+    "slug": "vercel-your-deployment-s-build-step-did-not-complete-within-the-maximum-of-45-minutes-task-killed-due-to-exceeding-build-timeout",
+    "title": "Vercel Build Step Timeout — Deployment Exceeds 45-Minute Maximum Without Completing",
+    "description": "Fix Vercel build step timeout error where deployments exceed the 45-minute hard limit and get killed before completion Includes evidence for Vercel troubleshooting demand.",
+    "category": "Deployment",
+    "technology": "Vercel",
+    "error_signature": "Your deployment's build step did not complete within the maximum of 45 minutes (task killed due to exceeding build timeout)",
+    "search_intent": "Fix Vercel build step timeout error where deployments exceed the 45-minute hard limit and get killed before completion",
+    "common_causes": [
+      "GitHub discussion #10206 on vercel/vercel (https://github.com/vercel/vercel/discussions/10206). The Vercel platform enforces a 45-minute hard limit on build steps; projects with large dependency trees, complex bundling, or heavy native compilation exceed this limit and fail silently. Common for enterprise-scale Next.js and monorepo deployments. Distinct from the CLI 50.17.0 pipeline issue above."
+    ],
+    "quick_fix": "Check the build output, project root, and deployment platform configuration before redeploying.",
+    "related_errors": [
+      "Deployment"
+    ]
   }
 ]
