@@ -30237,5 +30237,101 @@
     "related_errors": [
       "OpenAI API"
     ]
+  },
+  {
+    "slug": "claude-code-mcp-tool-calls-return-cached-error-responses-same-error-replayed-on-subsequent-calls-without-contacting-server",
+    "title": "MCP tool calls return cached error responses after server fix within same session",
+    "description": "Fix MCP server returning stale cached errors after the underlying bug was resolved; users need to recover without restarting Claude Code Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "MCP tool calls return cached error responses — same error replayed on subsequent calls without contacting server",
+    "search_intent": "Fix MCP server returning stale cached errors after the underlying bug was resolved; users need to recover without restarting Claude Code",
+    "common_causes": [
+      "GitHub issue #62079 opened May 24, 2026 on anthropics/claude-code with labels area:mcp, bug. Describes caching behavior where failed MCP tool error responses are replayed indefinitely in-session. High-value enterprise scenario: developers using MCP connectors (GitHub, Google Drive, etc.) hit transient server issues that then permanently block tool use until full restart."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "claude-code-web-session-loses-github-push-access-mid-project-authentication-state-drops-unexpectedly",
+    "title": "Claude Code web session loses GitHub push access mid-project",
+    "description": "Fix GitHub OAuth token/session expiring or being revoked during active development session, breaking commit/push operations Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Web session loses GitHub push access mid-project; authentication state drops unexpectedly",
+    "search_intent": "Fix GitHub OAuth token/session expiring or being revoked during active development session, breaking commit/push operations",
+    "common_causes": [
+      "GitHub issue #57009 opened May 7, 2026 on anthropics/claude-code with labels area:auth, area:claude-code-web, platform:web. Directly impacts paid Claude Code Web users doing active development. When GitHub auth silently drops mid-session, users cannot push code — blocks entire dev workflow. Category maps to AI Coding Tools as it affects the Claude Code product specifically."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "claude-code-navigate-javascript-tool-calls-return-navigation-to-this-domain-is-not-allowed-regardless-of-extension-allowlist",
+    "title": "Claude in Chrome: all navigate/javascript_tool calls return 'Navigation to this domain is not allowed'",
+    "description": "Fix Claude Code Chrome extension blocking all navigation and JavaScript tool executions despite proper extension permission settings Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "navigate/javascript_tool calls return 'Navigation to this domain is not allowed' regardless of extension allowlist",
+    "search_intent": "Fix Claude Code Chrome extension blocking all navigation and JavaScript tool executions despite proper extension permission settings",
+    "common_causes": [
+      "GitHub issue #60574 opened May 19, 2026 on anthropics/claude-code with labels area:chrome, bug, duplicate, platform:macos. Affects Claude Code browser integration feature used by Pro/Max subscribers for web automation tasks. Hard block on core functionality — prevents any domain interaction. High commercial value as it directly blocks paying user workflows."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "litellm-cloudflare-workers-ai-api-error-returned-through-litellm-proxy-routing-failure-to-workers-ai-endpoint",
+    "title": "LiteLLM Cloudflare Workers AI API Error",
+    "description": "Debug why LiteLLM proxy fails when routing requests to Cloudflare Workers AI provider; need correct config format and error handling Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "Cloudflare Workers AI API Error returned through LiteLLM proxy — routing failure to Workers AI endpoint",
+    "search_intent": "Debug why LiteLLM proxy fails when routing requests to Cloudflare Workers AI provider; need correct config format and error handling",
+    "common_causes": [
+      "GitHub issue #24065 opened Mar 19, 2026 on BerriAI/litellm with label bug. Cloudflare Workers AI is an emerging model provider increasingly routed through LiteLLM proxies for enterprise teams. API incompatibility causes silent failures or unexpected errors in production LLM pipelines. Strong commercial value as it affects billed inference routing."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "LiteLLM"
+    ]
+  },
+  {
+    "slug": "claude-code-gmail-connector-oauth-missing-write-modify-scopes-for-label-operations-permission-denied-on-gmail-label-management",
+    "title": "Claude Code Gmail connector OAuth missing write/modify scopes for label operations",
+    "description": "Fix OAuth scope configuration for Claude Code Gmail MCP connector so users can create/edit/delete Gmail labels programmatically Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Gmail connector OAuth missing write/modify scopes for label operations — permission denied on Gmail label management",
+    "search_intent": "Fix OAuth scope configuration for Claude Code Gmail MCP connector so users can create/edit/delete Gmail labels programmatically",
+    "common_causes": [
+      "GitHub issue #47383 opened Apr 13, 2026 on anthropics/claude-code with labels area:cowork, area:routines, bug. OAuth scope deficiency is a common pain point in MCP integrations. Users expect full read/write access but get partial permissions silently failing. Product-level configuration issue that affects many downstream integrations."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "ollama-mlx-bf16-cold-prefill-is-60-400x-slower-than-warm-even-when-peak-memory-fits-in-physical-ram",
+    "title": "Ollama MLX bf16 cold prefill is 60–400× slower than warm on Apple Silicon under memory pressure",
+    "description": "Fix extreme slowdown in MLX backend on Macs when generating first tokens (cold prefill) despite sufficient memory — makes initial response unusably slow Includes evidence for Ollama troubleshooting demand.",
+    "category": "Ollama",
+    "technology": "Ollama",
+    "error_signature": "MLX bf16 cold prefill is 60–400x slower than warm, even when peak memory fits in physical RAM",
+    "search_intent": "Fix extreme slowdown in MLX backend on Macs when generating first tokens (cold prefill) despite sufficient memory — makes initial response unusably slow",
+    "common_causes": [
+      "GitHub issue #16051 opened May 9, 2026 on ollama/ollama with label bug. Affects Apple Silicon users running Ollama via MLX runner. Extremely visible performance bug on popular hardware (MacBook, Mac Mini). Category is Ollama since this is specific to Ollama's implementation. 60-400x slowdown is dramatic enough to generate significant search traffic."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Ollama"
+    ]
   }
 ]
