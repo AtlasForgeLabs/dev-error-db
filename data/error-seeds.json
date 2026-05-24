@@ -29261,5 +29261,85 @@
     "related_errors": [
       "AI Coding Tools"
     ]
+  },
+  {
+    "slug": "openai-api-429-quota-exceeded-when-calling-third-party-apps-using-chatgpt-plus-oauth-tokens",
+    "title": "ChatGPT Plus OAuth Succeeds but Third-party Calls Return 429 Quota Exceeded",
+    "description": "Fix rate limit / quota errors when delegating OpenAI API calls through third-party tools authenticated via ChatGPT Plus OAuth Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "429 quota exceeded when calling third-party apps using ChatGPT Plus OAuth tokens",
+    "search_intent": "Fix rate limit / quota errors when delegating OpenAI API calls through third-party tools authenticated via ChatGPT Plus OAuth",
+    "common_causes": [
+      "Source: https://github.com/openai/openai-python/issues/2951 — Real issue opened Mar 2026 by AllinAI20260127, updated Apr 2026. Users authenticate via ChatGPT Plus OAuth but get 429 quota errors when third-party Codex/tooling makes calls. Strong commercial value: affects paid users trying to use delegated API access."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "claude-code-oauth-refresh-corrupts-credentials-state-during-transient-upstream-5xx-causing-persistent-401-authentication-loop-across-sessions",
+    "title": "Claude Code OAuth Refresh Corrupts Credentials State During 5xx → Persistent 401 Loop",
+    "description": "Fix OAuth authentication failure where transient server errors cause permanent credential corruption preventing Claude Code login Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "OAuth refresh corrupts credentials state during transient upstream 5xx, causing persistent 401 authentication loop across sessions",
+    "search_intent": "Fix OAuth authentication failure where transient server errors cause permanent credential corruption preventing Claude Code login",
+    "common_causes": [
+      "Source: https://github.com/anthropics/claude-code/issues/61912 — Opened May 23, 2026 by BitMatrixIT. Has area:auth label, bug label, has repro label. Very recent, active issue. Critical auth bug affecting paying Claude Code Max subscribers."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "anthropic-api-api-returns-400-invalid-signature-in-thinking-block-when-replaying-conversation-history-with-no-recovery-path",
+    "title": "Anthropic API 400 Invalid Signature in Thinking Block — No Recovery Path",
+    "description": "Resolve 400 error caused by invalid thinking block signatures when resuming conversations, affecting streaming chat and function calling workflows Includes evidence for Anthropic API troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Anthropic API",
+    "error_signature": "API returns 400 'Invalid signature in thinking block' when replaying conversation history with no recovery path",
+    "search_intent": "Resolve 400 error caused by invalid thinking block signatures when resuming conversations, affecting streaming chat and function calling workflows",
+    "common_causes": [
+      "Source: https://github.com/anthropics/anthropic-sdk-python/issues/1598 — Opened May 23, 2026 by craigderrick. New SDK Python bug affecting structured output / thinking features. Direct pay-per-token billing impact."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Anthropic API"
+    ]
+  },
+  {
+    "slug": "cloudflare-502-bad-gateway-during-differential-uploads-post-pages-assets-upload",
+    "title": "Cloudflare Pages Deploy Fails with 502 Bad Gateway During Differential Uploads",
+    "description": "Fix deployment failures where Cloudflare Workers SDK returns 502 during asset upload phase Includes evidence for Cloudflare troubleshooting demand.",
+    "category": "Cloudflare",
+    "technology": "Cloudflare",
+    "error_signature": "502 Bad Gateway during Differential Uploads POST /pages/assets/upload",
+    "search_intent": "Fix deployment failures where Cloudflare Workers SDK returns 502 during asset upload phase",
+    "common_causes": [
+      "Source: https://github.com/cloudflare/workers-sdk/issues/14021 — Opened May 23, 2026 by fauzulkc. Production deployment blocking bug. Directly affects deployed websites and paid Cloudflare plans."
+    ],
+    "quick_fix": "Check the build output, project root, and deployment platform configuration before redeploying.",
+    "related_errors": [
+      "Cloudflare"
+    ]
+  },
+  {
+    "slug": "litellm-error-polling-for-access-token-when-configuring-github-copilot-model",
+    "title": "LiteLLM Error Polling for Access Token Configuring GitHub Copilot Model",
+    "description": "Fix token acquisition failure when setting up GitHub Copilot as a backend model in LiteLLM proxy Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "Error polling for access token when configuring github copilot model",
+    "search_intent": "Fix token acquisition failure when setting up GitHub Copilot as a backend model in LiteLLM proxy",
+    "common_causes": [
+      "Source: https://github.com/BerriAI/litellm/issues/17065 — Opened Feb 2026 by Liu-Weijie. Proxy/auth integration bug for enterprise LiteLLM users routing traffic to Copilot. Although marked stale, the underlying access token issue may still affect users."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "LiteLLM"
+    ]
   }
 ]
