@@ -30205,5 +30205,37 @@
     "related_errors": [
       "Ollama"
     ]
+  },
+  {
+    "slug": "anthropic-api-sse-error-returned-from-server-type-error-error-details-null-type-overloaded-error-message-overloaded",
+    "title": "Anthropic overloaded_error SSE event exposed as raw JSON wall to end users",
+    "description": "Developer integrating Claude/Anthropic API seeing raw error JSON displayed to end users instead of graceful fallback; needs proper error handling for transient server-side overloads Includes evidence for Anthropic API troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Anthropic API",
+    "error_signature": "SSE error returned from server: '{\"type\":\"error\",\"error\":{\"details\":null,\"type\":\"overloaded_error\",\"message\":\"Overloaded\"}}'",
+    "search_intent": "Developer integrating Claude/Anthropic API seeing raw error JSON displayed to end users instead of graceful fallback; needs proper error handling for transient server-side overloads",
+    "common_causes": [
+      "Found via GitHub REST API: umbraco/Umbraco.AI#174. Transient server-side load-shedding event leaking raw JSON to Copilot sidebar. Not recoverable by client code — requires framework-level handling. Commercially valuable because it blocks developer product releases using Claude API."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Anthropic API"
+    ]
+  },
+  {
+    "slug": "openai-api-server-is-overloaded-service-unavailable-error-returned-as-stream-error-event-in-openai-compatible-apis",
+    "title": "OpenAI-compatible API stream returns server_is_overloaded without automatic retry",
+    "description": "Developer using OpenAI-compatible proxy/APIs where streaming responses fail with server_is_overloaded errors and no automatic retry mechanism is implemented Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "server_is_overloaded / service_unavailable_error returned as stream error event in OpenAI-compatible APIs",
+    "search_intent": "Developer using OpenAI-compatible proxy/APIs where streaming responses fail with server_is_overloaded errors and no automatic retry mechanism is implemented",
+    "common_causes": [
+      "Found via GitHub REST API: anomalyco/opencode#25886. PR fixes missing retry mapping for server_is_overloaded and service_unavailable_error stream events in OpenAI-compatible clients. Relevant for developers using any OpenAI-compatible endpoint (LiteLLM, local vLLM, etc.) that returns non-Standard OpenAI error formats during overload conditions."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "OpenAI API"
+    ]
   }
 ]
