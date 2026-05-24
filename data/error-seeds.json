@@ -29421,5 +29421,85 @@
     "related_errors": [
       "Deployment"
     ]
+  },
+  {
+    "slug": "anthropic-api-messages-x-content-y-invalid-signature-in-thinking-block",
+    "title": "Anthropic API returns 400 'Invalid signature in thinking block' — permanent session failure",
+    "description": "Fix permanently broken Anthropic conversation when extended thinking block signature is rejected by API after N turns Includes evidence for Anthropic API troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Anthropic API",
+    "error_signature": "messages.X.content.Y: Invalid `signature` in `thinking` block",
+    "search_intent": "Fix permanently broken Anthropic conversation when extended thinking block signature is rejected by API after N turns",
+    "common_causes": [
+      "GitHub issue #1598 on anthropics/anthropic-sdk-python (2026-05-23). Full reproduction with claude-sonnet-4-6/opus-4: enabling extended thinking, running 20+ multi-turn conversations, then every subsequent message fails permanently with 400 error. Cascading failure affects subagents/forked sessions. No documented recovery path in API docs. High commercial value — paid API users lose access to entire conversation sessions."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Anthropic API"
+    ]
+  },
+  {
+    "slug": "openai-api-openai-codex-codex-cli-v0-133-0-fails-during-startup-when-using-an-openrouter-model-provider-profile-codex-models-manager-refreshes-the-available-model-catalog",
+    "title": "OpenRouter model catalog parsing fails on startup in @openai/codex v0.133.0",
+    "description": "Fix codex CLI crashing on startup when configured with OpenRouter model provider, preventing all agent operations Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "@openai/codex codex-cli v0.133.0 fails during startup when using an OpenRouter model provider profile; codex_models_manager refreshes the available model catalog",
+    "search_intent": "Fix codex CLI crashing on startup when configured with OpenRouter model provider, preventing all agent operations",
+    "common_causes": [
+      "GitHub issue #24286 on openai/codex (2026-05-24). The failure happens before prompt handling — codex models manager crashes while refreshing the model catalog from OpenRouter. Affects paid Codex users who rely on OpenRouter as a model provider. Tier 0 GitHub REST API result."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "claude-code-invalid-grant-refresh-token-revoked",
+    "title": "Token caching causes repeated Claude Code auth failures across sessions",
+    "description": "Fix Claude Code MCP server repeatedly failing with revoked refresh token when sharing config between MCP server and Claude Code plugin Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "invalid_grant — Refresh token revoked",
+    "search_intent": "Fix Claude Code MCP server repeatedly failing with revoked refresh token when sharing config between MCP server and Claude Code plugin",
+    "common_causes": [
+      "GitHub issue #2 on demasir/spotify-set-reorder (2026-05-17). The bundled MCP server caches its refresh token in memory but writes to a different spotify-config.json than what Claude Code plugin reads. Once the token rotates/revokes, the MCP is stuck failing until Claude Code is restarted. Affects developers using Claude Code as their primary coding assistant. Tier 0 GitHub REST API result."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "langchain-piimiddleware-state-hooks-miss-tool-call-args-and-corrupt-structured-content",
+    "title": "LangChain PIIMiddleware state hooks miss tool-call args and corrupt structured content",
+    "description": "Fix LangChain PII Middleware stripping or corrupting tool call arguments in structured output, causing pipeline data loss Includes evidence for LangChain troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "LangChain",
+    "error_signature": "PIIMiddleware state hooks miss tool-call args and corrupt structured content",
+    "search_intent": "Fix LangChain PII Middleware stripping or corrupting tool call arguments in structured output, causing pipeline data loss",
+    "common_causes": [
+      "GitHub issue #37659 on langchain-ai/langchain (2026-05-24). Newly filed bug: PIIMiddleware's state hooks fail to capture tool-call arguments, resulting in corrupted structured content downstream. This is a production-impacting bug for teams using PII filtering with function/tool calling pipelines. Self-contained reproducible example submitted. Tier 0 GitHub core API result."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "ollama-tool-calling-is-not-streaming-on-macos-with-mlx-causing-timeout-when-write-tool-outputs-large-code",
+    "title": "Ollama tool calling not streaming on macOS with MLX backend, causing timeout",
+    "description": "Fix Ollama tool calls freezing and timing out on Apple Silicon Macs with MLX backend, specifically when generating large code outputs via write tool Includes evidence for Ollama troubleshooting demand.",
+    "category": "Ollama",
+    "technology": "Ollama",
+    "error_signature": "Tool calling is not streaming on macOS with MLX, causing timeout when write tool outputs large code",
+    "search_intent": "Fix Ollama tool calls freezing and timing out on Apple Silicon Macs with MLX backend, specifically when generating large code outputs via write tool",
+    "common_causes": [
+      "GitHub issue #16279 on ollama/ollama (2026-05-24). On macOS + MLX backend, tool call responses are fully buffered instead of streamed — unlike CUDA backend where streaming works correctly. Causes client timeouts when tools generate large files (hundreds/thousands of lines). Affects local LLM developers on Apple Silicon. Tier 0 GitHub core API result."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Ollama"
+    ]
   }
 ]
