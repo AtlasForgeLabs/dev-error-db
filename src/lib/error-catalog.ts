@@ -6,25 +6,31 @@ import {
   type ErrorIndexabilityRecord,
   type IndexabilitySummary,
 } from './indexability';
-import { getHybridConfig } from './hybrid-config';
+import { getHybridConfigFromPublishGate } from './hybrid-config';
+import { buildPublishManifest, type PublishManifest } from './publish-gate';
 
 type ErrorEntry = CollectionEntry<'errors'>;
 
 export type ErrorCatalog = {
   records: ErrorIndexabilityRecord[];
   summary: IndexabilitySummary;
+  publishManifest: PublishManifest;
   staticSlugs: Set<string>;
   staticEntries: ErrorEntry[];
 };
 
 export function buildErrorCatalog(entries: ErrorEntry[]): ErrorCatalog {
-  const config = getHybridConfig();
+  const config = getHybridConfigFromPublishGate();
   const { staticEntries, classifications } = selectStaticErrorEntries(entries, config);
   const staticSlugs = new Set(classifications.filter((record) => record.has_static_page).map((record) => record.slug));
+  const publishManifest = buildPublishManifest(entries, {
+    generatedErrorHtmlPages: staticSlugs.size,
+  });
 
   return {
     records: classifications,
     summary: buildIndexabilitySummary(classifications, config),
+    publishManifest,
     staticSlugs,
     staticEntries,
   };

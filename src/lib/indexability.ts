@@ -1,6 +1,14 @@
 import type { CollectionEntry } from 'astro:content';
 import legacyPublishedSlugs from '../../config/legacy-published-slugs.json';
-import { getHybridConfig, type HybridConfig } from './hybrid-config';
+import { getHybridConfigFromPublishGate, getPublishGateConfig, type PublishGateConfig } from './hybrid-config';
+import {
+  applyNewHtmlRunCap,
+  buildPublishManifest,
+  evaluatePublishGate,
+  shouldGenerateStaticHtmlFromGate,
+  type PublishGateCandidate,
+  type PublishManifest,
+} from './publish-gate';
 import { deriveEvidenceSchema, type EvidenceStatus } from './evidence';
 import { getUpdatedTimestamp } from './dates';
 import { categoryLabelFor, entrySlug, revenueHubLabels } from './taxonomy';
@@ -25,6 +33,9 @@ export type ErrorIndexabilityRecord = {
   url: string | null;
   has_static_page: boolean;
   static_priority_rank: number;
+  publish_status: PublishGateCandidate['publish_status'];
+  publish_reason: string;
+  will_enter_json_index: boolean;
 };
 
 export type IndexabilitySummary = {
@@ -69,7 +80,7 @@ function hasMinimumFields(entry: ErrorEntry) {
   );
 }
 
-function isLegacyPublishedSlug(slug: string, config: HybridConfig) {
+function isLegacyPublishedSlug(slug: string, config: Pick<PublishGateConfig, 'preserveLegacyErrorRoutes'>) {
   if (!config.preserveLegacyErrorRoutes) return false;
   return legacySlugSet.has(slug);
 }
@@ -133,19 +144,29 @@ export function staticPriorityScore(entry: ErrorEntry) {
 
 export function classifyErrorIndexability(
   entry: ErrorEntry,
-  config: HybridConfig = getHybridConfig()
-): Omit<ErrorIndexabilityRecord, 'has_static_page' | 'url' | 'static_priority_rank'> & {
+  config = getHybridConfigFromPublishGate()
+): Omit<ErrorIndexabilityRecord, 'has_static_page' | 'url' | 'static_priority_rank' | 'publish_status' | 'publish_reason' | 'will_enter_json_index'> & {
   raw_status: Exclude<IndexabilityStatus, 'legacy_preserved'>;
   static_priority_rank: number;
+  publish_status: PublishGateCandidate['publish_status'];
+  publish_reason: string;
+  will_enter_json_index: boolean;
 } {
   const slug = entrySlug(entry);
   const evidence = deriveEvidenceSchema(entry);
   const raw_status = classifyRawStatus(entry);
-  const legacy_preserved = raw_status === 'data_only' && isLegacyPublishedSlug(slug, config);
+  const gate = evaluatePublishGate(entry, getPublishGateConfig());
+  const legacy_preserved = gate.existing_legacy || (raw_status === 'data_only' && isLegacyPublishedSlug(slug, config));
   let indexability_status: IndexabilityStatus = raw_status;
 
   if (legacy_preserved) {
     indexability_status = 'legacy_preserved';
+  } else if (gate.publish_status === 'data_only') {
+    indexability_status = 'data_only';
+  } else if (gate.publish_status === 'needs_review') {
+    indexability_status = 'pending_review';
+  } else if (gate.publish_status === 'indexable_html' || gate.publish_status === 'publish_candidate') {
+    indexability_status = 'indexable_html';
   }
 
   const data_only = indexability_status === 'data_only';
@@ -165,41 +186,77 @@ export function classifyErrorIndexability(
     legacy_preserved,
     raw_status,
     static_priority_rank: staticPriorityScore(entry),
+    publish_status: gate.publish_status,
+    publish_reason: gate.reason,
+    will_enter_json_index: gate.will_enter_json_index,
   };
 }
 
 export function shouldGenerateStaticHtml(
   classification: ReturnType<typeof classifyErrorIndexability>,
-  config: HybridConfig = getHybridConfig()
+  config = getHybridConfigFromPublishGate()
 ) {
-  if (classification.indexability_status === 'pending_review') {
-    return true;
-  }
+  const gateCandidate: PublishGateCandidate = {
+    slug: classification.slug,
+    title: classification.title,
+    category: classification.category,
+    technology: classification.technology,
+    evidence_status: classification.evidence_status,
+    source_count: classification.source_count,
+    content_depth: 0,
+    score: classification.static_priority_rank,
+    publish_status: classification.publish_status,
+    reason: classification.publish_reason,
+    will_generate_html: classification.legacy_preserved || classification.publish_status === 'legacy_preserved',
+    will_enter_json_index: classification.will_enter_json_index,
+    existing_legacy: classification.legacy_preserved,
+  };
 
   if (classification.legacy_preserved && config.preserveLegacyErrorRoutes) {
     return true;
   }
 
-  if (classification.indexability_status === 'indexable_html') {
+  if (classification.publish_status === 'legacy_preserved') {
     return true;
   }
 
-  if (classification.indexability_status === 'data_only') {
-    if (config.enableDataOnlyForNewRecords && !classification.legacy_preserved) {
-      return false;
-    }
-    return true;
+  if (classification.publish_status === 'rejected' || classification.publish_status === 'needs_review') {
+    return false;
   }
 
-  return true;
+  if (classification.publish_status === 'data_only') {
+    return false;
+  }
+
+  if (
+    classification.publish_status === 'indexable_html' ||
+    classification.publish_status === 'publish_candidate' ||
+    classification.publish_status === 'scored' ||
+    classification.publish_status === 'deduped' ||
+    classification.publish_status === 'raw_candidate'
+  ) {
+    return classification.indexability_status !== 'data_only';
+  }
+
+  if (classification.indexability_status === 'pending_review') {
+    return false;
+  }
+
+  return classification.indexability_status === 'indexable_html';
 }
 
-export function selectStaticErrorEntries(entries: ErrorEntry[], config: HybridConfig = getHybridConfig()) {
+export function selectStaticErrorEntries(entries: ErrorEntry[], config = getHybridConfigFromPublishGate()) {
+  const publishConfig = getPublishGateConfig();
+  const gateEvaluated = entries.map((entry) => evaluatePublishGate(entry, publishConfig));
+  const gatedCandidates = applyNewHtmlRunCap(gateEvaluated, publishConfig);
+  const gateBySlug = new Map(gatedCandidates.map((candidate) => [candidate.slug, candidate]));
   const classified = entries.map((entry) => classifyErrorIndexability(entry, config));
   const selected = new Map<string, (typeof classified)[number]>();
 
   for (const record of classified) {
-    if (shouldGenerateStaticHtml(record, config)) {
+    const gate = gateBySlug.get(record.slug);
+  const htmlAllowed = gate ? shouldGenerateStaticHtmlFromGate(gate) : shouldGenerateStaticHtml(record, config);
+    if (htmlAllowed) {
       selected.set(record.slug, record);
     }
   }
@@ -263,10 +320,14 @@ function finalizeRecord(
     legacy_preserved: record.legacy_preserved,
     has_static_page,
     url: has_static_page ? `https://dev-error-db.com/errors/${record.slug}/` : null,
+    static_priority_rank: record.static_priority_rank,
+    publish_status: record.publish_status,
+    publish_reason: record.publish_reason,
+    will_enter_json_index: record.will_enter_json_index,
   };
 }
 
-export function buildIndexabilitySummary(classifications: ErrorIndexabilityRecord[], config: HybridConfig): IndexabilitySummary {
+export function buildIndexabilitySummary(classifications: ErrorIndexabilityRecord[], config = getHybridConfigFromPublishGate()): IndexabilitySummary {
   const generated = classifications.filter((record) => record.has_static_page).length;
   const indexable_html = classifications.filter((record) => record.indexability_status === 'indexable_html').length;
   const data_only = classifications.filter((record) => record.indexability_status === 'data_only').length;

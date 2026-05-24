@@ -147,6 +147,16 @@ async function main() {
     throw new Error(`guardrail publish limits blocked expansion: ${limitCheck.errors.join('; ')}`);
   }
 
+  const maxNewHtmlPerRun = Number(process.env.MAX_NEW_HTML_PER_RUN ?? 100);
+  if (maxNewHtmlPerRun > 0 && seedsToAppend.length > maxNewHtmlPerRun) {
+    throw new Error(
+      `Publish gate blocked expansion: ${seedsToAppend.length} new seeds exceeds MAX_NEW_HTML_PER_RUN (${maxNewHtmlPerRun}).`
+    );
+  }
+
+  report.actions.publish_gate_new_seed_count = seedsToAppend.length;
+  report.actions.max_new_html_per_run = maxNewHtmlPerRun;
+
   await appendSeeds(seedsToAppend);
   report.actions.wrote_seeds = true;
 

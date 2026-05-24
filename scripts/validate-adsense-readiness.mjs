@@ -107,6 +107,18 @@ if (existsSync(distDir)) {
   } catch {
     errors.push('hybrid architecture validation failed');
   }
+
+  try {
+    execFileSync('node', ['scripts/generate-publish-manifest.mjs'], { cwd: rootDir, stdio: 'pipe' });
+  } catch {
+    // Best effort before publish gate validation.
+  }
+
+  try {
+    execFileSync('node', ['scripts/publish-gate-validate.mjs'], { cwd: rootDir, stdio: 'inherit' });
+  } catch {
+    errors.push('publish gate validation failed');
+  }
 } else {
   errors.push('dist is missing; run npm run build before npm run check');
 }

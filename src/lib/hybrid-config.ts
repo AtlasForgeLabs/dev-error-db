@@ -1,7 +1,11 @@
-export type HybridConfig = {
+export type PublishGateConfig = {
   maxStaticErrorPages: number;
-  enableDataOnlyForNewRecords: boolean;
+  maxNewHtmlPerRun: number;
+  minSourceCountForNewHtml: number;
+  minContentDepthForNewHtml: number;
   preserveLegacyErrorRoutes: boolean;
+  enableDataOnlyForNewRecords: boolean;
+  softTotalPageLimit: number;
 };
 
 function readEnvInt(name: string, fallback: number) {
@@ -20,10 +24,22 @@ function readEnvBool(name: string, fallback: boolean) {
   return fallback;
 }
 
-export function getHybridConfig(): HybridConfig {
+export function getPublishGateConfig(): PublishGateConfig {
   return {
     maxStaticErrorPages: readEnvInt('MAX_STATIC_ERROR_PAGES', 0),
-    enableDataOnlyForNewRecords: readEnvBool('ENABLE_DATA_ONLY_FOR_NEW_RECORDS', true),
+    maxNewHtmlPerRun: readEnvInt('MAX_NEW_HTML_PER_RUN', 100),
+    minSourceCountForNewHtml: readEnvInt('MIN_SOURCE_COUNT_FOR_NEW_HTML', 1),
+    minContentDepthForNewHtml: readEnvInt('MIN_CONTENT_DEPTH_FOR_NEW_HTML', 1200),
     preserveLegacyErrorRoutes: readEnvBool('PRESERVE_LEGACY_ERROR_ROUTES', true),
+    enableDataOnlyForNewRecords: readEnvBool('ENABLE_DATA_ONLY_FOR_NEW_RECORDS', true),
+    softTotalPageLimit: readEnvInt('SOFT_TOTAL_PAGE_LIMIT', 2500),
+  };
+}
+
+export function getHybridConfigFromPublishGate(config: PublishGateConfig = getPublishGateConfig()) {
+  return {
+    maxStaticErrorPages: config.maxStaticErrorPages,
+    enableDataOnlyForNewRecords: config.enableDataOnlyForNewRecords,
+    preserveLegacyErrorRoutes: config.preserveLegacyErrorRoutes,
   };
 }

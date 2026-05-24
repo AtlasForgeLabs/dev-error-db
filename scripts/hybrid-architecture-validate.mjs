@@ -19,6 +19,9 @@ const requiredRecordFields = [
   'data_only',
   'legacy_preserved',
   'has_static_page',
+  'publish_status',
+  'publish_reason',
+  'will_enter_json_index',
 ];
 
 const errors = [];

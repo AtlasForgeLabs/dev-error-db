@@ -113,7 +113,12 @@ async function validateSeoArchitecture() {
     ['error catalog builder', 'src/lib/error-catalog.ts', 'buildErrorCatalog'],
     ['hybrid JSON index route', 'src/pages/data/errors/index.json.ts', 'buildCompactIndexPayload'],
     ['hybrid architecture validator', 'scripts/hybrid-architecture-validate.mjs', 'has_static_page'],
-    ['report hybrid metrics', 'scripts/report.mjs', 'Hybrid indexability'],
+    ['publish gate evaluator', 'src/lib/publish-gate.ts', 'MAX_NEW_HTML_PER_RUN'],
+    ['publish manifest route', 'src/pages/data/errors/publish-manifest.json.ts', 'publishManifest'],
+    ['publish gate validator', 'scripts/publish-gate-validate.mjs', 'accepted_new_html_count'],
+    ['generate publish manifest', 'scripts/generate-publish-manifest.mjs', 'publish-manifest.json'],
+    ['report publish gate metrics', 'scripts/report.mjs', 'Publish gate:'],
+    ['report hybrid metrics', 'scripts/report.mjs', 'Hybrid indexability:'],
   ];
 
   for (const [name, relativePath, needle] of sourceChecks) {

@@ -2,24 +2,34 @@ import { mkdir, readFile, writeFile } from 'node:fs/promises';
 import { existsSync } from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { evaluateSeedPublishGate, getPublishGateConfigFromEnv, loadLegacySlugs } from './lib/publish-gate-core.mjs';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const rootDir = path.resolve(__dirname, '..');
 const seedsPath = path.join(rootDir, 'data', 'error-seeds.json');
 const outputDir = path.join(rootDir, 'src', 'content', 'errors');
+const stagingDir = path.join(rootDir, 'automation', 'runtime', 'publish-staging');
 const force = process.argv.includes('--force');
 const onlySlugs = new Set(parseOnlySlugs(process.argv));
 const generatedAt = new Date().toISOString();
 const updated = generatedAt.slice(0, 10);
+const legacySlugs = loadLegacySlugs();
+const publishConfig = getPublishGateConfigFromEnv();
 
 const seeds = JSON.parse(await readFile(seedsPath, 'utf8'));
 
 async function main() {
   validateSeeds(seeds);
   await mkdir(outputDir, { recursive: true });
+  await mkdir(stagingDir, { recursive: true });
 
   let created = 0;
   let skipped = 0;
+  let gatedOut = 0;
+  const dataOnlyCandidates = [];
+  const needsReviewCandidates = [];
+  const rejectedCandidates = [];
+  const acceptedNewHtml = [];
 
   for (const seed of seeds) {
     if (onlySlugs.size > 0 && !onlySlugs.has(seed.slug)) {
@@ -28,17 +38,42 @@ async function main() {
     }
 
     const filePath = path.join(outputDir, `${seed.slug}.md`);
+    const rendered = renderMarkdown(seed);
+    const gate = evaluateSeedPublishGate(seed, rendered, legacySlugs, publishConfig);
 
     if (existsSync(filePath) && !force) {
       skipped += 1;
       continue;
     }
 
-    await writeFile(filePath, renderMarkdown(seed), 'utf8');
+    if (!gate.will_generate_html) {
+      gatedOut += 1;
+      if (gate.publish_status === 'data_only') dataOnlyCandidates.push(gate);
+      else if (gate.publish_status === 'needs_review') needsReviewCandidates.push(gate);
+      else rejectedCandidates.push(gate);
+      continue;
+    }
+
+  if (!gate.existing_legacy) {
+      acceptedNewHtml.push(gate);
+    }
+
+    await writeFile(filePath, rendered, 'utf8');
     created += 1;
   }
 
-  console.log(`Generated ${created} error page(s). Skipped ${skipped} existing file(s).`);
+  if (publishConfig.maxNewHtmlPerRun > 0 && acceptedNewHtml.length > publishConfig.maxNewHtmlPerRun) {
+    throw new Error(
+      `Publish gate blocked generation: ${acceptedNewHtml.length} new HTML pages exceeds MAX_NEW_HTML_PER_RUN (${publishConfig.maxNewHtmlPerRun}).`
+    );
+  }
+
+  await writeFile(path.join(stagingDir, 'data-only-candidates.json'), `${JSON.stringify(dataOnlyCandidates, null, 2)}\n`, 'utf8');
+  await writeFile(path.join(stagingDir, 'needs-review-candidates.json'), `${JSON.stringify(needsReviewCandidates, null, 2)}\n`, 'utf8');
+  await writeFile(path.join(stagingDir, 'rejected-candidates.json'), `${JSON.stringify(rejectedCandidates, null, 2)}\n`, 'utf8');
+
+  console.log(`Generated ${created} error page(s). Skipped ${skipped} existing file(s). Publish-gated ${gatedOut}.`);
+  console.log(`[generate:errors] data_only=${dataOnlyCandidates.length} needs_review=${needsReviewCandidates.length} rejected=${rejectedCandidates.length}`);
 }
 
 function validateSeeds(items) {

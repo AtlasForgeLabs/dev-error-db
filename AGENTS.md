@@ -181,6 +181,23 @@ Agent rules:
 
 ---
 
+# Publish Gate
+
+Full data volume must not automatically become static HTML.
+
+- Existing slugs in `config/legacy-published-slugs.json` are always preserved.
+- New Markdown in `src/content/errors/` must pass `src/lib/publish-gate.ts` before generating HTML.
+- `npm run generate:errors` is gated and writes non-HTML candidates to `automation/runtime/publish-staging/`.
+- Inspect `automation/runtime/publish-manifest.json` after build/report.
+- Do not bypass the gate by bulk-writing Markdown directly during automation.
+- Mass future datasets belong in Data Hub, not unbounded website repo growth.
+
+Environment controls: `MAX_NEW_HTML_PER_RUN`, `MAX_STATIC_ERROR_PAGES`, `MIN_SOURCE_COUNT_FOR_NEW_HTML`, `MIN_CONTENT_DEPTH_FOR_NEW_HTML`, `PRESERVE_LEGACY_ERROR_ROUTES`, `ENABLE_DATA_ONLY_FOR_NEW_RECORDS`.
+
+Promoting `data_only` to HTML requires improving source evidence and content depth, then updating legacy snapshot only with explicit human approval.
+
+---
+
 # UI Rules
 
 Style:

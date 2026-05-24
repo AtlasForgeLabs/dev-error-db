@@ -35,6 +35,16 @@ const analyticsStats = await inspectAnalytics();
 const thinAuditStats = readThinAuditStats();
 const hybridStats = readHybridIndexabilityStats();
 
+if (distExists) {
+  try {
+    execFileSync('node', ['scripts/generate-publish-manifest.mjs'], { cwd: rootDir, stdio: 'pipe' });
+  } catch {
+    // Manifest generation requires a completed build; report still prints available metrics.
+  }
+}
+
+const publishGateStats = readPublishGateStats();
+
 const runtimeDir = path.join(rootDir, 'automation', 'runtime');
 mkdirSync(runtimeDir, { recursive: true });
 writeFileSync(path.join(runtimeDir, 'seo-health.json'), `${JSON.stringify(seoHealth, null, 2)}\n`, 'utf8');
@@ -84,6 +94,21 @@ print('max_static_error_pages', String(hybridStats.maxStaticErrorPages));
 print('preserve_legacy_error_routes', hybridStats.preserveLegacyErrorRoutes ? 'yes' : 'no');
 print('enable_data_only_for_new_records', hybridStats.enableDataOnlyForNewRecords ? 'yes' : 'no');
 print('projected_reduction_if_strict_data_only', String(hybridStats.projectedReduction));
+
+console.log('\nPublish gate:');
+print('publish manifest exists', publishGateStats.exists ? 'yes' : 'no');
+print('legacy preserved count', String(publishGateStats.legacyPreservedCount));
+print('generated html count', String(publishGateStats.generatedHtmlCount));
+print('new accepted html count', String(publishGateStats.acceptedNewHtmlCount));
+print('data only count', String(publishGateStats.dataOnlyCount));
+print('needs review count', String(publishGateStats.needsReviewCount));
+print('rejected count', String(publishGateStats.rejectedCount));
+print('publish gate status', publishGateStats.gateStatus);
+print('build budget status', publishGateStats.buildBudgetStatus);
+print('max_new_html_per_run', String(publishGateStats.maxNewHtmlPerRun));
+print('max_static_error_pages', String(publishGateStats.maxStaticErrorPages));
+print('untracked candidate markdown', String(publishGateStats.untrackedCandidateCount));
+print('sitemap url count', String(publishGateStats.sitemapUrlCount));
 
 console.log('\nMonetization:');
 print('ads.txt exists', monetizationStats.adsTxtExists ? 'yes' : 'no');
@@ -258,6 +283,47 @@ function buildTimestampHealth(pages) {
     invalid_timestamp_count: invalidPages.length,
     invalid_pages: invalidPages.map((page) => page.urlPath),
     recent_pages_by_updated_at: recent,
+  };
+}
+
+function readPublishGateStats() {
+  const manifestPath = path.join(rootDir, 'automation', 'runtime', 'publish-manifest.json');
+  const distManifestPath = path.join(rootDir, 'dist', 'data', 'errors', 'publish-manifest.json');
+
+  const sourcePath = existsSync(manifestPath) ? manifestPath : existsSync(distManifestPath) ? distManifestPath : null;
+  if (!sourcePath) {
+    return {
+      exists: false,
+      legacyPreservedCount: 0,
+      generatedHtmlCount: hybridStats.generatedStaticErrorPages,
+      acceptedNewHtmlCount: 0,
+      dataOnlyCount: 0,
+      needsReviewCount: 0,
+      rejectedCount: 0,
+      gateStatus: 'unknown',
+      buildBudgetStatus: 'unknown',
+      maxNewHtmlPerRun: 100,
+      maxStaticErrorPages: 0,
+      untrackedCandidateCount: 0,
+      sitemapUrlCount: sitemapStats.totalUrls,
+    };
+  }
+
+  const manifest = JSON.parse(readFileSync(sourcePath, 'utf8'));
+  return {
+    exists: true,
+    legacyPreservedCount: manifest.legacy_published_count ?? 0,
+    generatedHtmlCount: manifest.build_budget?.generated_error_html_pages ?? hybridStats.generatedStaticErrorPages,
+    acceptedNewHtmlCount: manifest.accepted_new_html_count ?? 0,
+    dataOnlyCount: manifest.data_only_count ?? 0,
+    needsReviewCount: manifest.needs_review_count ?? 0,
+    rejectedCount: manifest.rejected_count ?? 0,
+    gateStatus: manifest.build_budget_status === 'fail' ? 'blocked' : manifest.build_budget_status === 'warn' ? 'warn' : 'ok',
+    buildBudgetStatus: manifest.build_budget_status ?? 'unknown',
+    maxNewHtmlPerRun: manifest.max_new_html_per_run ?? 100,
+    maxStaticErrorPages: manifest.max_static_error_pages ?? 0,
+    untrackedCandidateCount: manifest.untracked_candidate_count ?? 0,
+    sitemapUrlCount: manifest.build_budget?.sitemap_url_count ?? sitemapStats.totalUrls,
   };
 }
 

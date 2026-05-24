@@ -53,6 +53,35 @@ Safety rules:
 - Sitemap and category hubs must link only to generated HTML routes.
 - `npm run report` and `npm run check` include hybrid indexability metrics and validation.
 
+## Publish gate
+
+Full error data is not equal to published HTML. New candidates must pass the publish gate before becoming static routes.
+
+Publish statuses include: `raw_candidate`, `deduped`, `scored`, `publish_candidate`, `indexable_html`, `data_only`, `rejected`, `needs_review`, and `legacy_preserved`.
+
+Controls:
+
+- `MAX_NEW_HTML_PER_RUN` (default `100`) — caps how many non-legacy records can become HTML in one generation run.
+- `MAX_STATIC_ERROR_PAGES` (default `0`) — future global cap for non-legacy HTML; does not remove legacy routes.
+- `MIN_SOURCE_COUNT_FOR_NEW_HTML` (default `1`)
+- `MIN_CONTENT_DEPTH_FOR_NEW_HTML` (default `1200`)
+- `PRESERVE_LEGACY_ERROR_ROUTES` (default `true`)
+- `ENABLE_DATA_ONLY_FOR_NEW_RECORDS` (default `true`)
+
+Outputs:
+
+- `dist/data/errors/publish-manifest.json`
+- `automation/runtime/publish-manifest.json`
+- `automation/runtime/publish-manifest.md`
+- `automation/runtime/publish-staging/data-only-candidates.json` (from `npm run generate:errors`)
+
+Rules:
+
+- Slugs listed in `config/legacy-published-slugs.json` always keep HTML.
+- `npm run generate:errors` writes Markdown only for publish-approved records.
+- Low-quality new records should remain `data_only` or `needs_review`, not HTML.
+- Large future datasets belong in AtlasForge Data Hub, not unlimited direct writes to `src/content/errors/`.
+
 ## AdSense Low-Value Content Recovery
 
 The site must make its real troubleshooting value visible instead of looking like a thin generated archive.
