@@ -2,7 +2,7 @@
   {
     "slug": "publish-gate-test-html-pass-docker-overlay-network",
     "title": "[TEST ONLY] Docker overlay network not found during compose init",
-    "description": "TEST ONLY publish gate HTML pass candidate with source-backed rendered body.",
+    "description": "TEST ONLY publish gate HTML pass candidate with source-backed seed metadata.",
     "category": "Docker",
     "technology": "Docker",
     "error_signature": "Error response from daemon: failed to set up container networking: overlay network not found",
@@ -12,12 +12,12 @@
     ],
     "quick_fix": "Recreate the overlay network and rerun docker compose up.",
     "related_errors": ["Docker permission denied"],
-    "_test_note": "Rendered body will include Sources checked with public URL for gate pass test."
+    "source_urls": ["https://docs.docker.com/engine/network/drivers/overlay/"]
   },
   {
     "slug": "publish-gate-test-html-pass-openai-azure-401",
     "title": "[TEST ONLY] Azure OpenAI AAD bearer token returns 401 after SDK upgrade",
-    "description": "TEST ONLY publish gate HTML pass candidate with source-backed rendered body.",
+    "description": "TEST ONLY publish gate HTML pass candidate with source-backed seed metadata.",
     "category": "OpenAI API",
     "technology": "OpenAI API",
     "error_signature": "AzureOpenAI with AAD bearer token passed via api_key returns 401 Unauthorized in 2.34.0",
@@ -27,7 +27,7 @@
     ],
     "quick_fix": "Pin SDK version or update Azure auth configuration.",
     "related_errors": ["OpenAI API"],
-    "_test_note": "Rendered body will include Sources checked with public URL for gate pass test."
+    "source_urls": ["https://github.com/openai/openai-python/issues/3282"]
   },
   {
     "slug": "publish-gate-test-data-only-no-sources",

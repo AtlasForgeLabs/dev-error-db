@@ -11,7 +11,8 @@
       "Overlay network disappears between docker compose initialization steps on Docker Swarm."
     ],
     "quick_fix": "Recreate the overlay network and rerun docker compose up.",
-    "related_errors": ["Docker permission denied"]
+    "related_errors": ["Docker permission denied"],
+    "source_urls": ["https://docs.docker.com/engine/network/drivers/overlay/"]
   },
   {
     "slug": "publish-gate-test-html-pass-openai-azure-401",
@@ -25,7 +26,8 @@
       "Breaking SDK regression reported in openai/openai-python issue 3282."
     ],
     "quick_fix": "Pin SDK version or update Azure auth configuration.",
-    "related_errors": ["OpenAI API"]
+    "related_errors": ["OpenAI API"],
+    "source_urls": ["https://github.com/openai/openai-python/issues/3282"]
   },
   {
     "slug": "publish-gate-test-data-only-no-sources",

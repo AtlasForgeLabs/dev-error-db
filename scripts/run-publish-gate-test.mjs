@@ -3,6 +3,7 @@ import { execFileSync } from 'node:child_process';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { evaluateSeedPublishGate, getPublishGateConfigFromEnv, loadLegacySlugs } from './lib/publish-gate-core.mjs';
+import { extractSeedSources, renderSourcesCheckedSection } from './lib/seed-sources.mjs';
 
 const rootDir = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const testSeedsPath = path.join(rootDir, 'automation', 'runtime', 'publish-staging', 'gate-test-seeds.json');
@@ -17,16 +18,19 @@ function loadTestSeeds() {
 
 function renderTestBody(seed) {
   const filler = 'Validate publish gate depth requirement with practical troubleshooting context. '.repeat(24);
+  const sourcesSection = renderSourcesCheckedSection(seed);
 
   if (seed.slug.startsWith('publish-gate-test-html-pass-')) {
-    const sourceUrl =
-      seed.category === 'OpenAI API'
-        ? 'https://platform.openai.com/docs/guides/error-codes'
-        : 'https://docs.docker.com/engine/daemon/troubleshoot/';
-    return `${filler}\n## What this error means\n\n${seed.description}\n\n## Common causes\n\n- ${seed.common_causes[0]}\n\n## Quick fixes\n\n1. ${seed.quick_fix}\n\n## Sources checked\n\n- ${sourceUrl}\n\n## FAQ\n\n### Is this a test record?\n\nYes. This body is intentionally source-backed for publish gate validation only.\n`;
+    if (!sourcesSection) {
+      throw new Error(`Expected source_urls metadata for ${seed.slug}`);
+    }
+    return `${filler}\n## What this error means\n\n${seed.description}\n\n## Common causes\n\n- ${seed.common_causes[0]}\n\n## Quick fixes\n\n1. ${seed.quick_fix}\n\n${sourcesSection}\n\n## FAQ\n\n### Is this a test record?\n\nYes. This preview uses the same seed source metadata as generate:errors.\n`;
   }
 
   if (seed.slug === 'publish-gate-test-data-only-no-sources') {
+    if (extractSeedSources(seed).length > 0) {
+      throw new Error('Expected data_only candidate to have no seed source URLs');
+    }
     return '## What this error means\n\nTEST ONLY shallow body without public sources.\n';
   }
 
@@ -120,6 +124,30 @@ function main() {
 
   console.log(`\n[publish-gate-test] Markdown created: ${createdTestFiles.length ? createdTestFiles.join(', ') : 'none'}`);
 
+  const dockerHtmlPass = createdTestFiles.includes('publish-gate-test-html-pass-docker-overlay-network');
+  if (!dockerHtmlPass) {
+    throw new Error('Expected non-OpenAI source-backed Docker candidate to pass real generate:errors path');
+  }
+
+  for (const slug of createdTestFiles) {
+    const body = readFileSync(path.join(errorsDir, `${slug}.md`), 'utf8');
+    if (!/## Sources checked/i.test(body)) {
+      throw new Error(`Expected generated Markdown for ${slug} to include Sources checked section`);
+    }
+  }
+
+  const generatedGateChecks = createdTestFiles.map((slug) => {
+    const seed = testSeeds.find((item) => item.slug === slug);
+    const body = readFileSync(path.join(errorsDir, `${slug}.md`), 'utf8');
+    const gate = evaluateSeedPublishGate(seed, body, legacySlugs, config);
+    return { slug, source_count: gate.source_count, publish_status: gate.publish_status, evidence_status: gate.evidence_status };
+  });
+  console.log('[publish-gate-test] Generated gate checks:', JSON.stringify(generatedGateChecks, null, 2));
+
+  if (!generatedGateChecks.some((row) => row.slug.includes('docker') && row.source_count >= 1 && row.evidence_status === 'source_backed')) {
+    throw new Error('Expected Docker generated page to be source_backed with source_count >= 1');
+  }
+
   const dataOnlyStaging = JSON.parse(readFileSync(path.join(stagingDir, 'data-only-candidates.json'), 'utf8'));
   const needsReviewStaging = JSON.parse(readFileSync(path.join(stagingDir, 'needs-review-candidates.json'), 'utf8'));
   console.log(`[publish-gate-test] staging data_only=${dataOnlyStaging.length} needs_review=${needsReviewStaging.length}`);
@@ -186,7 +214,12 @@ function main() {
 }
 
 function resetStagingArtifacts() {
-  for (const file of ['data-only-candidates.json', 'needs-review-candidates.json', 'rejected-candidates.json']) {
+  for (const file of [
+    'data-only-candidates.json',
+    'needs-review-candidates.json',
+    'rejected-candidates.json',
+    'gate-test-results.json',
+  ]) {
     const filePath = path.join(stagingDir, file);
     if (existsSync(filePath)) rmSync(filePath);
   }

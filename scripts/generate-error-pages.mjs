@@ -3,6 +3,7 @@ import { existsSync } from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { evaluateSeedPublishGate, getPublishGateConfigFromEnv, loadLegacySlugs } from './lib/publish-gate-core.mjs';
+import { renderSourcesCheckedSection } from './lib/seed-sources.mjs';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const rootDir = path.resolve(__dirname, '..');
@@ -174,7 +175,10 @@ function buildSections(seed, profile) {
     faq: () => faqSection(profile.faq(seed)),
   };
 
-  return order.map((key) => registry[key]()).filter(Boolean);
+  const sections = order.map((key) => registry[key]()).filter(Boolean);
+  const sourcesSection = renderSourcesCheckedSection(seed);
+  if (sourcesSection) sections.push(sourcesSection);
+  return sections;
 }
 
 const profiles = [

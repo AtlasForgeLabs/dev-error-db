@@ -11,3 +11,7 @@ automation/runtime/*.json
 automation/runtime/*.md
 !automation/runtime/.gitkeep
 !automation/runtime/README.md
+automation/runtime/publish-staging/gate-test-results.json
+automation/runtime/publish-staging/data-only-candidates.json
+automation/runtime/publish-staging/needs-review-candidates.json
+automation/runtime/publish-staging/rejected-candidates.json
