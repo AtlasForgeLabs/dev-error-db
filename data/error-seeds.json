@@ -29949,5 +29949,53 @@
     "related_errors": [
       "Ollama"
     ]
+  },
+  {
+    "slug": "anthropic-api-badrequesterror-http-400-you-re-out-of-extra-usage-add-more-at-claude-ai-settings-usage",
+    "title": "Claude Max OAuth tool-use rejected as overage (HTTP 400 'You're out of extra usage') on third-party clients",
+    "description": "Fix Claude Max subscription being incorrectly routed to overage billing when using OAuth tokens with third-party tool-use clients (Hermes Agent, direct API calls) Includes evidence for Anthropic API troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Anthropic API",
+    "error_signature": "BadRequestError [HTTP 400] You're out of extra usage. Add more at claude.ai/settings/usage",
+    "search_intent": "Fix Claude Max subscription being incorrectly routed to overage billing when using OAuth tokens with third-party tool-use clients (Hermes Agent, direct API calls)",
+    "common_causes": [
+      "GitHub issue NousResearch/hermes-agent#15080. Deeply documented by multiple users: Claude Max 20x OAuth token returns HTTP 400 whenever a tools parameter is present in the request body, despite 5h-utilization being only 3%. Verified via isolated Python stdlib reproduction. Related issues: #28902, #29125. Closed as intended behavior per Anthropic policy but still affects paying users without pay-as-you-go credits."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "Anthropic API"
+    ]
+  },
+  {
+    "slug": "openai-api",
+    "title": "Codex auth with GPT models freezes intermittently — no response after message sent",
+    "description": "Fix intermittent freezing when sending messages through Codex proxy with authenticated GPT models — requests hang indefinitely with no response even when quota is sufficient Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "发出去消息就一直卡着没有响应，工作到一半就自己卡住不动（频繁卡死无响应）",
+    "search_intent": "Fix intermittent freezing when sending messages through Codex proxy with authenticated GPT models — requests hang indefinitely with no response even when quota is sufficient",
+    "common_causes": [
+      "GitHub issue router-for-me/CLIProxyAPI#3530 (39 upvotes, opened ~9 hours ago). Users report GPT model calls freeze entirely after authentication — suspected IP-based rate limiting or风控. High volume with many affected users. Issue title: 'Codex认证下使用GPT模型频繁卡死无响应'. Category: OpenAI API due to suspected rate-limiting/reputation system rejection."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "claude-code-ctx-index-refuses-directory-paths-blocking-project-wide-indexing-on-all-4-tested-clients-index-error-refusing-to-index-project-root",
+    "title": "Claude Code MCP context-mode refuses directory paths blocking project-wide indexing across all clients",
+    "description": "Fix Claude Code MCP extension (context-mode) failing to index directories, preventing project-wide codebase access for AI-assisted development Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "ctx_index refuses directory paths, blocking project-wide indexing on all 4 tested clients; Index error: refusing to index project-root",
+    "search_intent": "Fix Claude Code MCP extension (context-mode) failing to index directories, preventing project-wide codebase access for AI-assisted development",
+    "common_causes": [
+      "GitHub issue mksglu/context-mode#687 (opened today, very fresh). Affects all major Claude Code models tested including Opus 4.7. MCP protocol-level bug in directory path handling. Low competition due to recentness. Category: AI Coding Tools because error occurs within Claude Code MCP extension workflow."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
   }
 ]
