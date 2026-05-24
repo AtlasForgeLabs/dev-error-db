@@ -29885,5 +29885,69 @@
     "related_errors": [
       "AI Coding Tools"
     ]
+  },
+  {
+    "slug": "anthropic-api-400-invalid-signature-in-thinking-block-messages-27-content-0",
+    "title": "API returns 400 Invalid signature in thinking block — no recovery path",
+    "description": "Fix permanent 400 error after extended thinking multi-turn conversation where thinking block signatures become invalid server-side Includes evidence for Anthropic API troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Anthropic API",
+    "error_signature": "400: Invalid `signature` in `thinking` block — messages.27.content.0",
+    "search_intent": "Fix permanent 400 error after extended thinking multi-turn conversation where thinking block signatures become invalid server-side",
+    "common_causes": [
+      "GitHub Issue #1598 on anthropics/anthropic-sdk-python filed May 23, 2026 by user via OpenClaw gateway. Reproducible on claude-sonnet-4-6/opus-4 with 20+ turn conversations using extended thinking. Every subsequent message fails permanently until thinking blocks stripped from history — no recovery path documented. Relates to claude-code#21726. High commercial value: affects production LLM app sessions with paid Anthropic API usage."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Anthropic API"
+    ]
+  },
+  {
+    "slug": "openai-api-httpx-invalidurl-invalid-non-printable-ascii-character-in-url-n-at-position-16",
+    "title": "OpenAI Python SDK raises InvalidURL when NO_PROXY env var contains newline characters",
+    "description": "Fix OpenAI client initialization crash caused by NO_PROXY env var with newline delimiters (common in Docker/.env files) Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "httpx.InvalidURL: Invalid non-printable ASCII character in URL, '\\n' at position 16",
+    "search_intent": "Fix OpenAI client initialization crash caused by NO_PROXY env var with newline delimiters (common in Docker/.env files)",
+    "common_causes": [
+      "GitHub Issue #3303 on openai/openai-python filed May 24, 2026. Root cause: httpx splits NO_PROXY only by comma, not newline. When newline present, treated as hostname → URL validation fail. Common in Docker environments and .env files. Fix PR #3304 submitted same day. Covers both docker and dotenv use cases — very high volume scenario."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "ollama-error-pull-model-manifest-file-does-not-exist",
+    "title": "Ollama pull fails with 'file does not exist' on macOS Apple Silicon despite running service",
+    "description": "Fix model download failure on macOS M4 — ollama pull immediately fails with misleading error despite network being functional Includes evidence for Ollama troubleshooting demand.",
+    "category": "Ollama",
+    "technology": "Ollama",
+    "error_signature": "Error: pull model manifest: file does not exist",
+    "search_intent": "Fix model download failure on macOS M4 — ollama pull immediately fails with misleading error despite network being functional",
+    "common_causes": [
+      "GitHub Issue #16278 on ollama/ollama filed May 23, 2026. Fresh install on Mac Mini M4 Pro. Error occurs with mixtral:8x7b-instruct-q8_0 and other models. Network/DNS tested thoroughly; browser works. Suspected registry resolution masking. Affects all model downloads — complete block. High commercial impact for local LLM adoption on Apple Silicon."
+    ],
+    "quick_fix": "Verify the model name, local service connectivity, and network access before retrying the model pull.",
+    "related_errors": [
+      "Ollama"
+    ]
+  },
+  {
+    "slug": "ollama-tool-call-outputs-buffered-instead-of-streamed-client-receives-no-intermediate-chunks-request-times-out-after-30-60s-on-large-code-generation",
+    "title": "Tool calling not streaming on macOS MLX backend causing client timeouts",
+    "description": "Fix MLX backend tool call streaming on macOS so clients don't timeout during long tool outputs (e.g., 500+ line code files) Includes evidence for Ollama troubleshooting demand.",
+    "category": "Ollama",
+    "technology": "Ollama",
+    "error_signature": "Tool call outputs buffered instead of streamed; client receives no intermediate chunks; request times out after 30-60s on large code generation",
+    "search_intent": "Fix MLX backend tool call streaming on macOS so clients don't timeout during long tool outputs (e.g., 500+ line code files)",
+    "common_causes": [
+      "GitHub Issue #16279 on ollama/ollama filed May 24, 2026. macOS Apple Silicon with MLX backend vs CUDA working correctly. Model: qwen3.6:27b-coding-nvfp4. Critical for agent workflows where tool calls generate large code. Not a regression — behavior mismatch between backends. High impact on developer productivity and AI coding assistant reliability."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Ollama"
+    ]
   }
 ]
