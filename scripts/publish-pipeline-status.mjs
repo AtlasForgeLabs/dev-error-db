@@ -90,7 +90,8 @@ const latestRejected = candidateSlugs(rejectedCandidates).length
   : candidateSlugsFromManifest('rejected');
 
 const git = buildGitStatus();
-const deployment = detectDeploymentStatus();
+const productionBuildInfo = await fetchProductionBuildInfo(git);
+const deployment = detectDeploymentStatus(productionBuildInfo, git);
 const technicalFiles = buildTechnicalFiles();
 const quality = buildQuality();
 const publishGate = buildPublishGate();
@@ -249,12 +250,23 @@ function buildTechnicalFiles() {
   };
 }
 
-function detectDeploymentStatus() {
+function detectDeploymentStatus(productionBuildInfo, gitStatus) {
   const deploymentStatus = {
     latest_actions_status: 'unknown',
     latest_pages_deploy_status: 'unknown',
-    production_check_status: 'unknown',
+    production_check_status: productionBuildInfo.status,
+    production_check_label: productionBuildInfo.label,
+    production_commit: productionBuildInfo.build_info?.commit_sha ?? null,
+    production_commit_short_sha: productionBuildInfo.build_info?.commit_short_sha ?? null,
+    production_built_at: productionBuildInfo.build_info?.built_at ?? null,
+    production_github_run_id: productionBuildInfo.build_info?.github_run_id ?? null,
+    production_github_run_number: productionBuildInfo.build_info?.github_run_number ?? null,
+    production_github_workflow: productionBuildInfo.build_info?.github_workflow ?? null,
+    production_build_info_url: productionBuildInfo.url,
+    production_build_info_error: productionBuildInfo.error,
   };
+
+  if (productionBuildInfo.warning) warnings.push(productionBuildInfo.warning);
 
   const ghPath = commandExists('gh');
   if (!ghPath) {
@@ -288,6 +300,86 @@ function detectDeploymentStatus() {
   }
 
   return deploymentStatus;
+}
+
+async function fetchProductionBuildInfo(gitStatus) {
+  const url = 'https://dev-error-db.com/build-info.json';
+  const attempts = 2;
+  let lastError = null;
+
+  for (let attempt = 1; attempt <= attempts; attempt += 1) {
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), 5000);
+    try {
+      const response = await fetch(url, {
+        signal: controller.signal,
+        headers: { accept: 'application/json' },
+      });
+      clearTimeout(timeout);
+
+      if (!response.ok) {
+        lastError = `HTTP ${response.status}`;
+        continue;
+      }
+
+      const buildInfo = await response.json();
+      if (!isValidPublicBuildInfo(buildInfo)) {
+        return {
+          status: 'unknown',
+          label: '未知',
+          url,
+          build_info: null,
+          error: 'build-info.json is missing required public fields',
+          warning: 'production build-info.json is reachable but invalid',
+        };
+      }
+
+      const productionCommit = normalizeCommit(buildInfo.commit_sha);
+      const localCommit = normalizeCommit(gitStatus.head_commit);
+      const isCurrent =
+        productionCommit !== 'unknown' &&
+        localCommit !== 'unknown' &&
+        (productionCommit === localCommit || productionCommit.startsWith(localCommit) || localCommit.startsWith(productionCommit));
+
+      return {
+        status: isCurrent ? 'deployed_current' : 'deployed_stale',
+        label: isCurrent ? '已部署最新版本' : '线上版本落后',
+        url,
+        build_info: buildInfo,
+        error: null,
+        warning: null,
+      };
+    } catch (error) {
+      clearTimeout(timeout);
+      lastError = error.message;
+    }
+  }
+
+  return {
+    status: 'failed',
+    label: '部署检查失败',
+    url,
+    build_info: null,
+    error: lastError,
+    warning: `production build-info check failed: ${lastError}`,
+  };
+}
+
+function isValidPublicBuildInfo(buildInfo) {
+  return (
+    buildInfo &&
+    buildInfo.project === 'dev-error-db' &&
+    buildInfo.domain === 'dev-error-db.com' &&
+    typeof buildInfo.commit_sha === 'string' &&
+    typeof buildInfo.commit_short_sha === 'string' &&
+    typeof buildInfo.branch === 'string' &&
+    typeof buildInfo.built_at === 'string' &&
+    ['github_actions', 'local_build'].includes(buildInfo.source)
+  );
+}
+
+function normalizeCommit(commit) {
+  return String(commit || 'unknown').trim();
 }
 
 function buildRiskAlerts() {
@@ -436,6 +528,8 @@ Generated: ${report.generated_at}
 - GitHub Actions: ${report.deployment.latest_actions_status}
 - GitHub Pages deploy: ${report.deployment.latest_pages_deploy_status}
 - Production check: ${report.deployment.production_check_status}
+- Production commit: ${report.deployment.production_commit_short_sha ?? report.deployment.production_commit ?? 'unknown'}
+- Production build time: ${report.deployment.production_built_at ?? 'unknown'}
 
 ## Risks
 ${report.risk_alerts.length ? report.risk_alerts.map((alert) => `- ${alert}`).join('\n') : '- None detected'}
