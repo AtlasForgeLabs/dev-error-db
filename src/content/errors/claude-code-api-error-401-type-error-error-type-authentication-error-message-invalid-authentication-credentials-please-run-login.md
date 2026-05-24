@@ -6,17 +6,17 @@ technology: "Claude Code"
 error_signature: "API Error: 401 {\"type\":\"error\",\"error\":{\"type\":\"authentication_error\",\"message\":\"Invalid authentication credentials\"}} Please run /login"
 common_causes:
   - "Source: https://smartscope.blog/en/generative-ai/claude/claude-code-401-auth-error-fix/ — detailed walkthrough of the 401 lockout scenario where /login and /logout both return 401 after cached credentials expire. Cross-referenced with GitHub anthropics/claude-code issue #9885 confirming this is a known bug pattern. Category: AI Coding Tools (Claude Code). This is distinct from basic 'auth failed' errors — it specifically targets the CLI login recovery loop failure mode."
-quick_fix: "Review the source evidence, verify configuration, and rerun the smallest failing command."
+quick_fix: "Review the source evidence and rerun the smallest failing command."
 related_errors:
   - "AI Coding Tools"
 updated: "2026-05-24"
-published_at: "2026-05-24T05:36:58.175Z"
-updated_at: "2026-05-24T05:36:58.175Z"
+published_at: "2026-05-24T05:56:57.159Z"
+updated_at: "2026-05-24T05:56:57.159Z"
 ---
 
 ## What this error means
 
-`API Error: 401 {"type":"error","error":{"type":"authentication_error","message":"Invalid authentication credentials"}} Please run /login` means the OpenAI API rejected the request before processing it because authentication failed. The request is reaching an API endpoint, but the key, project, organization, environment variable, or provider/base URL does not match what that endpoint expects.
+`API Error: 401 {"type":"error","error":{"type":"authentication_error","message":"Invalid authentication credentials"}} Please run /login` means Claude Code could not connect to or authenticate with an MCP server because transport settings, OAuth state, command launch configuration, or server credentials were invalid.
 
 ## Common causes
 
@@ -24,80 +24,78 @@ updated_at: "2026-05-24T05:36:58.175Z"
 
 ## How to fix API Error: 401 {"type":"error","error":{"type":"authentication_error","message":"Invalid authentication credentials"}} Please run /login
 
-1. Verify the key exists without printing the secret value.
-2. Confirm the app reads the same environment variable name you set, such as `OPENAI_API_KEY`.
-3. Check that the key belongs to the intended project or organization.
-4. If you use a proxy or OpenAI-compatible provider, verify the base URL and provider-specific key match.
+1. Open the MCP server configuration and confirm transport type, command, URL, and auth settings match the server docs.
+2. Re-authenticate or refresh OAuth tokens for MCP servers that require login.
+3. Review the source evidence and rerun the smallest failing command.
+4. Restart Claude Code after changing MCP config so the CLI reloads server definitions.
 
 ## Copy-paste commands
 
-### Check whether the OpenAI key is present
+### List configured MCP servers in Claude Code
 
 ```bash
-printf "OPENAI_API_KEY=%s\n" "${OPENAI_API_KEY:+set}"
+claude mcp list
 ```
 
-### Check provider-related environment names without exposing values
+### Inspect Claude Code config without printing secrets
 
 ```bash
-env | grep -E "OPENAI|MODEL|BASE_URL|ORGANIZATION|PROJECT" | sed "s/=.*/=<redacted>/"
+ls -la ~/.claude ~/.config/claude 2>/dev/null
 ```
 
-### Send a minimal authenticated request
+### Test a stdio MCP launch command directly
 
 ```bash
-curl https://api.openai.com/v1/models \
-  -H "Authorization: Bearer $OPENAI_API_KEY"
+npx -y @modelcontextprotocol/server-filesystem /tmp
 ```
 
-### Check for whitespace around the key length without printing it
+### Check whether required CLI tools are on PATH
 
 ```bash
-python3 - <<'PY'
-import os
-key = os.getenv("OPENAI_API_KEY", "")
-print("set:", bool(key))
-print("starts_with_sk:", key.startswith("sk-"))
-print("has_outer_whitespace:", key != key.strip())
-PY
+which npx
+node --version
 ```
 
-## Quick fix
+## Quick fixes
 
-1. Verify the key exists without printing the secret value.
-2. Confirm the app reads the same environment variable name you set, such as `OPENAI_API_KEY`.
-3. Check that the key belongs to the intended project or organization.
-4. If you use a proxy or OpenAI-compatible provider, verify the base URL and provider-specific key match.
+1. Open the MCP server configuration and confirm transport type, command, URL, and auth settings match the server docs.
+2. Re-authenticate or refresh OAuth tokens for MCP servers that require login.
+3. Review the source evidence and rerun the smallest failing command.
+4. Restart Claude Code after changing MCP config so the CLI reloads server definitions.
 
 ## Step-by-step troubleshooting
 
-1. Confirm the response status or error body contains `API Error: 401 {"type":"error","error":{"type":"authentication_error","message":"Invalid authentication credentials"}} Please run /login`.
-2. Check the environment variable in the same shell, process manager, container, or CI job that sends the request.
-3. Send a minimal `curl` request to `/v1/models` with the same key to separate SDK configuration from credentials.
-4. Verify project, organization, provider base URL, and key source are from the same account or provider.
-5. Rotate the key only after confirming the app is not reading an old `.env`, secret, or editor setting.
+1. Capture the exact `API Error: 401 {"type":"error","error":{"type":"authentication_error","message":"Invalid authentication credentials"}} Please run /login` message and the MCP server name from Claude Code logs.
+2. Confirm the transport type matches the server implementation: stdio, HTTP, or SSE.
+3. Refresh OAuth credentials or API keys used by the MCP server.
+4. Run the MCP launch command outside Claude Code to verify it starts cleanly.
+5. Restart Claude Code after config changes and retest one server at a time.
 
 ## Platform-specific fixes
 
-### CI/CD
+### Windows
 
-- Set the key as a CI secret, verify the job has access to secrets for that event type, and rerun the job after updating the secret.
+- Wrap `npx` MCP launch commands with `cmd /c` when Claude Code on Windows cannot execute them directly.
 
-### AI coding tools
+### macOS
 
-- Check the tool provider settings separately from shell environment variables; editors often store provider keys outside `.env`.
+- Confirm the MCP command works in the same shell environment Claude Code inherits.
+
+### Linux
+
+- Verify file permissions and PATH for the MCP server executable or wrapper script.
 
 ## Real-world fixes
 
-- If local requests work but CI fails, the CI secret may be missing, scoped to a different environment, or unavailable to pull requests from forks.
-- If a new key was created, restart the server, worker, notebook kernel, or editor window so the process reads the updated environment.
-- If you recently switched to a compatible provider, pair that provider base URL with that provider key instead of mixing it with an OpenAI API key.
+- If OAuth completes but the MCP session fails immediately afterward, inspect the SSE or HTTP endpoint separately from the login step.
+- If stdio servers exit instantly, run the launch command manually and inspect stderr before re-enabling it in Claude Code.
+- Review the source evidence and rerun the smallest failing command.
 
 ## How to prevent it
 
-- Keep API key names consistent across local, CI, and deployment environments.
-- Log non-secret provider metadata such as base URL, model name, and project identifier for debugging.
-- Restart long-running processes after secret rotation.
+- Document MCP server transport, auth, and launch commands per environment.
+- Keep MCP configs in version control without secrets; store tokens separately.
+- Test new MCP servers manually before enabling them in shared workflows.
 
 ## Related errors
 
@@ -107,19 +105,19 @@ PY
 
 ### What should I check first?
 
-Check whether the process sending the request has the expected API key. For `API Error: 401 {"type":"error","error":{"type":"authentication_error","message":"Invalid authentication credentials"}} Please run /login`, missing or stale credentials are more likely than request volume or model size.
+Start with the exact `API Error: 401 {"type":"error","error":{"type":"authentication_error","message":"Invalid authentication credentials"}} Please run /login` line and the command, request, or workflow step that produced it. In Claude Code MCP, the first useful clue is usually near the first failure line, not the final stack trace.
 
-### Can a wrong base URL cause this?
+### Can I ignore this error?
 
-Yes. If OpenAI SDK code points at another provider or proxy, that endpoint may reject an OpenAI key, or OpenAI may reject a provider-specific key.
+No. Treat it as a failed Claude Code MCP step. A temporary bypass may help diagnosis, but the underlying cause should be fixed before shipping or publishing changes.
 
-### Why does this work locally but fail in CI?
+### Why does this work locally but fail elsewhere?
 
-Your local shell may have a valid key while CI has no secret, a secret with a different name, or restricted secret access for the workflow event.
+Local machines often have cached credentials, old dependencies, different runtime versions, or network settings that CI and production do not share. Reproduce from a clean shell or clean install when possible.
 
-### How do I know authentication is fixed?
+### How do I know the fix worked?
 
-The same minimal request should stop returning `API Error: 401 {"type":"error","error":{"type":"authentication_error","message":"Invalid authentication credentials"}} Please run /login`. After that, retry the application request with the same key and provider configuration.
+Rerun the smallest command, request, or deployment step that produced `API Error: 401 {"type":"error","error":{"type":"authentication_error","message":"Invalid authentication credentials"}} Please run /login`. The fix is working when that step completes without the same signature and produces the expected output.
 
 ## Sources checked
 

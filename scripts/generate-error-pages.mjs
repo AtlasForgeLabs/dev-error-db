@@ -165,7 +165,7 @@ function buildSections(seed, profile) {
     how: () => section(`How to fix ${seed.error_signature}`, numberedList(profile.quickFixes(seed).slice(0, 4))),
     why: () => section('Why this happens', paragraphList(profile.why(seed))),
     causes: () => section('Common causes', bulletList(seed.common_causes)),
-    quick: () => section('Quick fix', numberedList(profile.quickFixes(seed))),
+    quick: () => section('Quick fixes', numberedList(profile.quickFixes(seed))),
     commands: () => commandSection(profile.commands(seed)),
     platform: () => platformSection(profile.platform(seed)),
     realWorld: () => section('Real-world fixes', bulletList(profile.realWorld(seed))),
@@ -179,6 +179,32 @@ function buildSections(seed, profile) {
   const sourcesSection = renderSourcesCheckedSection(seed);
   if (sourcesSection) sections.push(sourcesSection);
   return sections;
+}
+
+function text(seed) {
+  return `${seed.technology} ${seed.category} ${seed.error_signature} ${seed.title} ${seed.search_intent}`.toLowerCase();
+}
+
+function isCloudflareProvider(seed) {
+  return seed.category === 'Cloudflare' || seed.technology === 'Cloudflare' || /\bcloudflare\b/.test(text(seed));
+}
+
+function isAnthropicProvider(seed) {
+  return seed.category === 'Anthropic API' || seed.technology === 'Anthropic API' || /\banthropic\b/.test(text(seed));
+}
+
+function isClaudeCodeProvider(seed) {
+  return seed.technology === 'Claude Code' || /\bclaude code\b/.test(text(seed));
+}
+
+function isOpenAIProvider(seed) {
+  if (isAnthropicProvider(seed) || isCloudflareProvider(seed) || isClaudeCodeProvider(seed)) return false;
+  return seed.category === 'OpenAI API' || seed.technology === 'OpenAI API' || /\bopenai\b/.test(text(seed));
+}
+
+function isAICodingToolProvider(seed) {
+  if (isClaudeCodeProvider(seed) || isOpenAIProvider(seed) || isAnthropicProvider(seed)) return false;
+  return seed.category === 'AI Coding Tools' || /\bcursor\b|\bcopilot\b|\bopencode\b/.test(text(seed));
 }
 
 const profiles = [
@@ -423,8 +449,277 @@ const profiles = [
     faq: (seed) => commonFaq(seed, 'Python'),
   },
   {
+    name: 'cloudflare',
+    match: (seed) => isCloudflareProvider(seed),
+    meaning: (seed) =>
+      `\`${seed.error_signature}\` means Cloudflare could not complete the request because DNS, origin connectivity, proxy mode, firewall rules, or TLS settings blocked the path to your origin server.`,
+    why: (seed) => [
+      'Cloudflare sits between clients and your origin. Errors such as 521, 522, 523, 524, and 525 usually mean the edge reached Cloudflare but the origin, certificate, or DNS target was unavailable.',
+      `For ${seed.title}, compare DNS answers, direct-origin responses, and proxied responses before changing application code.`,
+    ],
+    quickFixes: (seed) => [
+      'Confirm the origin server is running and listening on the expected host and port.',
+      'Check Cloudflare DNS records point to the correct origin IP or hostname.',
+      seed.quick_fix,
+      'Test the origin directly, then retest through the Cloudflare-proxied hostname.',
+    ],
+    commands: () => [
+      { label: 'Query DNS records for the hostname', code: 'dig example.com A\n\ndig example.com CNAME' },
+      { label: 'Check response headers through Cloudflare', code: 'curl -I https://example.com' },
+      { label: 'Test the origin directly when you know its address', code: 'curl -I --resolve example.com:443:ORIGIN_IP https://example.com' },
+      { label: 'Inspect the TLS certificate chain', code: 'openssl s_client -connect example.com:443 -servername example.com </dev/null' },
+    ],
+    platform: () => ({
+      macOS: ['Use `dscacheutil -flushcache; sudo killall -HUP mDNSResponder` after DNS changes, then retest the exact hostname.'],
+      Linux: ['Use `dig` or `resolvectl query` to compare resolver answers with the authoritative DNS target.'],
+      Windows: ['Use `ipconfig /flushdns` after DNS changes, then retest the proxied hostname.'],
+    }),
+    realWorld: (seed) => [
+      'If only proxied traffic fails, the origin may block Cloudflare IP ranges or listen on the wrong port.',
+      'If the error started after a deploy, verify the origin service restarted and the firewall still allows inbound traffic.',
+      seed.quick_fix,
+    ],
+    troubleshooting: (seed) => [
+      `Confirm the browser, client, or log reports \`${seed.error_signature}\` for the same hostname.`,
+      'Use `dig` to verify the DNS answer Cloudflare and clients receive.',
+      'Use `curl -I` against the proxied hostname and, when possible, against the origin directly.',
+      'Check origin firewall rules, service health, and SSL mode in Cloudflare.',
+      'Retry after DNS TTL or certificate changes have propagated.',
+    ],
+    prevention: () => [
+      'Document origin IP, port, SSL mode, and required firewall ranges.',
+      'Monitor origin uptime separately from edge availability.',
+      'Keep a direct-origin health check outside the CDN path.',
+    ],
+    faq: (seed) => commonFaq(seed, 'Cloudflare'),
+  },
+  {
+    name: 'anthropic-rate-limit',
+    match: (seed) => isAnthropicProvider(seed) && /429|rate limit|too many requests|overloaded|retry-after|503|529|throttl/i.test(text(seed)),
+    meaning: (seed) =>
+      `\`${seed.error_signature}\` means Anthropic accepted the request context but throttled or overloaded the workload because request volume, token usage, platform capacity, or account limits were exceeded.`,
+    why: (seed) => [
+      'Anthropic 429, 529, and overloaded responses can come from account rate limits, large prompt batches, or temporary platform degradation.',
+      'Platform-wide throttling can look like a personal quota problem, so compare retry timing, status pages, and request volume before changing application code.',
+    ],
+    quickFixes: (seed) => [
+      'Reduce concurrent Anthropic requests and retry with exponential backoff.',
+      'Respect any `retry-after` header or SDK retry guidance instead of immediate loops.',
+      'Lower prompt size or max output tokens if token-per-minute limits are being hit.',
+      seed.quick_fix,
+    ],
+    commands: () => [
+      { label: 'Check whether Anthropic credentials are present', code: 'printf "ANTHROPIC_API_KEY=%s\\n" "${ANTHROPIC_API_KEY:+set}"' },
+      {
+        label: 'Send one minimal Anthropic Messages API request',
+        code:
+          'curl -i https://api.anthropic.com/v1/messages \\\n  -H "x-api-key: $ANTHROPIC_API_KEY" \\\n  -H "anthropic-version: 2023-06-01" \\\n  -H "content-type: application/json" \\\n  -d \'{"model":"claude-3-5-haiku-latest","max_tokens":16,"messages":[{"role":"user","content":"ping"}]}\'',
+      },
+      { label: 'Find aggressive retry loops in application code', code: 'rg -n "retry|backoff|429|529|overloaded|Retry-After" src scripts .' },
+    ],
+    platform: () => ({
+      'CI/CD': ['Avoid running many live Anthropic API tests in parallel unless the suite uses mocks or throttling.'],
+      Production: ['Cap worker concurrency around Anthropic calls so deploys do not create synchronized bursts.'],
+    }),
+    realWorld: (seed) => [
+      'If the error appears during a provider incident, backoff may be the correct short-term response even when local code is unchanged.',
+      'If failed requests still consume quota or billing counters, inspect billing and usage dashboards before increasing retries.',
+      seed.quick_fix,
+    ],
+    troubleshooting: (seed) => [
+      `Confirm the response contains \`${seed.error_signature}\` and note any retry-after guidance.`,
+      'Run one minimal Anthropic request before rerunning the full workflow.',
+      'Temporarily set concurrency to one request at a time to see whether throttling disappears.',
+      'Compare request volume and token usage against Anthropic account limits or incident status.',
+      'Add jittered backoff before retrying batch jobs or editor automations.',
+    ],
+    prevention: () => [
+      'Use exponential backoff with jitter for retryable Anthropic throttling responses.',
+      'Track request count, token usage, and 429/529 rates in application metrics.',
+      'Separate platform outage handling from account quota exhaustion in runbooks.',
+    ],
+    faq: (seed) => commonFaq(seed, 'Anthropic API'),
+  },
+  {
+    name: 'anthropic-api',
+    match: (seed) => isAnthropicProvider(seed),
+    meaning: (seed) =>
+      `\`${seed.error_signature}\` means the Anthropic API or Claude integration rejected the request because credentials, model access, request shape, quota, or provider configuration did not match what Anthropic expects.`,
+    why: (seed) => [
+      'Anthropic requests depend on a valid API key or supported auth flow, the correct model name, and request fields required by the Messages API.',
+      `For ${seed.title}, debug the smallest Anthropic request that uses the same model, credentials, and client configuration.`,
+    ],
+    quickFixes: (seed) => [
+      'Verify `ANTHROPIC_API_KEY` or the configured Claude auth flow without printing secret values.',
+      'Check the model name, API version header, and request payload shape.',
+      seed.quick_fix,
+      'Retry with a minimal Messages API request before rerunning the full app or editor workflow.',
+    ],
+    commands: () => [
+      { label: 'Check whether Anthropic credentials are present', code: 'printf "ANTHROPIC_API_KEY=%s\\n" "${ANTHROPIC_API_KEY:+set}"' },
+      { label: 'Inspect Anthropic-related environment names without exposing values', code: 'env | grep -E "ANTHROPIC|CLAUDE|MODEL|BASE_URL" | sed "s/=.*/=<redacted>/"' },
+      {
+        label: 'Send a minimal Anthropic Messages API request',
+        code:
+          'curl -i https://api.anthropic.com/v1/messages \\\n  -H "x-api-key: $ANTHROPIC_API_KEY" \\\n  -H "anthropic-version: 2023-06-01" \\\n  -H "content-type: application/json" \\\n  -d \'{"model":"claude-3-5-haiku-latest","max_tokens":16,"messages":[{"role":"user","content":"ping"}]}\'',
+      },
+    ],
+    platform: () => ({
+      'CI/CD': ['Store Anthropic keys as CI secrets and rerun the job after updating the secret name or scope.'],
+      'Claude integrations': ['Check whether the client uses Anthropic API keys, OAuth, or a proxy and keep that auth path consistent across environments.'],
+    }),
+    realWorld: (seed) => [
+      'If local requests work but CI fails, compare secret names and whether the job can read Anthropic credentials.',
+      'If one model fails but authentication works, verify model availability for the current account or workspace.',
+      seed.quick_fix,
+    ],
+    troubleshooting: (seed) => [
+      `Confirm the response body or log contains \`${seed.error_signature}\`.`,
+      'Verify Anthropic credentials exist in the same process, container, or CI job that sends the request.',
+      'Send a minimal Messages API request with curl to separate SDK issues from account configuration.',
+      'Check model name, API version header, and request payload fields.',
+      'Retry only after changing one variable at a time.',
+    ],
+    prevention: () => [
+      'Centralize Anthropic model names and credential names in configuration.',
+      'Log request IDs and non-secret provider metadata for debugging.',
+      'Restart long-running workers after secret rotation.',
+    ],
+    faq: (seed) => commonFaq(seed, 'Anthropic API'),
+  },
+  {
+    name: 'claude-code-mcp',
+    match: (seed) => isClaudeCodeProvider(seed) && /\bmcp\b|stdio transport|oauth token|iam role|server connection/i.test(text(seed)),
+    meaning: (seed) =>
+      `\`${seed.error_signature}\` means Claude Code could not connect to or authenticate with an MCP server because transport settings, OAuth state, command launch configuration, or server credentials were invalid.`,
+    why: (seed) => [
+      'MCP integrations combine transport type, startup command, auth tokens, and server-side permissions. A failure in any layer can surface as a generic connection error in Claude Code.',
+      'Windows, HTTP/SSE, and stdio transports each have different launch and auth requirements.',
+    ],
+    quickFixes: (seed) => [
+      'Open the MCP server configuration and confirm transport type, command, URL, and auth settings match the server docs.',
+      'Re-authenticate or refresh OAuth tokens for MCP servers that require login.',
+      seed.quick_fix,
+      'Restart Claude Code after changing MCP config so the CLI reloads server definitions.',
+    ],
+    commands: () => [
+      { label: 'List configured MCP servers in Claude Code', code: 'claude mcp list' },
+      { label: 'Inspect Claude Code config without printing secrets', code: 'ls -la ~/.claude ~/.config/claude 2>/dev/null' },
+      { label: 'Test a stdio MCP launch command directly', code: 'npx -y @modelcontextprotocol/server-filesystem /tmp' },
+      { label: 'Check whether required CLI tools are on PATH', code: 'which npx\nnode --version' },
+    ],
+    platform: () => ({
+      Windows: ['Wrap `npx` MCP launch commands with `cmd /c` when Claude Code on Windows cannot execute them directly.'],
+      macOS: ['Confirm the MCP command works in the same shell environment Claude Code inherits.'],
+      Linux: ['Verify file permissions and PATH for the MCP server executable or wrapper script.'],
+    }),
+    realWorld: (seed) => [
+      'If OAuth completes but the MCP session fails immediately afterward, inspect the SSE or HTTP endpoint separately from the login step.',
+      'If stdio servers exit instantly, run the launch command manually and inspect stderr before re-enabling it in Claude Code.',
+      seed.quick_fix,
+    ],
+    troubleshooting: (seed) => [
+      `Capture the exact \`${seed.error_signature}\` message and the MCP server name from Claude Code logs.`,
+      'Confirm the transport type matches the server implementation: stdio, HTTP, or SSE.',
+      'Refresh OAuth credentials or API keys used by the MCP server.',
+      'Run the MCP launch command outside Claude Code to verify it starts cleanly.',
+      'Restart Claude Code after config changes and retest one server at a time.',
+    ],
+    prevention: () => [
+      'Document MCP server transport, auth, and launch commands per environment.',
+      'Keep MCP configs in version control without secrets; store tokens separately.',
+      'Test new MCP servers manually before enabling them in shared workflows.',
+    ],
+    faq: (seed) => commonFaq(seed, 'Claude Code MCP'),
+  },
+  {
+    name: 'claude-code-auth',
+    match: (seed) => isClaudeCodeProvider(seed) && /401|unauthorized|authentication|invalid.*credentials|\/login|oauth|refresh token|api error/i.test(text(seed)),
+    meaning: (seed) =>
+      `\`${seed.error_signature}\` means Claude Code could not authenticate with Anthropic because cached OAuth state, CLI login flow, workspace credentials, or local config files are missing, expired, or inconsistent.`,
+    why: (seed) => [
+      'Claude Code auth can fail even when the network is healthy if stale OAuth tokens, broken `/login` recovery, or mismatched account state block the CLI from refreshing credentials.',
+      'Editor, CLI, and API credentials are separate paths; fixing one does not automatically repair the others.',
+    ],
+    quickFixes: (seed) => [
+      'Run `claude /logout`, then retry `claude /login` from the same shell where the error appears.',
+      'Remove stale Claude Code auth cache only after confirming no unsaved session state is needed.',
+      seed.quick_fix,
+      'Restart Claude Code after refreshing credentials so the CLI reloads auth state.',
+    ],
+    commands: () => [
+      { label: 'Check Claude Code CLI availability', code: 'claude --version' },
+      { label: 'Sign out and sign back in', code: 'claude /logout\nclaude /login' },
+      { label: 'Inspect Claude Code config paths without printing secrets', code: 'ls -la ~/.claude ~/.config/claude 2>/dev/null' },
+      { label: 'Check Anthropic credential env names without exposing values', code: 'env | grep -E "ANTHROPIC|CLAUDE" | sed "s/=.*/=<redacted>/"' },
+    ],
+    platform: () => ({
+      macOS: ['If login loops persist, quit Claude Code completely and retry auth after clearing stale local config backups.'],
+      Linux: ['Run login commands from the same user account and shell that launches Claude Code.'],
+      Windows: ['Restart Claude Code after auth changes so the Windows shell and app share the same credential state.'],
+    }),
+    realWorld: (seed) => [
+      'If `/login` itself returns 401, stale OAuth cache is a common cause; sign out fully before trying again.',
+      'If one workspace works but another fails, compare account type, subscription, and provider settings separately.',
+      seed.quick_fix,
+    ],
+    troubleshooting: (seed) => [
+      `Confirm the CLI output contains \`${seed.error_signature}\` during the same command that failed.`,
+      'Run `claude /logout` and `claude /login` from a clean shell.',
+      'Check whether Anthropic API keys or OAuth credentials are expected for this workflow.',
+      'Restart Claude Code after auth changes.',
+      'Retry the smallest Claude Code action that reproduces the failure.',
+    ],
+    prevention: () => [
+      'Document the expected Claude Code auth path for the team: OAuth, API key, or enterprise login.',
+      'Restart Claude Code after account, plan, or provider changes.',
+      'Keep one known-good login recovery procedure for locked-out machines.',
+    ],
+    faq: (seed) => commonFaq(seed, 'Claude Code authentication'),
+  },
+  {
+    name: 'claude-code',
+    match: (seed) => isClaudeCodeProvider(seed) || (seed.category === 'AI Coding Tools' && /\bclaude\b/.test(text(seed))),
+    meaning: (seed) =>
+      `\`${seed.error_signature}\` means Claude Code failed before completing the requested action because CLI auth, MCP configuration, model access, local runtime, or workspace state did not match the current environment.`,
+    why: (seed) => [
+      'Claude Code combines local CLI state, Anthropic account access, MCP servers, and editor integration. Failures can come from any of those layers.',
+      `For ${seed.title}, reproduce the smallest Claude Code command or action that triggers the same signature.`,
+    ],
+    quickFixes: (seed) => [
+      'Retry the same action from a fresh shell after confirming Claude Code is up to date.',
+      'Check auth status, MCP server config, and model availability before changing project code.',
+      seed.quick_fix,
+      'Restart Claude Code if the error persists after config or credential changes.',
+    ],
+    commands: () => [
+      { label: 'Check Claude Code CLI availability', code: 'claude --version' },
+      { label: 'List configured MCP servers', code: 'claude mcp list' },
+      { label: 'Inspect Claude Code config paths without printing secrets', code: 'ls -la ~/.claude ~/.config/claude 2>/dev/null' },
+    ],
+    platform: () => ({
+      'Desktop/editor': ['Restart Claude Code after auth, MCP, or provider changes so cached state is refreshed.'],
+    }),
+    realWorld: (seed) => [
+      'If the error appears only in one project, compare MCP servers, env files, and provider settings for that workspace.',
+      'If auth recently changed, sign out and back in before debugging application code.',
+      seed.quick_fix,
+    ],
+    troubleshooting: (seed) => [
+      `Capture the exact \`${seed.error_signature}\` output from Claude Code.`,
+      'Confirm CLI version, auth state, and MCP configuration.',
+      'Retry the smallest failing Claude Code action after each change.',
+      'Separate auth failures from MCP transport failures before editing project code.',
+    ],
+    prevention: () => [
+      'Document working Claude Code auth and MCP setup for the team.',
+      'Restart Claude Code after credential or MCP config changes.',
+    ],
+    faq: (seed) => commonFaq(seed, 'Claude Code'),
+  },
+  {
     name: 'openai-authentication',
-    match: (seed) => /openai|cursor|ai coding/i.test(text(seed)) && /401|unauthorized|incorrect api key|invalid api key|api key|authentication/i.test(text(seed)),
+    match: (seed) => (isOpenAIProvider(seed) || isAICodingToolProvider(seed)) && /401|unauthorized|incorrect api key|invalid api key|api key|authentication/i.test(text(seed)),
     meaning: (seed) =>
       `\`${seed.error_signature}\` means the OpenAI API rejected the request before processing it because authentication failed. The request is reaching an API endpoint, but the key, project, organization, environment variable, or provider/base URL does not match what that endpoint expects.`,
     why: (seed) => [
@@ -488,7 +783,7 @@ const profiles = [
   },
   {
     name: 'openai-rate-limit',
-    match: (seed) => /openai|cursor|ai coding/i.test(text(seed)) && /429|too many requests|rate limit|rpm|tpm|requests per minute|tokens per minute/i.test(text(seed)),
+    match: (seed) => (isOpenAIProvider(seed) || isAICodingToolProvider(seed)) && /429|too many requests|rate limit|rpm|tpm|requests per minute|tokens per minute/i.test(text(seed)),
     meaning: (seed) =>
       `\`${seed.error_signature}\` means the API accepted your authentication but throttled the workload because requests arrived too quickly, too many tokens were sent, concurrency was too high, or the account/project is constrained by rate or usage limits.`,
     why: (seed) => [
@@ -562,7 +857,7 @@ const profiles = [
   },
   {
     name: 'openai-model-access',
-    match: (seed) => /openai|cursor|ai coding/i.test(text(seed)) && /model.*not|does not exist|no access|unavailable model|model/i.test(text(seed)),
+    match: (seed) => (isOpenAIProvider(seed) || isAICodingToolProvider(seed)) && /model.*not|does not exist|no access|unavailable model|model/i.test(text(seed)),
     meaning: (seed) =>
       `\`${seed.error_signature}\` means the request named a model that the selected provider, project, or account cannot use. The key may be valid, but the model value is wrong, unavailable, deprecated, or not enabled for that project.`,
     why: (seed) => [
@@ -605,7 +900,7 @@ const profiles = [
   },
   {
     name: 'openai',
-    match: (seed) => /openai|cursor|ai coding|model|quota|context_length|rate limit|api key/i.test(text(seed)),
+    match: (seed) => isOpenAIProvider(seed) || isAICodingToolProvider(seed),
     meaning: (seed) =>
       `\`${seed.error_signature}\` means the API or AI coding tool rejected the request because credentials, model access, quota, context size, or provider configuration does not match the request being sent.`,
     why: (seed) => [
@@ -695,7 +990,7 @@ const profiles = [
   },
   {
     name: 'dns-ssl',
-    match: (seed) => /dns|cloudflare|ssl|tls|certificate|issuer|nxdomain|origin/i.test(text(seed)),
+    match: (seed) => !isCloudflareProvider(seed) && /dns|ssl|tls|certificate|issuer|nxdomain|origin/i.test(text(seed)),
     meaning: (seed) =>
       `\`${seed.error_signature}\` means name resolution, origin connectivity, or TLS certificate validation failed before the application request could complete.`,
     why: (seed) => [
@@ -877,10 +1172,6 @@ function normalizeCategory(category, technology = '') {
   const technologyTarget = mergeMap[technology] ?? technology;
   if (finalCategories.has(technologyTarget)) return technologyTarget;
   return mergeMap[category] ?? category;
-}
-
-function text(seed) {
-  return `${seed.technology} ${seed.category} ${seed.error_signature} ${seed.title} ${seed.search_intent}`.toLowerCase();
 }
 
 function hash(value) {

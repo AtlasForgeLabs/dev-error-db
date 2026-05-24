@@ -6,88 +6,95 @@ technology: "Anthropic API"
 error_signature: "Rate limit exceeded — charging for failed attempts"
 common_causes:
   - "Source: https://github.com/anthropics/claude-code/issues/15685 (2025-12-29). Report documents Claude API charging developers for every rate-limited request treated as a failure — 'All 43 tests charged despite no usable completion.' Extreme commercial value: direct revenue loss for enterprises. Maps to Anthropic API category. Not in covered-errors."
-quick_fix: "Review the source evidence, verify configuration, and rerun the smallest failing command."
+quick_fix: "Review the source evidence and rerun the smallest failing command."
 related_errors:
   - "Anthropic API"
 updated: "2026-05-24"
-published_at: "2026-05-24T05:36:58.175Z"
-updated_at: "2026-05-24T05:36:58.175Z"
+published_at: "2026-05-24T05:56:57.159Z"
+updated_at: "2026-05-24T05:56:57.159Z"
 ---
 
 ## What this error means
 
-`Rate limit exceeded — charging for failed attempts` means the API or AI coding tool rejected the request because credentials, model access, quota, context size, or provider configuration does not match the request being sent.
+`Rate limit exceeded — charging for failed attempts` means Anthropic accepted the request context but throttled or overloaded the workload because request volume, token usage, platform capacity, or account limits were exceeded.
 
 ## Why this happens
 
-OpenAI-compatible tooling usually has three moving parts: API key, selected model, and request size.
+Anthropic 429, 529, and overloaded responses can come from account rate limits, large prompt batches, or temporary platform degradation.
 
-For Anthropic API Pay-to-Fail Model Charging for Failed Requests Due to Rate Limits, debug the smallest request that uses the same provider, model, and environment variable.
+Platform-wide throttling can look like a personal quota problem, so compare retry timing, status pages, and request volume before changing application code.
 
 ## Common causes
 
 - Source: https://github.com/anthropics/claude-code/issues/15685 (2025-12-29). Report documents Claude API charging developers for every rate-limited request treated as a failure — 'All 43 tests charged despite no usable completion.' Extreme commercial value: direct revenue loss for enterprises. Maps to Anthropic API category. Not in covered-errors.
 
-## Quick fix
+## Quick fixes
 
-1. Verify the API key is present without printing its value.
-2. Check the configured model name and provider/base URL.
-3. Review the source evidence, verify configuration, and rerun the smallest failing command.
-4. Retry with a minimal request before rerunning the full app or editor workflow.
+1. Reduce concurrent Anthropic requests and retry with exponential backoff.
+2. Respect any `retry-after` header or SDK retry guidance instead of immediate loops.
+3. Lower prompt size or max output tokens if token-per-minute limits are being hit.
+4. Review the source evidence and rerun the smallest failing command.
 
 ## Copy-paste commands
 
-### Check whether the key is set
+### Check whether Anthropic credentials are present
 
 ```bash
-printf "OPENAI_API_KEY=%s\n" "${OPENAI_API_KEY:+set}"
+printf "ANTHROPIC_API_KEY=%s\n" "${ANTHROPIC_API_KEY:+set}"
 ```
 
-### Send a minimal API request
+### Send one minimal Anthropic Messages API request
 
 ```bash
-curl https://api.openai.com/v1/models \
-  -H "Authorization: Bearer $OPENAI_API_KEY"
+curl -i https://api.anthropic.com/v1/messages \
+  -H "x-api-key: $ANTHROPIC_API_KEY" \
+  -H "anthropic-version: 2023-06-01" \
+  -H "content-type: application/json" \
+  -d '{"model":"claude-3-5-haiku-latest","max_tokens":16,"messages":[{"role":"user","content":"ping"}]}'
 ```
 
-### Inspect app environment without exposing the key
+### Find aggressive retry loops in application code
 
 ```bash
-env | grep -E "OPENAI|MODEL|BASE_URL" | sed "s/=.*/=<redacted>/"
+rg -n "retry|backoff|429|529|overloaded|Retry-After" src scripts .
 ```
 
 ## Real-world fixes
 
-- If a tool works in one editor window but not another, compare provider settings and restart the editor.
-- If a model fails but authentication works, test a known available model before changing application code.
-- Review the source evidence, verify configuration, and rerun the smallest failing command.
+- If the error appears during a provider incident, backoff may be the correct short-term response even when local code is unchanged.
+- If failed requests still consume quota or billing counters, inspect billing and usage dashboards before increasing retries.
+- Review the source evidence and rerun the smallest failing command.
 
 ## Step-by-step troubleshooting
 
-1. Record the request path, model, and `Rate limit exceeded — charging for failed attempts` without logging secret values.
-2. Verify `OPENAI_API_KEY` or the provider-specific key exists in the process that sends the request.
-3. Send a minimal API request with curl to separate SDK bugs from account or credential issues.
-4. If the error mentions context, reduce prompt history and requested output tokens.
-5. If the error mentions quota or rate limits, reduce concurrency before requesting higher limits.
+1. Confirm the response contains `Rate limit exceeded — charging for failed attempts` and note any retry-after guidance.
+2. Run one minimal Anthropic request before rerunning the full workflow.
+3. Temporarily set concurrency to one request at a time to see whether throttling disappears.
+4. Compare request volume and token usage against Anthropic account limits or incident status.
+5. Add jittered backoff before retrying batch jobs or editor automations.
 
 ## Platform-specific fixes
 
 ### CI/CD
 
-- Set API keys as CI secrets, then restart or rerun the job so the process reads the updated environment.
+- Avoid running many live Anthropic API tests in parallel unless the suite uses mocks or throttling.
+
+### Production
+
+- Cap worker concurrency around Anthropic calls so deploys do not create synchronized bursts.
 
 ## How to fix Rate limit exceeded — charging for failed attempts
 
-1. Verify the API key is present without printing its value.
-2. Check the configured model name and provider/base URL.
-3. Review the source evidence, verify configuration, and rerun the smallest failing command.
-4. Retry with a minimal request before rerunning the full app or editor workflow.
+1. Reduce concurrent Anthropic requests and retry with exponential backoff.
+2. Respect any `retry-after` header or SDK retry guidance instead of immediate loops.
+3. Lower prompt size or max output tokens if token-per-minute limits are being hit.
+4. Review the source evidence and rerun the smallest failing command.
 
 ## How to prevent it
 
-- Centralize model names and provider base URLs in configuration.
-- Add retry backoff for rate-limit errors, not for quota or credential errors.
-- Log request IDs and non-secret configuration for production debugging.
+- Use exponential backoff with jitter for retryable Anthropic throttling responses.
+- Track request count, token usage, and 429/529 rates in application metrics.
+- Separate platform outage handling from account quota exhaustion in runbooks.
 
 ## Related errors
 
@@ -97,11 +104,11 @@ env | grep -E "OPENAI|MODEL|BASE_URL" | sed "s/=.*/=<redacted>/"
 
 ### What should I check first?
 
-Start with the exact `Rate limit exceeded — charging for failed attempts` line and the command, request, or workflow step that produced it. In OpenAI API or AI coding tool, the first useful clue is usually near the first failure line, not the final stack trace.
+Start with the exact `Rate limit exceeded — charging for failed attempts` line and the command, request, or workflow step that produced it. In Anthropic API, the first useful clue is usually near the first failure line, not the final stack trace.
 
 ### Can I ignore this error?
 
-No. Treat it as a failed OpenAI API or AI coding tool step. A temporary bypass may help diagnosis, but the underlying cause should be fixed before shipping or publishing changes.
+No. Treat it as a failed Anthropic API step. A temporary bypass may help diagnosis, but the underlying cause should be fixed before shipping or publishing changes.
 
 ### Why does this work locally but fail elsewhere?
 
