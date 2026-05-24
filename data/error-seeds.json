@@ -29757,5 +29757,133 @@
     "related_errors": [
       "Ollama"
     ]
+  },
+  {
+    "slug": "anthropic-api-api-error-500-no-body",
+    "title": "OpenAI API Error 500 (no body) on Opus 4.7 with 1M context — intermittent API server-side failure",
+    "description": "Developer using Claude Code to call Claude Opus 4.7 with 1M context window receives an intermittent HTTP 500 error with no response body, blocking API calls and wasting credits Includes evidence for Anthropic API troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Anthropic API",
+    "error_signature": "API Error 500 (no body)",
+    "search_intent": "Developer using Claude Code to call Claude Opus 4.7 with 1M context window receives an intermittent HTTP 500 error with no response body, blocking API calls and wasting credits",
+    "common_causes": [
+      "GitHub Issue #61261 on anthropics/claude-code (opened May 22, updated May 24). Tags: api:anthropic, area:api, bug, external, platform:macos. User reports intermittent 500 errors across different requests. Category mapping: direct Anthropic API error surface used through Claude Code."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Anthropic API"
+    ]
+  },
+  {
+    "slug": "claude-code-opus-4-7-subagents-enter-generation-loop-on-post-task-finalization-return-text",
+    "title": "Opus 4.7 subagents enter infinite generation loop on task finalization — agent doesn't exit after completion",
+    "description": "Developer running Claude Code with Opus 4.7 model finds that subagent tasks complete but the agent enters an infinite generation loop instead of exiting cleanly, blocking automated workflows and consuming tokens unnecessarily Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Opus 4.7 subagents enter generation loop on post-task finalization/return text",
+    "search_intent": "Developer running Claude Code with Opus 4.7 model finds that subagent tasks complete but the agent enters an infinite generation loop instead of exiting cleanly, blocking automated workflows and consuming tokens unnecessarily",
+    "common_causes": [
+      "GitHub Issue #61877 on anthropics/claude-code (opened May 24). Tags: area:agents, area:model, bug, platform:linux. Direct token waste and workflow blockage. Category mapping: Claude Code core runtime error for paid Opus tier."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "claude-code-csp-blocks-inline-script-breaking-mcp-browser-bridge",
+    "title": "MCP Browser Bridge blocked by Chrome Content Security Policy (CSP) — inline scripts rejected",
+    "description": "Developer running Claude Code Chrome extension in sidepanel gets MCP browser bridge broken because page-level CSP (Content-Security-Policy) headers reject inline JavaScript needed for IPC between extension and MCP server Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "CSP blocks inline script, breaking MCP browser bridge",
+    "search_intent": "Developer running Claude Code Chrome extension in sidepanel gets MCP browser bridge broken because page-level CSP (Content-Security-Policy) headers reject inline JavaScript needed for IPC between extension and MCP server",
+    "common_causes": [
+      "GitHub Issue #62002 on anthropics/claude-code (opened May 24). Tags: area:chrome, area:mcp, bug, has repro, platform:macos. Concrete reproduction steps available. New high-value error around MCP + browser CSP compatibility. Category mapping: Claude Code specific MCP tooling error."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "litellm-unknown-parameter-stream-options-include-usage",
+    "title": "Azure Responses API streaming fails with unknown parameter stream_options.include_usage — blocks Codex",
+    "description": "Developer routing through LiteLLM proxy to Azure Responses API gets streaming failures because the LLM translation layer sends unrecognized 'stream_options.include_usage' parameter to Azure's API, breaking real-time streaming for downstream tools like OpenAI Codex Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "Unknown parameter: stream_options.include_usage",
+    "search_intent": "Developer routing through LiteLLM proxy to Azure Responses API gets streaming failures because the LLM translation layer sends unrecognized 'stream_options.include_usage' parameter to Azure's API, breaking real-time streaming for downstream tools like OpenAI Codex",
+    "common_causes": [
+      "GitHub Issue #28553 on BerriAI/litellm (opened May 22, updated May 24). Tags: bug, llm translation, proxy. Directly blocks Codex usage which has high commercial intent. Category mapping: LiteLLM proxy LLM translation error affecting paid Azure endpoint."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "LiteLLM"
+    ]
+  },
+  {
+    "slug": "litellm-max-budget-in-team-null-via-team-member-update-causes-401-auth-crash",
+    "title": "LiteLLM max_budget_in_team null causes 401 auth crash — team budget table not optional-safe",
+    "description": "LiteLLM proxy admin updating team member settings gets a 401 auth crash due to null pointer in LiteLLM_TeamMembership.litellm_budget_table being Optional without default, crashing the billing/quota system Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "max_budget_in_team: null via /team/member_update causes 401 auth crash",
+    "search_intent": "LiteLLM proxy admin updating team member settings gets a 401 auth crash due to null pointer in LiteLLM_TeamMembership.litellm_budget_table being Optional without default, crashing the billing/quota system",
+    "common_causes": [
+      "GitHub Issue #28689 on BerriAI/litellm (opened May 23). Exact error: null field causes 401 crash in team budget update endpoint. Tags: bug. Affects team billing/quota management on LiteLLM proxy. Category mapping: LiteLLM proxy-specific auth/billing error."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "LiteLLM"
+    ]
+  },
+  {
+    "slug": "litellm-using-microsoft-entra-id-for-authentication-is-returning-403",
+    "title": "Microsoft Entra ID authentication returns 403 when integrated with LiteLLM Proxy",
+    "description": "Enterprise developer configuring LiteLLM proxy with Microsoft Entra ID (Azure AD) for SSO gets persistent 403 Forbidden errors, blocking corporate identity integration for their LLM gateway Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "Using Microsoft Entra ID for authentication is returning 403",
+    "search_intent": "Enterprise developer configuring LiteLLM proxy with Microsoft Entra ID (Azure AD) for SSO gets persistent 403 Forbidden errors, blocking corporate identity integration for their LLM gateway",
+    "common_causes": [
+      "GitHub Issue #21814 on BerriAI/litellm (opened Feb 22, still open and recently active). Tags: bug, llm translation, proxy, stale. Affects enterprise SSO integration. Category mapping: LiteLLM proxy authentication error for cloud identity providers."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "LiteLLM"
+    ]
+  },
+  {
+    "slug": "litellm-attributeerror-is-thinking-enabled-crashes-when-non-default-params-thinking-is-none",
+    "title": "is_thinking_enabled crashes with AttributeError when thinking param is None in LiteLLM",
+    "description": "Developer calling LiteLLM with thinking parameter set to None gets an unhandled AttributeError crash in the provider translation layer, breaking request processing for models supporting the thinking feature Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "AttributeError: is_thinking_enabled crashes when non_default_params['thinking'] is None",
+    "search_intent": "Developer calling LiteLLM with thinking parameter set to None gets an unhandled AttributeError crash in the provider translation layer, breaking request processing for models supporting the thinking feature",
+    "common_causes": [
+      "GitHub Issue #28576 on BerriAI/litellm (opened May 22). Tags: bug, llm translation. Has 3 linked PRs indicating active fix attempts. Concrete exception trace. Category mapping: LiteLLM core crash in model parameter handling."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "LiteLLM"
+    ]
+  },
+  {
+    "slug": "claude-code-session-terminates-with-sock-hopping-on-long-running-bash-commands-4-plus-min-in-wsl2",
+    "title": "WSL2 bash commands >4min terminate with Sock-hopping session crash in Claude Code",
+    "description": "Developer running Claude Code in WSL2 environment finds that any bash command exceeding ~4 minutes triggers a 'Sock-hopping' termination, interrupting long-running build/test pipelines Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Session terminates with 'Sock-hopping' on long-running bash commands (~4+ min) in WSL2",
+    "search_intent": "Developer running Claude Code in WSL2 environment finds that any bash command exceeding ~4 minutes triggers a 'Sock-hopping' termination, interrupting long-running build/test pipelines",
+    "common_causes": [
+      "GitHub Issue #61990 on anthropics/claude-code (opened May 24). Tags: area:bash, bug, platform:wsl, regression. Recent regression affecting Windows dev environments. Category mapping: Claude Code WSL runtime session management error."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
   }
 ]
