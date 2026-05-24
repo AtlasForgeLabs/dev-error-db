@@ -34,6 +34,7 @@ const monetizationStats = await inspectMonetization();
 const analyticsStats = await inspectAnalytics();
 const thinAuditStats = readThinAuditStats();
 const hybridStats = readHybridIndexabilityStats();
+const publishObservabilityStats = readPublishObservabilityStats();
 
 if (distExists) {
   try {
@@ -116,6 +117,16 @@ print('max_new_html_per_run', String(publishGateStats.maxNewHtmlPerRun));
 print('max_static_error_pages', String(publishGateStats.maxStaticErrorPages));
 print('untracked candidate markdown', String(publishGateStats.untrackedCandidateCount));
 print('sitemap url count', String(publishGateStats.sitemapUrlCount));
+
+console.log('\nPublish observability:');
+print('status report', publishObservabilityStats.statusReportPath);
+print('latest changes report', publishObservabilityStats.latestChangesPath);
+print('status generated_at', publishObservabilityStats.generatedAt ?? 'unknown');
+print('latest accepted HTML count', String(publishObservabilityStats.acceptedNewHtmlCount));
+print('data_only count', String(publishObservabilityStats.dataOnlyCount));
+print('needs_review count', String(publishObservabilityStats.needsReviewCount));
+print('rejected count', String(publishObservabilityStats.rejectedCount));
+print('next recommended action', publishObservabilityStats.nextRecommendedAction ?? 'unknown');
 
 console.log('\nMonetization:');
 print('ads.txt exists', monetizationStats.adsTxtExists ? 'yes' : 'no');
@@ -435,6 +446,37 @@ function readThinAuditStats() {
     faq_unique_question_ratio: report.faq?.unique_question_ratio ?? 0,
     faq_repeated_question_count: report.faq?.repeated_question_count ?? 0,
     faq_repeated_answer_count: report.faq?.repeated_answer_count ?? 0,
+  };
+}
+
+function readPublishObservabilityStats() {
+  const statusPath = path.join(rootDir, 'automation', 'runtime', 'publish-observability', 'current', 'publish-pipeline-status.json');
+  const latestChangesPath = path.join(rootDir, 'automation', 'runtime', 'publish-observability', 'current', 'latest-changes.md');
+  const statusReportPath = path.join(rootDir, 'automation', 'runtime', 'publish-observability', 'current', 'publish-pipeline-status.md');
+
+  if (!existsSync(statusPath)) {
+    return {
+      statusReportPath: 'not generated; run npm run status:publish',
+      latestChangesPath: 'not generated; run npm run status:publish',
+      generatedAt: null,
+      acceptedNewHtmlCount: 0,
+      dataOnlyCount: 0,
+      needsReviewCount: 0,
+      rejectedCount: 0,
+      nextRecommendedAction: null,
+    };
+  }
+
+  const status = JSON.parse(readFileSync(statusPath, 'utf8'));
+  return {
+    statusReportPath,
+    latestChangesPath,
+    generatedAt: status.generated_at ?? null,
+    acceptedNewHtmlCount: status.publish_gate?.accepted_new_html_count ?? 0,
+    dataOnlyCount: status.publish_gate?.data_only_count ?? 0,
+    needsReviewCount: status.publish_gate?.needs_review_count ?? 0,
+    rejectedCount: status.publish_gate?.rejected_count ?? 0,
+    nextRecommendedAction: status.next_recommended_action ?? null,
   };
 }
 

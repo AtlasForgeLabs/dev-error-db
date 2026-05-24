@@ -17,3 +17,4 @@ automation/runtime/publish-staging/needs-review-candidates.json
 automation/runtime/publish-staging/rejected-candidates.json
 automation/runtime/publish-staging/real-data-pilot-seeds.json
 automation/runtime/publish-staging/real-data-pilot-meta.json
+automation/runtime/publish-observability/

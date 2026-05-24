@@ -24,6 +24,8 @@
     "pipeline:health": "node automation/pipeline/health.mjs",
     "pipeline:validate": "node automation/pipeline/validate.mjs",
     "publish:safe": "node automation/publish/safe-publish.mjs",
+    "status:publish": "node scripts/publish-pipeline-status.mjs",
+    "validate:publish-observability": "node scripts/validate-publish-observability.mjs",
     "report": "node scripts/report.mjs"
   },
   "dependencies": {
