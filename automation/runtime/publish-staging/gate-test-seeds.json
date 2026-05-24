@@ -1,0 +1,68 @@
+[
+  {
+    "slug": "publish-gate-test-html-pass-docker-overlay-network",
+    "title": "[TEST ONLY] Docker overlay network not found during compose init",
+    "description": "TEST ONLY publish gate HTML pass candidate with source-backed rendered body.",
+    "category": "Docker",
+    "technology": "Docker",
+    "error_signature": "Error response from daemon: failed to set up container networking: overlay network not found",
+    "search_intent": "TEST ONLY publish gate validation",
+    "common_causes": [
+      "Overlay network disappears between docker compose initialization steps on Docker Swarm."
+    ],
+    "quick_fix": "Recreate the overlay network and rerun docker compose up.",
+    "related_errors": ["Docker permission denied"],
+    "_test_note": "Rendered body will include Sources checked with public URL for gate pass test."
+  },
+  {
+    "slug": "publish-gate-test-html-pass-openai-azure-401",
+    "title": "[TEST ONLY] Azure OpenAI AAD bearer token returns 401 after SDK upgrade",
+    "description": "TEST ONLY publish gate HTML pass candidate with source-backed rendered body.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "AzureOpenAI with AAD bearer token passed via api_key returns 401 Unauthorized in 2.34.0",
+    "search_intent": "TEST ONLY publish gate validation",
+    "common_causes": [
+      "Breaking SDK regression reported in openai/openai-python issue 3282."
+    ],
+    "quick_fix": "Pin SDK version or update Azure auth configuration.",
+    "related_errors": ["OpenAI API"],
+    "_test_note": "Rendered body will include Sources checked with public URL for gate pass test."
+  },
+  {
+    "slug": "publish-gate-test-data-only-no-sources",
+    "title": "[TEST ONLY] Shallow candidate without public sources",
+    "description": "TEST ONLY candidate expected to remain data_only.",
+    "category": "Docker",
+    "technology": "Docker",
+    "error_signature": "TEST shallow publish gate signature",
+    "search_intent": "TEST ONLY",
+    "common_causes": ["No public source URL attached to this test record."],
+    "quick_fix": "Do not publish this test record.",
+    "related_errors": ["Docker permission denied"]
+  },
+  {
+    "slug": "publish-gate-test-needs-review-missing-quick-fix",
+    "title": "[TEST ONLY] Missing quick fix candidate",
+    "description": "TEST ONLY candidate expected to become needs_review.",
+    "category": "Docker",
+    "technology": "Docker",
+    "error_signature": "TEST missing quick fix signature",
+    "search_intent": "TEST ONLY",
+    "common_causes": ["Missing quick_fix field should block HTML."],
+    "quick_fix": "",
+    "related_errors": ["Docker permission denied"]
+  },
+  {
+    "slug": "docker-cannot-connect-to-daemon",
+    "title": "[TEST ONLY] Duplicate slug attempt for existing legacy page",
+    "description": "TEST ONLY duplicate of an existing published legacy slug.",
+    "category": "Docker",
+    "technology": "Docker",
+    "error_signature": "Cannot connect to the Docker daemon",
+    "search_intent": "TEST ONLY duplicate",
+    "common_causes": ["Docker Desktop is not running"],
+    "quick_fix": "Start Docker and verify docker info.",
+    "related_errors": ["Docker permission denied"]
+  }
+]

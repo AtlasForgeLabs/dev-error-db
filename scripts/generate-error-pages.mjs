@@ -6,7 +6,9 @@ import { evaluateSeedPublishGate, getPublishGateConfigFromEnv, loadLegacySlugs }
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const rootDir = path.resolve(__dirname, '..');
-const seedsPath = path.join(rootDir, 'data', 'error-seeds.json');
+const seedsPath = process.env.ERROR_SEEDS_PATH
+  ? path.resolve(rootDir, process.env.ERROR_SEEDS_PATH)
+  : path.join(rootDir, 'data', 'error-seeds.json');
 const outputDir = path.join(rootDir, 'src', 'content', 'errors');
 const stagingDir = path.join(rootDir, 'automation', 'runtime', 'publish-staging');
 const force = process.argv.includes('--force');
