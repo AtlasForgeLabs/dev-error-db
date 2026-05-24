@@ -29341,5 +29341,85 @@
     "related_errors": [
       "LiteLLM"
     ]
+  },
+  {
+    "slug": "claude-code-http-oauth-mcp-servers-silently-fail-without-error-when-provider-doesn-t-support-dynamic-client-registration-dcr",
+    "title": "HTTP OAuth MCP Servers Silently Fail in Claude Code When DCR Not Supported",
+    "description": "Fix Claude Code failing to connect to custom OAuth MCP servers that don't support DCR, with no error message shown Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "HTTP OAuth MCP servers silently fail without error when provider doesn't support Dynamic Client Registration (DCR)",
+    "search_intent": "Fix Claude Code failing to connect to custom OAuth MCP servers that don't support DCR, with no error message shown",
+    "common_causes": [
+      "GitHub issue #46623 on claude-code repo (2026-04-11). HTTP MCP server requiring OAuth but lacking DCR support fails silently with no diagnostics. High commercial value: AI coding tool auth issue blocking paid users. Mapping: Claude Code → AI Coding Tools per SKILL.md rules."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "openrouter-after-hitting-openrouter-api-rate-limit-5-spending-cap-switching-models-fails-with-model-not-allowed-error-for-all-models-even-after-limit-resets",
+    "title": "OpenRouter API Rate Limit Failover Causes Model Not Allowed Error for All Models After Spending Cap Hit",
+    "description": "Fix OpenRouter rate limit failover behavior where model switch breaks completely after hitting $5 free tier spending cap Includes evidence for OpenRouter troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "OpenRouter",
+    "error_signature": "After hitting OpenRouter API rate limit ($5 spending cap), switching models fails with 'model not allowed' error for ALL models even after limit resets",
+    "search_intent": "Fix OpenRouter rate limit failover behavior where model switch breaks completely after hitting $5 free tier spending cap",
+    "common_causes": [
+      "GitHub issue #1405 on openclaw repo (2026-01-21). Shows OpenRouter rate limit handling gap — critical for any service using OpenRouter as fallback proxy. Also corroborated by issue #9035 on BerriAI/litellm showing 429 rate limit errors from OpenRouter FREE models not being honored. Commercial value high: many services use OpenRouter as load balancer between providers. Mapping: OpenRouter proxy/routing error → LiteLLM category (per context-dependent mapping rule)."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "LiteLLM"
+    ]
+  },
+  {
+    "slug": "claude-code-failedtoopensocket-error-when-connecting-to-http-mcp-servers-via-claude-code-cli-bun-runtime-bundled-in-cli-binary-fails-at-tcp-socket-level",
+    "title": "Claude Code CLI MCP Connection Fails Due to Bun Runtime TCP Socket Failure",
+    "description": "Resolve Claude Code CLI inability to connect to HTTP-based MCP servers caused by Bun runtime TCP socket failure Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "FailedToOpenSocket error when connecting to HTTP MCP servers via Claude Code CLI; Bun runtime bundled in CLI binary fails at TCP socket level",
+    "search_intent": "Resolve Claude Code CLI inability to connect to HTTP-based MCP servers caused by Bun runtime TCP socket failure",
+    "common_causes": [
+      "GitHub issue #34982 on claude-code repo (2026-03-16). Distinct from OAuth issue — this is a Bun runtime / TCP connectivity failure rather than protocol-level OAuth issue. Different root cause, different audience (CLI users vs IDE extension users). Mapping: Claude Code → AI Coding Tools."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "ollama-error-pull-model-manifest-file-does-not-exist-also-ssh-no-key-found-no-such-host-and-pulling-manifest-412-requires-newer-version",
+    "title": "Ollama Pulling Manifest Errors Including File Does Not Exist and SSH No Key Found",
+    "description": "Fix Ollama model download failures due to manifest pulling errors including missing files, SSH key issues, DNS resolution failures, and version compatibility Includes evidence for Ollama troubleshooting demand.",
+    "category": "Ollama",
+    "technology": "Ollama",
+    "error_signature": "Error: pull model manifest: file does not exist; also 'ssh: no key found', 'no such host', and 'pulling manifest: 412: requires newer version'",
+    "search_intent": "Fix Ollama model download failures due to manifest pulling errors including missing files, SSH key issues, DNS resolution failures, and version compatibility",
+    "common_causes": [
+      "Multiple GitHub issues on ollama/ollama repo: #10329 (2025-04-17, macOS/Apple Silicon), #12986 (2025-11-06), #4901 (SSH key issue), #3996 (DNS resolution), #6396 (412 version mismatch), #15236 (Gemma4 pulling, 2026-04-02). Recurring issue spanning multiple years with diverse root causes. Significant commercial value as Ollama is widely used for local LLM serving. This error signature has clear SEO intent for developers troubleshooting model downloads."
+    ],
+    "quick_fix": "Verify the model name, local service connectivity, and network access before retrying the model pull.",
+    "related_errors": [
+      "Ollama"
+    ]
+  },
+  {
+    "slug": "vercel-module-not-found-error-in-next-js-turbopack-builds-on-vercel-when-importing-commonjs-packages-works-locally-but-fails-in-vercel-deployment",
+    "title": "Next.js Turbopack Module Not Found in CommonJS Package During Vercel Deployment",
+    "description": "Fix Next.js module resolution errors during Vercel production deployments related to turbopack and CommonJS package imports Includes evidence for Vercel troubleshooting demand.",
+    "category": "Deployment",
+    "technology": "Vercel",
+    "error_signature": "Module not found error in Next.js turbopack builds on Vercel when importing CommonJS packages; works locally but fails in Vercel deployment",
+    "search_intent": "Fix Next.js module resolution errors during Vercel production deployments related to turbopack and CommonJS package imports",
+    "common_causes": [
+      "GitHub issue #86458 on vercel/next.js (2025-11-23). Turbopack-specific module not found issue distinct from standard webpack. Also #69390 on Vercel Deployment Error with similar symptom. High commercial value: affects all projects deploying Next.js to Vercel, which includes thousands of production applications. Mapping: Vercel deployment build error → Deployment."
+    ],
+    "quick_fix": "Check the build output, project root, and deployment platform configuration before redeploying.",
+    "related_errors": [
+      "Deployment"
+    ]
   }
 ]
