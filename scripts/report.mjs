@@ -90,6 +90,13 @@ print('legacy_preserved records', String(hybridStats.legacyPreserved));
 print('pending_review records', String(hybridStats.pendingReview));
 print('json category indexes', String(hybridStats.jsonCategoryIndexes));
 print('json technology indexes', String(hybridStats.jsonTechnologyIndexes));
+print('json manifest exists', hybridStats.manifestExists ? 'yes' : 'no');
+print('json shard count', String(hybridStats.jsonShardCount));
+print('largest json shard bytes', String(hybridStats.largestShardBytes));
+print('largest category shard bytes', String(hybridStats.largestCategoryShardBytes));
+print('largest technology shard bytes', String(hybridStats.largestTechnologyShardBytes));
+print('search/browse page', hybridStats.searchBrowserExists ? 'yes (/data-browser/)' : 'no');
+print('data-only public availability', hybridStats.dataOnlyPublicAvailability);
 print('max_static_error_pages', String(hybridStats.maxStaticErrorPages));
 print('preserve_legacy_error_routes', hybridStats.preserveLegacyErrorRoutes ? 'yes' : 'no');
 print('enable_data_only_for_new_records', hybridStats.enableDataOnlyForNewRecords ? 'yes' : 'no');
@@ -330,13 +337,16 @@ function readPublishGateStats() {
 function readHybridIndexabilityStats() {
   const summaryPath = path.join(rootDir, 'dist', 'data', 'errors', 'indexability-summary.json');
   const indexPath = path.join(rootDir, 'dist', 'data', 'errors', 'index.json');
+  const manifestPath = path.join(rootDir, 'dist', 'data', 'errors', 'manifest.json');
   const categoriesDir = path.join(rootDir, 'dist', 'data', 'errors', 'categories');
   const technologiesDir = path.join(rootDir, 'dist', 'data', 'errors', 'technologies');
+  const searchBrowserPath = path.join(rootDir, 'dist', 'data-browser', 'index.html');
 
   if (!existsSync(summaryPath) || !existsSync(indexPath)) {
     return {
       summaryExists: false,
       indexExists: false,
+      manifestExists: false,
       totalRecords: errorFiles.length,
       generatedStaticErrorPages: 0,
       generatedNonErrorPages: 0,
@@ -346,6 +356,12 @@ function readHybridIndexabilityStats() {
       pendingReview: 0,
       jsonCategoryIndexes: 0,
       jsonTechnologyIndexes: 0,
+      jsonShardCount: 0,
+      largestShardBytes: 0,
+      largestCategoryShardBytes: 0,
+      largestTechnologyShardBytes: 0,
+      searchBrowserExists: false,
+      dataOnlyPublicAvailability: 'build required',
       maxStaticErrorPages: 0,
       preserveLegacyErrorRoutes: true,
       enableDataOnlyForNewRecords: true,
@@ -354,6 +370,7 @@ function readHybridIndexabilityStats() {
   }
 
   const summary = JSON.parse(readFileSync(summaryPath, 'utf8'));
+  const manifest = existsSync(manifestPath) ? JSON.parse(readFileSync(manifestPath, 'utf8')) : null;
   const htmlFiles = existsSync(path.join(rootDir, 'dist'))
     ? readdirSync(path.join(rootDir, 'dist'), { recursive: true }).filter((file) => String(file).endsWith('.html'))
     : [];
@@ -362,18 +379,38 @@ function readHybridIndexabilityStats() {
     return /^errors\/[^/]+\/index\.html$/.test(normalized);
   }).length;
 
+  const largestCategoryShardBytes = manifest?.category_shards?.length
+    ? Math.max(...manifest.category_shards.map((shard) => shard.bytes ?? 0))
+    : 0;
+  const largestTechnologyShardBytes = manifest?.technology_shards?.length
+    ? Math.max(...manifest.technology_shards.map((shard) => shard.bytes ?? 0))
+    : 0;
+
+  const dataOnlyCount = manifest?.data_only_records ?? summary.data_only ?? 0;
+  const dataOnlyPublicAvailability =
+    dataOnlyCount > 0
+      ? `yes (${dataOnlyCount} records in public JSON shards; browse at /data-browser/)`
+      : 'ready (no data_only records yet; JSON shards include all public records)';
+
   return {
     summaryExists: true,
     indexExists: true,
-    totalRecords: summary.total_records ?? errorFiles.length,
+    manifestExists: Boolean(manifest),
+    totalRecords: summary.total_records ?? manifest?.total_records ?? errorFiles.length,
     generatedStaticErrorPages: summary.generated_static_error_pages ?? errorDetailHtmlCount,
     generatedNonErrorPages: Math.max(0, htmlFiles.length - errorDetailHtmlCount),
-    indexableHtml: summary.indexable_html ?? 0,
-    dataOnly: summary.data_only ?? 0,
+    indexableHtml: summary.indexable_html ?? manifest?.html_records ?? 0,
+    dataOnly: dataOnlyCount,
     legacyPreserved: summary.legacy_preserved ?? 0,
     pendingReview: summary.pending_review ?? 0,
     jsonCategoryIndexes: existsSync(categoriesDir) ? readdirSync(categoriesDir).filter((file) => file.endsWith('.json')).length : 0,
     jsonTechnologyIndexes: existsSync(technologiesDir) ? readdirSync(technologiesDir).filter((file) => file.endsWith('.json')).length : 0,
+    jsonShardCount: manifest?.shards?.length ?? 0,
+    largestShardBytes: manifest?.largest_shard_bytes ?? 0,
+    largestCategoryShardBytes,
+    largestTechnologyShardBytes,
+    searchBrowserExists: existsSync(searchBrowserPath),
+    dataOnlyPublicAvailability,
     maxStaticErrorPages: summary.max_static_error_pages ?? 0,
     preserveLegacyErrorRoutes: summary.preserve_legacy_error_routes !== false,
     enableDataOnlyForNewRecords: summary.enable_data_only_for_new_records !== false,

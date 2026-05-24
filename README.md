@@ -35,13 +35,26 @@ Dev Error DB uses a first-stage hybrid model so the Markdown corpus can grow wit
 
 Build outputs:
 
-- `/data/errors/index.json`
+- `/data/errors/index.json` — compact public records (legacy flat index; prefer manifest for scale)
+- `/data/errors/manifest.json` — shard map, counts, categories, technologies, search browser path
+- `/data/errors/shards/{n}.json` — global paginated shards (default 500 records; override with `JSON_INDEX_SHARD_SIZE`)
+- `/data/errors/categories/{category}/page-{n}.json` — category shards
+- `/data/errors/technologies/{technology}/page-{n}.json` — technology shards
 - `/data/errors/indexability-summary.json`
-- `/data/errors/categories/{category}.json`
-- `/data/errors/technologies/{technology}.json`
+- `/data/errors/categories/{category}.json` — first-page category summary
+- `/data/errors/technologies/{technology}.json` — first-page technology summary
+- `/data-browser/` — static HTML search/browse UI that loads manifest + shards client-side
+
+`data_only` records are included in public JSON shards but excluded from sitemap and must not receive `/errors/{slug}/` links. Promote a record to HTML by improving source evidence and content depth, passing the publish gate, and adding Markdown under `src/content/errors/` with explicit human approval for legacy snapshot updates when needed.
+
+Future scaling options:
+
+- Static sharded JSON (current default) for small/medium datasets on GitHub Pages
+- SQLite, Postgres, Meilisearch, Typesense, or OpenSearch when record counts or query complexity exceed client-side shard loading
 
 Environment controls (optional):
 
+- `JSON_INDEX_SHARD_SIZE` — default `500`. Maximum records per shard file.
 - `MAX_STATIC_ERROR_PAGES` — future cap for non-legacy static pages. `0` means no cap. Legacy slugs and `pending_review` pages are not removed by the cap.
 - `ENABLE_DATA_ONLY_FOR_NEW_RECORDS` — default `true`. New slugs not in the legacy snapshot may skip HTML when classified `data_only`.
 - `PRESERVE_LEGACY_ERROR_ROUTES` — default `true`. Keeps HTML routes for legacy snapshot slugs even when they would otherwise be `data_only`.
@@ -50,8 +63,10 @@ Safety rules:
 
 - Do not convert all SEO pages to client-only JSON rendering.
 - Do not remove existing published error URLs from sitemap or internal links during AdSense review.
-- Sitemap and category hubs must link only to generated HTML routes.
-- `npm run report` and `npm run check` include hybrid indexability metrics and validation.
+- Sitemap and category hubs must link only to generated HTML routes (`has_static_page=true`).
+- Do not link `data_only` records to missing `/errors/{slug}/` detail pages; expose them through JSON shards and `/data-browser/` instead.
+- Do not generate one HTML page for every discovered record.
+- `npm run report` and `npm run check` include hybrid indexability metrics, JSON shard validation, and data-browser status.
 
 ## Publish gate
 

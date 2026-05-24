@@ -145,6 +145,10 @@ const structuredData = [
       <li><strong>Partial-source pages:</strong> {partialSourceEntries.length}</li>
       {dataOnlyCount > 0 && <li><strong>Data-only index records:</strong> {dataOnlyCount}</li>}
     </ul>
+    <p>
+      <a href={`/data-browser/?category=${group.slug}`}>Browse {group.label} records in the data catalog</a>
+      — search JSON index entries, including data-only records without standalone HTML guides.
+    </p>
 
     <section class="latest-pages" aria-labelledby="overview-heading">
       <h2 id="overview-heading">Troubleshooting overview</h2>

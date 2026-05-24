@@ -1,0 +1,58 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Error data catalog browser"
+  description="Search and browse Dev Error DB error records from compact JSON indexes, including data-only records that do not have standalone HTML guides."
+>
+  <section class="category-page data-browser-page">
+    <nav class="breadcrumbs" aria-label="Breadcrumb">
+      <a href="/">Home</a>
+      <span aria-hidden="true">/</span>
+      <a href="/errors/">Errors</a>
+      <span aria-hidden="true">/</span>
+      <span>Data catalog</span>
+    </nav>
+
+    <p class="eyebrow">JSON data catalog</p>
+    <h1>Error data catalog browser</h1>
+    <p>
+      Search compact JSON indexes built at deploy time. Full troubleshooting guides link to static HTML pages.
+      Data index records stay searchable here without generating a standalone detail route or sitemap entry.
+    </p>
+
+    <div class="data-browser-controls">
+      <label>
+        <span>Search</span>
+        <input id="catalog-search" type="search" placeholder="Search title, signature, technology, category" autocomplete="off" />
+      </label>
+      <label>
+        <span>Category</span>
+        <select id="catalog-category">
+          <option value="">All categories</option>
+        </select>
+      </label>
+      <label>
+        <span>Technology</span>
+        <select id="catalog-technology">
+          <option value="">All technologies</option>
+        </select>
+      </label>
+      <label>
+        <span>Availability</span>
+        <select id="catalog-availability">
+          <option value="">All records</option>
+          <option value="html">Full guide available</option>
+          <option value="data_only">Data index record</option>
+        </select>
+      </label>
+    </div>
+
+    <p id="catalog-status" class="count-line" aria-live="polite">Loading catalog manifest…</p>
+
+    <div id="catalog-results" class="cards" aria-live="polite"></div>
+  </section>
+
+  <script is:inline src="/scripts/data-catalog-browser.js"></script>
+</BaseLayout>

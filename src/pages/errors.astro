@@ -21,6 +21,11 @@ const pagination = paginateEntries(allErrors, 1, DEFAULT_PAGE_SIZE);
     <p class="eyebrow">Error listings</p>
     <h1>All error pages</h1>
     <p>Paginated listing built for long-term scale and search engine crawl efficiency.</p>
+    <p>
+      Need records without standalone HTML guides? Use the
+      <a href="/data-browser/">error data catalog browser</a>
+      to search compact JSON indexes, including data-only records that are not listed here.
+    </p>
     <div class="cards">
       {pagination.pageItems.map((entry) => (
         <article class="card">

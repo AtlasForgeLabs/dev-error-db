@@ -16,6 +16,7 @@ const staticRoutes = [
   '/source-policy/',
   '/troubleshooting-methodology/',
   '/errors/',
+  '/data-browser/',
   '/latest/',
   '/trending/',
 ];

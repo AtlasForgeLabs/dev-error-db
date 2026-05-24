@@ -23,6 +23,7 @@ export type ErrorIndexabilityRecord = {
   description: string;
   category: string;
   technology: string;
+  error_signature: string | null;
   evidence_status: EvidenceStatus;
   source_count: number;
   source_backed: boolean;
@@ -32,6 +33,7 @@ export type ErrorIndexabilityRecord = {
   legacy_preserved: boolean;
   url: string | null;
   has_static_page: boolean;
+  detail_available: boolean;
   static_priority_rank: number;
   publish_status: PublishGateCandidate['publish_status'];
   publish_reason: string;
@@ -177,6 +179,7 @@ export function classifyErrorIndexability(
     description: entry.data.description,
     category: entry.data.category,
     technology: entry.data.technology,
+    error_signature: entry.data.error_signature ?? null,
     evidence_status: evidence.evidence_status,
     source_count: evidence.source_count,
     source_backed: evidence.source_backed,
@@ -311,6 +314,7 @@ function finalizeRecord(
     description: record.description,
     category: record.category,
     technology: record.technology,
+    error_signature: record.error_signature ?? null,
     evidence_status: record.evidence_status,
     source_count: record.source_count,
     source_backed: record.source_backed,
@@ -319,6 +323,7 @@ function finalizeRecord(
     data_only: record.data_only,
     legacy_preserved: record.legacy_preserved,
     has_static_page,
+    detail_available: has_static_page,
     url: has_static_page ? `https://dev-error-db.com/errors/${record.slug}/` : null,
     static_priority_rank: record.static_priority_rank,
     publish_status: record.publish_status,

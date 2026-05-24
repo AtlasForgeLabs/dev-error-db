@@ -43,3 +43,7 @@ export function getHybridConfigFromPublishGate(config: PublishGateConfig = getPu
     preserveLegacyErrorRoutes: config.preserveLegacyErrorRoutes,
   };
 }
+
+export function getJsonIndexShardSize() {
+  return readEnvInt('JSON_INDEX_SHARD_SIZE', 500);
+}

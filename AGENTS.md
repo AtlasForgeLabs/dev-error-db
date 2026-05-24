@@ -162,14 +162,30 @@ Indexability statuses (derived from existing Markdown fields only):
 
 Build outputs under `dist/data/errors/`:
 
-- `index.json`, `indexability-summary.json`
-- `categories/{category}.json`, `technologies/{technology}.json`
+- `index.json`, `indexability-summary.json`, `manifest.json`
+- `shards/{n}.json` — global compact records (default shard size 500 via `JSON_INDEX_SHARD_SIZE`)
+- `categories/{category}/page-{n}.json`, `technologies/{technology}/page-{n}.json`
+- `categories/{category}.json`, `technologies/{technology}.json` — first-page summaries
+
+Public browse UI: `/data-browser/` (static HTML + small client script loading manifest/shards).
+
+Compact JSON records include: slug, title, description, category, technology, error_signature, evidence_status, source_count, source_backed, updated_at, indexability_status, data_only, legacy_preserved, has_static_page, detail_available, url (only when has_static_page=true), search_text. No Markdown bodies.
+
+Exposure rules:
+
+- Include `indexable_html`, `legacy_preserved`, and safe `data_only` records in public JSON.
+- Hide `needs_review` and `rejected` from public JSON unless explicitly labeled and safe.
+- Never link `data_only` records to `/errors/{slug}/` or add them to sitemap.
+- Category hubs may show data-only counts and link to `/data-browser/?category={slug}`.
 
 Controls (environment overrides at build time):
 
+- `JSON_INDEX_SHARD_SIZE` (default `500`)
 - `MAX_STATIC_ERROR_PAGES` (default `0` = no cap)
 - `ENABLE_DATA_ONLY_FOR_NEW_RECORDS` (default `true`)
 - `PRESERVE_LEGACY_ERROR_ROUTES` (default `true`)
+
+Future scaling: static sharded JSON for GitHub Pages; SQLite/Postgres/Meilisearch/Typesense/OpenSearch when client-side shard loading is insufficient.
 
 Agent rules:
 

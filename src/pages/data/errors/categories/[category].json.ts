@@ -4,11 +4,11 @@ import { buildErrorCatalog, groupRecordsByCategory } from '../../../../lib/error
 export async function getStaticPaths() {
   const entries = await getCollection('errors');
   const catalog = buildErrorCatalog(entries);
-  const groups = groupRecordsByCategory(catalog.records);
+  const groups = groupRecordsByCategory(catalog.publicRecords);
 
   return [...groups.entries()].map(([category, records]) => ({
     params: { category },
-    props: { category, records },
+    props: { category, records: records.slice(0, catalog.manifest.shard_size) },
   }));
 }
 

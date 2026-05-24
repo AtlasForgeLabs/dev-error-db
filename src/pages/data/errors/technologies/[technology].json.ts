@@ -4,11 +4,11 @@ import { buildErrorCatalog, groupRecordsByTechnology } from '../../../../lib/err
 export async function getStaticPaths() {
   const entries = await getCollection('errors');
   const catalog = buildErrorCatalog(entries);
-  const groups = groupRecordsByTechnology(catalog.records);
+  const groups = groupRecordsByTechnology(catalog.publicRecords);
 
   return [...groups.entries()].map(([technology, records]) => ({
     params: { technology },
-    props: { technology, records },
+    props: { technology, records: records.slice(0, catalog.manifest.shard_size) },
   }));
 }
 
