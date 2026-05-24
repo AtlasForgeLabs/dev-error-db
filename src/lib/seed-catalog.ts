@@ -11,7 +11,7 @@ import { entrySlug } from './taxonomy';
 
 type ErrorEntry = CollectionEntry<'errors'>;
 
-const rootDir = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
+const rootDir = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..');
 
 type StagingGateRecord = {
   slug: string;
