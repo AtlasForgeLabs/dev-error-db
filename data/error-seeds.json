@@ -29997,5 +29997,69 @@
     "related_errors": [
       "AI Coding Tools"
     ]
+  },
+  {
+    "slug": "anthropic-api-anthropic-overloaded-error-http-529-servers-at-capacity-cannot-process-request",
+    "title": "Anthropic API 529 Overloaded Error — Server at Capacity",
+    "description": "Understand and work around Anthropic 529 overloaded errors that occur when API servers are saturated, especially after major model launches (Opus 4.7) Includes evidence for Anthropic API troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Anthropic API",
+    "error_signature": "Anthropic overloaded_error HTTP 529 — servers at capacity, cannot process request",
+    "search_intent": "Understand and work around Anthropic 529 overloaded errors that occur when API servers are saturated, especially after major model launches (Opus 4.7)",
+    "common_causes": [
+      "tokenmix.ai 2026 blog post analyzing Anthropic HTTP 529 overloaded_error. Distinct from 429 (account rate limit) and 503 (outage) — 529 means service up but saturated. Strategies include exponential backoff, tier fallback, cross-provider failover. Published April 2026 following Opus 4.7 launch. Category: Anthropic API (pay-per-token quota/service saturation). NOT in covered-errors list (which only has general 429, no 529)."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "Anthropic API"
+    ]
+  },
+  {
+    "slug": "litellm-504-gateway-time-out-openai-internalservererror-html-body-h1-504-gateway-time-out-h1-the-server-didn-t-respond-in-time",
+    "title": "LiteLLM 504 Gateway Time-out for Long Non-Streaming Requests",
+    "description": "Fix 504 Gateway Timeout errors in LiteLLM proxy when using non-streaming requests with long-generating LLM models like deepseek/deepseek-chat Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "504 Gateway Time-out / openai.InternalServerError: <html><body><h1>504 Gateway Time-out</h1>The server didn't respond in time.",
+    "search_intent": "Fix 504 Gateway Timeout errors in LiteLLM proxy when using non-streaming requests with long-generating LLM models like deepseek/deepseek-chat",
+    "common_causes": [
+      "GitHub Issue #9551 on BerriAI/litellm (2025-03-26): When using LiteLLM proxy with LangChain ChatOpenAI, non-streaming requests (>60s generation) consistently return 504 Gateway Time-out. Streaming works fine. Issue includes full traceback showing openai.InternalServerError at _request level. LiteLLM v1.63.14. Category: LiteLLM (proxy billing/routing failures)."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "LiteLLM"
+    ]
+  },
+  {
+    "slug": "litellm-litellm-exceptions-timeout-connection-timeout-after-60-0-seconds-error-message-gateway-timeout-type-proxy-server-error-param-null-code-503",
+    "title": "LiteLLM Request Timeout Error — Connection Timeout After 60 Seconds",
+    "description": "Fix LiteLLM proxy connection timeout errors caused by default 60-second request_timeout limit killing production deployments when models take 90+ seconds to respond Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "litellm.exceptions.Timeout: Connection timeout after 60.0 seconds / {\"error\":{\"message\":\"Gateway timeout\",\"type\":\"proxy_server_error\",\"param\":null,\"code\":503}}",
+    "search_intent": "Fix LiteLLM proxy connection timeout errors caused by default 60-second request_timeout limit killing production deployments when models take 90+ seconds to respond",
+    "common_causes": [
+      "Production guide from markaicode.com: LiteLLM inherits httpx client default of 60s request_timeout causing timeouts for slow models. Solution involves raising LITELLM_REQUEST_TIMEOUT to 300 and configuring max_retries/stream_timeout. Tested on LiteLLM v1.42.3, Python 3.11, OpenAI API. Category: LiteLLM (proxy billing/routing failures)."
+    ],
+    "quick_fix": "Check the build output, project root, and deployment platform configuration before redeploying.",
+    "related_errors": [
+      "LiteLLM"
+    ]
+  },
+  {
+    "slug": "vercel-typescript-error-in-vercel-build-unused-variables-missing-types-types-node-any-types-with-strict-true-causing-tsc-compilation-failure",
+    "title": "Vercel TypeScript Strict Mode Build Failure — Unused Variables and Missing Types",
+    "description": "Resolve Vercel build failures caused by TypeScript strict mode that VS Code local ignores but Vercel enforces during compilation Includes evidence for Vercel troubleshooting demand.",
+    "category": "Deployment",
+    "technology": "Vercel",
+    "error_signature": "TypeScript error in Vercel build — unused variables, missing types (@types/node), any types with strict: true causing tsc compilation failure",
+    "search_intent": "Resolve Vercel build failures caused by TypeScript strict mode that VS Code local ignores but Vercel enforces during compilation",
+    "common_causes": [
+      "aimadetools.com Vercel build troubleshooting guide identifies TypeScript strict mode as second most common Vercel build failure cause. Code that passes locally in VS Code fails in Vercel because Vercel runs tsc in strict mode catching unused variables (noUnusedLocals in tsconfig), missing type packages (@types/node), and forbidden any types. Workaround exists (strict: false) but fixing actual TS issues recommended. Category: Deployment (Vercel). This targets a more specific sub-case than the generic build-failed entry."
+    ],
+    "quick_fix": "Check the build output, project root, and deployment platform configuration before redeploying.",
+    "related_errors": [
+      "Deployment"
+    ]
   }
 ]
