@@ -31805,5 +31805,53 @@
     "related_errors": [
       "LiteLLM"
     ]
+  },
+  {
+    "slug": "claude-code-claude-desktop-connector-not-connecting-oauth-mcps-mcp-requires-auth-goes-through-process-in-cli-but-fails-in-desktop-as-connector",
+    "title": "Claude Desktop doesn't connect to Custom MCPs (OAuth 2.1 + SSE) — enterprise MCP integration broken in desktop",
+    "description": "Fix Claude Desktop failing to connect to custom OAuth-protected MCP servers when configured as a Connector; CLI works fine but desktop integration broken Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Claude Desktop Connector not connecting OAuth MCPs; MCP requires auth, goes through process in CLI but fails in Desktop as Connector",
+    "search_intent": "Fix Claude Desktop failing to connect to custom OAuth-protected MCP servers when configured as a Connector; CLI works fine but desktop integration broken",
+    "common_causes": [
+      "GitHub issue #5826 (anthropics/claude-code) — bug has repro, labeled area:auth + area:mcp + oncall, 64 comments indicating active developer pain. Claude Code CLI (`claude mcp add`) works with OAuth MCPs but Claude Desktop Connector cannot connect at all. Affects enterprise users deploying company OAuth MCPs."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "claude-code-claude-auth-status-shows-invalid-api-key-fix-external-api-key-despite-valid-cloudmax-oauth-tokens-and-functional-claude-code-operations",
+    "title": "OAuth succeeds but claude auth status shows 'Invalid API key' — authentication state inconsistency",
+    "description": "Fix incorrect auth status display after successful OAuth login; tokens work but status check reports invalid API key, confusing users into re-authenticating unnecessarily Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "claude auth status shows 'Invalid API key · Fix external API key' despite valid CloudMax OAuth tokens and functional Claude Code operations",
+    "search_intent": "Fix incorrect auth status display after successful OAuth login; tokens work but status check reports invalid API key, confusing users into re-authenticating unnecessarily",
+    "common_causes": [
+      "GitHub issue #8002 (anthropics/claude-code) — bug has repro, platform:windows, area:auth, 9 comments. Inverse of classic auth failures: actual auth works but diagnostic tool reports failure. Users see misleading error prompting unnecessary fix attempts."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "claude-code-install-github-app-always-throws-oauth-error-on-windows-11-powershell-wsl-also-oauth-error-on-first-time-claude-authentication",
+    "title": "Claude Code /install-github-app throws OAuth error on Windows — GitHub App install flow broken",
+    "description": "Fix OAuth flow failure when installing GitHub App integration via Claude Code terminal command; blocks developers from connecting Claude Code to their repositories Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "/install-github-app always throws OAuth error on Windows 11 (Powershell/WSL); also OAuth error on first-time claude authentication",
+    "search_intent": "Fix OAuth flow failure when installing GitHub App integration via Claude Code terminal command; blocks developers from connecting Claude Code to their repositories",
+    "common_causes": [
+      "GitHub issue #3498 (anthropics/claude-code) — bug has repro, platform:windows, area:auth, 9 comments. OAuth error specifically during `/install-github-app` flow affects Windows users attempting GitHub integration. Distinct from generic auth issues as it targets a specific feature flow."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
   }
 ]
