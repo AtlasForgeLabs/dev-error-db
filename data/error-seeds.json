@@ -30877,5 +30877,85 @@
     "related_errors": [
       "LiteLLM"
     ]
+  },
+  {
+    "slug": "claude-code-mcp-server-name-tool-name-timed-out-after-1s",
+    "title": "Stdio MCP tool calls default to 1-second timeout in Claude Code v2.1.148 — long-running tools fail",
+    "description": "Fix regression in Claude Code v2.1.148 where all stdio MCP server tool calls abort at ~1001ms regardless of configured timeout, breaking long-running tools like @openai/codex Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "MCP server \"<name>\" tool \"<name>\" timed out after 1s",
+    "search_intent": "Fix regression in Claude Code v2.1.148 where all stdio MCP server tool calls abort at ~1001ms regardless of configured timeout, breaking long-running tools like @openai/codex",
+    "common_causes": [
+      "GitHub issue #62121 in anthropics/claude-code (opened May 25, 2026). Detailed repro steps, reverse-engineered the deobfuscated binary showing root cause in nullish-coalescing chain (timeout:0 → Math.max(0,1000) → 1s floor). Has regression label and confirmed workarounds. HTTP/SSE MCP transports unaffected. Extremely specific error signature with actionable debug info. Critical for anyone using stdio MCP servers."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "litellm-customer-daily-activity-exposes-cross-tenant-end-user-spend-to-any-authenticated-key",
+    "title": "LiteLLM /customer/daily/activity endpoint exposes cross-tenant end-user spend to any authenticated key",
+    "description": "Fix security vulnerability in LiteLLM proxy where the /customer/daily/activity API endpoint leaks one tenant's end-user spending data to any other authenticated API key Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "/customer/daily/activity exposes cross-tenant end-user spend to any authenticated key",
+    "search_intent": "Fix security vulnerability in LiteLLM proxy where the /customer/daily/activity API endpoint leaks one tenant's end-user spending data to any other authenticated API key",
+    "common_causes": [
+      "GitHub issue #28570 in BerriAI/litellm (opened May 22, 2026). Critical security bug in LiteLLM multi-tenant proxy. Affects enterprise customers running LiteLLM as a shared cost-management layer across organizations. Cross-tenant data leakage is a high-severity finding. Source: https://github.com/BerriAI/litellm/issues/28570"
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "LiteLLM"
+    ]
+  },
+  {
+    "slug": "litellm-anthropic-messages-logging-silently-drops-spend-logs-rows-for-cross-route-to-openai-responses-backend",
+    "title": "LiteLLM anthropic_messages logging silently drops spend_logs rows for cross-route to OpenAI Responses backend",
+    "description": "Fix LiteLLM proxy where billing/cost logs are lost when routing Anthropic messages to an OpenAI Responses backend, causing incorrect charge tracking for enterprise tenants Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "anthropic_messages logging silently drops spend_logs rows for cross-route to OpenAI Responses backend",
+    "search_intent": "Fix LiteLLM proxy where billing/cost logs are lost when routing Anthropic messages to an OpenAI Responses backend, causing incorrect charge tracking for enterprise tenants",
+    "common_causes": [
+      "GitHub issue #28595 in BerriAI/litellm (opened May 22, 2026). Silent data loss in billing infrastructure — affects accuracy of cost reporting for LiteLLM proxy users who route Anthropic traffic through an OpenAI-compatible endpoint. Direct impact on financial tracking for paying organizations. Source: https://github.com/BerriAI/litellm/issues/28595"
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "LiteLLM"
+    ]
+  },
+  {
+    "slug": "claude-code-websearch-tool-fails-with-error-1210-invalid-api-parameter",
+    "title": "WebSearch tool fails with error 1210 (Invalid API parameter) in Claude Code — Brave Search credentials",
+    "description": "Fix Claude Code Brave Search integration error where WebSearch tool returns error 1210 due to invalid or expired API credentials configuration Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "WebSearch tool fails with error 1210 (Invalid API parameter)",
+    "search_intent": "Fix Claude Code Brave Search integration error where WebSearch tool returns error 1210 due to invalid or expired API credentials configuration",
+    "common_causes": [
+      "GitHub issue #62103 in anthropics/claude-code (opened May 25, 2026). Labelled area:tools, bug, platform:macos. Specific error code 1210 from Brave Search API. Relevant for enterprise users relying on WebSearch MCP tool through Claude Code with custom Brave API keys."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "litellm-max-budget-in-team-null-via-team-member-update-causes-401-auth-crash-litellm-teammembership-litellm-budget-table-is-optional-without-default",
+    "title": "LiteLLM max_budget_in_team null via /team/member_update causes 401 auth crash — Optional without default",
+    "description": "Fix 401 authentication crash in LiteLLM team management API when max_budget_in_team is null, preventing budget-based team member updates and blocking team cost controls Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "max_budget_in_team: null via /team/member_update causes 401 auth crash — LiteLLM_TeamMembership.litellm_budget_table is Optional without default",
+    "search_intent": "Fix 401 authentication crash in LiteLLM team management API when max_budget_in_team is null, preventing budget-based team member updates and blocking team cost controls",
+    "common_causes": [
+      "GitHub issue #28689 in BerriAI/litellm (opened May 23, 2026). Authentication crash triggered by null budget field in team member update endpoint. Blocks team-level cost management — critical for multi-user LiteLLM proxy deployments where per-team budgets are essential. 1 linked PR indicates fix in progress. Source: https://github.com/BerriAI/litellm/issues/28689"
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "LiteLLM"
+    ]
   }
 ]
