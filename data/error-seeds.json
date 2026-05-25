@@ -31149,5 +31149,69 @@
     "related_errors": [
       "Cloud Platforms"
     ]
+  },
+  {
+    "slug": "cloudflare-error-522-origin-connection-timed-out",
+    "title": "Cloudflare Error 522 Origin Connection Timed Out — Troubleshooting Guide",
+    "description": "Fix Cloudflare 522 errors caused by origin server not responding within time limit Includes evidence for Cloudflare troubleshooting demand.",
+    "category": "Cloudflare",
+    "technology": "Cloudflare",
+    "error_signature": "Error 522: Origin connection timed out",
+    "search_intent": "Fix Cloudflare 522 errors caused by origin server not responding within time limit",
+    "common_causes": [
+      "Cloudflare status page accessible via curl confirming CDN health monitoring. Error 522 is one of the most commercially impactful Cloudflare errors — affects all sites behind CF proxy. Not yet covered in dev-error-db. High commercial value since downtime = revenue loss. Category mapping: native Cloudflare CDN error code."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Cloudflare"
+    ]
+  },
+  {
+    "slug": "claude-code-failed-to-connect-to-mcp-server-or-start-mcp-session",
+    "title": "Claude Code MCP Server Connection Failed — How to Fix MCP Auth Errors",
+    "description": "Fix Claude Code MCP server connection errors during agent sessions Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Failed to connect to MCP server or start MCP session",
+    "search_intent": "Fix Claude Code MCP server connection errors during agent sessions",
+    "common_causes": [
+      "Cursor docs show extensive MCP configuration pages suggesting active user adoption. MCP connection failures are new pain point distinct from covered error 'model not available'. Claude Code is paid tool with Teams/Enterprise plans. P0 tech category."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "vercel-edge-function-did-not-respond-within-30-seconds-504",
+    "title": "Vercel Edge Function Timeout — 504 Gateway Timeout After 30s",
+    "description": "Fix Vercel edge function 504 timeout errors by optimizing function duration Includes evidence for Vercel troubleshooting demand.",
+    "category": "Deployment",
+    "technology": "Vercel",
+    "error_signature": "Edge Function did not respond within 30 seconds (504)",
+    "search_intent": "Fix Vercel edge function 504 timeout errors by optimizing function duration",
+    "common_causes": [
+      "Vercel documentation accessible via partial curl confirms Next.js-based site structure. Edge function 504 timeouts affect paid team plans. Distinct from covered 'build failed' error. Vercel Pro/Enterprise tier makes this commercially impactful. Category mapping: native Vercel deployment error."
+    ],
+    "quick_fix": "Check the build output, project root, and deployment platform configuration before redeploying.",
+    "related_errors": [
+      "Deployment"
+    ]
+  },
+  {
+    "slug": "litellm-request-timed-out-http-408-while-proxying-to-model-provider",
+    "title": "LiteLLM Proxy 408 Request Timeout — Model Provider Unreachable",
+    "description": "Fix LiteLLM proxy request timeouts when calling upstream LLM providers Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "Request timed out / HTTP 408 while proxying to model provider",
+    "search_intent": "Fix LiteLLM proxy request timeouts when calling upstream LLM providers",
+    "common_causes": [
+      "Partial curl to litellm.ai docs confirmed existence of 'rate limit' and 'overloaded' errors in LiteLLM documentation. LiteLLM proxy is widely deployed in production; timeouts directly impact billing and SLA. Distinct from OpenAI API 429 since it's a proxy-layer timeout issue. Category mapping: native LiteLLM proxy behavior."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "LiteLLM"
+    ]
   }
 ]
