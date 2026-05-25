@@ -31357,5 +31357,21 @@
     "related_errors": [
       "Ollama"
     ]
+  },
+  {
+    "slug": "claude-code-failed-to-fetch-subscription-axioserror-request-failed-with-status-code-401-error-could-not-resolve-authentication-method-expected-either-apikey-or-authtoken-to-be-set",
+    "title": "Claude Code OAuth authentication fails in proxy environment — subscription fetch returns 401",
+    "description": "Fix OAuth authentication failure in Claude Code when behind a corporate proxy, specifically when the OAuth flow completes but subscription/API calls fail with 401 Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Failed to fetch subscription: AxiosError: Request failed with status code 401 — Error: Could not resolve authentication method. Expected either apiKey or authToken to be set.",
+    "search_intent": "Fix OAuth authentication failure in Claude Code when behind a corporate proxy, specifically when the OAuth flow completes but subscription/API calls fail with 401",
+    "common_causes": [
+      "Source: GitHub Issue #11464 (anthropics/claude-code). User reports OAuth code submission succeeds and tokens save, but subsequent subscription fetch fails with 401, blocking all API calls. Enterprise proxy scenarios are common in high-value B2B environments where Claude Code subscriptions are purchased. Maps to 'AI Coding Tools' as it affects paid Claude Code users in corporate environments."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
   }
 ]
