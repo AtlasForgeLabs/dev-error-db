@@ -30957,5 +30957,69 @@
     "related_errors": [
       "LiteLLM"
     ]
+  },
+  {
+    "slug": "claude-code-authentication-failed-run-claude-auth-login-to-authenticate",
+    "title": "Claude Code Auth Failed — OAuth Token Expired & API Key Invalid",
+    "description": "Fix Claude Code authentication failure when OAuth refresh token expires or ANTHROPIC_API_KEY env var contains invalid/expired key, blocking all AI-assisted coding in terminal. Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Authentication failed. Run `claude auth login` to authenticate.",
+    "search_intent": "Fix Claude Code authentication failure when OAuth refresh token expires or ANTHROPIC_API_KEY env var contains invalid/expired key, blocking all AI-assisted coding in terminal.",
+    "common_causes": [
+      "Source: markaicode.com (web_fetch, Tier 1). Covers expired OAuth token.json (~30-day lifetime), mis-scoped API keys lacking messages.create permission, headless server proxy blocks on OAuth redirect. Pattern confirmed across macOS/Ubuntu/WSL. Category mapping: Claude Code → AI Coding Tools per SKILL.md approved mappings. No overlap with covered-errors.md entries."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "anthropic-api-429-too-many-requests-exceeded-requests-per-minute-rpm-input-tokens-per-minute-itpm-or-output-tokens-per-minute-otpm",
+    "title": "Anthropic API 429 Too Many Requests — Spend Limits vs Rate Limits",
+    "description": "Distinguish between Anthropic spend limits (monthly $ cap) and rate limits (token bucket algorithm on RPM/ITPM/OTPM), understand usage tier auto-scaling ($100→$500→$1000→$5000), and implement backoff strategies. Includes evidence for Anthropic API troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Anthropic API",
+    "error_signature": "429 Too Many Requests — exceeded requests per minute (RPM), input tokens per minute (ITPM), or output tokens per minute (OTPM)",
+    "search_intent": "Distinguish between Anthropic spend limits (monthly $ cap) and rate limits (token bucket algorithm on RPM/ITPM/OTPM), understand usage tier auto-scaling ($100→$500→$1000→$5000), and implement backoff strategies.",
+    "common_causes": [
+      "Source: markaicode.com via web_fetch (Tier 1). Clear distinction between two limit types unique to Anthropic, token bucket explanation, burst request triggers, underestimation OTPM edge case, cache_read_input_tokens counting toward ITPM. P0 technology. Not duplicated in covered-errors.md."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "Anthropic API"
+    ]
+  },
+  {
+    "slug": "openai-api-rate-limit-exceeded-429-too-many-requests-with-headers-indicating-retry-after",
+    "title": "OpenAI API 429 Rate Limit Exceeded — RPM/TPM/RPD Tiers Explained",
+    "description": "Understand OpenAI rate limit tiers (RPM, TPM, RPD), why GPT-4 hits limits faster than GPT-3.5-turbo, and implement exponential backoff / request queuing / circuit breaker patterns for production apps. Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "Rate limit exceeded — 429 Too Many Requests with headers indicating retry-after",
+    "search_intent": "Understand OpenAI rate limit tiers (RPM, TPM, RPD), why GPT-4 hits limits faster than GPT-3.5-turbo, and implement exponential backoff / request queuing / circuit breaker patterns for production apps.",
+    "common_causes": [
+      "Source: reintech.io + respan.ai articles via web_fetch (Tier 1). Detailed coverage of three limit types (RPM/TPM/RPD), model-specific tier scaling, response headers with retry-after, Python/TypeScript backoff code examples. P0 technology → +1 bonus. Not yet on covered-errors.md list. Category: OpenAI API per approved mapping."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "openai-api-429-insufficient-quota-error-even-though-account-has-paid-subscription",
+    "title": "OpenAI API 429 Insufficient Quota Even With Paid Subscription",
+    "description": "Fix confusing discrepancy where paying OpenAI users still receive 429 insufficient quota errors — understand tier-based additional limits (requests/day, tokens/day beyond RPM), check account page for rate limit review. Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "429 \"Insufficient Quota\" error even though account has paid subscription",
+    "search_intent": "Fix confusing discrepancy where paying OpenAI users still receive 429 insufficient quota errors — understand tier-based additional limits (requests/day, tokens/day beyond RPM), check account page for rate limit review.",
+    "common_causes": [
+      "Source: Stack Overflow (web_search result). Distinct from generic rate limit — specifically 'insufficient_quota' sub-case. Key insight: OpenAI applies both per-model rate limits AND daily aggregate quotas. Search intent is high commercial value — paid user blocked from production deployment. Differentiated from #2 by focusing on quota vs. rate limit distinction."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "OpenAI API"
+    ]
   }
 ]
