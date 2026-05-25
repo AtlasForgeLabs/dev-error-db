@@ -31213,5 +31213,101 @@
     "related_errors": [
       "LiteLLM"
     ]
+  },
+  {
+    "slug": "vercel-build-crashes-2ms-after-applying-modifyconfig-from-vercel-log-line-with-err-invalid-arg-type-on-next-js-16-2-0-regression-starting-2026-05-22-17-50-utc-deterministic-across-multiple-projects",
+    "title": "Vercel Build Crashes Immediately After ApplyModifyConfig on Next.js 16.2.0",
+    "description": "Fix platform-side Vercel build regression that breaks deployments on Next.js 16.2.0 without any user code changes Includes evidence for Vercel troubleshooting demand.",
+    "category": "Deployment",
+    "technology": "Vercel",
+    "error_signature": "Build crashes ~2ms after 'Applying modifyConfig from Vercel' log line with ERR_INVALID_ARG_TYPE on Next.js 16.2.0; regression starting 2026-05-22 17:50 UTC, deterministic across multiple projects",
+    "search_intent": "Fix platform-side Vercel build regression that breaks deployments on Next.js 16.2.0 without any user code changes",
+    "common_causes": [
+      "GitHub next.js #94053 — deterministic regression on Vercel deploy infrastructure, not local dev. Same code that deployed cleanly earlier that day fails immediately. Affects all teams on Vercel using Next.js 16.2.0. Platform-side issue makes it highly searchable since developers can't fix it themselves. Category mapping: Vercel deployment/build failure."
+    ],
+    "quick_fix": "Check the build output, project root, and deployment platform configuration before redeploying.",
+    "related_errors": [
+      "Deployment"
+    ]
+  },
+  {
+    "slug": "anthropic-api-apierror-type-error-error-details-none-type-overloaded-error-message-overloaded-during-active-chat-bot-conversation",
+    "title": "529 Overloaded Error Causes Silent Failure Mid-Conversation in Anthropic SDK Streaming",
+    "description": "Handle 529 overloaded_error gracefully in production chat bots with retries and fallback strategies Includes evidence for Anthropic API troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Anthropic API",
+    "error_signature": "APIError: {'type': 'error', 'error': {'details': None, 'type': 'overloaded_error', 'message': 'Overloaded'}} during active chat bot conversation",
+    "search_intent": "Handle 529 overloaded_error gracefully in production chat bots with retries and fallback strategies",
+    "common_causes": [
+      "GitHub anthropics/anthropic-sdk-python #757 — real production incident where chat bot gets overloaded_error mid-conversation despite implementing retry solution. Users experiencing long delays and dropped connections at peak traffic. High commercial value as this directly affects live customer-facing AI applications. Category mapping: Anthropic API availability/error handling."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "Anthropic API"
+    ]
+  },
+  {
+    "slug": "cloudflare-cloudflare-edge-blocks-mcp-claude-ai-notion-notion-update-page-requests-containing-shell-heredocs-compound-commands-cmd1-true-or-sed-metacharacters-5xx-returned-before-reaching-notion-api",
+    "title": "Cloudflare WAF Blocks Claude Code MCP Notion Tool Calls Containing Shell Heredocs",
+    "description": "Work around Cloudflare WAF false positive blocking valid MCP Notion tool payloads containing common shell-script patterns in markdown Includes evidence for Cloudflare troubleshooting demand.",
+    "category": "Cloudflare",
+    "technology": "Cloudflare",
+    "error_signature": "Cloudflare edge blocks mcp__claude_ai_Notion__notion-update-page requests containing shell heredocs, compound commands (cmd1 || true), or sed metacharacters; 5xx returned before reaching Notion API",
+    "search_intent": "Work around Cloudflare WAF false positive blocking valid MCP Notion tool payloads containing common shell-script patterns in markdown",
+    "common_causes": [
+      "GitHub anthropics/claude-code #61390 — Notion MCP tool calls fail at Anthropic's Cloudflare edge when markdown content contains heredocs, pipe operators, or sed commands. Pure prose of same size succeeds; trigger is specific token patterns not payload size. Affects all Claude Code Pro users making Notion updates with technical documentation. Category mapping: Cloudflare WAF error blocking legitimate requests."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Cloudflare"
+    ]
+  },
+  {
+    "slug": "vercel-module-not-found-for-head-manager-context-js-at-runtime-on-vercel-prebuilt-deployments-vercel-build-plus-vercel-deploy-prebuilt-with-turbopack-and-pages-router",
+    "title": "Prebuilt Deployments With Turbopack Miss Vendored Pages Router Context Files at Runtime",
+    "description": "Fix missing vendored context files causing runtime MODULE_NOT_FOUND on Vercel prebuilt deployments using Turbopack Includes evidence for Vercel troubleshooting demand.",
+    "category": "Deployment",
+    "technology": "Vercel",
+    "error_signature": "MODULE_NOT_FOUND for head-manager-context.js at runtime on Vercel prebuilt deployments (vercel build + vercel deploy --prebuilt) with Turbopack and Pages Router",
+    "search_intent": "Fix missing vendored context files causing runtime MODULE_NOT_FOUND on Vercel prebuilt deployments using Turbopack",
+    "common_causes": [
+      "GitHub vercel #15654 — require-hook.js rewrites .shared-runtime imports to vendored paths that are absent in the serverless function bundle. Affects Next.js 16.1.6 and 16.2.0. Prebuilt deployments specifically affected. Direct impact on production deployments for teams using Pages Router + Turbopack on Vercel. Category mapping: Vercel deployment runtime error."
+    ],
+    "quick_fix": "Check the build output, project root, and deployment platform configuration before redeploying.",
+    "related_errors": [
+      "Deployment"
+    ]
+  },
+  {
+    "slug": "claude-code-oauth-flow-completes-successfully-browser-consent-plus-authorization-code-consumed-but-tokens-never-written-to-keychain-plugin-stays-in-needs-auth-state-permanently-exposing-only-placeholder-tools",
+    "title": "Claude Code Greptile MCP Plugin OAuth Flow Completes But Tokens Not Persisted",
+    "description": "Fix MCP plugin OAuth token persistence in Claude Code so authenticated plugins expose real tools instead of placeholders Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "OAuth flow completes successfully (browser consent + authorization code consumed) but tokens never written to keychain; plugin stays in needs-auth state permanently exposing only placeholder tools",
+    "search_intent": "Fix MCP plugin OAuth token persistence in Claude Code so authenticated plugins expose real tools instead of placeholders",
+    "common_causes": [
+      "GitHub anthropics/claude-code #61262 — official greptile@claude-plugins-official plugin OAuth works end-to-end but tokens not saved to Claude Code keychain (mcpOAuth map). Affects multiple MCP plugins using same RFC9728 discovery pattern (sentry-mcp, posthog, intercom, klaviyo, semrush). This is a platform-level authentication bug impacting paid plugin ecosystem. Category mapping: Claude Code MCP authentication failure."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "claude-code-figma-mcp-server-stays-in-authentication-mode-after-successful-oauth-browser-flow-tools-disconnect-but-no-figma-tools-appear-and-mcp-server-goes-away-then-reconnects-infinitely",
+    "title": "Figma MCP Never Transitions From Auth Mode to Operational Mode in Claude Code",
+    "description": "Fix built-in Figma MCP server getting stuck in auth loop so Claude Code exposes Figma editing tools Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Figma MCP server stays in authentication mode after successful OAuth browser flow; tools disconnect but no Figma tools appear and MCP server goes away then reconnects infinitely",
+    "search_intent": "Fix built-in Figma MCP server getting stuck in auth loop so Claude Code exposes Figma editing tools",
+    "common_causes": [
+      "GitHub anthropics/claude-code #61265 — built-in Figma MCP consistently stuck in auth mode despite completing OAuth successfully. User sees authenticate/complete_authentication tools only, then nothing. Platform bug affecting a major design-integration use case for paid Claude Code users. Category mapping: Claude Code MCP operational failure."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
   }
 ]
