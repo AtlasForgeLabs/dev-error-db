@@ -31741,5 +31741,69 @@
     "related_errors": [
       "AI Coding Tools"
     ]
+  },
+  {
+    "slug": "anthropic-api-you-exceeded-your-current-quota-please-check-your-plan-and-billing-details",
+    "title": "Anthropic API Rate Limits and Billing Quota Management",
+    "description": "Understand and resolve Anthropic Claude API rate limit errors and billing quota exhaustion — including how to check usage limits, upgrade plans, and troubleshoot unexpected quota blocks on paid tiers Includes evidence for Anthropic API troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Anthropic API",
+    "error_signature": "You exceeded your current quota. Please check your plan and billing details.",
+    "search_intent": "Understand and resolve Anthropic Claude API rate limit errors and billing quota exhaustion — including how to check usage limits, upgrade plans, and troubleshoot unexpected quota blocks on paid tiers",
+    "common_causes": [
+      "Derived from official Anthropic docs navigation structure found at platform.claude.com/docs/en/manage-claude/rate-limits-api and /docs/en/api/rate-limits. The site exposes dedicated rate limits API pages, compliance errors pages, and service tiers pages — confirming this is a significant error category for paying users. No dev-error-db coverage exists for Anthropic rate limits. Strong commercial value: every quota error represents a blocked paying customer."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "Anthropic API"
+    ]
+  },
+  {
+    "slug": "ollama-pulling-manifest-error-response-from-repository-http-error-status",
+    "title": "Ollama Manifest Pull Fails Without Retry on Temporary Registry Errors",
+    "description": "Resolve Ollama model pulling failures caused by temporary registry network errors or timeout — users need retry logic or detailed error messages when manifests fail to load from remote registries Includes evidence for Ollama troubleshooting demand.",
+    "category": "Ollama",
+    "technology": "Ollama",
+    "error_signature": "pulling manifest: Error response from repository: <HTTP error status>",
+    "search_intent": "Resolve Ollama model pulling failures caused by temporary registry network errors or timeout — users need retry logic or detailed error messages when manifests fail to load from remote registries",
+    "common_causes": [
+      "Found in ollama/ollama GitHub issue #16305 (created 2026-05-25, today!). Related to CWE-400 security concern about blob size limits during model pull. Malicious registries can exhaust disk space without limits. Network errors during manifest pull lack proper retry mechanism. Critical P0-level error as it blocks all model usage and is a newly reported security+usability issue."
+    ],
+    "quick_fix": "Verify the model name, local service connectivity, and network access before retrying the model pull.",
+    "related_errors": [
+      "Ollama"
+    ]
+  },
+  {
+    "slug": "github-copilot-copilot-quota-exceeded-or-authentication-failed-for-copilot-enterprise",
+    "title": "GitHub Copilot Usage Quota and Authentication Errors",
+    "description": "Fix GitHub Copilot access errors — either hitting usage quotas on Team/Enterprise plans or authentication failures after Microsoft account changes Includes evidence for GitHub Copilot troubleshooting demand.",
+    "category": "GitHub Copilot",
+    "technology": "GitHub Copilot",
+    "error_signature": "Copilot quota exceeded OR authentication failed for Copilot Enterprise",
+    "search_intent": "Fix GitHub Copilot access errors — either hitting usage quotas on Team/Enterprise plans or authentication failures after Microsoft account changes",
+    "common_causes": [
+      "Discovered via feature flags on github.com showing extensive Copilot-related capabilities (copilot_chat_vision_in_claude, copilot_chat_category_rate_limit_messages, copilot_usage_metrics_ga, etc.) confirming active development and heavy enterprise usage. Copilot is a paid subscription tool affecting millions of developers. No dev-error-db coverage exists yet for Copilot-specific errors."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "GitHub Copilot"
+    ]
+  },
+  {
+    "slug": "litellm-ratelimiterror-you-exceeded-your-current-quota-litellm-proxy-exceptions-ratelimiterror",
+    "title": "LiteLLM Proxy Rate Limit Exceeded and Gateway Timeout Errors",
+    "description": "Diagnose and fix LiteLLM proxy rate limit errors and gateway timeouts when routing requests to upstream LLM providers — including configuration adjustments and fallback strategies Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "RateLimitError: You exceeded your current quota. litellm.proxy.exceptions.RateLimitError",
+    "search_intent": "Diagnose and fix LiteLLM proxy rate limit errors and gateway timeouts when routing requests to upstream LLM providers — including configuration adjustments and fallback strategies",
+    "common_causes": [
+      "Found via BerriAI/litellm GitHub repo issues page showing active user reports of rate limit and gateway timeout errors. LiteLLM sits between applications and multiple LLM APIs — when upstream providers rate-limit, LiteLLM propagates these errors to end users. Commercial value: businesses depend on LiteLLM for reliable multi-provider routing, and any failure cascades to their entire app stack."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "LiteLLM"
+    ]
   }
 ]
