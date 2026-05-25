@@ -30381,5 +30381,101 @@
     "related_errors": [
       "LiteLLM"
     ]
+  },
+  {
+    "slug": "openai-api-httpx-exceptions-invalidurl-environment-variable-contains-newline-characters",
+    "title": "openai-python: sanitize NO_PROXY env vars containing newline characters",
+    "description": "Fix OpenAI Python SDK failing with InvalidURL when NO_PROXY/no_proxy env var contains newlines (common in Docker and .env files) Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "httpx.exceptions.InvalidURL: environment variable contains newline characters",
+    "search_intent": "Fix OpenAI Python SDK failing with InvalidURL when NO_PROXY/no_proxy env var contains newlines (common in Docker and .env files)",
+    "common_causes": [
+      "Source: https://github.com/openai/openai-python/pull/3304. Newline characters in NO_PROXY env vars cause httpx client instantiation to fail with InvalidURL. Impacts Docker-based deployments and .env file setups — common enterprise pattern. Directly blocks production OpenAI API usage."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "anthropic-api-tool-result-never-added-to-history-model-re-calls-same-tool-infinite-loop",
+    "title": "Anthropic tool runner: append_messages + generate_tool_call_response causes infinite loop",
+    "description": "Fix infinite tool-calling loop in Anthropic SDK when using both append_messages() and generate_tool_call_response() in same loop iteration Includes evidence for Anthropic API troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Anthropic API",
+    "error_signature": "tool result never added to history — model re-calls same tool (infinite loop)",
+    "search_intent": "Fix infinite tool-calling loop in Anthropic SDK when using both append_messages() and generate_tool_call_response() in same loop iteration",
+    "common_causes": [
+      "Source: https://github.com/anthropics/anthropic-sdk-python/pull/1594. When users call both append_messages() AND generate_tool_call_response() in the same loop iteration, the tool result was never added to history because _messages_modified bypassed auto-append. Causes infinite loops as model re-calls same tool. Affects production Anthropic API integrations."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "Anthropic API"
+    ]
+  },
+  {
+    "slug": "litellm-vllm-receives-responses-api-payload-input-instead-of-chat-completions-format-messages-resulting-in-400-error",
+    "title": "LiteLLM: use_chat_completions_url_for_anthropic_messages config key not loaded from proxy YAML",
+    "description": "Fix LiteLLM proxy config key not being read from YAML, causing Anthropic messages to be incorrectly routed to Responses API endpoint Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "vLLM receives Responses API payload (input: [...]) instead of chat completions format (messages: [...]), resulting in 400 error",
+    "search_intent": "Fix LiteLLM proxy config key not being read from YAML, causing Anthropic messages to be incorrectly routed to Responses API endpoint",
+    "common_causes": [
+      "Source: https://github.com/BerriAI/litellm/issues/28756. The config key use_chat_completions_url_for_anthropic_messages is not populated from proxy config YAML, causing requests to be sent as Responses API payloads instead of Chat Completions format. Produces 400 errors from vLLM backends. Critical for LiteLLM proxy deployments routing to vLLM."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "LiteLLM"
+    ]
+  },
+  {
+    "slug": "cloudflare-scangetresponsetask-errors-array-not-exposed-on-sdk-despite-being-available-in-api-response",
+    "title": "Cloudflare Go SDK: URL Scanner task errors not exposed on response struct",
+    "description": "Fix Cloudflare Go SDK missing errors field on URL Scanner task response, preventing access to scan error details in production Includes evidence for Cloudflare troubleshooting demand.",
+    "category": "Cloudflare",
+    "technology": "Cloudflare",
+    "error_signature": "ScanGetResponseTask.errors array not exposed on SDK despite being available in API response",
+    "search_intent": "Fix Cloudflare Go SDK missing errors field on URL Scanner task response, preventing access to scan error details in production",
+    "common_causes": [
+      "Source: https://github.com/cloudflare/cloudflare-go/issues/4313. The errors node is available via API but not exposed in the Go SDK type. Developers cannot access scan error details programmatically. Affects production security scanning workflows with Cloudflare API."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Cloudflare"
+    ]
+  },
+  {
+    "slug": "langchain-add-texts-exhausts-generator-input-iterator-before-document-objects-are-created-no-vectors-stored",
+    "title": "LangChain VectorStore.add_texts exhausts generator before creating documents",
+    "description": "Fix LangChain VectorStore.add_texts consuming entire generator without creating intermediate Document objects, losing all embedded content Includes evidence for LangChain troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "LangChain",
+    "error_signature": "add_texts() exhausts generator input iterator before Document objects are created — no vectors stored",
+    "search_intent": "Fix LangChain VectorStore.add_texts consuming entire generator without creating intermediate Document objects, losing all embedded content",
+    "common_causes": [
+      "Source: https://github.com/langchain-ai/langchain/issues/37673. VectorStore.add_texts consumes the entire generator input before Document creation, effectively discarding all data. Affects production RAG pipelines using generator-based chunking patterns. Verified as confirmed bug by maintainer."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "github-actions-downloadtool-accepts-arbitrary-urls-without-validation-ssrf-exposes-internal-cloud-metadata-endpoints-aws-169-24-169-254-gcp-metadata-google-internal-azure-imds",
+    "title": "[Security/Medium-High]: SSRF vulnerability in actions/tool-cache downloadTool()",
+    "description": "Fix GitHub Action downloadTool SSRF vulnerability allowing access to cloud provider internal metadata services and potential credential exfiltration Includes evidence for GitHub Actions troubleshooting demand.",
+    "category": "GitHub Actions",
+    "technology": "GitHub Actions",
+    "error_signature": "downloadTool() accepts arbitrary URLs without validation — SSRF exposes internal cloud metadata endpoints (AWS 169.24.169.254, GCP metadata.google.internal, Azure IMDS)",
+    "search_intent": "Fix GitHub Action downloadTool SSRF vulnerability allowing access to cloud provider internal metadata services and potential credential exfiltration",
+    "common_causes": [
+      "Source: https://github.com/actions/toolkit/issues/2417. The downloadTool() function in @actions/tool-cache accepts arbitrary URLs without validation, enabling SSRF attacks against cloud metadata services. Medium-High severity. Affects CI/CD pipeline security for teams using custom GitHub Actions."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "GitHub Actions"
+    ]
   }
 ]
