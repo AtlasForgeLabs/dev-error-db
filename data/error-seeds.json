@@ -30781,5 +30781,101 @@
     "related_errors": [
       "AI Coding Tools"
     ]
+  },
+  {
+    "slug": "anthropic-api-overloaded-error",
+    "title": "Anthropic API overloaded_error SSE not handled gracefully",
+    "description": "Fix graceful handling of Anthropic overloaded_error responses during server-sent events to prevent client crashes or silent failures Includes evidence for Anthropic API troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Anthropic API",
+    "error_signature": "overloaded_error",
+    "search_intent": "Fix graceful handling of Anthropic overloaded_error responses during server-sent events to prevent client crashes or silent failures",
+    "common_causes": [
+      "GitHub Issue on Umbraco.AI (#174) filed 2026-05-20: upstream provider returns overloaded_error via SSE stream but the consuming application does not handle it gracefully. Category mapped to Anthropic API per rules table."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Anthropic API"
+    ]
+  },
+  {
+    "slug": "claude-code-permission-denied",
+    "title": "Claude Code MCP permission denied on repository access",
+    "description": "Claude Code fails when attempting to read external repositories via MCP protocol due to missing OAuth permissions; users need guidance on correct OAuth scopes and local workspace binding Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "permission denied",
+    "search_intent": "Claude Code fails when attempting to read external repositories via MCP protocol due to missing OAuth permissions; users need guidance on correct OAuth scopes and local workspace binding",
+    "common_causes": [
+      "22,435 open issues match 'Claude Code MCP error' query. MCP (Model Context Protocol) auth and permission delegation is a key Claude Code feature where real permission-denied errors surface. Maps to AI Coding Tools category per context-dependent rules."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "openai-api-transient-429",
+    "title": "OpenAI embed endpoint throws 429 without retry logic",
+    "description": "Embedding endpoints return 429 rate-limit errors with no automatic retry, breaking AI coach/sync pipelines; developers need backoff/retry implementation guidance Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "transient 429",
+    "search_intent": "Embedding endpoints return 429 rate-limit errors with no automatic retry, breaking AI coach/sync pipelines; developers need backoff/retry implementation guidance",
+    "common_causes": [
+      "forged-by-freedom PR #2 (2026-05-23) explicitly surfaces OpenAI embed 500s caused by unhandled 429s. Distinct from insufficient_quota — this is about rate-limit retry behavior, not budget exhaustion."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "vercel-build-step-did-not-complete-within-the-maximum-of-45-minutes",
+    "title": "Vercel build exceeds 45-minute timeout",
+    "description": "Deployments fail when the build process takes longer than Vercel's hard 45-minute timeout; need optimization strategies and configuration workarounds Includes evidence for Vercel troubleshooting demand.",
+    "category": "Deployment",
+    "technology": "Vercel",
+    "error_signature": "build step did not complete within the maximum of 45 minutes",
+    "search_intent": "Deployments fail when the build process takes longer than Vercel's hard 45-minute timeout; need optimization strategies and configuration workarounds",
+    "common_causes": [
+      "Found in vercel/vercel discussion #10206 — explicit error message about 45-minute build timeout. Vercel community discussion #5158 covers vite build exiting with code 127 on deploy. Both indicate common enterprise-scale build scenarios where default timeouts are too short."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "Deployment"
+    ]
+  },
+  {
+    "slug": "kubernetes-crashloopbackoff",
+    "title": "Kubernetes CrashLoopBackOff in AI agent orchestrator",
+    "description": "AI agent pods enter CrashLoopBackOff state due to FastMCP configuration issues; need diagnostic steps for liveness probe tuning, resource limits, and MCP startup readiness Includes evidence for Kubernetes troubleshooting demand.",
+    "category": "Cloud Platforms",
+    "technology": "Kubernetes",
+    "error_signature": "CrashLoopBackOff",
+    "search_intent": "AI agent pods enter CrashLoopBackOff state due to FastMCP configuration issues; need diagnostic steps for liveness probe tuning, resource limits, and MCP startup readiness",
+    "common_causes": [
+      "GitHub issue mckinsey/agents-at-scale-ark#2173 (2026-05-18) documents noah-mcp pod crashloopbackoff caused by FastMCP. agents-orchestrator#185 also shows CrashLoopBackOff in E2E deployments. Kubernetes CrashLoopBackOff is a classic enterprise DevOps error pattern amplified by AI agent tooling adoption."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Cloud Platforms"
+    ]
+  },
+  {
+    "slug": "litellm-litellm-rate-limit",
+    "title": "LiteLLM router rate-limit errors silently masked as vendor errors",
+    "description": "LiteLLM proxy incorrectly classifies its own rate-limit errors as vendor-side errors, preventing proper alerting and debugging; need consistent error categorization with llm_provider and model fields Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "litellm_rate_limit",
+    "search_intent": "LiteLLM proxy incorrectly classifies its own rate-limit errors as vendor-side errors, preventing proper alerting and debugging; need consistent error categorization with llm_provider and model fields",
+    "common_causes": [
+      "Two parallel BerriAI/litellm PRs (27687, 27708) dated May 2026 address standardizing rate limit error classification and labeling router-side rate limits as litellm_rate_limit. High commercial value — LiteLLM is widely used as enterprise proxy for multi-provider LLM routing."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "LiteLLM"
+    ]
   }
 ]
