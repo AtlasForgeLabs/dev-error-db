@@ -31021,5 +31021,69 @@
     "related_errors": [
       "OpenAI API"
     ]
+  },
+  {
+    "slug": "cloudflare-wrangler-deploy-fails-test-secret-does-not-exist-secret-store-secret-longer-than-1024-characters",
+    "title": "Cloudflare Workers: Secret store secrets > 1024 chars silently fail on deployment",
+    "description": "Troubleshoot Cloudflare Workers deployment failures caused by oversized secret store bindings that appear valid in wrangler but fail at deploy time Includes evidence for Cloudflare troubleshooting demand.",
+    "category": "Cloudflare",
+    "technology": "Cloudflare",
+    "error_signature": "wrangler deploy fails: TEST_SECRET does not exist (secret store secret longer than 1024 characters)",
+    "search_intent": "Troubleshoot Cloudflare Workers deployment failures caused by oversized secret store bindings that appear valid in wrangler but fail at deploy time",
+    "common_causes": [
+      "Issue #14018 on cloudflare/workers-sdk: Wrangler CLI allows creating secret store values > 1024 chars (appears to succeed), but deploying a worker with binding to such secret fails saying it doesn't exist. Silent failure pattern — users see success then immediate deploy failure. Critical for paid Cloudflare Workers deployments. No existing coverage on dev-error-db."
+    ],
+    "quick_fix": "Check the build output, project root, and deployment platform configuration before redeploying.",
+    "related_errors": [
+      "Cloudflare"
+    ]
+  },
+  {
+    "slug": "ollama-pulling-manifest-nerror-pull-model-manifest-412-this-model-requires-macos",
+    "title": "Ollama Error: pull model manifest: 412 — this model requires macOS",
+    "description": "Fix ollama pull error on Windows/Linux when pulling models that only support macOS or other platform-specific builds Includes evidence for Ollama troubleshooting demand.",
+    "category": "Ollama",
+    "technology": "Ollama",
+    "error_signature": "pulling manifest\\nError: pull model manifest: 412: this model requires macOS",
+    "search_intent": "Fix ollama pull error on Windows/Linux when pulling models that only support macOS or other platform-specific builds",
+    "common_causes": [
+      "Issue #16265 on ollama/ollama: User on Windows tries pulling qwen3.6:27b-mxfp8 via ollama-windows-amd64-mlx, gets HTTP 412 error stating model requires macOS. Covers MLX/Apple Silicon model compatibility issue. Users need cross-platform solution or explicit error message about platform requirements. No existing coverage on dev-error-db."
+    ],
+    "quick_fix": "Verify the model name, local service connectivity, and network access before retrying the model pull.",
+    "related_errors": [
+      "Ollama"
+    ]
+  },
+  {
+    "slug": "ollama-bufio-scanner-token-too-long-status-code-1-http-500-error-from-llama-server",
+    "title": "Ollama Python Client: Large tool call response crashes — bufio.Scanner: token too long (HTTP 500)",
+    "description": "Fix Ollama Python API crash when processing large multi-tool-call responses exceeding buffer limits Includes evidence for Ollama troubleshooting demand.",
+    "category": "Ollama",
+    "technology": "Ollama",
+    "error_signature": "bufio.Scanner: token too long (status code: -1) / HTTP 500 error from llama-server",
+    "search_intent": "Fix Ollama Python API crash when processing large multi-tool-call responses exceeding buffer limits",
+    "common_causes": [
+      "Issue #16243 on ollama/ollama: Custom Ollama Python client fails with 'bufio.Scanner: token too long' when model returns multiple large tool call responses. Returns HTTP 500. Context window 230k. Production-relevant for LLM app developers using tool calling at scale. No existing coverage on dev-error-db."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Ollama"
+    ]
+  },
+  {
+    "slug": "litellm-jsondecodeerror-in-litellm-main-py-2270-in-completion-model-ragflow-chat-chat-id-model",
+    "title": "LiteLLM RAGFlow integration JSONDecodeError — completion() fails with unhandled parse error",
+    "description": "Fix LiteLLM completion() JSON decode failure when integrating with RAGFlow backend (ragflow/chat/model routing) Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "JSONDecodeError in litellm/main.py:2270 in completion() model=ragflow/chat/{chat_id}/{model}",
+    "search_intent": "Fix LiteLLM completion() JSON decode failure when integrating with RAGFlow backend (ragflow/chat/model routing)",
+    "common_causes": [
+      "Issue #28773 on BerriAI/litellm: LiteLLM completion call to ragflow/chat/{id}/qwen/qwen3.6-plus throws JSONDecodeError inside litellm/main.py. Proxy layer failing to properly handle upstream response format. Commercially relevant as LiteLLM is used for production model routing/billing. No existing coverage on dev-error-db."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "LiteLLM"
+    ]
   }
 ]
