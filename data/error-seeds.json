@@ -31309,5 +31309,53 @@
     "related_errors": [
       "AI Coding Tools"
     ]
+  },
+  {
+    "slug": "claude-code-oauth-error-timeout-of-15000ms-exceeded",
+    "title": "Claude Code OAuth login fails with timeout on Windows",
+    "description": "Fix Claude Code Windows login OAuth timeout that blocks all usage Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "OAuth error: timeout of 15000ms exceeded",
+    "search_intent": "Fix Claude Code Windows login OAuth timeout that blocks all usage",
+    "common_causes": [
+      "Issue #44257 on anthropics/claude-code: Google account login consistently fails with OAuth timeout on Windows/WSL. Blocks entire tool usage. Multiple retries show same error. Source: https://github.com/anthropics/claude-code/issues/44257 (23 comments)"
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "vercel-error-installing-builder-vercel-next-4-15-28-learn-more-https-vercel-link-builder-dependencies-install-failed",
+    "title": "Vercel CLI 50.17.0 pipeline build fails with builder dependencies install error",
+    "description": "Fix Vercel CLI auto-update breaking CI/CD pipelines where vercel build suddenly starts failing after CLI version bump from 50.13.2 to 50.17.0 Includes evidence for Vercel troubleshooting demand.",
+    "category": "Deployment",
+    "technology": "Vercel",
+    "error_signature": "Error: Installing Builder: @vercel/next@4.15.28 — Learn More: https://vercel.link/builder-dependencies-install-failed",
+    "search_intent": "Fix Vercel CLI auto-update breaking CI/CD pipelines where vercel build suddenly starts failing after CLI version bump from 50.13.2 to 50.17.0",
+    "common_causes": [
+      "Issue #15043 on vercel/vercel (Feb 13, 2026): Working GitLab CI/CD pipeline for Next.js on Vercel started failing after automatic Vercel CLI update. New CLI version unexpectedly uses npx for builder dependency installation while old version did not. Pipeline has never been changed. Complete .gitlab-ci.yml included. Source: https://github.com/vercel/vercel/issues/15043"
+    ],
+    "quick_fix": "Check the build output, project root, and deployment platform configuration before redeploying.",
+    "related_errors": [
+      "Deployment"
+    ]
+  },
+  {
+    "slug": "ollama-no-such-host-error-during-blob-download-for-specific-tags-despite-active-proxy-configuration",
+    "title": "Ollama proxy DNS resolution fails for specific model tags behind corporate proxy",
+    "description": "Fix Ollama ignoring proxy DNS resolution when pulling large/specific model tags in restricted corporate networks Includes evidence for Ollama troubleshooting demand.",
+    "category": "Ollama",
+    "technology": "Ollama",
+    "error_signature": "no such host error during blob download for specific tags despite active proxy configuration",
+    "search_intent": "Fix Ollama ignoring proxy DNS resolution when pulling large/specific model tags in restricted corporate networks",
+    "common_causes": [
+      "Issue #15708 on ollama/ollama (Apr 19, 2026): Inconsistent DNS resolution behind HTTP/HTTPS proxy. Standard short tags pull fine but longer-suffixed tags fail with 'no such host' after manifest retrieval succeeds. Suggests retry/connection logic bypasses proxy DNS. Affects enterprise/corporate users. Source: https://github.com/ollama/ollama/issues/15708"
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "Ollama"
+    ]
   }
 ]
