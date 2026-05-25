@@ -30685,5 +30685,101 @@
     "related_errors": [
       "Cloudflare"
     ]
+  },
+  {
+    "slug": "openai-api-you-exceeded-your-current-quota-please-check-your-plan-and-billing-details-rate-limit-error-429",
+    "title": "Fallback chain not triggered on 429 quota errors for openai-codex provider",
+    "description": "Fix 429 rate limit / quota exceeded error when using OpenAI Codex provider SDK — need proper failover or quota handling Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "\"You exceeded your current quota, please check your plan and billing details.\" / \"rate limit error 429\"",
+    "search_intent": "Fix 429 rate limit / quota exceeded error when using OpenAI Codex provider SDK — need proper failover or quota handling",
+    "common_causes": [
+      "Issue openclaw/openclaw#24102: The fix for recognizing usage limit errors as rate limits does not cover openai-codex provider's specific 429 quota error message. Affects production API billing/failover behavior. Category: OpenAI API (paid API quota error, direct revenue impact). Verified distinct from covered-errors.md entries."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "anthropic-api-api-error-overloaded-error-or-overloaded-request-http-500",
+    "title": "Anthropic API Persistent 500 Server Overload Error",
+    "description": "Fix Anthropic API 500 server overloaded error blocking LLM completions in production Includes evidence for Anthropic API troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Anthropic API",
+    "error_signature": "\"API Error: overloaded_error\" OR \"Overloaded Request\" / HTTP 500",
+    "search_intent": "Fix Anthropic API 500 server overloaded error blocking LLM completions in production",
+    "common_causes": [
+      "Issue anthropics/claude-code#8125: Persistent Anthropic API 500 Server Overload errors reported. Fork count ~2.9k indicates broad community interest. Multiple duplicates (#8121, #11119, #39748) confirm ongoing production impact. Category: Anthropic API (paid API service outage, affects billing-per-use users). Distinct topic from covered errors."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Anthropic API"
+    ]
+  },
+  {
+    "slug": "openai-api-status-code-429-rate-limiting-azure-openai-responses-api-node-js-sdk",
+    "title": "Rate limit error 429 when using Azure OpenAI + Responses API",
+    "description": "Resolve Azure OpenAI rate limiting on Responses API — increase TPM quota workaround needed Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "\"status code 429\" rate limiting Azure OpenAI Responses API Node.js SDK",
+    "search_intent": "Resolve Azure OpenAI rate limiting on Responses API — increase TPM quota workaround needed",
+    "common_causes": [
+      "Issue Azure/azure-rest-api-specs#34250: Users reporting 429 rate limit errors even with increased quota (>130k TPM) on Azure OpenAI Responses API via Node.js SDK v4.96. Affects paid Azure OpenAI deployments. Category: OpenAI API (billing/quota error on paid cloud service). Distinct from general OpenAI API rate limit topics."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "litellm-429-rate-exceeded-error-azure-openai-integration-via-litellm-proxy-broken-in-v0-5-8",
+    "title": "LiteLLM Azure OpenAI proxy 429 rate exceeded error regression in v0.5.8",
+    "description": "Fix LiteLLM proxy 429 rate exceeded regression when routing to Azure OpenAI — downgrade to v0.5.7 works Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "\"429 rate exceeded error\" Azure OpenAI integration via litellm proxy broken in v0.5.8",
+    "search_intent": "Fix LiteLLM proxy 429 rate exceeded regression when routing to Azure OpenAI — downgrade to v0.5.7 works",
+    "common_causes": [
+      "Issue open-webui/open-webui#9851: LiteLLM v0.5.8 broke Azure OpenAI integration with 429 rate exceeded errors; v0.5.7 worked. Clear version-regression signal. Category: LiteLLM (proxy billing/routing failure affecting paid service users). Distinct from generic OpenAI rate-limit topics — specific to LiteLLM proxy layer regression."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "LiteLLM"
+    ]
+  },
+  {
+    "slug": "claude-code-re-runs-dcr-on-every-authenticate-invalid-client-on-token-endpoint-mcp-oauth",
+    "title": "Claude Code MCP OAuth DCR re-runs on every authentication",
+    "description": "Fix Claude Code MCP OAuth repeatedly executing Dynamic Client Registration instead of caching credentials, causing invalid_client errors Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "\"re-runs DCR on every authenticate\" invalid_client on token endpoint MCP OAuth",
+    "search_intent": "Fix Claude Code MCP OAuth repeatedly executing Dynamic Client Registration instead of caching credentials, causing invalid_client errors",
+    "common_causes": [
+      "Issue anthropics/claude-code#59460: Claude Code re-executes DCR (Dynamic Client Registration) on each OAuth authentication cycle instead of caching the registered client. This causes invalid_client errors on the token endpoint. Directly affects enterprise developers using custom MCP servers with OAuth. Category: AI Coding Tools (auth reliability issue in paid AI coding tool). Source observation from latest stable release May 2026."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "claude-code-about-blank-page-and-immediately-prompts-to-reopen-claude-desktop-oauth-infinite-loop",
+    "title": "Custom MCP OAuth fails — infinite loop opening about:blank in Claude Desktop",
+    "description": "Fix Claude Desktop OAuth authentication loop where spec-compliant custom MCP OAuth triggers about:blank page and reloads desktop infinitely Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "\"about:blank page and immediately prompts to reopen Claude Desktop\" OAuth infinite loop",
+    "search_intent": "Fix Claude Desktop OAuth authentication loop where spec-compliant custom MCP OAuth triggers about:blank page and reloads desktop infinitely",
+    "common_causes": [
+      "Issue anthropics/claude-code#11814: Fully spec-compliant MCP server with OAuth 2.1 fails in Claude Desktop/web UI — OAuth flow never initiates, opens about:blank in infinite loop. Same server works in CLI (--transport http). Affects enterprise MCP server deployments. Category: AI Coding Tools (auth flow broken in paid Claude Desktop product). Distinct from general OAuth issues."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
   }
 ]
