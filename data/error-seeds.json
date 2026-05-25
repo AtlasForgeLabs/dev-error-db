@@ -31645,5 +31645,101 @@
     "related_errors": [
       "Cloud Platforms"
     ]
+  },
+  {
+    "slug": "claude-code-single-30k-token-prompt-consumed-38-of-5-hour-max-20x-subscription-quota",
+    "title": "Usage cap: single ~30k-token prompt (no subagents) burned 38% of 5h Max 20x limit on Opus 4.7",
+    "description": "Users experiencing unexpected rapid consumption of subscription quotas on Claude Code Max plan due to inflated token counting in extended-context models. Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Single ~30k-token prompt consumed 38% of 5-hour Max 20x subscription quota",
+    "search_intent": "Users experiencing unexpected rapid consumption of subscription quotas on Claude Code Max plan due to inflated token counting in extended-context models.",
+    "common_causes": [
+      "Issue #62265 on anthropics/claude-code: Strong billing/quota impact — a normal-length prompt consuming nearly 40% of daily quota indicates a potential metering bug or pricing expectation gap. High commercial value because it directly relates to paid subscription cost concerns. Open today, 2 comments."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "claude-code-prompt-is-too-long-tool-definitions-exceed-200k-tokens",
+    "title": "Subagents fail with 'prompt is too long' when user has many MCP servers (tool definitions exceed 200k)",
+    "description": "Fix subagent execution failures caused by excessive tool definition payload size when running multiple MCP servers in a session. Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "prompt is too long — tool definitions exceed 200k tokens",
+    "search_intent": "Fix subagent execution failures caused by excessive tool definition payload size when running multiple MCP servers in a session.",
+    "common_causes": [
+      "Issue #37793 on anthropics/claude-code: Subagents hit 'prompt is too long' error when tool definitions from multiple MCP servers collectively exceed 200k tokens. Has repro label, 20 comments, critical blocking error for power users running complex MCP configurations. P0 tech category bonus applies."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "claude-code-error-400-redirect-uri-mismatch-flowname-generaloauthflow",
+    "title": "Google Cloud BigQuery MCP connector: OAuth redirect_uri_mismatch (Error 400)",
+    "description": "Fix OAuth integration between Claude Code BigQuery MCP connector and Google Cloud; users cannot authenticate due to mismatched redirect URI registration. Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Error 400: redirect_uri_mismatch — flowName=GeneralOAuthFlow",
+    "search_intent": "Fix OAuth integration between Claude Code BigQuery MCP connector and Google Cloud; users cannot authenticate due to mismatched redirect URI registration.",
+    "common_causes": [
+      "Issue #62271 on anthropics/claude-code: MCP connector sends unregistered redirect URI during Google OAuth consent. Workaround is falling back to bq CLI with gcloud ADC. Affects enterprise data/analytics workflows using Claude Code MCP. Not covered in dev-error-db yet. Category: AI Coding Tools (MCP/auth context)."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "claude-code-chat-jsonls-deleted-from-claude-projects-despite-cleanupperioddays-set-to-high-value-appears-triggered-by-updates-restarts",
+    "title": "[BUG] Chat JSONLs deleted from ~/.claude/projects/ despite cleanupPeriodDays set high",
+    "description": "Fix config-inconsistent session persistence: users explicitly set high cleanup retention period but chat logs still get deleted unexpectedly during software updates or restarts. Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Chat JSONLs deleted from ~/.claude/projects/ despite cleanupPeriodDays set to high value — appears triggered by updates/restarts",
+    "search_intent": "Fix config-inconsistent session persistence: users explicitly set high cleanup retention period but chat logs still get deleted unexpectedly during software updates or restarts.",
+    "common_causes": [
+      "Issue #62272 on anthropics/claude-code: Directly contradicts user-configured retention policy. Area:core, data-loss, duplicate tags. 1 comment. Clear actionable bug affecting data persistence reliability. Low difficulty score since specific config path provides clear resolution target."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "claude-code-session-transcripts-silently-deleted-by-retention-cleanup-policy-without-user-notification-or-recovery-option",
+    "title": "Silent retention cleanup deletes session transcripts with no warning, opt-in, or recovery",
+    "description": "Developers losing conversation history after automatic retention-based cleanup runs; want warning system, opt-in mechanism, or data recovery capability. Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Session transcripts silently deleted by retention cleanup policy without user notification or recovery option",
+    "search_intent": "Developers losing conversation history after automatic retention-based cleanup runs; want warning system, opt-in mechanism, or data recovery capability.",
+    "common_causes": [
+      "Issue #59248 on anthropics/claude-code: Data-loss tag, area:core, has-repro, platform:macOS labels. 5 comments. Covers silent deletion behavior causing actual data loss for paying users — high severity from both UX and commercial perspectives. Duplicate risk low (unique angle: retention policy UX vs generic data loss)."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "claude-code-mitm-egress-proxy-blocks-all-non-api-domains-regardless-of-allowlist-settings",
+    "title": "[BUG] Cowork macOS: MITM egress proxy blocks all non-API domains regardless of allowlist settings",
+    "description": "Fix corporate network proxy compatibility: Claude Code's MITM proxy on macOS ignores user-configured domain allowlists, blocking legitimate HTTP traffic needed for development tools. Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "MITM egress proxy blocks all non-API domains regardless of allowlist settings",
+    "search_intent": "Fix corporate network proxy compatibility: Claude Code's MITM proxy on macOS ignores user-configured domain allowlists, blocking legitimate HTTP traffic needed for development tools.",
+    "common_causes": [
+      "Issue #30861 on anthropics/claude-code: Corporate enterprise networking scenario — MITM proxy blocks all non-API traffic despite allowlist configuration. Open source enterprise customers face this blocker for internal tool access. P1-level commercial value (enterprise workflow disruption)."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
   }
 ]
