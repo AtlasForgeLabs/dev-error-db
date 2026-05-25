@@ -31853,5 +31853,85 @@
     "related_errors": [
       "AI Coding Tools"
     ]
+  },
+  {
+    "slug": "github-copilot-cli-user-messages-delivered-to-assistant-in-non-deterministic-out-of-send-order-sequence-during-mid-tool-call-bursts-older-messages-appear-after-newer-ones",
+    "title": "Queued user messages + system_notifications delivered out of send order in GitHub Copilot CLI",
+    "description": "Fix message ordering bug in Copilot CLI that causes stale responses in orchestration/supervisor agent workflows with async shells and background agents Includes evidence for GitHub Copilot CLI troubleshooting demand.",
+    "category": "GitHub Copilot",
+    "technology": "GitHub Copilot CLI",
+    "error_signature": "User messages delivered to assistant in non-deterministic / out-of-send-order sequence during mid-tool-call bursts; older messages appear after newer ones",
+    "search_intent": "Fix message ordering bug in Copilot CLI that causes stale responses in orchestration/supervisor agent workflows with async shells and background agents",
+    "common_causes": [
+      "Source: github.com/github/copilot-cli/issues/3517. High-impact bug for agent-supervisor architectures: messages sent while a tool call is in flight arrive out of order. Symptom: assistant answers stale message as latest intent, ignoring follow-ups. Affects production AI agent orchestration."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "GitHub Copilot"
+    ]
+  },
+  {
+    "slug": "openai-api-zod-v4-emits-oneof-for-discriminated-unions-but-strict-openai-schemas-require-anyof-nested-discriminated-unions-break-schema-transformation-in-sdk-v6-x",
+    "title": "OpenAI Node.js SDK v6 strict schema fails with Zod v4 oneOf unions",
+    "description": "Fix OpenAI Node.js SDK strict schema validation when migrating to Zod v4, which emits different union types causing serialization/deserialization failures Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "Zod v4 emits oneOf for discriminated unions but strict OpenAI schemas require anyOf; nested discriminated unions break schema transformation in SDK v6.x",
+    "search_intent": "Fix OpenAI Node.js SDK strict schema validation when migrating to Zod v4, which emits different union types causing serialization/deserialization failures",
+    "common_causes": [
+      "Source: github.com/openai/openai-node/pull/1896 (closes #1709). Active PR converting oneOf→anyOf before strict-schema recursion runs. This is a real runtime error for users adopting Zod v4 with OpenAI function calling / response_format schemas. Strong commercial value as Zod is widely used in TypeScript ecosystems."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "github-copilot-cli-pretooluse-hook-with-permissiondecision-allow-plus-updatedinput-still-shows-interactive-confirmation-dialog-every-time-no-way-to-silently-rewrite-commands",
+    "title": "preToolUse: silent command rewrite via updatedInput — confirmation dialog appears even with permissionDecision: allow",
+    "description": "Enable preToolUse hooks to silently rewrite commands without triggering user confirmation dialogs, important for proxy/auto-rewrite automation workflows Includes evidence for GitHub Copilot CLI troubleshooting demand.",
+    "category": "GitHub Copilot",
+    "technology": "GitHub Copilot CLI",
+    "error_signature": "preToolUse hook with permissionDecision: allow + updatedInput still shows interactive confirmation dialog every time; no way to silently rewrite commands",
+    "search_intent": "Enable preToolUse hooks to silently rewrite commands without triggering user confirmation dialogs, important for proxy/auto-rewrite automation workflows",
+    "common_causes": [
+      "Source: github.com/github/copilot-cli/issues/2643. Users installing preToolUse hooks to auto-prefix commands (e.g., proxy prefix) cannot suppress the confirmation dialog, blocking fully automated agent-driven command execution. Confirmed on Copilot CLI v1.0.24+"
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "GitHub Copilot"
+    ]
+  },
+  {
+    "slug": "langchain-aimessagechunk-validator-escapes-non-ascii-characters-in-tool-call-chunks-args-field-corrupting-multilingual-tool-arguments",
+    "title": "LangChain core AIMessageChunk validator escapes non-ASCII in tool_call_chunks[].args",
+    "description": "Fix LangChain-core validator that mangles non-ASCII tool call arguments (Chinese, emoji, etc.), breaking multilingual AI agent workflows and international tool calling Includes evidence for LangChain troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "LangChain",
+    "error_signature": "AIMessageChunk validator escapes non-ASCII characters in tool_call_chunks[].args field, corrupting multilingual tool arguments",
+    "search_intent": "Fix LangChain-core validator that mangles non-ASCII tool call arguments (Chinese, emoji, etc.), breaking multilingual AI agent workflows and international tool calling",
+    "common_causes": [
+      "Source: github.com/langchain-ai/langchain/issues/37686. Same class of bug as #34005 (closed earlier, different site). langchain-core package validator escapes non-ASCII bytes in tool_call_chunks args, corrupting content when tools receive text containing Unicode beyond ASCII range. High relevance for AI coding assistants using tool calls."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "ollama-api-error-500-runner-unexpectedly-stopped-deterministic-oom-crash-when-num-ctx-75k-tokens-on-multi-gpu-amd-rocm-setup",
+    "title": "Inverted VRAM / KV Cache Estimation Logic for Qwen 3.6 and Gemma 4 Architectures on Multi-GPU Platform",
+    "description": "Fix Ollama VRAM underestimation that causes API 500 crashes during long-context inference with large models (Qwen 3.6, Gemma 4) on multi-GPU ROCm setups Includes evidence for Ollama troubleshooting demand.",
+    "category": "Ollama",
+    "technology": "Ollama",
+    "error_signature": "API Error 500 (runner unexpectedly stopped) — deterministic OOM crash when num_ctx ≥ 75k tokens on multi-GPU AMD ROCm setup",
+    "search_intent": "Fix Ollama VRAM underestimation that causes API 500 crashes during long-context inference with large models (Qwen 3.6, Gemma 4) on multi-GPU ROCm setups",
+    "common_causes": [
+      "Source: github.com/ollama/ollama/issues/16310. Specific VRAM estimation anomaly where larger models allocate less static VRAM than smaller ones, leading to deterministic OOM crashes at ~75k prompt tokens. Affects production RAG workflows using LlamaIndex tree_summarize mode."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Ollama"
+    ]
   }
 ]
