@@ -31517,5 +31517,85 @@
     "related_errors": [
       "Cloud Platforms"
     ]
+  },
+  {
+    "slug": "openai-api-invalidurl-error-when-no-proxy-environment-variable-contains-newline-characters",
+    "title": "OpenAI Python SDK InvalidURL error when NO_PROXY environment variable contains newline characters",
+    "description": "Fix URL parsing crash when NO_PROXY env var has embedded newlines, causing OpenAI API client initialization to fail Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "InvalidURL error when NO_PROXY environment variable contains newline characters",
+    "search_intent": "Fix URL parsing crash when NO_PROXY env var has embedded newlines, causing OpenAI API client initialization to fail",
+    "common_causes": [
+      "Found in openai/openai-python#3303 labeled as bug. Affects production deployments where environment variables may contain trailing newlines. Strong commercial value: blocks API access entirely."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "claude-code-cli-sends-empty-text-block-with-cache-control-causing-api-rejection",
+    "title": "Claude Code CLI sends empty text block with cache_control causing API rejection",
+    "description": "Fix Claude Code CLI bug where sending cache_control with empty text causes API request rejection, blocking AI coding workflows Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "CLI sends empty text block with cache_control causing API rejection",
+    "search_intent": "Fix Claude Code CLI bug where sending cache_control with empty text causes API request rejection, blocking AI coding workflows",
+    "common_causes": [
+      "Found in anthropics/claude-code#54485 with labels ['bug', 'platform:macos', 'area:core', 'api:anthropic']. Direct impact on paid Claude Code users. macOS platform issue adds relevance."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "anthropic-api-content-block-delta-event-not-deserialized-correctly-even-though-it-looks-correct",
+    "title": "Anthropic SDK content_block_delta event not deserialized correctly during streaming",
+    "description": "Fix streaming response parsing failure in Anthropic Python SDK where valid content_block_delta events throw deserialization exceptions Includes evidence for Anthropic API troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Anthropic API",
+    "error_signature": "content_block_delta event not deserialized correctly even though it looks correct",
+    "search_intent": "Fix streaming response parsing failure in Anthropic Python SDK where valid content_block_delta events throw deserialization exceptions",
+    "common_causes": [
+      "Found in anthropics/anthropic-sdk-python#941 with labels ['bug', 'sdk']. SDK developers acknowledge invalid deserialization of streaming events despite valid JSON structure. High value: affects paid API users streaming responses."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Anthropic API"
+    ]
+  },
+  {
+    "slug": "anthropic-api-anthropic-api-error-529-overloaded-server-unavailable",
+    "title": "Anthropic API 529 Overloaded Error - Server Unavailable in Claude Code",
+    "description": "Find cause and solution for Anthropic 529 overloaded errors causing Claude Code to fail with server unavailable Includes evidence for Anthropic API troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Anthropic API",
+    "error_signature": "Anthropic API Error: 529 Overloaded - Server Unavailable",
+    "search_intent": "Find cause and solution for Anthropic 529 overloaded errors causing Claude Code to fail with server unavailable",
+    "common_causes": [
+      "Found in anthropics/claude-code#49011 with labels ['bug', 'api:anthropic', 'platform:macos']. Repeated pattern of 529 errors affecting paying users. Distinct from 429 rate limit errors — infrastructure-level overload."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "Anthropic API"
+    ]
+  },
+  {
+    "slug": "litellm-streamgeneratecontent-passthrough-always-returns-sse-format-breaking-google-cloud-vertex-ai-compatibility",
+    "title": "LiteLLM streamGenerateContent passthrough always returns SSE format breaking Google Cloud Vertex AI integration",
+    "description": "Fix LiteLLM proxy to properly handle Google Cloud Vertex AI streaming responses without forcing SSE format that breaks downstream consumers Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "streamGenerateContent passthrough always returns SSE format, breaking Google Cloud Vertex AI compatibility",
+    "search_intent": "Fix LiteLLM proxy to properly handle Google Cloud Vertex AI streaming responses without forcing SSE format that breaks downstream consumers",
+    "common_causes": [
+      "Found in BerriAI/litellm#28777 with labels ['bug', 'proxy', 'llm translation']. LiteLLM is a critical proxy for enterprise LLM routing. SSE format incompatibility with Google Cloud breaks production pipelines."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "LiteLLM"
+    ]
   }
 ]
