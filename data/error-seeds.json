@@ -31597,5 +31597,53 @@
     "related_errors": [
       "LiteLLM"
     ]
+  },
+  {
+    "slug": "openai-api-openai-agents-sdk-execution-budget-exceeded-stops-agent-from-completing-planned-tool-calls",
+    "title": "OpenAI Agents SDK Execution Budget Exceeded Error",
+    "description": "How to handle OpenAI Agents SDK execution budget limit errors and configure budget thresholds for reliable agent runs Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "OpenAI Agents SDK execution budget exceeded — stops agent from completing planned tool calls",
+    "search_intent": "How to handle OpenAI Agents SDK execution budget limit errors and configure budget thresholds for reliable agent runs",
+    "common_causes": [
+      "Source: https://dev.to/joakim_williamhauge_fa48/how-to-add-execution-budgets-to-openai-agents-sdk-2i39 (Dev.to API confirmed article exists, Feb 2026). New OpenAI Agents SDK introduces execution budgets as hard limits; when exceeded, the SDK throws an error stopping the agent. This directly blocks paid production agent workflows. Category maps to OpenAI API since it's a native SDK-level billing/quota enforcement error."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "langchain-langgraph-step-ez-fallback-on-error-429-500-503-workflow-crashes-at-step-7-restarts-from-step-1",
+    "title": "LangGraph Workflow Crashes on OpenRouter/LLM 429 — Progress Lost and Retry Storm",
+    "description": "Fix LangGraph workflow that loses progress when LLM provider returns 429 rate limit error mid-execution Includes evidence for LangChain / LangGraph troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "LangChain / LangGraph",
+    "error_signature": "Step(ez).fallback_on_error([429, 500, 503]) → workflow crashes at step 7, restarts from step 1",
+    "search_intent": "Fix LangGraph workflow that loses progress when LLM provider returns 429 rate limit error mid-execution",
+    "common_causes": [
+      "Source: https://www.ezthrottle.network/blog/stop-losing-langgraph-progress (web_fetch successful). Article describes real-world LangGraph + OpenRouter/LiteLLM 429 scenarios where sequential fallback fails, workers retry independently creating retry storms, and checkpoint/resume is absent. Clear fix demand: queue-per-URL architecture with coordinated retries and webhook-based resumption."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "kubernetes-kubernetes-1-36-gang-scheduling-fails-for-ai-ml-workloads-pods-cannot-coordinate-resource-requests-correctly",
+    "title": "Kubernetes Workload-Aware Scheduling Failures for AI/ML Jobs",
+    "description": "Debug Kubernetes workload-aware scheduling (gang scheduling) failing for AI/ML workloads — pods stuck pending or failing resource allocation Includes evidence for Kubernetes troubleshooting demand.",
+    "category": "Cloud Platforms",
+    "technology": "Kubernetes",
+    "error_signature": "Kubernetes 1.36 gang scheduling fails for AI/ML workloads — pods cannot coordinate resource requests correctly",
+    "search_intent": "Debug Kubernetes workload-aware scheduling (gang scheduling) failing for AI/ML workloads — pods stuck pending or failing resource allocation",
+    "common_causes": [
+      "Source: https://dev.to/matthiasbruns/kubernetes-136-workload-aware-scheduling-gang-scheduling-and-resource-optimization-for-aiml-bk3 (Dev.to API confirms article exists, May 2026). K8s 1.36 introduced workload-aware scheduling features including gang scheduling; AI/ML jobs that require coordinated pod startup face new scheduling complexities. Commercially relevant for teams deploying GPU-intensive AI inference/training clusters."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Cloud Platforms"
+    ]
   }
 ]
