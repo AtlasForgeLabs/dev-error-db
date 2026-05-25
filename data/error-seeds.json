@@ -31437,5 +31437,85 @@
     "related_errors": [
       "AI Coding Tools"
     ]
+  },
+  {
+    "slug": "openai-api-error-embedding-failed-429-answer-null",
+    "title": "OpenAI Embedding API 429 Rate Limit Cascading to 500 — Application Crash Pattern",
+    "description": "Fix application crash caused by OpenAI embedding endpoint returning HTTP 429 rate limit error that surfaces as 500 internal server error to end users Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "{\"error\":\"Embedding failed: 429\",\"answer\":null}",
+    "search_intent": "Fix application crash caused by OpenAI embedding endpoint returning HTTP 429 rate limit error that surfaces as 500 internal server error to end users",
+    "common_causes": [
+      "Found in forgedbyfreedom/forged-by-freedom#2 (PR merged 2026-05-23). The AI Coach POST /ask endpoint was returning 500 on every request because OpenAI text-embedding returns 429 rate limit during heavy usage, but the app treats this as a fatal error instead of retrying or surfacing a graceful user message. Specific to embedding endpoints unlike generic 'OpenAI API 429' already covered. New commercial value: affects production deployment for paid SaaS."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "aws-accessdenied-invalidclienttokenid-botocore-exceptions-clienterror",
+    "title": "AWS SDK AccessDenied / InvalidClientTokenId — IAM Permission Troubleshooting",
+    "description": "Resolve AWS IAM permission errors when SDK calls return AccessDenied or InvalidClientTokenId — determine correct policy fixes for EC2, S3, Lambda operations Includes evidence for AWS troubleshooting demand.",
+    "category": "Cloud Platforms",
+    "technology": "AWS",
+    "error_signature": "AccessDenied / InvalidClientTokenId — botocore.exceptions.ClientError",
+    "search_intent": "Resolve AWS IAM permission errors when SDK calls return AccessDenied or InvalidClientTokenId — determine correct policy fixes for EC2, S3, Lambda operations",
+    "common_causes": [
+      "Found in pulumi/docs#19250 (PR 2026-05-20) rewriting InvalidClientTokenId documentation. AWS SDK auth failures are high-value commercial intent — developers hitting these errors are production-deploying cloud services. Currently no AWS-related entries in covered-errors.md. Distinct from DNS_PROBE_FINISHED_NXDOMAIN and generic SSL errors already covered."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Cloud Platforms"
+    ]
+  },
+  {
+    "slug": "litellm-litellm-rate-limit-router-side-rate-limit-incorrectly-categorized-as-vendor",
+    "title": "LiteLLM Router Rate-Limit Errors Silently Categorized as Vendor Errors",
+    "description": "Fix LiteLLM proxy misclassifying router-level rate limits as vendor rate limits, losing critical debugging information about which tier hit the rate limit Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "litellm_rate_limit (router-side rate limit incorrectly categorized as vendor)",
+    "search_intent": "Fix LiteLLM proxy misclassifying router-level rate limits as vendor rate limits, losing critical debugging information about which tier hit the rate limit",
+    "common_causes": [
+      "Found in BerriAI/litellm#27708 (PR 2026-05-12). LiteLLM PR #27687 introduced RateLimitError category system but this follow-up fix shows router-side rate limits were still silently labeled as VENDOR_RATE_LIMIT instead of LITELLM_RATE_LIMIT. Affects enterprise proxy users who need to distinguish between provider throttling vs self-inflicted rate limits. LiteLLM not yet covered in dev-error-db."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "LiteLLM"
+    ]
+  },
+  {
+    "slug": "github-actions-actions-cache-v4-actions-checkout-v4-actions-will-be-forced-to-use-newer-versions",
+    "title": "GitHub Actions Mutable Tags @v3/@v4 Breaking Reproducible Builds",
+    "description": "Fix GitHub Actions CI build failures caused by floating mutable version tags (@v3, @v4) changing unexpectedly and breaking reproducible builds Includes evidence for GitHub Actions troubleshooting demand.",
+    "category": "GitHub Actions",
+    "technology": "GitHub Actions",
+    "error_signature": "actions/cache@v4, actions/checkout@v4. Actions will be forced to use newer versions",
+    "search_intent": "Fix GitHub Actions CI build failures caused by floating mutable version tags (@v3, @v4) changing unexpectedly and breaking reproducible builds",
+    "common_causes": [
+      "Found in ooloth/advent-of-code-2015#4 (issue 2026-05-18) and multiple repos upgrading to actions/checkout v5. The existing covered entries cover npm ci lockfile and Node version mismatch, but NOT the broader class of action tag mutability issues. Floating tags can silently change behavior — this is a growing concern for teams requiring audit-grade reproducible CI pipelines."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "GitHub Actions"
+    ]
+  },
+  {
+    "slug": "kubernetes-crashloopbackoff-imagepullbackoff-kubectl-describe-pod-container-status",
+    "title": "Kubernetes CrashLoopBackOff / ImagePullBackOff Pod Failure Modes",
+    "description": "Diagnose Kubernetes pod CrashLoopBackOff or ImagePullBackOff states — identify root causes like misconfigured probes, missing images, resource constraints Includes evidence for Kubernetes troubleshooting demand.",
+    "category": "Cloud Platforms",
+    "technology": "Kubernetes",
+    "error_signature": "CrashLoopBackOff, ImagePullBackOff — kubectl describe pod container status",
+    "search_intent": "Diagnose Kubernetes pod CrashLoopBackOff or ImagePullBackOff states — identify root causes like misconfigured probes, missing images, resource constraints",
+    "common_causes": [
+      "Found in Tracer-Cloud/opensre#261 (2026-04-02) comprehensive analysis of K8s failure modes. These are classic on-call scenarios affecting production deployments. Kubernetes/k8s#138860 adds diagnostic improvements. Not yet covered in dev-error-db despite being among the most searched infrastructure errors."
+    ],
+    "quick_fix": "Verify the model name, local service connectivity, and network access before retrying the model pull.",
+    "related_errors": [
+      "Cloud Platforms"
+    ]
   }
 ]
