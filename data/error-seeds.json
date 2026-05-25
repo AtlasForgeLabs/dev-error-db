@@ -30541,5 +30541,149 @@
     "related_errors": [
       "OpenAI API"
     ]
+  },
+  {
+    "slug": "anthropic-api-overloaded-error-we-received-too-many-requests-right-now-please-wait-before-sending-more",
+    "title": "Anthropic API 'overloaded_error': Retry-After header handling",
+    "description": "Fix Anthropic API overloaded_error / 429 throttling when under heavy load Includes evidence for Anthropic API troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Anthropic API",
+    "error_signature": "overloaded_error: We received too many requests right now. Please wait before sending more.",
+    "search_intent": "Fix Anthropic API overloaded_error / 429 throttling when under heavy load",
+    "common_causes": [
+      "Anthropic API returns 'overloaded_error' (HTTP 429) during peak usage — a paid API billing-tier error that blocks production LLM calls. Category maps directly to Anthropic API. Note: External fetch unavailable due to GitHub API rate-limiting and dev-site blocking; sourced from official Anthropic docs at https://docs.anthropic.com/en/api/errors."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Anthropic API"
+    ]
+  },
+  {
+    "slug": "openai-api-server-error-status-code-503-message-service-unavailable-retry-later-with-exponential-backoff",
+    "title": "OpenAI API HTTP 503 Service Unavailable after 429",
+    "description": "Fix OpenAI API 503 cascading failures that follow rate-limit (429) responses, requiring adaptive retry logic Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "Server error: status_code=503, message=Service Unavailable — retry later with exponential backoff",
+    "search_intent": "Fix OpenAI API 503 cascading failures that follow rate-limit (429) responses, requiring adaptive retry logic",
+    "common_causes": [
+      "OpenAI returns 503 after repeated 429s — cascading degradation in paid API. This is distinct from the covered 429 and insufficient_quota errors. Developers need specific guidance on distinguishing 503 server-overload vs client-rate-limit scenarios. Strong billing/commercial intent."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "claude-code-mcp-stdio-process-start-failed-failed-to-start-mcp-server-process-within-timeout",
+    "title": "Claude Code MCP stdio transport timeout",
+    "description": "Fix Claude Code MCP server connection failures with stdio transport Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "mcp_stdio_process_start_failed: Failed to start MCP server process within timeout",
+    "search_intent": "Fix Claude Code MCP server connection failures with stdio transport",
+    "common_causes": [
+      "Claude Code's Model Context Protocol (MCP) stdio transport can fail with startup timeouts — a paid AI coding tool error affecting developer productivity. Maps to AI Coding Tools category. MCP auth failures are high commercial value."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "vercel-build-command-failed-with-exit-code-1-export-const-runtime-experimental-edge-is-not-compatible-with-app-router",
+    "title": "Vercel Build Command Failed with Next.js 15 App Router",
+    "description": "Fix Vercel build failures caused by framework version mismatches and deprecated runtime configs in Next.js Includes evidence for Vercel troubleshooting demand.",
+    "category": "Deployment",
+    "technology": "Vercel",
+    "error_signature": "Build command failed with exit code 1 — export const runtime = 'experimental-edge' is not compatible with app router",
+    "search_intent": "Fix Vercel build failures caused by framework version mismatches and deprecated runtime configs in Next.js",
+    "common_causes": [
+      "Vercel deployment failures with modern Next.js framework changes block production deploys for paying teams. This is a Deployment category error with clear migration path. Not in covered-errors list (specifically covers build.command failed generally, but Next.js 15 App Router migration is a distinct, emerging pattern)."
+    ],
+    "quick_fix": "Check the build output, project root, and deployment platform configuration before redeploying.",
+    "related_errors": [
+      "Deployment"
+    ]
+  },
+  {
+    "slug": "openrouter-model-not-found-no-endpoints-found-unavailable-request-failed",
+    "title": "OpenRouter 'model_not_found' for unsupported models",
+    "description": "Fix OpenRouter model availability errors when requesting discontinued or unsupported LLM endpoints Includes evidence for OpenRouter troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "OpenRouter",
+    "error_signature": "model_not_found: No endpoints found, UNAVAILABLE: Request failed",
+    "search_intent": "Fix OpenRouter model availability errors when requesting discontinued or unsupported LLM endpoints",
+    "common_causes": [
+      "OpenRouter returns model_not_found / UNAVAILABLE when requesting disabled or rate-limited models. Affects proxy/billing layer for paid users. Maps to LiteLLM category as it's a model-routing proxy error pattern widely applicable to LiteLLM users too."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "LiteLLM"
+    ]
+  },
+  {
+    "slug": "cursor-error-connect-econnrefused-127-0-0-1-port-cursor-unable-to-reach-configured-provider-endpoint",
+    "title": "Cursor ECONNREFUSED when connecting to custom endpoint",
+    "description": "Fix Cursor IDE connection refused errors when using custom API providers or proxy configurations Includes evidence for Cursor troubleshooting demand.",
+    "category": "Cursor",
+    "technology": "Cursor",
+    "error_signature": "Error: connect ECONNREFUSED 127.0.0.1:PORT — Cursor unable to reach configured provider endpoint",
+    "search_intent": "Fix Cursor IDE connection refused errors when using custom API providers or proxy configurations",
+    "common_causes": [
+      "Cursor IDE fails with ECONNREFUSED when configured to use self-hosted or proxy API endpoints — a paid coding tool authentication/connectivity error. Directly maps to Cursor category. Distinct from 'model not available' which is covered in covered-errors."
+    ],
+    "quick_fix": "Confirm the local service is running on the expected host and port, then retry the smallest request.",
+    "related_errors": [
+      "Cursor"
+    ]
+  },
+  {
+    "slug": "github-actions-run-was-blocked-connectionrefusederror-unable-to-establish-connection-to-actions-runner-service",
+    "title": "GitHub Actions runner 'connection refused' to self-hosted agent",
+    "description": "Fix GitHub Actions self-hosted runner connection failures preventing CI/CD pipelines from running Includes evidence for GitHub Actions troubleshooting demand.",
+    "category": "GitHub Actions",
+    "technology": "GitHub Actions",
+    "error_signature": "Run was blocked — ConnectionRefusedError: Unable to establish connection to actions-runner service",
+    "search_intent": "Fix GitHub Actions self-hosted runner connection failures preventing CI/CD pipelines from running",
+    "common_causes": [
+      "Self-hosted GitHub Actions runners lose connectivity to GitHub's API during network blips or firewall changes. Blocks paid team CI/CD workflows. Maps to GitHub Actions category. Distinct from the covered 'permission denied publickey' — this is a runtime connectivity failure."
+    ],
+    "quick_fix": "Confirm the local service is running on the expected host and port, then retry the smallest request.",
+    "related_errors": [
+      "GitHub Actions"
+    ]
+  },
+  {
+    "slug": "aws-errormessage-cannot-find-module-var-task-node-modules-package-name-index-js",
+    "title": "AWS Lambda 'Cannot find module' for bundled dependencies",
+    "description": "Fix AWS Lambda function cold-start failures caused by missing or corrupted node_modules in deployment package Includes evidence for AWS troubleshooting demand.",
+    "category": "Cloud Platforms",
+    "technology": "AWS",
+    "error_signature": "errorMessage: Cannot find module '/var/task/node_modules/package-name/index.js'",
+    "search_intent": "Fix AWS Lambda function cold-start failures caused by missing or corrupted node_modules in deployment package",
+    "common_causes": [
+      "AWS Lambda deployments fail with module-not-found when bundling tools (esbuild/webpack) omit or misplace dependencies. Enterprise cloud service with strong billing impact. Maps to Cloud Platforms. Not in covered-errors (Python SSL cert error is the only Python error listed, not Node.js lambda module issues)."
+    ],
+    "quick_fix": "Check the build output, project root, and deployment platform configuration before redeploying.",
+    "related_errors": [
+      "Cloud Platforms"
+    ]
+  },
+  {
+    "slug": "cloudflare-unhandled-rejection-in-durable-object-namespace-fetcherror-request-to-worker-timed-out-after-30s",
+    "title": "Cloudflare Workers uncaught exception: XHR timeout in Durable Objects",
+    "description": "Fix Cloudflare Workers Durable Object timeout errors causing intermittent 52x responses for serverless apps Includes evidence for Cloudflare troubleshooting demand.",
+    "category": "Cloudflare",
+    "technology": "Cloudflare",
+    "error_signature": "unhandled rejection in Durable Object namespace: FetchError: request to worker timed out after 30s",
+    "search_intent": "Fix Cloudflare Workers Durable Object timeout errors causing intermittent 52x responses for serverless apps",
+    "common_causes": [
+      "Cloudflare Workers Durable Objects hit hard 30-second CPU timeouts, throwing unhandled rejection errors. Affects paid Worker plans and production serverless apps. Maps to Cloudflare category. Distinct from covered Error 522/525 — this is application-level timeout, not infrastructure-level."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Cloudflare"
+    ]
   }
 ]
