@@ -30477,5 +30477,69 @@
     "related_errors": [
       "GitHub Actions"
     ]
+  },
+  {
+    "slug": "azure-openai-openai-api-rate-limit-error-429-when-using-azure-openai-plus-responses-api",
+    "title": "Azure OpenAI Responses API Rate Limit Error 429",
+    "description": "Fix 429 rate limit errors when using Azure OpenAI's new Responses API, including retry strategies and quota management Includes evidence for Azure OpenAI / OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "Azure OpenAI / OpenAI API",
+    "error_signature": "Rate limit error 429 when using Azure OpenAI + Responses API",
+    "search_intent": "Fix 429 rate limit errors when using Azure OpenAI's new Responses API, including retry strategies and quota management",
+    "common_causes": [
+      "Source: https://github.com/Azure/azure-rest-api-specs/issues/34250 (Azure official REST API spec repo, labeled 'Service Attention', opened Apr 25, 2025). Developer reports rate limit error 429 specifically with the Azure OpenAI Responses API endpoint. This is a paid enterprise service affecting production deployments. Category mapped to OpenAI API because Responses API uses the same billing/quota model."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "openai-api-client-images-edit-method-failed-to-pass-image-url-as-image-input-api-throws-400-error-when-passing-url-instead-of-file-object",
+    "title": "OpenAI Python SDK client.images.edit() Fails With image_url Input",
+    "description": "Fix 400 error when using OpenAI images/edit endpoint with image_url parameter instead of file upload, documentation claims support for image_url but SDK/API rejects it Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "client.images.edit() method failed to pass image_url as image input; API throws 400 error when passing url instead of file object",
+    "search_intent": "Fix 400 error when using OpenAI images/edit endpoint with image_url parameter instead of file upload, documentation claims support for image_url but SDK/API rejects it",
+    "common_causes": [
+      "Source: https://github.com/openai/openai-python/issues/3256 (OpenAI official Python SDK repo, May 18, 2026). Developer reports discrepancy between official docs (/images/edits supports image_url as JSON input) and actual API behavior (throws 400 error). This affects developers using GPT-Image-1.5 model programmatically. High commercial value as image generation is a paid API feature."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "anthropic-api-append-messages-inside-tool-runner-loop-causes-infinite-loop-messages-modified-flag-prevents-auto-append-of-assistant-message-plus-tool-result-causing-claude-to-re-request-unanswered-question",
+    "title": "Anthropic SDK beta.messages.tool_runner Infinite Loop Bug",
+    "description": "Fix infinite loop in Anthropic SDK's beta messages tool_runner when calling append_messages() in tool-use loop; root cause is _messages_modified flag interfering with auto-tool-result appending per official Advanced Usage docs example Includes evidence for Anthropic API troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Anthropic API",
+    "error_signature": "append_messages() inside tool runner loop causes infinite loop; _messages_modified flag prevents auto-append of assistant message + tool result causing Claude to re-request unanswered question",
+    "search_intent": "Fix infinite loop in Anthropic SDK's beta messages tool_runner when calling append_messages() in tool-use loop; root cause is _messages_modified flag interfering with auto-tool-result appending per official Advanced Usage docs example",
+    "common_causes": [
+      "Source: https://github.com/anthropics/anthropic-sdk-python/issues/1536 (Anthropic official Python SDK repo, May 13, 2026, 2 comments). Bug in advanced usage example from official platform docs causes infinite loop. The root cause (_messages_modified = True skipping auto-append at line 281 of _beta_runner.py) is clearly identified. Affects developers building tool-use agents with Claude, high commercial value for AI application developers."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Anthropic API"
+    ]
+  },
+  {
+    "slug": "openai-api-too-many-requests-rate-limit-reached",
+    "title": "OpenAI API Rate Limit Troubleshooting Guide",
+    "description": "Understand and fix OpenAI API 429 rate limit errors, including free-tier vs paid-tier limits, request volume management, and retry strategies Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "Too Many Requests / Rate limit reached",
+    "search_intent": "Understand and fix OpenAI API 429 rate limit errors, including free-tier vs paid-tier limits, request volume management, and retry strategies",
+    "common_causes": [
+      "Source: https://help.openai.com/en/articles/5955604 (Official OpenAI Help Center article). Covers rate limit errors caused by hitting organization's max requests/tokens per minute. Explains free-tier (20 req/min) vs paid tier limits. Always-on reference with broad search demand for any developer hitting rate limits. Commercial value from users needing to increase tiers or optimize request patterns."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "OpenAI API"
+    ]
   }
 ]
