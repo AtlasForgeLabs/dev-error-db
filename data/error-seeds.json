@@ -31373,5 +31373,69 @@
     "related_errors": [
       "AI Coding Tools"
     ]
+  },
+  {
+    "slug": "claude-code-mcp-session-expired-server-returned-404-triggering-reconnection-failed-to-fetch-tools-not-connected",
+    "title": "Claude Code v2.1.147 Regression — HTTP MCP Servers without GET Listening Stream: 404 Misinterpreted as Session Expiry",
+    "description": "Fix Claude Code MCP HTTP transport incorrectly tearing down valid POST-only servers by misinterpreting optional GET stream 404 as session expiry Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "MCP session expired (server returned 404), triggering reconnection — Failed to fetch tools: Not connected",
+    "search_intent": "Fix Claude Code MCP HTTP transport incorrectly tearing down valid POST-only servers by misinterpreting optional GET stream 404 as session expiry",
+    "common_causes": [
+      "Critical P0 regression in Claude Code v2.1.147+ where any MCP server implementing only POST half of Streamable HTTP spec causes complete tool failure. Breaks ALL HTTP MCP servers without optional GET endpoint. Detailed debug logs and version-by-version verification show 2.1.146 works while 2.1.147+ fails. Active comment with proposed fix available. Source: GitHub issue #62198 opened today."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "claude-code-oom-killed-process-code-total-vm-1463373852kb-spawned-3-079-parallel-bash-processes-in-17-seconds-causing-host-lockup-requiring-reboot",
+    "title": "Claude Code Spawning Thousands of Bash Subprocesses Causing OOM System Reboot",
+    "description": "Understand why Claude Code creates runaway fork bomb of bash subprocesses and how to prevent OOM crashes and hard reboots Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "OOM killed process code total-vm:1463373852kB; spawned ~3,079 parallel bash processes in 17 seconds causing host lockup requiring reboot",
+    "search_intent": "Understand why Claude Code creates runaway fork bomb of bash subprocesses and how to prevent OOM crashes and hard reboots",
+    "common_causes": [
+      "Severe stability issue where Claude Code spawns ~3000 parallel bash subprocesses within 17 seconds, exhausting all system memory and triggering kernel OOM killer. Requires full host reboot. Reproducible via specific find command patterns. Real kernel journalctl logs with PID ranges provided. Affects production workflows heavily. Source: GitHub issue #62193 opened today."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "openai-api-background-responses-failures-lack-a-stable-code-name-that-maps-to-an-exception-class-status-failed-returns-opaque-error-code-not-tied-to-sdk-exceptions-like-ratelimiterror",
+    "title": "OpenAI API Background Responses Failures Lack Stable Error Code Mapping to Exception Classes",
+    "description": "Get OpenAI SDK to expose stable error type codes for background mode Responses API calls so developers can implement deterministic retry/backoff logic Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "Background responses failures lack a stable code/name that maps to an exception class; status=failed returns opaque error.code not tied to SDK exceptions like RateLimitError",
+    "search_intent": "Get OpenAI SDK to expose stable error type codes for background mode Responses API calls so developers can implement deterministic retry/backoff logic",
+    "common_causes": [
+      "OpenAI Python SDK background mode (background=True) returns HTTP 200 OK even when run fails, with opaque error.code strings that don't map to SDK exception classes. Unlike synchronous calls which have clean _make_status_error dispatcher, background path has no equivalent contract. Blocks production retry logic. Multiple contributors actively discussing workarounds. Source: GitHub issue #3212 opened May 8, 2026."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "claude-code-claude-code-process-exits-with-code-143-sigterm-every-exactly-5-minutes-in-desktop-app-and-vs-code-extension",
+    "title": "Claude Code Process Exits with SIGTERM Every 5 Minutes in Desktop & VSCode — CLI Unaffected",
+    "description": "Fix Claude Code Desktop/VSCode receiving periodic SIGTERM every 5 minutes killing active sessions while terminal CLI works fine Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Claude Code process exits with code 143 (SIGTERM) every exactly 5 minutes in Desktop app and VS Code extension",
+    "search_intent": "Fix Claude Code Desktop/VSCode receiving periodic SIGTERM every 5 minutes killing active sessions while terminal CLI works fine",
+    "common_causes": [
+      "Distinct SIGTERM crash pattern exclusive to Desktop app and VSCode extension (not CLI). Regular 5-minute intervals suggest possible watchdog or resource limit. Labels include area:desktop, area:vscode, has repro. Different root cause from session limits — actual process termination. High-value debugging target for paid Claude Code Pro users whose sessions keep dying. Source: GitHub issue #62202 opened today."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
   }
 ]
