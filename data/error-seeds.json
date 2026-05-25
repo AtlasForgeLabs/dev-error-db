@@ -31933,5 +31933,85 @@
     "related_errors": [
       "Ollama"
     ]
+  },
+  {
+    "slug": "openai-api-you-re-out-of-codex-messages-you-ve-reached-your-codex-usage-limit-persistent-banner-even-when-analytics-page-shows-99-usage-remaining",
+    "title": "Codex Desktop quota mismatch: \"out of messages\" banner despite 99% usage remaining",
+    "description": "Fix spurious usage limit block when account actually has remaining quota Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "You're out of Codex messages / You've reached your Codex usage limit (persistent banner even when analytics page shows 99% usage remaining)",
+    "search_intent": "Fix spurious usage limit block when account actually has remaining quota",
+    "common_causes": [
+      "GitHub issue #24445 on openai/codex. Business user (self_serve_business_usage_based) reports Codex Desktop shows persistent 'out of messages' banner while chatgpt.com confirms 99% usage remaining and 0 credits consumed. Root cause traced via local app-server method account/rateLimits/read."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "openai-api-unexpected-rapid-rate-limit-exhaustion-codex-cli-0-133-0-pro-5x-plan-gpt-5-5-model-hits-rate-limits-unexpectedly-on-windows",
+    "title": "Unexpected rapid rate limit exhaustion on Codex CLI Pro plan",
+    "description": "Resolve sudden rate limit hits on Pro plan with no abnormal request volume Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "Unexpected Rapid Rate Limit Exhaustion (Codex CLI 0.133.0, Pro 5x plan, gpt-5.5 model hits rate limits unexpectedly on Windows)",
+    "search_intent": "Resolve sudden rate limit hits on Pro plan with no abnormal request volume",
+    "common_causes": [
+      "GitHub issue #24409 on openai/codex. User on Pro 5x plan using codex-cli 0.133.0 with gpt-5.5 experiences unexpected rapid rate limit exhaustion. Codex doctor report shows ok status but rate limits trigger prematurely."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "docker-http-500-internal-server-error-kernel-panic-in-ext4-es-scan-kswapd-freezes-linuxkit-vm-daemon-unresponsive-all-containers-frozen",
+    "title": "Docker Desktop kernel panic in ext4_es_scan/kswapd freezes entire VM",
+    "description": "Recover from Docker Desktop VM freeze caused by Linux kernel panic during memory reclaim Includes evidence for Docker troubleshooting demand.",
+    "category": "Docker",
+    "technology": "Docker",
+    "error_signature": "HTTP 500 Internal Server Error — kernel panic in ext4_es_scan/kswapd freezes LinuxKit VM; daemon unresponsive; all containers frozen",
+    "search_intent": "Recover from Docker Desktop VM freeze caused by Linux kernel panic during memory reclaim",
+    "common_causes": [
+      "GitHub issue docker/for-mac#7877. Kernel panic during memory reclaim freezes entire LinuxKit VM inside Docker Desktop 4.73.0. Every Docker API call returns HTTP 500. Only fix is full restart. linuxkit 6.12.76 base."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Docker"
+    ]
+  },
+  {
+    "slug": "openai-api-shared-read-quota-returns-429-after-plugin-reinstall-can-read-spreadsheet-but-cannot-write",
+    "title": "Google Drive Sheets connector returns 429 after plugin reinstall; shared read quota stuck",
+    "description": "Fix broken read/write permissions and 429 rate limiting after reinstalling Codex Google Drive Sheets plugin Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "shared read quota returns 429 after plugin reinstall; can read spreadsheet but cannot write",
+    "search_intent": "Fix broken read/write permissions and 429 rate limiting after reinstalling Codex Google Drive Sheets plugin",
+    "common_causes": [
+      "GitHub issue #24373 on openai/codex. After reinstalling Google Drive Sheets connector plugin, user gets 429 on all write ops while reads still work. Shared read quota stuck post-reinstall."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "ollama-sigsegv-in-ggml-backend-tensor-set-during-model-load-on-amd-radeon-rx-9070-with-partial-rocm-offload-24-31-layers-on-gpu",
+    "title": "Ollama AMD Radeon RX 9070 segfaults during partial offload model load",
+    "description": "Fix segfault crash when loading models that exceed VRAM and require partial GPU offload on RDNA4 GPUs Includes evidence for Ollama troubleshooting demand.",
+    "category": "Ollama",
+    "technology": "Ollama",
+    "error_signature": "SIGSEGV in ggml_backend_tensor_set during model load on AMD Radeon RX 9070 with partial ROCm offload (24/31 layers on GPU)",
+    "search_intent": "Fix segfault crash when loading models that exceed VRAM and require partial GPU offload on RDNA4 GPUs",
+    "common_causes": [
+      "GitHub issue ollama/ollama#16261. gemma4:26b (Q4_K_M) crashes with SIGSEGV during partial offload on AMD RX 9070 (gfx1201, 16GB VRAM). Model weights 16.6 GiB vs ~13-14 GiB available after driver reservation. Crash occurs within seconds of load start. Direct segfault — not graceful error handling. Category: Ollama."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Ollama"
+    ]
   }
 ]
