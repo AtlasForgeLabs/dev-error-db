@@ -33213,5 +33213,69 @@
     "related_errors": [
       "AI Coding Tools"
     ]
+  },
+  {
+    "slug": "cursor-user-provided-api-key-rate-limit-exceeded-misleading-when-using-gpt-5-5-via-custom-openai-compatible-base-url-override-in-cursor-byok-mode",
+    "title": "Cursor GPT-5.5 BYOK Custom Endpoint Routing Failure (Regression)",
+    "description": "Debug Cursor IDE regression where GPT-5.5 requests fail silently or route to wrong endpoint when using Bring Your Own Key with custom backend, showing misleading rate limit error instead of respecting custom base URL Includes evidence for Cursor troubleshooting demand.",
+    "category": "Cursor",
+    "technology": "Cursor",
+    "error_signature": "User-provided API key rate limit exceeded (misleading) when using GPT-5.5 via custom OpenAI-compatible base URL override in Cursor BYOK mode",
+    "search_intent": "Debug Cursor IDE regression where GPT-5.5 requests fail silently or route to wrong endpoint when using Bring Your Own Key with custom backend, showing misleading rate limit error instead of respecting custom base URL",
+    "common_causes": [
+      "First-class P0 error found via web search. Specific regression introduced ~May 4, 2026 in Cursor IDE that breaks GPT-5.5 BYOK while other models continue working. Root cause appears to be server-side model name detection overriding custom base URL routing. Affects paying power users with custom AI inference infrastructure. Shows misleading 'rate limit exceeded' error despite actual issue being client-side routing misconfiguration. Highly specific, actionable error."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "Cursor"
+    ]
+  },
+  {
+    "slug": "cloudflare-worker-subrequests-returning-http-1006-connection-timeout-unable-to-reach-upstream-host",
+    "title": "Cloudflare Workers Subrequests Returning 1006 Timeout Error",
+    "description": "Fix Cloudflare Workers subrequest timeout errors (1006) when making internal fetch calls within Workers Includes evidence for Cloudflare troubleshooting demand.",
+    "category": "Cloudflare",
+    "technology": "Cloudflare",
+    "error_signature": "Worker subrequests returning HTTP 1006 (connection timeout / unable to reach upstream host)",
+    "search_intent": "Fix Cloudflare Workers subrequest timeout errors (1006) when making internal fetch calls within Workers",
+    "common_causes": [
+      "Incident reported on isdown.app — Cloudflare Workers experienced widespread subrequests returning 1006 errors affecting Sites and Services platforms. Lasted ~2.4 hours starting May 20, 2026. Affects all paid plan users whose Workers depend on internal subrequests. Category: Cloudflare (official mapping). Already published: Cloudflare 522/525 are covered, but Worker-specific 1006 subrequest timeout is not."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Cloudflare"
+    ]
+  },
+  {
+    "slug": "github-actions-error-denied-permission-denied-unauthorized-authentication-required-error-response-from-daemon-get-https-ghcr-io-v2-unauthorized",
+    "title": "GitHub Actions Docker Push Permission Denied / Unauthorized to GHCR (2026)",
+    "description": "Fix Docker image push failures in GitHub Actions due to missing packages:write permissions on GITHUB_TOKEN when pushing to GitHub Container Registry Includes evidence for GitHub Actions troubleshooting demand.",
+    "category": "GitHub Actions",
+    "technology": "GitHub Actions",
+    "error_signature": "ERROR: denied: permission_denied | unauthorized: authentication required | Error response from daemon: Get \"https://ghcr.io/v2/\": unauthorized",
+    "search_intent": "Fix Docker image push failures in GitHub Actions due to missing packages:write permissions on GITHUB_TOKEN when pushing to GitHub Container Registry",
+    "common_causes": [
+      "Detailed blog post covering all causes of Docker push permission denied errors in GitHub Actions in 2026, specifically targeting GHCR pushes failing with 'denied: permission_denied'. The fix requires explicitly declaring 'packages: write' in workflow permissions. Strong commercial value as it blocks CI/CD pipelines for paying teams. Not covered: dev-error-db has 'permission denied publickey' for Git but not Docker GHCR permission denied."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "GitHub Actions"
+    ]
+  },
+  {
+    "slug": "cloudflare-error-10195-deployment-fails-when-installing-package-via-cloudflare-workers-deploy-link-due-to-dynamic-workers-paid-plan-requirement",
+    "title": "Cloudflare Workers Deployment Fails with Dynamic Workers Paid Plan Required (Error 10195)",
+    "description": "Resolve Cloudflare Workers deployment failure caused by requiring Dynamic Workers paid plan when deploying certain npm packages via npx templates Includes evidence for Cloudflare troubleshooting demand.",
+    "category": "Cloudflare",
+    "technology": "Cloudflare",
+    "error_signature": "Error 10195: deployment fails when installing package via Cloudflare Workers deploy link due to Dynamic Workers paid plan requirement",
+    "search_intent": "Resolve Cloudflare Workers deployment failure caused by requiring Dynamic Workers paid plan when deploying certain npm packages via npx templates",
+    "common_causes": [
+      "GitHub issue in cloudflare/workers-sdk (#13264) reporting deployment failures when deploying emdash via Cloudflare Workers deploy link. Error 10195 indicates a paid plan gate — users attempting free-tier deploys hit an unexpected paywall. Distinguishable from existing covered Cloudflare 522/525 errors; this is a deployment-stage error specific to the Workers SDK template system."
+    ],
+    "quick_fix": "Check the build output, project root, and deployment platform configuration before redeploying.",
+    "related_errors": [
+      "Cloudflare"
+    ]
   }
 ]
