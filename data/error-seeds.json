@@ -32797,5 +32797,85 @@
     "related_errors": [
       "OpenAI API"
     ]
+  },
+  {
+    "slug": "anthropic-api-claude-code-api-error-529-overloaded-error-repeated-api-error-529-type-overloaded-error-responses-during-claude-code-terminal-usage",
+    "title": "Anthropic API Overloaded Error (529) — Repeated Server-Side Failures",
+    "description": "Fix repeated 529 overloaded_error from Anthropic API causing Claude Code sessions to fail with escalating retries Includes evidence for Anthropic API / Claude Code troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Anthropic API / Claude Code",
+    "error_signature": "API Error (529): overloaded_error — Repeated API Error (529 \"type\":\"overloaded_error\") responses during Claude Code terminal usage",
+    "search_intent": "Fix repeated 529 overloaded_error from Anthropic API causing Claude Code sessions to fail with escalating retries",
+    "common_causes": [
+      "Sources: https://github.com/anthropics/claude-code/issues/3555, #4149, #4154, #5769, #2919 — Multiple recurring reports across different dates showing persistent overloaded_error (HTTP 529) on Anthropic API. Retries escalate exponentially making sessions unusable. Affects both individual and org-tier users. Category mapping: Anthropic API (primary error origin), also relevant to Claude Code/AI Coding Tools ecosystem. High duplicate_risk among variants; consolidated here as one canonical candidate."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "Anthropic API"
+    ]
+  },
+  {
+    "slug": "claude-code-anthropic-api-api-error-request-rejected-429-this-request-would-exceed-your-organization-s-rate-limit-of-30-000-input-tokens-per-minute",
+    "title": "Claude Code 429 Rate Limit Exceeded — Organization Token Limit",
+    "description": "Fix 429 rate limit error in Claude Code caused by hitting organization-level token throughput limits (30K input tokens/min) Includes evidence for Claude Code / Anthropic API troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Claude Code / Anthropic API",
+    "error_signature": "API Error: Request rejected (429) — This request would exceed your organization's rate limit of 30,000 input tokens per minute",
+    "search_intent": "Fix 429 rate limit error in Claude Code caused by hitting organization-level token throughput limits (30K input tokens/min)",
+    "common_causes": [
+      "Source: https://github.com/anthropics/claude-code/issues/60967 — User reports getting 429 rate_limit errors with org-specific rate limit (org: xxxxx, model: claude-sonnet-4-6). Organization rate limits block productive coding sessions. Category mapping: Anthropic API because it originates from the Anthropic API rate-limiting response surfacing through Claude Code. Similar overloaded_error variants appear across multiple claude-code issues (#3555, #4149, #4154, #5769, #2919), confirming recurring pattern."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "Anthropic API"
+    ]
+  },
+  {
+    "slug": "github-copilot-cli-no-authentication-information-found-copilot-cli-session-created-without-authentication-when-auth-token-hits-non-200-response-at-get-copilot-internal-user-validation-step",
+    "title": "GitHub Copilot CLI Auth Flow Swallows Rate-Limit Errors",
+    "description": "Fix GitHub Copilot CLI silent auth failure that hides underlying rate-limit/quota errors instead of surfacing them properly to the user Includes evidence for GitHub Copilot CLI troubleshooting demand.",
+    "category": "GitHub Copilot",
+    "technology": "GitHub Copilot CLI",
+    "error_signature": "No authentication information found — Copilot CLI Session created without authentication when auth token hits non-200 response at GET /copilot_internal/user validation step",
+    "search_intent": "Fix GitHub Copilot CLI silent auth failure that hides underlying rate-limit/quota errors instead of surfacing them properly to the user",
+    "common_causes": [
+      "Source: https://github.com/github/copilot-cli/issues/3311 — Bug report details how the Copilot CLI auth bootstrap silently swallows REST quota/rate-limit errors. When --no-auto-login is set (typical for headless SDK use), no fallback auth method runs, and the first model-touching operation fails silently. Critical UX and debugging pain point for CI/CD and automated Copilot usage. Category mapping: GitHub Copilot (official Copilot CLI tool)."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "GitHub Copilot"
+    ]
+  },
+  {
+    "slug": "claude-code-anthropic-api-api-error-400-could-not-process-image-api-error-529-overloaded-multiple-simultaneous-server-errors-within-a-single-claude-code-session",
+    "title": "Claude Code Multiple Concurrent Server Errors (400 + 529)",
+    "description": "Resolve concurrent Anthropic API errors (image processing 400 + model overloaded 529) disrupting Claude Code sessions mid-work Includes evidence for Claude Code / Anthropic API troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Claude Code / Anthropic API",
+    "error_signature": "API Error: 400 Could not process image, API Error: 529 Overloaded — Multiple simultaneous server errors within a single Claude Code session",
+    "search_intent": "Resolve concurrent Anthropic API errors (image processing 400 + model overloaded 529) disrupting Claude Code sessions mid-work",
+    "common_causes": [
+      "Source: https://github.com/anthropics/claude-code/issues/61387 — User experienced both a 400 image-processing error AND a 529 overloaded error simultaneously in one session. Indicates multi-faceted server instability on Anthropic's end. Distinct from pure 429 or 529-only cases — the combination affects multimodal (image+text) workflows specifically. Category mapping: Anthropic API (error originates from API layer)."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "Anthropic API"
+    ]
+  },
+  {
+    "slug": "openrouter-vertex-ai-sdk-anthropic-api-429-too-many-requests-vertex-ai-go-sdk-consistently-returns-429-errors-when-sending-requests-to-anthropic-claude-partner-models-standard-go-http-client-works-fine",
+    "title": "OpenRouter Vertex AI SDK Returns 429 Rate Limit for Claude Models",
+    "description": "Fix 429 rate limiting specific to Vertex AI SDK when routing Claude model requests through OpenRouter or Google Cloud AI Gateway Includes evidence for OpenRouter / Vertex AI SDK / Anthropic API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenRouter / Vertex AI SDK / Anthropic API",
+    "error_signature": "429 Too Many Requests — Vertex AI Go SDK consistently returns 429 errors when sending requests to Anthropic Claude partner models; standard Go HTTP client works fine",
+    "search_intent": "Fix 429 rate limiting specific to Vertex AI SDK when routing Claude model requests through OpenRouter or Google Cloud AI Gateway",
+    "common_causes": [
+      "Source: https://github.com/googleapis/google-cloud-go/issues/11683 — Developer reports consistent 429 errors from Vertex AI Go SDK with Anthropic Claude partner models, while raw HTTP client succeeds. Points to SDK-level rate limit handling bug rather than actual service throttling. Affects multi-cloud/multi-provider API routing decisions. Category mapping: OpenAI API (covers OpenRouter model routing context)."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "OpenAI API"
+    ]
   }
 ]
