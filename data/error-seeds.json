@@ -33133,5 +33133,85 @@
     "related_errors": [
       "Cloud Platforms"
     ]
+  },
+  {
+    "slug": "anthropic-api-400-invalid-signature-in-thinking-block",
+    "title": "Anthropic API 400 'Invalid signature in thinking block' — permanent conversation failure with extended thinking",
+    "description": "开发者在使用 Claude extended thinking 多轮对话时遇到签名验证错误，会话永久失败且无恢复路径，需要修复方案。 Includes evidence for Anthropic API troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Anthropic API",
+    "error_signature": "400: Invalid `signature` in `thinking` block",
+    "search_intent": "开发者在使用 Claude extended thinking 多轮对话时遇到签名验证错误，会话永久失败且无恢复路径，需要修复方案。",
+    "common_causes": [
+      "来自 anthropics/anthropic-sdk-python#1598（Open Issue, updated 2026-05-26）。使用 claude-sonnet-4.x/claude-opus-4.x 开启 extended thinking 进行 N 轮对话后触发此错误，后续所有消息持续失败，必须手动剥离 thinking blocks 才能恢复。高商业价值：直接影响生产 AI 应用可用性，涉及付费 API quota。Category mapping: 直接 Anthropic API SDK 问题 → Anthropic API。"
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Anthropic API"
+    ]
+  },
+  {
+    "slug": "litellm-litellm-openai-double-prefix-bug-doubled-prefixes-broke-model-cost-lookup-producing-0-cost-or-pricing-failure",
+    "title": "LiteLLM double prefix bug — model cost lookup fails when provider prefix appears twice in deployment name",
+    "description": "使用 LiteLLM proxy/router 时将包含重复 provider prefix（如 openai/openai/gpt-5.5）的部署名称传入，导致 token 成本和定价计算全部异常。计费错误的商业化影响显著。 Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "Litellm OpenAI double prefix bug — doubled prefixes broke model_cost lookup producing $0 cost or pricing failure",
+    "search_intent": "使用 LiteLLM proxy/router 时将包含重复 provider prefix（如 openai/openai/gpt-5.5）的部署名称传入，导致 token 成本和定价计算全部异常。计费错误的商业化影响显著。",
+    "common_causes": [
+      "来自 BerriAI/litellm#28661（Open Issue, updated 2026-05-26）。Proxy 路由场景中 model string 含两次 provider prefix 时，cost_per_token 查找 key 生成错误，返回 $0 成本。高商业价值：直接影响代理层的计费准确性。Category mapping: LiteLLM proxy issue → LiteLLM。"
+    ],
+    "quick_fix": "Check the build output, project root, and deployment platform configuration before redeploying.",
+    "related_errors": [
+      "LiteLLM"
+    ]
+  },
+  {
+    "slug": "cloudflare-project-not-found-the-specified-project-name-does-not-match-any-of-your-existing-projects-code-8000007",
+    "title": "Cloudflare Workers wrangler Error 8000007 project not found — deployment fails silently",
+    "description": "开发者在使用 @opennextjs/cloudflare + wrangler 部署 Next.js 16 项目时遇到 8000007 错误，项目名称匹配失败导致构建/部署完全中断。 Includes evidence for Cloudflare troubleshooting demand.",
+    "category": "Cloudflare",
+    "technology": "Cloudflare",
+    "error_signature": "Project not found. The specified project name does not match any of your existing projects. [code: 8000007]",
+    "search_intent": "开发者在使用 @opennextjs/cloudflare + wrangler 部署 Next.js 16 项目时遇到 8000007 错误，项目名称匹配失败导致构建/部署完全中断。",
+    "common_causes": [
+      "来自 cloudflare/workers-sdk#12203（Open Issue, updated 2026-05-26）。涉及 @opennextjs/cloudflare 1.16.0 + wrangler 4.61.0 + Next.js 16。这是 Cloudflare Workers 平台级的部署错误，直接影响付费用户的 CI/CD 流程。Category mapping: Cloudflare Workers/SWRK error → Cloudflare。"
+    ],
+    "quick_fix": "Check the build output, project root, and deployment platform configuration before redeploying.",
+    "related_errors": [
+      "Cloudflare"
+    ]
+  },
+  {
+    "slug": "docker-kernel-panic-in-ext4-es-scan-kswapd-every-api-request-returns-http-500-internal-server-error-vm-at-192-168-65-7-2376-no-route-to-host",
+    "title": "Docker Desktop kernel panic freezes entire VM — HTTP 500 from Docker daemon via linuxkit crash",
+    "description": "Docker Desktop for Mac 启动后因内核 panic 导致整个 LinuxKit VM 崩溃冻结，Docker daemon 不可用，只能重启解决。需要内核层面的修复或变通方案。 Includes evidence for Docker troubleshooting demand.",
+    "category": "Docker",
+    "technology": "Docker",
+    "error_signature": "Kernel panic in ext4_es_scan / kswapd; every API request returns HTTP 500 Internal Server Error; VM at 192.168.65.7:2376 no route to host",
+    "search_intent": "Docker Desktop for Mac 启动后因内核 panic 导致整个 LinuxKit VM 崩溃冻结，Docker daemon 不可用，只能重启解决。需要内核层面的修复或变通方案。",
+    "common_causes": [
+      "来自 docker/for-mac#7877（Open Issue, updated 2026-05-17）。Docker Desktop 4.73.0 / linuxkit 6.12.76 下内存回收期间内核 panic，容器全挂、daemon 不响应。企业用户高频场景。Category mapping: Docker Desktop runtime crash → Docker。"
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Docker"
+    ]
+  },
+  {
+    "slug": "langchain-langchain-groq-mistral-context-length-overflow-errors-not-mapped-to-contextoverflowerror",
+    "title": "LangChain standard ContextOverflowError for Groq/Mistral — missing consistent error class",
+    "description": "LangChain 用户在调用 Groq 或 Mistral 模型时遇到上下文长度溢出错误，但没有统一的 ContextOverflowError 可捕获，需针对特定提供商添加映射。 Includes evidence for LangChain troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "LangChain",
+    "error_signature": "langchain groq/mistral context length overflow errors not mapped to ContextOverflowError",
+    "search_intent": "LangChain 用户在调用 Groq 或 Mistral 模型时遇到上下文长度溢出错误，但没有统一的 ContextOverflowError 可捕获，需针对特定提供商添加映射。",
+    "common_causes": [
+      "来自 langchain-ai/langchain#37676（Open Issue, PR activity recent）。LangChain 框架层面对 Groq/Mistral provider 的 context-length 错误未映射到标准 ContextOverflowError，导致错误处理不一致。Category mapping: LangChain framework feature/error → AI Coding Tools。"
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
   }
 ]
