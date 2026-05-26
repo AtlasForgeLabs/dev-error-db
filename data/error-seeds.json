@@ -33357,5 +33357,85 @@
     "related_errors": [
       "LiteLLM"
     ]
+  },
+  {
+    "slug": "claude-code-not-logged-in-please-run-login-caused-by-keychain-credential-partition-id-silently-reverting-to-apple-tool-alone-on-5min-cycle-after-oauth-login",
+    "title": "Claude Code OAuth session lost due to macOS Keychain ACL silently resetting",
+    "description": "用户在 macOS Tahoe 上通过 OAuth 登录 Claude Code 后，Keychain 权限每约 5 分钟被系统静默重置，导致会话不断中断要求重新登录，需要找到持久化修复方法 Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Not logged in · Please run /login — caused by Keychain credential partition_id silently reverting to apple-tool: alone on ~5min cycle after OAuth login",
+    "search_intent": "用户在 macOS Tahoe 上通过 OAuth 登录 Claude Code 后，Keychain 权限每约 5 分钟被系统静默重置，导致会话不断中断要求重新登录，需要找到持久化修复方法",
+    "common_causes": [
+      "Source: github.com/anthropics/claude-code/issues/62361 (P0 tech, reported today). Auth loop triggered by OS-level Keychain ACL change. Category mapping: AI Coding Tools → Claude Code (specific IDE auth bug)。Duplicate check: not in covered-errors.md. Direct revenue impact — prevents productive use of paid Claude Code subscription."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "openai-api-invalidurl-error-when-no-proxy-environment-variable-contains-newline-characters-openai-client-raises-invalidurl-during-httpx-get-environment-proxies-initialization",
+    "title": "InvalidURL error when NO_PROXY environment variable contains newline characters",
+    "description": "开发者在使用 Docker/.env/shell script 中带有换行符的 NO_PROXY 环境变量时，创建 OpenAI 客户端会触发 InvalidURL 报错，需要修复代理配置以连接 OpenAI API Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "InvalidURL error when NO_PROXY environment variable contains newline characters; OpenAI client raises InvalidURL during httpx get_environment_proxies() initialization",
+    "search_intent": "开发者在使用 Docker/.env/shell script 中带有换行符的 NO_PROXY 环境变量时，创建 OpenAI 客户端会触发 InvalidURL 报错，需要修复代理配置以连接 OpenAI API",
+    "common_causes": [
+      "Source: github.com/openai/openai-python/issues/3303 (P0 tech). Real user-reported bug — httpx.get_environment_proxies() 无法处理带换行符的 NO_PROXY。Category mapping: OpenAI API (official SDK bug affecting API connectivity)。Duplicate check: not in covered-errors.md."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "openai-api-non-streaming-openai-api-calls-hang-indefinitely-server-generates-response-but-client-never-receives-it-because-tcp-connection-silently-dropped-mid-generation-behind-nat-gateway",
+    "title": "TCP keepalive disabled causing hanging non-streaming API calls behind NAT gateway",
+    "description": "开发者在后端运行非流式 OpenAI API 请求时，连接因 NAT idle-timeout 被静默断开而永久挂起。需要启用 httpx TCP keepalive 修复。常见于 Docker/NAT 环境中的生产服务。 Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "Non-streaming OpenAI API calls hang indefinitely — server generates response but client never receives it because TCP connection silently dropped mid-generation behind NAT gateway",
+    "search_intent": "开发者在后端运行非流式 OpenAI API 请求时，连接因 NAT idle-timeout 被静默断开而永久挂起。需要启用 httpx TCP keepalive 修复。常见于 Docker/NAT 环境中的生产服务。",
+    "common_causes": [
+      "Source: github.com/openai/openai-python/pull/3270 (fix PR). Root cause identified: default httpx transport lacks keepalive. Affects production deployments behind NAT/firewall. Category mapping: OpenAI API (SDK-level fix for API connectivity)。Duplicate check: not in covered-errors.md. High commercial value — silent hangs cause timeouts in production."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "docker-line-1-yaml-map-merge-requires-map-or-sequence-of-maps-as-the-value-docker-compose-v5-1-4-regression-breaking-yaml-anchors-with-merge-keys",
+    "title": "Docker Compose v5.1.4 YAML map merge parsing error — regression breaking YAML anchors",
+    "description": "更新到 Docker Desktop 最新版本的 Docker Compose v5.1.4 后，含 YAML anchor (&build-base) 和 merge key (::*) 的 docker-compose.yml 文件在 docker compose up 时解析失败，回退到 v5.1.2 可解决 Includes evidence for Docker troubleshooting demand.",
+    "category": "Docker",
+    "technology": "Docker",
+    "error_signature": "line 1: yaml: map merge requires map or sequence of maps as the value — Docker Compose v5.1.4 regression breaking YAML anchors with merge keys (::*)",
+    "search_intent": "更新到 Docker Desktop 最新版本的 Docker Compose v5.1.4 后，含 YAML anchor (&build-base) 和 merge key (::*) 的 docker-compose.yml 文件在 docker compose up 时解析失败，回退到 v5.1.2 可解决",
+    "common_causes": [
+      "Source: github.com/docker/compose/issues/13812 (P0 tech, very recent). Regression in v5.1.4 affecting standard YAML merge syntax used in enterprise compose files. Category mapping: Docker → Docker Compose (paid Docker Desktop component)。Duplicate check: 'Docker Compose port allocated' exists but this is a completely different error (YAML parsing vs port conflict)。Clear actionable workaround (downgrade to 5.1.2)。"
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Docker"
+    ]
+  },
+  {
+    "slug": "docker-after-upgrading-docker-compose-from-2-40-2-to-2-40-3-networking-seems-to-be-completely-broken-services-can-t-reach-each-other-or-contact-the-wrong-service-downgrading-to-2-40-2-resolves-it",
+    "title": "Docker Compose v2.40.3 networking regression — services cannot reach each other",
+    "description": "升级 Docker Compose 到 2.40.3 后容器间网络完全断裂，服务互相无法访问或路由到错误服务。回退到 2.40.2 可恢复。影响生产多服务编排环境。 Includes evidence for Docker troubleshooting demand.",
+    "category": "Docker",
+    "technology": "Docker",
+    "error_signature": "After upgrading Docker Compose from 2.40.2 to 2.40.3: networking seems to be completely broken. Services can't reach each other or contact the wrong service. Downgrading to 2.40.2 resolves it.",
+    "search_intent": "升级 Docker Compose 到 2.40.3 后容器间网络完全断裂，服务互相无法访问或路由到错误服务。回退到 2.40.2 可恢复。影响生产多服务编排环境。",
+    "common_causes": [
+      "Source: github.com/docker/compose/issues/13348 (P0 tech, 2+ reactions, open since Nov 2025). Regression in official Docker Desktop plugin. Category mapping: Docker → Docker Compose (production networking failure)。Duplicate check: not in covered-errors.md (different from 'Docker Compose port allocated' and 'YAML merge' errors)。Clear rollback workaround available."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Docker"
+    ]
   }
 ]
