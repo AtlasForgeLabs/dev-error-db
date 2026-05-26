@@ -32397,5 +32397,101 @@
     "related_errors": [
       "AI Coding Tools"
     ]
+  },
+  {
+    "slug": "anthropic-api-the-compiled-grammar-is-too-large-which-would-cause-performance-issues-simplify-your-tool-schemas-or-reduce-the-number-of-strict-tools",
+    "title": "Claude API structured outputs: \"compiled grammar is too large\" error for complex JSON schemas",
+    "description": "Fix Claude structured outputs (output_config.format) failing with 400 error when using moderately complex but valid JSON schemas with nested nullable types and repeated sub-schemas. Includes evidence for Anthropic API troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Anthropic API",
+    "error_signature": "The compiled grammar is too large, which would cause performance issues. Simplify your tool schemas or reduce the number of strict tools.",
+    "search_intent": "Fix Claude structured outputs (output_config.format) failing with 400 error when using moderately complex but valid JSON schemas with nested nullable types and repeated sub-schemas.",
+    "common_causes": [
+      "GitHub issue from anthropics/anthropic-sdk-python (#1185). Production code generation service triggers 400 invalid_request_error with complex schemas (~50 properties, 5 levels deep). Root causes: nullable types cause exponential branching, $ref not deduplicating, deep nesting compound complexity. Clear fix demand — better docs, improved error message, higher limits. Category: Anthropic API per mapping table."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "Anthropic API"
+    ]
+  },
+  {
+    "slug": "docker-kernel-panic-in-ext4-es-scan-kswapd-freezes-entire-vm-every-container-unresponsive-docker-api-returns-http-500-internal-server-error-no-route-to-host-at-192-168-65-7-2376",
+    "title": "Docker Desktop Linux VM kernel panic freezes entire container runtime (HTTP 500)",
+    "description": "Fix Docker Desktop VM kernel panic that freezes all containers and renders the Docker daemon completely unresponsive. Requires full Docker Desktop restart to recover. Includes evidence for Docker troubleshooting demand.",
+    "category": "Docker",
+    "technology": "Docker",
+    "error_signature": "Kernel panic in ext4_es_scan / kswapd freezes entire VM — every container unresponsive, Docker API returns HTTP 500 Internal Server Error, no route to host at 192.168.65.7:2376",
+    "search_intent": "Fix Docker Desktop VM kernel panic that freezes all containers and renders the Docker daemon completely unresponsive. Requires full Docker Desktop restart to recover.",
+    "common_causes": [
+      "GitHub issue docker/for-mac#7877 reported May 17 2026. Linuxkit kernel 6.12.76 / Docker Desktop 4.73.0 triggers memory reclaim panic in ext4 filesystem scanner. Complete production outage — no partial recovery, only full restart works. High severity for paying Docker Desktop users. No match in covered-errors.md. Category: Docker per mapping table."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Docker"
+    ]
+  },
+  {
+    "slug": "docker-yaml-map-merge-requires-map-or-sequence-of-maps-as-the-value",
+    "title": "Docker Compose v5.1.4 YAML merge operator parsing regression breaks compose up",
+    "description": "Fix Docker Compose v5.1.4 regession where extended syntax (<<: *anchor) stops working and compose up fails with YAML parse error. Regression from v5.1.2. Includes evidence for Docker troubleshooting demand.",
+    "category": "Docker",
+    "technology": "Docker",
+    "error_signature": "yaml: map merge requires map or sequence of maps as the value",
+    "search_intent": "Fix Docker Compose v5.1.4 regession where extended syntax (<<: *anchor) stops working and compose up fails with YAML parse error. Regression from v5.1.2.",
+    "common_causes": [
+      "GitHub issue docker/compose#13812 updated May 25 2026. Users upgrading to Docker Desktop latest get YAML parse failures on extended syntax. Workaround is rolling back to v5.1.2. Concrete binary regression, affects production Docker workflows. No match in covered-errors.md (which only has 'Docker cannot connect to daemon' etc). Category: Docker per mapping table."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Docker"
+    ]
+  },
+  {
+    "slug": "openai-api-non-streaming-openai-api-calls-hang-indefinitely-when-run-behind-a-nat-gateway-the-openai-server-successfully-generates-the-response-but-the-client-never-receives-it-because-the-tcp-connection-was-silently-dropped-mid-generation",
+    "title": "OpenAI Python SDK: non-streaming API calls hang behind NAT gateway due to missing TCP keepalive",
+    "description": "Fix OpenAI Python SDK SDK hang problem: non-streaming API calls get stuck forever when client is behind NAT gateway/firewall due to httpx transport missing TCP keepalive. Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "Non-streaming OpenAI API calls hang indefinitely when run behind a NAT gateway. The OpenAI server successfully generates the response but the client never receives it because the TCP connection was silently dropped mid-generation.",
+    "search_intent": "Fix OpenAI Python SDK SDK hang problem: non-streaming API calls get stuck forever when client is behind NAT gateway/firewall due to httpx transport missing TCP keepalive.",
+    "common_causes": [
+      "GitHub PR from openai/openai-python (#3270) submitted May 19 2026. Fix enables SO_KEEPALIVE on default httpx transports. Affects production deployments behind corporate firewalls/NAT. Clear root cause identified and fix implemented. No matching entry in covered-errors.md. Category: OpenAI API per mapping table."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "vercel-unhandledpromiserejection-cannot-find-module-remark-plugin-does-not-exist-next-build-webpack-hangs-indefinitely-without-proper-error-reporting",
+    "title": "Next.js @next/mdx plugin path resolution throws UnhandledPromiseRejection causing build hang",
+    "description": "Fix Next.js build process hanging when @next/mdx webpack loader fails to resolve a remark plugin — should throw readable error instead of hanging silently or throwing unhandled promise rejection. Includes evidence for Vercel troubleshooting demand.",
+    "category": "Deployment",
+    "technology": "Vercel",
+    "error_signature": "UnhandledPromiseRejection: Cannot find module 'remark-plugin-does-not-exist' — next build --webpack hangs indefinitely without proper error reporting",
+    "search_intent": "Fix Next.js build process hanging when @next/mdx webpack loader fails to resolve a remark plugin — should throw readable error instead of hanging silently or throwing unhandled promise rejection.",
+    "common_causes": [
+      "GitHub issue vercel/next.js#94118 opened May 26 2026 (today!). Reproduction repo provided (@Jinoko01/mdx-catch-bug). Build hangs without error message or throws Node.js UnhandledPromiseRejection. Blocks CI/CD builds for Vercel deployment pipelines. Very recent and still unresolved. Category: Deployment per mapping table (Vercel)."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Deployment"
+    ]
+  },
+  {
+    "slug": "litellm-missing-required-parameter-session-audio-input-turn-detection-type-livekit-openai-python-clients-silently-missing-server-events-due-to-backend-websocket-recv-returning-bytes-instead-of-str",
+    "title": "LiteLLM Realtime WebSocket backend sends bytes instead of TEXT frames — clients miss server events",
+    "description": "Fix LiteLLM realtime proxy sending raw bytes instead of decoded TEXT frames over WebSocket, causing OpenAI-compatible clients to silently miss server events. Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "Missing required parameter: session.audio.input.turn_detection.type — LiveKit / openai-python clients silently missing server events due to backend WebSocket recv returning bytes instead of str",
+    "search_intent": "Fix LiteLLM realtime proxy sending raw bytes instead of decoded TEXT frames over WebSocket, causing OpenAI-compatible clients to silently miss server events.",
+    "common_causes": [
+      "GitHub PR BerriAI/litellm#28848 submitted May 26 2026 (today!). Proxy incorrectly passes raw bytes from backend WebSocket recv() to client send(), fixing to decode to str before send_text. Also fixes missing guardrail session.update parameter. Affects production LiteLLM realtime proxy deployments. Both bug and fix documented in same PR. Category: LiteLLM per mapping table."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "LiteLLM"
+    ]
   }
 ]
