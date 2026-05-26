@@ -32253,5 +32253,101 @@
     "related_errors": [
       "LiteLLM"
     ]
+  },
+  {
+    "slug": "openai-api-non-streaming-openai-api-calls-hang-indefinitely-when-run-behind-a-nat-gateway-connection-silently-dropped-mid-generation",
+    "title": "Non-streaming OpenAI API calls hang indefinitely behind NAT gateway (TCP keepalive)",
+    "description": "Fix OpenAI API SDK timeouts/hangs caused by NAT idle-timeout dropping TCP connections during long streaming or o-series reasoning calls Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "Non-streaming OpenAI API calls hang indefinitely when run behind a NAT gateway; connection silently dropped mid-generation",
+    "search_intent": "Fix OpenAI API SDK timeouts/hangs caused by NAT idle-timeout dropping TCP connections during long streaming or o-series reasoning calls",
+    "common_causes": [
+      "GitHub openai/openai-python#3270 — detailed repro with AWS/GCP NAT timeout table. Affects EKS, ECS, Cloud Run, GKE deployments using o-series or GPT-5.x models under heavy reasoning. Fix available via TCP keepalive on httpx transport."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "claude-code-mcp-error-32602-input-validation-error-invalid-arguments-for-tool-tool-name-invalid-input-expected-array-received-undefined-model-emits-parameter-name-closing-tag-inside-json-string-during-mcp-tool-calls",
+    "title": "Claude Code Opus 4.7 leaks legacy XML tool-use format into JSON tool calls on longer payloads",
+    "description": "Fix Claude Code Opus 4.7 regression where longer tool call arguments trigger decoder-level XML format switch causing MCP validation failures and repeated retries Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "MCP error -32602: Input validation error: Invalid arguments for tool <tool_name>: Invalid input: expected array, received undefined — model emits </parameter_name> closing tag inside JSON string during MCP tool calls",
+    "search_intent": "Fix Claude Code Opus 4.7 regression where longer tool call arguments trigger decoder-level XML format switch causing MCP validation failures and repeated retries",
+    "common_causes": [
+      "GitHub anthropics/claude-code#49747 — detailed reproduction with z.schema MCP tool definition. Regression from Opus 4.6. Each retry burns ~1k tokens. Decoder-level format switch not overridable via system prompt. Directly impacts paid Claude Code users running custom MCP tools."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "docker-connection-refused-curl-to-169-264-169-254-fails-nmap-returns-no-open-ports-in-containers-running-rootless-docker-with-gvisor-tap-vsock-driver-v29-5-0-plus",
+    "title": "Docker rootless with gvisor-tap-vsock blocks container access to AWS IMDS endpoint",
+    "description": "Resolve Docker rootless networking change breaking EC2 instance metadata service access in CI/CD runners Includes evidence for Docker troubleshooting demand.",
+    "category": "Docker",
+    "technology": "Docker",
+    "error_signature": "Connection refused — curl to 169.264.169.254 fails, nmap returns no open ports in containers running rootless Docker with gvisor-tap-vsock driver (v29.5.0+)",
+    "search_intent": "Resolve Docker rootless networking change breaking EC2 instance metadata service access in CI/CD runners",
+    "common_causes": [
+      "GitHub moby/moby#52694 — new default network driver gvisor-tap-vsock in Docker 29.5.0 blocks AWS IMDS access. Affected: containers needing IAM roles. Workaround: use slirp4netns instead. Critical for self-hosted GitHub Actions runners, CI/CD pipelines on EC2/EKS."
+    ],
+    "quick_fix": "Confirm the local service is running on the expected host and port, then retry the smallest request.",
+    "related_errors": [
+      "Docker"
+    ]
+  },
+  {
+    "slug": "cloudflare-jq-parse-error-invalid-numeric-literal-at-line-x-column-y-kv-bulk-get-output-differs-from-kv-key-get-for-same-records",
+    "title": "Cloudflare D1/KV bulk get corrupts stored JSON values with parse errors",
+    "description": "Debug Cloudflare Workers KV bulk get returning corrupted JSON compared to single key get — affects wrangler CLI and production data integrity Includes evidence for Cloudflare troubleshooting demand.",
+    "category": "Cloudflare",
+    "technology": "Cloudflare",
+    "error_signature": "jq: parse error: Invalid numeric literal at line X, column Y — kv bulk get output differs from kv key get for same records",
+    "search_intent": "Debug Cloudflare Workers KV bulk get returning corrupted JSON compared to single key get — affects wrangler CLI and production data integrity",
+    "common_causes": [
+      "GitHub cloudflare/workers-sdk#14046 — wrangler 4.92.0 / vitest-pool-workers 0.16.6. Bulk get produces different/corrupt output than single key get. Production impact: batch data reads return invalid JSON. Active issue updated today."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Cloudflare"
+    ]
+  },
+  {
+    "slug": "node-js-playwright-browser-context-teardown-hangs-after-test-body-completes-with-video-on-plus-trace-on-regression-from-v24-15-0",
+    "title": "Node.js 24.16.0 Playwright video/trace recording hangs at test suite teardown",
+    "description": "Fix Node.js 24.16.0 regression causing E2E test suites to hang indefinitely during Playwright cleanup phase Includes evidence for Node.js troubleshooting demand.",
+    "category": "Node.js",
+    "technology": "Node.js",
+    "error_signature": "Playwright browser context teardown hangs after test body completes with video:\"on\" + trace:\"on\" — regression from v24.15.0",
+    "search_intent": "Fix Node.js 24.16.0 regression causing E2E test suites to hang indefinitely during Playwright cleanup phase",
+    "common_causes": [
+      "GitHub nodejs/node#63495 — precise regression identified between 24.15.0 and 24.16.0. Affects self-hosted CI runners on Linux x64/arm64. Blocks automated testing pipelines. Specific version pin points clear fix boundary."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Node.js"
+    ]
+  },
+  {
+    "slug": "ollama-install-sh-downloads-pre-built-binaries-without-any-checksum-or-signature-verification-cvss-9-3-supply-chain-vulnerability",
+    "title": "Ollama install.sh missing cryptographic signature verification (CVSS 9.3 supply chain)",
+    "description": "Assess Ollama installation security risk and find verified alternative installation method for pre-built binaries Includes evidence for Ollama troubleshooting demand.",
+    "category": "Ollama",
+    "technology": "Ollama",
+    "error_signature": "install.sh downloads pre-built binaries without any checksum or signature verification — CVSS 9.3 supply chain vulnerability",
+    "search_intent": "Assess Ollama installation security risk and find verified alternative installation method for pre-built binaries",
+    "common_causes": [
+      "GitHub ollama/ollama#16292 — critical supply chain issue. README directs users to pipe install.sh directly to sh without verifying binary integrity. CVSS 9.3 rating. Affects all users installing Ollama via official one-liner. New security discovery published today."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Ollama"
+    ]
   }
 ]
