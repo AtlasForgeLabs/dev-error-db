@@ -33069,5 +33069,69 @@
     "related_errors": [
       "Docker"
     ]
+  },
+  {
+    "slug": "litellm-input-cost-per-token-cache-hit-field-is-dead-causing-silent-under-billing-of-cache-hit-costs",
+    "title": "LiteLLM silently under-bills cache hits due to dead pricing field input_cost_per_token_cache_hit",
+    "description": "Understand and fix silent under-billing in LiteLLM when cache hits are not being properly priced Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "input_cost_per_token_cache_hit field is dead, causing silent under-billing of cache hit costs",
+    "search_intent": "Understand and fix silent under-billing in LiteLLM when cache hits are not being properly priced",
+    "common_causes": [
+      "GitHub BerriAI/litellm issue #28854 identifies a critical billing bug where the input_cost_per_token_cache_hit field has stopped working, silently under-billing cache hit requests. Direct revenue impact: +3 boost factor for billing error on paid service. Category mapping: LiteLLM proxy billing → LiteLLM."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "LiteLLM"
+    ]
+  },
+  {
+    "slug": "langchain-media-type-validation-error-anthropic-base64-file-blocks-with-non-pdf-text-mime-types-fail-in-langchain",
+    "title": "LangChain Anthropic integration fails with media_type validation error for non-PDF base64 file blocks",
+    "description": "Fix media_type validation error when passing non-PDF text files as base64 to Claude via LangChain Includes evidence for LangChain troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "LangChain",
+    "error_signature": "media_type validation error: anthropic base64 file blocks with non-PDF text mime types fail in LangChain",
+    "search_intent": "Fix media_type validation error when passing non-PDF text files as base64 to Claude via LangChain",
+    "common_causes": [
+      "GitHub langchain-ai/langchain issue #37576 documents a concrete validation error in LangChain's Anthropic integration. Users get media_type validation errors when sending base64-encoded non-PDF files (images, text docs) through the chat model. Specific, actionable fix. Category mapping: LangChain framework error → AI Coding Tools."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "vercel-next-js-turbopack-next-build-hangs-at-0-cpu-on-canary-builds-fingerprint-matches-post-fix-pr-sharp-92210",
+    "title": "Next.js Turbopack next build hangs at 0% CPU on 16.3.0-canary due to fingerprint regression",
+    "description": "Fix Next.js build hanging indefinitely during Turbopack compilation after upgrading to 16.3.0-canary Includes evidence for Vercel / Next.js troubleshooting demand.",
+    "category": "Deployment",
+    "technology": "Vercel / Next.js",
+    "error_signature": "Turbopack next build hangs at 0% CPU on canary builds; fingerprint matches post-fix PR #92210",
+    "search_intent": "Fix Next.js build hanging indefinitely during Turbopack compilation after upgrading to 16.3.0-canary",
+    "common_causes": [
+      "GitHub vercel/next.js issue #93908 describes a build-breaking regression where Turbopack hangs at 0% CPU. Blocks deployments entirely for teams using Turbopack. Production deployment block = +2 boost. Regression pattern gives clear signature. Category mapping: Vercel/Next.js build failure → Deployment."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Deployment"
+    ]
+  },
+  {
+    "slug": "kubernetes-after-enabling-memoryqos-oom-occurs-more-frequently-on-containers-where-memory-request-equals-limit",
+    "title": "Kubernetes MemoryQoS OOM kills containers with request equal to limit",
+    "description": "Fix OOM kill behavior after enabling MemoryQoS capability in Kubernetes when container memory request equals limit Includes evidence for Kubernetes troubleshooting demand.",
+    "category": "Cloud Platforms",
+    "technology": "Kubernetes",
+    "error_signature": "After enabling MemoryQoS, OOM occurs more frequently on containers where memory request equals limit",
+    "search_intent": "Fix OOM kill behavior after enabling MemoryQoS capability in Kubernetes when container memory request equals limit",
+    "common_causes": [
+      "GitHub kubernetes/kubernetes issue #137880 reports increased OOM kills after MemoryQoS feature activation. Cloud platform cluster stability issue affecting production workloads. Memory request==limit is common pattern that now breaks. Category mapping: K8s cluster failure → Cloud Platforms."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Cloud Platforms"
+    ]
   }
 ]
