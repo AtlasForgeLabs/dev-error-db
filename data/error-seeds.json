@@ -32157,5 +32157,101 @@
     "related_errors": [
       "AI Coding Tools"
     ]
+  },
+  {
+    "slug": "github-copilot-copilot-exe-native-bex64-crash-when-launching-parallel-general-purpose-subagents-with-local-byok-openai-compatible-provider-on-windows",
+    "title": "GitHub Copilot CLI native crash on Windows with parallel subagents and BYOK provider",
+    "description": "Fix Copilot CLI native crash on Windows when using BYOK providers with multi-agent parallel execution Includes evidence for GitHub Copilot troubleshooting demand.",
+    "category": "GitHub Copilot",
+    "technology": "GitHub Copilot",
+    "error_signature": "copilot.exe native BEX64 crash when launching parallel general-purpose subagents with local BYOK/OpenAI-compatible provider on Windows",
+    "search_intent": "Fix Copilot CLI native crash on Windows when using BYOK providers with multi-agent parallel execution",
+    "common_causes": [
+      "Issue #3250 on github/copilot-cli (state: open, labels: area:agents, area:platform-windows, area:models). Windows-specific native crash of a paid subscription tool. Tier 0 API fetched. Category: GitHub Copilot (exact match)."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "GitHub Copilot"
+    ]
+  },
+  {
+    "slug": "openai-api-invalidurl-httpx-get-environment-proxies-splits-no-proxy-by-comma-only-not-newline-causing-malformed-proxy-urls",
+    "title": "InvalidURL error when NO_PROXY env var contains newline characters — OpenAI Python SDK",
+    "description": "Fix OpenAI client initialization failure when NO_PROXY environment variable contains newline-separated proxy entries Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "InvalidURL: httpx.get_environment_proxies() splits NO_PROXY by comma only, not newline, causing malformed proxy URLs",
+    "search_intent": "Fix OpenAI client initialization failure when NO_PROXY environment variable contains newline-separated proxy entries",
+    "common_causes": [
+      "Issue #3303 on openai/openai-python (bug label). Error occurs in Docker/.env/shell script environments where NO_PROXY commonly uses newlines. Directly impacts paid API key authentication flow. Category: OpenAI API (exact match per mapping table)."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "cloudflare-workflows-api-error-internal-server-code-10001-500-error-on-workflow-registration-step-during-wrangler-deploy",
+    "title": "wrangler deploy fails persistently with workflows.api.error.internal_server [code: 10001] on Cloudflare Free account",
+    "description": "Resolve persistent Cloudflare 500 Internal Server error on Workflow deployment via wrangler CLI Includes evidence for Cloudflare troubleshooting demand.",
+    "category": "Cloudflare",
+    "technology": "Cloudflare",
+    "error_signature": "workflows.api.error.internal_server [code: 10001]: 500 error on workflow registration step during wrangler deploy",
+    "search_intent": "Resolve persistent Cloudflare 500 Internal Server error on Workflow deployment via wrangler CLI",
+    "common_causes": [
+      "Issue #13915 on cloudflare/workers-sdk (labels: internal, workflows). Persistent 500 error specific to workflow registration; blocks deployments on paid features (Workflows). Distinct from transient incident #9110. Tier 0 API fetched. Category: Cloudflare (exact match)."
+    ],
+    "quick_fix": "Check the build output, project root, and deployment platform configuration before redeploying.",
+    "related_errors": [
+      "Cloudflare"
+    ]
+  },
+  {
+    "slug": "docker-yaml-map-merge-requires-map-or-sequence-of-maps-as-the-value-line-1-docker-compose-up-fails-with-yaml-anchor-merge-syntax",
+    "title": "Docker Compose v5.1.4 YAML map merge regression — 'map merge requires map or sequence of maps'",
+    "description": "Fix Docker Compose v5.1.4 regression breaking existing compose files that use YAML anchors and merge keys Includes evidence for Docker troubleshooting demand.",
+    "category": "Docker",
+    "technology": "Docker",
+    "error_signature": "yaml: map merge requires map or sequence of maps as the value (line 1) — docker-compose-up fails with YAML anchor merge syntax",
+    "search_intent": "Fix Docker Compose v5.1.4 regression breaking existing compose files that use YAML anchors and merge keys",
+    "common_causes": [
+      "Issue #13812 on docker/compose (labels: kind/bug, status/0-triage). New version-specific regression; working in v5.1.2, broken in v5.1.4. Affects Docker Desktop users with existing compose projects. Tier 0 API fetched. Category: Docker (exact match). Note: Docker daemon/connection errors are already covered but this is a distinct YAML parsing regression."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Docker"
+    ]
+  },
+  {
+    "slug": "aws-eof-errors-when-attempting-idle-connection-reuse-due-to-generic-90-second-timeout-config-in-http-client-transport",
+    "title": "AWS SDK Go v2 EOF errors on idle connection reuse due to default 90-second timeout config",
+    "description": "Understand and fix AWS Go SDK v2 connection pool EOF errors caused by 90-second idle timeout dropping long-lived connections Includes evidence for AWS troubleshooting demand.",
+    "category": "Cloud Platforms",
+    "technology": "AWS",
+    "error_signature": "EOF errors when attempting idle connection reuse due to generic 90-second timeout config in http.Client transport",
+    "search_intent": "Understand and fix AWS Go SDK v2 connection pool EOF errors caused by 90-second idle timeout dropping long-lived connections",
+    "common_causes": [
+      "Issue #3423 on aws/aws-sdk-go-v2 (labels: bug, needs-triage). Affects Go developers using AWS SDK in production with long-running services. Directly impacts AWS billing and API reliability. Tier 0 API fetched. Category: Cloud Platforms (per mapping rules for AWS/GCP/Azure/K8s)."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Cloud Platforms"
+    ]
+  },
+  {
+    "slug": "litellm-vertex-ai-models-show-as-unhealthy-in-model-health-status-dashboard-since-v1-84-0-health-check-returns-healthy-count-0-and-unhealthy-count-0-despite-models-being-operational",
+    "title": "LiteLLM v1.84.0 Vertex AI models incorrectly reported as Unhealthy in Model Health Status dashboard",
+    "description": "Fix LiteLLM model health monitoring regression where Vertex AI models falsely report unhealthy status Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "Vertex AI models show as 'Unhealthy' in Model Health Status dashboard since v1.84.0; health check returns healthy_count: 0 and unhealthy_count: 0 despite models being operational",
+    "search_intent": "Fix LiteLLM model health monitoring regression where Vertex AI models falsely report unhealthy status",
+    "common_causes": [
+      "Issue #28206 on BerriAI/litellm (labels: bug, proxy, llm translation). Proxy monitoring false positive affects LLM routing reliability for teams using Vertex AI via LiteLLM. Recent regression (v1.84.0). Tier 0 API fetched. Category: LiteLLM (exact match)."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "LiteLLM"
+    ]
   }
 ]
