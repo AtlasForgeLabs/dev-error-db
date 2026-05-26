@@ -33533,5 +33533,85 @@
     "related_errors": [
       "LiteLLM"
     ]
+  },
+  {
+    "slug": "openai-api-exceeded-retry-limit-last-status-429-too-many-requests-request-id-c2d7a2ba-a723-411f-a8f8-b60059d8e4c9",
+    "title": "exceeded retry limit, last status: 429 Too Many Requests — OpenAI Codex App",
+    "description": "Fix persistent 429 rate-limit errors blocking new chats in the free-tier OpenAI Codex app; user needs to understand quota limits, backoff behavior, and whether switching plans resolves it. Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "exceeded retry limit, last status: 429 Too Many Requests, request id: c2d7a2ba-a723-411f-a8f8-b60059d8e4c9",
+    "search_intent": "Fix persistent 429 rate-limit errors blocking new chats in the free-tier OpenAI Codex app; user needs to understand quota limits, backoff behavior, and whether switching plans resolves it.",
+    "common_causes": [
+      "Directly observed in real user issue on openai/codex repo (label: bug, rate-limits, app). User on free subscription sees 429 immediately on new chat. Category: OpenAI API because it involves OpenAI's API rate-limiting applied through the Codex frontend. High commercial value — directly blocks usage of paid API service."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "anthropic-api-overloaded-error-the-anthropic-api-is-experiencing-high-demand-and-returning-errors",
+    "title": "Anthropic API overloaded_error responses during peak traffic periods",
+    "description": "Understand how to handle Anthropic API overloaded_error responses (HTTP 529-equivalent), implement proper exponential backoff, and know when to expect recovery. Includes evidence for Anthropic API troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Anthropic API",
+    "error_signature": "overloaded_error: The Anthropic API is experiencing high demand and returning errors.",
+    "search_intent": "Understand how to handle Anthropic API overloaded_error responses (HTTP 529-equivalent), implement proper exponential backoff, and know when to expect recovery.",
+    "common_causes": [
+      "Based on well-documented Anthropic API error behavior from official docs and community reports. The overloaded_error is a distinct error type from generic 5xx — it carries structured response format with request_id and explicit recovery guidance. High commercial value: affects production integrations using Claude API. No single source URL because this is a systematic platform-level error pattern confirmed across multiple SDKs (Python, Node.js, langchain-anthropic)."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "Anthropic API"
+    ]
+  },
+  {
+    "slug": "claude-code-ci-checks-unavailable-check-that-gh-is-installed-and-authenticated",
+    "title": "Claude Code Desktop CI monitoring panel stuck on 'unavailable' after prerequisites met",
+    "description": "Fix Claude Desktop's CI monitoring panel that persistently shows unavailable despite all prerequisites being verified. Also /web-setup fails with login redirect to claude.ai/code. Windows UWP installation affected. Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "CI checks unavailable. Check that gh is installed and authenticated.",
+    "search_intent": "Fix Claude Desktop's CI monitoring panel that persistently shows unavailable despite all prerequisites being verified. Also /web-setup fails with login redirect to claude.ai/code. Windows UWP installation affected.",
+    "common_causes": [
+      "Real issue from anthropics/claude-code#62620 filed 2026-05-26. Affects Windows 11 Pro Claude Desktop 1.8555.2.0 via Windows Store/UWP. Two related errors: CI panel stuck + GitHub Auth flow broken. High commercial value for teams using Claude Code's built-in CI monitoring. Category: AI Coding Tools."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "litellm-apierror-exception-litellm-badrequesterror-request-failed",
+    "title": "LiteLLM Proxy APIError exceptions for backend provider failures",
+    "description": "Debug LiteLLM proxy errors including 4xx/5xx upstream failures, model-not-found errors, authentication failures from backend providers routed through LiteLLM. Users need to distinguish between LiteLLM-specific errors vs. backend provider errors. Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "APIError(Exception): litellm.BadRequestError: Request failed",
+    "search_intent": "Debug LiteLLM proxy errors including 4xx/5xx upstream failures, model-not-found errors, authentication failures from backend providers routed through LiteLLM. Users need to distinguish between LiteLLM-specific errors vs. backend provider errors.",
+    "common_causes": [
+      "Based on known LiteLLM exception hierarchy and common failure modes. LiteLLM wraps dozens of LLM providers behind a unified API — when any backend returns an error, LiteLLM raises its own Exception types (BadRequestError, AuthenticationError, RateLimitError, etc.). Production impact: every company running LiteLLM proxy is affected. Category: LiteLLM per mapping rules. Search results hit GitHub rate limit before extracting specific issue URLs."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "LiteLLM"
+    ]
+  },
+  {
+    "slug": "openai-api-macos-remote-control-stalls-host-app-server-responsive-but-remote-manager-stays-disconnected",
+    "title": "OpenAI Codex macOS remote control disconnects while host responsive",
+    "description": "Fix intermittent remote-control connection failures in the Codex app where the host server runs fine but the remote manager cannot establish or maintain a connection. Affected on macOS (Mac Studio). Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "macOS remote control stalls: host app-server responsive but remote manager stays disconnected",
+    "search_intent": "Fix intermittent remote-control connection failures in the Codex app where the host server runs fine but the remote manager cannot establish or maintain a connection. Affected on macOS (Mac Studio).",
+    "common_causes": [
+      "Real issue from openai/codex#23482 (filed 2026-05-19). Specific version info available: Codex App 26.513.31313, bundled CLI codex-cli 0.131.0-alpha.9. Distinct from the 429 rate-limit issue above. Category: OpenAI API as this is the Codex tool consuming OpenAI's API infrastructure."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "OpenAI API"
+    ]
   }
 ]
