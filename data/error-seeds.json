@@ -32093,5 +32093,69 @@
     "related_errors": [
       "OpenAI API"
     ]
+  },
+  {
+    "slug": "claude-code-api-error-the-socket-connection-was-closed-unexpectedly-for-more-information-pass-verbose-true-in-the-second-argument-to-fetch",
+    "title": "Intermittent socket connection was closed unexpectedly (ECONNRESET) on startup — ~40-70% failure rate across parallel startup fetches",
+    "description": "Fix Claude Code startup failures where 40-70% of invocations fail with ECONNRESET/TCP RST errors during parallel HTTPS requests at bootstrap, especially for responses >~30 words Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "API Error: The socket connection was closed unexpectedly. For more information, pass `verbose: true` in the second argument to fetch()",
+    "search_intent": "Fix Claude Code startup failures where 40-70% of invocations fail with ECONNRESET/TCP RST errors during parallel HTTPS requests at bootstrap, especially for responses >~30 words",
+    "common_causes": [
+      "GitHub Issue #62327 opened May 26 2026 by eduardoforlog on anthropics/claude-code. Has repro label, detailed debug logs showing four parallel endpoints failing simultaneously in ~167ms. Failure rate scales with response size (0% for 1-word, 33% for ~30-word, 40-70% for ~250-word). Root cause hypothesis: race condition in Bun HTTP client when N parallel HTTPS requests dispatched against freshly-constructed mTLS agent. Affects Claude Max users, has no workaround tried (env vars all ineffective). Category: AI Coding Tools per approved mapping."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "claude-code-error-remote-control-is-not-yet-enabled-for-your-account",
+    "title": "\"Remote Control is not yet enabled for your account\" — seatTier: null on active Max subscription",
+    "description": "Fix Claude Code 'claude rc' failing with seatTier: null despite having an active Max paid subscription with Stripe billing Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Error: Remote Control is not yet enabled for your account.",
+    "search_intent": "Fix Claude Code 'claude rc' failing with seatTier: null despite having an active Max paid subscription with Stripe billing",
+    "common_causes": [
+      "GitHub Issue #60983 opened May 20 2026 by vthanik on anthropics/claude-code. Paid Max subscriber unable to use Remote Control feature. ~/.claude.json shows seatTier: null, hasAvailableSubscription absent even after fresh login. Subscription created Feb 28 2026 via stripe_subscription. Multiple users affected (CoderLessColder, jamierpond). Resolution attempted but reopens — jamierpond commented May 26 still unresolved. High commercial value: breaks a key feature for paying customers. Category: AI Coding Tools per approved mapping."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "github-copilot-rate-limit-exceeded-while-using-github-copilot-in-vscode",
+    "title": "Frequent Rate Limit Issues When Calling GitHub Copilot via VSCode",
+    "description": "Fix frequent GitHub Copilot rate limiting in VSCode causing blocked development work for subscribers Includes evidence for GitHub Copilot troubleshooting demand.",
+    "category": "GitHub Copilot",
+    "technology": "GitHub Copilot",
+    "error_signature": "Rate limit exceeded while using GitHub Copilot in VSCode",
+    "search_intent": "Fix frequent GitHub Copilot rate limiting in VSCode causing blocked development work for subscribers",
+    "common_causes": [
+      "GitHub Community Discussion #150373 reports severe rate limit problems with Copilot in VSCode affecting work efficiency. Subscribers encountering rate limits that block productivity. Related to Cline extension interactions. High commercial value as Copilot is a paid subscription service. Category: GitHub Copilot per approved mapping."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "GitHub Copilot"
+    ]
+  },
+  {
+    "slug": "claude-code-goal-stop-hook-fails-with-prompt-is-too-long-when-goal-text-is-large",
+    "title": "Stop hook fails with \"Prompt is too long\" when goal text is large",
+    "description": "Fix Claude Code /goal command failing with prompt length error when using long goal descriptions in automated task workflows Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "/goal Stop hook fails with \"Prompt is too long\" when goal text is large",
+    "search_intent": "Fix Claude Code /goal command failing with prompt length error when using long goal descriptions in automated task workflows",
+    "common_causes": [
+      "GitHub Issue #58192 opened May 12 2026 by cghart on anthropics/claude-code. Area:hooks bug with has_repro tag. Affects automated/agentic workflows where goal descriptions are generated programmatically. 8 comments indicate community interest. Commercially relevant for teams using Claude Code for batch/automated tasks. Category: AI Coding Tools per approved mapping."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
   }
 ]
