@@ -33277,5 +33277,85 @@
     "related_errors": [
       "Cloudflare"
     ]
+  },
+  {
+    "slug": "claude-code-claudeai-mcp-missing-user-mcp-servers-scope-scopes-user-inference",
+    "title": "Claude Code Cowork macOS: MCP connectors fail due to missing OAuth scope user:mcp_servers",
+    "description": "Fix all claude.ai-hosted MCP connectors (Gmail, Google Drive, Calendar, web search) failing with zero tools exposed in Cowork sessions on macOS Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "[claudeai-mcp] Missing user:mcp_servers scope (scopes=user:inference)",
+    "search_intent": "Fix all claude.ai-hosted MCP connectors (Gmail, Google Drive, Calendar, web search) failing with zero tools exposed in Cowork sessions on macOS",
+    "common_causes": [
+      "Issue #62556 from anthropics/claude-code repo opened May 26, 2026. Root cause: Cowork OAuth request code path does not include user:mcp_servers scope required by the claudeai-mcp gateway. Confirmed still active in Claude 1.9255.0 as of May 26. All claude.ai-hosted connectors broken for every Cowork session; affects Max-plan users broadly. GitHub Actions triaged as area:auth area:mcp area:cowork platform:macos."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "claude-code-msix-packaged-claude-desktop-spawns-mcp-subprocess-shells-with-pathext-reduced-to-cpl-and-windir-emptied",
+    "title": "Claude Code Windows MSIX-packaged Desktop strips PATHEXT causing MCP subprocess shell corruption",
+    "description": "Fix MCP subprocess environment corruption in MSIX-packaged Claude Code on Windows that breaks tool execution Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "MSIX-packaged Claude Desktop spawns MCP subprocess shells with PATHEXT reduced to .CPL and WINDIR emptied",
+    "search_intent": "Fix MCP subprocess environment corruption in MSIX-packaged Claude Code on Windows that breaks tool execution",
+    "common_causes": [
+      "Issue #62574 from anthropics/claude-code opened May 26, 2026 (~59 min before discovery). Windows-specific bug where MSIX app virtualization corrupts PATH/PATHEXT/WINDIR env vars for spawned MCP sub-process shells. Affects Windows desktop users only, separate fix path from macOS Cowork issue #62556. Tags: area:desktop area:mcp platform:windows."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "openai-api-oauth-client-marked-payment-required-despite-remaining-credits-subsequently-gpt-5-5-unavailable-auth",
+    "title": "CLIProxyAPI: Codex returns payment_required despite remaining credits, then gpt-5.5 unavailable auth",
+    "description": "Fix incorrect billing status causing Codex to reject authenticated requests even when account has sufficient credits Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "OAuth client marked payment_required despite remaining credits; subsequently gpt-5.5 unavailable auth",
+    "search_intent": "Fix incorrect billing status causing Codex to reject authenticated requests even when account has sufficient credits",
+    "common_causes": [
+      "Issue #3491 from router-for-me/CLIProxyAPI, opened ~6 days ago. Reports that Codex OAuth client receives payment_required flag despite having remaining balance, blocking subsequent gpt-5.5 access. Affects self-hosted proxy users routing OpenAI-compatible API calls. High commercial value as it impacts paid API billing decisions. Tagged: bug, priority-high."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "cursor-openai-errors-show-up-as-missing-field-message-instead-of-the-real-cause-e-g-context-overflow-quota-exceeded",
+    "title": "Zed IDE displays OpenAI raw errors as 'missing field message' instead of real cause",
+    "description": "Fix Zed IDE hiding real OpenAI API error causes behind generic missing field message, surfacing actionable errors like context_overflow or insufficient_quota to users Includes evidence for Cursor troubleshooting demand.",
+    "category": "Cursor",
+    "technology": "Cursor",
+    "error_signature": "OpenAI errors show up as missing field message instead of the real cause (e.g. context overflow, quota exceeded)",
+    "search_intent": "Fix Zed IDE hiding real OpenAI API error causes behind generic missing field message, surfacing actionable errors like context_overflow or insufficient_quota to users",
+    "common_causes": [
+      "Issue #57024 from zed-industries/zed, opened ~8 days ago. When Zed's AI features encounter OpenAI API errors, the error message shows 'missing field `message`' instead of the actual underlying cause (context overflow, quota exceeded). Tags: area:ai/openai, priority:P3, frequency:uncommon. Commercially relevant because Zed heavily markets AI coding features; users cannot diagnose whether issues are billing, quota, or model-related."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "Cursor"
+    ]
+  },
+  {
+    "slug": "litellm-cuga-lite-bind-tools-mode-all-crashes-on-groq-when-tool-count-128-provider-400",
+    "title": "LiteLLM cuga-agent crashes on Groq when tool count exceeds 128 (provider 400)",
+    "description": "Fix LiteLLM provider 400 error crash when binding too many tools (>128) via Groq provider through LiteLLM proxy Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "cuga_lite_bind_tools_mode=all crashes on Groq when tool count > 128 (provider 400)",
+    "search_intent": "Fix LiteLLM provider 400 error crash when binding too many tools (>128) via Groq provider through LiteLLM proxy",
+    "common_causes": [
+      "Issue #202 from cuga-project/cuga-agent, opened ~15 days ago. LiteLLM passes through Groq provider 400 errors when tool count exceeds backend-cap limits in cuga_lite_bind_tools_mode=all mode. Production-impacting crash for agents using many tools routed through LiteLLM to Groq."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "LiteLLM"
+    ]
   }
 ]
