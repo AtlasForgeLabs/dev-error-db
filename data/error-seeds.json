@@ -32877,5 +32877,101 @@
     "related_errors": [
       "OpenAI API"
     ]
+  },
+  {
+    "slug": "anthropic-api-api-error-529-type-overloaded-error-message-overloaded",
+    "title": "Claude API HTTP 529 Overloaded Error During Peak Hours",
+    "description": "Understanding and working around Anthropic API HTTP 529 overloaded_error during peak traffic — especially Opus model capacity saturation where API rejects connections to prevent system crash, distinct from rate limiting (429) Includes evidence for Anthropic API troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Anthropic API",
+    "error_signature": "API Error (529 {\"type\":\"overloaded_error\",\"message\":\"Overloaded\"})",
+    "search_intent": "Understanding and working around Anthropic API HTTP 529 overloaded_error during peak traffic — especially Opus model capacity saturation where API rejects connections to prevent system crash, distinct from rate limiting (429)",
+    "common_causes": [
+      "Multiple authoritative sources document Claude API 529 overloaded_error: official Claude API docs confirm 529 = overloaded_error; izoate.com provides detailed troubleshooting guide distinguishing 529 from 429; Codersera confirms 529 is capacity constraint not counted against usage quota. Critical during peak US business hours and new model launches. Category mapping: Anthropic API → Anthropic API per approved category table."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "Anthropic API"
+    ]
+  },
+  {
+    "slug": "claude-code-mcp-error-32000-connection-closed",
+    "title": "Claude Code MCP Server Crashes with Error -32000 and 'Connection closed'",
+    "description": "Fixing Claude Code MCP server crashes where third-party MCP servers fail to start or exit mid-handshake, returning generic JSON-RPC -32000 errors with 'Connection closed' message Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "MCP error -32000: Connection closed",
+    "search_intent": "Fixing Claude Code MCP server crashes where third-party MCP servers fail to start or exit mid-handshake, returning generic JSON-RPC -32000 errors with 'Connection closed' message",
+    "common_causes": [
+      "Codsera 2026 field guide documents MCP -32000 as the JSON-RPC generic server-error code in practice meaning the MCP server process crashed during initialization or exited mid-handshake. Also corroborated by GitHub issue #3273 (anthropics/claude-code) about Claude Code not working with MCP servers lacking certain capabilities. Category mapping: Claude Code → AI Coding Tools per approved category table."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "claude-code-http-401-authentication-error-oauth-token-expired-authorization-failed",
+    "title": "Claude Code OAuth Token Expiry Mid-Session Causes Cascading 401 Authentication Errors",
+    "description": "Resolving Claude Code OAuth token expiration mid-autonomous-run sessions causing cascading authentication errors on every subsequent tool call, requiring /logout followed by /login sequence Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "HTTP 401 authentication_error: OAuth token expired / authorization failed",
+    "search_intent": "Resolving Claude Code OAuth token expiration mid-autonomous-run sessions causing cascading authentication errors on every subsequent tool call, requiring /logout followed by /login sequence",
+    "common_causes": [
+      "Codsera 2026 guide details HTTP 401 auth failure: OAuth token expiring mid-run causes every subsequent tool call to return authentication_error making session unrecoverable until re-auth. Workaround requires /logout then /login (not just /login). A documented 2026 regression exists where fresh browser login completes but first API call still 401s. Category mapping: Claude Code → AI Coding Tools per approved category table."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "cursor-all-model-services-unavailable-every-model-shows-unavailable-despite-network-diagnostics-passing-inside-cursor",
+    "title": "Cursor 'Unmodel Services Unavailable' After Region Check Failure",
+    "description": "Fixing Cursor IDE showing complete model unavailability for ALL models despite network connectivity checks passing within the editor — likely related to region-blocking and proxy configuration conflicts Includes evidence for Cursor troubleshooting demand.",
+    "category": "Cursor",
+    "technology": "Cursor",
+    "error_signature": "All model services unavailable — every model shows unavailable despite network diagnostics passing inside Cursor",
+    "search_intent": "Fixing Cursor IDE showing complete model unavailability for ALL models despite network connectivity checks passing within the editor — likely related to region-blocking and proxy configuration conflicts",
+    "common_causes": [
+      "Forum.cursor.com thread reports users suddenly unable to use any model services regardless of selected model, with internal network diagnostics showing connectivity is fine. aliutiev.com articles describe region-blocking fix using ClashX Pro Enhanced Mode routing. This affects paying Cursor subscription users who cannot code at all. Category mapping: Cursor IDE → Cursor per approved category table."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Cursor"
+    ]
+  },
+  {
+    "slug": "claude-code-claude-code-mcp-add-header-authorization-bearer-fails-connectors-panel-has-no-custom-header-surface",
+    "title": "Claude Code Cannot Connect to Custom MCP Servers Requiring Authorization Headers",
+    "description": "Adding MCP servers that require custom Authorization headers (Bearer tokens, API keys) via Claude Code cli — current workaround claude mcp add --header is inaccessible through Connectors UI and .mcp.json may be overwritten on updates Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Claude Code MCP add --header Authorization Bearer fails; Connectors panel has no custom-header surface",
+    "search_intent": "Adding MCP servers that require custom Authorization headers (Bearer tokens, API keys) via Claude Code cli — current workaround claude mcp add --header is inaccessible through Connectors UI and .mcp.json may be overwritten on updates",
+    "common_causes": [
+      "GitHub issue #3273 on anthropics/claude-code repo documents a gap: CLI workaround 'claude mcp add --header \"Authorization: Bearer ...\"' is not reachable through the Connectors panel, and the plugin's .mcp.json lives at an app-managed path that may be overwritten on updates. This affects developers connecting Claude Code to authenticated internal systems. Category mapping: Claude Code → AI Coding Tools."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "claude-code-http-503-edge-unreachable-request-didn-t-make-it-past-cloudflare-or-regional-gateway",
+    "title": "Claude Code HTTP 503 Edge Gateway Unreachable Error Behind Corporate Proxy",
+    "description": "Troubleshooting Claude Code returning HTTP 503 backend unreachable errors caused by corporate VPN/ZTNA/proxy breaking long-lived HTTPS streams to api.anthropic.com Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "HTTP 503: edge unreachable — request didn't make it past Cloudflare or regional gateway",
+    "search_intent": "Troubleshooting Claude Code returning HTTP 503 backend unreachable errors caused by corporate VPN/ZTNA/proxy breaking long-lived HTTPS streams to api.anthropic.com",
+    "common_causes": [
+      "Codsera 2026 guide identifies HTTP 503 as edge-level failure distinct from 529: request doesn't reach Anthropic backend, usually blocked by corporate proxy, ZTNA agent, or flapping VPN affecting long-lived HTTPS streams. Diagnostic steps include curl -I https://api.anthropic.com/v1/messages to isolate network vs API issue. Category mapping: Claude Code → AI Coding Tools."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
   }
 ]
