@@ -33005,5 +33005,69 @@
     "related_errors": [
       "Ollama"
     ]
+  },
+  {
+    "slug": "anthropic-api-402-billing-error-there-s-an-issue-with-your-billing-or-payment-information",
+    "title": "Anthropic Claude API 402 Billing Error — Payment Issue on Claude Platform",
+    "description": "Fix 402 billing_error when attempting to use Claude API after payment method failure or insufficient funds Includes evidence for Anthropic API troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Anthropic API",
+    "error_signature": "402 - billing_error : There's an issue with your billing or payment information",
+    "search_intent": "Fix 402 billing_error when attempting to use Claude API after payment method failure or insufficient funds",
+    "common_causes": [
+      "Source: https://docs.anthropic.com/en/api/errors — Documents 402 billing_error explicitly. Covers both Claude Console and AWS Marketplace billing flows. Distinguishes between consumer and commercial pricing tiers. Not yet covered in dev-error-db as separate entry beyond generic 401 Unauthorized."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Anthropic API"
+    ]
+  },
+  {
+    "slug": "anthropic-api-529-overloaded-error-the-api-is-temporarily-overloaded",
+    "title": "Anthropic Claude API 529 Overloaded Error — API Temporarily Unavailable",
+    "description": "Fix 529 overloaded_error when Claude API returns 'API is temporarily overloaded' due to high traffic Includes evidence for Anthropic API troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Anthropic API",
+    "error_signature": "529 - overloaded_error : The API is temporarily overloaded",
+    "search_intent": "Fix 529 overloaded_error when Claude API returns 'API is temporarily overloaded' due to high traffic",
+    "common_causes": [
+      "Source: https://docs.anthropic.com/en/api/errors — HTTP error code section documents 529 overloaded_error separately from 429 rate_limit_error. Describes occurrence when APIs experience high traffic across ALL users, and explains that organizations with sharp usage increases may see both 429 AND 529 concurrently. Distinct from OpenAI's error set — not yet covered in dev-error-db."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "Anthropic API"
+    ]
+  },
+  {
+    "slug": "claude-code-the-requested-model-is-not-supported",
+    "title": "Claude Code Model Request Failed — Unsupported Model Error",
+    "description": "Fix Claude Code showing 'The requested model is not supported' error when requesting a model variant Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "The requested model is not supported",
+    "search_intent": "Fix Claude Code showing 'The requested model is not supported' error when requesting a model variant",
+    "common_causes": [
+      "Source: Reddit r/GithubCopilot community (cross-applicability to Claude Code). Error occurs when requesting models that are deprecated, region-locked, or require special permissions. Community report from May 26 2026. Related to AI coding tool model routing — distinct from general 'model not found' errors."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "docker-cannot-connect-to-the-docker-daemon-at-unix-var-run-docker-sock",
+    "title": "Docker Desktop Troubleshooting — Connection Errors and Daemon Issues",
+    "description": "Fix Docker Desktop connection errors where docker commands fail with daemon not responding Includes evidence for Docker troubleshooting demand.",
+    "category": "Docker",
+    "technology": "Docker",
+    "error_signature": "Cannot connect to the Docker daemon at unix:///var/run/docker.sock",
+    "search_intent": "Fix Docker Desktop connection errors where docker commands fail with daemon not responding",
+    "common_causes": [
+      "Source: https://docs.docker.com/desktop/troubleshoot/ — Official Docker troubleshooting docs with 514KB content confirming structured troubleshooting flow. Docker cannot-connect-to-daemon already partially covered but this target focuses on Docker Desktop-specific edge cases (macOS, WSL2 interop, VPN conflicts) that generate additional user queries."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Docker"
+    ]
   }
 ]
