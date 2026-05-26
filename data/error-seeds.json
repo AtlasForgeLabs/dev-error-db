@@ -32973,5 +32973,37 @@
     "related_errors": [
       "AI Coding Tools"
     ]
+  },
+  {
+    "slug": "litellm-the-request-signature-we-calculated-does-not-match-the-signature-you-provided",
+    "title": "LiteLLM bedrock/claude_platform route always returns 401 — duplicate Content-Type in SigV4 canonical string",
+    "description": "Fix AWS Bedrock Claude platform integration returning 401 authentication_error due to duplicate content-type headers in SigV4 signing Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "The request signature we calculated does not match the signature you provided.",
+    "search_intent": "Fix AWS Bedrock Claude platform integration returning 401 authentication_error due to duplicate content-type headers in SigV4 signing",
+    "common_causes": [
+      "Found in BerriAI/litellm GitHub issues #28256. Root cause: _sign_request() prepends uppercase Content-Type while get_anthropic_headers() sets lowercase content-type; both survive as dict keys, breaking AWS SigV4 canonical string generation. Affects all requests through bedrock/claude_platform/<model> route introduced in v1.86.0-rc.1. Clear fix PR #28491 exists. Category mapping: LiteLLM proxy billing/auth failure on paid Anthropic AWS route."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "LiteLLM"
+    ]
+  },
+  {
+    "slug": "ollama-error-model-leckminartor-qwen3-5-uncensored-397b-not-found",
+    "title": "Ollama Cloud model tag -cloud stripped during run and API calls on Windows",
+    "description": "Fix Ollama Cloud model tags being truncated (removing -cloud suffix) causing model-not-found errors when running cloud models via CLI/API Includes evidence for Ollama troubleshooting demand.",
+    "category": "Ollama",
+    "technology": "Ollama",
+    "error_signature": "Error: model 'leckminartor/qwen3.5-uncensored:397b' not found",
+    "search_intent": "Fix Ollama Cloud model tags being truncated (removing -cloud suffix) causing model-not-found errors when running cloud models via CLI/API",
+    "common_causes": [
+      "Found in ollama/ollama GitHub issues #16314 (opened today 2026-05-26). When using Ollama Pro Cloud on Windows, ollama pull correctly registers tags like :397b-cloud, but ollama run and /api/chat strip the -cloud suffix, resulting in model-not-found. Affects Ollama Pro paid users specifically. Works around via Modelfile alias. Category mapping: Ollama local LLM serving error."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Ollama"
+    ]
   }
 ]
