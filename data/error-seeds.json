@@ -32493,5 +32493,101 @@
     "related_errors": [
       "LiteLLM"
     ]
+  },
+  {
+    "slug": "claude-code-tool-call-opening-tag-gets-stuck-on-a-malformed-form-truncated-abbreviated-wrong-namespace-full-width-bracket-every-subsequent-tool-call-remains-malformed-harness-fails-to-parse-work-halts-until-new-session-started",
+    "title": "Claude Code tool-call opening tag gets stuck malformed causing unrecoverable session",
+    "description": "Recover from Claude Code tool-call parsing corruption without losing work context — find workaround for stuck session caused by malformed antml:invoke tags Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Tool-call opening tag gets stuck on a malformed form (truncated, abbreviated, wrong namespace, full-width bracket) — every subsequent tool call remains malformed, harness fails to parse, work halts until new session started",
+    "search_intent": "Recover from Claude Code tool-call parsing corruption without losing work context — find workaround for stuck session caused by malformed antml:invoke tags",
+    "common_causes": [
+      "GitHub issue #62407 on anthropics/claude-code, created 2026-05-26. Critical session-corruption bug: once model emits malformed tool-call opening tag, entire session becomes unrecoverable. Only fix is starting new session (data loss). Labels: bug, duplicate, platform:windows, area:model, area:core. Extremely high commercial value for paid Claude Code users running long automated sessions."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "claude-code-agent-crashes-with-exit-1-before-init-attempt-to-recover-resume-agent-after-its-working-directory-was-moved-or-deleted-results-in-immediate-crash-at-bunfs-root-src-entrypoints-cli-js-11884",
+    "title": "Claude Code agent crashes with exit 1 before init when working directory moves",
+    "description": "Fix Claude Code agent crash when project directory is relocated or removed after agent creation prevents resuming work sessions Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Agent crashes with exit 1 before init — attempt to recover/resume agent after its working directory was moved or deleted results in immediate crash at $bunfs/root/src/entrypoints/cli.js:11884",
+    "search_intent": "Fix Claude Code agent crash when project directory is relocated or removed after agent creation prevents resuming work sessions",
+    "common_causes": [
+      "GitHub issue #62406 on anthropics/claude-code, created 2026-05-26 (hours ago). Clear reproduce steps: start agent, move/delete project dir, attempt recovery → crash. Labels: bug, platform:macos, area:agent-view. Direct business impact — paid Claude Code users lose productivity sessions. Not in covered-errors.md."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "github-actions-actions-glob-v0-7-0-breaks-esm-actions-syntaxerror-the-requested-module-minimatch-does-not-provide-an-export-named-minimatch-at-lib-internal-pattern-js-5-import-statement",
+    "title": "@actions/glob v0.7.0 breaks ESM actions with SyntaxError from minimatch v10 migration",
+    "description": "Fix ESM action crash caused by @actions/glob v0.7.0 bumping minimatch to v10 without updating named import compatibility Includes evidence for GitHub Actions troubleshooting demand.",
+    "category": "GitHub Actions",
+    "technology": "GitHub Actions",
+    "error_signature": "@actions/glob v0.7.0 breaks ESM actions: SyntaxError — The requested module minimatch does not provide an export named Minimatch at lib/internal-pattern.js:5 import statement",
+    "search_intent": "Fix ESM action crash caused by @actions/glob v0.7.0 bumping minimatch to v10 without updating named import compatibility",
+    "common_causes": [
+      "GitHub issue #2408 on actions/toolkit, created 2026-05-15. Clear root cause: PR #2355 bumped minimatch v3→v10 but internal-pattern.js still uses named import { Minimatch }. minimmate v10 doesn't export Minimatch as named export, crashing ESM contexts. Impacts any ESM-based GitHub Action using @actions/glob. Not in covered-errors.md."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "GitHub Actions"
+    ]
+  },
+  {
+    "slug": "python-invalidurl-error-when-no-proxy-environment-variable-contains-newline-characters-httpx-get-environment-proxies-only-splits-by-comma-newlines-become-part-of-hostname-triggering-url-validation-failure",
+    "title": "OpenAI Python SDK raises InvalidURL when NO_PROXY contains newline characters",
+    "description": "Fix HTTPX InvalidURL crash caused by multiline NO_PROXY env vars (common in Docker/.env files) when using openai-python SDK Includes evidence for Python troubleshooting demand.",
+    "category": "Python",
+    "technology": "Python",
+    "error_signature": "InvalidURL error when NO_PROXY environment variable contains newline characters — httpx get_environment_proxies() only splits by comma, newlines become part of hostname triggering URL validation failure",
+    "search_intent": "Fix HTTPX InvalidURL crash caused by multiline NO_PROXY env vars (common in Docker/.env files) when using openai-python SDK",
+    "common_causes": [
+      "GitHub issue #3303 on openai-python repo, created 2026-05-24. Bug report with detailed reproduction steps showing httpx.InvalidURL raised due to newline-separated proxy entries. Related PR #3305 fixes this. High commercial value as it affects production deployments using Docker/.env patterns. Covers both OpenAI SDK and broader Python HTTP client chain."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Python"
+    ]
+  },
+  {
+    "slug": "cloudflare-workers-kv-bulk-corrupts-json-values-jq-parse-error-invalid-numeric-literal-at-line-6-column-0-when-using-wrangler-kv-bulk-get-on-stored-json",
+    "title": "Cloudflare Workers KV bulk get corrupts JSON values returning parse errors",
+    "description": "Fix corrupted JSON output from Cloudflare Workers KV bulk get command causing parse errors in downstream processing Includes evidence for Cloudflare Workers troubleshooting demand.",
+    "category": "Cloudflare",
+    "technology": "Cloudflare Workers",
+    "error_signature": "kv bulk corrupts json values — jq: parse error Invalid numeric literal at line 6 column 0 when using wrangler kv bulk get on stored JSON",
+    "search_intent": "Fix corrupted JSON output from Cloudflare Workers KV bulk get command causing parse errors in downstream processing",
+    "common_causes": [
+      "GitHub issue #14046 on cloudflare/workers-sdk, created 2026-05-25. User confirms kv key get works correctly but kv bulk get returns corrupted output. Environment: Fedora Linux, Node 24, npm 11, wrangler 4.92.0. Affects production data retrieval workflows using Wrangler CLI. Not in covered-errors.md."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Cloudflare"
+    ]
+  },
+  {
+    "slug": "langchain-anthropic-base64-file-blocks-with-non-pdf-text-mime-types-fail-with-media-type-validation-error-langchain-anthropic-rejects-image-text-content-encoded-as-base64-data-blocks-when-mime-type-isn-t-application-pdf",
+    "title": "LangChain anthropic integration fails with media_type validation error on non-PDF text MIME types",
+    "description": "Fix LangChain anthropic integration rejection of valid non-PDF base64 text/image content in multimodal chat messages Includes evidence for LangChain troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "LangChain",
+    "error_signature": "anthropic: base64 file blocks with non-PDF text mime types fail with media_type validation error — langchain-anthropic rejects image/text content encoded as base64 data blocks when mime type isn't application/pdf",
+    "search_intent": "Fix LangChain anthropic integration rejection of valid non-PDF base64 text/image content in multimodal chat messages",
+    "common_causes": [
+      "GitHub issue #37576 on langchain-ai/langchain, created 2026-05-20. Bug in langchain-anthropic package rejecting valid text/image MIME types in Anthropic API data blocks. Labels: bug, anthropic, external. Related to core issue #36939 hardcoding mime_type='application/pdf'. Impacts developers building multimodal AI apps with mixed text/image content via LangChain. Not in covered-errors.md."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
   }
 ]
