@@ -32589,5 +32589,101 @@
     "related_errors": [
       "AI Coding Tools"
     ]
+  },
+  {
+    "slug": "litellm-proxy-input-cost-per-token-cache-hit-is-declared-in-modelinfobase-schema-but-never-consumed-by-cost-calculator-prompt-cache-hit-tokens-silently-cost-0-instead-of-charged-rate",
+    "title": "LiteLLM input_cost_per_token_cache_hit Dead Field — Silent Under-Billing for Cache Hits",
+    "description": "DevOps engineer running LiteLLM proxy notices unexpected low costs; discovered that the input_cost_per_token_cache_hit pricing field is defined but dead code causes cache-hit tokens to be billed at zero — silently under-billing by potentially huge margins. Includes evidence for LiteLLM Proxy troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM Proxy",
+    "error_signature": "input_cost_per_token_cache_hit is declared in ModelInfoBase schema but never consumed by cost calculator; prompt-cache-hit tokens silently cost $0 instead of charged rate",
+    "search_intent": "DevOps engineer running LiteLLM proxy notices unexpected low costs; discovered that the input_cost_per_token_cache_hit pricing field is defined but dead code causes cache-hit tokens to be billed at zero — silently under-billing by potentially huge margins.",
+    "common_causes": [
+      "Found via GitHub API on BerriAI/litellm/issues/28854 (2026-05-26). The field input_cost_per_token_cache_hit is declared in the pricing schema ModelInfoBase and accepted by the allowlist, but NO code path reads it. When a model declares only this legacy key, cache_read_input_token_cost resolves to None→0.0, so all cached prompt tokens are free. With high-volume LiteLLM proxy deployments this translates to real revenue loss. Category: LiteLLM — Proxy billing bug with direct financial impact on operators running LiteLLM as a monetization layer."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "LiteLLM"
+    ]
+  },
+  {
+    "slug": "cloudflare-ai-gateway-aigatewayerror-name-aigatewayerror-internalcode-2009-401-unauthorized",
+    "title": "AI Gateway 401 Unauthenticated — AiGatewayError 2009 vs Provider Credential Rejection",
+    "description": "Developer uses Cloudflare AI Gateway Unified Billing, gets 401 unauthenticated; needs to distinguish between missing gateway auth token (cf-aig-authorization) versus upstream provider key failure. Includes evidence for Cloudflare AI Gateway troubleshooting demand.",
+    "category": "Cloudflare",
+    "technology": "Cloudflare AI Gateway",
+    "error_signature": "AiGatewayError: name=\"AiGatewayError\", internalCode=2009, 401 Unauthorized",
+    "search_intent": "Developer uses Cloudflare AI Gateway Unified Billing, gets 401 unauthenticated; needs to distinguish between missing gateway auth token (cf-aig-authorization) versus upstream provider key failure.",
+    "common_causes": [
+      "Found via GitHub API on cloudflare/cloudflare-docs#31050 (2026-05-25). A new undocumented internalCode 2009 is returned by AI Gateway when the gateway-level cf-aig-authorization token is missing or invalid. Currently indistinguishable from provider 401s without explicit documentation. Category: Cloudflare — Cloudflare platform-specific error with direct billing/auth impact."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "Cloudflare"
+    ]
+  },
+  {
+    "slug": "cloudflare-durable-objects-kv-rangeerror-values-cannot-be-larger-than-131072-bytes",
+    "title": "Cloudflare Durable Objects RangeError — KV Value Exceeds 128 KiB",
+    "description": "Developer storing data via Durable Object KV-backed put() hits undocumented limit; sees generic RangeError without guidance on 128 KiB cap. Includes evidence for Cloudflare Durable Objects / KV troubleshooting demand.",
+    "category": "Cloudflare",
+    "technology": "Cloudflare Durable Objects / KV",
+    "error_signature": "RangeError: Values cannot be larger than 131072 bytes",
+    "search_intent": "Developer storing data via Durable Object KV-backed put() hits undocumented limit; sees generic RangeError without guidance on 128 KiB cap.",
+    "common_causes": [
+      "Found via GitHub API on cloudflare/workers-sdk/issues/14046 and cloudflare/cloudflare-docs/pull/31048 (2026-05-25). KV put() throws RangeError when serialized size exceeds 131072 bytes. The error message is not documented anywhere — developers get a confusing generic range error. Category: Cloudflare — Cloudflare platform storage limit error affecting Workers/Durable Objects production apps."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Cloudflare"
+    ]
+  },
+  {
+    "slug": "cloudflare-d1-too-many-columns-on-table-sqlite-error-create-table-100-columns-too-many-sql-variables-in-prepared-statement-100-bound-parameters",
+    "title": "Cloudflare D1_SQLITE_FULL — Table Column Limit and Bound Parameter Limit Errors",
+    "description": "Developer creates D1 database tables or prepared statements exceeding D1's per-table column limit (100) or per-query bound-parameter limit (100); receives undocumented SQLITE_ERROR without actionable guidance. Includes evidence for Cloudflare D1 troubleshooting demand.",
+    "category": "Cloudflare",
+    "technology": "Cloudflare D1",
+    "error_signature": "too many columns on <table>: SQLITE_ERROR (CREATE TABLE >100 columns); too many SQL variables in prepared statement (>100 bound parameters)",
+    "search_intent": "Developer creates D1 database tables or prepared statements exceeding D1's per-table column limit (100) or per-query bound-parameter limit (100); receives undocumented SQLITE_ERROR without actionable guidance.",
+    "common_causes": [
+      "Found via GitHub API on cloudflare/cloudflare-docs/pull/31047 (2026-05-25). Two errors returned by D1 when exceeding its documented limits — per-table column cap of 100 and per-query bound parameter cap of 100 — were not in the D1_ERROR catalog, making them hard to debug programmatically. Category: Cloudflare — New undocumented errors in Cloudflare D1 serverless SQL that lack proper documentation."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Cloudflare"
+    ]
+  },
+  {
+    "slug": "vercel-next-js-webpack-callback-never-called-build-hangs-indefinitely-or-throws-unhandled-promise-rejection-when-next-mdx-plugin-string-path-fails-to-resolve-typo-missing-package",
+    "title": "Vercel next-mdx Loader Plugin Resolution Failure Hangs Build Indefinitely",
+    "description": "Developer deploying Next.js on Vercel with MDX config has a typo in plugin path or missing dependency; the build process silently hangs for minutes before eventually timing out with an unhandled promise rejection instead of a clear error identifying the bad plugin. Includes evidence for Vercel Next.js troubleshooting demand.",
+    "category": "Deployment",
+    "technology": "Vercel Next.js",
+    "error_signature": "Webpack callback never called → build hangs indefinitely or throws unhandled promise rejection when next-mdx plugin string path fails to resolve (typo, missing package)",
+    "search_intent": "Developer deploying Next.js on Vercel with MDX config has a typo in plugin path or missing dependency; the build process silently hangs for minutes before eventually timing out with an unhandled promise rejection instead of a clear error identifying the bad plugin.",
+    "common_causes": [
+      "Found via GitHub API on vercel/next.js/pull/94119 resolving #94117 (2026-05-26). The next-mdx webpack loader does not chain .catch() after Promise resolution, so when a plugin path fails to resolve (typo, missing package), the webpack callback is never invoked. Result: build hangs indefinitely instead of producing a clear error. Category: Deployment — Vercel/Next.js deployment build error that blocks CI/CD pipeline completion."
+    ],
+    "quick_fix": "Check the build output, project root, and deployment platform configuration before redeploying.",
+    "related_errors": [
+      "Deployment"
+    ]
+  },
+  {
+    "slug": "aws-sdk-go-v2-eof-no-additional-error-text-followed-by-automatic-sdk-retry-occurs-consistently-on-sns-6s-idle-eventbridge-6s-sqs-60s-dynamodb-60-100s",
+    "title": "AWS SDK Go v2 EOF — Generic Idle Connection Timeout Error Across Lambda Services",
+    "description": "Go developer deploying AWS Lambda functions sees cryptic 'EOF' errors with no detail on failed requests; discovers SDK default 90-second idle timeout is longer than what backend services (SNS, EventBridge) allow connections to stay alive, causing unnecessary retries and latency. Includes evidence for AWS SDK Go v2 troubleshooting demand.",
+    "category": "Cloud Platforms",
+    "technology": "AWS SDK Go v2",
+    "error_signature": "EOF — no additional error text, followed by automatic SDK retry; occurs consistently on SNS (~6s idle), EventBridge (~6s), SQS (~60s), DynamoDB (~60-100s)",
+    "search_intent": "Go developer deploying AWS Lambda functions sees cryptic 'EOF' errors with no detail on failed requests; discovers SDK default 90-second idle timeout is longer than what backend services (SNS, EventBridge) allow connections to stay alive, causing unnecessary retries and latency.",
+    "common_causes": [
+      "Found via GitHub API on aws/aws-sdk-go-v2/issues/3423 (2026-05-24). Production Lambda app calling SNS, EventBridge, SQS, DynamoDB sees consistent 'EOF' errors because SDK 90-second IdleConnTimeout exceeds actual service keepalive timeouts (6s for SNS/EventBridge, ~60s for SQS/DynamoDB). The error message provides zero context — just bare 'EOF'. Users must debug why their request 'suddenly failed' with no actionable info. Category: Cloud Platforms — AWS SDK connectivity error with broad production impact across multiple services."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Cloud Platforms"
+    ]
   }
 ]
