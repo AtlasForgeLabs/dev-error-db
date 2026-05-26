@@ -32781,5 +32781,21 @@
     "related_errors": [
       "Ollama"
     ]
+  },
+  {
+    "slug": "openai-api-invalidurl-when-creating-openai-client-if-no-proxy-env-var-contains-newline-characters",
+    "title": "OpenAI Python SDK InvalidURL Error with NO_PROXY Containing Newlines",
+    "description": "Fix URL validation error caused by NO_PROXY environment variable containing \\n characters (common in Docker/.env/shell scripts) Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "InvalidURL when creating OpenAI client if NO_PROXY env var contains newline characters",
+    "search_intent": "Fix URL validation error caused by NO_PROXY environment variable containing \\n characters (common in Docker/.env/shell scripts)",
+    "common_causes": [
+      "Found in openai/openai-python#3303 via GitHub REST API (Tier 0). Reported May 24, 2026 — very recent. httpx's get_environment_proxies() splits only by comma, not newline, causing newlines in NO_PROXY to be treated as part of hostname. Affects Docker/Kubernetes environments where .env files commonly use line breaks. Mapping: OpenAI API → OpenAI API (exact match)."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "OpenAI API"
+    ]
   }
 ]
