@@ -32349,5 +32349,53 @@
     "related_errors": [
       "Ollama"
     ]
+  },
+  {
+    "slug": "claude-code-invalid-environment-variable-format-name-environment-variables-should-be-added-as-e-key1-value1-e-key2-value2",
+    "title": "Claude Code MCP settings --help prints broken syntax for -e/--env (invalid_environment_variable_format)",
+    "description": "User follows canonical CLI help example for adding MCP servers with environment variables but gets parser error because `-e` greedily consumes next positional arg Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Invalid environment variable format: <name>, environment variables should be added as: -e KEY1=value1 -e KEY2=value2",
+    "search_intent": "User follows canonical CLI help example for adding MCP servers with environment variables but gets parser error because `-e` greedily consumes next positional arg",
+    "common_causes": [
+      "Source: https://github.com/anthropics/claude-code/issues/62332 (opened May 26 2026). Reproduced on v2.1.150/macOS. Root cause: `-e/--env` option defined as variadic (nargs:'*' or action:'append') instead of repeatable single-value. Same bug existed in #23365 (closed stale, never fixed) and #29221 (closed dup). Documented help text does not work. Blocks all users trying to add MCP servers with env vars via CLI."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "claude-code-api-error-the-socket-connection-was-closed-unexpectedly",
+    "title": "Claude Code ECONNRESET on startup (~40-70% failure rate) — socket closed unexpectedly during parallel HTTPS fetches",
+    "description": "Users experience 40-70% startup failures when invoking Claude Code interactively or via one-shot mode with non-trivial responses; ECONNRESET (TCP RST) during Bun HTTP client parallel startup fetches Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "API Error: The socket connection was closed unexpectedly.",
+    "search_intent": "Users experience 40-70% startup failures when invoking Claude Code interactively or via one-shot mode with non-trivial responses; ECONNRESET (TCP RST) during Bun HTTP client parallel startup fetches",
+    "common_causes": [
+      "Source: https://github.com/anthropics/claude-code/issues/62327 (opened May 26 2026). Reproduced across v2.1.140–v2.1.150. Race condition in Bun HTTP client: N parallel HTTPS requests dispatched immediately after constructing mTLS agent cause sockets to get reset before TLS handshake completes. Retry policy ignores BUN_CONFIG_HTTP_RETRY_COUNT. Network-level raw TLS works fine (PowerShell Invoke-WebRequest 30/30 success), isolating the issue to Bun client code path."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "claude-code-oauth-reconciliation-re-flags-as-needs-auth-after-success-stdio-mcps-connect-but-tools-never-surface",
+    "title": "Claude Code Windows MCP OAuth reconciliation fails — tools never surface after auth success",
+    "description": "Windows users complete OAuth flow for MCP servers but tools remain invisible — reconciliation logic incorrectly marks tokens as needing fresh auth even after successful token acquisition Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "OAuth reconciliation re-flags as 'needs auth' after success; stdio MCPs connect but tools never surface",
+    "search_intent": "Windows users complete OAuth flow for MCP servers but tools remain invisible — reconciliation logic incorrectly marks tokens as needing fresh auth even after successful token acquisition",
+    "common_causes": [
+      "Source: https://github.com/anthropics/claude-code/issues/62298 (opened May 26 2026). Has repro label, area:mcp+area:auth labels. Affects all MCP auth flows on Windows: OAuth succeeds but tokens are overwritten by flawed reconciliation heuristic. Users can't access any MCP tools despite valid credentials. No existing coverage on dev-error-db."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
   }
 ]
