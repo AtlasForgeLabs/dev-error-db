@@ -32013,5 +32013,85 @@
     "related_errors": [
       "Ollama"
     ]
+  },
+  {
+    "slug": "claude-code-socket-connection-was-closed-unexpectedly-econnreset-on-startup-40-70-failure-rate-across-parallel-startup-fetches",
+    "title": "Claude Code Intermittent ECONNRESET on startup — 40-70% failure rate across parallel startup fetches",
+    "description": "Users experience high-rate socket disconnections during Claude Code startup, especially with parallel operations — causing unreliable tool usage Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "socket connection was closed unexpectedly (ECONNRESET) on startup — ~40-70% failure rate across parallel startup fetches",
+    "search_intent": "Users experience high-rate socket disconnections during Claude Code startup, especially with parallel operations — causing unreliable tool usage",
+    "common_causes": [
+      "Source: GitHub Issue #62327 in anthropics/claude-code, opened May 26 2026 (fresh), label: area:networking + has repro. High-volume error affecting daily productivity with 40-70% failure rate. Category mapping: Claude Code networking error → AI Coding Tools."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "openai-api-out-of-credits-errors-from-openai-compatible-providers-shown-as-rate-limit-exceeded",
+    "title": "OpenAI-Compatible Provider Out-of-Credits Shown as Rate Limit Exceeded",
+    "description": "Users using OpenAI-compatible proxies (x_ai/groq/other) see generic 'rate limit exceeded' instead of accurate 'out of credits/billing' error — preventing correct resolution Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "Out-of-credits errors from OpenAI-compatible providers shown as 'rate limit exceeded'",
+    "search_intent": "Users using OpenAI-compatible proxies (x_ai/groq/other) see generic 'rate limit exceeded' instead of accurate 'out of credits/billing' error — preventing correct resolution",
+    "common_causes": [
+      "Source: GitHub Issue #54996 in zed-industries/zed, opened Apr 28 2026, labels: area:ai/openai compatible + frequency:uncommon. Reproducible issue where billing exhaustion is misdiagnosed as rate limiting. Affects paid-tier users who can't distinguish between rate limits and account depletion. Category mapping: OpenAI-compatible provider error reporting → OpenAI API."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "claude-code-sub-agents-cannot-spawn-other-sub-agents-task-agent-primitive-not-exposed-in-nested-contexts",
+    "title": "Claude Code Sub-agents cannot spawn other sub-agents: Task/Agent primitive not exposed in nested contexts",
+    "description": "User needs Claude Code to spawn sub-agents in nested contexts but gets a primitive-not-exposed error blocking multi-step agent workflows Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Sub-agents cannot spawn other sub-agents: Task/Agent primitive not exposed in nested contexts",
+    "search_intent": "User needs Claude Code to spawn sub-agents in nested contexts but gets a primitive-not-exposed error blocking multi-step agent workflows",
+    "common_causes": [
+      "Source: GitHub Issue #61993 in anthropics/claude-code, opened May 24 2026, actively discussed (11 comments). Error occurs when using Claude Code's agent/spawn capabilities in nested task contexts — blocks advanced multi-agent automation patterns. Category mapping: Claude Code native feature error → AI Coding Tools."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "claude-code-desktop-app-crashes-exit-code-3221225477-with-sonnet-but-not-opus-on-windows-11",
+    "title": "Claude Code Desktop App Crashes (exit code 3221225477) with Sonnet but not Opus on Windows 11",
+    "description": "Windows users running Claude Code Desktop with Sonnet model encounter fatal crashes; Opus works fine — targeted bug with clear model-specific reproduction Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Desktop app crashes (exit code 3221225477) with Sonnet but not Opus on Windows 11",
+    "search_intent": "Windows users running Claude Code Desktop with Sonnet model encounter fatal crashes; Opus works fine — targeted bug with clear model-specific reproduction",
+    "common_causes": [
+      "Source: GitHub Issue #62326 in anthropics/claude-code, opened May 26 2026 (hours ago), labels: area:desktop + area:model + has repro. Platform-specific crash tied to model selection — highly actionable. Category mapping: Claude Code Desktop → AI Coding Tools."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "openai-api-insufficient-quota-errors-http-429-for-all-voice-synthesis-requests-tts-fully-broken-for-all-users",
+    "title": "OpenAI TTS API Returning insufficient_quota (HTTP 429) Breaking Voice Synthesis",
+    "description": "Developers using OpenAI TTS API hit quota limits resulting in HTTP 429 responses that break voice playback entirely for end-users Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "insufficient_quota errors (HTTP 429) for all voice synthesis requests — TTS fully broken for all users",
+    "search_intent": "Developers using OpenAI TTS API hit quota limits resulting in HTTP 429 responses that break voice playback entirely for end-users",
+    "common_causes": [
+      "Source: GitHub Issue #642 in shantamg/meet-without-fear, opened 2 days ago (May 24 2026). Render logs evidence included. This error affects production voice synthesis services — high urgency for businesses relying on TTS. Note: OpenAI API insufficient_quota is covered but the specific TTS voice synthesis angle with 429 response codes is distinct. Category mapping: OpenAI API billing/quota error on paid service → OpenAI API."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "OpenAI API"
+    ]
   }
 ]
