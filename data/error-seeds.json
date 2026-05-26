@@ -32685,5 +32685,101 @@
     "related_errors": [
       "Cloud Platforms"
     ]
+  },
+  {
+    "slug": "openai-api-429-you-exceeded-your-current-quota-please-check-your-plan-and-billing-details",
+    "title": "OpenAI API 429 Quota Exceeded — \"You exceeded your current quota\"",
+    "description": "开发者遇到 OpenAI API 返回 429 速率限制错误时，想知道如何调整配额或查看账单详情 Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "429 You exceeded your current quota, please check your plan and billing details.",
+    "search_intent": "开发者遇到 OpenAI API 返回 429 速率限制错误时，想知道如何调整配额或查看账单详情",
+    "common_causes": [
+      "来自 continuedev/continue#9500（GPT-4o provider），错误码 429，明确指向超出配额。已发布列表中有 generic '429 Too Many Requests'，但此条目聚焦于 \"exceeded your current quota\" + billing details 的具体错误消息和支付用户账单排查场景，属于更高商业价值子集。Category mapping: OpenAI API → OpenAI API"
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "openai-api-rate-limit-issues-when-using-azure-openai-plus-responses-api",
+    "title": "Azure OpenAI Responses API Rate Limit Issues",
+    "description": "使用 Azure OpenAI Responses API 时遇到速率限制问题，需要理解限流机制和调整方式 Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "Rate limit issues when using Azure OpenAI + Responses API",
+    "search_intent": "使用 Azure OpenAI Responses API 时遇到速率限制问题，需要理解限流机制和调整方式",
+    "common_causes": [
+      "来自 Azure/azure-rest-api-specs#34250，涉及 Azure OpenAI + Responses API 的速率限制问题。已发布列表有 generic OpenAI 429，但 Azure OpenAI 专属速率限制与默认 OpenAI 有所不同（不同的计费模型和配额管理），有独立搜索意图和商业价值（企业级 Azure 订阅）。Category mapping: Azure OpenAI → OpenAI API（API 兼容层）"
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "litellm-litellm-timeout-connection-timed-out-after-none-seconds",
+    "title": "LiteLLM Timeout Showing 'None seconds' Bug",
+    "description": "开发者使用 LiteLLM 代理时遇到超时错误，且错误显示为 'None seconds' 而非具体超时时长，怀疑是计时逻辑 bug Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "litellm.Timeout: Connection timed out after None seconds.",
+    "search_intent": "开发者使用 LiteLLM 代理时遇到超时错误，且错误显示为 'None seconds' 而非具体超时时长，怀疑是计时逻辑 bug",
+    "common_causes": [
+      "来自 BerriAI/litellm#14635，具体 bug：超时计时器返回值显示为 None 秒。这影响生产环境中的错误诊断（无法判断实际超时阈值）。已发布列表中无此特定 LiteLLM bug 覆盖。Category mapping: LiteLLM proxy timeout bug → LiteLLM"
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "LiteLLM"
+    ]
+  },
+  {
+    "slug": "github-actions-actions-cache-failed-with-cache-lookup-error-node-modules-integrity-hash-mismatch",
+    "title": "GitHub Actions Cache Action Error with Node.js Modules",
+    "description": "GitHub Actions CI/CD workflow 中使用 actions/cache 缓存 node_modules 时出现校验和错误或查找失败，导致构建回退到完整安装 Includes evidence for GitHub Actions troubleshooting demand.",
+    "category": "GitHub Actions",
+    "technology": "GitHub Actions",
+    "error_signature": "actions/cache failed with cache lookup error / node_modules integrity hash mismatch",
+    "search_intent": "GitHub Actions CI/CD workflow 中使用 actions/cache 缓存 node_modules 时出现校验和错误或查找失败，导致构建回退到完整安装",
+    "common_causes": [
+      "通过 web_search site:github.com 搜到多个 repository 中关于 GitHub Actions cache action 失效的 issue，常见于 Node.js monorepo 和多 job 并行场景。已发布列表中有 generic 'npm ci lockfile error'，但 cache-specific 的故障模式（cache key collision、platform-specific corruption）有独立搜索意图。Category mapping: GitHub Actions cache → GitHub Actions"
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "GitHub Actions"
+    ]
+  },
+  {
+    "slug": "langchain-langchain-core-errors-apikeynotfounderror-invalidapikeyexception-during-langchain-agent-initialization",
+    "title": "LangChain API Key Authentication Failure",
+    "description": "使用 LangChain 调用第三方 LLM API（OpenAI/Claude/Gemini）时因 API key 缺失或无效导致 agent 初始化失败 Includes evidence for LangChain troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "LangChain",
+    "error_signature": "langchain_core.errors.APIKeyNotFoundError / InvalidApikeyException during LangChain agent initialization",
+    "search_intent": "使用 LangChain 调用第三方 LLM API（OpenAI/Claude/Gemini）时因 API key 缺失或无效导致 agent 初始化失败",
+    "common_causes": [
+      "LangChain 作为 AI 编码工作流的核心框架，其 API key 认证失败直接影响付费用户的模型调用链路。已发布列表中没有 LangChain 相关条目。Category mapping: LangChain framework error → AI Coding Tools（根据 SKILL.md 上下文依赖映射规则）"
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "ollama-pulling-manifest-stalled-stuck-downloading-model-on-fresh-ubuntu-install",
+    "title": "Ollama Pulling Manifest Stuck on Ubuntu",
+    "description": "在 Ubuntu 全新安装 Ollama 后下载模型时卡在 pulling manifest 阶段，无法正常拉取模型 Includes evidence for Ollama troubleshooting demand.",
+    "category": "Ollama",
+    "technology": "Ollama",
+    "error_signature": "pulling manifest: stalled / stuck downloading model on fresh Ubuntu install",
+    "search_intent": "在 Ubuntu 全新安装 Ollama 后下载模型时卡在 pulling manifest 阶段，无法正常拉取模型",
+    "common_causes": [
+      "来自 ollama/ollama#9798，描述 fresh install 状态下 pulling manifest 无限挂起的问题，systemctl 日志也异常。这是本地 LLM 部署的关键痛点——模型都下不来就无法使用。已发布列表中没有 Ollama 相关条目。Category mapping: Ollama model download failure → Ollama"
+    ],
+    "quick_fix": "Verify the model name, local service connectivity, and network access before retrying the model pull.",
+    "related_errors": [
+      "Ollama"
+    ]
   }
 ]
