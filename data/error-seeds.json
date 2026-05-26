@@ -33437,5 +33437,101 @@
     "related_errors": [
       "Docker"
     ]
+  },
+  {
+    "slug": "openai-api-error-code-401-error-code-401-message-access-denied-due-to-invalid-subscription-key-or-wrong-api-endpoint",
+    "title": "AzureOpenAI AAD bearer token via api_key returns 401 after SDK upgrade to v2.34.0",
+    "description": "Fix AzureOpenAI returning 401 Unauthorized after upgrading OpenAI Python SDK from 2.33.0 to 2.34.0 when using AAD bearer tokens via api_key parameter Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "Error code: 401 - {'error': {'code': '401', 'message': 'Access denied due to invalid subscription key or wrong API endpoint'}}",
+    "search_intent": "Fix AzureOpenAI returning 401 Unauthorized after upgrading OpenAI Python SDK from 2.33.0 to 2.34.0 when using AAD bearer tokens via api_key parameter",
+    "common_causes": [
+      "GitHub issue openai/openai-python#3282 — Azure AD tokens passed via api_key worked in v2.33.0 but return 401 in v2.34.0 due to auth header format change (api_key now sends 'api-key:' instead of 'Bearer:'). Fix PR #3283 proposed. High commercial value: Azure enterprise users relying on AAD auth for OpenAI API access. Category: OpenAI API (Azure deployment scenario)."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "openai-api-openaierror-missing-credentials-please-pass-an-api-key-workload-identity-admin-api-key-or-set-the-openai-api-key-or-openai-admin-key-environment-variable",
+    "title": "OpenAI SDK v2.34.0 breaks local OpenAI-compatible servers with missing credentials error",
+    "description": "Fix OpenAI Python SDK v2.34.0 breaking connection to local LLM servers (llama.cpp, LM Studio, vLLM) that use api_key=\"\" Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "OpenAIError: Missing credentials. Please pass an `api_key`, `workload_identity`, `admin_api_key`, or set the `OPENAI_API_KEY` or `OPENAI_ADMIN_KEY` environment variable.",
+    "search_intent": "Fix OpenAI Python SDK v2.34.0 breaking connection to local LLM servers (llama.cpp, LM Studio, vLLM) that use api_key=\"\"",
+    "common_causes": [
+      "GitHub issue openai/openai-python#3224 — v2.34.0 changed credential check from identity check (api_key is None) to truthiness check (not self.api_key), breaking all OpenAI-compatible local servers passing empty string for no-auth. Multiple PRs opened (#3225, #3242, #3274). Category: OpenAI API (official SDK regression affecting production local deployments)."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "litellm-prisma-query-engine-process-dies-after-prolonged-uptime-permanently-breaking-api-key-authentication",
+    "title": "Prisma query engine process dies after prolonged uptime, permanently breaking API key authentication in LiteLLM",
+    "description": "Fix LiteLLM Prisma database process dying after long runtime, permanently breaking API key auth requiring restart Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "Prisma query engine process dies after prolonged uptime, permanently breaking API key authentication",
+    "search_intent": "Fix LiteLLM Prisma database process dying after long runtime, permanently breaking API key auth requiring restart",
+    "common_causes": [
+      "GitHub issue BerriAI/litellm#28322 — Prisma query engine crashes after extended uptime, causing permanent API key auth failure until LiteLLM proxy restart. Critical for production LiteLLM deployments running continuously. Category: LiteLLM (production stability/auth persistence)."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "LiteLLM"
+    ]
+  },
+  {
+    "slug": "litellm-mcp-tool-name-to-mcp-server-name-mapping-emptied-by-cancelled-list-tools-404-on-tool-calls",
+    "title": "LiteLLM MCP tool_name_to_mcp_server_name_mapping emptied by cancelled list_tools causing 404 on tool calls",
+    "description": "Fix LiteLLM MCP server mapping cleared by cancelled list_tools request, causing subsequent tool call operations to fail with 404 Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "MCP: tool_name_to_mcp_server_name_mapping emptied by cancelled list_tools → 404 on tool calls",
+    "search_intent": "Fix LiteLLM MCP server mapping cleared by cancelled list_tools request, causing subsequent tool call operations to fail with 404",
+    "common_causes": [
+      "GitHub issue BerriAI/litellm#24089 — Cancelled list_tools requests clear the tool-to-server name mapping dictionary, leading to 404 errors on real tool invocation attempts. Impacts LiteLLM MCP proxy functionality. Category: LiteLLM (MCP proxy reliability bug)."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "LiteLLM"
+    ]
+  },
+  {
+    "slug": "litellm-vertex-gemini-web-search-streaming-crashes-on-3-3-1-flash-flash-lite-models-with-empty-choices-chunk",
+    "title": "Vertex Gemini web search streaming crashes on Flash/Flash Lite models with empty choices chunk",
+    "description": "Fix LiteLLM Vertex Gemini streaming returning empty choices array causing unhandled stream crash Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "Vertex Gemini web search streaming crashes on 3/3.1 Flash / Flash Lite models with empty choices chunk",
+    "search_intent": "Fix LiteLLM Vertex Gemini streaming returning empty choices array causing unhandled stream crash",
+    "common_causes": [
+      "GitHub issue BerriAI/litellm#27928 — Web search enabled streaming for Gemini 3.0/3.1 Flash models produces empty choices chunks not handled by LiteLLM parser. Category: LiteLLM (Gemini provider integration bug)."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "LiteLLM"
+    ]
+  },
+  {
+    "slug": "litellm-indexerror-list-index-out-of-range-with-web-search-options-plus-reasoning-plus-stream-true-on-gemini-3-5-flash",
+    "title": "Gemini-3.5-Flash streaming with web_search_options + reasoning causes IndexError list index out of range",
+    "description": "Fix IndexError crash in LiteLLM when combining Gemini 3.5 Flash web search with reasoning mode and streaming Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "IndexError: list index out of range with web_search_options + reasoning + stream=True on Gemini-3.5-Flash",
+    "search_intent": "Fix IndexError crash in LiteLLM when combining Gemini 3.5 Flash web search with reasoning mode and streaming",
+    "common_causes": [
+      "GitHub issue BerriAI/litellm#28884 — Combining web_search_options, thinking/reasoning, and streaming triggers IndexError due to parsing gap in Gemini response chunks. Very recent issue (opened May 26). Category: LiteLLM (new Gemini model support bug)."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "LiteLLM"
+    ]
   }
 ]
