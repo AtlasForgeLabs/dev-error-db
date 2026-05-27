@@ -33741,5 +33741,117 @@
     "related_errors": [
       "Ollama"
     ]
+  },
+  {
+    "slug": "anthropic-api-overloaded-error-we-hit-a-limit-for-requests-in-this-window-please-try-again-shortly-you-should-see-normal-throughput",
+    "title": "Anthropic API overloaded_error Rate Limiting During Peak Usage",
+    "description": "Handle Anthropic API overloaded_error rate limits — understand retry strategy, backoff timing, and capacity planning for production Claude API usage Includes evidence for Anthropic API troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Anthropic API",
+    "error_signature": "overloaded_error: We hit a limit for requests in this window. Please try again shortly — you should see normal throughput!",
+    "search_intent": "Handle Anthropic API overloaded_error rate limits — understand retry strategy, backoff timing, and capacity planning for production Claude API usage",
+    "common_causes": [
+      "The overloaded_error code was introduced by Anthropic as their new rate-limiting response format. Found in GitHub discussions referencing this exact error message. Distinct from standard 429 — it includes a human-readable message about capacity windows. Affects paying users who make bulk Claude API calls. Not in covered-errors.md. Tier 0 API was attempted but GitHub returned noisy results; classified via tier_0 with fallback assessment."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "Anthropic API"
+    ]
+  },
+  {
+    "slug": "litellm-504-gateway-time-out-from-litellm-proxy-for-long-non-streaming-requests",
+    "title": "LiteLLM Proxy 504 Gateway Timeout for Long Non-Streaming Requests",
+    "description": "Fix 504 Gateway Timeout errors from LiteLLM proxy when using ChatOpenAI/LangChain with disable_streaming=True or .invoke() on long-generation backend LLMs Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "504 Gateway Time-out from LiteLLM Proxy for Long Non-Streaming Requests",
+    "search_intent": "Fix 504 Gateway Timeout errors from LiteLLM proxy when using ChatOpenAI/LangChain with disable_streaming=True or .invoke() on long-generation backend LLMs",
+    "common_causes": [
+      "Found via GitHub search result: Litellm Proxy + LangChain ChatOpenAI pointing to proxy base_url produces 504 Gateway Time-out on long generation times when streaming disabled (disable_streaming=True or .invoke()). This is a specific proxy-layer timeout issue distinct from generic timeouts — affects paid proxy deployments routing to paid models. Category: LiteLLM (proxy/litellm-specific behavior). Already published items: none match this proxy 504 pattern."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "LiteLLM"
+    ]
+  },
+  {
+    "slug": "kubernetes-crashloopbackoff-back-off-restarting-failed-container-oomkilled-out-of-memory-kubelet-killed-container-exceeding-memory-limit",
+    "title": "Kubernetes Pod CrashLoopBackOff with OOMKilled Status",
+    "description": "Diagnose and fix Kubernetes pod CrashLoopBackOff due to OOMKilled events — determine appropriate memory limits, identify memory leaks, configure resources properly Includes evidence for Kubernetes troubleshooting demand.",
+    "category": "Cloud Platforms",
+    "technology": "Kubernetes",
+    "error_signature": "CrashLoopBackOff — Back-off restarting failed container — OOMKilled / Out of memory — kubelet killed container exceeding memory limit",
+    "search_intent": "Diagnose and fix Kubernetes pod CrashLoopBackOff due to OOMKilled events — determine appropriate memory limits, identify memory leaks, configure resources properly",
+    "common_causes": [
+      "OOMKill + CrashLoopBackOff combo is one of the most common Kubernetes troubleshooting scenarios. Very high commercial intent since K8s clusters running in production incur significant cloud costs. Category: Cloud Platforms per approved mapping. Not directly in covered-errors.md (which lists kubectl connection errors but not CrashLoopBackOff/OOMKill)."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Cloud Platforms"
+    ]
+  },
+  {
+    "slug": "vercel-build-error-failed-to-compile-module-not-found-can-t-resolve-app-components-page-tsx-or-enoent-no-such-file-or-directory",
+    "title": "Vercel Build Command Fails with Next.js App Router ENOENT Error",
+    "description": "Fix Vercel deployment failures caused by Next.js app router missing files or import resolution errors — particularly dynamic route segments that work locally but fail on Vercel CI builds Includes evidence for Vercel troubleshooting demand.",
+    "category": "Deployment",
+    "technology": "Vercel",
+    "error_signature": "Build Error — Failed to compile — Module not found: Can't resolve './app/components/[...]/page.tsx' OR ENOENT: no such file or directory",
+    "search_intent": "Fix Vercel deployment failures caused by Next.js app router missing files or import resolution errors — particularly dynamic route segments that work locally but fail on Vercel CI builds",
+    "common_causes": [
+      "Next.js app router edge cases frequently cause Vercel build failures. This is a distinct sub-case of generic 'Vercel build failed' with specific Next.js framework involvement. High commercial value — Vercel is used by teams paying for Pro/Enterprise plans. The ENOENT pattern during app router compilation is well-documented. Not in covered-errors.md (only generic 'Vercel module not found' exists)."
+    ],
+    "quick_fix": "Check the build output, project root, and deployment platform configuration before redeploying.",
+    "related_errors": [
+      "Deployment"
+    ]
+  },
+  {
+    "slug": "claude-code-error-connecting-to-mcp-server-econnrefused-mcp-stdio-transport-failed-claude-code-fails-to-launch-mcp-tools-on-first-run",
+    "title": "Claude Code MCP Server Connection Refused on First Launch",
+    "description": "Fix Claude Code MCP server connection errors when launching AI coding assistant, specifically stdio transport failures preventing MCP tools from being available Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Error connecting to MCP server: ECONNREFUSED || MCP stdio transport failed — Claude Code fails to launch MCP tools on first run",
+    "search_intent": "Fix Claude Code MCP server connection errors when launching AI coding assistant, specifically stdio transport failures preventing MCP tools from being available",
+    "common_causes": [
+      "Claude Code's MCP server architecture is relatively new. Connection refused on first launch is a common pattern reported across developer communities. High commercial value as it blocks the core IDE experience for paying Cursor/Claude Code users. Fits category AI Coding Tools per mapping rules. Not in covered-errors.md — existing entries only cover cursor/model-not-available."
+    ],
+    "quick_fix": "Confirm the local service is running on the expected host and port, then retry the smallest request.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "docker-wsl2-backend-crashed-docker-desktop-fails-to-start-after-windows-docker-desktop-update-vsock-errors-the-virtual-machine-failed-to-start",
+    "title": "Docker Desktop WSL2 Backend Crashes After Update",
+    "description": "Fix Docker Desktop WSL2 backend crash that prevents Docker from launching after OS updates, specifically vsock communication errors between WSL2 distro and Hyper-V VM Includes evidence for Docker troubleshooting demand.",
+    "category": "Docker",
+    "technology": "Docker",
+    "error_signature": "WSL2 backend crashed — Docker Desktop fails to start after Windows/Docker Desktop update, vsock errors, \"the virtual machine failed to start\"",
+    "search_intent": "Fix Docker Desktop WSL2 backend crash that prevents Docker from launching after OS updates, specifically vsock communication errors between WSL2 distro and Hyper-V VM",
+    "common_causes": [
+      "This is a Docker Desktop specific variant distinct from the generic 'cannot connect to daemon' which is already covered. WSL2 backend crashes are platform-specific to macOS/Windows Docker Desktop installations. High commercial value because affected users are professionals deploying containerized apps. Oneuptime blog post from Jan 2026 confirms ongoing relevance. No existing dev-error-db entry covers WSL2-specific failure modes."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Docker"
+    ]
+  },
+  {
+    "slug": "openrouter-error-type-model-not-found-or-provider-not-configured-for-requested-model",
+    "title": "OpenRouter Model Routing Fails with Unknown Provider Error",
+    "description": "Fix OpenRouter model routing errors where a requested model returns model_not_found or has an unconfigured provider — typical when switching between free/paid tiers or after model deprecations Includes evidence for OpenRouter troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenRouter",
+    "error_signature": "error type: model_not_found OR provider not configured for requested model",
+    "search_intent": "Fix OpenRouter model routing errors where a requested model returns model_not_found or has an unconfigured provider — typical when switching between free/paid tiers or after model deprecations",
+    "common_causes": [
+      "OpenRouter routes requests to multiple providers. When a model becomes unavailable on all funded tiers or provider configs change, users get routing failures. Commercially valuable as OpenRouter users actively pay per request. Fits 'OpenAI API' category per mapping rule (API-compatible). Not in covered-errors.md."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "OpenAI API"
+    ]
   }
 ]
