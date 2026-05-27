@@ -34717,5 +34717,85 @@
     "related_errors": [
       "AI Coding Tools"
     ]
+  },
+  {
+    "slug": "anthropic-api-messages-x-content-y-invalid-signature-in-thinking-block-http-400-invalid-request-error",
+    "title": "API returns 400 'Invalid signature in thinking block' when replaying conversation history — no recovery path",
+    "description": "Fix persistent 400 errors caused by expired/invalidated thinking block signatures in multi-turn conversations with extended thinking enabled Includes evidence for Anthropic API troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Anthropic API",
+    "error_signature": "messages.X.content.Y: Invalid `signature` in `thinking` block (HTTP 400 invalid_request_error)",
+    "search_intent": "Fix persistent 400 errors caused by expired/invalidated thinking block signatures in multi-turn conversations with extended thinking enabled",
+    "common_causes": [
+      "GitHub issue #1598 on anthropics/anthropic-sdk-python. Extended thinking with claude-sonnet-4.x/claude-opus-4.x returns 400 after N turns in long multi-turn convos. No recovery path — clients must strip thinking blocks from history. Affects paid API users running multi-agent/forked sessions. Category mapped via direct technology match."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Anthropic API"
+    ]
+  },
+  {
+    "slug": "langchain-media-type-validation-error-when-passing-base64-encoded-file-blocks-with-non-pdf-text-mime-types-through-chatanthropic",
+    "title": "base64 file blocks with non-PDF text mime types fail with media_type validation error",
+    "description": "Fix langchain-anthropic outbound translation of document blocks that hard-codes mime_type='application/pdf', breaking base64 file uploads with text/plain, application/json etc. Includes evidence for LangChain troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "LangChain",
+    "error_signature": "media_type validation error when passing base64-encoded file blocks with non-PDF text MIME types through ChatAnthropic",
+    "search_intent": "Fix langchain-anthropic outbound translation of document blocks that hard-codes mime_type='application/pdf', breaking base64 file uploads with text/plain, application/json etc.",
+    "common_causes": [
+      "GitHub issue #37576 on langchain-ai/langchain. Root cause: _convert_openai_format_to_data_block core bug (#36939) hard-codes mime_type as application/pdf. Outbound langchain-anthropic then rejects files with text-like MIME types via media_type validation. Affects developers using LangChain+Anthropic integration. Category = AI Coding Tools per approved mapping for LangChain."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "langchain-mutating-side-effect-chatanthropic-bind-tools-modifies-the-caller-s-original-tool-choice-dictionary-causing-unexpected-behavior-on-subsequent-calls",
+    "title": "ChatAnthropic.bind_tools mutates caller-provided tool_choice dict",
+    "description": "Fix state mutation bug where bind_tools alters caller's tool_choice dict, leading to unpredictable tool selection across multiple chained calls Includes evidence for LangChain troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "LangChain",
+    "error_signature": "Mutating side-effect: ChatAnthropic.bind_tools modifies the caller's original tool_choice dictionary, causing unexpected behavior on subsequent calls",
+    "search_intent": "Fix state mutation bug where bind_tools alters caller's tool_choice dict, leading to unpredictable tool selection across multiple chained calls",
+    "common_causes": [
+      "GitHub issue #37596 on langchain-ai/langchain. This is a silent data corruption bug — calling bind_tools twice with different parameters causes the second call to inherit modified state from the first. Common in building agents/retrieval chains. Affects Python developers using LangChain with Anthropic. Category = AI Coding Tools per approved mapping for LangChain."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "ollama-a-native-crash-unhandled-exception-occurs-when-claude-code-using-ollama-v1-messages-beta-true-tries-to-read-png-files-via-read-tool",
+    "title": "Claude Code + Ollama /v1/messages?beta=true fails when Read tool reads PNG images",
+    "description": "Fix PNG reading failure in Claude Code when using Ollama as backend with beta /v1/messages endpoint; direct top-level image requests work but VS Code Read tool fails Includes evidence for Ollama troubleshooting demand.",
+    "category": "Ollama",
+    "technology": "Ollama",
+    "error_signature": "A native crash / unhandled exception occurs when Claude Code using Ollama /v1/messages?beta=true tries to read PNG files via Read tool",
+    "search_intent": "Fix PNG reading failure in Claude Code when using Ollama as backend with beta /v1/messages endpoint; direct top-level image requests work but VS Code Read tool fails",
+    "common_causes": [
+      "GitHub issue #16298 on ollama/ollama. Plain text Read works fine, direct top-level image content request works, but specifically Claude Code + Ollama combination with PNG through Read tool fails. Affects developers running local LLMs via Ollama with Claude Code. Category = Ollama per approved mapping."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Ollama"
+    ]
+  },
+  {
+    "slug": "docker-oom-killed-during-docker-context-import-when-zip-archive-contains-large-tls-branch-entries-io-readall-f-used-without-size-limit-unlike-meta-json-limitedreader",
+    "title": "docker context import TLS Entry Handling results in OOM (Out of Memory)",
+    "description": "Fix Out of Memory crash in docker context import by adding decompression size limits for TLS entry branches matching the existing 10MB cap on meta.json Includes evidence for Docker troubleshooting demand.",
+    "category": "Docker",
+    "technology": "Docker",
+    "error_signature": "OOM killed during docker context import when zip archive contains large tls/ branch entries — io.ReadAll(f) used without size limit unlike meta.json limitedReader",
+    "search_intent": "Fix Out of Memory crash in docker context import by adding decompression size limits for TLS entry branches matching the existing 10MB cap on meta.json",
+    "common_causes": [
+      "GitHub issue #6917 on docker/cli. docker context import correctly caps meta.json decompression at 10MB but uses bare io.ReadAll() for tls/ branch entries with no size limit. Attacking or accidentally large zips trigger OOM kills. Affects Docker Desktop and CLI users importing contexts with embedded certs/tokens. Category = Docker per approved mapping."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Docker"
+    ]
   }
 ]
