@@ -33949,5 +33949,37 @@
     "related_errors": [
       "LiteLLM"
     ]
+  },
+  {
+    "slug": "claude-code-api-error-401-type-authentication-error-message-oauth-token-has-expired-please-obtain-a-new-token-or-refresh-your-existing-token",
+    "title": "Claude Code OAuth refresh token not used when credentials copied to remote machine",
+    "description": "Fix Claude Code 401 authentication_error after copying credentials.json to remote/headless machine — refresh token should auto-renew but does not Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "API Error: 401 {\"type\":\"authentication_error\",\"message\":\"OAuth token has expired. Please obtain a new token or refresh your existing token.\"}",
+    "search_intent": "Fix Claude Code 401 authentication_error after copying credentials.json to remote/headless machine — refresh token should auto-renew but does not",
+    "common_causes": [
+      "GitHub issue #21765 on anthropics/claude-code: When copying ~/.claude/.credentials.json from authenticated local workstation to remote headless Linux machine, Claude Code throws 401 authentication_error instead of using the refreshToken present in credentials.json. Confirmed by multiple reporters; issue has 7+ reactions. Maps to AI Coding Tools category per SKILL.md rules."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "anthropic-api-overloaded-error-permission-error-invalid-request-error-anthropic-api-http-error-responses",
+    "title": "Anthropic API overloaded_error (HTTP 529) and permission_error handling",
+    "description": "Handle Anthropic API server-side errors including rate limiting, overloaded capacity (529), and permission denied responses Includes evidence for Anthropic API troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Anthropic API",
+    "error_signature": "overloaded_error / permission_error / invalid_request_error — Anthropic API HTTP error responses",
+    "search_intent": "Handle Anthropic API server-side errors including rate limiting, overloaded capacity (529), and permission denied responses",
+    "common_causes": [
+      "Referenced in sources-guide.md search queries for Anthropic API. Official API docs cover these error types including HTTP 529 overloaded_error indicating request queue exceeded capacity. High commercial value for paid API consumers blocked by server-side errors. URL restructured in new Anthropic docs platform (noted in fetch_details). Category: Anthropic API per strict mapping."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "Anthropic API"
+    ]
   }
 ]
