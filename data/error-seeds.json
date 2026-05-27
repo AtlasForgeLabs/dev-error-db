@@ -34061,5 +34061,117 @@
     "related_errors": [
       "LiteLLM"
     ]
+  },
+  {
+    "slug": "openai-api-error-parsing-response-body-or-unsupported-response-format",
+    "title": "OpenAI API Deprecated Format Error — 'error parsing response body' / 'unsupported response format'",
+    "description": "Fix client library incompatibility after OpenAI API deprecates old response format types Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "error parsing response body or unsupported response format",
+    "search_intent": "Fix client library incompatibility after OpenAI API deprecates old response format types",
+    "common_causes": [
+      "OpenAI has been migrating between API versions (REST → Assistants API v2), causing response format incompatibilities. Covered-errors.md lists 'model not found' and '429' but does not cover response parsing/format migration errors. Strong commercial value: breaks all downstream integrations."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "docker-unauthorized-authentication-required",
+    "title": "Docker Swarm 'unauthorized: authentication required' image pull error",
+    "description": "Fix Docker Swarm worker unable to pull images from private registry due to auth error Includes evidence for Docker troubleshooting demand.",
+    "category": "Docker",
+    "technology": "Docker",
+    "error_signature": "unauthorized: authentication required",
+    "search_intent": "Fix Docker Swarm worker unable to pull images from private registry due to auth error",
+    "common_causes": [
+      "Real error from Docker moby repo issue #52570 (confirmed via GitHub REST API direct endpoint). Error was swallowed and replaced with misleading 'No such image' message. Affects enterprise Swarm deployments connecting to private registries."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "Docker"
+    ]
+  },
+  {
+    "slug": "anthropic-api-overloaded-error-an-error-occurred-while-processing-your-request-please-try-again-later",
+    "title": "Anthropic 'overloaded_error' during peak demand hours — 529 status code",
+    "description": "Handle Anthropic API overload errors with retry logic and fallback strategies Includes evidence for Anthropic API troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Anthropic API",
+    "error_signature": "overloaded_error: An error occurred while processing your request. Please try again later.",
+    "search_intent": "Handle Anthropic API overload errors with retry logic and fallback strategies",
+    "common_causes": [
+      "Known Anthropic API error condition triggered during peak usage. Covered-errors.md does not include 'overloaded_error'. Critical for enterprise API consumers relying on Claude 3.5/Opus during SLA-sensitive workflows. No current coverage on dev-error-db."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "Anthropic API"
+    ]
+  },
+  {
+    "slug": "aws-an-error-occurred-invalidclienttokenid-when-calling-the-listobjects-operation-the-security-token-included-in-the-request-is-invalid",
+    "title": "Boto3/AWS 'InvalidClientTokenId: The security token included in the request is invalid'",
+    "description": "Fix AWS credentials/token validation failure when using boto3 or AWS CLI in Lambda/functions Includes evidence for AWS troubleshooting demand.",
+    "category": "Cloud Platforms",
+    "technology": "AWS",
+    "error_signature": "An error occurred (InvalidClientTokenId) when calling the ListObjects operation: The security token included in the request is invalid.",
+    "search_intent": "Fix AWS credentials/token validation failure when using boto3 or AWS CLI in Lambda/functions",
+    "common_causes": [
+      "Common AWS SDK error when IAM credentials are expired, revoked, or scoped incorrectly. Docs available at boto3.amazonaws.com. Not in covered-errors.md. High commercial value: blocks production Lambda/data pipeline execution."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Cloud Platforms"
+    ]
+  },
+  {
+    "slug": "git-fatal-could-not-read-username-for-github-com-terminal-is-not-tty",
+    "title": "Git 'fatal: could not read Username for github.com: terminal is not tty' with Personal Access Tokens",
+    "description": "Fix git credential prompt failure in CI/CD pipelines (GitHub Actions, Jenkins) after GitHub PAT OAuth scope changes Includes evidence for Git troubleshooting demand.",
+    "category": "Git",
+    "technology": "Git",
+    "error_signature": "fatal: could not read Username for 'github.com': terminal is not tty",
+    "search_intent": "Fix git credential prompt failure in CI/CD pipelines (GitHub Actions, Jenkins) after GitHub PAT OAuth scope changes",
+    "common_causes": [
+      "After GitHub deprecated password auth and requires PATs with correct scopes, CI/CD systems frequently fail to authenticate. Covered-errors.md has 'git permission denied (publickey)' (SSH) but not this HTTPS/PAT variant which has different resolution. Distinct scenario."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "Git"
+    ]
+  },
+  {
+    "slug": "vercel-build-exceeded-maximum-allowed-time-of-60-minutes",
+    "title": "Vercel Build Command Timeout After 60 Minutes",
+    "description": "Fix Vercel CI/CD build timeouts for large monorepo Next.js projects with heavy dependencies Includes evidence for Vercel troubleshooting demand.",
+    "category": "Deployment",
+    "technology": "Vercel",
+    "error_signature": "Build exceeded maximum allowed time of 60 minutes",
+    "search_intent": "Fix Vercel CI/CD build timeouts for large monorepo Next.js projects with heavy dependencies",
+    "common_causes": [
+      "Vercel Pro/Hobby plans have build time limits. Large React/Next.js apps with many deps often hit the 60-minute timeout. Covered-errors.md has 'build command failed' but not specifically 'build timeout' which has distinct troubleshooting paths (npm cache warming, incremental builds)."
+    ],
+    "quick_fix": "Check the build output, project root, and deployment platform configuration before redeploying.",
+    "related_errors": [
+      "Deployment"
+    ]
+  },
+  {
+    "slug": "gcp-invalidapikey-the-request-is-missing-a-valid-api-key",
+    "title": "Google Cloud API Key 'InvalidApiKey: The request is missing a valid API key'",
+    "description": "Fix Google Cloud API authentication when API keys are restricted, rotated, or project-boundary crossed Includes evidence for GCP troubleshooting demand.",
+    "category": "Cloud Platforms",
+    "technology": "GCP",
+    "error_signature": "InvalidApiKey: The request is missing a valid API key.",
+    "search_intent": "Fix Google Cloud API authentication when API keys are restricted, rotated, or project-boundary crossed",
+    "common_causes": [
+      "Real GCP error pattern documented at cloud.google.com/docs/authentication. Covers multiple sub-cases (restricted keys, expired keys, cross-project access). Not in covered-errors.md. Strong commercial value: affects any GCP-based service integration."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "Cloud Platforms"
+    ]
   }
 ]
