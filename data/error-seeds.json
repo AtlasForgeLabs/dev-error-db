@@ -34925,5 +34925,85 @@
     "related_errors": [
       "Ollama"
     ]
+  },
+  {
+    "slug": "aws-gateway-hangs-indefinitely-no-response-no-timeout-error-50-plus-minutes-hung",
+    "title": "AWS Lambda Gateway hangs indefinitely with no response or timeout",
+    "description": "Fix AWS Lambda-backed API Gateway hanging without returning any HTTP response or timeout after 50+ minutes Includes evidence for AWS troubleshooting demand.",
+    "category": "Cloud Platforms",
+    "technology": "AWS",
+    "error_signature": "Gateway hangs indefinitely — no response, no timeout error (50+ minutes hung)",
+    "search_intent": "Fix AWS Lambda-backed API Gateway hanging without returning any HTTP response or timeout after 50+ minutes",
+    "common_causes": [
+      "Found in aws/agentcore-cli repo issue #1388 (2026-05-27). AgentCore Gateway accepted HTTP POST tools/call but never returned — client hung 50+ min. Enterprise-level deployment blocker. This involves AWS Lambda + API Gateway integration, directly impacting paid cloud deployments."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Cloud Platforms"
+    ]
+  },
+  {
+    "slug": "kubernetes-pod-enters-crashloopbackoff-and-never-emits-ready-log-e2e-deploy-fails-during-deployment-phase",
+    "title": "Kubernetes pod stuck in CrashLoopBackOff during deployment",
+    "description": "Fix Kubernetes pod entering CrashLoopBackOff loop preventing application from starting during CI/CD deployment Includes evidence for Kubernetes troubleshooting demand.",
+    "category": "Cloud Platforms",
+    "technology": "Kubernetes",
+    "error_signature": "Pod enters CrashLoopBackOff and never emits ready log; E2E deploy fails during deployment phase",
+    "search_intent": "Fix Kubernetes pod entering CrashLoopBackOff loop preventing application from starting during CI/CD deployment",
+    "common_causes": [
+      "Multiple real-world cases found (agents-orchestrator#185, ilm#227). Pods stuck in CrashLoopBackOff during devspace run deploy or core deployment. Blocks production deploys for engineering teams. P1 technology with strong enterprise demand."
+    ],
+    "quick_fix": "Check the build output, project root, and deployment platform configuration before redeploying.",
+    "related_errors": [
+      "Cloud Platforms"
+    ]
+  },
+  {
+    "slug": "ollama-sigsegv-in-ggml-backend-tensor-set-during-model-load-with-partial-rocm-offload",
+    "title": "Ollama SIGSEGV crash on AMD RDNA4 GPU (RX 9070) during model load",
+    "description": "Fix Ollama crashing with segmentation fault when loading large models on AMD GPUs exceeding VRAM Includes evidence for Ollama troubleshooting demand.",
+    "category": "Ollama",
+    "technology": "Ollama",
+    "error_signature": "SIGSEGV in ggml_backend_tensor_set during model load with partial ROCm offload",
+    "search_intent": "Fix Ollama crashing with segmentation fault when loading large models on AMD GPUs exceeding VRAM",
+    "common_causes": [
+      "Found in ollama/ollama repo issue #16261 (2026-05). User reports gemma4:26b segfaults immediately during weight loading on AMD Radeon RX 9070 (gfx1201/ROCM) with partial offload — model weights 16.6 GiB exceed VRAM (~13-14 GiB). High-value crash affecting AI inference workflows on consumer AMD hardware."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Ollama"
+    ]
+  },
+  {
+    "slug": "ollama-assertion-failed-found-file-llama-sampling-cpp-line-660",
+    "title": "Ollama vision model crash on Windows (Assertion failed in llama-sampling.cpp)",
+    "description": "Fix Ollama producing garbage output or crashing on Windows when running vision models like llava:7b with CUDA driver Includes evidence for Ollama troubleshooting demand.",
+    "category": "Ollama",
+    "technology": "Ollama",
+    "error_signature": "Assertion failed: found, file llama-sampling.cpp, line 660",
+    "search_intent": "Fix Ollama producing garbage output or crashing on Windows when running vision models like llava:7b with CUDA driver",
+    "common_causes": [
+      "Found in ollama/ollama repo issue #16328 (2026-05). All llava-based vision models crash/garbage output on Windows with CUDA driver 13.0. Directly impacts users deploying multimodal AI on Windows workstations. Distinct from segfault issue above."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Ollama"
+    ]
+  },
+  {
+    "slug": "git-git-github-com-permission-denied-publickey-fatal-could-not-read-from-remote-repository",
+    "title": "Git fatal 'Permission denied (publickey)' when cloning repositories",
+    "description": "Fix SSH key authentication failure when git clone/push requires valid public key configured on GitHub account Includes evidence for Git troubleshooting demand.",
+    "category": "Git",
+    "technology": "Git",
+    "error_signature": "git@github.com: Permission denied (publickey). fatal: Could not read from remote repository.",
+    "search_intent": "Fix SSH key authentication failure when git clone/push requires valid public key configured on GitHub account",
+    "common_causes": [
+      "Classic developer pain point confirmed via GitHub API search (1802 total open issues as of 2026-05). Active issue on nixl PR #1677 (2026-05-25) showing ongoing relevance. While foundational, the persistent volume and CI/CD pipeline impact give it commercial value. Not yet covered on dev-error-db."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "Git"
+    ]
   }
 ]
