@@ -34365,5 +34365,53 @@
     "related_errors": [
       "Ollama"
     ]
+  },
+  {
+    "slug": "anthropic-api-attributeerror-nonetype-object-has-no-attribute-model-usage-bedrock-streaming-sse-error-event",
+    "title": "Streaming Errors Cause AttributeError on NoneType Messages in Bedrock Cross-Region Inference",
+    "description": "Fix production crash when Bedrock returns rate_limit_error in SSE stream causing SDK to pass None message objects to user code Includes evidence for Anthropic API troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Anthropic API",
+    "error_signature": "AttributeError: 'NoneType' object has no attribute 'model' / 'usage' (Bedrock streaming SSE error event)",
+    "search_intent": "Fix production crash when Bedrock returns rate_limit_error in SSE stream causing SDK to pass None message objects to user code",
+    "common_causes": [
+      "GitHub issue #1472 in anthropics/anthropic-sdk-python documents production crashes with AsyncAnthropicBedrock on cross-region profiles (global.anthropic.claude-opus-4-7). HTTP 200 with error payload causes NoneType AttributeError downstream. Has 5 linked PRs attempting fixes. Category: Anthropic API — affects paid Bedrock inference billing and production stability."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "Anthropic API"
+    ]
+  },
+  {
+    "slug": "anthropic-api-remoteprotocolerror-on-streaming-v1-messages-during-long-code-execution-plus-skills-runs",
+    "title": "Streaming /v1/messages Drops Mid-Stream with RemoteProtocolError on Long code_execution Runs",
+    "description": "Fix premature stream termination (RemoteProtocolError) when calling Claude API /v1/messages endpoint for long-running code execution tasks Includes evidence for Anthropic API troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Anthropic API",
+    "error_signature": "RemoteProtocolError on streaming /v1/messages during long code_execution + skills runs",
+    "search_intent": "Fix premature stream termination (RemoteProtocolError) when calling Claude API /v1/messages endpoint for long-running code execution tasks",
+    "common_causes": [
+      "GitHub issue #1470 in anthropics/anthropic-sdk-python reports streaming connections dropping mid-stream with RemoteProtocolError specifically on long code_execution + skills sessions. This affects paid usage billing per token sent. Open since April 2026 with 3 linked PRs."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Anthropic API"
+    ]
+  },
+  {
+    "slug": "anthropic-api-notfounderror-http-404-on-batch-api-intermittent",
+    "title": "Intermittent NotFoundError (404) on Anthropic Batch API",
+    "description": "Fix intermittent 404 errors when querying or retrieving submitted batch jobs on the Anthropic Batch API Includes evidence for Anthropic API troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Anthropic API",
+    "error_signature": "NotFoundError (HTTP 404) on Batch API (intermittent)",
+    "search_intent": "Fix intermittent 404 errors when querying or retrieving submitted batch jobs on the Anthropic Batch API",
+    "common_causes": [
+      "GitHub issue #1432 in anthropics/anthropic-sdk-python reports intermittent NotFoundError (404) responses from Anthropic's Batch API. Batch API is a paid enterprise feature so 404s directly impact commercial workflows. Still open as of April 2026."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Anthropic API"
+    ]
   }
 ]
