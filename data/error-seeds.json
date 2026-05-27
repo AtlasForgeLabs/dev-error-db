@@ -34413,5 +34413,117 @@
     "related_errors": [
       "Anthropic API"
     ]
+  },
+  {
+    "slug": "anthropic-api-users-across-pro-max-x5-and-max-x20-subscription-tiers-reporting-weekly-usage-limits-making-subscriptions-unusable-incorrectly-enforced",
+    "title": "Weekly Usage Limits Making Claude Subscriptions Unusable — cross-tier bug",
+    "description": "Fix Anthropic Claude Code weekly usage limits bug affecting multiple subscription tiers (Pro, Max x5, Max x20), preventing legitimate paid users from accessing the service Includes evidence for Anthropic API troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Anthropic API",
+    "error_signature": "Users across Pro, Max x5, and Max x20 subscription tiers reporting weekly usage limits making subscriptions unusable — incorrectly enforced",
+    "search_intent": "Fix Anthropic Claude Code weekly usage limits bug affecting multiple subscription tiers (Pro, Max x5, Max x20), preventing legitimate paid users from accessing the service",
+    "common_causes": [
+      "Source: https://github.com/anthropics/claude-code/issues/11810 — Official claude-code repo. Explicitly mentions recurring monthly billing quotas incorrectly applied. Affects all paid tiers including Max x5/x20 enterprise plans. 21 comments, area:api, area:cost labels. Critical revenue impact for Anthropic paid users."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Anthropic API"
+    ]
+  },
+  {
+    "slug": "anthropic-api-instantly-hitting-usage-limits-with-max-subscription-server-side-rate-limit-incorrectly-applied-regardless-of-actual-usage-count",
+    "title": "[BUG] Instantly hitting usage limits with Max subscription — Claude Code server-side bug",
+    "description": "Fix Anthropic server-side bug causing instant usage limit hits on paid Max subscription tier without any actual API call exceeding the stated limit Includes evidence for Anthropic API troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Anthropic API",
+    "error_signature": "Instantly hitting usage limits with Max subscription — server-side rate limit incorrectly applied regardless of actual usage count",
+    "search_intent": "Fix Anthropic server-side bug causing instant usage limit hits on paid Max subscription tier without any actual API call exceeding the stated limit",
+    "common_causes": [
+      "Source: https://github.com/anthropics/claude-code/issues/16157 — High-engagement issue (1472 comments). Users unable to use service at all after starting. area:api, area:cost, bug, oncall labels. Direct revenue impact since users cannot consume their paid plan."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "Anthropic API"
+    ]
+  },
+  {
+    "slug": "anthropic-api-api-error-server-is-temporarily-limiting-requests-not-your-usage-limit-rate-limited",
+    "title": "Anthropic Claude Code API Error: Server temporarily limiting requests (not your usage limit)",
+    "description": "Diagnose and resolve Anthropic server-side rate limiting that incorrectly blocks users who have not hit their own usage quota, causing API calls to fail even within plan limits Includes evidence for Anthropic API troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Anthropic API",
+    "error_signature": "API Error: Server is temporarily limiting requests (not your usage limit) · Rate limited",
+    "search_intent": "Diagnose and resolve Anthropic server-side rate limiting that incorrectly blocks users who have not hit their own usage quota, causing API calls to fail even within plan limits",
+    "common_causes": [
+      "Source: https://github.com/anthropics/claude-code/issues/53915 — Official claude-code repo issue. Error message explicitly states rate limiting is server-side, not user quota. Users blocked for hours. area:api, external, platform tags. 14 comments. Maps directly to Anthropic API."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "Anthropic API"
+    ]
+  },
+  {
+    "slug": "github-copilot-openai-codex-turn-stalled-30m-before-first-output-reconnecting-2-5-visible-while-app-server-transport-remains-connected-pre-first-output-gap-1-838-5s-on-gpt-5-5-xhigh",
+    "title": "Codex Desktop: gpt-5.5 xhigh turn stalled 30m before first output, then resumed normally",
+    "description": "Fix or diagnose extremely long stalls (30+ minutes) in Codex Desktop turns using gpt-5.5 with xhigh reasoning where UI shows Thinking/Reconnecting but no output arrives despite successful backend submission Includes evidence for GitHub Copilot / OpenAI Codex troubleshooting demand.",
+    "category": "GitHub Copilot",
+    "technology": "GitHub Copilot / OpenAI Codex",
+    "error_signature": "turn stalled 30m before first output; Reconnecting... 2/5 visible while app-server transport remains connected; pre-first-output gap 1,838.5s on gpt-5.5 xhigh",
+    "search_intent": "Fix or diagnose extremely long stalls (30+ minutes) in Codex Desktop turns using gpt-5.5 with xhigh reasoning where UI shows Thinking/Reconnecting but no output arrives despite successful backend submission",
+    "common_causes": [
+      "Source: https://github.com/openai/codex/issues/24260 — Detailed report with log timestamps showing 30m38s stall, local rollout produced zero events for 30+ minutes, WebSocket vs HTTP fallback analysis. 9 comments, 7 👍 reactions. Category maps to GitHub Copilot as it is an OpenAI Codex desktop application issue."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "GitHub Copilot"
+    ]
+  },
+  {
+    "slug": "openai-api-apiconnectionerror-ttfb-timeout-while-codex-cli-works-openai-codex-gpt-5-5-still-unstable-subagents-almost-always-hit-errors",
+    "title": "OpenAI Codex gpt-5.5 unstable in Hermes agent: APIConnectionError and TTFB timeout on subagents",
+    "description": "Resolve intermittent API connection failures and request timeouts when calling gpt-5.5 via Claude Code/Codex tool delegation from within an agent framework Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "APIConnectionError/TTFB timeout while Codex CLI works; openai-codex/gpt-5.5 still unstable subagents almost always hit errors",
+    "search_intent": "Resolve intermittent API connection failures and request timeouts when calling gpt-5.5 via Claude Code/Codex tool delegation from within an agent framework",
+    "common_causes": [
+      "Source: https://github.com/NousResearch/hermes-agent/issues/33075 — Recent (2026-05-27) bug report showing subagent calls to gpt-5.5 consistently failing with APIConnectionError and TTFB timeout, while standalone Codex CLI works fine. 9 comments. P3/Copilot/provider tags. Maps to OpenAI API category due to billing-impact of repeated failed API calls."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "github-actions-audit-actions-using-mutable-major-version-tag-workflow-uses-action-by-mutable-tag-that-can-move-and-do-not-provide-sha-pinning",
+    "title": "GitHub Actions workflow security audit — Pin actions to commit SHAs for compliance",
+    "description": "Fix GitHub Actions workflows that reference mutable version tags instead of pinned commit SHAs, resolving security audit failures and CI/CD pipeline compliance errors Includes evidence for GitHub Actions troubleshooting demand.",
+    "category": "GitHub Actions",
+    "technology": "GitHub Actions",
+    "error_signature": "Audit: actions using mutable major-version tag; workflow uses action by mutable tag that can move and do not provide SHA pinning",
+    "search_intent": "Fix GitHub Actions workflows that reference mutable version tags instead of pinned commit SHAs, resolving security audit failures and CI/CD pipeline compliance errors",
+    "common_causes": [
+      "Source: https://github.com/mohitkumhar/business-ai-agent/issues/429 — Newly opened (2026-05-27). Security audit finding requiring immediate remediation of CI/CD pipelines. area:ci-packaging, priority:medium tags. Maps to GitHub Actions. Production pipeline security fix = commercial value."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "GitHub Actions"
+    ]
+  },
+  {
+    "slug": "vercel-vercel-api-url-import-meta-env-vercel-production-environment-variables-not-loading-for-api-url-configuration",
+    "title": "Vercel production API URL environment variable import.meta.env not loading",
+    "description": "Debug why import.meta.env values are not accessible in Vercel production deployment for API URL configuration, causing frontend/backend communication failure Includes evidence for Vercel troubleshooting demand.",
+    "category": "Deployment",
+    "technology": "Vercel",
+    "error_signature": "Vercel 本番で API URL（import.meta.env）が読み込めない — Vercel production environment variables not loading for API URL configuration",
+    "search_intent": "Debug why import.meta.env values are not accessible in Vercel production deployment for API URL configuration, causing frontend/backend communication failure",
+    "common_causes": [
+      "Source: https://github.com/nkhippo/thinkgrindai/issues/61 — Recently opened (2026-05-27). Japanese developer reporting missing environment variables in Vercel production. Bug tag present. Production deployment failure = strong commercial value for Vercel paying customers."
+    ],
+    "quick_fix": "Check the build output, project root, and deployment platform configuration before redeploying.",
+    "related_errors": [
+      "Deployment"
+    ]
   }
 ]
