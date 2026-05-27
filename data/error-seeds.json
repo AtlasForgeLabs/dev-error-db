@@ -34173,5 +34173,69 @@
     "related_errors": [
       "Cloud Platforms"
     ]
+  },
+  {
+    "slug": "claude-code-status-shows-auth-token-none-after-oauth-login-flow-completes-claude-code-becomes-unusable",
+    "title": "Claude Code OAuth Auth Token Not Persisted After Login Successful",
+    "description": "Fix Claude Code becoming unusable immediately after successful OAuth login — auth token not being saved or loaded back Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "/status shows \"Auth token: none\" after OAuth login flow completes; Claude Code becomes unusable",
+    "search_intent": "Fix Claude Code becoming unusable immediately after successful OAuth login — auth token not being saved or loaded back",
+    "common_causes": [
+      "GitHub Issue #9371 (anthropics/claude-code): User reports completing OAuth login via Max subscription, seeing 'Login successful', but immediately after that /status displays 'Auth token: none' and prompts are ignored. This is an auth persistence bug specific to Claude Code's CLI OAuth flow. Category mapped to AI Coding Tools per category rules."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "anthropic-api-overloaded-error-an-unexpected-error-occurred-while-processing-your-request",
+    "title": "Anthropic API Overloaded Error During Peak Usage Blocks Completions",
+    "description": "Handle Anthropic API overloaded_error that occurs during peak usage periods causing completions to fail Includes evidence for Anthropic API troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Anthropic API",
+    "error_signature": "overloaded_error: An unexpected error occurred while processing your request",
+    "search_intent": "Handle Anthropic API overloaded_error that occurs during peak usage periods causing completions to fail",
+    "common_causes": [
+      "From initial Brave search: GitHub issues referencing 'overloaded_error' from the official anthropic-sdk-python or claude-api repos. This error is returned by the Anthropic API when infrastructure capacity is exceeded — different from rate limiting (429) as it's a server-side capacity signal affecting paid API consumers regardless of quota. Production deployments fail silently if not handled. Category: Anthropic API per mapping rules. Note: web_fetch was unable to access content due to DNS routing, candidate based on search snippet + API schema knowledge."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Anthropic API"
+    ]
+  },
+  {
+    "slug": "claude-code-can-t-paste-auth-code-into-cli-app-stdin-does-not-accept-oauth-code-when-paste-bracketing-is-enabled-wsl2-environment",
+    "title": "Claude Code Login Pasting Auth Code Blocked by Terminal Paste Bracketing in WSL2",
+    "description": "Authenticate Claude Code by pasting the OAuth verification code when the terminal has paste bracketing enabled (common in WSL2), which prevents code from being entered correctly Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Can't paste auth code into CLI app — stdin does not accept OAuth code when paste bracketing is enabled; WSL2 environment",
+    "search_intent": "Authenticate Claude Code by pasting the OAuth verification code when the terminal has paste bracketing enabled (common in WSL2), which prevents code from being entered correctly",
+    "common_causes": [
+      "GitHub Issue #47669 with 3 confirmed duplicate issues (#47648, #47670, #44136) spanning macOS and Windows. The root trigger is terminal paste bracketing in certain environments (WSL2 highlighted). Multiple users affected across platforms — indicates a real usability barrier for authentication. Brackets wrapping typed text breaks raw paste input. Category: AI Coding Tools per rules."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "claude-code-oauth-request-failed-internal-server-error-when-typing-login-after-auth-token-expires",
+    "title": "Claude Code /login Route Shows OAuth Request Failed Internal Server Error After Token Expiry",
+    "description": "Re-authenticate Claude Code when previous session token expires and the /login command triggers a server-side OAuth failure Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "OAuth Request Failed — Internal server error when typing /login after auth token expires",
+    "search_intent": "Re-authenticate Claude Code when previous session token expires and the /login command triggers a server-side OAuth failure",
+    "common_causes": [
+      "Hacker News discussion (item 45770183) highlighting a recurring issue where expired auth tokens in Claude Code lead to a hard block: invoking /login produces 'OAuth Request Failed' with an internal server error page rather than a graceful re-auth prompt. This affects paying Claude Code users who lose access mid-session. Source observed Feb-May 2026 timeframe. Category: AI Coding Tools."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
   }
 ]
