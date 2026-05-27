@@ -35053,5 +35053,101 @@
     "related_errors": [
       "LiteLLM"
     ]
+  },
+  {
+    "slug": "github-copilot-enterprise-mcp-allowlist-tool-schemas-573k-tokens-exceed-runtime-token-limit-136k-causing-infinite-truncation-plus-compaction-loop",
+    "title": "GitHub Copilot CLI Enterprise MCP allowlist exceeds token limit — persistent compaction loop makes sessions unusable",
+    "description": "Fix Copilot CLI session freezing when enterprise MCP tool schemas overwhelm context window with endless compaction cycles Includes evidence for GitHub Copilot troubleshooting demand.",
+    "category": "GitHub Copilot",
+    "technology": "GitHub Copilot",
+    "error_signature": "Enterprise MCP allowlist tool schemas (~573K tokens) exceed runtime token limit (~136K) causing infinite truncation + compaction loop",
+    "search_intent": "Fix Copilot CLI session freezing when enterprise MCP tool schemas overwhelm context window with endless compaction cycles",
+    "common_causes": [
+      "Issue #3542 on github/copilot-cli (created 2026-05-27): Copilot CLI v1.0.54 with MCP enterprise allowlist loads ~13 enterprise MCPs whose combined tool schemas (~573K tokens) far exceed the ~136K runtime context limit. Results in continuous compaction_start/truncation events per turn, making sessions unusable. High commercial value — directly affects enterprise-paid Copilot users with complex MCP setups. Category: GitHub Copilot."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "GitHub Copilot"
+    ]
+  },
+  {
+    "slug": "openai-api-typeerror-nonetype-object-is-not-iterable-at-parse-response-when-response-output-is-null",
+    "title": "OpenAI SDK parse_response crashes on null output — TypeError: 'NoneType' object is not iterable",
+    "description": "Fix OpenAI Python SDK crash when streaming Codex backend returns null output instead of empty list Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "TypeError: 'NoneType' object is not iterable at parse_response() when response.output is null",
+    "search_intent": "Fix OpenAI Python SDK crash when streaming Codex backend returns null output instead of empty list",
+    "common_causes": [
+      "Issue #3313 on openai/openai-python (created 2026-05-27): ChatGPT Codex backend sends response.output=null causing unguarded loop in _responses.py:61. Affected versions 2.24.0 through 2.38.0. This affects production streaming workloads using structured outputs — a critical reliability issue for paid API consumers. Category mapping: OpenAI API (directly affects OpenAI SDK/API usage)."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "openai-api-typeerror-nonetype-object-is-not-iterable-at-parse-response-from-responses-stream-when-response-completed-sse-event-has-output-null",
+    "title": "OpenAI SDK responses.stream() crashes with NoneType iteration on null payload",
+    "description": "Fix OpenAI Python SDK stream crash when response completed event contains null output field Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "TypeError: 'NoneType' object is not iterable at parse_response() from responses.stream() when response.completed SSE event has output=null",
+    "search_intent": "Fix OpenAI Python SDK stream crash when response completed event contains null output field",
+    "common_causes": [
+      "Issue #3321 on openai/openai-python (created 2026-05-27): client.responses.stream() raises TypeError from parse_response when SSE event payload has output=null. Same root cause as #3313 but specifically in the stream() API. Distinct from #3313 because it targets the stream() code path vs regular parse(). Affects production streaming applications."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "cloudflare-err-unsupported-esm-url-scheme-during-wrangler-autoconfig-spawn-on-node-24-windows",
+    "title": "wrangler 4.86–4.95 fails on Node 24 + Windows with ERR_UNSUPPORTED_ESM_URL_SCHEME blocking @opennextjs/cloudflare compat",
+    "description": "Fix Cloudflare Wrangler build failure on Windows with Node.js 24 causing peer-dependency conflicts with Next.js adapter Includes evidence for Cloudflare troubleshooting demand.",
+    "category": "Cloudflare",
+    "technology": "Cloudflare",
+    "error_signature": "ERR_UNSUPPORTED_ESM_URL_SCHEME during wrangler autoconfig spawn on Node 24 / Windows",
+    "search_intent": "Fix Cloudflare Wrangler build failure on Windows with Node.js 24 causing peer-dependency conflicts with Next.js adapter",
+    "common_causes": [
+      "Issue #14054 on cloudflare/workers-sdk (created 2026-05-26): wrangler@4.86.0 through 4.95.x breaks on Windows + Node 24 due to ESM URL scheme regression in autoconfig. Forces pinning to v3 which conflicts with @opennextjs/cloudflare peer-dep requirement (^4.38.0). Directly blocks deploying Vercel+Cloudflare Next.js sites — high commercial impact for full-stack developers. Category: Cloudflare (wrangler is the official Cloudflare CLI)."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Cloudflare"
+    ]
+  },
+  {
+    "slug": "openai-api-validationerror-invalid-json-eof-while-parsing-a-value-at-line-1-column-600-type-json-invalid-in-pydantic-structured-outputs",
+    "title": "OpenAI beta.chat.completions.parse returns unhandled ValidationError — bad JSON in structured output pipeline",
+    "description": "Fix unpredictable ValidationError crash when OpenAI Completion API returns malformed JSON for pydantic model validation with structured outputs Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "ValidationError: Invalid JSON: EOF while parsing a value at line 1 column 600 [type=json_invalid] in Pydantic Structured Outputs",
+    "search_intent": "Fix unpredictable ValidationError crash when OpenAI Completion API returns malformed JSON for pydantic model validation with structured outputs",
+    "common_causes": [
+      "Issue #1763 on openai/openai-python (created 2024-09-30): Using Completion API with Structured Outputs and Pydantic models, SDK intermittently throws ValidationError with truncated/malformed JSON. Non-deterministic behavior makes it hard to reproduce and guard against. This affects production services relying on reliable structured output extraction from OpenAI. Category: OpenAI API (SDK-level parsing issue on top of paid API)."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "github-copilot-startup-input-lag-15-30-s-freeze-unbounded-recursive-glob-over-copilot-custom-instructions-dirs-entries-causes-main-event-loop-lockup",
+    "title": "GitHub Copilot CLI startup freezes 15–30 seconds due to unbounded recursive glob over custom instructions dirs",
+    "description": "Fix Copilot CLI startup freeze caused by recursive directory scanning without depth limit or node_modules exclusion Includes evidence for GitHub Copilot troubleshooting demand.",
+    "category": "GitHub Copilot",
+    "technology": "GitHub Copilot",
+    "error_signature": "Startup input lag (15–30 s freeze): unbounded recursive glob over $COPILOT_CUSTOM_INSTRUCTIONS_DIRS entries causes main event loop lockup",
+    "search_intent": "Fix Copilot CLI startup freeze caused by recursive directory scanning without depth limit or node_modules exclusion",
+    "common_causes": [
+      "Issue #3543 on github/copilot-cli (created 2026-05-27): COPILOT_CUSTOM_INSTRUCTIONS_DIRS pointing to large directories triggers unbounded glob('**/*.instructions.md') with no depth limit and no skip list. On realistic home directories this fires 600,000+ readdir callbacks on the main thread, freezing the TUI completely including Ctrl-C. Started in v1.0.52. Production impact: developers lose significant startup time. Category: GitHub Copilot."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "GitHub Copilot"
+    ]
   }
 ]
