@@ -35213,5 +35213,53 @@
     "related_errors": [
       "AI Coding Tools"
     ]
+  },
+  {
+    "slug": "openai-api-typeerror-nonetype-object-is-not-iterable-at-parse-response-in-openai-python-sdk",
+    "title": "OpenAI Python SDK parse_response crashes TypeError when response.output is null",
+    "description": "Fix TypeError crash in openai-python SDK caused by upstream backend returning null response.output during Codex CLI usage Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "TypeError: 'NoneType' object is not iterable at parse_response() in openai-python SDK",
+    "search_intent": "Fix TypeError crash in openai-python SDK caused by upstream backend returning null response.output during Codex CLI usage",
+    "common_causes": [
+      "Issue #3325 in openai/openai-python: The Responses API's parse_response() unconditionally iterates response.output, which can be None from the chatgpt.com Codex backend (response.completed event). Affects Codex CLI users who authenticate via ChatGPT account auth. Multiple related PRs filed (#3322, #3323, #3324) indicating active community impact. Not in covered-errors.md. Category: OpenAI API."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "vercel-invalid-relative-path-when-using-standalone-in-pnpm-turborepo-monorepos",
+    "title": "Vercel standalone prebuilt deploys fail with invalid relative path in pnpm/Turborepo monorepos",
+    "description": "Fix deployment failures in Vercel prebuilt (--standalone) mode with external symlinks in monorepo setups Includes evidence for Vercel troubleshooting demand.",
+    "category": "Deployment",
+    "technology": "Vercel",
+    "error_signature": "invalid relative path when using --standalone in pnpm/Turborepo monorepos",
+    "search_intent": "Fix deployment failures in Vercel prebuilt (--standalone) mode with external symlinks in monorepo setups",
+    "common_causes": [
+      "PR #16439 in vercel/vercel (closed): Fixed PIPE-6621 where prebuilt deployments failed with 'invalid relative path' when external symlinks in shared node_modules contained ../ paths. Directly impacts teams using Turborepo + pnpm deploying to Vercel. Closed but recently fixed — indicates active bug that affected paying customers. Not in covered-errors.md (the existing 'Vercel build command failed' is generic). Category: Deployment."
+    ],
+    "quick_fix": "Check the build output, project root, and deployment platform configuration before redeploying.",
+    "related_errors": [
+      "Deployment"
+    ]
+  },
+  {
+    "slug": "vercel-action-required-cli-rejects-its-own-suggested-command-infinite-loop-for-agentic-callers-in-non-interactive-mode",
+    "title": "Vercel CLI env add infinite loop in non-interactive mode for agent callers",
+    "description": "Fix Vercel CLI env add command stuck in infinite action_required loop when running from scripts/CI/agents Includes evidence for Vercel troubleshooting demand.",
+    "category": "Deployment",
+    "technology": "Vercel",
+    "error_signature": "action_required: CLI rejects its own suggested command — infinite loop for agentic callers in non-interactive mode",
+    "search_intent": "Fix Vercel CLI env add command stuck in infinite action_required loop when running from scripts/CI/agents",
+    "common_causes": [
+      "Issue #16442 in vercel/vercel (open): Vercel CLI 54.5.0 and 54.2.0 return action_required in non-interactive mode suggesting the identical command just rejected. Creates infinite loop for agents and CI pipelines. Directly blocks automated deployment workflows. Very fresh (May 27, 2026). Not in covered-errors.md."
+    ],
+    "quick_fix": "Check the build output, project root, and deployment platform configuration before redeploying.",
+    "related_errors": [
+      "Deployment"
+    ]
   }
 ]
