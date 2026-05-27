@@ -34797,5 +34797,69 @@
     "related_errors": [
       "Docker"
     ]
+  },
+  {
+    "slug": "vercel-code-705-failed-to-verify-your-browser",
+    "title": "Vercel Code 705 — 'Failed to verify your browser' blocking customer domains after traffic spike",
+    "description": "Fix Vercel Code 705 error that blocks access to deployed projects after automated traffic spikes or security flags; user wants to restore customer-facing domains without contacting Vercel support Includes evidence for Vercel troubleshooting demand.",
+    "category": "Deployment",
+    "technology": "Vercel",
+    "error_signature": "Code 705 — Failed to verify your browser",
+    "search_intent": "Fix Vercel Code 705 error that blocks access to deployed projects after automated traffic spikes or security flags; user wants to restore customer-facing domains without contacting Vercel support",
+    "common_causes": [
+      "Reddit r/Vercel post from May 2026 describes Code 705 persisting across new projects created from same repo root after bot traffic spike targeting /login paths. Affected user already tried disabling Bot Protection, AI Bots, Attack Mode, System Mitigations, added Cloudflare protection — all ineffective. Domain-level reputation/security flag suspected. High commercial value: affects paying SaaS platforms with custom domain customers. Category mapped to Deployment since it directly blocks Vercel deployments of customer-facing projects."
+    ],
+    "quick_fix": "Check the build output, project root, and deployment platform configuration before redeploying.",
+    "related_errors": [
+      "Deployment"
+    ]
+  },
+  {
+    "slug": "openai-api-rate-limit-reached-openai-plus-subscription-limited-to-5-images-day-error-code-429-despite-paying-for-chatgpt-plus",
+    "title": "OpenAI API 429 rate limit caps Plus subscribers on image generation to 5 per day",
+    "description": "Understand why ChatGPT Plus subscribers hit daily rate limits (especially for DALL-E image generation) despite paying $20/month; look for plan upgrade or workaround options Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "Rate limit reached — OpenAI Plus subscription limited to ~5 images/day; Error code 429 despite paying for ChatGPT Plus",
+    "search_intent": "Understand why ChatGPT Plus subscribers hit daily rate limits (especially for DALL-E image generation) despite paying $20/month; look for plan upgrade or workaround options",
+    "common_causes": [
+      "Reddit r/OpenAI post March 2026 shows paying Plus users hitting hard caps on image generation (~5/day) and general rate limiting. User expresses frustration about being unable to create more than 5 images with Plus plan. This error has strong billing/purchase intent since users must decide whether to upgrade to Pro or buy additional credits. Already-published 429 errors are generic; this specific rate-limit-for-paid-subscribers angle is underrepresented. Category mapped to OpenAI API per approved list."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "github-copilot-premium-requests-showing-100-usage-when-actual-usage-is-only-68-no-activity-logged-between-discrepancy",
+    "title": "GitHub Copilot Premium Requests quota shows 100% when usage was only 68%",
+    "description": "Investigate why GitHub Copilot Pro Premium Requests counter suddenly hits 100% with unexplained usage consumption; understand if requests are double-counted or burned silently by background operations Includes evidence for GitHub Copilot troubleshooting demand.",
+    "category": "GitHub Copilot",
+    "technology": "GitHub Copilot",
+    "error_signature": "Premium Requests showing 100% usage when actual usage is only 68%; no activity logged between discrepancy",
+    "search_intent": "Investigate why GitHub Copilot Pro Premium Requests counter suddenly hits 100% with unexplained usage consumption; understand if requests are double-counted or burned silently by background operations",
+    "common_causes": [
+      "Reddit r/GithubCopilot post from May 2026 reports premium requests jumped from 68% to 100% over a few days with minimal to no Copilot usage. User checked billing dashboard and found complete disconnect between logged activity and quota consumption. Affects paid users who rely on Copilot for development work. Fresh issue, high purchase-intent audience looking for solutions before cancelling. Category: GitHub Copilot per approved mapping."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "GitHub Copilot"
+    ]
+  },
+  {
+    "slug": "vercel-code-runs-fine-locally-with-vercel-dev-but-breaks-on-production-deployment-module-resolution-failure-caused-by-esbuild-bundle-difference",
+    "title": "Vercel code works locally in vercel dev but fails on production deployment",
+    "description": "Fix production build failures in Vercel where locally running code using vercel dev succeeds but deployment to production environment throws module resolution or import errors Includes evidence for Vercel troubleshooting demand.",
+    "category": "Deployment",
+    "technology": "Vercel",
+    "error_signature": "code runs fine locally with vercel dev but breaks on production deployment; module resolution failure caused by esbuild bundle difference",
+    "search_intent": "Fix production build failures in Vercel where locally running code using vercel dev succeeds but deployment to production environment throws module resolution or import errors",
+    "common_causes": [
+      "Reddit r/Vercel post from May 2026 describes consistent pattern of backend APIs working in vercel dev (esbuild bundler) but failing on production deployment due to esbuild being 'more forgiving' than the deployed Node.js environment. Specific examples include missing peer dependencies and import path mismatches. Directly impacts developer productivity and deployment reliability. Category mapped to Deployment. Fresh discovery, good commercial value for teams building on Vercel."
+    ],
+    "quick_fix": "Check the build output, project root, and deployment platform configuration before redeploying.",
+    "related_errors": [
+      "Deployment"
+    ]
   }
 ]
