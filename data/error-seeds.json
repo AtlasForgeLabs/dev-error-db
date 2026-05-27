@@ -33661,5 +33661,85 @@
     "related_errors": [
       "OpenAI API"
     ]
+  },
+  {
+    "slug": "openai-api-post-https-api-openai-com-v1-realtime-sessions-returns-500-internal-server-error-when-using-service-account-api-keys-sk-svcacct-prefix",
+    "title": "OpenAI API 500 Error on Service Account Keys for Realtime Sessions",
+    "description": "Fix 500 error when calling OpenAI Realtime Sessions API with service account keys vs user-created keys Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "POST https://api.openai.com/v1/realtime/sessions returns 500 Internal Server Error when using service account API keys (sk-svcacct- prefix)",
+    "search_intent": "Fix 500 error when calling OpenAI Realtime Sessions API with service account keys vs user-created keys",
+    "common_causes": [
+      "GitHub issue openai/openai-realtime-console#507 confirms that POST to /v1/realtime/sessions returns 500 specifically for sk-svcacct-* keys while sk-proj-* keys work fine. Distinct from already-covered 'OpenAI API 500' and 'invalid API key'. Category: OpenAI API per mapping rules. High commercial value as service accounts are commonly used in production."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "cloudflare-worker-to-worker-requests-through-custom-domains-return-immediate-522-connection-timeout-http-response",
+    "title": "Cloudflare Workers Custom Domain Request Returns 522 Timeout Immediately",
+    "description": "Fix 522 timeout when making same-zone worker-to-worker requests via custom domains on Cloudflare Workers Includes evidence for Cloudflare troubleshooting demand.",
+    "category": "Cloudflare",
+    "technology": "Cloudflare",
+    "error_signature": "Worker-to-worker requests through custom domains return immediate 522 Connection timeout HTTP response",
+    "search_intent": "Fix 522 timeout when making same-zone worker-to-worker requests via custom domains on Cloudflare Workers",
+    "common_causes": [
+      "GitHub issue cloudflare/workerd#787 confirms that custom domain worker-to-worker routing on some POPs immediately returns 522 instead of proxying. Wrangler 2.9.0 on Mac. Distinct from covered 'Cloudflare Error 522' (generic origin unreachable). This is a product-level bug in custom domain routing for Workers. Category: Cloudflare per mapping rules. High commercial value as it blocks production inter-service communication."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Cloudflare"
+    ]
+  },
+  {
+    "slug": "openai-api-500-internal-server-error-when-issuing-multiple-function-calls-to-openai-single-call-succeeds-second-plus-call-returns-500",
+    "title": "OpenAI Returns 500 on Multiple Function Calls (Semantic Kernel)",
+    "description": "Fix 500 Internal Server Error triggered by sequential function calling pattern in Azure Semantic Kernel against gpt-3.5-turbo-0613 Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "500 Internal Server Error when issuing multiple function calls to OpenAI — single call succeeds, second+ call returns 500",
+    "search_intent": "Fix 500 Internal Server Error triggered by sequential function calling pattern in Azure Semantic Kernel against gpt-3.5-turbo-0613",
+    "common_causes": [
+      "GitHub issue microsoft/semantic-kernel#3515 documents reproducible 500 error specifically when OpenAI receives multiple consecutive function calls. Single function call works fine. Not covered by existing entries ('rate limit', 'insufficient quota'). Category: OpenAI API per mapping rules. Strong commercial impact as this affects SDK users calling OpenAI functions in production workflows."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "cloudflare-get-workers-services-webhook-receiver-returns-504-gateway-timeout-on-workers-service-deployment",
+    "title": "Cloudflare Workers Deploy Returns 504 Upstream Request Timeout",
+    "description": "Fix 504 Gateway Timeout when deploying Workers service with webhook receiver endpoint Includes evidence for Cloudflare troubleshooting demand.",
+    "category": "Cloudflare",
+    "technology": "Cloudflare",
+    "error_signature": "GET /workers/services/webhook-receiver returns 504 Gateway Timeout on Workers service deployment",
+    "search_intent": "Fix 504 Gateway Timeout when deploying Workers service with webhook receiver endpoint",
+    "common_causes": [
+      "GitHub issue cloudflare/workers-sdk#10548 reports 504 Gateway Timeout during deployment of Workers services (upstream request timeout). Distinct from covered 'Cloudflare Error 522/525'. Category: Cloudflare per mapping rules. Production-deploy-blocking error for serverless workloads."
+    ],
+    "quick_fix": "Check the build output, project root, and deployment platform configuration before redeploying.",
+    "related_errors": [
+      "Cloudflare"
+    ]
+  },
+  {
+    "slug": "ollama-internal-server-error-status-code-500-when-using-qwen3-vl-235b-cloud-model-through-openai-compatible-python-interface",
+    "title": "Ollama OpenAI-Compatible Interface Returns 500 for qwen3-vl:235b-cloud Model",
+    "description": "Fix 500 Internal Server Error when querying qwen3-vl:235b-cloud vision model via Ollama's OpenAI-compatible API endpoint Includes evidence for Ollama troubleshooting demand.",
+    "category": "Ollama",
+    "technology": "Ollama",
+    "error_signature": "Internal server error, status code: 500 when using qwen3-vl:235b-cloud model through OpenAI-compatible Python interface",
+    "search_intent": "Fix 500 Internal Server Error when querying qwen3-vl:235b-cloud vision model via Ollama's OpenAI-compatible API endpoint",
+    "common_causes": [
+      "GitHub issue ollama/ollama#12859 describes consistent 500 errors for qwen3-vl:235b-cloud (cloud model) accessed through Ollama's OpenAI-compatible Python client. Previously worked until recent regression. Category: Ollama per mapping rules. Commercial value as cloud model access is part of Ollama's paid offering. Distinct from generic Docker-related errors."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Ollama"
+    ]
   }
 ]
