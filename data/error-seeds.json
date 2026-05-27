@@ -34525,5 +34525,53 @@
     "related_errors": [
       "Deployment"
     ]
+  },
+  {
+    "slug": "github-actions-github-actions-workflow-run-trigger-checks-out-wrong-broken-commit-sha-stale-cached-head-sha-even-after-deleting-workflow-file",
+    "title": "GitHub Actions workflow_run trigger keeps firing with old cached commit SHA",
+    "description": "Stop GitHub Actions from re-running with stale commit SHA in workflow_run triggers — need reliable way to ensure correct branch HEAD is checked out instead of cached/stale refs Includes evidence for GitHub Actions troubleshooting demand.",
+    "category": "GitHub Actions",
+    "technology": "GitHub Actions",
+    "error_signature": "GitHub Actions workflow_run trigger checks out wrong/broken commit SHA (stale cached head_sha) even after deleting workflow file",
+    "search_intent": "Stop GitHub Actions from re-running with stale commit SHA in workflow_run triggers — need reliable way to ensure correct branch HEAD is checked out instead of cached/stale refs",
+    "common_causes": [
+      "Stack Overflow Q79941021 (May 2026) — workflow_run fires with b0d819c (a main-branch commit merged into develop) instead of latest develop HEAD. User tried explicit ref settings, branch guards, and even deleted the workflow YAML but GitHub caches/runs stale version for hours. Directly impacts CI/CD reliability for paid team accounts deploying via automated pipelines."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "GitHub Actions"
+    ]
+  },
+  {
+    "slug": "azure-openai-azure-openai-realtime-api-token-usage-reported-by-response-done-event-does-not-match-azure-cost-management-billing-meter-data",
+    "title": "Azure OpenAI token usage from response.done event does not match Azure Cost Management meter data",
+    "description": "Reconcile discrepancy between API-reported token counts and Azure portal cost estimates — need to understand why client-side token counts differ from backend billing metrics Includes evidence for Azure OpenAI troubleshooting demand.",
+    "category": "Cloud Platforms",
+    "technology": "Azure OpenAI",
+    "error_signature": "Azure OpenAI Realtime API: Token usage reported by `response.done` event does not match Azure Cost Management billing meter data",
+    "search_intent": "Reconcile discrepancy between API-reported token counts and Azure portal cost estimates — need to understand why client-side token counts differ from backend billing metrics",
+    "common_causes": [
+      "Stack Overflow Q79918080 (May 2026) — Client library reports certain token counts in response.done events but Azure Cost Management shows different totals. Critical for enterprise customers managing budgets and chargebacks. Category: Cloud Platforms (Azure). Not yet covered by dev-error-db. Strong commercial value due to direct billing/finance impact."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Cloud Platforms"
+    ]
+  },
+  {
+    "slug": "docker-cannot-connect-to-mysql-with-docker-compose-the-last-packet-sent-successfully-to-the-server-was-0-milliseconds-ago-driver-has-not-received-any-packets-from-the-server-dataaccessresourcefailureexception",
+    "title": "Docker Compose services cannot connect to MySQL — DataAccessResourceFailureException",
+    "description": "Resolve Docker Compose networking issue where Spring Boot service container cannot reach MySQL service despite both being in the same compose network — investigate DNS resolution, healthcheck timing, or network configuration Includes evidence for Docker troubleshooting demand.",
+    "category": "Docker",
+    "technology": "Docker",
+    "error_signature": "Cannot connect to MySQL with Docker Compose: 'The last packet sent successfully to the server was 0 milliseconds ago. driver has not received any packets from the server.' / DataAccessResourceFailureException",
+    "search_intent": "Resolve Docker Compose networking issue where Spring Boot service container cannot reach MySQL service despite both being in the same compose network — investigate DNS resolution, healthcheck timing, or network configuration",
+    "common_causes": [
+      "Stack Overflow Q79943990 (May 2026) — Docker Compose multi-container app where eureka-server and auth API are running but database connections fail with JDBC timeout. Covers both TCP-level connectivity and application-layer behavior. Distinct from 'cannot connect to the daemon' — this is inter-container communication failure. Commercial relevance: Docker infrastructure errors in production deployments directly affect paying enterprise users."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Docker"
+    ]
   }
 ]
