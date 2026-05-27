@@ -34573,5 +34573,69 @@
     "related_errors": [
       "Docker"
     ]
+  },
+  {
+    "slug": "cloudflare-worker-executes-but-fetch-to-origin-fails-with-522-timeout-even-simplified-worker-fetching-google-com-returns-522",
+    "title": "Cloudflare Workers Outbound Request Timeout — 522/524 on All Fetch Calls",
+    "description": "Debug Cloudflare Worker where all outbound fetch() requests return 522 connection timeout despite DNS and SSL being healthy Includes evidence for Cloudflare troubleshooting demand.",
+    "category": "Cloudflare",
+    "technology": "Cloudflare",
+    "error_signature": "Worker executes but fetch() to origin fails with 522 timeout; even simplified worker fetching google.com returns 522",
+    "search_intent": "Debug Cloudflare Worker where all outbound fetch() requests return 522 connection timeout despite DNS and SSL being healthy",
+    "common_causes": [
+      "Reported on AnswerOverflow showing complete Cloudflare Worker outbound fetch failure — DNS resolution works, SSL active, origin responds to direct curl (200 OK), but Worker's fetch() times out universally. Issue likely platform-wide affecting enterprise users. Cloudflare Error 522 already published on dev-error-db but this specific Workers-fetch-only manifestation is distinct. Source: web_search + answeroverflow.com. Category: Cloudflare Workers specific error path not yet covered."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Cloudflare"
+    ]
+  },
+  {
+    "slug": "vercel-error-function-runtimes-must-have-a-valid-version-for-example-now-php-1",
+    "title": "Vercel Deployment Fails — Function Runtimes Must Have Valid Version",
+    "description": "Fix Vercel deployment failure caused by invalid function runtime version specification Includes evidence for Vercel troubleshooting demand.",
+    "category": "Deployment",
+    "technology": "Vercel",
+    "error_signature": "Error: Function Runtimes must have a valid version, for example now-php@1...",
+    "search_intent": "Fix Vercel deployment failure caused by invalid function runtime version specification",
+    "common_causes": [
+      "Vercel Community report showing deployment failing on GitHub-connected project with build machine (2 cores, 8 GB). Error occurs during 'vercel build' step when function runtimes config has invalid version. This is a deploy-blocking error for teams with custom function configs. Source: vweb_search snippet from community.vercel.com. Category: Deployment — Vercel build/packaging failure. GitHub REST API unavailable due to rate-limit (Tier 0 fallback used)."
+    ],
+    "quick_fix": "Check the build output, project root, and deployment platform configuration before redeploying.",
+    "related_errors": [
+      "Deployment"
+    ]
+  },
+  {
+    "slug": "litellm-bug-rate-limit-error-reported-as-no-deployments-available",
+    "title": "LiteLLM Rate Limit Error Mislabeled as 'No Deployments Available' — Bug Report",
+    "description": "Fix mislabeled rate limit error in LiteLLM proxy that shows 'No deployments available' instead of actual rate limit exceeded message Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "[Bug]: Rate limit error reported as 'No deployments available'",
+    "search_intent": "Fix mislabeled rate limit error in LiteLLM proxy that shows 'No deployments available' instead of actual rate limit exceeded message",
+    "common_causes": [
+      "GitHub issue BerriAI/litellm#20867 reports a bug where configuring a rate limit for a locally served model results in error messages being incorrectly labeled as 'No deployments available'. Source: GitHub Issues via web_search Tier 0 fallback (GitHub REST API was rate-limited). Category: LiteLLM proxy-specific behavior."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "LiteLLM"
+    ]
+  },
+  {
+    "slug": "litellm-key-level-model-limits-tpm-rpm-budget-enforcement-issues-with-router-fallback-mechanism",
+    "title": "LiteLLM Key-Level Model Limits Enforcement Failures (TPM/RPM/Budget)",
+    "description": "Resolve LiteLLM key-level TPM/RPM/budget limits not enforcing correctly and router fallback failing Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "Key-Level Model Limits (TPM/RPM/Budget) enforcement issues with router fallback mechanism",
+    "search_intent": "Resolve LiteLLM key-level TPM/RPM/budget limits not enforcing correctly and router fallback failing",
+    "common_causes": [
+      "GitHub issue BerriAI/litellm#10052 documents problems with enforcing per-key model limits (TPM, RPM, Budget) and router fallback not working as expected. Uses Proxy Server with database mode, Enterprise License. Source: GitHub web_search results. Category: LiteLLM proxy configuration issue with clear commercial impact on multi-client deployments."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "LiteLLM"
+    ]
   }
 ]
