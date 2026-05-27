@@ -35005,5 +35005,53 @@
     "related_errors": [
       "Git"
     ]
+  },
+  {
+    "slug": "claude-code-unexpected-change-in-claude-usage-limits-200k-cap-on-max-plan-extra-usage-charged-against-plan-capacity-20x-token-burn-rate-on-identical-prompts",
+    "title": "Claude Code Silent Entitlement Regression — 200k Cap on Max Plan, Extra Usage Charged Against Plan Capacity",
+    "description": "Fix unexpected quota exhaustion and overcharged usage after Claude Max plan entitlement change Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Unexpected change in Claude usage limits — 200k cap on Max plan, extra usage charged against plan capacity, 20x token burn rate on identical prompts",
+    "search_intent": "Fix unexpected quota exhaustion and overcharged usage after Claude Max plan entitlement change",
+    "common_causes": [
+      "GitHub issue #62898 on anthropics/claude-code, filed May 27 2026 — reports silent regression where Max plan users hit a 200k soft-cap, are charged extra against plan capacity, and experience 20x token burn. Server-side account state change, no outage. Affects paying Claude Code Max subscribers with clear billing impact."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "claude-code-api-error-400-this-model-does-not-support-the-effort-parameter",
+    "title": "Claude Code Subagents Fail with 400 on Azure Foundry — Effort Parameter Not Supported",
+    "description": "Fix Claude Code subagent failures when using Azure OpenAI Foundry deployment with CLAUDE_CODE_USE_FOUNDRY enabled Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "API Error: 400 This model does not support the effort parameter",
+    "search_intent": "Fix Claude Code subagent failures when using Azure OpenAI Foundry deployment with CLAUDE_CODE_USE_FOUNDRY enabled",
+    "common_causes": [
+      "GitHub issue #62894 on anthropics/claude-code, filed May 27 2026. Claude Code sets CLAUDE_EFFORT=high which translates to 'effort' API parameter — Azure Foundry deployments reject this with HTTP 400 on every subagent call. Root cause identified; main session works fine. Enterprise Azure + Claude Code workflow broken."
+    ],
+    "quick_fix": "Check the build output, project root, and deployment platform configuration before redeploying.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "litellm-streamgeneratecontent-returns-500-when-model-is-missing-should-return-404-model-not-found",
+    "title": "LiteLLM Returns HTTP 500 Instead of 404 for Missing Gemini Models",
+    "description": "Fix incorrect HTTP status code when passing deprecated/missing Gemini models through LiteLLM proxy — agents receive 500 instead of actionable 404 Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "streamGenerateContent returns 500 when model is missing (should return 404 model not found)",
+    "search_intent": "Fix incorrect HTTP status code when passing deprecated/missing Gemini models through LiteLLM proxy — agents receive 500 instead of actionable 404",
+    "common_causes": [
+      "GitHub issue #29005 on BerriAI/litellm, filed May 27 2026. Reports that LiteLLM returns HTTP 500 for deprecated Gemini models instead of standard 404 like other APIs. This affects any pipeline using LiteLLM as proxy — agents treating 500 as transient will retry unnecessarily. Strong commercial signal for proxy/billing layer errors."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "LiteLLM"
+    ]
   }
 ]
