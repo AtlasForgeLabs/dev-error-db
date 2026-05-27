@@ -34285,5 +34285,85 @@
     "related_errors": [
       "OpenAI API"
     ]
+  },
+  {
+    "slug": "anthropic-api-messages-x-content-y-invalid-signature-in-thinking-block-http-400",
+    "title": "API returns 400 'Invalid signature in thinking block' when replaying conversation history",
+    "description": "Fix permanent session lockout caused by Anthropic extended thinking signature validation failure during conversation replay Includes evidence for Anthropic API troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Anthropic API",
+    "error_signature": "messages.X.content.Y: Invalid `signature` in `thinking` block (HTTP 400)",
+    "search_intent": "Fix permanent session lockout caused by Anthropic extended thinking signature validation failure during conversation replay",
+    "common_causes": [
+      "GitHub issue #1598 on anthropic-sdk-python describes multi-turn conversations with extended thinking triggering permanent 400 errors after N turns, with no recovery path except manually stripping thinking blocks. Paid API consumers affected — sessions locked indefinitely. Category: Anthropic API."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Anthropic API"
+    ]
+  },
+  {
+    "slug": "openai-api-background-responses-api-runs-with-status-failed-returns-http-200-ok-but-sdk-does-not-raise-typed-exception-only-free-form-error-code-string-available",
+    "title": "Background responses failures lack stable error code mapping for Python SDK exception classes",
+    "description": "Get reliable typed exception handling for background mode Response API failures in OpenAI Python SDK without relying on undocumented error codes Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "Background Responses API runs with status='failed' returns HTTP 200 OK but SDK does not raise typed exception; only free-form error.code string available",
+    "search_intent": "Get reliable typed exception handling for background mode Response API failures in OpenAI Python SDK without relying on undocumented error codes",
+    "common_causes": [
+      "GitHub issue #3212 on openai/openai-python details that background=true responses returning status='failed' are not surfaced as typed exceptions because HTTP poll returns 200 OK. No machine-readable identifier maps to SDK exception class. Affects paid API users with background processing pipelines. Category: OpenAI API."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "litellm-http-400-from-upstream-provider-openai-anthropic-due-to-injected-internal-litellm-rate-limit-descriptors-litellm-tpm-reserved-parameters-in-request-payload",
+    "title": "Virtual keys with TPM/RPM limits leak _litellm_* params breaking provider API calls",
+    "description": "Fix LiteLLM virtual key rate limiting that leaks internal proxy parameters into upstream provider API, causing rejected requests and breaking fallback chains Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "HTTP 400 from upstream provider (OpenAI/Anthropic) due to injected internal _litellm_rate_limit_descriptors/_litellm_tpm_reserved_* parameters in request payload",
+    "search_intent": "Fix LiteLLM virtual key rate limiting that leaks internal proxy parameters into upstream provider API, causing rejected requests and breaking fallback chains",
+    "common_causes": [
+      "GitHub issue #28146 on BerriAI/litellm reveals that parallel_request_limiter_v3 hook injects internal _litellm_* params into provider requests, causing strict providers to reject with HTTP 400. This effectively breaks router_settings.fallbacks for any virtual key with rate limits configured. Production routing failure. Category: LiteLLM."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "LiteLLM"
+    ]
+  },
+  {
+    "slug": "litellm-contentpolicyviolationerror-raised-directly-in-streaming-handler-py-bypassing-fallbacks-non-streaming-path-handles-cpv-correctly-but-streaming-code-path-does-not",
+    "title": "Streaming requests bypass content_policy_fallbacks in LiteLLM handler",
+    "description": "Fix LiteLLM streaming requests that skip content_policy_fallbacks configuration and fail immediately instead of trying alternate models Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "ContentPolicyViolationError raised directly in streaming_handler.py bypassing fallbacks; non-streaming path handles CPV correctly but streaming code path does not",
+    "search_intent": "Fix LiteLLM streaming requests that skip content_policy_fallbacks configuration and fail immediately instead of trying alternate models",
+    "common_causes": [
+      "GitHub issue #28599 on BerriAI/litellm shows ContentPolicyViolationError (HTTP 400) is treated as non-retriable in streaming path and raised directly, skipping the router's fallback chain entirely. Non-streaming path handles this correctly. Affects load-balancing reliability for paid API consumers using LiteLLM proxy. Category: LiteLLM."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "LiteLLM"
+    ]
+  },
+  {
+    "slug": "ollama-model-runner-has-unexpectedly-stopped-unexpected-eof-http-500-connection-refused-ollama-serve-process-dies-under-sustained-multi-turn-tool-calling",
+    "title": "Ollama runner crashes under sustained multi-turn tool-calling (72% crash rate)",
+    "description": "Fix Ollama runner crashing mid-conversation during sustained tool-use workloads, regressing from v0.19.x stability Includes evidence for Ollama troubleshooting demand.",
+    "category": "Ollama",
+    "technology": "Ollama",
+    "error_signature": "model runner has unexpectedly stopped / unexpected EOF (HTTP 500) / connection refused (Ollama serve process dies) under sustained multi-turn tool-calling",
+    "search_intent": "Fix Ollama runner crashing mid-conversation during sustained tool-use workloads, regressing from v0.19.x stability",
+    "common_causes": [
+      "GitHub issue #15923 on ollama/ollama reports 72% crash rate across 7 models in a 138-run benchmark suite. Three error signatures: 500 unexpected stop, 500 unexpected EOF, connection refused. Regression from v0.19.x. Directly affects self-hosted production LLM inference reliability. Category: Ollama."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "Ollama"
+    ]
   }
 ]
