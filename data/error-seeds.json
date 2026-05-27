@@ -33613,5 +33613,53 @@
     "related_errors": [
       "OpenAI API"
     ]
+  },
+  {
+    "slug": "github-copilot-copilot-encountered-an-error-and-was-unable-to-review-this-pull-request-you-can-try-again-by-re-requesting-a-review",
+    "title": "GitHub Copilot encounters error and is unable to review pull requests — paid tier affected",
+    "description": "Fix GitHub Copilot AI review failure that blocks pull request auto-reviews even when user has paid Actions quota available Includes evidence for GitHub Copilot troubleshooting demand.",
+    "category": "GitHub Copilot",
+    "technology": "GitHub Copilot",
+    "error_signature": "Copilot encountered an error and was unable to review this pull request. You can try again by re-requesting a review.",
+    "search_intent": "Fix GitHub Copilot AI review failure that blocks pull request auto-reviews even when user has paid Actions quota available",
+    "common_causes": [
+      "GitHub issue github/copilot-cli#3529 (created 2026-05-26, very recent) reports recurring Copilot review failures on both CLI and GitHub UI. User has paid for Actions with plenty of available usage but still gets review errors. High commercial value: directly impacts paid GitHub Copilot subscriptions for engineering teams."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "GitHub Copilot"
+    ]
+  },
+  {
+    "slug": "docker-rejected-no-such-image-registry-repo-tag-sha256-actual-cause-is-unauthorized-authentication-required-but-error-message-misleads-operators-into-checking-manifest-corruption-instead",
+    "title": "Docker Swarm misleading 'No such image' error masking 'unauthorized: authentication required'",
+    "description": "Diagnose why Docker Swarm reports 'No such image' when the actual cause is missing registry authentication credentials for private registries Includes evidence for Docker troubleshooting demand.",
+    "category": "Docker",
+    "technology": "Docker",
+    "error_signature": "Rejected: No such image: <registry>/<repo>:<tag>@sha256:... — actual cause is 'unauthorized: authentication required' but error message misleads operators into checking manifest corruption instead",
+    "search_intent": "Diagnose why Docker Swarm reports 'No such image' when the actual cause is missing registry authentication credentials for private registries",
+    "common_causes": [
+      "GitHub issue moby/moby#52570 describes how Docker Swarm image pull failures with 'unauthorized: authentication required' are masked by misleading 'No such image' messages. PR moby/moby#52698 propagates the actual registry auth error. High value: affects production Docker Swarm deployments with private registries; sends operators down wrong debugging paths."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "Docker"
+    ]
+  },
+  {
+    "slug": "openai-api-invalidurl-httpx-invalidurl-raised-when-openai-or-asyncopenai-client-construction-receives-no-proxy-env-var-containing-newline-tab-space-characters",
+    "title": "InvalidURL error when NO_PROXY env var contains newlines — OpenAI Python SDK",
+    "description": "Fix OpenAI Python SDK crash caused by NO_PROXY environment variable containing newline characters (common in Docker/.env/shell scripts) Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "InvalidURL: httpx.InvalidURL raised when OpenAI() or AsyncOpenAI() client construction receives NO_PROXY env var containing newline/tab/space characters",
+    "search_intent": "Fix OpenAI Python SDK crash caused by NO_PROXY environment variable containing newline characters (common in Docker/.env/shell scripts)",
+    "common_causes": [
+      "GitHub issue openai/openai-python#3303 shows that when NO_PROXY contains newlines (typical in Docker environments), creating an OpenAI client raises httpx.InvalidURL because get_environment_proxies() splits only by comma, not newline. Fix applied via sanitization before httpx init. High value: affects developers deploying OpenAI SDK in Docker/containerized environments."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "OpenAI API"
+    ]
   }
 ]
