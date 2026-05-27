@@ -34237,5 +34237,53 @@
     "related_errors": [
       "AI Coding Tools"
     ]
+  },
+  {
+    "slug": "claude-code-bug-instantly-hitting-usage-limits-with-max-subscription-credits-obliterated-within-hours-without-workflow-changes",
+    "title": "Claude Code Max subscription usage limits exhausted instantly — server-side token consumption bug",
+    "description": "Fix unexpectedly fast token usage depletion on Claude Code Max ($200/mo) subscription — users report credits depleted in 45min–2hrs after update from v2.0.61 to v2.0.76+, suspecting server-side billing bug Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "[BUG] Instantly hitting usage limits with Max subscription — credits obliterated within hours without workflow changes",
+    "search_intent": "Fix unexpectedly fast token usage depletion on Claude Code Max ($200/mo) subscription — users report credits depleted in 45min–2hrs after update from v2.0.61 to v2.0.76+, suspecting server-side billing bug",
+    "common_causes": [
+      "GitHub issue #16157 on anthropics/claude-code with 1472 comments and 690 👍 reactions. Multiple users confirm rapid credit exhaustion post-update. Not in covered-errors.md (covered items are generic rate limiting, not subscription-level server-side over-charge). Category mapped to Anthropic API because it directly concerns Anthropic API quota/billing behavior on paid Claude Code plans."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "openai-api-both-insufficient-quota-and-rate-limit-exceeded-return-http-429-with-valid-true-client-cannot-tell-if-key-is-real-with-no-credits-vs-transient-rate-limit",
+    "title": "OpenAI API 429 response ambiguity — cannot distinguish insufficient_quota from rate_limit_exceeded",
+    "description": "How to programmatically differentiate between account credit exhaustion (non-recoverable until recharged) and transient rate limiting when OpenAI API returns 429 — both produce identical HTTP responses Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "Both insufficient_quota and rate_limit_exceeded return HTTP 429 with {valid: true}; client cannot tell if key is real with no credits vs transient rate limit",
+    "search_intent": "How to programmatically differentiate between account credit exhaustion (non-recoverable until recharged) and transient rate limiting when OpenAI API returns 429 — both produce identical HTTP responses",
+    "common_causes": [
+      "GitHub issue #9173 on daintreehq/daintree, created today (May 27, 2026). Developers building AI-powered apps face production risk: cannot determine retry strategy when hitting 429. Covered-errors.md lists 'insufficient_quota' and 'rate limit error' separately but does NOT cover the ambiguity issue where both map to 429 identically. High commercial value because it blocks proper error handling in paid integrations."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "openai-api-subagents-almost-always-hit-apiconnectionerror-ttfb-timeout-while-codex-cli-works-gpt-models-unstable-in-async-execution",
+    "title": "OpenAI APIConnectionError and TTFB timeout with GPT-5.5/Codex subagents",
+    "description": "Debug intermittent OpenAI API connection timeouts and TTFB (time-to-first-byte) delays when making programmatic API calls via async agents, especially with GPT-5.5 and Codex Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "subagents almost always hit APIConnectionError/TTFB timeout while Codex CLI works — GPT models unstable in async execution",
+    "search_intent": "Debug intermittent OpenAI API connection timeouts and TTFB (time-to-first-byte) delays when making programmatic API calls via async agents, especially with GPT-5.5 and Codex",
+    "common_causes": [
+      "GitHub issue #33075 on NousResearch/hermes-agent, opened minutes ago (May 27, 2026, ~40 min old). Direct API connectivity issue affecting developers using async agent frameworks. Distinct from covered 'rate limit error' — this is about transport-level failures (connection refused, TTFB timeout) rather than API business logic errors. Relevant to anyone integrating OpenAI API into automated workflows."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "OpenAI API"
+    ]
   }
 ]
