@@ -34861,5 +34861,69 @@
     "related_errors": [
       "Deployment"
     ]
+  },
+  {
+    "slug": "claude-code-mcp-tool-calls-post-to-api-anthropic-com-blocked-by-cloudflare-waf-sql-injection-rule-false-positive-2-destructive-sql-keywords-in-body-triggers-block",
+    "title": "MCP tool calls to api.anthropic.com blocked by Cloudflare WAF SQL injection rule false positive",
+    "description": "Fix MCP tool calls being blocked by Cloudflare WAF when posting documentation text containing SQL keywords to Anthropic API Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "MCP tool calls POST to api.anthropic.com blocked by Cloudflare WAF — SQL injection rule false positive (≥2 destructive SQL keywords in body triggers block)",
+    "search_intent": "Fix MCP tool calls being blocked by Cloudflare WAF when posting documentation text containing SQL keywords to Anthropic API",
+    "common_causes": [
+      "GitHub Issue #58294 on anthropics/claude-code repo: developers report free-form text submitted via POST to api.anthropic.com gets blocked by Cloudflare's SQL injection WAF rule when body contains ≥2 destructive SQL keywords (even in prose context). Four Ray IDs confirmed from same regional edge. Impacts all MCP tools using POST endpoints. Category mapped to Cloudflare because the root blocker is Cloudflare WAF; alternative: AI Coding Tools."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "claude-code-api-error-400-the-content-thinking-in-the-thinking-mode-must-be-passed-back-to-the-api",
+    "title": "API Error 400: The content[].thinking in the thinking mode must be passed back to the API",
+    "description": "Fix frequent conversation interruptions caused by missing thinking-mode response content in Claude Code API calls Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "API Error 400: The content[].thinking in the thinking mode must be passed back to the API",
+    "search_intent": "Fix frequent conversation interruptions caused by missing thinking-mode response content in Claude Code API calls",
+    "common_causes": [
+      "GitHub Issue #62756 on anthropics/claude-code repo: frequent 400 errors during conversations where the API rejects responses missing the thinking mode content. Affects all users with thinking mode enabled. This is an Anthropic API protocol-level error surfaced through Claude Code."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "litellm-litellm-badrequesterror-openaiexception-an-assistant-message-with-tool-calls-must-be-followed-by-tool-messages-responding-to-each-tool-call-id-the-following-tool-call-ids-did-not-have-response-messages-bash-0-bash-1",
+    "title": "API Error: 400 litellm.BadRequestError - assistant message with tool_calls must be followed by tool messages",
+    "description": "Fix LiteLLM proxy returning 400 errors when tool_call_ids are not matched with corresponding response messages from downstream LLM providers Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "litellm.BadRequestError: OpenAIException - an assistant message with 'tool_calls' must be followed by tool messages responding to each 'tool_call_id'. The following tool_call_ids did not have response messages: Bash:0, Bash:1.",
+    "search_intent": "Fix LiteLLM proxy returning 400 errors when tool_call_ids are not matched with corresponding response messages from downstream LLM providers",
+    "common_causes": [
+      "GitHub Issue #28995 on BerriAI/litellm repo: LiteLLM proxy forwarding tool_calls to OpenAI chat completions receives responses where some tool_call_ids lack matching response messages. Causes 400 BadRequestError propagated to end user. Directly affects paid proxy deployments. Category: LiteLLM per mapping rules."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "LiteLLM"
+    ]
+  },
+  {
+    "slug": "ollama-api-generate-returns-response-for-one-concurrent-request-when-model-is-loading-raw-true",
+    "title": "/api/generate returns empty response for concurrent request when model loading (raw: true)",
+    "description": "Fix Ollama returning empty responses during concurrent requests while a model is still loading into memory Includes evidence for Ollama troubleshooting demand.",
+    "category": "Ollama",
+    "technology": "Ollama",
+    "error_signature": "/api/generate returns response: \"\" for one concurrent request when model is loading (raw: true)",
+    "search_intent": "Fix Ollama returning empty responses during concurrent requests while a model is still loading into memory",
+    "common_causes": [
+      "GitHub Issue #16326 on ollama/ollama repo: race condition where parallel API requests get empty string responses when another request is loading the model into VRAM/KV Cache. Raw streaming mode affected. Clear error behavior in multi-user/concurrent scenarios. Category: Ollama per mapping."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "Ollama"
+    ]
   }
 ]
