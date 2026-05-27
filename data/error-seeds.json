@@ -33853,5 +33853,101 @@
     "related_errors": [
       "OpenAI API"
     ]
+  },
+  {
+    "slug": "github-copilot-permissiveauthrequirederror-permissive-authentication-is-required",
+    "title": "GitHub Copilot Auth Fails with PermissiveAuthRequiredError After VS Code 1.115 Update",
+    "description": "Fix GitHub Copilot login/authentication failure in VS Code after update; token refresh broken Includes evidence for GitHub Copilot troubleshooting demand.",
+    "category": "GitHub Copilot",
+    "technology": "GitHub Copilot",
+    "error_signature": "PermissiveAuthRequiredError: Permissive authentication is required",
+    "search_intent": "Fix GitHub Copilot login/authentication failure in VS Code after update; token refresh broken",
+    "common_causes": [
+      "Recent report (2026-04-01) showing Copilot extension activation fails with PermissiveAuthRequiredError after VS Code 1.115.0 upgrade. Affects paid Copilot users unable to authenticate. Category mapping: GitHub Copilot native IDE extension error."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "GitHub Copilot"
+    ]
+  },
+  {
+    "slug": "claude-code-oauth-login-drops-path-base-for-non-root-path-mcp-servers",
+    "title": "Claude Code HTTP MCP OAuth Login Drops Path Base",
+    "description": "Fix Claude Code OAuth flow losing the configured path base when authenticating against MCP servers mounted under non-root paths (e.g., http://host/app/api) Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "OAuth login drops path base for non-root path MCP servers",
+    "search_intent": "Fix Claude Code OAuth flow losing the configured path base when authenticating against MCP servers mounted under non-root paths (e.g., http://host/app/api)",
+    "common_causes": [
+      "Report (2026-03-15) for Claude Code dropping configured path base during OAuth authorization redirect for HTTP MCP servers. Users configure MCP servers at non-root paths but OAuth login redirects strip the base path entirely. High commercial value as affects production AI agent workflows. Tier 0 API blocked, used browser Google search. Category: AI Coding Tools per mapping rules."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "claude-code-does-not-support-dynamic-client-registration",
+    "title": "Claude Code MCP Dynamic Client Registration Not Supported by OAuth Server",
+    "description": "Fix Claude Code OAuth flow failure when the MCP server does not support RFC 7591 dynamic client registration Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "does not support dynamic client registration",
+    "search_intent": "Fix Claude Code OAuth flow failure when the MCP server does not support RFC 7591 dynamic client registration",
+    "common_causes": [
+      "Report (2026-03-23) for Claude Code attempting OAuth dynamic client registration flow that fails when MCP servers lack RFC 7591 support. Clicking 'Authenticate' triggers broken registration flow that can disconnect existing working session. Critical for enterprise MCP setups. Tier 0 API blocked, used browser Google search. Category: AI Coding Tools per mapping rules."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "claude-code-github-mcp-oauth-flow-fails-on-claude-ai-code-web-interface",
+    "title": "Claude Code GitHub MCP OAuth Flow Broken on claude.ai/code Web Interface",
+    "description": "Fix Claude Code web (claude.ai/code) GitHub MCP tools access broken; private repos MCP tools unavailable; remote/headless server auth also broken Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "GitHub MCP OAuth flow fails on claude.ai/code web interface",
+    "search_intent": "Fix Claude Code web (claude.ai/code) GitHub MCP tools access broken; private repos MCP tools unavailable; remote/headless server auth also broken",
+    "common_causes": [
+      "Report (2026-04-08) covering multiple related OAuth failures: GitHub MCP tools unavailable for private repos on claude.ai/code, OAuth login broken for remote/headless server setups, and inconsistent behavior. Affects professional users relying on Claude Code for repo analysis. Tier 0 API blocked, used browser Google search. Category: AI Coding Tools."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "github-copilot-authorization-error-you-may-need-to-run-login",
+    "title": "GitHub Copilot CLI 1.0.25 Constantly Returns Authorization Error",
+    "description": "Fix Copilot CLI authorization loop after version upgrade; needs re-login but login doesn't resolve Includes evidence for GitHub Copilot troubleshooting demand.",
+    "category": "GitHub Copilot",
+    "technology": "GitHub Copilot",
+    "error_signature": "Authorization error, you may need to run /login",
+    "search_intent": "Fix Copilot CLI authorization loop after version upgrade; needs re-login but login doesn't resolve",
+    "common_causes": [
+      "Report (2026-04-13) for Copilot CLI 1.0.25 experiencing persistent authorization errors requiring /login command that doesn't persistently fix the issue. Affects developers using CLI-based Copilot. Tier 0 API blocked (rate-limited), used browser search fallback. Category mapping: GitHub Copilot CLI tool."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "GitHub Copilot"
+    ]
+  },
+  {
+    "slug": "litellm-model-name-and-litellm-mode-name-inconsistent-results-in-401-error",
+    "title": "Litellm Model Name Mismatch Causes 401 Authentication Error in Cline",
+    "description": "Fix Cline calling litellm mode name when it differs from configured model name, resulting in 401 auth error on litellm proxy Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "Model name and litellm mode name inconsistent results in 401 error",
+    "search_intent": "Fix Cline calling litellm mode name when it differs from configured model name, resulting in 401 auth error on litellm proxy",
+    "common_causes": [
+      "Report (2026-02-02) where Cline/AI coding tool uses a model name that conflicts with the litellm proxy model_name config, sending requests to wrong backend and receiving 401 errors. Common when users customize both Cline settings and LiteLLM router config. Tier 0 API blocked, used browser Google search. Category: LiteLLM."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "LiteLLM"
+    ]
   }
 ]
