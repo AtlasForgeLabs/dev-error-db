@@ -34637,5 +34637,85 @@
     "related_errors": [
       "LiteLLM"
     ]
+  },
+  {
+    "slug": "claude-code-claude-code-session-permanently-unrecoverable-after-424-error-invalid-data-in-redacted-thinking-block",
+    "title": "Claude Code session becomes permanently unrecoverable after 424 error Invalid data in redacted_thinking block",
+    "description": "Fix unrecoverable session crash when Claude Code encounters corrupted redacted thinking block data Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Claude Code session permanently unrecoverable after 424 error 'Invalid data in redacted_thinking block'",
+    "search_intent": "Fix unrecoverable session crash when Claude Code encounters corrupted redacted thinking block data",
+    "common_causes": [
+      "Source: anthropics/claude-code#62819, opened May 27 2026 (today). Session state corruption leads to permanent breakage. Critical for paid Claude Code Pro users doing extended coding sessions. Category: AI Coding Tools (Claude Code falls under approved mapping)."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "openai-api-dynamic-rate-limit-updates-lost-for-gpt-image-model-generation-calls",
+    "title": "Loss of Dynamic Rate Limit Update for GPT-Image Models via OpenAI API",
+    "description": "Fix rate limit not updating correctly when generating images via OpenAI API, causing premature 429 errors Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "Dynamic rate limit updates lost for GPT-Image model generation calls",
+    "search_intent": "Fix rate limit not updating correctly when generating images via OpenAI API, causing premature 429 errors",
+    "common_causes": [
+      "Source: openai/openai-python#2755. Image generation rate limits fail to update dynamically, leading to unexpected 429 throttling. Paid API users hit production-blocking rate limit errors with unclear recovery path. Category: OpenAI API (direct match)."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "claude-code-custom-oauth-mcp-connector-token-exchange-never-fires-in-cowork-sandbox-can-t-reach-localhost-loopback-redirect",
+    "title": "Custom OAuth MCP connector token exchange never fires in Claude Code Cowork sandbox",
+    "description": "Fix OAuth callback failure for custom MCP connectors in Claude Code Cowork (sandbox environment) Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Custom OAuth MCP connector token exchange never fires in Cowork; sandbox can't reach localhost loopback redirect",
+    "search_intent": "Fix OAuth callback failure for custom MCP connectors in Claude Code Cowork (sandbox environment)",
+    "common_causes": [
+      "Source: anthropics/claude-code#62801, opened May 27 2026. Auth flow works on claude.ai web but fails in Cowork desktop/sandbox. Has repro steps. Enterprise/integration-heavy scenario. Category: AI Coding Tools (correctly mapped)."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "litellm-unable-to-connect-to-api-connectionrefused-retrying-in-2s-attempt-9-10",
+    "title": "Unable to connect to Anthropic API via proxy — ConnectionRefused Retrying attempt 9/10",
+    "description": "Debug and fix connection refused errors when LiteLLM proxies Anthropic API calls — proxy configuration or network routing issue Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "Unable to connect to API (ConnectionRefused) Retrying in 2s · attempt 9/10",
+    "search_intent": "Debug and fix connection refused errors when LiteLLM proxies Anthropic API calls — proxy configuration or network routing issue",
+    "common_causes": [
+      "Source: anthropics/claude-code#62793 (labels: api:anthropic, area:networking, needs-info), opened May 27 2026. While filed under Claude Code repo, the underlying issue is Proxy/API connectivity — relevant for LiteLLM users configuring proxy routes to Anthropic. High retry attempts indicate persistent production-blocking error. Category: LiteLLM (proxy layer connectivity)."
+    ],
+    "quick_fix": "Confirm the local service is running on the expected host and port, then retry the smallest request.",
+    "related_errors": [
+      "LiteLLM"
+    ]
+  },
+  {
+    "slug": "claude-code-shopify-claude-ai-connector-returns-403-on-all-tool-calls-including-public-search-docs-chunks",
+    "title": "Shopify claude.ai connector returns 403 on all tool calls including public search_docs_chunks",
+    "description": "Fix 403 permission denied errors on all Shopify MCP connector tool calls in Claude Code Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Shopify claude.ai connector returns 403 on all tool calls (including public search_docs_chunks)",
+    "search_intent": "Fix 403 permission denied errors on all Shopify MCP connector tool calls in Claude Code",
+    "common_causes": [
+      "Source: anthropics/claude-code#62808, opened May 27 2026. Auth/permission issue where even public endpoints return 403. Directly affects Shopify developers using Claude Code with MCP connectors. Category: AI Coding Tools (Claude Code MCP connector issue)."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
   }
 ]
