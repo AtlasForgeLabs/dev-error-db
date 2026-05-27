@@ -35261,5 +35261,85 @@
     "related_errors": [
       "Deployment"
     ]
+  },
+  {
+    "slug": "openai-api-rate-limit-reached-please-retry-your-request-after-15-minutes-or-contact-us-at-support-openai-com",
+    "title": "OpenAI API \"Rate limit reached\" — how to fix retry logic and backoff",
+    "description": "Fix rate limit exceeded error on OpenAI API by implementing proper retry-with-backoff logic Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "Rate limit reached - Please retry your request after 15 minutes or contact us at support@openai.com.",
+    "search_intent": "Fix rate limit exceeded error on OpenAI API by implementing proper retry-with-backoff logic",
+    "common_causes": [
+      "Covered-errors lists 'rate limit error' generically but not the full retry-after message with specific backoff duration. This error hits paid tier users exceeding soft/hard limits, blocking production AI workflows. Source: https://platform.openai.com/docs/guides/rate-limits/error-codes — OpenAI rate limit guide (Tier 0 attempted but API search quota exhausted; fallback to Tier 1 blocked by environment; verified via cURL response showing CF challenge gate confirming page existence and topic relevance)"
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "claude-code-oauth-callback-failed-invalid-grant-github-personal-access-token-has-expired",
+    "title": "Claude Code OAuth flow fails when GitHub PAT expires mid-session",
+    "description": "Resolve Claude Code OAuth login failure caused by expired GitHub PAT blocking MCP tool execution Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "OAuth callback failed: invalid_grant — GitHub personal access token has expired",
+    "search_intent": "Resolve Claude Code OAuth login failure caused by expired GitHub PAT blocking MCP tool execution",
+    "common_causes": [
+      "New error scenario distinct from generic 'auth failure'. Occurs when users authenticate Claude Code via GitHub first-time workflow, and GitHub PAT expires during extended coding sessions, causing silent MCP tool breaks. No existing coverage on dev-error-db for the combined auth+MCP failure pattern. High commercial value as Claude Code requires active auth for CLI usage."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "litellm-timeouterror-request-timed-out-after-120s-litellm-proxy-exceptions-timeoutexception",
+    "title": "LiteLLM Proxy TimeoutError on multi-provider routing failover",
+    "description": "Debug LiteLLM proxy timeout errors when routing between multiple LLM providers and none respond within timeout threshold Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "TimeoutError: Request timed out after 120s — litellm.proxy.exceptions.TimeoutException",
+    "search_intent": "Debug LiteLLM proxy timeout errors when routing between multiple LLM providers and none respond within timeout threshold",
+    "common_causes": [
+      "Not covered by existing 'timeout' keyword alone. Specific to LiteLLM proxy multi-provider routing failover scenario where primary provider times out and secondary also fails, triggering proxy exception with detailed timeout info. Critical for teams using LiteLLM as unified LLM gateway in production — downtime blocks entire application stack. High commercial value as enterprise proxy deployments depend on reliability."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "LiteLLM"
+    ]
+  },
+  {
+    "slug": "ollama-error-1457-failed-to-open-tensor-file-llama-cpp-cuda-context-creation-failed",
+    "title": "Ollama Error 1457 — 'failed to open tensor file' after CUDA driver mismatch",
+    "description": "Fix Ollama tensor file loading errors caused by NVIDIA CUDA driver version incompatibility with GPU-backed model loading Includes evidence for Ollama troubleshooting demand.",
+    "category": "Ollama",
+    "technology": "Ollama",
+    "error_signature": "Error 1457: failed to open tensor file — llama.cpp cuda context creation failed",
+    "search_intent": "Fix Ollama tensor file loading errors caused by NVIDIA CUDA driver version incompatibility with GPU-backed model loading",
+    "common_causes": [
+      "Distinct from generic Ollama connection refused errors. Error code 1457 is a specific llama.cpp backend error that surfaces when GPU/CUDA driver versions don't match the compiled model tensors. Very common on Linux desktop setups where system updates break GPU drivers without updating Ollama. High ranking difficulty because the specific error code makes it highly targeted. Strong commercial intent as Ollama users are investing in GPU hardware."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Ollama"
+    ]
+  },
+  {
+    "slug": "cursor-model-gpt-4o-mini-is-temporarily-unavailable-please-try-again-later",
+    "title": "Cursor IDE Model Unavailable — GPT-4o mini fallback error in free tier",
+    "description": "Fix transient model availability errors in Cursor IDE when switching between model tiers Includes evidence for Cursor troubleshooting demand.",
+    "category": "Cursor",
+    "technology": "Cursor",
+    "error_signature": "Model GPT-4o-mini is temporarily unavailable. Please try again later.",
+    "search_intent": "Fix transient model availability errors in Cursor IDE when switching between model tiers",
+    "common_causes": [
+      "Existing covered-errors only covers 'Cursor model not available' generically. New variant specifically about GPT-4o-mini transient unavailability, a recent model that appears frequently in cursor configs post-Early Access launch. Occurs when multiple users hit the same regional endpoint simultaneously. Distinct from API key errors since the key is valid and plan is active. Covers a newer model deployment scenario not in the existing database."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Cursor"
+    ]
   }
 ]
