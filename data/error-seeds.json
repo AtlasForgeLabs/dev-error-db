@@ -33981,5 +33981,85 @@
     "related_errors": [
       "Anthropic API"
     ]
+  },
+  {
+    "slug": "litellm-error-transforming-openrouter-image-generation-response-2-validation-errors-for-imageusage",
+    "title": "Image generation response transform validation fails — LiteLLM OpenRouter image model",
+    "description": "Fix random failures when generating images via OpenRouter models through LiteLLM proxy and OpenWebUI Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "Error transforming OpenRouter image generation response: 2 validation errors for ImageUsage",
+    "search_intent": "Fix random failures when generating images via OpenRouter models through LiteLLM proxy and OpenWebUI",
+    "common_causes": [
+      "Found in BerriAI/litellm#28001 (2026-05-15). LiteLLM proxy randomly fails image generation when triggered through OpenWebUI due to response schema validation mismatch for OpenRouter image models. Labels: bug, proxy. This blocks multi-modal inference pipelines on paid LiteLLM deployments. Category: LiteLLM proxy error."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "LiteLLM"
+    ]
+  },
+  {
+    "slug": "litellm-code-parameter-was-not-found-in-callback-request-when-auth-access-deny",
+    "title": "Okta SSO callback returns access_denied without 'code' parameter — LiteLLM OAuth crash",
+    "description": "Fix LiteLLM proxy crashing when Okta OAuth callback sends error/error_description instead of expected code parameter Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "'code' parameter was not found in callback request when auth access deny",
+    "search_intent": "Fix LiteLLM proxy crashing when Okta OAuth callback sends error/error_description instead of expected code parameter",
+    "common_causes": [
+      "Found in BerriAI/litellm#26403 (2026-04-24). When using Okta for authentication, an access_denied error results in a callback containing error + error_description parameters instead of the expected code parameter, causing LiteLLM to fail. This blocks enterprise SSO deployments. Category: LiteLLM authentication error."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "LiteLLM"
+    ]
+  },
+  {
+    "slug": "openai-api-moderation-api-returns-429-too-many-requests-even-with-no-prior-usage",
+    "title": "OpenAI Moderation API returns 429 Too Many Requests even with zero prior usage",
+    "description": "Investigate unexpected 429 rate limiting on OpenAI Moderation API endpoint despite never having called it before Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "Moderation API returns 429 Too Many Requests even with no prior usage",
+    "search_intent": "Investigate unexpected 429 rate limiting on OpenAI Moderation API endpoint despite never having called it before",
+    "common_causes": [
+      "Found in Stack Overflow Q79918066 (2026-05-22). Developer receives 429 rate limit on the Moderation API endpoint with absolutely zero previous calls. Title confirms: 'returns 429 Too Many Requests even with no prior usage'. Distinct from general 'insufficient_quota' — this is a specific endpoint behaving incorrectly. Covers moderate-to-high traffic SaaS applications that use moderation on every chat input. Category: OpenAI API rate limiting error."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "litellm-building-wheel-for-orjson-did-not-run-successfully-exit-code-1-subprocess-exited-with-error",
+    "title": "LiteLLM [proxy] installation fails on Python 3.14 — orjson wheel build error",
+    "description": "Fix LiteLLM proxy installation failure on Python 3.14 caused by orjson compilation failure Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "Building wheel for orjson did not run successfully. exit code: 1 subprocess-exited-with-error",
+    "search_intent": "Fix LiteLLM proxy installation failure on Python 3.14 caused by orjson compilation failure",
+    "common_causes": [
+      "Found in BerriAI/litellm#26056 (2026-04-19). Users installing litellm[proxy] on Python 3.14 encounter failed orjson wheel build. This blocks deployment on latest Python versions. Category: LiteLLM installation/configuration error."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "LiteLLM"
+    ]
+  },
+  {
+    "slug": "litellm-auth-exception-handler-logs-401-403-permission-denials-at-error-level-with-full-traceback",
+    "title": "LiteLLM logs 401/403 permission denials at ERROR level with full traceback",
+    "description": "Fix noisy ERROR-level logging for expected permission denial events in LiteLLM proxy auth handler Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "auth_exception_handler logs 401/403 permission denials at ERROR level with full traceback",
+    "search_intent": "Fix noisy ERROR-level logging for expected permission denial events in LiteLLM proxy auth handler",
+    "common_causes": [
+      "Found in BerriAI/litellm#26424 (2026-04-24). Permission denial (calling restricted model) triggers ERROR-level log with full traceback, confusing operators monitoring health dashboards. This affects production SRE observability for teams using LiteLLM proxy. Category: LiteLLM operational/configuration error."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "LiteLLM"
+    ]
   }
 ]
