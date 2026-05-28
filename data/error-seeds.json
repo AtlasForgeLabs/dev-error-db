@@ -35437,5 +35437,117 @@
     "related_errors": [
       "AI Coding Tools"
     ]
+  },
+  {
+    "slug": "claude-code-oauth-request-failed-internal-server-error-during-claude-code-login-on-vs-code-macos-cli",
+    "title": "Claude Code OAuth Request Failed — 500 Internal Server Error During Login",
+    "description": "Users need to recover access to Claude Code when Anthropic auth servers return 500 errors preventing login Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "\"OAuth Request Failed – Internal Server Error\" during Claude Code login on VS Code / macOS / CLI",
+    "search_intent": "Users need to recover access to Claude Code when Anthropic auth servers return 500 errors preventing login",
+    "common_causes": [
+      "High-quality source found via web_fetch from axeetech.com (status 200). Detailed guide covering 8 fix methods including restart/reconnect, token cache reset, network/DNS resets, and VS Code-specific steps. Anthropic 2026 public uptime report shows ~4 hours/month downtime. Enterprise SSO users especially affected. This error pattern has strong commercial value because it blocks paying Claude Max subscribers."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "openai-api-ratelimiterror-429-too-many-requests-you-exceeded-your-current-quota-requested-x-rpm-y-tpm",
+    "title": "OpenAI API Rate Limit 429 — TPM/RPM Limits Exceeded in Production",
+    "description": "Production application hitting OpenAI API rate limits; developer needs strategies to implement backoff, caching, tier upgrade, or gateway fallback Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "RateLimitError: 429 Too Many Requests — You exceeded your current quota, requested: X rpm/Y tpm",
+    "search_intent": "Production application hitting OpenAI API rate limits; developer needs strategies to implement backoff, caching, tier upgrade, or gateway fallback",
+    "common_causes": [
+      "Multiple authoritative sources identified via web_search: OpenAI official Help Center article, Respan.ai 2026 engineer's guide (usage tiers 1-5, RPM/TPM/RPD limits, exponential backoff in Python/TS), Yingtun.ai guide distinguishing insufficient_quota vs 429, MixRoute guide covering retries+caching+reserved capacity. High commercial intent — these queries come from teams deploying to production with billing impact. Covered-errors.md already lists generic 429/rate limit; this focuses on production remediation strategies which differ."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "claude-code-oauth-token-expired-refresh-fails-silently-user-locked-out-of-claude-code-without-explicit-error-message",
+    "title": "Claude Code OAuth Token Expiry — Auth Flow Fails After Token Expire",
+    "description": "Fix Claude Code login failure caused by expired OAuth token when auto-refresh does not work Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "OAuth token expired / refresh fails silently; user locked out of Claude Code without explicit error message",
+    "search_intent": "Fix Claude Code login failure caused by expired OAuth token when auto-refresh does not work",
+    "common_causes": [
+      "Found via web_search results showing developers unable to log into Claude Code due to OAuth tokens expiring unexpectedly. daveswift.com article titled 'Claude Code OAuth Token Expiry: Fixes & Alternatives' specifically addresses this pattern. Also corroborated by axeetech.com guide mentioning token cache corruption at ~/.claude/token.json. Category mapped to AI Coding Tools per rules. Clear fix available: claude logout → delete token cache → claude login."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "cursor-model-not-available-we-re-having-trouble-connecting-to-the-model-provider-this-model-provider-doesn-t-serve-your-region",
+    "title": "Cursor IDE \"Model Not Available\" — Provider Doesn't Serve Your Region",
+    "description": "Developer needs to restore Cursor IDE model connectivity (O3, Claude, Auto) after receiving region-restriction or connection error Includes evidence for Cursor troubleshooting demand.",
+    "category": "Cursor",
+    "technology": "Cursor",
+    "error_signature": "\"Model not available\" / \"We're having trouble connecting to the model provider\" / \"This model provider doesn't serve your region\"",
+    "search_intent": "Developer needs to restore Cursor IDE model connectivity (O3, Claude, Auto) after receiving region-restriction or connection error",
+    "common_causes": [
+      "Multiple sources confirm persistent issue: forum.cursor.com thread #140168 with troubleshooting steps (logout/login, new chat tab, HTTP/2 disable), dredyson.com personal account paying Ultra access but models completely unavailable, and numerous Chinese-language fix guides indicating global reach. Direct impact on paid Cursor Ultra subscribers. Dev.to guide also covers 'Connection failed' variant. Web_fetch on GitHub blocked (Tier 0 API exhausted), used web_search as Tier 1 fallback. Category: Cursor per mapping rules."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Cursor"
+    ]
+  },
+  {
+    "slug": "github-actions-permission-denied-or-unauthorized-authentication-required-when-pushing-docker-images-in-github-actions-workflow",
+    "title": "GitHub Actions Permission Denied Push to Container Registry — auth required / unauthorized",
+    "description": "CI/CD pipeline failing to push Docker container image to registry due to GITHUB_TOKEN permission misconfiguration Includes evidence for GitHub Actions troubleshooting demand.",
+    "category": "GitHub Actions",
+    "technology": "GitHub Actions",
+    "error_signature": "\"permission denied\" OR \"unauthorized: authentication required\" when pushing Docker images in GitHub Actions workflow",
+    "search_intent": "CI/CD pipeline failing to push Docker container image to registry due to GITHUB_TOKEN permission misconfiguration",
+    "common_causes": [
+      "Devopsboys.com published 2026-specific guide addressing this exact error. StackOverflow Q#79750835 confirms community demand. Multiple root causes: GITHUB_TOKEN lacking packages write scope, PAT works locally but CI context differs, missing secrets configuration. Directly impacts paid GitHub team/org plans where deployment pipelines block shipping. Search confirmed via web_search Tier 1."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "GitHub Actions"
+    ]
+  },
+  {
+    "slug": "github-actions-cache-service-unavailable-actions-cache-workflow-failing-after-github-legacy-cache-shutdown",
+    "title": "GitHub Actions Cache Migration Failure — Legacy Cache Service Shutting Down",
+    "description": "DevOps teams need to migrate workflows from deprecated GitHub Actions cache service to prevent CI/CD pipeline failures Includes evidence for GitHub Actions troubleshooting demand.",
+    "category": "GitHub Actions",
+    "technology": "GitHub Actions",
+    "error_signature": "Cache service unavailable / actions/cache workflow failing after GitHub legacy cache shutdown",
+    "search_intent": "DevOps teams need to migrate workflows from deprecated GitHub Actions cache service to prevent CI/CD pipeline failures",
+    "common_causes": [
+      "HeroDevs blog identifies critical issue: GitHub shutting down legacy Actions cache service, causing workflow failures for unmigrated teams. Requires updating both action version AND runner version (2.231.0+). Per sources-guide, this is P0 GitHub Actions. Multiple related error patterns emerge: permission denied on artifact access, Docker push auth failures. Search was done via web_search Tier 1 since GitHub REST API search returned 0 results after rate limiting. Strong urgency signal — broken pipelines = lost revenue."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "GitHub Actions"
+    ]
+  },
+  {
+    "slug": "claude-code-error-eacces-permission-denied-open-path-to-file-or-claude-does-not-have-permission-to-read-write-this-file",
+    "title": "Claude Code EACCES Permission Denied — File System Access Blocked",
+    "description": "Developer needs to resolve Claude Code sandbox permission denial when accessing project files outside allowed directories Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Error: EACCES: permission denied, open '/path/to/file' OR Claude does not have permission to read/write this file",
+    "search_intent": "Developer needs to resolve Claude Code sandbox permission denial when accessing project files outside allowed directories",
+    "common_causes": [
+      "Full article fetched from superbuilder.sh (status 200, 5000 chars extracted, truncated). Covers 7+ sub-variations: EACCES on file open, sudo prompts, directory permission mismatches, API key failures, rate limit errors, tool approval fatigue, node_modules permissions, and git/SSH failures. Each has specific error message and exact fix commands. High signal-to-noise ratio, very actionable. Commercial value: Claude Code subscription users lose productivity until resolved."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
   }
 ]
