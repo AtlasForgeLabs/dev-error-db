@@ -36541,5 +36541,53 @@
     "related_errors": [
       "Cloud Platforms"
     ]
+  },
+  {
+    "slug": "claude-code-oauth-error-listen-eacces-permission-denied-0-0-0-0",
+    "title": "Claude Code MCP OAuth listen EACCES permission denied on local callback port",
+    "description": "Fix Claude Code MCP OAuth authorization failure caused by localhost listener port conflict or firewall blocking the OAuth redirect callback on 0.0.0.0 Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "OAuth error: listen EACCES: permission denied 0.0.0.0",
+    "search_intent": "Fix Claude Code MCP OAuth authorization failure caused by localhost listener port conflict or firewall blocking the OAuth redirect callback on 0.0.0.0",
+    "common_causes": [
+      "GitHub claude-code issue #1841 reports EACCES error preventing OAuth flow completion. AI overview reveals multiple root causes: DCR incompatibility with some MCP servers, insufficient scopes requiring step-up auth, and network/WAF interference. Atlassian Community also reports Authorization with MCP server failed. High value: affects developers integrating enterprise tools with Claude Code daily workflow."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "openai-api-request-too-large-for-gpt-4o-in-organization-on-tokens-per-min-tpm-limit-30000-requested-49634",
+    "title": "RateLimitError: Error code 429 while running RAG application — request too large exceeding TPM limit",
+    "description": "Fix OpenAI 429 rate limit when processing large documents via RAG pipeline — user types hi but receives token quota exceeded because PDF embeddings accumulate in context window beyond TPM allowance Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "Request too large for gpt-4o in organization on tokens per min (TPM): Limit 30000, Requested 49634",
+    "search_intent": "Fix OpenAI 429 rate limit when processing large documents via RAG pipeline — user types hi but receives token quota exceeded because PDF embeddings accumulate in context window beyond TPM allowance",
+    "common_causes": [
+      "Stack Overflow question 78707409 shows real scenario where AzureAIDocumentIntelligenceLoader accumulates ~50k tokens from PDF chunks even for a simple query, triggering 429 despite using paid GPT-4o tier-1 account. Covers chunking strategies and retry-with-backoff patterns. No direct equivalent published on dev-error-db."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "claude-code-code-field-required",
+    "title": "Claude.ai surfaces Field required instead of OAuth denial reason during MCP auth flow",
+    "description": "Fix poor UX where Claude.ai shows generic code Field required message instead of actual OAuth authorization denial reason when MCP server OAuth provider rejects the user during auth flow Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "code: Field required",
+    "search_intent": "Fix poor UX where Claude.ai shows generic code Field required message instead of actual OAuth authorization denial reason when MCP server OAuth provider rejects the user during auth flow",
+    "common_causes": [
+      "GitHub claude-code issue #37337 (Mar 2026) reports that when an MCP server OAuth provider denies a user during authorization flow, Claude.ai does not surface the denial reason — showing misleading code Field required instead. Impacts developer debugging experience significantly. Covered-errors.md lists Cursor errors but NOT Claude Code auth display bugs."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
   }
 ]
