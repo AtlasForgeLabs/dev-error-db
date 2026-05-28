@@ -36285,5 +36285,69 @@
     "related_errors": [
       "OpenAI API"
     ]
+  },
+  {
+    "slug": "openai-api-insufficient-quota-you-can-t-access-this-resource-because-your-usage-including-your-free-trial-has-been-limited-ensure-payment-information-on-your-account-is-valid-and-has-funds",
+    "title": "OpenAI TTS API insufficient_quota 429 Error",
+    "description": "Fix TTS/voice generation failure caused by OpenAI quota exhaustion or billing issues Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "\"insufficient_quota\" — You can't access this resource because your usage (including your free trial) has been limited. Ensure payment information on your account is valid and has funds.",
+    "search_intent": "Fix TTS/voice generation failure caused by OpenAI quota exhaustion or billing issues",
+    "common_causes": [
+      "Found in GitHub issue shantamg/meet-without-fear#642. Real-world reproduction: [TTS] OpenAI API error 429, \"insufficient_quota\" error message received specifically for tts-1 models while regular completions may work. Covers both TTS quota vs main API quota distinction. Already published: 'OpenAI API 429 Too Many Requests' exists but this specific TTS quota confusion (separate quota bucket) is NOT covered yet."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "openai-api-token-usage-from-response-done-event-does-not-match-azure-cost-management-meter-data",
+    "title": "Azure OpenAI Realtime API Token Usage Mismatch with Cost Management",
+    "description": "Debug discrepancy between realtime API token billing counters and Azure Cost Management report, causing unexpected charges Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "Token usage from response.done event does not match Azure Cost Management meter data",
+    "search_intent": "Debug discrepancy between realtime API token billing counters and Azure Cost Management report, causing unexpected charges",
+    "common_causes": [
+      "Found in Stack Overflow Q79918080 (score: 2). Enterprise Azure OpenAI users face billing confusion when server-side token counts don't align with cost reports. High commercial value: affects paying enterprise accounts, direct billing impact. Not covered in dev-error-db existing entries."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "openai-api-realtimesession-connect-promise-never-resolves-console-log-after-connect-is-never-executed",
+    "title": "OpenAI Realtime API connect() Promise Never Resolves",
+    "description": "Fix hanging realtime WebSocket connection that never establishes, blocking voice conversation functionality Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "RealtimeSession.connect() promise never resolves — console.log('after connect') is never executed",
+    "search_intent": "Fix hanging realtime WebSocket connection that never establishes, blocking voice conversation functionality",
+    "common_causes": [
+      "Found in Stack Overflow Q79932343 (May 2026). OpenAI realtime session initialization deadlocks without throwing an explicit error. Developers see silent hang with no output past .connect(). Affects production voice applications. Newer error type, not in existing coverage list."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "openai-api-you-tried-to-access-openai-image-but-this-is-no-longer-supported-in-openai-1-0-0",
+    "title": "OpenAI Python SDK Image class removed in openai>=1.0.0 Migration Error",
+    "description": "Fix AttributeError after upgrading OpenAI Python SDK v1.x where Image/text_completion classes were removed and replaced with new APIs Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "You tried to access openai.Image, but this is no longer supported in openai>=1.0.0",
+    "search_intent": "Fix AttributeError after upgrading OpenAI Python SDK v1.x where Image/text_completion classes were removed and replaced with new APIs",
+    "common_causes": [
+      "Found in Stack Overflow Q78177250 (score: 3). Users migrating from openai<1.0 to >=1.0 encounter this exact error when using old Image API calls. Already published: 'OpenAI API model not found' exists but does NOT cover the Python SDK class removal/deprecation migration error specifically. Clear breaking change with exact error string, high migration volume in community."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "OpenAI API"
+    ]
   }
 ]
