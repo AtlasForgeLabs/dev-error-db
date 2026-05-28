@@ -35917,5 +35917,117 @@
     "related_errors": [
       "AI Coding Tools"
     ]
+  },
+  {
+    "slug": "openai-api-insufficient-quota-error-429-on-paid-account-with-available-balance",
+    "title": "Insufficient Quota Error on Paid Account with Available Balance — OpenAI Bug",
+    "description": "Fix unexpected 429 insufficient_quota errors despite having paid account balance and never exceeding usage limits Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "insufficient_quota error 429 on paid account with available balance",
+    "search_intent": "Fix unexpected 429 insufficient_quota errors despite having paid account balance and never exceeding usage limits",
+    "common_causes": [
+      "OpenAI Developer Community thread — Users report getting 'insufficient_quota' (error 429) despite having positive account balances and no recent requests. Multiple follow-ups over years indicate this is a systemic bug affecting paying customers. Strong commercial value: billing/quota error on paid service blocks API usage. Category: OpenAI API."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "claude-code-mcp-tools-prompt-for-permission-even-when-permissions-are-pre-authorized-in-settings",
+    "title": "Claude Code MCP tools prompt for permission even when already pre-authorized",
+    "description": "Fix MCP server repeatedly asking for permission confirmation despite having permissions set in settings.json Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "MCP tools prompt for permission even when permissions are pre-authorized in settings",
+    "search_intent": "Fix MCP server repeatedly asking for permission confirmation despite having permissions set in settings.json",
+    "common_causes": [
+      "GitHub issue #28580 (anthropics/claude-code) — When an MCP server (e.g., Linear) is configured and permissions are pre-authorized in the settings file, Claude Code still prompts the user for every action. This affects paid AI coding tool users in production workflows. Category: AI Coding Tools per mapping rules."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "litellm-rate-limit-error-reported-as-no-deployments-available-on-azure-endpoints-via-litellm",
+    "title": "Rate Limit error reported as No Deployments Available — LiteLLM Azure bug",
+    "description": "Fix incorrectly categorized error where LiteLLM proxy reports 'No deployments available' instead of proper rate limit error for Azure model groups Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "Rate limit error reported as No deployments available on Azure endpoints via LiteLLM",
+    "search_intent": "Fix incorrectly categorized error where LiteLLM proxy reports 'No deployments available' instead of proper rate limit error for Azure model groups",
+    "common_causes": [
+      "GitHub issue #20867 (BerriAI/litellm) — LiteLLM misreports rate-limit errors from Azure OpenAI as 'no deployments available', making debugging extremely difficult. Critical proxy-layer bug for teams routing through LiteLLM. Category: LiteLLM."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "LiteLLM"
+    ]
+  },
+  {
+    "slug": "claude-code-http-oauth-mcp-servers-silently-fail-in-claude-code-inside-containers-docker",
+    "title": "HTTP OAuth MCP servers silently fail in Claude Code inside containers",
+    "description": "Debug why HTTP-based MCP servers with OAuth authentication silently fail when Claude Code runs inside a containerized environment Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "HTTP OAuth MCP servers silently fail in Claude Code inside containers/Docker",
+    "search_intent": "Debug why HTTP-based MCP servers with OAuth authentication silently fail when Claude Code runs inside a containerized environment",
+    "common_causes": [
+      "GitHub issue #46623 (anthropics/claude-code) — Adding an HTTP MCP server that requires OAuth fails silently in container environments. Distinct from general auth errors; specifically about container isolation breaking OAuth flow. Category: AI Coding Tools."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "openai-api-persistent-api-rate-limit-error-code-429-issues-despite-added-credits",
+    "title": "Persistent API Rate Limit (error code: 429) Despite Added Credits — OpenAI",
+    "description": "Resolve recurring 429 rate limit errors even after adding credits and staying well under personal budget limits Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "Persistent API rate limit (error code: 429) issues despite added credits",
+    "search_intent": "Resolve recurring 429 rate limit errors even after adding credits and staying well under personal budget limits",
+    "common_causes": [
+      "OpenAI Developer Community — Users hitting persistent 429 rate limit errors despite never approaching their $100 personal budget. Covers RPM/TPM tier limits that auto-increase based on spending history. Different from basic rate limit: specific to the gap between payment and tier upgrade timing."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "claude-code-custom-mcp-connector-fails-with-authorization-error-on-claude-ai-works-in-claude-code",
+    "title": "Custom MCP Connector Fails With Authorization Error on Claude.ai Only",
+    "description": "Fix custom MCP connectors that authenticate correctly in Claude Code CLI but fail with authorization errors when used via Claude.ai web interface Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Custom MCP connector fails with authorization error on Claude.ai (works in Claude Code)",
+    "search_intent": "Fix custom MCP connectors that authenticate correctly in Claude Code CLI but fail with authorization errors when used via Claude.ai web interface",
+    "common_causes": [
+      "GitHub issue #326 (anthropics/claude-ai-mcp) — Custom MCP connectors work fine in Claude Code terminal app but fail with auth errors on Claude.ai web. Points to different auth flows between desktop and web clients. Distinct from the Docker/container MCP issue (#46623) and the pre-authorization bug (#28580). Category: AI Coding Tools."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "vercel-build-failed-because-of-webpack-errors-on-vercel-deployment",
+    "title": "Vercel Build Failed: webpack errors blocking Next.js deployment",
+    "description": "Fix Vercel deployment failure caused by webpack compilation errors in Next.js projects Includes evidence for Vercel troubleshooting demand.",
+    "category": "Deployment",
+    "technology": "Vercel",
+    "error_signature": "Build failed because of webpack errors on Vercel deployment",
+    "search_intent": "Fix Vercel deployment failure caused by webpack compilation errors in Next.js projects",
+    "common_causes": [
+      "Vercel Community + GitHub next.js discussions — Users encountering 'Build failed because of webpack errors' during Vercel deployment. Specific to Next.js projects where local dev passes but Vercel's Linux-based environment produces build-time webpack failures. Includes case sensitivity and root directory misconfiguration as root causes."
+    ],
+    "quick_fix": "Check the build output, project root, and deployment platform configuration before redeploying.",
+    "related_errors": [
+      "Deployment"
+    ]
   }
 ]
