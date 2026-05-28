@@ -36685,5 +36685,85 @@
     "related_errors": [
       "GitHub Copilot"
     ]
+  },
+  {
+    "slug": "claude-code-local-http-mcp-server-shows-needs-authentication-in-ui-despite-claude-mcp-list-showing-connected",
+    "title": "Claude Code MCP Server Shows Authentication Required Despite Being Connected",
+    "description": "Fix MCP authentication display bug where Claude Code falsely reports MCP servers need auth when they are already authenticated Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Local HTTP MCP server shows needs authentication in UI despite claude mcp list showing Connected",
+    "search_intent": "Fix MCP authentication display bug where Claude Code falsely reports MCP servers need auth when they are already authenticated",
+    "common_causes": [
+      "GitHub Issue #44535 on anthropics/claude-code describes a state mismatch: claude mcp list shows ✓ Connected but the MCP server UI still shows needs authentication. This blocks users from executing MCP tools in their workflow. Direct impact on paid AI coding tool functionality. Category: AI Coding Tools (covers Claude Code per mapping rules)."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "anthropic-api-api-error-claude-code-is-unable-to-respond-to-this-request-which-appears-to-violate-our-usage-policy",
+    "title": "Anthropic API: False Positive Usage Policy Violation Error",
+    "description": "Fix false positive content policy violations that block legitimate Claude API requests Includes evidence for Anthropic API troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Anthropic API",
+    "error_signature": "API Error: Claude Code is unable to respond to this request, which appears to violate our Usage Policy",
+    "search_intent": "Fix false positive content policy violations that block legitimate Claude API requests",
+    "common_causes": [
+      "GitHub Issue #4923 on anthropics/claude-code reports Anthropic API incorrectly flagging safe prompts as policy violations. User receives blocking error for non-violating content including simple debugging tasks. High commercial value as it affects paid API usage directly. Category mapped to Anthropic API per approved list."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Anthropic API"
+    ]
+  },
+  {
+    "slug": "claude-code-microsoft-365-connector-fails-after-successful-entra-authentication-and-valid-mcp-server-permissions",
+    "title": "Microsoft 365 Connector Fails After Successful Entra Authentication in Claude Code MCP",
+    "description": "Fix M365 connector MCP integration failure post-authentication despite valid Entra ID permissions in Claude Code Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Microsoft 365 Connector fails after successful Entra authentication and valid MCP Server permissions",
+    "search_intent": "Fix M365 connector MCP integration failure post-authentication despite valid Entra ID permissions in Claude Code",
+    "common_causes": [
+      "GitHub Issue #51385 describes a specific auth flow bug where Claude Code MCP successfully authenticates with Microsoft Entra (Azure AD) but the M365 connector still fails. This indicates a post-auth token passing or permission check issue. High commercial value — involves enterprise cloud auth stack (Azure/Microsoft). Category: AI Coding Tools."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "roo-code-claude-code-requests-fail-with-401-error-azure-anthropic-endpoint-path-becomes-invalid-anthropic-v1-messages-models-chat-completions",
+    "title": "Roo-Code Cannot Use Anthropic via Azure Foundry (OpenAI Compatible Provider 401)",
+    "description": "Fix Roo Code OpenAI Compatible provider routing to wrong Azure Anthropic endpoint path causing 401 authentication failure Includes evidence for Roo Code / Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Roo Code / Claude Code",
+    "error_signature": "Requests fail with 401 error — Azure Anthropic endpoint path becomes invalid: /anthropic/v1/messages/models/chat/completions",
+    "search_intent": "Fix Roo Code OpenAI Compatible provider routing to wrong Azure Anthropic endpoint path causing 401 authentication failure",
+    "common_causes": [
+      "GitHub Issue #9467 on RooCodeInc/Roo-Code describes inability to use Anthropic models hosted on Azure Foundry. Two root causes: (1) heuristic incorrectly detects Azure Inference path and appends wrong suffix creating invalid URL, (2) API key sent as Bearer but Azure Anthropic requires x-api-key header. Combines Cloud Platforms + AI Coding Tools cross-product bug. Category: AI Coding Tools."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "vercel-modulenotfounderror-cannot-find-module-cannot-resolve-config-in-vercel-build-works-locally-but-fails-on-deployment",
+    "title": "Vercel Next.js Build Fails with Module Not Found Error",
+    "description": "Fix Next.js deployment failures on Vercel caused by module resolution differences between local dev and production build environment Includes evidence for Vercel troubleshooting demand.",
+    "category": "Deployment",
+    "technology": "Vercel",
+    "error_signature": "ModuleNotFoundError / Cannot find module / Cannot resolve config in Vercel build — works locally but fails on deployment",
+    "search_intent": "Fix Next.js deployment failures on Vercel caused by module resolution differences between local dev and production build environment",
+    "common_causes": [
+      "Multiple Stack Overflow questions confirm recurring Vercel+Next.js deployment failures where modules resolve locally but fail in Vercel build. Issues include webpack configuration mismatches, CSS module handling, and cached build environments. Affects paid deployments and production pipelines. Category: Deployment per approved mapping."
+    ],
+    "quick_fix": "Check the build output, project root, and deployment platform configuration before redeploying.",
+    "related_errors": [
+      "Deployment"
+    ]
   }
 ]
