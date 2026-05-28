@@ -35549,5 +35549,53 @@
     "related_errors": [
       "AI Coding Tools"
     ]
+  },
+  {
+    "slug": "openai-api-error-429-you-exceeded-your-current-quota-please-check-your-plan-and-billing-details-occurs-with-1-2-requests-min",
+    "title": "Why does my OpenAI API (ChatGPT) return 429 even for low traffic?",
+    "description": "Developer sees intermittent quota 429 errors despite very low traffic (1-2 req/min) using OpenAI GPT API via Node.js. Needs explanation of burst rate limits vs token-based quotas. Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "Error: 429 - You exceeded your current quota, please check your plan and billing details (occurs with 1-2 requests/min)",
+    "search_intent": "Developer sees intermittent quota 429 errors despite very low traffic (1-2 req/min) using OpenAI GPT API via Node.js. Needs explanation of burst rate limits vs token-based quotas.",
+    "common_causes": [
+      "Stack Overflow Q79816500 — user integrating OpenAI GPT API with Node.js, random 429 quota errors at minimal traffic. Distinct from generic rate limit errors because it specifically involves quota/billing 429 triggered at low request volume. High commercial value for paid API users."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "node-js-connect-econnrefused-connect-etimedout-errors-start-occurring-towards-end-of-load-test-with-100k-records-each-performing-20-25-parallel-api-calls",
+    "title": "Node.js ECONNREFUSED under load — API calls fail after initial success during load testing",
+    "description": "Backend API receives ECONNREFUSED/ETIMEDOUT errors only under high load after initial requests succeed. Developer needs to understand connection pool exhaustion, resource limits, or service-level causes for intermittent connection refusals. Includes evidence for Node.js troubleshooting demand.",
+    "category": "Node.js",
+    "technology": "Node.js",
+    "error_signature": "connect ECONNREFUSED / connect ETIMEDOUT (errors start occurring towards end of load test with 100k records, each performing 20-25 parallel API calls)",
+    "search_intent": "Backend API receives ECONNREFUSED/ETIMEDOUT errors only under high load after initial requests succeed. Developer needs to understand connection pool exhaustion, resource limits, or service-level causes for intermittent connection refusals.",
+    "common_causes": [
+      "Stack Overflow Q79155198 — load test with 100k records @ 20-25 API calls each produces ECONNREFUSED/ETIMEDOUT progressively. Distinct from generic 'connection refused' because it manifests only under concurrency/load patterns. High commercial relevance for production backends serving API traffic."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Node.js"
+    ]
+  },
+  {
+    "slug": "github-actions-error-botocore-1-29-81-has-requirement-urllib3-1-27-1-25-4-but-you-ll-have-urllib3-2-0-2-importerror-cannot-import-name-default-ciphers-from-urllib3-util-ssl",
+    "title": "Installing AWS EB CLI fails due to urllib v2 breaking changes in GitHub Actions CI",
+    "description": "CI/CD pipeline fails during AWS EB CLI installation due to urllib3 version conflict introduced by botocore breaking change. Enterprise teams need fix to restore deployment pipeline. Includes evidence for GitHub Actions troubleshooting demand.",
+    "category": "GitHub Actions",
+    "technology": "GitHub Actions",
+    "error_signature": "ERROR: botocore 1.29.81 has requirement urllib3<1.27,>=1.25.4, but you'll have urllib3 2.0.2 — ImportError: cannot import name 'DEFAULT_CIPHERS' from 'urllib3.util.ssl_'",
+    "search_intent": "CI/CD pipeline fails during AWS EB CLI installation due to urllib3 version conflict introduced by botocore breaking change. Enterprise teams need fix to restore deployment pipeline.",
+    "common_causes": [
+      "Stack Overflow Q76270084 — GitHub Actions CI workflow blocked by urllib3 version incompatibility when installing AWS EB CLI. Specific error signature with exact line numbers and stack trace. High production impact as it blocks CI/CD. Mapped to GitHub Actions approved category."
+    ],
+    "quick_fix": "Check the build output, project root, and deployment platform configuration before redeploying.",
+    "related_errors": [
+      "GitHub Actions"
+    ]
   }
 ]
