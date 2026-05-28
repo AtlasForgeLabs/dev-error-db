@@ -36765,5 +36765,85 @@
     "related_errors": [
       "Deployment"
     ]
+  },
+  {
+    "slug": "litellm-error-transforming-openrouter-image-generation-response-2-validation-errors-for-imageusage-input-should-be-valid-integer-got-a-number-with-a-fractional-part",
+    "title": "LiteLLM OpenRouter Image Generation Validation Error: Float vs Integer Type Mismatch",
+    "description": "Fix LiteLLM proxy crashing on OpenRouter image generation due to float/int type mismatch in ImageUsage validation Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "Error transforming OpenRouter image generation response: 2 validation errors for ImageUsage input should be valid integer, got a number with a fractional part",
+    "search_intent": "Fix LiteLLM proxy crashing on OpenRouter image generation due to float/int type mismatch in ImageUsage validation",
+    "common_causes": [
+      "GitHub issue BerriAI/litellm#28001. OpenRouter image models return fractional token counts (e.g. 14417.92) but LiteLLM expects integers, causing ImageUsage validation to fail. Affects production LiteLLM proxy deployments using dockerized setup. Category: LiteLLM per mapping rules."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "LiteLLM"
+    ]
+  },
+  {
+    "slug": "claude-code-service-name-mismatch-causes-authentication-to-fail-on-every-new-session-invalid-api-key-please-run-login",
+    "title": "Claude Code v2.0.14 macOS Keychain OAuth Auth Doesn't Persist Across Sessions",
+    "description": "Fix Claude Code OAuth re-authentication required every terminal session on macOS due to Keychain service name mismatch Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "service name mismatch causes authentication to fail on every new session; 'Invalid API key - Please run /login'",
+    "search_intent": "Fix Claude Code OAuth re-authentication required every terminal session on macOS due to Keychain service name mismatch",
+    "common_causes": [
+      "GitHub issue anthropics/claude-code#9403. OAuth /login writes credentials to Keychain under 'Claude Code-credentials', but Claude Code v2.0.14 startup reads from 'Claude Code' (without -credentials suffix). Affects Max subscribers — every new terminal session requires re-login. Category: AI Coding Tools per mapping rules."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "claude-code-oauth-error-failed-to-fetch-user-roles-oauth-account-information-not-found-in-config",
+    "title": "Claude Code OAuth Fails in Corporate Network: Failed to Fetch User Roles",
+    "description": "Resolve Claude Code OAuth authentication failure behind corporate network with custom routing requirements Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "OAuth error: Failed to fetch user roles: OAuth account information not found in config",
+    "search_intent": "Resolve Claude Code OAuth authentication failure behind corporate network with custom routing requirements",
+    "common_causes": [
+      "GitHub issue anthropics/claude-code#1484. Users on Claude Max subscriptions with corporate network setups consistently hit OAuth auth failure showing 'OAuth account information not found in config'. Distinct from keychain persistence issue (#9403) — this is network/routing-specific. Category: AI Coding Tools per mapping rules."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "github-actions-windows-runners-randomly-die-in-actions-cache-with-no-messages-or-logging-exits-the-build",
+    "title": "GitHub Actions actions/cache Silently Kills Windows Runners Without Logging",
+    "description": "Diagnose and fix GitHub Actions cache step causing silent Windows runner crashes during builds Includes evidence for GitHub Actions troubleshooting demand.",
+    "category": "GitHub Actions",
+    "technology": "GitHub Actions",
+    "error_signature": "Windows runners randomly die in actions/cache with no messages or logging — exits the build",
+    "search_intent": "Diagnose and fix GitHub Actions cache step causing silent Windows runner crashes during builds",
+    "common_causes": [
+      "GitHub issue actions/cache#1754. Standard windows-latest runners started randomly dying inside the cache step with zero log output. Workaround exists (continue-on-error) but root cause unknown. Blocks CI/CD pipelines for paid teams. Category: GitHub Actions per mapping rules."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "GitHub Actions"
+    ]
+  },
+  {
+    "slug": "ollama-mlx-not-available-failed-to-load-mlx-dynamic-library-searched-usr-lib-ollama-build-lib-ollama",
+    "title": "Ollama MLX Runner Fails on Linux: Cannot Load MLX Dynamic Library",
+    "description": "Resolve Ollama MLX runner crash on Linux due to missing MLX shared library path configuration Includes evidence for Ollama troubleshooting demand.",
+    "category": "Ollama",
+    "technology": "Ollama",
+    "error_signature": "MLX not available: failed to load MLX dynamic library (searched: [/usr/lib/ollama /build/lib/ollama])",
+    "search_intent": "Resolve Ollama MLX runner crash on Linux due to missing MLX shared library path configuration",
+    "common_causes": [
+      "GitHub issue ollama/ollama#16340. After downloading a quantized Qwen 3.6 model successfully, running it on Linux triggers MLX runner failure because the MLX dynamic library is not in expected paths. Affects enterprise self-hosted LLM deployments using Intel Linux. Category: Ollama per mapping rules."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Ollama"
+    ]
   }
 ]
