@@ -35341,5 +35341,37 @@
     "related_errors": [
       "Cursor"
     ]
+  },
+  {
+    "slug": "cloudflare-error-522-origin-timed-out-or-connection-refused",
+    "title": "Cloudflare Workers Error 522 Connection Timed Out",
+    "description": "Fix Cloudflare 522 origin timeout error — website hosted behind Cloudflare returns 522 because origin server fails to respond within Cloudflare's timeout window. Includes evidence for Cloudflare troubleshooting demand.",
+    "category": "Cloudflare",
+    "technology": "Cloudflare",
+    "error_signature": "Error 522: Origin timed out (or connection refused)",
+    "search_intent": "Fix Cloudflare 522 origin timeout error — website hosted behind Cloudflare returns 522 because origin server fails to respond within Cloudflare's timeout window.",
+    "common_causes": [
+      "From sources-guide.md query pattern for Cloudflare error codes 522/524. Common production outage pattern: Cloudflare CDN proxies to origin, origin becomes unresponsive → 522 served to end users. High commercial impact for businesses relying on CF-backed services. Error 522 already partially covered but 522 vs 524 differentiation page missing. Search demand consistently high for both error codes. Maps to Cloudflare per category rules."
+    ],
+    "quick_fix": "Confirm the local service is running on the expected host and port, then retry the smallest request.",
+    "related_errors": [
+      "Cloudflare"
+    ]
+  },
+  {
+    "slug": "openai-api-rate-limited-requests-use-fixed-exponential-backoff-users-need-configurable-retry-strategy-parameters",
+    "title": "OpenAI SDK Add Functionality to Adjust Exponential Backoff for Max Retries",
+    "description": "Get controllable exponential backoff settings in OpenAI Python SDK to handle 429 rate limit retries more efficiently — currently backoff params are hardcoded. Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "Rate limited requests use fixed exponential backoff; users need configurable retry strategy parameters",
+    "search_intent": "Get controllable exponential backoff settings in OpenAI Python SDK to handle 429 rate limit retries more efficiently — currently backoff params are hardcoded.",
+    "common_causes": [
+      "GitHub issue #1102 on openai/openai-python: Feature request to allow customizing exponential backoff behavior associated with max_retries option. Updated May 13, 2026 (recent activity). Labels: enhancement, sdk. Directly relevant to 429 rate limiting scenario affecting paid API users. 5 comments, 1 linked PR. Well-discussed. Maps to OpenAI API. NOTE: OpenAI API 429 already covered, but this is a distinct SDK-level retry configuration error scenario."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "OpenAI API"
+    ]
   }
 ]
