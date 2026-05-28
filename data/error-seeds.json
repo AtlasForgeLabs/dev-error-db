@@ -36349,5 +36349,85 @@
     "related_errors": [
       "OpenAI API"
     ]
+  },
+  {
+    "slug": "claude-code-mcp-server-starts-successfully-but-tools-list-request-times-out-30s-no-such-tool-available-errors-tools-not-exposed-to-ai-sessions-affecting-both-stdio-and-sse-transport-mechanisms",
+    "title": "Claude Code Fails to Expose MCP Tools to AI Sessions — Protocol Validation Bug",
+    "description": "Resolve Claude Code bug where Playwright and other MCP tools cannot be used by AI session despite successful server startup and proper configuration Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "MCP server starts successfully but tools/list request times out (30s); no such tool available errors; tools not exposed to AI sessions affecting both stdio and SSE transport mechanisms",
+    "search_intent": "Resolve Claude Code bug where Playwright and other MCP tools cannot be used by AI session despite successful server startup and proper configuration",
+    "common_causes": [
+      "GitHub issue #3426 on anthropics/claude-code — critical bug confirmed by 10+ 👍 reactions, reproduced across multiple agents and environments. Still open as of March 2026. Affects local Playwright integration, browser automation, web scraping workflows. Differentiated from #12086: this is about tool exposure after server starts (tools/list timeout), while #12086 is about server never attempting to start at all. Category: Claude Code = AI Coding Tools."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "claude-code-external-mcp-servers-configured-correctly-but-not-loaded-by-claude-code-silent-failure-with-no-error-messages-or-logs-about-loading-attempts-only-built-in-ide-tools-available-instead-of-custom-mcp-tools",
+    "title": "Claude Code External MCP Servers Not Loading — Silent Failure Despite Correct Configuration",
+    "description": "Fix external/custom MCP servers failing to load in Claude Code despite correct settings.json configuration and verified standalone server functionality Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "External MCP servers configured correctly but not loaded by Claude Code; silent failure with no error messages or logs about loading attempts; only built-in IDE tools available instead of custom MCP tools",
+    "search_intent": "Fix external/custom MCP servers failing to load in Claude Code despite correct settings.json configuration and verified standalone server functionality",
+    "common_causes": [
+      "GitHub issue #12086 on anthropics/claude-code reporter provides extensive debug log comparison showing MCP worked Nov 20 but stopped working Nov 22 without config changes. Confirmed regression between v2.0.49 and later versions. Multiple users affected. Category: Claude Code = AI Coding Tools."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "anthropic-api-repeated-529-errors-overloaded-repeated-529-errors-during-request-causing-frequent-execution-interruptions",
+    "title": "Anthropic API Repeated 529 Overloaded Errors During API Requests",
+    "description": "Find solutions for Anthropic API 529 rate limit errors causing frequent execution interruptions during API usage Includes evidence for Anthropic API troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Anthropic API",
+    "error_signature": "Repeated 529 errors / Overloaded: Repeated 529 Errors During Request causing frequent execution interruptions",
+    "search_intent": "Find solutions for Anthropic API 529 rate limit errors causing frequent execution interruptions during API usage",
+    "common_causes": [
+      "Multiple GitHub issues (#5769, #4072) report persistent 529 overloaded errors on Anthropic API. These directly affect paid API users with billing impact. Different from already-covered 'API 429' topic: 529 is a server-side overloaded status from API gateway, not client-side rate limit from OpenAI. High commercial value for production AI workflows. Category: Anthropic API."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "Anthropic API"
+    ]
+  },
+  {
+    "slug": "claude-code-unable-to-use-mcp-proxy-with-claude-code-running-on-windows-natively-works-in-wsl-but-loses-native-windows-capabilities",
+    "title": "Azure DevOps MCP Proxy Connection Failure on Native Windows",
+    "description": "Fix Azure DevOps MCP proxy connection that works in WSL but fails when Claude Code runs natively on Windows 11 Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Unable to use MCP proxy with Claude Code running on Windows natively; works in WSL but loses native Windows capabilities",
+    "search_intent": "Fix Azure DevOps MCP proxy connection that works in WSL but fails when Claude Code runs natively on Windows 11",
+    "common_causes": [
+      "GitHub issue microsoft/azure-devops-mcp#300 — Claude Code v1.0.53 unable to connect to MCP proxy on native Windows. Workaround (WSL) exists but breaks other Windows-native capabilities. Affects enterprise users integrating Azure DevOps with Claude Code. Different category context: MCP infrastructure on Windows platform. Category: Claude Code = AI Coding Tools."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "litellm-litellm-current-retry-logic-insufficient-for-anthropic-api-overloaded-error-529-and-rate-limit-error-429-compared-to-official-claude-cli-sdk",
+    "title": "LiteLLM Insufficient Retry Logic for Anthropic API Rate Limits (529/429)",
+    "description": "Improve LiteLLM retry/exponential backoff logic to match Anthropic official SDK behavior for handling 529 overloaded and 429 rate limit errors Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "LiteLLM current retry logic insufficient for Anthropic API overloaded_error (529) and rate_limit_error (429) compared to official Claude CLI SDK",
+    "search_intent": "Improve LiteLLM retry/exponential backoff logic to match Anthropic official SDK behavior for handling 529 overloaded and 429 rate limit errors",
+    "common_causes": [
+      "GitHub issue xinhuagu/AceClaw#391 — detailed comparison showing LiteLLM retry strategy falls behind @anthropic-ai/sdk for rate limit handling. Affects proxy/billing/routing decisions in production. Clear technical specification for fix. High commercial value for LiteLLM proxy users managing expensive API calls. Category: LiteLLM."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "LiteLLM"
+    ]
   }
 ]
