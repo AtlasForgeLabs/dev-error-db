@@ -36029,5 +36029,69 @@
     "related_errors": [
       "Deployment"
     ]
+  },
+  {
+    "slug": "openai-api-rate-limit-error-429-when-using-azure-openai-exceeded-token-rate-limit-of-your-current-pricing-tier",
+    "title": "Azure OpenAI API rate limit 429 exceeds token per minute (TPM) quota",
+    "description": "Resolve Azure OpenAI 429 rate limiting by increasing TPM quota or adjusting request throughput configuration Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "Rate limit error 429 when using Azure OpenAI — Exceeded token rate limit of your current pricing tier",
+    "search_intent": "Resolve Azure OpenAI 429 rate limiting by increasing TPM quota or adjusting request throughput configuration",
+    "common_causes": [
+      "Found via web_search Tier 0 fallback: Azure/azure-rest-api-specs#34250 reports rate limit 429 on Node.js SDK v4.96 with S0 pricing tier. Increasing quota fixes it. High commercial value since it blocks production workloads on paid Azure plan. Category maps to OpenAI API (billing/quota error)."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "claude-code-claude-code-authentication-error-offline-access-when-connecting-to-self-hosted-instance",
+    "title": "Claude Code fails to connect to self-hosted instance — authentication error (offline_access)",
+    "description": "Fix Claude Code connection/authentication failures when linking to a self-hosted backend service or Docker compose setup Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Claude Code authentication error (offline_access) when connecting to self-hosted instance",
+    "search_intent": "Fix Claude Code connection/authentication failures when linking to a self-hosted backend service or Docker compose setup",
+    "common_causes": [
+      "Found via GitHub REST API Tier 0: ridafkih/keeper.sh#376 shows Claude Code failing with offline_access auth error in Docker-based self-hosted config. Covers MCP integration edge case. Maps to AI Coding Tools category as it is Claude Code CLI-specific auth flow."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "ollama-ollama-pulling-manifest-connection-refused-timeout-during-model-pull",
+    "title": "Ollama pulling manifest network error causes model download to fail silently",
+    "description": "Fix Ollama model download failures caused by network connectivity, manifest fetching issues, or proxy misconfiguration Includes evidence for Ollama troubleshooting demand.",
+    "category": "Ollama",
+    "technology": "Ollama",
+    "error_signature": "Ollama pulling manifest: connection refused / timeout during model pull",
+    "search_intent": "Fix Ollama model download failures caused by network connectivity, manifest fetching issues, or proxy misconfiguration",
+    "common_causes": [
+      "Found via GitHub REST API Tier 0: ollama/ollama has 4637 open issues matching this query. Very high volume indicates frequent user pain point. Connection refused and timeout errors during model pulls are common with air-gapped servers or corporate proxies. Not yet covered in dev-error-db. Commercial value moderate-high for enterprise local LLM deployments."
+    ],
+    "quick_fix": "Verify the model name, local service connectivity, and network access before retrying the model pull.",
+    "related_errors": [
+      "Ollama"
+    ]
+  },
+  {
+    "slug": "openai-api-openai-rate-limit-429-code-halts-with-exception-after-spending-resources-no-retry-backoff-option",
+    "title": "GPT Researcher code halts mid-run due to unhandled OpenAI 429 rate limit exception",
+    "description": "Add proper rate-limit handling and retry logic to GPT Researcher workflow when hitting OpenAI 429 responses Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "OpenAI rate limit 429 — code halts with exception after spending resources; no retry/backoff option",
+    "search_intent": "Add proper rate-limit handling and retry logic to GPT Researcher workflow when hitting OpenAI 429 responses",
+    "common_causes": [
+      "Found via web_search Tier 0 fallback: assafelovic/gpt-researcher#614. User reported code halting abruptly at 429 with only a wait message. No backoff mechanism built in. High commercial value because it affects automated research workflows running on paid plans. Distinct from generic 429 tutorials — focuses on missing retry infrastructure in agent pipelines."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "OpenAI API"
+    ]
   }
 ]
