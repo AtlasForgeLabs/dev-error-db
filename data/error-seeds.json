@@ -36429,5 +36429,53 @@
     "related_errors": [
       "LiteLLM"
     ]
+  },
+  {
+    "slug": "anthropic-api-claude-regular-outages-causing-slowdowns-in-development-workflows-despite-200-mo-pro-max-plus-subscription",
+    "title": "Anthropic Claude Pro Max Plus subscribers experiencing regular outages and workflow disruptions",
+    "description": "Find solutions for Claude API reliability issues affecting paid enterprise customers and their production/workflow stability Includes evidence for Anthropic API troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Anthropic API",
+    "error_signature": "Claude regular outages causing slowdowns in development workflows despite $200/mo Pro Max Plus subscription",
+    "search_intent": "Find solutions for Claude API reliability issues affecting paid enterprise customers and their production/workflow stability",
+    "common_causes": [
+      "Reddit r/Anthropic post (r/Anthropic/comments/1tq77fe) — verified user complaint about paying $200/mo for Claude Pro Max Plus with daily outage/slowdown experience. Developer explicitly reducing account scope and evaluating alternatives (migration to other providers). High commercial value as it represents churn risk for paid tier + competitive displacement intent."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Anthropic API"
+    ]
+  },
+  {
+    "slug": "litellm-litellm-internalservererror-vertexaiexception-internalservererror",
+    "title": "LiteLLM Proxy InternalServerError: Prisma DB reconnection lock conflict with VertexAI",
+    "description": "Fix LiteLLM proxy crashing when VertexAI returns 500 error and Prisma database reconnection acquires conflicting locks Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "litellm.InternalServerError: VertexAIException InternalServerError",
+    "search_intent": "Fix LiteLLM proxy crashing when VertexAI returns 500 error and Prisma database reconnection acquires conflicting locks",
+    "common_causes": [
+      "GitHub issue BerriAI/litellm#29176 shows PrismaWrapper._safe_refresh_token holds reconnection_lock while spawning new engine; engine_death_watcher thread acquires different _db_reconnect_lock triggering attempt_db_reconnect creating deadlock. Verified via GitHub REST API Tier 0. Category: LiteLLM (proxy/billing layer). Also corroborated by CrewAI community report of same LiteLLM+VertexAI exception pattern."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "LiteLLM"
+    ]
+  },
+  {
+    "slug": "openai-api-parse-response-crashes-with-typeerror-when-response-output-is-null-in-response-completed-event-chatg-com-codex-backend",
+    "title": "OpenAI Python SDK TypeError: response.output is null in chatg.com Codex backend completed event",
+    "description": "Fix OpenAI Python SDK crash when ChatGPT/Codex backend returns null output in completion events Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "parse_response crashes with TypeError when response.output is null in response.completed event (chatg.com Codex backend)",
+    "search_intent": "Fix OpenAI Python SDK crash when ChatGPT/Codex backend returns null output in completion events",
+    "common_causes": [
+      "GitHub openai-python issue #3325 (created 2026-05-27). OpenAI SDK parse_response() crashes with TypeError when chatg.com Codex backend sends null response.output. Direct bug in official SDK, blocks production integrations using ChatGPT frontend API. High value because it affects both free-tier ChatGPT users and paid API consumers using Codex models."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "OpenAI API"
+    ]
   }
 ]
