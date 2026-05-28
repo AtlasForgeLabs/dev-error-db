@@ -36477,5 +36477,69 @@
     "related_errors": [
       "OpenAI API"
     ]
+  },
+  {
+    "slug": "openai-api-you-exceeded-your-current-quota-please-check-your-plan-and-billing-details",
+    "title": "How to distinguish OpenAI API quota exceeded 429 from rate limit 429",
+    "description": "Programmatically differentiate OpenAI 429 quota-exceeded errors from standard rate-limit errors to handle retries correctly Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "You exceeded your current quota, please check your plan and billing details",
+    "search_intent": "Programmatically differentiate OpenAI 429 quota-exceeded errors from standard rate-limit errors to handle retries correctly",
+    "common_causes": [
+      "Stack Overflow Q79761005 (Sep 2025). Developer integrating Python library with tenacity retry sees perpetual retry loop on quota 429. Question asks whether OpenAI API returns distinct error code (code: insufficient_quota) to break retry loop. Multiple linked duplicate questions confirm recurring pain point. Covers both free-tier lower RPM limits and paid-tier hard limits."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "openai-api-rate-limit-is-currently-exceeded-you-requested-20-rpm-but-the-limit-is-1-rpm",
+    "title": "Azure OpenAI service rate limit 429 error on free tier below stated RPM",
+    "description": "Developer getting 429 rate limit errors on Azure OpenAI free tier despite staying within advertised request quotas, seeking explanation and solution Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "Rate limit is currently exceeded | You requested 20 RPM but the limit is 1 RPM",
+    "search_intent": "Developer getting 429 rate limit errors on Azure OpenAI free tier despite staying within advertised request quotas, seeking explanation and solution",
+    "common_causes": [
+      "Stack Overflow Q79347773 (Jan 2025) + linked follow-up Q79359201 (Jan 2025). Enterprise-free-tier users face unexpected throttling. Score: 0 on SO but high commercial value due to Azure billing impact. Error signature includes explicit RPM mismatch info from Azure API response."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "openai-api-at-run-failed-you-exceeded-your-current-quota-please-check-your-plan-and-billing-details",
+    "title": "ChatGPT Run Failed: You exceeded your current quota",
+    "description": "Getting quota exceeded error specifically during ChatGPT API run/completion calls, user confused about billing limits vs quota behavior Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "at run failed: You exceeded your current quota, please check your plan and billing details",
+    "search_intent": "Getting quota exceeded error specifically during ChatGPT API run/completion calls, user confused about billing limits vs quota behavior",
+    "common_causes": [
+      "Stack Overflow Q77583825. Specific invocation context ('at run failed') suggests programmatic usage with batch/completion workflows. Linked from main quota 429 cluster, indicating high duplication risk among similar searches. Commercial value high since it affects automated API workflows used in production."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "kubernetes-crashloopbackoff-pods-status-is-crashloopbackoff-but-no-logs-are-showing-up",
+    "title": "Kubernetes pods stuck in CrashLoopBackOff with no visible logs",
+    "description": "DevOps engineer trying to debug Kubernetes pods entering CrashLoopBackOff state where container logs are empty/inaccessible, preventing root cause analysis Includes evidence for Kubernetes troubleshooting demand.",
+    "category": "Cloud Platforms",
+    "technology": "Kubernetes",
+    "error_signature": "CrashLoopBackOff: pods' status is CrashLoopBackOff but no logs are showing up",
+    "search_intent": "DevOps engineer trying to debug Kubernetes pods entering CrashLoopBackOff state where container logs are empty/inaccessible, preventing root cause analysis",
+    "common_causes": [
+      "Stack Overflow Q68834246 + Q77193878. Two related questions about CrashLoopBackOff debugging. Score: 2 on SO, indicates persistent production pain. No coverage on dev-error-db for this specific log-inaccessibility scenario (covered only generic CrashLoopBackOff definition). High commercial value as it blocks production deployment debugging."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Cloud Platforms"
+    ]
   }
 ]
