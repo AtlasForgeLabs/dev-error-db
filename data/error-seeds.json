@@ -35613,5 +35613,69 @@
     "related_errors": [
       "OpenAI API"
     ]
+  },
+  {
+    "slug": "claude-code-authentication-loop-api-key-ignored-oauth-repeatedly-fails-api-error-request-timed-out-after-multiple-retry-attempts-basic-commands-incorrectly-sent-to-api-instead-of-executed-locally",
+    "title": "[BUG] Authentication Loop: API Key Ignored, OAuth Repeatedly Fails, Making Claude Code Unusable",
+    "description": "Fix persistent Claude Code authentication failure where both OAuth and ANTHROPIC_API_KEY methods fail, rendering the tool completely unusable on fresh install Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Authentication Loop: API Key Ignored, OAuth Repeatedly Fails — 'API Error (Request timed out)' after multiple retry attempts; basic commands incorrectly sent to API instead of executed locally",
+    "search_intent": "Fix persistent Claude Code authentication failure where both OAuth and ANTHROPIC_API_KEY methods fail, rendering the tool completely unusable on fresh install",
+    "common_causes": [
+      "GitHub issue #7827 from anthropics/claude-code repo. Fresh installation causes persistent auth failures across all methods. Phase 1: OAuth login appears successful but all AI requests timeout with 'API Error (Request timed out)'. Phase 2: Even when valid ANTHROPIC_API_KEY env var is set, Claude Code detects it but still forces OAuth browser auth, gets stuck in loops, shows 'Auth conflict' warning. Basic local commands (pwd) also timeout because they're incorrectly routed to API. Labels: area:auth, area:api, has repro, platform:windows. Severity: blocks entire tool usability."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "claude-code-invalid-api-key-fix-external-api-key-displayed-by-claude-auth-status-command-despite-having-valid-cloudmax-oauth-tokens-and-fully-functional-claude-code-operations",
+    "title": "[BUG] OAuth authentication succeeds but auth token not persisted — shows 'Missing API key' after successful login",
+    "description": "Resolve Claude Code auth status showing 'Invalid API key' when OAuth tokens are actually present and working in ~/.claude/.credentials.json; inability to properly log out of Claude Code Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Invalid API key · Fix external API key — displayed by 'claude auth status' command despite having valid CloudMax OAuth tokens and fully functional Claude Code operations",
+    "search_intent": "Resolve Claude Code auth status showing 'Invalid API key' when OAuth tokens are actually present and working in ~/.claude/.credentials.json; inability to properly log out of Claude Code",
+    "common_causes": [
+      "GitHub issue #8002 from anthropics/claude-code repo. User runs 'claude auth status' and gets 'Invalid API key' response despite CloudMax OAuth tokens being valid in credentials file. Claude Code operations work fine but status display is incorrect. Also reports complete inability to log out — requires deleting all config files manually, sometimes causing system freeze on logout attempt. Regression confirmed in v1.0.120. Affects Windows + VS Code integrated terminal. Long-standing bug impacting user workflow hygiene."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "claude-code-oauth-timeout-error-on-claude-code-login-on-windows-login-always-fails-with-same-oauth-timeout-error-when-using-google-account",
+    "title": "Claude Code login fails with OAuth timeout on Windows — Google account login always times out",
+    "description": "Fix Claude Code OAuth login timeout specifically when logging in via Google account on Windows platform Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "OAuth timeout error on Claude Code login on Windows — login always fails with same OAuth timeout error when using Google account",
+    "search_intent": "Fix Claude Code OAuth login timeout specifically when logging in via Google account on Windows platform",
+    "common_causes": [
+      "GitHub issue #44257 from anthropics/claude-code repo. Claude Code cannot log in on Windows — always fails with OAuth timeout error when attempting Google account login. Multiple retry attempts produce the same timeout. Platform-specific authentication bug affecting Windows users trying to use Google OAuth provider. Source evidence from web_search DuckDuckGo snippet."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "claude-code-oauth-flow-never-initiates-claude-opens-about-blank-page-and-immediately-prompts-to-reopen-claude-desktop-creating-an-infinite-loop-custom-mcp-server-with-transport-http-works-but-web-interface-does-not",
+    "title": "Custom MCP server with OAuth 2.1 fails to connect — Claude Desktop opens about:blank infinite loop",
+    "description": "Fix custom MCP server OAuth 2.1 authentication failure where Claude Desktop/web cannot initiate OAuth flow, resulting in about:blank blank page and infinite re-open loop while CLI mode works correctly Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "OAuth flow never initiates — Claude opens about:blank page and immediately prompts to reopen Claude Desktop, creating an infinite loop. Custom MCP server with --transport http works but web interface does not.",
+    "search_intent": "Fix custom MCP server OAuth 2.1 authentication failure where Claude Desktop/web cannot initiate OAuth flow, resulting in about:blank blank page and infinite re-open loop while CLI mode works correctly",
+    "common_causes": [
+      "GitHub issue #11814 from anthropics/claude-code repo. Fully spec-compliant custom MCP server with OAuth 2.1 authentication fails in both Claude Desktop and claude.ai web interface. OAuth flow never initiates — Claude opens about:blank page and prompts to reopen Claude Desktop infinitely. Same server works perfectly with Claude Code CLI using --transport http flag. This indicates a web-session OAuth handling bug specific to Claude Desktop/web, blocking enterprise/custom-OAuth integration workflows."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
   }
 ]
