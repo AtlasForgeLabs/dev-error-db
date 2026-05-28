@@ -35821,5 +35821,101 @@
     "related_errors": [
       "AI Coding Tools"
     ]
+  },
+  {
+    "slug": "claude-code-stopping-for-no-reason-and-asking-should-we-stop-here-in-the-middle-of-a-task-pausing-with-options-for-user-continuation-without-cause",
+    "title": "Claude Code Opus Stopping Mid-Task and Asking 'Should We Stop?'",
+    "description": "Fix Claude Code unexpectedly pausing mid-execution, losing productivity on paid Opus tier Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "\"Stopping for no reason\" and asking \"should we stop here?\" in the middle of a task; pausing with options for user continuation without cause",
+    "search_intent": "Fix Claude Code unexpectedly pausing mid-execution, losing productivity on paid Opus tier",
+    "common_causes": [
+      "Found on r/ClaudeAI (u/Physical-Average-184, 2026-05-28). Multiple report types: random pauses, unsolicited multi-choice pauses, questioning explicit task instructions ('do you want to run the self-review step?'). Affects paying Opus 4.7 users with direct revenue impact. Category: AI Coding Tools per approved mapping."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "claude-code-macos-tcc-permission-prompt-with-generic-hand-icon-and-lowercase-claude-binary-asking-cross-app-data-access-without-developer-attribution",
+    "title": "Claude Code macOS Install Permission Prompt Indistinguishable from Malware",
+    "description": "Fix Claude Code macOS installation experience confusing users — prompt looks like malware, needs proper bundle identifier and signed identity for TCC recognition Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "macOS TCC permission prompt with generic hand icon and lowercase 'claude' binary, asking cross-app data access without developer attribution",
+    "search_intent": "Fix Claude Code macOS installation experience confusing users — prompt looks like malware, needs proper bundle identifier and signed identity for TCC recognition",
+    "common_causes": [
+      "Found on r/ClaudeAI (u/nikanorovalbert, 2026-05-28). CLI ships as Node binary via npm with no .app wrapper, no bundle ID, no signing identity — every install spawns anonymous TCC entry. Users report nearly killing the process thinking it's malware. Security/reputation risk with commercial implications for Anthropic brand trust. Category: AI Coding Tools per approved mapping."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "ollama-memory-layout-cannot-be-allocated-error-max-num-gpu-layers-42-65-fails-even-with-ggml-cuda-no-peer-copy-1-severe-cpu-bottleneck-dropping-to-3-4-t-s",
+    "title": "Ollama/Rocm 'Memory Layout Cannot Be Allocated' on AMD RDNA3 GPUs",
+    "description": "Fix 27B+ models failing to fully load onto AMD GPU due to memory layout allocation failure in llama.cpp/Ollama Rocm backend Includes evidence for Ollama troubleshooting demand.",
+    "category": "Ollama",
+    "technology": "Ollama",
+    "error_signature": "\"memory layout cannot be allocated\" error; Max num_gpu_layers = 42/65 fails even with GGML_CUDA_NO_PEER_COPY=1; severe CPU bottleneck dropping to 3-4 t/s",
+    "search_intent": "Fix 27B+ models failing to fully load onto AMD GPU due to memory layout allocation failure in llama.cpp/Ollama Rocm backend",
+    "common_causes": [
+      "Found on r/LocalLLM (u/trialbuterror, 2026-05-28). Specific stack: RX 9060 XT gfx1200, Rocm 6.4, Ollama 0.24.0, Qwen3.6-27B UD-Q5_K_XL. Exact error 'memory layout cannot be allocated', max 42/65 gpu_layers achievable. Affects production local inference deployments. Category: Ollama per approved mapping."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Ollama"
+    ]
+  },
+  {
+    "slug": "ollama-lm-studio-estimates-20-95-gb-but-ram-fills-to-100-quickly-application-crashes-kv-cache-offload-causes-unexpected-ram-spikes",
+    "title": "LM Studio Constant RAM Overflow on 24GB VRAM GPU Despite Correct Memory Estimates",
+    "description": "Fix sudden RAM overflow and crashes despite correct VRAM memory estimation in LM Studio/Vulkan llama.cpp Includes evidence for Ollama troubleshooting demand.",
+    "category": "Ollama",
+    "technology": "Ollama",
+    "error_signature": "LM Studio estimates 20.95 GB but RAM fills to 100% quickly, application crashes; KV cache offload causes unexpected RAM spikes",
+    "search_intent": "Fix sudden RAM overflow and crashes despite correct VRAM memory estimation in LM Studio/Vulkan llama.cpp",
+    "common_causes": [
+      "Found on r/LocalLLM (u/velikiy_soup, 2026-05-27). Setup: AMD RX 7900XTX 24GB VRAM + 16GB RAM, CachyOS, Vulkan llama.cpp via LM Studio, Qwen 3.6 27B. LM Studio estimated 20.95 GB but RAM fills to 100%, app crashes. Category: Ollama per approved mapping (local inference serving)."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Ollama"
+    ]
+  },
+  {
+    "slug": "claude-code-sub-agent-review-is-shallow-and-misses-real-issues-opening-separate-window-catches-significantly-more-problems",
+    "title": "Claude Code Sub-Agent Review Quality Significantly Worse Than Fresh Window",
+    "description": "Fix sub-agent context contamination in Claude Code causing poor quality code reviews, find reliable multi-agent orchestration pattern Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Sub-agent review is shallow and misses real issues; opening separate window catches significantly more problems",
+    "search_intent": "Fix sub-agent context contamination in Claude Code causing poor quality code reviews, find reliable multi-agent orchestration pattern",
+    "common_causes": [
+      "Found on r/ClaudeAI (u/Separate_Parfait_35, 2026-05-28). Direct comparison: sub-agent inherits parent context state, produces shallow analysis missing genuine issues; fresh Claude Code window catches significantly more. Affects paid Claude Code Pro users doing professional code review workflows. Category: AI Coding Tools per approved mapping."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "claude-code-when-new-parameter-present-but-causes-exception-old-logic-never-runs-backward-compatible-fallback-silently-dropped",
+    "title": "OpenSpec Exception Fallback Logic Silently Dropped During Code Generation",
+    "description": "Understand why OpenSpec doesn't reliably translate fallback-to-old-logic requirements into generated code, especially around exception handling paths Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "When new parameter present but causes exception, old logic never runs — backward compatible fallback silently dropped",
+    "search_intent": "Understand why OpenSpec doesn't reliably translate fallback-to-old-logic requirements into generated code, especially around exception handling paths",
+    "common_causes": [
+      "Found on r/ClaudeAI (u/Separate_Parfait_35, 2026-05-28). Spec said 'backward compatible, fall back when parameter absent' but exception branch swallowed error without falling through to old logic. Generated code: `catch(NumberFormatException)` logs and continues, does NOT execute old logic branch. This is a systematic spec-to-code translation bug affecting enterprise developers using OpenSpec for version-safe feature rollouts. Category: AI Coding Tools per approved mapping."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
   }
 ]
