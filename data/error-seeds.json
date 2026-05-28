@@ -35677,5 +35677,53 @@
     "related_errors": [
       "AI Coding Tools"
     ]
+  },
+  {
+    "slug": "vercel-next-js-error-err-package-path-not-exported-package-subpath-server-edge-is-not-defined-by-exports",
+    "title": "ERR_PACKAGE_PATH_NOT_EXPORTED: Package subpath ./server.edge not defined by exports",
+    "description": "Fix Next.js build error in custom server.js mode where server.edge module path is not exported after upgrading past 13.3.1 Includes evidence for Vercel / Next.js troubleshooting demand.",
+    "category": "Deployment",
+    "technology": "Vercel / Next.js",
+    "error_signature": "Error [ERR_PACKAGE_PATH_NOT_EXPORTED]: Package subpath './server.edge' is not defined by \"exports\"",
+    "search_intent": "Fix Next.js build error in custom server.js mode where server.edge module path is not exported after upgrading past 13.3.1",
+    "common_causes": [
+      "Found in vercel/next.js#49169 on GitHub — developer reporting ERR_PACKAGE_PATH_NOT_EXPORTED on server-edge subpath after upgrading from next@13.3.1 to canary. Reproduces in both development and production modes on pages under dynamic routes like news-media/[slug]. User uses custom server.js with https.createServer + next(). The error blocks deployment of projects using custom Express/Node servers with Next.js. Category 'Deployment' fits as this prevents Vercel-compatible deploys."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Deployment"
+    ]
+  },
+  {
+    "slug": "openai-api-constant-timeouts-after-multiple-calls-with-async-embedded-requests-wrapped-with-asyncio-cause-sustained-connection-failures",
+    "title": "OpenAI Python: Async call chain causes constant timeouts on embeddings",
+    "description": "Resolve persistent async connection timeouts when making repeated OpenAI API calls (e.g., batch embeddings) with async client Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "Constant timeouts after multiple calls with async — embedded requests wrapped with asyncio cause sustained connection failures",
+    "search_intent": "Resolve persistent async connection timeouts when making repeated OpenAI API calls (e.g., batch embeddings) with async client",
+    "common_causes": [
+      "Found in openai/openai-python#769 on GitHub — issue describing how consecutive async API calls (specifically embeddings wrapped with asyncio) lead to constant request timeouts. Affects production workflows processing large batches of embeddings. Category 'OpenAI API' exact match. High commercial value since async batching is common in enterprise AI pipelines."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "openai-api-invalidchunklength-valueerror-on-line-split-b-1-0-during-sse-chunked-transfer-update-chunk-length-fails-after-5-min-idle-in-stream",
+    "title": "Stream error after 5 minutes: InvalidChunkLength ValueError in OpenAI SSE response",
+    "description": "Fix OpenAI API streaming connection dropped after 5 minutes due to invalid HTTP chunked encoding response parsing Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "InvalidChunkLength: ValueError on line.split(b';', 1)[0] during SSE chunked transfer — _update_chunk_length() fails after ~5 min idle in stream",
+    "search_intent": "Fix OpenAI API streaming connection dropped after 5 minutes due to invalid HTTP chunked encoding response parsing",
+    "common_causes": [
+      "Found in openai/openai-python#399 on GitHub — long-running OpenAI streaming API responses (>5min) cause chunk length parsing failures with ValueError raised in urllib3-style chunked protocol handling. The error signature includes _update_chunk_length method attempting int(line, 16) on malformed chunk header. Directly impacts production AI chat applications relying on continuous streaming. Category 'OpenAI API' exact match. No entry in covered-errors.md."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "OpenAI API"
+    ]
   }
 ]
