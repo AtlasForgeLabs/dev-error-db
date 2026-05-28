@@ -36141,5 +36141,69 @@
     "related_errors": [
       "AI Coding Tools"
     ]
+  },
+  {
+    "slug": "claude-code-run-mcp-select-oauth-connector-e-g-claude-ai-slack-browser-opens-complete-oauth-dialog-becomes-unresponsive",
+    "title": "mcp dialog unresponsive after completing OAuth authentication",
+    "description": "Fix Claude Code MCP OAuth dialog hanging after successful authentication Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Run /mcp → select OAuth connector (e.g., claude.ai Slack) → Browser opens → Complete OAuth → Dialog becomes unresponsive",
+    "search_intent": "Fix Claude Code MCP OAuth dialog hanging after successful authentication",
+    "common_causes": [
+      "GitHub issue #47937 — After OAuth completes in external browser, the in-app MCP dialog never proceeds. Users are stuck without feedback. Very recent report (Apr 2026). High frustration/error volume likely. P0 tech."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "cursor-invalid-api-key-the-extension-is-stuck-in-a-loop-of-login-invalid-api-key-and-black-screen",
+    "title": "VS Code extension invalid API key loop",
+    "description": "Fix Cursor VS Code extension stuck in login/API key validation loop after upgrade to 2.0.5.0 Includes evidence for Cursor troubleshooting demand.",
+    "category": "Cursor",
+    "technology": "Cursor",
+    "error_signature": "Invalid API key: The extension is stuck in a loop of 'login / invalid API key' and black screen",
+    "search_intent": "Fix Cursor VS Code extension stuck in login/API key validation loop after upgrade to 2.0.5.0",
+    "common_causes": [
+      "GitHub issue #12204 — Going through re-login doesn't fix the problem. Users get stuck in infinite invalid API key loop. Paid subscription tool broken — high commercial value. Maps to 'Cursor' category directly."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "Cursor"
+    ]
+  },
+  {
+    "slug": "litellm-litellm-ratelimiterror-vertexaiexception-rate-limit-errors-are-often-misleading-because-they-can-originate-from-any-routed-provider",
+    "title": "LiteLLM rate limit errors misleading due to routing",
+    "description": "Diagnose confusing LiteLLM rate limit errors that may be caused by any underlying provider in a routed/model group setup Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "litellm.RateLimitError: VertexAIException Rate-limit errors are often misleading because they can originate from any routed provider",
+    "search_intent": "Diagnose confusing LiteLLM rate limit errors that may be caused by any underlying provider in a routed/model group setup",
+    "common_causes": [
+      "GitHub issue #18003 — When LiteLLM routes through multiple providers, a 429 from any backend propagates as a generic litellm.RateLimitError. Makes debugging hard. Strong commercial value for teams using LiteLLM with multi-provider setups."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "LiteLLM"
+    ]
+  },
+  {
+    "slug": "claude-code-disabled-mcp-servers-still-trigger-oauth-authentication-popups-in-mcp-menu",
+    "title": "Disabled MCP servers still trigger OAuth authentication popups",
+    "description": "Fix disabled MCP servers continuing to prompt OAuth authentication unnecessarily Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Disabled MCP servers still trigger OAuth authentication popups in /mcp menu",
+    "search_intent": "Fix disabled MCP servers continuing to prompt OAuth authentication unnecessarily",
+    "common_causes": [
+      "GitHub issue #31648 — Disabled MCP servers show OAuth popups even though they're turned off. Affects Claude Code users relying on MCP integrations. P0 technology. Category maps to 'AI Coding Tools'."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
   }
 ]
