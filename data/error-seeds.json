@@ -35373,5 +35373,69 @@
     "related_errors": [
       "OpenAI API"
     ]
+  },
+  {
+    "slug": "anthropic-api-error-type-overloaded-error-message-we-received-too-many-requests-please-try-again-later",
+    "title": "Anthropic API overloaded_error — 503 When Anthropic Servers Are Overloaded",
+    "description": "Handle Anthropic API overloaded_error (HTTP 503) — distinguish from network errors, implement backoff strategy for Claude API calls Includes evidence for Anthropic API troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Anthropic API",
+    "error_signature": "error: {\"type\": \"overloaded_error\", \"message\": \"We received too many requests, please try again later...\"}",
+    "search_intent": "Handle Anthropic API overloaded_error (HTTP 503) — distinguish from network errors, implement backoff strategy for Claude API calls",
+    "common_causes": [
+      "Search query confirmed this pattern. Anthropic's overloaded_error is a distinct error type from rate limiting (429), returning HTTP 503 with specific error code. Developers frequently misclassify it. High commercial value: paid API affecting production AI workflows. Not in covered-errors.md (only generic 429 listed)."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "Anthropic API"
+    ]
+  },
+  {
+    "slug": "azure-openai-429-too-many-requests-rate-limit-exceeded-on-azure-openai-responses-api-endpoint",
+    "title": "Azure OpenAI Responses API Rate Limit (429) — Different from Chat Completions",
+    "description": "Fix 429 rate limit errors when calling Azure OpenAI Responses API (distinct from chat completions rate limits) Includes evidence for Azure OpenAI troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "Azure OpenAI",
+    "error_signature": "429 Too Many Requests — Rate limit exceeded on Azure OpenAI Responses API endpoint",
+    "search_intent": "Fix 429 rate limit errors when calling Azure OpenAI Responses API (distinct from chat completions rate limits)",
+    "common_causes": [
+      "GitHub issue on azure-rest-api-specs (#34250) filed Apr 25, 2025 reporting rate limit discrepancies between Azure OpenAI chat completions and Responses API rate limits. Users hit 429 on one endpoint despite low usage on the other — same subscription shares rate pools. Category mapping: OpenAI API (paid enterprise service)."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "openai-api-openai-error-apiconnectionerror-error-communicating-with-openai",
+    "title": "OpenAI API APIConnectionError — Connection refused to OpenAI ChatCompletions",
+    "description": "Fix Python SDK APIConnectionError when calling OpenAI ChatCompletions endpoints in Flask/production apps Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "openai.error.APIConnectionError: Error communicating with OpenAI",
+    "search_intent": "Fix Python SDK APIConnectionError when calling OpenAI ChatCompletions endpoints in Flask/production apps",
+    "common_causes": [
+      "Multiple reports on Stack Overflow (#75920597) and OpenAI Community (#640637). Affects Python developers using openai library in production. Classification failure blocks deployment. Paid service dependency, strong commercial intent."
+    ],
+    "quick_fix": "Confirm the local service is running on the expected host and port, then retry the smallest request.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "claude-code-claude-code-auth-failure-oauth-token-refresh-stuck-session-expired-cli-login-loop",
+    "title": "Claude Code Installation & Auth Troubleshooting — OAuth Login Loop",
+    "description": "Fix Claude Code authentication failures including OAuth token refresh problems and CLI infinite login loops Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Claude Code auth failure — OAuth token refresh stuck, session expired, CLI login loop",
+    "search_intent": "Fix Claude Code authentication failures including OAuth token refresh problems and CLI infinite login loops",
+    "common_causes": [
+      "Official support page at support.claude.com lists 10 most common Claude Code installation and authentication issues. Claude Code is $20/mo agentic coding tool. Directly addresses user pain points. Category mapping: AI Coding Tools (Claude Code = AI Coding Tools per approved mappings)."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
   }
 ]
