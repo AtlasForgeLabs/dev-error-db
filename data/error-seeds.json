@@ -36845,5 +36845,53 @@
     "related_errors": [
       "Ollama"
     ]
+  },
+  {
+    "slug": "claude-code-aadsts50011-the-redirect-uri-in-the-request-from-client-does-not-match",
+    "title": "[BUG] M365 Connector Fails With AADSTS50011 In Cowork — localhost vs 127.0.0.1 Redirect URI Mismatch",
+    "description": "Fix Azure AD OAuth callback URL mismatch between localhost and 127.0.0.1 when connecting Microsoft 365 services to Claude Code Cowork Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "AADSTS50011: The redirect URI in the request from client does not match",
+    "search_intent": "Fix Azure AD OAuth callback URL mismatch between localhost and 127.0.0.1 when connecting Microsoft 365 services to Claude Code Cowork",
+    "common_causes": [
+      "Issue #63030 opened May 28, 2026 on anthropics/claude-code. User reports M365 connector failing during auth flow because redirect URI specified as localhost but actual listener binds to 127.0.0.1, causing AADSTS50011 mismatch. Blocks paid Pro/Max users from integrating Microsoft 365 identity via Claude Code Cowork."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "claude-code-graphql-api-rate-limit-already-exceeded-exhausting-the-5-000-hour-github-rest-api-budget-after-a-handful-of-pushes",
+    "title": "Git Push Through SDK Git Proxy Exhausts 5000 Hour GitHub REST API Budget With ~737 Calls Per Push",
+    "description": "Fix Claude Code SDK git proxy making excessive ~500+ REST API calls per single git push operation, depleting user shared 5,000/hour GitHub API quota Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "GraphQL: API rate limit already exceeded; exhausting the 5,000/hour GitHub REST API budget after a handful of pushes",
+    "search_intent": "Fix Claude Code SDK git proxy making excessive ~500+ REST API calls per single git push operation, depleting user shared 5,000/hour GitHub API quota",
+    "common_causes": [
+      "Issue #63175 opened May 28, 2026 by reza99d on anthropics/claude-code. Detailed monitoring trace shows 149/min usage, totaling ~737 REST calls for one push wave. At this rate, ~6 pushes exhaust the budget, locking gh auth completely. Costs ~15% of 5,000/hour budget per wave. Strong commercial impact: affects Autopilot-style workflows on paid Max/Team plans."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "openai-api-background-response-failure-returns-status-failed-with-opaque-error-code-instead-of-typed-python-exception",
+    "title": "Background Responses Failures Lack Stable Error Code Mapping To SDK Exception Classes",
+    "description": "Find how to properly handle async background mode failures from OpenAI Responses API with retry logic and typed exception catching Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "Background response failure returns status failed with opaque error.code instead of typed Python exception",
+    "search_intent": "Find how to properly handle async background mode failures from OpenAI Responses API with retry logic and typed exception catching",
+    "common_causes": [
+      "Issue #3212 opened May 8, 2026 on openai/openai-python. Background API calls return HTTP 200 even on failure — no typed exception raised. Only free-form error.code string available, not documented as stable enum, not 1:1 mapped to SDK exception class. Blocks production retry/backoff logic. Not covered by existing dev-error-db entries. High commercial value for production systems using async OpenAI streaming/responses."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "OpenAI API"
+    ]
   }
 ]
