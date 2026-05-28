@@ -36093,5 +36093,53 @@
     "related_errors": [
       "OpenAI API"
     ]
+  },
+  {
+    "slug": "claude-code-usage-limit-reached-usage-credits-required-for-1-m-context-appearing-in-brand-new-chat-with-no-prior-messages",
+    "title": "Claude Code Sonnet context window shows usage credits required despite zero messages in new chat",
+    "description": "Fix Sonnet model rejecting requests claiming insufficient usage credits even in fresh new chat with zero token history Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "usage limit reached 'usage credits required for 1 m context' — appearing in brand new chat with no prior messages",
+    "search_intent": "Fix Sonnet model rejecting requests claiming insufficient usage credits even in fresh new chat with zero token history",
+    "common_causes": [
+      "Reddit r/ClaudeCode post dated 2026-05-23 — user confirmed it was a NEW chat (no context/history) yet Sonnet returned 'usage credits required for 1 m context'. Appears to be a service outage or quota calculation bug on Anthropic side. High urgency — affects production deployments. Screen-shot evidence provided."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "claude-code-usage-limit-reached-used-one-command-after-saturday-reset-and-got-quota-exhausted-despite-full-daily-and-weekly-usage-available",
+    "title": "Claude Code daily reset usage limit hit immediately after reset — false positive quota exhaustion",
+    "description": "Fix Claude Code incorrectly reporting usage limit after daily reset when usage should have been cleared Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Usage limit reached — used one command after Saturday reset and got quota exhausted despite full daily and weekly usage available",
+    "search_intent": "Fix Claude Code incorrectly reporting usage limit after daily reset when usage should have been cleared",
+    "common_causes": [
+      "Reddit r/ClaudeCode post dated 2026-05-24 — user hit 'usage limit error' with one command right after Saturday daily reset, despite having full quotas visible. Suggests quota counter bug or race condition. High commercial value as affected paid/Pro tier users. Recent issue (3 days old)."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "claude-code-api-error-400-role-system-is-not-supported-on-this-model",
+    "title": "Claude Code API Error 400 role 'system' is not supported on this model",
+    "description": "Fix 400 API error in Claude Code when sending messages with system role not supported by the selected model Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "API Error: 400 role 'system' is not supported on this model",
+    "search_intent": "Fix 400 API error in Claude Code when sending messages with system role not supported by the selected model",
+    "common_causes": [
+      "Reddit r/ClaudeCode post dated 2026-05-21 — user reports persistent 400 error with system role support issue affecting GSD workflow. Specific HTTP 400 error signature with clear model-level constraint. Moderate competition (some docs exist), strong search intent. Distinct from generic auth/model errors in covered list."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
   }
 ]
