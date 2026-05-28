@@ -36205,5 +36205,85 @@
     "related_errors": [
       "AI Coding Tools"
     ]
+  },
+  {
+    "slug": "openai-api-background-responses-failures-status-failed-or-incomplete-lack-a-stable-code-name-that-maps-to-an-sdk-exception-class-http-poll-returns-200-ok-so-no-typed-exception-is-raised",
+    "title": "OpenAI Responses API Background Mode Lacks Stable Error Code for Exception Mapping",
+    "description": "Developers using OpenAI Responses API with background=True cannot programmatically distinguish server_error from rate_limit_exceeded failures because the SDK raises no typed exception on successful HTTP polls of failed background runs Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "Background responses failures (status='failed' or 'incomplete') lack a stable code/name that maps to an SDK exception class; HTTP poll returns 200 OK so no typed exception is raised",
+    "search_intent": "Developers using OpenAI Responses API with background=True cannot programmatically distinguish server_error from rate_limit_exceeded failures because the SDK raises no typed exception on successful HTTP polls of failed background runs",
+    "common_causes": [
+      "GitHub issue #3212 on openai/openai-python (opened May 8, 2026, updated May 11, 2026). Multiple community members confirmed same problem and suggested workarounds (custom retryable enum). Synchronous mode has deterministic HTTP-code-to-exception mapping but background mode does not. Blocks production retry/backoff logic."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "openai-api-http-429-insufficient-quota-response-not-handled-by-dedicated-exception-class-in-exceptions-py-only-generic-ratelimiterror-available",
+    "title": "OpenAI SDK Missing Dedicated InsufficientQuotaError Separate From RateLimitError",
+    "description": "Developers need to distinguish between rate limit errors (temporary, retryable with backoff) and insufficient funds/billing errors (not retryable, requires key rotation or payment) but the OpenAI Python SDK lumps them together Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "HTTP 429 insufficient_quota response not handled by dedicated exception class in _exceptions.py — only generic RateLimitError available",
+    "search_intent": "Developers need to distinguish between rate limit errors (temporary, retryable with backoff) and insufficient funds/billing errors (not retryable, requires key rotation or payment) but the OpenAI Python SDK lumps them together",
+    "common_causes": [
+      "GitHub issue #1671 on openai/openai-python (opened Aug 2024, still open; PR #3042 filed Apr 2026 adding InsufficientQuotaError). Community submitted fix via fork. This error signature directly affects billing-aware integrations where distinguishing quota types drives different client-side behavior."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "anthropic-api-rate-limiting-error-responses-from-anthropic-api-lack-consistent-retry-after-headers-when-used-through-mcp-model-context-protocol-clients-causing-immediate-retry-storms",
+    "title": "Anthropic API Rate Limiting Without Predictable Retry Headers in MCP Client Integration",
+    "description": "Developers integrating Anthropic API via MCP protocol encounter rate limits that do not include standard HTTP retry guidance, leading to cascading throttling across agent workflows Includes evidence for Anthropic API troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Anthropic API",
+    "error_signature": "Rate limiting error responses from Anthropic API lack consistent Retry-After headers when used through MCP (Model Context Protocol) clients, causing immediate retry storms",
+    "search_intent": "Developers integrating Anthropic API via MCP protocol encounter rate limits that do not include standard HTTP retry guidance, leading to cascading throttling across agent workflows",
+    "common_causes": [
+      "Derived from GitHub issues search on anthropic-sdk-python and claude-code repos showing repeated rate-limit-related complaints. Common pattern: 429 responses without predictable Retry-After or X-RateLimit-Remaining headers. Commercially significant as MCP-based agents amplify burst patterns. Tier 0 (REST API) exhausted before identifying this trend."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "Anthropic API"
+    ]
+  },
+  {
+    "slug": "openai-api-chat-completions-create-with-stream-true-stalling-without-throwing-exception-on-azure-openai-service",
+    "title": "OpenAI Azure Stream Response Stalling Without Throwing Exception",
+    "description": "Enterprise users of Azure OpenAI Service calling chat completions with streaming enabled experience silent hangs with no exception thrown, blocking pipeline progress Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "chat.completions.create with stream=True stalling without throwing exception on Azure OpenAI service",
+    "search_intent": "Enterprise users of Azure OpenAI Service calling chat completions with streaming enabled experience silent hangs with no exception thrown, blocking pipeline progress",
+    "common_causes": [
+      "GitHub issue #2319 on openai/openai-python (closed Apr 2025). Specific to Azure OpenAI deployments rather than standard API, targeting enterprise cloud customers. Stream silence is particularly problematic as it provides zero signal about timeout vs network issue."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "openai-api-multiple-async-calls-to-the-openai-api-fail-catastrophically-httpx-client-has-very-poor-performance-for-concurrent-requests-compared-to-aiohttp",
+    "title": "OpenAI Python SDK Concurrency Performance Degradation Under Concurrent Async Requests",
+    "description": "Applications making many concurrent API calls through the OpenAI Python SDK experience severe performance degradation or failures under load, blocking high-throughput production deployments Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "Multiple async calls to the OpenAI API fail catastrophically — httpx client has very poor performance for concurrent requests compared to aiohttp",
+    "search_intent": "Applications making many concurrent API calls through the OpenAI Python SDK experience severe performance degradation or failures under load, blocking high-throughput production deployments",
+    "common_causes": [
+      "GitHub issue #1596 on openai/openai-python (open until closed Jun 2025, still referenced). Issue #1195 reported similar catastrophic failures with multiple async calls. High relevance for enterprise teams running parallel inference pipelines at scale."
+    ],
+    "quick_fix": "Check the build output, project root, and deployment platform configuration before redeploying.",
+    "related_errors": [
+      "OpenAI API"
+    ]
   }
 ]
