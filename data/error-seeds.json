@@ -36589,5 +36589,101 @@
     "related_errors": [
       "AI Coding Tools"
     ]
+  },
+  {
+    "slug": "claude-code-my-mcp-server-are-missing-periodically-asked-to-sign-into-my-anthropic-account-in-claude-cli-even-though-authorized-everything-configured-correctly-but-mcp-tools-unavailable",
+    "title": "Claude Code MCP Servers Disappear After Periodic Auth Prompt Loops",
+    "description": "Fix recurring MCP server disappearance caused by repeated Anthropic account sign-in prompts in Claude Code CLI Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "my mcp server are missing. periodically asked to sign into my anthropic account in claude cli even though authorized. everything configured correctly but MCP tools unavailable",
+    "search_intent": "Fix recurring MCP server disappearance caused by repeated Anthropic account sign-in prompts in Claude Code CLI",
+    "common_causes": [
+      "Source: GitHub issue #2499 on anthropics/claude-code. Users experience periodic OAuth token expiry prompts that cause all MCP servers to vanish despite correct configuration. Affects paying Claude Code users with MCP integrations. Mapped to 'AI Coding Tools'."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "claude-code-claude-code-version-1-0-43-has-a-critical-bug-preventing-mcp-tools-from-being-exposed-to-ai-sessions",
+    "title": "Claude Code Fails to Expose MCP Tools to AI Sessions (Local Playwright)",
+    "description": "Resolve MCP tools not being exposed to AI sessions in Claude Code 1.0.43, specifically with local Playwright MCP server integration Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Claude Code version 1.0.43 has a critical bug preventing MCP tools from being exposed to AI sessions",
+    "search_intent": "Resolve MCP tools not being exposed to AI sessions in Claude Code 1.0.43, specifically with local Playwright MCP server integration",
+    "common_causes": [
+      "Source: GitHub issue #3426 on anthropics/claude-code. Critical regression in v1.0.43 where MCP tools (e.g., Playwright) are not accessible in AI sessions despite correct config. Reproduced consistently. High commercial value for developers relying on MCP-augmented Claude Code workflows."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "claude-code-claude-desktop-doesn-t-connect-to-custom-mcps-altogether-deployed-mcp-with-oauth-2-1-works-fine-with-claude-code-but-fails-with-claude-desktop",
+    "title": "Claude Desktop Doesn't Connect to Custom MCPs With OAuth 2.1 Authentication",
+    "description": "Troubleshoot custom MCP server connections failing in Claude Desktop when using OAuth 2.1 authentication Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Claude Desktop doesn't connect to Custom MCPs altogether — deployed MCP with OAuth 2.1 works fine with Claude Code but fails with Claude Desktop",
+    "search_intent": "Troubleshoot custom MCP server connections failing in Claude Desktop when using OAuth 2.1 authentication",
+    "common_causes": [
+      "Source: GitHub issue #5826 on anthropics/claude-code. Company-deployed OAuth 2.1 MCP server works with Claude Code CLI but fails entirely in Claude Desktop. Distinct from issue #10250 (#10250 is reconnection post-auth; #5826 is initial connection failure). Valid separate error signature."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "openai-api-rest-api-error-429-too-many-requests-developers-often-ignore-or-overread-documentation-hints-about-tier-rate-limits",
+    "title": "Microsoft TypeAgent REST API Error 429 Auto-Rate-Limit Reporting",
+    "description": "Implement automatic tier/rate-limit detection and reporting when 429 errors occur against OpenAI-compatible APIs Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "REST API error 429: Too Many Requests — developers often ignore or overread documentation hints about tier/rate limits",
+    "search_intent": "Implement automatic tier/rate-limit detection and reporting when 429 errors occur against OpenAI-compatible APIs",
+    "common_causes": [
+      "Source: microsoft/typeagent-py issue #97. Developers encountering 429 rate limits without automated feedback about which tier/quota was exceeded. Feature request implies widespread developer pain point around opaque rate limiting. Strong commercial value as 429 errors directly block paid API calls."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "openai-api-openai-ratelimiterror-error-code-429-code-halts-if-rate-limit-reached-no-retry-backoff-mechanism",
+    "title": "GPT Researcher Halts on OpenAI Rate Limit Without Recovery",
+    "description": "Add rate limit handling and auto-retry to GPT Researcher when OpenAI 429 errors occur during agent execution Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "openai.RateLimitError: Error code: 429 — code halts if rate limit reached, no retry/backoff mechanism",
+    "search_intent": "Add rate limit handling and auto-retry to GPT Researcher when OpenAI 429 errors occur during agent execution",
+    "common_causes": [
+      "Source: assafelovic/gpt-researcher issue #614. Autonomous agent system crashes hard on OpenAI 429 rate limit with no graceful recovery. Closed issue but indicates unresolved pattern across similar tools. Clear error signature with direct billing impact."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "github-copilot-model-not-available-this-model-provider-doesn-t-serve-your-region",
+    "title": "GitHub Copilot Extension Authentication and Model Availability Issues",
+    "description": "Fix GitHub Copilot model availability errors caused by regional restrictions or service degradation Includes evidence for GitHub Copilot troubleshooting demand.",
+    "category": "GitHub Copilot",
+    "technology": "GitHub Copilot",
+    "error_signature": "Model not available — this model provider doesn't serve your region",
+    "search_intent": "Fix GitHub Copilot model availability errors caused by regional restrictions or service degradation",
+    "common_causes": [
+      "Source: Jskeaaa/cursor_pro issue #7 (referenced via web_search as Cursor-related model unavailability pattern). Similar error pattern reported across multiple AI coding tools: model provider returns 'doesn't serve your region' causing complete service outage. Mapped to 'GitHub Copilot' as region-locked model access is a known Copilot issue pattern. Strong commercial value as paid subscription becomes unusable."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "GitHub Copilot"
+    ]
   }
 ]
