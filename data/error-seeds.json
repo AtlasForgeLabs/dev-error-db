@@ -35725,5 +35725,101 @@
     "related_errors": [
       "OpenAI API"
     ]
+  },
+  {
+    "slug": "claude-code-http-529-overloaded-error-api-error-529-type-overloaded-error",
+    "title": "Claude Code HTTP 529 Overloaded Error: When Anthropic Capacity Is Saturated",
+    "description": "Fix Claude Code failing with 529 overloaded error when requesting models like Opus Max during peak hours; switch model or retry strategy Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "HTTP 529 overloaded_error – API Error: 529 {\"type\":\"overloaded_error\"}",
+    "search_intent": "Fix Claude Code failing with 529 overloaded error when requesting models like Opus Max during peak hours; switch model or retry strategy",
+    "common_causes": [
+      "Detailed analysis from codersera.com/blog/claude-code-common-errors-troubleshooting-2026/ confirms 529 means Anthropic capacity for the specific model is temporarily saturated — distinct from 429 quota error, not counted against usage. Common during peak hours on Opus Max plan. Fix: check status.claude.com, switch model via /model, avoid tight retry loops. Category mapped to AI Coding Tools per SKILL.md rules for Claude Code."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "claude-code-oauth-discovery-error-invalid-scopes-scope-truncation-consent-showing-wrong-permissions",
+    "title": "Claude MCP Server OAuth Discovery Failure: Invalid Scopes and Resource Path Truncation",
+    "description": "Fix MCP server OAuth discovery issues where scopes are truncated, wrong permissions shown in consent dialog, or 'Invalid scopes' error prevents connection to hosted MCP servers with OAuth Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "OAuth discovery error – invalid scopes, scope truncation, consent showing wrong permissions",
+    "search_intent": "Fix MCP server OAuth discovery issues where scopes are truncated, wrong permissions shown in consent dialog, or 'Invalid scopes' error prevents connection to hosted MCP servers with OAuth",
+    "common_causes": [
+      "From ekamoira.com blog (updated 2026-05-28) covering OAuth for Claude.ai & ChatGPT hosted MCP servers: issues include clients registered with wrong scopes causing 'Invalid scopes' error, OAuth discovery path truncation showing blog permissions instead of intended service, missing RFC 8707 resource filtering showing all scopes. Fix: delete connection, wait 30s, re-add with fresh OAuth flow; ensure distinct URL paths."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "claude-code-mcp-error-32000-connection-closed-json-rpc-generic-server-error-code-indicating-mcp-server-process-crashed",
+    "title": "Claude Code MCP Server Crash: JSON-RPC Generic Error -32000",
+    "description": "Fix Claude Code MCP server crashing mid-handshake with JSON-RPC -32000 error; missing binary, wrong Node version, missing env var, or stdout pollution corrupting JSON-RPC stream Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "MCP error -32000 Connection closed – JSON-RPC generic server-error code indicating MCP server process crashed",
+    "search_intent": "Fix Claude Code MCP server crashing mid-handshake with JSON-RPC -32000 error; missing binary, wrong Node version, missing env var, or stdout pollution corrupting JSON-RPC stream",
+    "common_causes": [
+      "From codersera.com detailed analysis: -32000 is the JSON-RPC generic server-error meaning the MCP server process crashed — failed to start, threw during initialization, or exited mid-handshake. Root causes: missing dependency, wrong Node version, missing env var, console.log() writing to stdout and corrupting the stdio JSON-RPC multiplexed stream. Category: AI Coding Tools per mapping table."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "claude-code-http-401-auth-failure-authentication-error-mid-session-during-autonomous-run-every-tool-call-returns-401",
+    "title": "Claude Code Authentication 401: OAuth Token Expired Mid-Session",
+    "description": "Fix Claude Code losing authentication mid-autonomous-run when OAuth token expires, requiring /logout then /login recovery sequence Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "HTTP 401 auth failure – authentication_error mid-session during autonomous run, every tool call returns 401",
+    "search_intent": "Fix Claude Code losing authentication mid-autonomous-run when OAuth token expires, requiring /logout then /login recovery sequence",
+    "common_causes": [
+      "From codersera.com detailed field guide: 401 means OAuth token expired, was revoked, or doesn't carry scope for new features. Painful variant is mid-session expiry during autonomous runs where every subsequent tool call returns authentication_error. Fix: run /logout then /login (skipping logout poisons new session with stale token). Clean reinstall may be needed if cached credentials persist."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "claude-code-spawn-npx-enoent-claude-desktop-cannot-find-npx-or-node-executable",
+    "title": "Claude Desktop MCP Server spawn npx ENOENT: macOS GUI App PATH Problem",
+    "description": "Fix Claude Desktop unable to launch MCP servers because macOS GUI apps don't inherit shell PATH from .zshrc/.bashrc; use explicit binary paths or symlinks Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "spawn npx ENOENT – Claude Desktop cannot find npx or node executable",
+    "search_intent": "Fix Claude Desktop unable to launch MCP servers because macOS GUI apps don't inherit shell PATH from .zshrc/.bashrc; use explicit binary paths or symlinks",
+    "common_causes": [
+      "From ekamoira.com/blog/gsc-mcp-server-setup-complete-troubleshooting-guide-for-claude-desktop (updated 2026-05-28): 43% of MCP failures caused by incorrect Node.js paths. macOS GUI apps inherit system $PATH but miss NVM/Homebrew paths added via shell config. Fix: specify exact paths like /opt/homebrew/bin/node, create wrapper scripts, or symlink npx to /opt/homebrew/bin/npx."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "claude-code-transport-mismatch-error-mcp-server-configured-as-http-but-actually-a-stdio-process-or-vice-versa",
+    "title": "Claude Code Transport Mismatch: stdio vs HTTP/SSE Protocol Confusion",
+    "description": "Fix Claude Code MCP tools failing immediately after adding server due to transport type mismatch between stdio and HTTP/SSE protocols Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Transport mismatch error – MCP server configured as HTTP but actually a stdio process, or vice versa",
+    "search_intent": "Fix Claude Code MCP tools failing immediately after adding server due to transport type mismatch between stdio and HTTP/SSE protocols",
+    "common_causes": [
+      "From blockchain-council.org troubleshooting guide: pattern occurs when server is configured as HTTP when it is actually a stdio process (or reverse), or incorrect HTTP endpoint URL for MCP. Also covers Unity-specific path registration issues and command invocation failures where npx fails on Windows without cmd /c routing. Category: AI Coding Tools."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
   }
 ]
