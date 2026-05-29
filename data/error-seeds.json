@@ -37821,5 +37821,85 @@
     "related_errors": [
       "LiteLLM"
     ]
+  },
+  {
+    "slug": "claude-code-oauth-error-timeout-of-15000ms-exceeded-after-auto-update-to-claude-code-v2-1-79-native-installer-has-path-priority-over-npm-revert",
+    "title": "Claude Code v2.1.79 Auto-Update Breaks OAuth Login Globally",
+    "description": "Fix Claude Code v2.1.79 OAuth login broken after automatic update where CLI never receives browser callback; workarounds limited by native installer PATH priority Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "OAuth error: timeout of 15000ms exceeded after auto-update to Claude Code v2.1.79; native installer has PATH priority over npm revert",
+    "search_intent": "Fix Claude Code v2.1.79 OAuth login broken after automatic update where CLI never receives browser callback; workarounds limited by native installer PATH priority",
+    "common_causes": [
+      "Reddit thread r/ClaudeAI (r/ClaudeAI/comments/1rxngbf) confirmed widespread issue after v2.1.79 auto-update: browser shows success but CLI times out. Multiple related GitHub issues (#33238, #33214, #33213, #33217, #33239). Official outage confirmed on status.claude.com March 18. Native installer overrides npm-installed older versions via PATH priority. Thousands of paying users globally affected. Category: AI Coding Tools per mapping rules."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "claude-code-oauth-error-timeout-of-15000ms-exceeded-auth-anthropic-com-does-not-resolve-via-dns",
+    "title": "Claude Code OAuth Login Timeout — auth.anthropic.com DNS Resolution Failure",
+    "description": "Fix Claude Code login failing due to auth.anthropic.com DNS resolution failure causing OAuth callback timeout Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "OAuth error: timeout of 15000ms exceeded — auth.anthropic.com does not resolve via DNS",
+    "search_intent": "Fix Claude Code login failing due to auth.anthropic.com DNS resolution failure causing OAuth callback timeout",
+    "common_causes": [
+      "GitHub Issue #33238 on anthropics/claude-code: running claude login opens browser, OAuth flow begins, but after ~15s fails with 'OAuth error: timeout of 15000ms exceeded'. Root cause: auth.anthropic.com returns 'Non-existent domain' even against Google DNS (8.8.8.8), while api.anthropic.com resolves fine (160.79.104.10). Confirmed as global DNS issue with 170+ Reddit comments. Category: AI Coding Tools."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "claude-code-oauth-callback-delay-followed-by-http-500-error-failed-to-fetch-user-roles",
+    "title": "Claude Code OAuth Callback Timeout Causes Failed to Fetch User Roles Error",
+    "description": "Fix Claude Code OAuth callback route hanging then returning 500 error preventing user roles from being loaded after authorization Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "OAuth callback delay followed by HTTP 500 error: 'Failed to fetch user roles'",
+    "search_intent": "Fix Claude Code OAuth callback route hanging then returning 500 error preventing user roles from being loaded after authorization",
+    "common_causes": [
+      "GitHub Issue #20089 on anthropics/claude-code: OAuth flow proceeds past browser authorization but clicking Authorize causes long delay on localhost:60869/callback route followed by HTTP 500 and 'Failed to fetch user roles' message. Different from general timeout — this is a server-side callback handler error. Affects paid users who cannot complete login flow. Category: AI Coding Tools."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "claude-code-fully-spec-compliant-custom-mcp-server-with-oauth-2-1-auth-claude-opens-about-blank-page-then-immediately-prompts-to-reopen-claude-desktop-creating-infinite-loop",
+    "title": "Custom MCP Server OAuth 2.1 Fails — Infinite Claude Desktop Loop",
+    "description": "Fix custom MCP server OAuth integration that works with Claude Code CLI (--transport http) but fails in Claude Desktop and claude.ai web interface with infinite redirect loop Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Fully spec-compliant custom MCP server with OAuth 2.1 auth: Claude opens about:blank page then immediately prompts to reopen Claude Desktop creating infinite loop",
+    "search_intent": "Fix custom MCP server OAuth integration that works with Claude Code CLI (--transport http) but fails in Claude Desktop and claude.ai web interface with infinite redirect loop",
+    "common_causes": [
+      "GitHub Issue #11814 on anthropics/claude-code: OAuth flow never initiates in Claude Desktop/web — opens about:blank then loops back to reopening Claude Desktop. Same MCP server works perfectly with Claude Code CLI using --transport http. Affects enterprise/custom MCP server developers integrating OAuth 2.1. Category: AI Coding Tools."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "claude-code-oauth-flow-appears-to-complete-but-all-subsequent-api-calls-fail-with-authentication-errors-behind-corporate-proxy",
+    "title": "Claude Code Extension OAuth Fails Behind Corporate Proxy in Remote Dev",
+    "description": "Fix Claude Code extension OAuth authentication failure when working remotely behind corporate proxy, where OAuth flow visually completes but API calls fail post-auth Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "OAuth flow appears to complete but all subsequent API calls fail with authentication errors behind corporate proxy",
+    "search_intent": "Fix Claude Code extension OAuth authentication failure when working remotely behind corporate proxy, where OAuth flow visually completes but API calls fail post-auth",
+    "common_causes": [
+      "GitHub Issue #11464 on anthropics/claude-code: Claude Code extension fails to authenticate using OAuth method in remote development environment with corporate proxy. OAuth flow appears to complete but all subsequent API calls fail with auth errors. Enterprise-relevant scenario affecting developers in secure environments. Category: AI Coding Tools."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
   }
 ]
