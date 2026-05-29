@@ -37005,5 +37005,101 @@
     "related_errors": [
       "GitHub Copilot"
     ]
+  },
+  {
+    "slug": "claude-code-browser-prompt-injects-plus-tab-created-but-mcp-claude-in-chrome-tools-never-register-no-native-messaging-manifest-native-host-bridge-socket",
+    "title": "Claude Code Chrome Extension MCP Tools Fail to Register",
+    "description": "Fix MCP tools failing to register when using Claude Code's Chrome/VS Code browser integration on macOS Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "@browser prompt injects + tab created, but mcp__claude-in-chrome__* tools never register (no native-messaging manifest / native host / bridge socket)",
+    "search_intent": "Fix MCP tools failing to register when using Claude Code's Chrome/VS Code browser integration on macOS",
+    "common_causes": [
+      "GitHub issue #63482 from anthropics/claude-code: In the VS Code extension on macOS, the @browser instruction block is injected but none of the mcp__claude-in-chrome__* tools are ever registered into the session — not callable or discoverable via tool selector. Labeled as bug, has repro, platform:macos, area:ide. Direct commercial impact on users relying on browser automation with Claude Code."
+    ],
+    "quick_fix": "Verify the model name, local service connectivity, and network access before retrying the model pull.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "claude-code-claude-code-for-vs-code-api-error-400-messages-1-role-must-be-either-user-or-assistant-but-got-system",
+    "title": "Claude Code VS Code API Error 400 Invalid Message Role 'system'",
+    "description": "Fix Anthropic API 400 error caused by invalid message role 'system' being sent from Claude Code VS Code extension Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Claude Code for VS Code API Error: 400 messages[1].role must be either 'user' or 'assistant', but got 'system'",
+    "search_intent": "Fix Anthropic API 400 error caused by invalid message role 'system' being sent from Claude Code VS Code extension",
+    "common_causes": [
+      "GitHub issue #63473 from anthropics/claude-code: Bug report where Claude Code for VS Code sends an invalid message role 'system' to the Anthropic API, resulting in HTTP 400 error. Labels: bug, platform:windows, area:ide. Affects paid AI coding tool users. Category mapping: Claude Code directly maps to AI Coding Tools per SKILL.md rules."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "openai-api-validationerror-actionsearch-query-field-required-deprecated-field-no-longer-returned-by-web-search-call-api",
+    "title": "OpenAI SDK ValidationError ActionSearch.query Field Required",
+    "description": "Fix OpenAI Python SDK type parsing error when web search action response omits deprecated query field Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "ValidationError: ActionSearch.query Field required (deprecated field no longer returned by web_search_call API)",
+    "search_intent": "Fix OpenAI Python SDK type parsing error when web search action response omits deprecated query field",
+    "common_causes": [
+      "PR #3328 against openai/openai-python: The query field on ActionSearch was typed as required str but the API marked it [DEPRECATED] and now returns only plural queries. Parsing real responses raises ValidationError. This affects production users who call web_search_call and hit parse failures. P0 tech category: OpenAI API. Quality: concrete error signature with exact exception type and field name."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "docker-no-space-left-on-device-failed-to-read-oom-killer-event-during-docker-build",
+    "title": "Docker Build Fails No Space Left on Device Despite Disk Space Available",
+    "description": "Fix Docker build failure with 'No space left on device' despite having disk space available Includes evidence for Docker troubleshooting demand.",
+    "category": "Docker",
+    "technology": "Docker",
+    "error_signature": "No space left on device/Failed to read oom_killer event during docker build",
+    "search_intent": "Fix Docker build failure with 'No space left on device' despite having disk space available",
+    "common_causes": [
+      "GitHub issue #52721 from moby/moby (Docker Engine): User unable to build an image that was previously working, encountering 'No space left on device' and 'Failed to read oom_killer event'. Label: kind/bug. Classic Docker storage/disk problem affecting containerized development workflows. Category mapping: Docker engine issues map to Docker per approved categories."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Docker"
+    ]
+  },
+  {
+    "slug": "cloudflare-workers-miniflare-hangs-indefinitely-when-workerd-exits-before-sending-all-listen-events-on-control-fd",
+    "title": "Miniflare Hangs Indefinitely When Workerd Exits Before All Listen Events",
+    "description": "Fix Miniflare (Cloudflare local dev server) hanging when workerd process terminates prematurely Includes evidence for Cloudflare Workers troubleshooting demand.",
+    "category": "Cloudflare",
+    "technology": "Cloudflare Workers",
+    "error_signature": "Miniflare hangs indefinitely when workerd exits before sending all listen events on control FD",
+    "search_intent": "Fix Miniflare (Cloudflare local dev server) hanging when workerd process terminates prematurely",
+    "common_causes": [
+      "GitHub issue #14077 from cloudflare/workers-sdk: Bug labeled 🐛 BUG where Miniflare hangs when workerd exits before all listen events are sent on the control file descriptor. OS: Linux 7.0. Direct impact on Cloudflare Workers developers debugging locally. Category mapping: Cloudflare Workers SDK issues map to Cloudflare per approved categories list."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Cloudflare"
+    ]
+  },
+  {
+    "slug": "vercel-telemetry-subprocess-killed-due-to-timeout-deploy-process-stays-alive-7s-after-ready-because-client-fetch-retried-aborterror",
+    "title": "Vercel Deployment Aborted Request Causes Process Hang After Telemetry Subprocess Killed",
+    "description": "Fix Vercel CLI deployment hang where aborted requests get retried causing telemetry subprocess timeout Includes evidence for Vercel troubleshooting demand.",
+    "category": "Deployment",
+    "technology": "Vercel",
+    "error_signature": "Telemetry subprocess killed due to timeout; deploy process stays alive ~7s after READY because Client.fetch retried AbortError",
+    "search_intent": "Fix Vercel CLI deployment hang where aborted requests get retried causing telemetry subprocess timeout",
+    "common_causes": [
+      "PR #16466 against vercel/vercel (Vercel CLI): Client.fetch incorrectly retries on AbortError, so aborting deployment events stream at READY re-fired requests with already-aborted signals until retry budget exhausted — keeping process alive ~7s after deploy completed. Category mapping: Vercel CLI/deployment errors map to Deployment per approved categories. P0 tech."
+    ],
+    "quick_fix": "Check the build output, project root, and deployment platform configuration before redeploying.",
+    "related_errors": [
+      "Deployment"
+    ]
   }
 ]
