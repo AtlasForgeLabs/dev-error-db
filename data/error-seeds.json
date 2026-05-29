@@ -36893,5 +36893,117 @@
     "related_errors": [
       "OpenAI API"
     ]
+  },
+  {
+    "slug": "openai-api-429-rate-limit-error-when-using-azure-openai-plus-responses-api-increasing-quota-130k-tpm-fixes-issue",
+    "title": "Azure OpenAI Responses API Rate Limit 429 Even With High TPM Quota",
+    "description": "Resolve 429 rate limit on Azure OpenAI Responses API without needing to increase TPM quota beyond current allocation Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "429 rate limit error when using Azure OpenAI + Responses API; increasing quota > 130k TPM fixes issue",
+    "search_intent": "Resolve 429 rate limit on Azure OpenAI Responses API without needing to increase TPM quota beyond current allocation",
+    "common_causes": [
+      "GitHub issue (#34250) on azure-rest-api-specs reports 429 rate limiting on Azure OpenAI Responses API with SDK v4.96. Increasing TPM quota above 130k temporarily resolves. Indicates potential bug in rate limit calculation for Responses API. Billing/quota failure on enterprise paid service. Not in covered-errors (Responses API is newer endpoint). Category: OpenAI API."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "claude-code-oauth-tokens-for-custom-mcp-connectors-do-not-persist-across-app-restarts-requires-re-authentication-on-every-launch",
+    "title": "Custom MCP Connector OAuth Tokens Fail to Persist Across App Restarts",
+    "description": "Fix OAuth token persistence in Claude Code so custom MCP connectors retain authentication state between sessions Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "OAuth tokens for custom MCP connectors do not persist across app restarts; requires re-authentication on every launch",
+    "search_intent": "Fix OAuth token persistence in Claude Code so custom MCP connectors retain authentication state between sessions",
+    "common_causes": [
+      "GitHub issue (#52565) reports OAuth tokens reset on app restart for custom connectors in Claude Desktop/Cowork/Claude Code. Managed connectors persist but custom ones do not. Category mapping: Claude Code MCP auth belongs under 'AI Coding Tools'. Not in covered-errors list."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "claude-code-oauth-flow-never-initiates-for-spec-compliant-custom-mcp-servers-with-oauth-2-1-opens-about-blank-page-creating-infinite-redirect-loop",
+    "title": "Claude Desktop/OAuth Flow Infinite Loop with Custom MCP Servers",
+    "description": "Debug and fix OAuth 2.1 authentication flow for custom MCP servers in Claude Desktop that creates infinite about:blank loops Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "OAuth flow never initiates for spec-compliant custom MCP servers with OAuth 2.1; opens about:blank page creating infinite redirect loop",
+    "search_intent": "Debug and fix OAuth 2.1 authentication flow for custom MCP servers in Claude Desktop that creates infinite about:blank loops",
+    "common_causes": [
+      "GitHub issue (#11814) reports fully spec-compliant OAuth 2.1 custom MCP servers fail in both Claude Desktop and claude.ai web. OAuth flow opens about:blank and loops. Works with CLI via --transport http. Unique error pattern (infinite redirect loop), not duplicate of issue #52565 which is token persistence. Category: AI Coding Tools. Not in covered-errors."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "github-copilot-403-api-rate-limit-exceeded-for-user-id-github-copilot-cli-copilot-internal-user-endpoint-returns-403-when-service-account-pat-rest-quota-5000-req-hr-is-exhausted",
+    "title": "GitHub Copilot CLI Auth Silently Swallows REST Quota Rate-Limit Errors",
+    "description": "Diagnose and fix silent rate-limit swallowing in GitHub Copilot CLI when shared PAT hits 5000 req/hr REST quota Includes evidence for GitHub Copilot troubleshooting demand.",
+    "category": "GitHub Copilot",
+    "technology": "GitHub Copilot",
+    "error_signature": "403 \"API rate limit exceeded for user ID\" — GitHub Copilot CLI /copilot_internal/user endpoint returns 403 when service-account PAT REST quota (5000 req/hr) is exhausted",
+    "search_intent": "Diagnose and fix silent rate-limit swallowing in GitHub Copilot CLI when shared PAT hits 5000 req/hr REST quota",
+    "common_causes": [
+      "GitHub issue (#3311) documents CLI auth flow silently swallowing REST quota errors. Common trigger: service-account PAT shared across consumers exhausting 5000 req/hr limit. Returns 403 silently with no actionable message. Enterprise paid team impact. Not in covered-errors (different from generic Copilot rate limit errors). Category: GitHub Copilot."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "GitHub Copilot"
+    ]
+  },
+  {
+    "slug": "claude-code-authentication-successful-but-server-reconnection-failed-after-oauth-with-streamable-http-transport-mcp-server",
+    "title": "Claude Code OAuth Succeeds But MCP Server Reconnection Fails",
+    "description": "Fix MCP server reconnection failure after successful OAuth authentication in Claude Code using streamable-http transport Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Authentication successful, but server reconnection failed — after OAuth with streamable-http transport MCP server",
+    "search_intent": "Fix MCP server reconnection failure after successful OAuth authentication in Claude Code using streamable-http transport",
+    "common_causes": [
+      "GitHub issue (#10250) on claude-code reports OAuth auth completes successfully but subsequent MCP server reconnection fails. Transport: streamable-http. Affects MCP developer workflow. Distinct from token persistence (#52565) and infinite loop (#11814) — this is post-auth reconnection bug. Category: AI Coding Tools. Not in covered-errors."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "vercel-module-not-found-can-t-resolve-module-works-locally-but-fails-on-vercel-deployment-often-related-to-path-aliases-in-tsconfig-json",
+    "title": "Vercel Module Not Found — Local Build Works But Deploy Fails",
+    "description": "Fix Vercel deployment module resolution failures where local builds succeed but cloud build cannot resolve paths Includes evidence for Vercel troubleshooting demand.",
+    "category": "Deployment",
+    "technology": "Vercel",
+    "error_signature": "Module not found: Can't resolve [module] — works locally but fails on Vercel deployment, often related to path aliases in tsconfig.json",
+    "search_intent": "Fix Vercel deployment module resolution failures where local builds succeed but cloud build cannot resolve paths",
+    "common_causes": [
+      "Multiple GitHub issues (#69390, shadcn/ui#3683, community#5084, next.js#16179) confirm recurring Vercel module-not-found errors on deploy while local works. Often linked to tsconfig path alias misconfiguration or Next.js internal compiler differences. Production deployment blocker. Not in covered-errors (covered entry is generic 'Vercel build command failed'; this is specifically module resolution mismatch). Category: Deployment."
+    ],
+    "quick_fix": "Check the build output, project root, and deployment platform configuration before redeploying.",
+    "related_errors": [
+      "Deployment"
+    ]
+  },
+  {
+    "slug": "github-copilot-copilot-throws-rate-limit-exceeded-error-in-jetbrains-ides-despite-active-subscription",
+    "title": "Copilot JetBrains IDE Rate Limit Despite Active Subscription",
+    "description": "Fix unexpected rate limiting in JetBrains IDEs when user has active paid Copilot subscription Includes evidence for GitHub Copilot troubleshooting demand.",
+    "category": "GitHub Copilot",
+    "technology": "GitHub Copilot",
+    "error_signature": "Copilot throws 'rate limit exceeded' error in JetBrains IDEs despite active subscription",
+    "search_intent": "Fix unexpected rate limiting in JetBrains IDEs when user has active paid Copilot subscription",
+    "common_causes": [
+      "GitHub community discussion (#186423) reports active-subscription users experiencing rate limit errors in JetBrains IDEs. Requires sign-out/sign-in workaround. Affects paying developers daily. Distinct from CLI rate limit issue. Category: GitHub Copilot. Not in covered-errors."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "GitHub Copilot"
+    ]
   }
 ]
