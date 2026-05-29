@@ -38013,5 +38013,117 @@
     "related_errors": [
       "Ollama"
     ]
+  },
+  {
+    "slug": "anthropic-api-overloadederror-we-encountered-an-overloaded-error-please-retry-your-request",
+    "title": "Anthropic API Overloaded Error – Handling Rate Limits and Retry",
+    "description": "Understand and fix Anthropic API overloaded errors during peak usage, implement retry logic and backoff strategies Includes evidence for Anthropic API troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Anthropic API",
+    "error_signature": "OverloadedError: We encountered an overloaded_error, please retry your request.",
+    "search_intent": "Understand and fix Anthropic API overloaded errors during peak usage, implement retry logic and backoff strategies",
+    "common_causes": [
+      "Real-world production issue where Anthropic returns overloaded_error on token generation under load. Affects paid tier users hitting throughput limits. Requires exponential backoff or queue-based call routing. Directly impacts billing and production inference pipelines."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "Anthropic API"
+    ]
+  },
+  {
+    "slug": "claude-code-error-connect-econnrefused-1-3000-mcp-server",
+    "title": "Claude Code MCP Server Connection Refused – How to Fix",
+    "description": "Fix Claude Code unable to connect to its own or third-party MCP servers after local host refused connection Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Error: connect ECONNREFUSED ::1:3000 (MCP server)",
+    "search_intent": "Fix Claude Code unable to connect to its own or third-party MCP servers after local host refused connection",
+    "common_causes": [
+      "Developer reports Claude Code failing to start MCP tool servers with ECONNREFUSED on localhost:3000. Caused by missing npx prerequisites, firewall blocks, or incorrect CLAUDE_MCP_CONFIG path. Matches AI Coding Tools category mapping."
+    ],
+    "quick_fix": "Confirm the local service is running on the expected host and port, then retry the smallest request.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "vercel-build-error-failed-to-compile-cannot-find-module-node-modules-binary-native-binding-node-in-edge-runtime",
+    "title": "Vercel Build Failed – Edge Runtime Module Resolution Error with Next.js",
+    "description": "Fix Vercel/Next.js deployment failures when using native binary modules or platform-specific dependencies that don't work in the edge runtime Includes evidence for Vercel troubleshooting demand.",
+    "category": "Deployment",
+    "technology": "Vercel",
+    "error_signature": "Build Error – Failed to compile: Cannot find module './node_modules/binary-native/binding.node' in edge runtime",
+    "search_intent": "Fix Vercel/Next.js deployment failures when using native binary modules or platform-specific dependencies that don't work in the edge runtime",
+    "common_causes": [
+      "Vercel deployments fail specifically in the edge runtime zone because Node.js native addons cannot be bundled. Common with packages like bcrypt, sqlite, sharp. Users must move to custom runtime or prebuild binaries. High commercial value since it blocks production deploys."
+    ],
+    "quick_fix": "Check the build output, project root, and deployment platform configuration before redeploying.",
+    "related_errors": [
+      "Deployment"
+    ]
+  },
+  {
+    "slug": "cloudflare-503-service-unavailable-worker-timed-out-during-cold-start-service-unavailable",
+    "title": "Cloudflare Workers 503 Service Unavailable During Cold Start",
+    "description": "Fix intermittent 503 errors in Cloudflare Workers triggered by cold start timeouts, especially for large bundles with WASM or slow init functions Includes evidence for Cloudflare troubleshooting demand.",
+    "category": "Cloudflare",
+    "technology": "Cloudflare",
+    "error_signature": "503 SERVICE_UNAVAILABLE – Worker timed out during cold start, service unavailable",
+    "search_intent": "Fix intermittent 503 errors in Cloudflare Workers triggered by cold start timeouts, especially for large bundles with WASM or slow init functions",
+    "common_causes": [
+      "Cloudflare Workers hit 503 during cold starts when initialisation exceeds the CPU time limit. Common with large dependency trees, WASM blobs, or database connections. Users need init caching, bundle splitting, or warmup strategies. Directly affects production worker availability."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Cloudflare"
+    ]
+  },
+  {
+    "slug": "openrouter-model-not-found-the-model-xxx-does-not-exist-or-is-currently-unavailable-on-openrouter",
+    "title": "OpenRouter Model Unavailable – Fallback and Router Configuration Fixes",
+    "description": "Fix OpenRouter returning model not found or temporarily unavailable for models previously available, especially when switching between providers Includes evidence for OpenRouter troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "OpenRouter",
+    "error_signature": "model_not_found: The model 'xxx' does not exist or is currently unavailable on OpenRouter",
+    "search_intent": "Fix OpenRouter returning model not found or temporarily unavailable for models previously available, especially when switching between providers",
+    "common_causes": [
+      "Users report OpenRouter intermittently marking popular models as unavailable. Root cause: provider capacity exhaustion causing cascading failover errors. Users need routing config updates and fallback chains. Fits LiteLLM proxy behavior category since it involves model routing."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "LiteLLM"
+    ]
+  },
+  {
+    "slug": "docker-docker-compose-error-for-app-permission-denied-app-data-user-root-group-id-u",
+    "title": "Docker Compose Volume Permission Denied – Host UID/GID Mismatch",
+    "description": "Fix Docker Compose volume mount permission denied errors when container user ID doesn't match host filesystem ownership, common on macOS with Docker Desktop Includes evidence for Docker troubleshooting demand.",
+    "category": "Docker",
+    "technology": "Docker",
+    "error_signature": "docker-compose: ERROR: for app Permission denied: '/app/data' (user: root, group: $(id -u))",
+    "search_intent": "Fix Docker Compose volume mount permission denied errors when container user ID doesn't match host filesystem ownership, common on macOS with Docker Desktop",
+    "common_causes": [
+      "Developers encounter permission denied when mounting bind volumes in Docker Compose containers because the container runs as root while host files belong to specific user IDs. Requires chown, chmod, or USER env var adjustments. Strong productivity cost for teams."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Docker"
+    ]
+  },
+  {
+    "slug": "ollama-ollama-pull-pulling-manifest-error-response-from-daemon-x509-certificate-signed-by-unknown-authority",
+    "title": "Ollama Pulling Manifest Failed – Network Proxy and SSL Certificate Issues",
+    "description": "Fix Ollama unable to pull models behind corporate proxies or self-signed registries, requiring HTTPS_PROXY and trusted CA configuration Includes evidence for Ollama troubleshooting demand.",
+    "category": "Ollama",
+    "technology": "Ollama",
+    "error_signature": "ollama pull: pulling manifest – Error response from daemon: x509: certificate signed by unknown authority",
+    "search_intent": "Fix Ollama unable to pull models behind corporate proxies or self-signed registries, requiring HTTPS_PROXY and trusted CA configuration",
+    "common_causes": [
+      "Ollama fails to download models when corporate networks block direct registry access or present self-signed certificates. Users need environment variable configuration (HTTPS_PROXY, NO_PROXY) and trust store updates. Growing demand as enterprise LLM adoption increases."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "Ollama"
+    ]
   }
 ]
