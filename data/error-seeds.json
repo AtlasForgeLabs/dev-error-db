@@ -37693,5 +37693,69 @@
     "related_errors": [
       "OpenAI API"
     ]
+  },
+  {
+    "slug": "claude-code-unable-to-access-claude-code-there-was-an-issue-accessing-claude-code-try-signing-out-and-back-in-or-contact-support-if-the-problem-persists",
+    "title": "Claude Code OAuth Login Succeeds But Access Immediately Blocked",
+    "description": "Fix Claude Code becoming inaccessible after successful OAuth login with Google account, where user completes the browser auth flow but cannot use the application afterward Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Unable to access Claude Code — There was an issue accessing Claude Code. Try signing out and back in, or contact support if the problem persists.",
+    "search_intent": "Fix Claude Code becoming inaccessible after successful OAuth login with Google account, where user completes the browser auth flow but cannot use the application afterward",
+    "common_causes": [
+      "GitHub Issue #19280 in anthropics/claude-code repo. Open issue. User completes Google OAuth login flow via browser but receives 'Unable to access Claude Code' error immediately after. This affects paid AI coding tool users with valid credentials who cannot access the product post-authentication."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "cloudflare-worker-worker-request-over-custom-domain-returns-immediate-522-timeout-http-response",
+    "title": "Cloudflare Worker-to-Worker Requests Over Custom Domain Return Instant 522 Timeout",
+    "description": "Debug and fix Cloudflare Workers returning 522 timeout errors for intra-zone worker-to-worker requests routed through custom domains Includes evidence for Cloudflare troubleshooting demand.",
+    "category": "Cloudflare",
+    "technology": "Cloudflare",
+    "error_signature": "Worker <-> Worker request over custom_domain returns immediate 522 timeout http response",
+    "search_intent": "Debug and fix Cloudflare Workers returning 522 timeout errors for intra-zone worker-to-worker requests routed through custom domains",
+    "common_causes": [
+      "GitHub Issue #787 in cloudflare/workerd repo. Reported in Wrangler 2.9.0 on macOS. Same-zone worker-to-worker requests through custom domains return 522 immediately. Related to Cloudflare's feature designed specifically for inter-worker communication. Affects production serverless applications on Cloudflare platform."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Cloudflare"
+    ]
+  },
+  {
+    "slug": "github-copilot-github-copilot-authentication-failure-extension-not-working-after-successful-sign-in",
+    "title": "GitHub Copilot Authentication Errors — Not Working for Paid Users",
+    "description": "Fix GitHub Copilot extension authentication issues where paying users experience 'extension not working' or authentication failures after completing sign-in Includes evidence for GitHub Copilot troubleshooting demand.",
+    "category": "GitHub Copilot",
+    "technology": "GitHub Copilot",
+    "error_signature": "GitHub Copilot authentication failure — extension not working after successful sign-in",
+    "search_intent": "Fix GitHub Copilot extension authentication issues where paying users experience 'extension not working' or authentication failures after completing sign-in",
+    "common_causes": [
+      "Identified via initial web_search results for site:github.com copilot authentication issues. GitHub Copilot is a paid developer tool where auth failures directly block paying customers. Specific recent issue details limited due to GitHub API rate limiting, but search query pattern confirms ongoing auth-related problems reported by community."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "GitHub Copilot"
+    ]
+  },
+  {
+    "slug": "claude-code-oauth-authentication-succeeds-but-claude-auth-status-shows-invalid-api-key-error",
+    "title": "Claude Code OAuth Auth Status Shows Invalid API Key After Successful Auth",
+    "description": "Fix situation where OAuth authentication works but claude CLI reports 'Invalid API key', preventing Claude Code from functioning for authenticated users Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "OAuth authentication succeeds but `claude auth status` shows 'Invalid API key' error",
+    "search_intent": "Fix situation where OAuth authentication works but claude CLI reports 'Invalid API key', preventing Claude Code from functioning for authenticated users",
+    "common_causes": [
+      "GitHub Issue #8002 in anthropics/claude-code repo. OAuth flow completes successfully yet auth status command returns 'Invalid API key'. Long-standing issue (not a recent regression). Directly impacts paid Anthropic API users unable to access Claude Code after authentication."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
   }
 ]
