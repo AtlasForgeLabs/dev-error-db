@@ -37901,5 +37901,117 @@
     "related_errors": [
       "AI Coding Tools"
     ]
+  },
+  {
+    "slug": "litellm-request-failed-error-code-400-message-output-config-effort-input-should-be-low-medium-high-or-max",
+    "title": "LiteLLM Regresses Claude Code with Sonnet 4.6 via Bedrock/VertexAI — output_config.effort Parameter Error",
+    "description": "Fix LiteLLM regression where upgrading to v1.86+ breaks Claude Code Sonnet 4.6 routing via AWS Bedrock or Google VertexAI with invalid output_config.effort parameter Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "Request Failed Error Code: 400 Message: output_config.effort: Input should be 'low', 'medium', 'high' or 'max'",
+    "search_intent": "Fix LiteLLM regression where upgrading to v1.86+ breaks Claude Code Sonnet 4.6 routing via AWS Bedrock or Google VertexAI with invalid output_config.effort parameter",
+    "common_causes": [
+      "Issue #29282 on BerriAI/litellm. Regression between v1.83.7 and v1.86.1. output_config param leaks to Bedrock/VertexAI which don't support it. additional_drop_params workaround doesn't work. Critical production outage for teams using LiteLLM as proxy for Anthropic models via cloud providers."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "LiteLLM"
+    ]
+  },
+  {
+    "slug": "litellm-internalservererrorallowedfails-is-silently-ignored-in-get-allowed-fails-from-policy-falls-back-to-global-allowed-fails-value-instead-of-configured-threshold",
+    "title": "LiteLLM InternalServerErrorAllowedFails Policy Silently Ignored in Router Failover",
+    "description": "Fix LiteLLM router failover behavior so InternalServerErrorAllowedFails setting takes effect, allowing proper cooling down of failing deployments after N consecutive 500 errors Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "InternalServerErrorAllowedFails is silently ignored in get_allowed_fails_from_policy; falls back to global allowed_fails value instead of configured threshold",
+    "search_intent": "Fix LiteLLM router failover behavior so InternalServerErrorAllowedFails setting takes effect, allowing proper cooling down of failing deployments after N consecutive 500 errors",
+    "common_causes": [
+      "Issue #29283 on BerriAI/litellm repo. AllowedFailsPolicy defines InternalServerErrorAllowedFails field, but get_allowed_fails_from_policy() only handles 5 error types, missing InternalServerError entirely. Config accepted but silently ignored at runtime. Direct production impact on multi-model load-balanced LiteLLM proxies used by paid services."
+    ],
+    "quick_fix": "Check the build output, project root, and deployment platform configuration before redeploying.",
+    "related_errors": [
+      "LiteLLM"
+    ]
+  },
+  {
+    "slug": "github-actions-windows-runner-randomly-dies-in-actions-cache-with-no-error-messages-exits-the-build-silently",
+    "title": "GitHub Actions Cache Step Causes Random Windows Runner Crashes Without Logging",
+    "description": "Fix GitHub Actions cache@v5 causing silent Windows runner crashes that terminate builds mid-cache step, requiring continue-on-error workaround Includes evidence for GitHub Actions troubleshooting demand.",
+    "category": "GitHub Actions",
+    "technology": "GitHub Actions",
+    "error_signature": "Windows runner randomly dies in actions/cache with no error messages, exits the build silently",
+    "search_intent": "Fix GitHub Actions cache@v5 causing silent Windows runner crashes that terminate builds mid-cache step, requiring continue-on-error workaround",
+    "common_causes": [
+      "Issue #1754 on actions/cache. Standard windows-latest runners die randomly in actions/cache@v5 with zero diagnostic output. Workaround is continue-on-error but masks real problem. Affects enterprise CI/CD pipelines with significant downtime cost. Active issue reported May 2026."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "GitHub Actions"
+    ]
+  },
+  {
+    "slug": "kubernetes-crashloopbackoff-plus-oom-pods-running-on-nodes-where-memoryqos-is-enabled-crash-with-oom-while-identical-pods-on-non-memoryqos-nodes-run-fine",
+    "title": "Kubernetes MemoryQoS Enabled Causes Excessive OOM Kills on Equal Request-Limit Containers",
+    "description": "Investigate Kubernetes MemoryQoS capability causing unexpected OOM kills on containers with equal memory requests and limits, leading to CrashLoopBackOff pod cycles Includes evidence for Kubernetes troubleshooting demand.",
+    "category": "Cloud Platforms",
+    "technology": "Kubernetes",
+    "error_signature": "CrashLoopBackOff + OOM — pods running on nodes where MemoryQoS is enabled crash with OOM while identical pods on non-MemoryQoS nodes run fine",
+    "search_intent": "Investigate Kubernetes MemoryQoS capability causing unexpected OOM kills on containers with equal memory requests and limits, leading to CrashLoopBackOff pod cycles",
+    "common_causes": [
+      "Issue #137880 on kubernetes/kubernetes. MemoryQoS feature gate triggers increased OOM kills on specific scheduling scenarios. Pods crash identically on MemoryQoS-enabled nodes but survive on disabled nodes. Direct production cluster stability impact. Enterprise Kubernetes environments widely affected."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Cloud Platforms"
+    ]
+  },
+  {
+    "slug": "ollama-error-model-not-found-ollama-run-and-api-chat-strip-cloud-suffix-from-model-tags-on-windows-despite-successful-ollama-pull-registration",
+    "title": "Ollama Cloud Model Tag -cloud Stripped on Windows, Causing Model Not Found Errors",
+    "description": "Fix Ollama Windows bug where cloud model tags ending in -cloud (e.g., :397b-cloud) are stripped during run and API calls, preventing Ollama Pro cloud users from serving models Includes evidence for Ollama troubleshooting demand.",
+    "category": "Ollama",
+    "technology": "Ollama",
+    "error_signature": "Error: model not found — ollama run and /api/chat strip '-cloud' suffix from model tags on Windows despite successful ollama pull registration",
+    "search_intent": "Fix Ollama Windows bug where cloud model tags ending in -cloud (e.g., :397b-cloud) are stripped during run and API calls, preventing Ollama Pro cloud users from serving models",
+    "common_causes": [
+      "Issue #16314 on ollama/ollama. Regression on Windows platform specifically. ollama pull succeeds and registers tag correctly, but ollama run and API calls (/api/chat) incorrectly strip -cloud suffix → model not found. Affected by Ollama Pro subscription payments. Verified reproduction steps provided."
+    ],
+    "quick_fix": "Verify the model name, local service connectivity, and network access before retrying the model pull.",
+    "related_errors": [
+      "Ollama"
+    ]
+  },
+  {
+    "slug": "cloudflare-wrangler-dev-stalls-at-starting-local-server-miniflare-waitforports-blocks-forever-when-workerd-exits-before-writing-expected-listen-events-to-control-fd",
+    "title": "Cloudflare Miniflare Hangs Indefinitely When workerd Exits Before Sending Listen Events",
+    "description": "Fix Cloudflare Miniflare/wrangler local development hang when workerd crashes before sending listen events, causing indefinite wait state Includes evidence for Cloudflare troubleshooting demand.",
+    "category": "Cloudflare",
+    "technology": "Cloudflare",
+    "error_signature": "wrangler dev stalls at Starting local server... — Miniflare waitForPorts() blocks forever when workerd exits before writing expected listen events to control FD",
+    "search_intent": "Fix Cloudflare Miniflare/wrangler local development hang when workerd crashes before sending listen events, causing indefinite wait state",
+    "common_causes": [
+      "Issue #14077 on cloudflare/workers-sdk. Miniflare internal waitForPorts() blocks forever if workerd exits prematurely. Stalls at 'Starting local server...' indefinitely. Developer-facing blocking issue with clear reproduction conditions. Part of Cloudflare Workers ecosystem used for paid edge compute."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Cloudflare"
+    ]
+  },
+  {
+    "slug": "ollama-pull-model-manifest-get-https-registry-ollama-ai-v2-library-llama3-2-manifests-1b-dial-tcp-104-21-75-227-443-i-o-timeout",
+    "title": "Ollama All Model Pulls Fail with Manifest I/O Timeout on Registry Access",
+    "description": "Resolve Ollama model download failures caused by registry.ollama.ai DNS/network timeouts affecting all users pulling any model Includes evidence for Ollama troubleshooting demand.",
+    "category": "Ollama",
+    "technology": "Ollama",
+    "error_signature": "pull model manifest: Get https://registry.ollama.ai/v2/library/llama3.2/manifests/1b: dial tcp 104.21.75.227:443: i/o timeout",
+    "search_intent": "Resolve Ollama model download failures caused by registry.ollama.ai DNS/network timeouts affecting all users pulling any model",
+    "common_causes": [
+      "Issue #16330 on ollama/ollama. Universal pull failure — any model fails with i/o timeout connecting to registry. Registry IP 104.21.75.227:443 unreachable. Blocks all new Ollama setups and model updates. Network-layer issue with high search demand given Ollama's rapid user growth."
+    ],
+    "quick_fix": "Verify the model name, local service connectivity, and network access before retrying the model pull.",
+    "related_errors": [
+      "Ollama"
+    ]
   }
 ]
