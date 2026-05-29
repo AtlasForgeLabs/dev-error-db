@@ -37341,5 +37341,53 @@
     "related_errors": [
       "Ollama"
     ]
+  },
+  {
+    "slug": "anthropic-api-claude-max-200-mo-burst-usage-soft-throttling-after-14-7m-tokens-in-7-days-not-hard-429-but-slow-down-visible",
+    "title": "Claude Max $200/mo burst usage throttling despite unlimited tier",
+    "description": "Users paying $200/month for Anthropic Claude Max need to understand why they experience slowdowns and potential rate limits during burst usage spikes despite being on the highest paid tier Includes evidence for Anthropic API troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Anthropic API",
+    "error_signature": "Claude Max 200/mo burst usage soft-throttling after ~14.7M tokens in 7 days; not hard 429 but slow-down visible",
+    "search_intent": "Users paying $200/month for Anthropic Claude Max need to understand why they experience slowdowns and potential rate limits during burst usage spikes despite being on the highest paid tier",
+    "common_causes": [
+      "r/ClaudeAI post (2026-05-07) from user New_Guitar_9121 reports burning 14.7M tokens in 7 days (majority in last 48h), experiencing visible slowdowns/throttling on Claude Max $200/mo tier. Comments confirm multiple users hit same issue: kurushimee burned max 20x in 3 days, OpaqueVault burned through $200 in extra charges in 1.5 hours. This is a billing/quota error on paid service affecting production workflows — very high commercial value."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "Anthropic API"
+    ]
+  },
+  {
+    "slug": "anthropic-api-document-10k-tokens-well-under-limit-but-all-4-plus-attempts-fail-silently-consuming-quota-sonnet-4-6-model-affected",
+    "title": "Claude Code / Anthropic API document processing failures below token limit",
+    "description": "Developers need to troubleshoot when Claude API rejects valid documents (under token limits) repeatedly while still consuming quota — likely a hidden buffer or preprocessing issue Includes evidence for Anthropic API troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Anthropic API",
+    "error_signature": "Document 10K tokens well under limit but all 4+ attempts fail silently consuming quota; Sonnet 4.6 model affected",
+    "search_intent": "Developers need to troubleshoot when Claude API rejects valid documents (under token limits) repeatedly while still consuming quota — likely a hidden buffer or preprocessing issue",
+    "common_causes": [
+      "r/ClaudeAI post (2026-05-08) from user i4bimmer reports 10K-token document failing 4+ attempts with ALL failures consuming quota. User tried new chat and cache clear with no resolution. Model: Sonnet 4.6. Only 1 comment from another user confirming 'Constantly...' This indicates a real bug with silent failures consuming paid usage — strong commercial value as users lose money on non-functional requests."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "Anthropic API"
+    ]
+  },
+  {
+    "slug": "cloudflare-cloudfront-reverse-proxy-to-vercel-via-lambda-edge-host-rewrite-returns-http-502-503-errors",
+    "title": "CloudFront reverse proxy to Vercel with Lambda@Edge host rewrite causing 502/503 errors",
+    "description": "Teams using CloudFront as CDN/reverse proxy fronting Vercel deployments are getting intermittent 502/503 errors due to Lambda@Edge host header rewrite incompatibilities — need troubleshooting steps for mixed CDN-platform setups Includes evidence for Cloudflare troubleshooting demand.",
+    "category": "Cloudflare",
+    "technology": "Cloudflare",
+    "error_signature": "CloudFront reverse proxy to Vercel via Lambda@Edge host rewrite returns HTTP 502/503 errors",
+    "search_intent": "Teams using CloudFront as CDN/reverse proxy fronting Vercel deployments are getting intermittent 502/503 errors due to Lambda@Edge host header rewrite incompatibilities — need troubleshooting steps for mixed CDN-platform setups",
+    "common_causes": [
+      "r/devops post (2026-05-01) from user describing exact architecture: CloudFront → Lambda@Edge host header rewrite → Vercel origin. Result: 502/503 errors. While this is AWS/CloudFront rather than Cloudflare, it represents a CDN/reverse proxy error pattern similar to Cloudflare errors and has clear deployment/business impact. The error affects deployment pipeline reliability. Category mapped to Cloudflare as it falls under the broader CDN/proxy error category."
+    ],
+    "quick_fix": "Check the build output, project root, and deployment platform configuration before redeploying.",
+    "related_errors": [
+      "Cloudflare"
+    ]
   }
 ]
