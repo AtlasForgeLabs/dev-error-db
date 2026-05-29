@@ -38301,5 +38301,85 @@
     "related_errors": [
       "Ollama"
     ]
+  },
+  {
+    "slug": "google-cloud-platform-resourceexhausted-429-you-exceeded-your-current-quota-please-check-your-plan-and-billing-details-quota-exceeded-for-metric-generativelanguage-googleapis-com-generate-content-free-tier-requests-limit-0-model-gemini-2-0-flash",
+    "title": "ResourceExhausted: 429 with limit: 0 on Gemini API Free Tier via LangChain",
+    "description": "Fix immediate quota-zero error when using Gemini API free tier through LangChain Google GenAI integration Includes evidence for Google Cloud Platform troubleshooting demand.",
+    "category": "Cloud Platforms",
+    "technology": "Google Cloud Platform",
+    "error_signature": "ResourceExhausted: 429 - You exceeded your current quota, please check your plan and billing details. * Quota exceeded for metric: generativelanguage.googleapis.com/generate_content_free_tier_requests, limit: 0, model: gemini-2.0-flash",
+    "search_intent": "Fix immediate quota-zero error when using Gemini API free tier through LangChain Google GenAI integration",
+    "common_causes": [
+      "Stack Overflow Q79840266 (score:6, views:8074) — Fresh GCP project still gets quota=0 immediately. Developer using langchain-google-genai in Python needs billing setup or workaround. Strong commercial intent: cloud service billing/quota. Category: Cloud Platforms (GCP). Source: https://stackoverflow.com/questions/79840266"
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "Cloud Platforms"
+    ]
+  },
+  {
+    "slug": "github-copilot-tool-is-currently-disabled-by-the-user-and-cannot-be-called",
+    "title": "MCP tools fail with 'currently disabled by the user' error in GitHub Copilot",
+    "description": "Fix MCP tools (read tool specifically) failing with 'disabled by user' despite all tools being enabled — model-specific issue (GPT 5 mini works, Claude Sonnet 4.5 fails) Includes evidence for GitHub Copilot troubleshooting demand.",
+    "category": "GitHub Copilot",
+    "technology": "GitHub Copilot",
+    "error_signature": "<tool> is currently disabled by the user, and cannot be called.",
+    "search_intent": "Fix MCP tools (read tool specifically) failing with 'disabled by user' despite all tools being enabled — model-specific issue (GPT 5 mini works, Claude Sonnet 4.5 fails)",
+    "common_causes": [
+      "Stack Overflow Q79875997 (score:1, views:567) — VS Code + GitHub Copilot users report Excel MCP servers failing with 'disabled by user'. Model-specific bug indicates deeper integration issue. Category: GitHub Copilot (primary stack is Copilot). Source: https://stackoverflow.com/questions/79875997"
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "GitHub Copilot"
+    ]
+  },
+  {
+    "slug": "github-copilot-copilot-asks-to-sign-in-but-clicking-sign-in-does-nothing-or-freezes-vs-code-no-suggestions-appear",
+    "title": "GitHub Copilot won't connect in VS Code after reinstall and gh auth login",
+    "description": "Fix persistent GitHub Copilot authentication freeze preventing connection even after full reinstall and gh auth login via CLI Includes evidence for GitHub Copilot troubleshooting demand.",
+    "category": "GitHub Copilot",
+    "technology": "GitHub Copilot",
+    "error_signature": "Copilot asks to sign in but clicking Sign in does nothing or freezes VS Code; no suggestions appear",
+    "search_intent": "Fix persistent GitHub Copilot authentication freeze preventing connection even after full reinstall and gh auth login via CLI",
+    "common_causes": [
+      "Stack Overflow Q79638663 (score:1, views:782) — Windows user reports VS Code Copilot sign-in freezes, no suggestions despite active subscription. Full reinstall didn't help. Category: direct GitHub Copilot auth error. Source: https://stackoverflow.com/questions/79638663"
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "GitHub Copilot"
+    ]
+  },
+  {
+    "slug": "vercel-internal-packages-not-found-build-always-fails-until-manually-rebuilt-while-disabling-cache",
+    "title": "Monorepo deployment issue on Vercel — shared package @repo/ui not resolved",
+    "description": "Fix monorepo deployment failures where Vercel/Turborepo cannot resolve internal workspace packages (e.g., @repo/ui), requiring manual rebuild every time Includes evidence for Vercel troubleshooting demand.",
+    "category": "Deployment",
+    "technology": "Vercel",
+    "error_signature": "Internal packages not found — build always fails until manually rebuilt while disabling cache",
+    "search_intent": "Fix monorepo deployment failures where Vercel/Turborepo cannot resolve internal workspace packages (e.g., @repo/ui), requiring manual rebuild every time",
+    "common_causes": [
+      "Stack Overflow Q79105125 (score:2, views:532) + Q79775930 — Vercel build failure on turborepo monorepos. Internal packages unresolved despite workspace config. Deployment-blocking error for SaaS teams. Category: Deployment (Vercel). Sources: https://stackoverflow.com/questions/79105125, https://stackoverflow.com/questions/79775930"
+    ],
+    "quick_fix": "Check the build output, project root, and deployment platform configuration before redeploying.",
+    "related_errors": [
+      "Deployment"
+    ]
+  },
+  {
+    "slug": "claude-fetch-failed",
+    "title": "Claude desktop fetch failed error when using MCP server",
+    "description": "Fix Claude Desktop returning 'fetch failed' when its MCP server tries to call a local server on localhost:8000 Includes evidence for Claude troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude",
+    "error_signature": "fetch failed",
+    "search_intent": "Fix Claude Desktop returning 'fetch failed' when its MCP server tries to call a local server on localhost:8000",
+    "common_causes": [
+      "Stack Overflow Q79502205 (views:4727) — High view count shows broad interest. User running local MCP server hitting 'fetch failed' when accessed through Claude Desktop. AI coding tool error blocking developer workflow. Category: AI Coding Tools (Claude Code ecosystem / MCP). Source: https://stackoverflow.com/questions/79502205"
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
   }
 ]
