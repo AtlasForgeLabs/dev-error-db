@@ -37245,5 +37245,101 @@
     "related_errors": [
       "Deployment"
     ]
+  },
+  {
+    "slug": "openai-api-ratelimiterror-rate-limit-reached-for-requests-per-minute-or-insufficientquota-you-exceeded-your-current-quota",
+    "title": "OpenAI API rate limit / insufficient quota error blocking completions",
+    "description": "Fix OpenAI API rate limiting or quota exhaustion errors that block production API calls Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "RateLimitError: Rate limit reached for requests per minute OR InsufficientQuota: You exceeded your current quota",
+    "search_intent": "Fix OpenAI API rate limiting or quota exhaustion errors that block production API calls",
+    "common_causes": [
+      "Already published in covered-errors.md (429, insufficient_quota, rate limit), but remains one of the highest-volume error signatures in developer community. New sub-patterns emerge frequently with GPT-4o, o-series models having different quotas. Search API exhausted (rate limited), searched via DuckDuckGo site:github.com queries. Consistently top-search-volume error with strong ad revenue potential."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "claude-code-all-mcp-servers-context7-mcp-playwright-mcp-firecrawl-mcp-globally-installed-but-report-failed-to-connect-via-claude-mcp-list-on-windows-11",
+    "title": "Claude Code MCP servers report 'Failed to connect' on Windows (Node 22, npm 11)",
+    "description": "Fix MCP server connection failures in Claude Code on Windows where all configured servers fail to connect despite proper installation Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "All MCP servers (context7-mcp, playwright-mcp, firecrawl-mcp) globally installed but report 'Failed to connect' via claude mcp list on Windows 11",
+    "search_intent": "Fix MCP server connection failures in Claude Code on Windows where all configured servers fail to connect despite proper installation",
+    "common_causes": [
+      "GitHub issue #4793 (anthropics/claude-code): All three popular MCP servers fail to connect on Windows 11 with Node 22/npm 11. Labels: bug, has repro, platform:windows, area:mcp. Tier 0 API search returned results but search rate limited at 60/hr for anonymous. Fell back to web_search (DuckDuckGo provider) to discover issue URLs, then fetched details via individual GitHub issue API endpoint."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "github-actions-actions-cache-v5-step-randomly-dies-with-no-error-message-or-log-output-exits-build-with-unknown-status-on-windows-latest-runner",
+    "title": "GitHub Actions actions/cache step causes Windows runner to silently die mid-build",
+    "description": "Fix intermittent GitHub Actions build failures caused by cache step silently killing Windows runners Includes evidence for GitHub Actions troubleshooting demand.",
+    "category": "GitHub Actions",
+    "technology": "GitHub Actions",
+    "error_signature": "actions/cache@v5 step randomly dies with no error message or log output, exits build with unknown status on windows-latest runner",
+    "search_intent": "Fix intermittent GitHub Actions build failures caused by cache step silently killing Windows runners",
+    "common_causes": [
+      "GitHub issue #1754 (actions/cache, created 2026-05-08, updated 2026-05-28): Windows runners die randomly during action/cache step with no diagnostic info. Workaround: continue-on-error on cache step. Direct impact on paid team CI/CD pipelines. Fresh issue with active development discussion."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "GitHub Actions"
+    ]
+  },
+  {
+    "slug": "ollama-ollama-context-length-set-to-65536-but-ollama-ps-shows-context-32768-parameter-num-ctx-65536-in-modelfile-also-ignored-silently",
+    "title": "Ollama num_ctx silently capped at 32768 on RTX 5070 Blackwell GPUs",
+    "description": "Troubleshoot why Ollama ignores context length settings on new RTX 50xx Blackwell GPUs, causing truncated model outputs Includes evidence for Ollama troubleshooting demand.",
+    "category": "Ollama",
+    "technology": "Ollama",
+    "error_signature": "OLLAMA_CONTEXT_LENGTH set to 65536 but ollama ps shows CONTEXT 32768; PARAMETER num_ctx 65536 in Modelfile also ignored silently",
+    "search_intent": "Troubleshoot why Ollama ignores context length settings on new RTX 50xx Blackwell GPUs, causing truncated model outputs",
+    "common_causes": [
+      "GitHub issue #16346 (created 2026-05-29, today!): User sets OLLAMA_CONTEXT_LENGTH=65536 and Modelfile PARAMETER num_ctx 65536 but ollama ps shows only 32768. Silent failure — no error raised, just incorrect behavior. Affects developers deploying larger context windows for RAG, code analysis. Reproducible on qwen2.5:7b-instruct-q4_K_M. Tier 0 API direct fetch (individual issue endpoint)."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Ollama"
+    ]
+  },
+  {
+    "slug": "litellm-litellm-apiconnectionerror-ollamaexception-litellm-timeout-connection-timed-out-after-600-0-seconds",
+    "title": "LiteLLM APIConnectionError timeout when proxying Ollama models through CrewAI",
+    "description": "Resolve LiteLLM proxy timeout errors when routing requests to local Ollama models used by CrewAI agents Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "litellm.APIConnectionError: OllamaException - litellm.Timeout: Connection timed out after 600.0 seconds",
+    "search_intent": "Resolve LiteLLM proxy timeout errors when routing requests to local Ollama models used by CrewAI agents",
+    "common_causes": [
+      "GitHub issue #7996 (BerriAI/litellm): CrewAI + Ollama combo fails with 600s timeout. Real enterprise workflow (CrewAI orchestrating multi-agent tasks → LiteLLM proxy → local Ollama). Timeout at 600s indicates slow model loading/startup. Commercial value high as crewai+litellm deployments are common in production AI agent pipelines."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "LiteLLM"
+    ]
+  },
+  {
+    "slug": "ollama-error-pull-model-manifest-get-https-registry-ollama-ai-v2-library-dial-tcp-ip-443-i-o-timeout",
+    "title": "Ollama 'pulling manifest' i/o timeout error fetching models from registry",
+    "description": "Fix Ollama model download failures caused by network timeouts when connecting to the Ollama registry Includes evidence for Ollama troubleshooting demand.",
+    "category": "Ollama",
+    "technology": "Ollama",
+    "error_signature": "Error: pull model manifest: Get \"https://registry.ollama.ai/v2/library/...\": dial tcp <IP>:443: i/o timeout",
+    "search_intent": "Fix Ollama model download failures caused by network timeouts when connecting to the Ollama registry",
+    "common_causes": [
+      "GitHub issue #16330 (created 2026-05-27, updated 2026-05-28): Raspberry Pi 5 and general Linux setups fail to pull any models with explicit i/o timeout when resolving registry.ollama.ai. Error matches real developer scenario — building local LLM environments. High commercial intent from developers running local inference services."
+    ],
+    "quick_fix": "Verify the model name, local service connectivity, and network access before retrying the model pull.",
+    "related_errors": [
+      "Ollama"
+    ]
   }
 ]
