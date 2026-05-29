@@ -38269,5 +38269,37 @@
     "related_errors": [
       "AI Coding Tools"
     ]
+  },
+  {
+    "slug": "openai-api-background-true-responses-return-status-failed-with-http-200-and-opaque-error-code-string-no-typed-exception-raised-cannot-distinguish-server-error-from-rate-limit-exceeded-programmatically",
+    "title": "Background Responses API lacks stable error code mapping for exception dispatch",
+    "description": "Fix background mode responses API returning HTTP 200 even on failure, making it impossible to catch RateLimitError/InternalServerError exceptions — callers must manually parse error.code strings with no documented enum Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "background=True responses return status='failed' with HTTP 200 and opaque error.code string — no typed exception raised, cannot distinguish server_error from rate_limit_exceeded programmatically",
+    "search_intent": "Fix background mode responses API returning HTTP 200 even on failure, making it impossible to catch RateLimitError/InternalServerError exceptions — callers must manually parse error.code strings with no documented enum",
+    "common_causes": [
+      "Found in openai/openai-python#3212 (opened May 8, updated May 9+). High signal from multiple contributors. Commercial value: affects production async pipeline reliability, causes silent failures in automated systems. However classified as feature_request by reporter; the root cause (unhandled API error codes) is a genuine error pattern. Category: OpenAI API."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "ollama-ollama-does-not-detect-nvidia-gpu-on-fedora-44-failed-to-initialize-cuda-no-accelerator-available",
+    "title": "Ollama does not detect NVIDIA GPU on Linux — models fail to load",
+    "description": "Fix Ollama GPU detection failure on modern Linux distros (Fedora 44 / Arch / etc.) causing models to refuse to load or fall back to CPU-only mode Includes evidence for Ollama troubleshooting demand.",
+    "category": "Ollama",
+    "technology": "Ollama",
+    "error_signature": "Ollama does not detect NVIDIA GPU on Fedora 44 — failed to initialize CUDA / no accelerator available",
+    "search_intent": "Fix Ollama GPU detection failure on modern Linux distros (Fedora 44 / Arch / etc.) causing models to refuse to load or fall back to CPU-only mode",
+    "common_causes": [
+      "Found in ollama/ollama#16235 (opened May 20, updated May 30 — very active). Bug label confirmed. Commercial value: local LLM serving, affects production inference costs and performance. Category: Ollama (local model serving)."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Ollama"
+    ]
   }
 ]
