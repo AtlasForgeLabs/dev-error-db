@@ -37757,5 +37757,37 @@
     "related_errors": [
       "AI Coding Tools"
     ]
+  },
+  {
+    "slug": "github-copilot-sorry-your-request-failed-reason-token-expired-or-invalid-403",
+    "title": "GitHub Copilot Agent Mode - Token Expired or Invalid (403) After Heavy Use",
+    "description": "Fix GitHub Copilot Agent Mode token expired 403 error after heavy usage affecting premium subscribers Includes evidence for GitHub Copilot troubleshooting demand.",
+    "category": "GitHub Copilot",
+    "technology": "GitHub Copilot",
+    "error_signature": "Sorry, your request failed. Reason: token expired or invalid: 403",
+    "search_intent": "Fix GitHub Copilot Agent Mode token expired 403 error after heavy usage affecting premium subscribers",
+    "common_causes": [
+      "Source: GitHub Community Discussion #165650 (Copilot Conversations). Premium subscriber reports Copilot Agent Mode throws 'token expired or invalid: 403' error after prolonged use despite restarting VS Code, clearing storage, and revoking tokens. Root cause traced to Anthropic-side issue. Relevant for paying users whose AI coding workflow breaks. Category mapping: P0 GitHub Copilot → approved 'GitHub Copilot'. No similar coverage in covered-errors.md."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "GitHub Copilot"
+    ]
+  },
+  {
+    "slug": "cursor-model-not-available-this-model-provider-doesn-t-serve-your-region-visit-https-docs-cursor-com-account-regions-for-more-information",
+    "title": "Cursor 'Model Not Available' Due to Regional Restrictions (This Model Provider Doesn't Serve Your Region)",
+    "description": "Resolve Cursor IDE model availability error caused by geographic region restrictions for models like Claude Sonnet 4.5 Includes evidence for Cursor troubleshooting demand.",
+    "category": "Cursor",
+    "technology": "Cursor",
+    "error_signature": "Model not available - This model provider doesn't serve your region.Visit https://docs.cursor.com/account/regions for more information",
+    "search_intent": "Resolve Cursor IDE model availability error caused by geographic region restrictions for models like Claude Sonnet 4.5",
+    "common_causes": [
+      "Source: GitHub Issue #384 on tofrankie/blog (2026-01-12). User encounters 'Model not available' error when accessing Claude Sonnet 4.5 via Cursor. Three workaround methods documented: HTTP Compatibility Mode change to HTTP/1.1, SOCKS proxy settings in settings.json, and environment variable approach via CLI wrapper function. High commercial value for paid AI coding tool users outside US regions. Category mapping: P0 Cursor → approved 'Cursor'. Distinct from existing 'Cursor model not available' entry which lacks regional specificity."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Cursor"
+    ]
   }
 ]
