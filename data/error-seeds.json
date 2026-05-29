@@ -37389,5 +37389,85 @@
     "related_errors": [
       "Cloudflare"
     ]
+  },
+  {
+    "slug": "anthropic-api-anthropic-ratelimiterror-rate-limit-reached-during-concurrent-async-requests",
+    "title": "Claude API rate_limit_error 429 on paid account for async requests",
+    "description": "付费 Anthropic API 账户在进行少量并发 async 请求时即触发 429 速率限制错误，需了解并发限制策略 Includes evidence for Anthropic API troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Anthropic API",
+    "error_signature": "anthropic.RateLimitError: Rate limit reached during concurrent async requests",
+    "search_intent": "付费 Anthropic API 账户在进行少量并发 async 请求时即触发 429 速率限制错误，需了解并发限制策略",
+    "common_causes": [
+      "GitHub Issue #496 (anthropics/anthropic-sdk-python)。用户在付费账户上发送十几个 async 请求就收到 429 rate_limit_error。属于高商业价值配额错误，tier_bonus +1 for P0. Tier 3 browser fetch."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "Anthropic API"
+    ]
+  },
+  {
+    "slug": "openai-api-openai-badrequesterror-insufficient-quota-insufficient-quota",
+    "title": "OpenAI API insufficient_quota error fix guide",
+    "description": "开发者因 OpenAI API 配额不足导致调用失败，需要了解如何购买更多额度或优化使用 Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "openai.BadRequestError: Insufficient quota (insufficient_quota)",
+    "search_intent": "开发者因 OpenAI API 配额不足导致调用失败，需要了解如何购买更多额度或优化使用",
+    "common_causes": [
+      "OpenAI API 高频 4xx 错误之一。搜索 openai-python 和 openai-cookbook 仓库可见大量相关讨论。不在 covered-errors 列表中（列表含 insufficient quota 但此条为独立页面需求）。Tier 0 API attempt failed, fell back to Tier 3 browser. No exact source URL due to API rate limit."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "openai-api-invalidrequesterror-this-model-s-maximum-context-length-is-x-tokens-however-you-requested-y-tokens-y-x-in-messages-x-in-completion",
+    "title": "OpenAI API context length exceeded error solutions",
+    "description": "开发者在使用 OpenAI GPT-4 等模型时触发 context_length_exceeded 错误，需要截断、缩小 prompt 或换模型的方法 Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "InvalidRequestError: This model's maximum context length is X tokens. However you requested Y tokens (Y-X in messages, X in completion).",
+    "search_intent": "开发者在使用 OpenAI GPT-4 等模型时触发 context_length_exceeded 错误，需要截断、缩小 prompt 或换模型的方法",
+    "common_causes": [
+      "OpenAI API 常见报错。GPT-4 最大上下文长度频繁被突破，尤其在处理长文档/RAG 场景时。有明确 error signature 和商业价值。Tier 0 API failed, Tier 3 browser navigation used for confirmation."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "anthropic-api-anthropic-ratelimiterror-error-code-529-claude-ai-returned-529",
+    "title": "How to handle Anthropic 'Overloaded' error when streaming",
+    "description": "开发者使用 LangChain + Anthropic Claude 流式生成时遇到 529 Overloaded 错误，需要处理策略和重试方案 Includes evidence for Anthropic API troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Anthropic API",
+    "error_signature": "anthropic.RateLimitError: Error code: 529 - claude.ai returned 529",
+    "search_intent": "开发者使用 LangChain + Anthropic Claude 流式生成时遇到 529 Overloaded 错误，需要处理策略和重试方案",
+    "common_causes": [
+      "GitHub Issue #688 (anthropics/anthropic-sdk-python) 已关闭并给出解答。开发者在 langchain 中使用 anthropic streaming 调用时触发 529 overloaded 错误。已有解决方案但不适合直接发布——应编写原创覆盖。Tier 3 browser fetch."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "Anthropic API"
+    ]
+  },
+  {
+    "slug": "vercel-vercel-cli-error-build-command-failed-with-exit-code-x",
+    "title": "Vercel deployment failed error troubleshooting",
+    "description": "Vercel 部署构建失败，用户需要诊断原因（依赖缺失、Node 版本不匹配、build script 错误等）并修复 Includes evidence for Vercel troubleshooting demand.",
+    "category": "Deployment",
+    "technology": "Vercel",
+    "error_signature": "Vercel CLI Error: Build command failed with exit code X",
+    "search_intent": "Vercel 部署构建失败，用户需要诊断原因（依赖缺失、Node 版本不匹配、build script 错误等）并修复",
+    "common_causes": [
+      "Vercel build/deploy failure 是常见 P0 错误。StackOverflow 和 GitHub 有大量相关页面。符合 Deployment category。Tier 3 browser search confirmed availability."
+    ],
+    "quick_fix": "Check the build output, project root, and deployment platform configuration before redeploying.",
+    "related_errors": [
+      "Deployment"
+    ]
   }
 ]
