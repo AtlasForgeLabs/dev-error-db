@@ -37597,5 +37597,101 @@
     "related_errors": [
       "Docker"
     ]
+  },
+  {
+    "slug": "claude-code-oauth-error-invalid-client-and-error-code-mcp-client-invalid",
+    "title": "Claude Desktop Web — Snowflake OAuth Connector Fails with 'mcp_client_invalid' Error After Redirect",
+    "description": "Developer configuring Snowflake OAuth as MCP connector for Claude Desktop/Web fails after completing OAuth flow; needs fix for Claude never reaching Snowflake token endpoint Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "oauth_error=invalid_client&error_code=mcp_client_invalid",
+    "search_intent": "Developer configuring Snowflake OAuth as MCP connector for Claude Desktop/Web fails after completing OAuth flow; needs fix for Claude never reaching Snowflake token endpoint",
+    "common_causes": [
+      "Source: https://github.com/anthropics/claude-ai-mcp/issues/257 (created 2026-05-05). Open bug against anthropics/claude-ai-mcp repo affecting Snowflake custom security integration. Both Claude Desktop v1.5354.0.0 and claude.ai web affected. Enterprise snowflake OAuth setup blocked — strong commercial impact for AI coding tool integrations. Category mapped to AI Coding Tools as it directly impacts Claude Code Desktop/Web ecosystem."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "claude-code-infinite-about-blank-loop-during-mcp-oauth-connection-claude-opens-about-blank-and-prompts-to-reopen-claude-desktop",
+    "title": "Claude Desktop & claude.ai — Custom OAuth-Protected MCP Server Triggers Infinite about:blank Loop",
+    "description": "Developer building a fully spec-compliant OAuth 2.1 MCP server finds Claude Desktop/claude.ai cannot connect — OAuth flow never initiates, stuck in about:blank redirect loop Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "infinite about:blank loop during MCP OAuth connection; Claude opens about:blank and prompts to reopen Claude Desktop",
+    "search_intent": "Developer building a fully spec-compliant OAuth 2.1 MCP server finds Claude Desktop/claude.ai cannot connect — OAuth flow never initiates, stuck in about:blank redirect loop",
+    "common_causes": [
+      "Source: https://github.com/anthropics/claude-code/issues/11814 (created 2025-11-18). Bug affects both Claude Desktop app and claude.ai web interface. Same server works fine with `claude mcp add --transport http` CLI. High-value: enterprise MCP developers lose trust in desktop/web tools. Not covered by dev-error-db. Category: AI Coding Tools."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "litellm-400-invalid-request-error-anthropic-s-v1-messages-rejects-unknown-top-level-fields-when-workspace-id-leaks-into-request-body",
+    "title": "LiteLLM AWS Bedrock Claude Platform Route Returns 400 invalid_request_error Due to workspace_id Leak",
+    "description": "Developer using LiteLLM proxy with bedrock/claude_platform route gets 400 errors because workspace_id config alias serializes into request body as invalid field Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "400 invalid_request_error — Anthropic's /v1/messages rejects unknown top-level fields when workspace_id leaks into request body",
+    "search_intent": "Developer using LiteLLM proxy with bedrock/claude_platform route gets 400 errors because workspace_id config alias serializes into request body as invalid field",
+    "common_causes": [
+      "Source: https://github.com/BerriAI/litellm/pull/29278 (open PR fixing #29272, created May 2026). LiteLLM proxy sends valid AWS Bedrock header but also leaks workspace_id as top-level JSON field rejected by Anthropic API. Blocks production usage of this route. Strong commercial value — LiteLLM paid users hit billing-impacting failures. Not in covered-errors.md. Category: LiteLLM."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "LiteLLM"
+    ]
+  },
+  {
+    "slug": "claude-code-oauth-authorization-url-missing-required-scope-parameter-mcp-server-returns-scopes-supported-but-client-ignores-it",
+    "title": "Claude Code HTTP MCP OAuth Missing Required Scope Parameter",
+    "description": "Developer integrating HTTP MCP servers with OAuth finds Claude Code omits the scope parameter in authorization requests despite MCP spec requiring it (RFC 9470) Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "OAuth authorization URL missing required scope parameter; MCP server returns scopes_supported but client ignores it",
+    "search_intent": "Developer integrating HTTP MCP servers with OAuth finds Claude Code omits the scope parameter in authorization requests despite MCP spec requiring it (RFC 9470)",
+    "common_causes": [
+      "Source: https://github.com/anthropics/claude-code/issues/12077 (created 2025-11-21). RFC 9470 / MCP spec violation where discovered scopes_supported are ignored. Affects all HTTP MCP server developers. Specific actionable error signature with expected vs actual URLs. Not in covered-errors.md. Category: AI Coding Tools."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "github-copilot-timed-out-waiting-for-authentication-provider-to-register",
+    "title": "GitHub Copilot VS Code Extension — Timed Out Waiting For Authentication Provider To Register",
+    "description": "Developer tries to sign into GitHub Copilot inside VS Code but extension shows 'not signed in' status; OAuth provider registration times out preventing authentication Includes evidence for GitHub Copilot troubleshooting demand.",
+    "category": "GitHub Copilot",
+    "technology": "GitHub Copilot",
+    "error_signature": "\"Timed out waiting for authentication provider to register\"",
+    "search_intent": "Developer tries to sign into GitHub Copilot inside VS Code but extension shows 'not signed in' status; OAuth provider registration times out preventing authentication",
+    "common_causes": [
+      "Sources: https://github.com/orgs/community/discussions/159860 and https://github.com/orgs/community/discussions/158947. Persistent Copilot auth timeout in VS Code — blocks daily development for paying subscribers. Distinct from generic 'Copilot not working'. This specific timeout error has community discussion threads. Not in covered-errors.md (which only lists 'model not available' and 'API key not working'). Category: GitHub Copilot."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "GitHub Copilot"
+    ]
+  },
+  {
+    "slug": "openai-api-http-429-response-with-no-pre-exposed-rate-limit-headers-reactive-only-approach-prevents-proactive-throttling",
+    "title": "OpenAI Azure API — Rate Limit Headers Exposed Only on 429 Response, Not in All Endpoint Responses",
+    "description": "Developer needs proactive rate limit handling but Azure OpenAPI only exposes TPM/RPM limits reactively via 429 response; wants headers exposed proactively like standard OpenAI does Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "HTTP 429 response with no pre-exposed rate limit headers — reactive-only approach prevents proactive throttling",
+    "search_intent": "Developer needs proactive rate limit handling but Azure OpenAPI only exposes TPM/RPM limits reactively via 429 response; wants headers exposed proactively like standard OpenAI does",
+    "common_causes": [
+      "Source: https://github.com/Azure/azure-rest-api-specs/issues/26884. Feature request highlighting gap between Azure OpenAI and OpenAI API behavior — rate limit headers only returned on 429 errors, making proactive retry logic impossible. Affects every Azure OpenAI developer doing production deployments. Clear commercial value: deployment blocking + production error handling. Not in covered-errors.md. Category: OpenAI API."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "OpenAI API"
+    ]
   }
 ]
