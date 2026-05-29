@@ -37501,5 +37501,101 @@
     "related_errors": [
       "Deployment"
     ]
+  },
+  {
+    "slug": "litellm-embeddings-crashes-with-coroutine-already-executing-on-python-3-13-when-use-ddtrace-true-due-to-ddtrace-2-19-0-bytecode-rewriting-bug",
+    "title": "LiteLLM /embeddings endpoint crashes on Python 3.13 — coroutine already executing (ddtrace bytecode bug)",
+    "description": "Fix LiteLLM proxy Docker image crash on embeddings endpoint caused by incompatible ddtrace version on Python 3.13 Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "/embeddings crashes with 'coroutine already executing' on Python 3.13 when USE_DDTRACE=true due to ddtrace 2.19.0 bytecode rewriting bug",
+    "search_intent": "Fix LiteLLM proxy Docker image crash on embeddings endpoint caused by incompatible ddtrace version on Python 3.13",
+    "common_causes": [
+      "PR #29279 on BerriAI/litellm, created 2026-05-29T10:23Z, mergeable. Fixes #29268. Affects production LiteLLM deployments running Python 3.13 — embedding endpoints completely blocked. Strong commercial value as LiteLLM proxy handles paid API traffic for many teams. Category: LiteLLM per approved mapping."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "LiteLLM"
+    ]
+  },
+  {
+    "slug": "claude-code-api-error-400-messages-n-content-m-thinking-or-redacted-thinking-blocks-in-the-latest-assistant-message-cannot-be-modified-these-blocks-must-remain-as-they-were-in-the-original-response",
+    "title": "Claude Code API Error 400: thinking blocks must remain as original response — claude-opus-4-8 incompatibility",
+    "description": "Fix Claude Code Opus 4.8 API 400 error caused by thinking/redacted_thinking block modification during subsequent API calls Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "API Error 400: messages.N.content.M: `thinking` or `redacted_thinking` blocks in the latest assistant message cannot be modified. These blocks must remain as they were in the original response.",
+    "search_intent": "Fix Claude Code Opus 4.8 API 400 error caused by thinking/redacted_thinking block modification during subsequent API calls",
+    "common_causes": [
+      "Open GitHub issue #63607 on anthropics/claude-code filed 2026-05-29T10:39Z. Labelled bug+duplicate+area:core+api:anthropic. Multiple related issues (#63608, #63606) report the same underlying thinking block modification problem. This affects paid Anthropic API users and Claude Code subscription users — strong commercial value. Category maps to AI Coding Tools per SKILL.md rules."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "claude-code-api-error-401-type-error-error-type-authentication-error-message-oauth-authentication-is-currently-not-supported",
+    "title": "Claude Code OAuth authentication not supported mid-session — API Error 401",
+    "description": "Fix Claude Code 401 OAuth authentication error that occurs mid-session even after logout/login workaround Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "API Error: 401 {\"type\":\"error\",\"error\":{\"type\":\"authentication_error\",\"message\":\"OAuth authentication is currently not supported.\"}}",
+    "search_intent": "Fix Claude Code 401 OAuth authentication error that occurs mid-session even after logout/login workaround",
+    "common_causes": [
+      "GitHub issue #5893 on anthropics/claude-code, open since 2025-08-16 but still unresolved with oncall label. Labels: bug+area:auth+area:api+oncall. Critical auth failure blocks paid users mid-session. Logout/login fix does not work. Strong commercial impact. Maps to AI Coding Tools."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "claude-code-every-time-i-toggle-detailed-transcript-claude-responds-again-to-the-previous-btw-question-duplicate-response",
+    "title": "Claude Code middleware crashes when toggling detailed transcript — duplicate AI response loop",
+    "description": "Fix Claude Code behavior where toggling detailed transcript causes duplicate responses to prior commands Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Every time I toggle detailed transcript, Claude responds again to the previous /btw question (duplicate response)",
+    "search_intent": "Fix Claude Code behavior where toggling detailed transcript causes duplicate responses to prior commands",
+    "common_causes": [
+      "Open GitHub issue #63605 on anthropics/claude-code filed 2026-05-29T10:32Z. Bug label confirms this is a recognized defect in the codebase rather than user misconfiguration. Affects paying Claude Code users during active coding sessions. Maps to AI Coding Tools category per approved mapping rules."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "langchain-valueerror-block-of-type-video-is-not-supported-in-videocontentblock-processing",
+    "title": "LangChain VideoContentBlock ValueError: Block of type video is not supported",
+    "description": "Fix LangChain ValueError when processing video content blocks in AI agent workflows Includes evidence for LangChain troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "LangChain",
+    "error_signature": "ValueError: Block of type video is not supported (in VideoContentBlock processing)",
+    "search_intent": "Fix LangChain ValueError when processing video content blocks in AI agent workflows",
+    "common_causes": [
+      "GitHub issue #37770 on langchain-ai/langchain, opened 2026-05-29T07:29Z. Labels: bug+core+openai. Blocks video-enabled LLM chains in production LangChain pipelines. Commercial relevance: LangChain powers many enterprise AI agents handling multimodal content. Maps to AI Coding Tools per rules (framework errors in paid workflows)."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "docker-unexpected-status-from-head-request-to-https-mcr-microsoft-com-v2-windows-nanoserver-manifests-ltsc2022-403-forbidden",
+    "title": "Docker MCR (Microsoft Container Registry) 403 Forbidden pulling Windows nanoserver images",
+    "description": "Fix Docker unable to pull Windows base images from Microsoft Container Registry due to 403 access denied Includes evidence for Docker troubleshooting demand.",
+    "category": "Docker",
+    "technology": "Docker",
+    "error_signature": "unexpected status from HEAD request to https://mcr.microsoft.com/v2/windows/nanoserver/manifests/ltsc2022: 403 Forbidden",
+    "search_intent": "Fix Docker unable to pull Windows base images from Microsoft Container Registry due to 403 access denied",
+    "common_causes": [
+      "GitHub issue #52723 on moby/moby, opened 2026-05-29T10:04Z. Blocks Docker builds requiring Windows base images. Directly impacts Docker Desktop/Paid users and CI/CD pipelines using mcr.microsoft.com registries. Clear error signature with actionable troubleshooting. Category: Docker per approved mapping."
+    ],
+    "quick_fix": "Verify the model name, local service connectivity, and network access before retrying the model pull.",
+    "related_errors": [
+      "Docker"
+    ]
   }
 ]
