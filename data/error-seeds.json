@@ -37165,5 +37165,85 @@
     "related_errors": [
       "Deployment"
     ]
+  },
+  {
+    "slug": "vercel-sitemap-xml-with-route-handler-and-force-static-breaks-build-regression-16-1-7-16-2-0",
+    "title": "sitemap.xml with route handler and force-static breaks build — regression 16.1.7 to 16.2.0",
+    "description": "Fix build regression in Next.js 16.2.0 where sitemap.xml generation with route handlers and force-static config causes compilation failure Includes evidence for Vercel troubleshooting demand.",
+    "category": "Deployment",
+    "technology": "Vercel",
+    "error_signature": "sitemap.xml with route handler and force-static breaks build — regression 16.1.7 → 16.2.0",
+    "search_intent": "Fix build regression in Next.js 16.2.0 where sitemap.xml generation with route handlers and force-static config causes compilation failure",
+    "common_causes": [
+      "Source: https://github.com/vercel/next.js/issues/94041 (opened May 22, 2026, last week). Recent regression in popular Next.js version affects production builds. High timeliness score. Category: Deployment."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Deployment"
+    ]
+  },
+  {
+    "slug": "github-copilot-quota-exceeded-error-on-one-device-despite-active-copilot-subscription",
+    "title": "GitHub Copilot: Quota Exceeded error on one device despite active subscription",
+    "description": "Fix Copilot showing quota exceeded on individual devices even when user has an active paid Pro subscription Includes evidence for GitHub Copilot troubleshooting demand.",
+    "category": "GitHub Copilot",
+    "technology": "GitHub Copilot",
+    "error_signature": "\"Quota Exceeded\" Error on One Device Despite Active Copilot Subscription",
+    "search_intent": "Fix Copilot showing quota exceeded on individual devices even when user has an active paid Pro subscription",
+    "common_causes": [
+      "Source: https://github.com/microsoft/vscode-copilot-release/issues/13739 (closed Jul 26, 2025). Paid subscriber sees \"Quota Exceeded\" on single device. Strong commercial value — active Copilot Pro subscription, billing mismatch. Category: GitHub Copilot."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "GitHub Copilot"
+    ]
+  },
+  {
+    "slug": "github-copilot-copilot-shows-request-limit-reached-despite-low-usage-on-pro-plus-plan",
+    "title": "Copilot shows request limit reached despite low usage on Pro+ plan",
+    "description": "Fix incorrect rate limiting display and enforcement for paid Copilot Pro+ subscribers who have not actually hit their quotas Includes evidence for GitHub Copilot troubleshooting demand.",
+    "category": "GitHub Copilot",
+    "technology": "GitHub Copilot",
+    "error_signature": "Copilot shows 'request limit reached' despite low usage on Pro+ plan",
+    "search_intent": "Fix incorrect rate limiting display and enforcement for paid Copilot Pro+ subscribers who have not actually hit their quotas",
+    "common_causes": [
+      "Source: https://github.com/microsoft/vscode-copilot-release/issues/9310 (closed May 10, 2025). Pro+ subscriber throttled despite low actual usage — indicates counting or enforcement bug. High commercial value for paid tier. Category: GitHub Copilot."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "GitHub Copilot"
+    ]
+  },
+  {
+    "slug": "anthropic-api-quota-exhausted-causes-failovererror-cron-jobs-stop-executing-after-exceeding-model-usage-limits",
+    "title": "Anthropic Claude quickstarts: Cron jobs stop executing after model quota exhaustion (FailoverError)",
+    "description": "Fix Anthropic API quota exhaustion causing cascading failures in scheduled/cron-based AI workflows Includes evidence for Anthropic API troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Anthropic API",
+    "error_signature": "Quota exhausted causes FailoverError; cron jobs stop executing after exceeding model usage limits",
+    "search_intent": "Fix Anthropic API quota exhaustion causing cascading failures in scheduled/cron-based AI workflows",
+    "common_causes": [
+      "Source: https://github.com/anthropics/claude-quickstarts/issues/355 (opened Feb 9, 2026). Model quota exhaustion triggers FailoverError that breaks automated pipelines. High commercial value — paid Anthropic API, production impact. Category: Anthropic API."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "Anthropic API"
+    ]
+  },
+  {
+    "slug": "vercel-next-build-fails-while-prerendering-internal-global-error-route-that-does-not-exist-in-the-app",
+    "title": "Vercel Next.js build fails while prerendering internal /_global-error route that does not exist in the app",
+    "description": "Fix Next.js build failure related to missing _global-error route during production deployment on Vercel Includes evidence for Vercel troubleshooting demand.",
+    "category": "Deployment",
+    "technology": "Vercel",
+    "error_signature": "next build fails while prerendering internal /_global-error route that does not exist in the app",
+    "search_intent": "Fix Next.js build failure related to missing _global-error route during production deployment on Vercel",
+    "common_causes": [
+      "Source: https://github.com/vercel/next.js/issues/87719 (open since Dec 23, 2025, 17 comments). next build crashes during prerendering of nonexistent internal route. Production-blocking build error for Vercel-hosted deployments. Category: Deployment."
+    ],
+    "quick_fix": "Check the build output, project root, and deployment platform configuration before redeploying.",
+    "related_errors": [
+      "Deployment"
+    ]
   }
 ]
