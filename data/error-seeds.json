@@ -38189,5 +38189,85 @@
     "related_errors": [
       "AI Coding Tools"
     ]
+  },
+  {
+    "slug": "claude-code-claude-auth-status-shows-invalid-api-key-fix-external-api-key-despite-having-valid-oauth-tokens",
+    "title": "Claude Code OAuth authentication succeeds but `claude auth status` shows \"Invalid API key\"",
+    "description": "Fix False negative API key validation in Claude Code after successful OAuth login Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "claude auth status shows \"Invalid API key · Fix external API key\" despite having valid OAuth tokens",
+    "search_intent": "Fix False negative API key validation in Claude Code after successful OAuth login",
+    "common_causes": [
+      "GitHub Issue #8002 on anthropics/claude-code: Users with valid CloudMax OAuth tokens see 'Invalid API key' in claude auth status. Error signature is exact and actionable. Category: AI Coding Tools (Claude Code). Source fetched via GitHub issue page (Tier 1 normal_fetch fallback from rate-limited GitHub API)."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "claude-code-invalid-api-key-please-run-login-or-goes-completely-black-after-entering-api-key-in-claude-vs-code-extension",
+    "title": "VS Code extension 2.0.5.0: Invalid API key loop and black screen even after successful Anthropic Console OAuth",
+    "description": "Fix VS Code extension authentication loop where OAuth succeeds in browser but extension still rejects credentials Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Invalid API key · Please run /login or goes completely black after entering API key in Claude VS Code extension",
+    "search_intent": "Fix VS Code extension authentication loop where OAuth succeeds in browser but extension still rejects credentials",
+    "common_causes": [
+      "GitHub Issue #12204 on anthropics/claude-code: Claude VS Code extension v2.0.5.0 enters Invalid API key → /login loop or goes completely black. Happens both after successful Anthropic Console OAuth and manual API key setup. Distinct from #8002 which is CLI-only. This affects IDE integration specifically. Category: AI Coding Tools."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "claude-code-claude-opens-about-blank-page-and-immediately-prompts-to-reopen-claude-desktop-creating-infinite-loop-with-spec-compliant-oauth-2-1-mcp-servers",
+    "title": "Claude Desktop/Web fail to connect to OAuth-protected custom MCP server - infinite about:blank loop",
+    "description": "Fix OAuth flow hanging in Claude Desktop/web when connecting to custom MCP servers with OAuth 2.1 Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Claude opens about:blank page and immediately prompts to reopen Claude Desktop, creating infinite loop with spec-compliant OAuth 2.1 MCP servers",
+    "search_intent": "Fix OAuth flow hanging in Claude Desktop/web when connecting to custom MCP servers with OAuth 2.1",
+    "common_causes": [
+      "GitHub Issue #11814 on anthropics/claude-code: Custom FastAPI-based MCP server with OAuth 2.1/PKCE fails in Claude Desktop and claude.ai web interface. The OAuth flow never initiates. Distinct from auth status bug (#8002) — this is a runtime MCP connection failure. Category: AI Coding Tools."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "claude-code-cannot-login-to-claude-code-cli-when-browser-verification-captcha-triggered-during-claude-ai-oauth-flow",
+    "title": "Claude Code CLI cannot login when claude.ai triggers Cloudflare browser verification challenge",
+    "description": "Bypass or handle Cloudflare bot detection challenges in headless/non-browser Claude Code CLI login flow Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Cannot login to Claude Code CLI when browser verification/captcha triggered during claude.ai OAuth flow",
+    "search_intent": "Bypass or handle Cloudflare bot detection challenges in headless/non-browser Claude Code CLI login flow",
+    "common_causes": [
+      "GitHub Issue #9885 on anthropics/claude-code: When users reach Cloudflare verification on claude.ai during Claude Code CLI login, the process fails entirely while the web client works normally. Intersection of Claude Code auth + Cloudflare WAF. Category mapped to Cloudflare due to root cause being CF verification blocking CLI access."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "claude-code-error-403-please-run-login-in-claude-code-caused-by-socks-proxy-or-corporate-network-not-supported-by-claude-code-http-https-proxy-only",
+    "title": "How to Fix API Error 403 'Please run /login' in Claude Code - proxy configuration issues",
+    "description": "Resolve 403 authentication errors in Claude Code when using SOCKS proxy or NTLM/Kerberos authenticated corporate networks Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Error 403: Please run /login in Claude Code — caused by SOCKS proxy or corporate network not supported by Claude Code HTTP/HTTPS proxy only",
+    "search_intent": "Resolve 403 authentication errors in Claude Code when using SOCKS proxy or NTLM/Kerberos authenticated corporate networks",
+    "common_causes": [
+      "GitHub Gist (gist.github.com/0xqige/107152427820d7baefd034c0083db2fb): Documents 403 'Please run /login' error tied to proxy configuration. Claude Code only supports HTTP/HTTPS proxies — SOCKS proxies are not supported. Corporate NTLM/Kerberos requires LLM Gateway. Concrete error signature with clear fix path. Category: AI Coding Tools."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
   }
 ]
