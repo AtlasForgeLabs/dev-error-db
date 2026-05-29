@@ -37789,5 +37789,37 @@
     "related_errors": [
       "Cursor"
     ]
+  },
+  {
+    "slug": "claude-code-claudeai-mcp-fetched-3-servers-29-seconds-of-complete-silence-here-process-hangs-timeout-killed-by-ctrl-plus-c",
+    "title": "Claude Code hangs after fetching MCP servers with Max subscription",
+    "description": "Fix Claude Code hanging at startup after loading MCP servers (Google Calendar, Gmail, Google Drive) — TUI never renders, process stays alive but unresponsive Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "[claudeai-mcp] Fetched 3 servers <-- ~29 seconds of complete silence here, process hangs --> timeout killed by Ctrl+C",
+    "search_intent": "Fix Claude Code hanging at startup after loading MCP servers (Google Calendar, Gmail, Google Drive) — TUI never renders, process stays alive but unresponsive",
+    "common_causes": [
+      "GitHub issue #63642 on anthropics/claude-code (opened May 29, 2026). claude doctor fully green with Max subscription auth active; CLI still hangs after '[claudeai-mcp] Fetched 3 servers' line. Regression in v2.1.156 on Linux Mint. Covers MCP server connection timeout error — high commercial value for Max subscribers."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "litellm-rate-limit-error-propagated-from-upstream-provider-not-properly-caught-by-litellm-proxy-causing-client-facing-429-instead-of-graceful-retry-handling",
+    "title": "LiteLLM proxy rate limiting configuration bypasses per-key budget controls",
+    "description": "Users of LiteLLM as an OpenAI proxy want clean retry logic for 429 rate-limit responses from upstream providers rather than raw 429 passthrough to clients Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "Rate limit error propagated from upstream provider not properly caught by LiteLLM proxy, causing client-facing 429 instead of graceful retry handling",
+    "search_intent": "Users of LiteLLM as an OpenAI proxy want clean retry logic for 429 rate-limit responses from upstream providers rather than raw 429 passthrough to clients",
+    "common_causes": [
+      "Found via BerriAI/litellm GitHub issues list (1.4k+ total issues, filtered by 'rate limit'). LiteLLM is a critical proxy layer serving many paying teams — incorrect 429 passthrough breaks SLA expectations. Category mapped to LiteLLM per scoring rules."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "LiteLLM"
+    ]
   }
 ]
