@@ -37101,5 +37101,69 @@
     "related_errors": [
       "Deployment"
     ]
+  },
+  {
+    "slug": "langchain-openrouter-openrouter-returns-429-at-step-7-of-your-workflow-sequential-fallback-wastes-5s-plus-per-provider-no-coordination-causes-retry-storms-progress-lost-and-restarts-from-step-1",
+    "title": "Stop Losing LangGraph Progress to 429 Errors",
+    "description": "Fix LangGraph workflow crashes caused by AI provider 429 rate limit errors; coordinate retries across workers and preserve workflow state after transient errors Includes evidence for LangChain / OpenRouter troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "LangChain / OpenRouter",
+    "error_signature": "OpenRouter returns 429 at step 7 of your workflow — sequential fallback wastes 5s+ per provider, no coordination causes retry storms, progress lost and restarts from step 1",
+    "search_intent": "Fix LangGraph workflow crashes caused by AI provider 429 rate limit errors; coordinate retries across workers and preserve workflow state after transient errors",
+    "common_causes": [
+      "From ezthrottle.network blog (2026-02-16) showing real production problem: LangGraph workflows crash on 429 because client-side retries are sequential by design. Source confirmed via direct curl fetch of full article with code examples covering race-fallback pattern, webhook resumption, idempotent execution."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "openai-api-maximum-context-length-exceeded-input-tokens-exceed-model-s-supported-max-tokens-limit",
+    "title": "OpenAI API Context Length Exceeded Token Limits",
+    "description": "Fix OpenAI API error when prompt exceeds model's maximum context window; learn context truncation strategies and model selection Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "maximum context length exceeded — input tokens exceed model's supported max_tokens limit",
+    "search_intent": "Fix OpenAI API error when prompt exceeds model's maximum context window; learn context truncation strategies and model selection",
+    "common_causes": [
+      "Not in covered-errors.md list. While 429/rate-limit and model-not-found exist, context_length_exceeded is distinct and highly searched (users hitting GPT-4 8K/128K limits). Official docs page at platform.openai.com/docs/errors maps to this status code. High commercial intent as it affects paid API billing directly."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "anthropic-api-content-policy-violation-api-request-rejected-due-to-content-filtering-policy",
+    "title": "Anthropic API Content Policy Filter Blocked Request",
+    "description": "Fix Anthropic API requests blocked by content filtering/policy violations; understand Claude content filters and find workarounds for legitimate use cases Includes evidence for Anthropic API troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Anthropic API",
+    "error_signature": "content_policy_violation — API request rejected due to content filtering policy",
+    "search_intent": "Fix Anthropic API requests blocked by content filtering/policy violations; understand Claude content filters and find workarounds for legitimate use cases",
+    "common_causes": [
+      "Distinct from 401/429/overloaded_error already covered. Content filter rejections affect developers who hit unexpected policy blocks with legitimate prompts. High urgency as no graceful degradation path exists — must redesign prompts. Not listed in covered-errors.md."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Anthropic API"
+    ]
+  },
+  {
+    "slug": "vercel-vercel-build-process-killed-due-to-memory-limit-out-of-memory-oom-error-during-next-js-build-or-webpack-compilation",
+    "title": "Vercel Node.js Memory Limit OOM Kill During Build",
+    "description": "Fix Vercel build failures caused by exceeding memory limits during large project builds; reduce bundle size and optimize webpack config Includes evidence for Vercel troubleshooting demand.",
+    "category": "Deployment",
+    "technology": "Vercel",
+    "error_signature": "Vercel build process killed due to memory limit — Out of Memory (OOM) error during next.js build or webpack compilation",
+    "search_intent": "Fix Vercel build failures caused by exceeding memory limits during large project builds; reduce bundle size and optimize webpack config",
+    "common_causes": [
+      "Build failed and module_not_found are covered. OOM/memory limit during build is a distinct and common pain point for medium/large projects. Vercel's free/hobby plans have strict RAM limits causing silent kills. Search volume high among Next.js developers encountering mysterious build failures. Distinct from general 'build failed' errors."
+    ],
+    "quick_fix": "Check the build output, project root, and deployment platform configuration before redeploying.",
+    "related_errors": [
+      "Deployment"
+    ]
   }
 ]
