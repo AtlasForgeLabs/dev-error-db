@@ -38125,5 +38125,69 @@
     "related_errors": [
       "Ollama"
     ]
+  },
+  {
+    "slug": "openai-api-typeerror-nonetype-object-is-not-iterable-parse-response-crashes-when-server-sends-response-output-null-in-response-completed-sse-event",
+    "title": "OpenAI Python SDK streaming response.output null causes TypeError crash",
+    "description": "Fix streaming parser crash caused by null response output in OpenAI ChatGPT Codex backend events Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "TypeError: 'NoneType' object is not iterable — parse_response crashes when server sends response.output: null in response.completed SSE event",
+    "search_intent": "Fix streaming parser crash caused by null response output in OpenAI ChatGPT Codex backend events",
+    "common_causes": [
+      "Found via GitHub core API on openai/openai-python repo (PR #3327/#3330/#3331). The SDK's parse_response() iterates response.output without checking for None. Server sends output: null in consolidated response.completed event even after valid output_item.done events were streamed. Category mapping: OpenAI SDK error affecting paid API users directly."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "anthropic-api-batch-api-returns-tool-use-input-wrapped-in-single-key-parameter-name-instead-of-schema-s-actual-property-names-on-claude-opus-4-7",
+    "title": "Anthropic Batch API tool_use input wrapped in $PARAMETER_NAME placeholder key",
+    "description": "Fix incorrect JSON structure returned by Anthropic Messages Batch API for forced tool_use on specific models Includes evidence for Anthropic API troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Anthropic API",
+    "error_signature": "Batch API returns tool_use.input wrapped in single key '$PARAMETER_NAME' instead of schema's actual property names on claude-opus-4-7",
+    "search_intent": "Fix incorrect JSON structure returned by Anthropic Messages Batch API for forced tool_use on specific models",
+    "common_causes": [
+      "Found via GitHub core API on anthropics/anthropic-sdk-python repo (issue #1607). When using Messages Batch API with forced tool_choice on claude-opus-4-7, tool_use input keys are wrapped in a $PARAMETER_NAME placeholder. Sync endpoint works correctly 100%. This is a new regression affecting batch processing workflows."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Anthropic API"
+    ]
+  },
+  {
+    "slug": "litellm-gemini-3-5-flash-via-vertex-ai-specifying-reasoning-effort-causes-all-requests-to-fail-regression-between-v1-85-1-and-v1-86-2",
+    "title": "LiteLLM proxy Gemini 3.5 Flash Vertex AI reasoning effort returns error",
+    "description": "Fix proxy configuration error where vertex_ai/gemini-3.5-flash model fails when reasoning_effort parameter is set through LiteLLM Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "Gemini 3.5 Flash via Vertex AI specifying reasoning_effort causes all requests to fail — regression between v1.85.1 and v1.86.2",
+    "search_intent": "Fix proxy configuration error where vertex_ai/gemini-3.5-flash model fails when reasoning_effort parameter is set through LiteLLM",
+    "common_causes": [
+      "Found via GitHub core API on BerriAI/litellm repo (issue #29298). Regression bug introduced in v1.86.2 breaking Gemini 3.5 Flash via Vertex AI when reasoning_effort is specified. Production proxy config uses litellm_settings.vertex_location + model_list. Affects enterprise deployments using LiteLLM proxy with Vertex AI billing."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "LiteLLM"
+    ]
+  },
+  {
+    "slug": "langchain-to-protocol-usage-drops-input-token-details-in-v3-streaming-path-causing-cache-token-counts-to-always-be-0",
+    "title": "LangChain token usage inflated due to _to_protocol_usage dropping input_token_details",
+    "description": "Fix streaming path bug where protocol usage tracking loses token detail data resulting in zero cached token counts Includes evidence for LangChain troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "LangChain",
+    "error_signature": "_to_protocol_usage drops input_token_details in v3 streaming path causing cache token counts to always be 0",
+    "search_intent": "Fix streaming path bug where protocol usage tracking loses token detail data resulting in zero cached token counts",
+    "common_causes": [
+      "Found via GitHub core API on langchain-ai/langchain repo (issue #37761). In LangChain v3 streaming, the internal _to_protocol_usage function discards input_token_details, so downstream caching systems see zero tokens. Affects monitoring, cost tracking, and caching for production LangChain deployments."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
   }
 ]
