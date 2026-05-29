@@ -37469,5 +37469,37 @@
     "related_errors": [
       "Deployment"
     ]
+  },
+  {
+    "slug": "openai-api-azure-openai-rate-limit-429-throttling-error",
+    "title": "Azure OpenAI Service Rate Limit 429 Throttling Error on SDK REST Calls",
+    "description": "Understand Azure OpenAI rate limiting mechanism and avoid/recover from 429 throttling during SDK and RESTful calls; distinguish Azure-specific limits from OpenAI.org limits Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "Azure OpenAI rate limit 429 throttling error",
+    "search_intent": "Understand Azure OpenAI rate limiting mechanism and avoid/recover from 429 throttling during SDK and RESTful calls; distinguish Azure-specific limits from OpenAI.org limits",
+    "common_causes": [
+      "Stack Overflow Q79347773 specifically addresses Azure OpenAI service throttling returning 429 over SDK and RESTful calls. Azure OpenAI has different rate limiting behavior than OpenAI.org — users often confuse the two. Understanding per-endpoint, per-model-rate-limits is critical for Azure customers deploying in production. Commercial value: enterprise Azure customers face billing impact and production-blocking throttling."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "vercel-vercel-build-failed-with-exit-code-1",
+    "title": "Vercel Build Command Failed — Exit Code 1 Debugging Guide",
+    "description": "Debug Vercel build failures returning exit code 1 — covers dependency conflicts, environment variable issues, script errors, works-locally-but-fails-on-Vercel patterns Includes evidence for Vercel troubleshooting demand.",
+    "category": "Deployment",
+    "technology": "Vercel",
+    "error_signature": "Vercel build failed with exit code 1",
+    "search_intent": "Debug Vercel build failures returning exit code 1 — covers dependency conflicts, environment variable issues, script errors, works-locally-but-fails-on-Vercel patterns",
+    "common_causes": [
+      "flowql.com provides comprehensive 2026 troubleshooting guide for 'Command Failed with Exit Code 1' covering 7 quick fixes, build log analysis, dependency debugging escalation paths. Also supported by aimadetools.com and 32blog.com guides. Very common pain point for teams deploying Next.js, Astro, Remix projects. Commercial value: deployment failures block production releases for paying Vercel Pro/Hobby customers, high urgency."
+    ],
+    "quick_fix": "Check the build output, project root, and deployment platform configuration before redeploying.",
+    "related_errors": [
+      "Deployment"
+    ]
   }
 ]
