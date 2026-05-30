@@ -39117,5 +39117,69 @@
     "related_errors": [
       "OpenAI API"
     ]
+  },
+  {
+    "slug": "litellm-responses-api-v1-responses-does-not-use-the-correct-model-name-when-using-an-alias-model-name-mismatch-between-chat-completions-and-responses-endpoints",
+    "title": "LiteLLM Response API Wrong Model Name Resolution with Aliases",
+    "description": "Fix LiteLLM proxy returning wrong model name in responses API when configured with model aliases or group aliases Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "Responses API (/v1/responses) does not use the correct model name when using an alias — model name mismatch between chat/completions and responses endpoints",
+    "search_intent": "Fix LiteLLM proxy returning wrong model name in responses API when configured with model aliases or group aliases",
+    "common_causes": [
+      "GitHub issue BerriAI/litellm#26773 (bug+proxy+llm translation labels). User reports /chat/completions returns correct model alias ('mymodel') while /v1/responses returns incorrect/unexpected model name when both use same LiteLLM proxy config with OpenRouter backend. Bug labeled by maintainer as confirmed, closed as fixed. Strong commercial value — LiteLLM proxy handles billing/routing for enterprise deployments. Source observed 2026-04-29, resolved 2026-05-30."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "LiteLLM"
+    ]
+  },
+  {
+    "slug": "github-copilot-model-call-failed-the-requested-model-is-not-supported-code-model-not-supported-param-model-type-invalid-request-error-retried-5-times",
+    "title": "GitHub Copilot CLI Model Call Failed — Requested Model Not Supported",
+    "description": "Fix Copilot CLI error 'The requested model is not supported' when giving prompts, especially for unsupported or newer models Includes evidence for GitHub Copilot troubleshooting demand.",
+    "category": "GitHub Copilot",
+    "technology": "GitHub Copilot",
+    "error_signature": "Model call failed: The requested model is not supported. code: model_not_supported, param: model, type: invalid_request_error; retried 5 times",
+    "search_intent": "Fix Copilot CLI error 'The requested model is not supported' when giving prompts, especially for unsupported or newer models",
+    "common_causes": [
+      "GitHub issue github/copilot-cli#40. Copilot CLI v0.0.327 returns explicit error when backend model is not supported, with retry exhaustion (5 retries over ~97 seconds). Affected users are paying Copilot subscribers facing production blocker during AI-assisted workflows. Clear error signature with specific error codes. Closed as bug confirmed."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "GitHub Copilot"
+    ]
+  },
+  {
+    "slug": "docker-docker-v29-client-fails-to-call-info-against-older-docker-daemons-after-netip-api-changes-parsing-of-empty-ip-prefix-causes-connection-error",
+    "title": "Docker Moby v29 Client Fails to Connect to Older Daemon /info Endpoint After netip API Changes",
+    "description": "Fix Docker client incompatibility when connecting to older Docker daemons (Swarm mode affected) after upgrading to v29 Includes evidence for Docker troubleshooting demand.",
+    "category": "Docker",
+    "technology": "Docker",
+    "error_signature": "Docker v29 client fails to call /info against older Docker daemons after netip API changes — parsing of empty IP prefix causes connection error",
+    "search_intent": "Fix Docker client incompatibility when connecting to older Docker daemons (Swarm mode affected) after upgrading to v29",
+    "common_causes": [
+      "GitHub issue moby/moby#52728 (open, kind/bug label). Regression introduced in PR #50956 targeting v29 — client-side netip.Prefix parsing breaks when older daemon returns empty address strings. Affects Docker Swarm setups with mixed version nodes. Open issue as of 2026-05-29. High Docker commercial value since it impacts container orchestration and enterprise Swarm deployments."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Docker"
+    ]
+  },
+  {
+    "slug": "anthropic-api-asyncanthropic-execution-hangs-stays-in-thread-indefinitely-when-running-with-nest-asyncio-apply-in-jupyter-repl-environments",
+    "title": "Anthropic Python SDK AsyncAnthropic Hangs When nest_asyncio Applied",
+    "description": "Fix Anthropic SDK async client deadlock in Jupyter notebook or nested event loop environments using nest_asyncio Includes evidence for Anthropic API troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Anthropic API",
+    "error_signature": "AsyncAnthropic execution hangs/stays in thread indefinitely when running with nest_asyncio.apply() in Jupyter/repl environments",
+    "search_intent": "Fix Anthropic SDK async client deadlock in Jupyter notebook or nested event loop environments using nest_asyncio",
+    "common_causes": [
+      "GitHub issue anthropics/anthropic-sdk-python#602 (bug label). AsyncAnthropic client blocks forever when nest_asyncio is applied. Common in Jupyter/Data Science workflows where users combine sync and async frameworks. Affects paying Anthropic API users doing ML pipeline development. Long-standing issue (closed 2024-11, but pattern persists across SDK versions)."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Anthropic API"
+    ]
   }
 ]
