@@ -39917,5 +39917,53 @@
     "related_errors": [
       "OpenAI API"
     ]
+  },
+  {
+    "slug": "openai-api-chatgpt-plus-oauth-succeeds-but-third-party-codex-calls-return-429-quota-exceeded-oauth-tokens-expire-faster-than-expected-causing-rate-limit-errors",
+    "title": "ChatGPT Plus OAuth Token Rotation Causes 429 Quota Exceeded on Third-Party Codex Integrations",
+    "description": "Why does using ChatGPT Plus OAuth token with third-party tools like Codex result in 429 quota exceeded even when account is in good standing Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "ChatGPT Plus OAuth succeeds but third-party Codex calls return 429 quota exceeded — OAuth tokens expire faster than expected causing rate limit errors",
+    "search_intent": "Why does using ChatGPT Plus OAuth token with third-party tools like Codex result in 429 quota exceeded even when account is in good standing",
+    "common_causes": [
+      "GitHub issue openai/openai-python#2951 opened Mar 10, 2026 — reports ChatGPT Plus OAuth login succeeds but subsequent third-party tool calls return 429 quota exceeded. Affects paying users relying on OAuth token flow. 5 comments showing ongoing community impact."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "openai-api-background-responses-failures-lack-a-stable-code-name-that-maps-to-an-exception-class-error-code-server-error-not-corresponding-to-sdk-exception-classes-http-poll-returns-200-ok-so-no-typed-exception-is-raised",
+    "title": "OpenAI Responses API Background Mode Lacks Stable Error Classification for Retries",
+    "description": "How to properly detect and retry failed background OpenAI Response API runs when error codes like 'server_error' or 'rate_limit_exceeded' are returned without proper exception mapping Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "Background responses failures lack a stable code/name that maps to an exception class; error.code='server_error' not corresponding to SDK exception classes; HTTP poll returns 200 OK so no typed exception is raised",
+    "search_intent": "How to properly detect and retry failed background OpenAI Response API runs when error codes like 'server_error' or 'rate_limit_exceeded' are returned without proper exception mapping",
+    "common_causes": [
+      "GitHub issue openai/openai-python#3212 opened May 8, 2026 — reports that when Responses API runs in background=True mode and terminates with status=failed, the SDK returns 200 OK with opaque error.code string instead of raising typed exceptions like RateLimitError or InternalServerError. No stable enum exists. Multiple developers seeking workarounds for retry/backoff logic."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "claude-code-failed-to-fetch-subscription-axioserror-request-failed-with-status-code-401-could-not-resolve-authentication-method-expected-either-apikey-or-authtoken-to-be-set-oauth-callback-server-doesn-t-respect-https-proxy-environment-variable",
+    "title": "Claude Code OAuth Authentication Fails Behind Corporate Proxy in Remote Development Environments",
+    "description": "Fix Claude Code OAuth login failing with 401 error when using remote development via VS Code Remote-SSH behind a corporate proxy Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Failed to fetch subscription: AxiosError: Request failed with status code 401; Could not resolve authentication method. Expected either apiKey or authToken to be set. OAuth callback server doesn't respect HTTPS_PROXY environment variable",
+    "search_intent": "Fix Claude Code OAuth login failing with 401 error when using remote development via VS Code Remote-SSH behind a corporate proxy",
+    "common_causes": [
+      "GitHub issue anthropics/claude-code#11464 opened Nov 12, 2025, closed as duplicate of #12353 — detailed report showing OAuth flow completes but API calls fail with 401 because the OAuth callback server ignores $HTTPS_PROXY. Root cause identified: different HTTP clients used, only API client respects proxy. Multiple users affected (#12353, #12087, #12442). Workaround: use ANTHROPIC_API_KEY env var instead of OAuth."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
   }
 ]
