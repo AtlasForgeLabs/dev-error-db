@@ -39245,5 +39245,85 @@
     "related_errors": [
       "AI Coding Tools"
     ]
+  },
+  {
+    "slug": "openai-api-openai-returns-a-429-when-the-user-has-insufficient-funds-insufficient-quota-errors-are-being-mistaken-for-rate-limit-errors-and-are-being-retried",
+    "title": "OpenAI insufficient_quota Returns 429 and Is Mistaken for Rate Limit Errors",
+    "description": "Distinguish between OpenAI 429 rate limit vs insufficient_quota (billing issue) so applications handle them differently instead of retrying billing errors Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "OpenAI returns a '429' when the user has insufficient funds; insufficient_quota errors are being mistaken for rate limit errors and are being retried",
+    "search_intent": "Distinguish between OpenAI 429 rate limit vs insufficient_quota (billing issue) so applications handle them differently instead of retrying billing errors",
+    "common_causes": [
+      "Multiple GitHub issues including langchain-ai/langchainjs#1929, openai/openai-python#1671, zed-industries/zed#54996 (Apr 2026). Core issue: both produce HTTP 429 but have fundamentally different causes — one needs wait/retry, other needs billing action. Very high commercial value. Maps directly to OpenAI API category."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "claude-code-bug-http-oauth-mcp-servers-silently-fail-in-claude-code-adding-an-http-mcp-server-that-requires-oauth-but-doesn-t-support-dynamic-client-registration-dcr-silently-fails-with-no-user-facing-error",
+    "title": "Claude Code HTTP OAuth MCP Servers Silently Fail Without Error",
+    "description": "Fix Claude Code MCP HTTP OAuth connection failure where the server silently fails without showing any user-facing error when OAuth + DCR is not supported Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "[BUG] HTTP OAuth MCP servers silently fail in Claude Code — adding an HTTP MCP server that requires OAuth but doesn't support Dynamic Client Registration (DCR) silently fails with no user-facing error",
+    "search_intent": "Fix Claude Code MCP HTTP OAuth connection failure where the server silently fails without showing any user-facing error when OAuth + DCR is not supported",
+    "common_causes": [
+      "GitHub issue #46623 on anthropics/claude-code (2026-04-11). Clear bug report: OAuth MCP servers require DCR but many don't support it, causing silent failures. High commercial value for Claude Code paying users. Maps to AI Coding Tools category."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "litellm-bug-rate-limit-error-reported-as-no-deployments-available-for-model-litellm-proxy-shows-wrong-error-code-when-rate-limit-exceeded",
+    "title": "LiteLLM Rate Limit Errors Reported as 'No Deployments Available' Bug",
+    "description": "Fix LiteLLM proxy returning misleading 'no deployments available' instead of actual rate limit error when backend API throttles requests Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "[Bug]: Rate limit error reported as \"No deployments available for model\" — litellm proxy shows wrong error code when rate limit exceeded",
+    "search_intent": "Fix LiteLLM proxy returning misleading 'no deployments available' instead of actual rate limit error when backend API throttles requests",
+    "common_causes": [
+      "BerriAI/litellm#20867 (2026-02-10). Proxy misreports rate limit errors as deployment availability errors, confusing debugging. Affects enterprise LiteLLM users who pay per-proxy deployment. Maps to LiteLLM category."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "LiteLLM"
+    ]
+  },
+  {
+    "slug": "ollama-ollama-not-freeing-and-eventually-running-out-of-memory-ollama-ps-shows-models-still-loaded-but-consuming-gpu-ram",
+    "title": "Ollama Models Not Freeing GPU Memory Causing Eventually OOM",
+    "description": "Fix Ollama memory leak where unloaded models keep occupying GPU VRAM until total memory exhaustion forces crash Includes evidence for Ollama troubleshooting demand.",
+    "category": "Ollama",
+    "technology": "Ollama",
+    "error_signature": "Ollama not freeing and eventually running out of memory — ollama ps shows models still loaded but consuming GPU RAM",
+    "search_intent": "Fix Ollama memory leak where unloaded models keep occupying GPU VRAM until total memory exhaustion forces crash",
+    "common_causes": [
+      "ollama/ollama#10114 (2025-04-03). Persistent GPU memory leak in local LLM serving. Users run multiple models sequentially but previous allocations persist. Directly affects production self-hosted LLM deployments. Maps to Ollama category. Also seen in continuedev/continue#7583 (models take +50% memory when called by Continue)."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Ollama"
+    ]
+  },
+  {
+    "slug": "litellm-bug-fallback-resets-retry-cycle-and-causes-repeated-execution-litellm-ratelimiterror-triggers-fallback-which-resets-retry-counter-leading-to-infinite-loop-of-rate-limited-attempts",
+    "title": "LiteLLM Fallback Resets Retry Cycle Causing Repeated Rate Limit Errors",
+    "description": "Fix LiteLLM fallback mechanism that accidentally resets retry counters when handling rate-limit errors, causing cascading retries that exhaust API quotas Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "[Bug]: Fallback resets retry cycle and causes repeated execution — litellm.RateLimitError triggers fallback which resets retry counter leading to infinite loop of rate-limited attempts",
+    "search_intent": "Fix LiteLLM fallback mechanism that accidentally resets retry counters when handling rate-limit errors, causing cascading retries that exhaust API quotas",
+    "common_causes": [
+      "BerriAI/litellm#19985 (2026-01-29). Retry/fallback interaction bug creates retry loops on rate-limit errors. Affects multi-model proxy setups where fallbacks are critical for uptime. Strong production impact. Maps to LiteLLM category."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "LiteLLM"
+    ]
   }
 ]
