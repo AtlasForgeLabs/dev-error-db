@@ -39181,5 +39181,53 @@
     "related_errors": [
       "Anthropic API"
     ]
+  },
+  {
+    "slug": "claude-code-oauth-account-information-not-found-in-config",
+    "title": "[BUG] Claude Code OAuth Authentication Fails — OAuth account information not found in config",
+    "description": "Fix Claude Code OAuth auth failure where account info is missing from local config despite browser-based login flow completing Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "OAuth account information not found in config",
+    "search_intent": "Fix Claude Code OAuth auth failure where account info is missing from local config despite browser-based login flow completing",
+    "common_causes": [
+      "Found at github.com/anthropics/claude-code/issues/1484. Issue titled '[BUG] Claude Code OAuth Authentication Fails - \"OAuth account information not found in config\"'. Corporate network environment causes OAuth to complete but subsequent API calls fail due to missing account credentials in CLI config file. Affects paid Claude Max users unable to use coding tool after subscription renewal. Category mapped to AI Coding Tools per category rules."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "claude-code-oauth-flow-appears-to-complete-but-all-subsequent-api-calls-fail-with-authentication-errors-in-corporate-proxy-remote-dev-environment",
+    "title": "[BUG] Claude Code OAuth authentication fails in proxy environment (Remote Development)",
+    "description": "Fix Claude Code extension auth failure in corporate proxy environments where OAuth completes but API calls return auth errors afterward Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "OAuth flow appears to complete but all subsequent API calls fail with authentication errors in corporate proxy / remote dev environment",
+    "search_intent": "Fix Claude Code extension auth failure in corporate proxy environments where OAuth completes but API calls return auth errors afterward",
+    "common_causes": [
+      "Found at github.com/anthropics/claude-code/issues/11464. Enterprise developers behind corporate proxies experience OAuth flow appearing to succeed but all downstream API calls returning authentication errors. Works locally without proxy but fails in remote development setups (VS Code Dev Containers, Codespaces, etc.). Directly affects enterprise-paid teams deploying Claude Code in managed environments."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "claude-code-claude-desktop-fails-to-connect-to-custom-deployed-mcp-servers-entirely-both-oauth-2-1-and-sse-transport-methods-do-not-work",
+    "title": "[BUG] Claude Desktop doesn't connect to Custom MCPs altogether (not with OAuth 2.1 nor with SSE)",
+    "description": "Fix Claude Desktop inability to communicate with custom deployed MCP servers using either OAuth 2.1 auth or Server-Sent Events transport Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Claude Desktop fails to connect to custom deployed MCP servers entirely; both OAuth 2.1 and SSE transport methods do not work",
+    "search_intent": "Fix Claude Desktop inability to communicate with custom deployed MCP servers using either OAuth 2.1 auth or Server-Sent Events transport",
+    "common_causes": [
+      "Found at github.com/anthropics/claude-code/issues/5826. Companies deploy custom MCP servers internally that work perfectly with Claude Code CLI but completely fail to connect in Claude Desktop GUI. Both OAuth 2.1 and SSE protocols fail identically. This blocks enterprise adoption since desktop UI is the primary access method for non-CLI users. Affects paid Claude Max subscriptions used in corporate settings."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
   }
 ]
