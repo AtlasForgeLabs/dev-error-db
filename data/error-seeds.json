@@ -39837,5 +39837,85 @@
     "related_errors": [
       "AI Coding Tools"
     ]
+  },
+  {
+    "slug": "anthropic-api-api-error-messages-x-content-y-invalid-signature-in-thinking-block",
+    "title": "Anthropic API Invalid signature in thinking block — Permanent Session Failure",
+    "description": "Fix permanent session break caused by thinking block signature expiry during multi-turn extended-thinking conversations Includes evidence for Anthropic API troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Anthropic API",
+    "error_signature": "API Error: messages.X.content.Y: Invalid `signature` in `thinking` block",
+    "search_intent": "Fix permanent session break caused by thinking block signature expiry during multi-turn extended-thinking conversations",
+    "common_causes": [
+      "GitHub Issue #1598 on anthropics/anthropic-sdk-python (opened May 23 2026, updated May 28). Confirmed reproduction: multi-turn conversation with extended thinking on claude-sonnet-4-6/opus-4 triggers hard 400 that permanently fails subsequent calls. API docs advise passing thinking blocks unmodified but provide no recovery path. Community workaround: strip-thought-blocks + retry. Also referenced via claude-code#21726 and claude-code#10627. Category: Anthropic API — paid API quota/billing impact with exact error signature."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Anthropic API"
+    ]
+  },
+  {
+    "slug": "anthropic-api-400-thinking-blocks-cannot-be-modified-permanently-wedges-the-session-after-cancelling-a-parallel-tool-call-batch",
+    "title": "Cancelling Parallel Tool Call Batch Corrupts Thinking Blocks — 400 Permanent Wedge",
+    "description": "Recover from session-wedging 400 error caused by canceling parallel tool batches during extended thinking mode Includes evidence for Anthropic API troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Anthropic API",
+    "error_signature": "400 \"thinking blocks cannot be modified\" permanently wedges the session after cancelling a parallel tool-call batch",
+    "search_intent": "Recover from session-wedging 400 error caused by canceling parallel tool batches during extended thinking mode",
+    "common_causes": [
+      "GitHub Issue #63192 on anthropics/claude-code (opened May 29 2026, has repro label, area:core area:tools). Canceling a parallel tool-call batch corrupts thinking state, triggering permanent 400 that wedges entire session. Related to the broader thinking-block-signature issue. Category: Anthropic API."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Anthropic API"
+    ]
+  },
+  {
+    "slug": "claude-code-remote-control-failed-to-connect-login-on-app-store-billed-max-subscription",
+    "title": "Claude Code Auth Failure on Max Plan — Remote Control Connect Loop",
+    "description": "Resolve Remote Control auth/connect failure affecting paying Claude Code Max subscribers who purchased through App Store Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Remote Control failed to connect: /login on App Store-billed Max subscription",
+    "search_intent": "Resolve Remote Control auth/connect failure affecting paying Claude Code Max subscribers who purchased through App Store",
+    "common_causes": [
+      "GitHub Issue #64070 on anthropics/claude-code (opened May 31 2026, labeled area:auth area:desktop duplicate platform:macos). App Store-billed Max plan users cannot authenticate Remote Control. Related to issue #43574 (Remote Control not enabled after removing DISABLE_TELEMETRY). High commercial value — active paying user blocked from premium feature. Category: AI Coding Tools (Claude Code)."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "claude-code-api-error-usage-credits-required-for-1m-context-turn-on-usage-credits-at-claude-ai-settings-usage",
+    "title": "Claude Code Usage Credits Required Blocks 1M Context Sessions",
+    "description": "Understand and fix 'Usage credits required' error preventing Claude Code users from accessing extended 1M context windows Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "API Error: Usage credits required for 1M context · turn on usage credits at claude.ai/settings/usage",
+    "search_intent": "Understand and fix 'Usage credits required' error preventing Claude Code users from accessing extended 1M context windows",
+    "common_causes": [
+      "GitHub Issue #63908 on anthropics/claude-code (opened May 30 2026, labeled api:anthropic area:cost area:cowork duplicate platform:macos). Users encounter error when attempting 1M context conversations. Area:cost label indicates financial impact. Multiple users affected (2+ comments linking to same issue). Category: AI Coding Tools."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "openai-api-bug-websocket-base-url-derivation-corrupts-urls-containing-http-in-query-params",
+    "title": "Websocket Base URL Derivation Corrupts URLs Containing http in Query Params",
+    "description": "Fix corrupted websocket connection URL when API endpoint contains http:// in query parameters Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "Bug: websocket_base_url derivation corrupts URLs containing http:// in query params",
+    "search_intent": "Fix corrupted websocket connection URL when API endpoint contains http:// in query parameters",
+    "common_causes": [
+      "GitHub Issue #3294 on openai/openai-python (opened May 21 2026). The internal websocket URL builder double-encodes or mangles query params containing http://. Has 2 linked PRs suggesting fixes are being worked on. Category: OpenAI API — networking/connection issue for developers using custom base URLs with query parameters."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "OpenAI API"
+    ]
   }
 ]
