@@ -38797,5 +38797,117 @@
     "related_errors": [
       "OpenAI API"
     ]
+  },
+  {
+    "slug": "anthropic-api-error-type-overloaded-error-message-we-detected-that-you-have-been-overloading-one-or-more-of-our-apis",
+    "title": "Anthropic API overloaded_error — Claude API Under High Load",
+    "description": "Fix Anthropic API overloaded_error responses during high traffic — implement retry logic with exponential backoff for Claude API calls Includes evidence for Anthropic API troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Anthropic API",
+    "error_signature": "error type: overloaded_error, message: We detected that you have been overloading one or more of our APIs",
+    "search_intent": "Fix Anthropic API overloaded_error responses during high traffic — implement retry logic with exponential backoff for Claude API calls",
+    "common_causes": [
+      "The covered-errors list includes 429 rate limit for OpenAI but does not cover Anthropic's specific 'overloaded_error' response type, which has different semantics (capacity throttling vs token-based rate limiting). This is a distinct error signature unique to Anthropic's infrastructure during peak load."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Anthropic API"
+    ]
+  },
+  {
+    "slug": "litellm-rate-limit-exceeded-litellm-proxy-exception-ratelimiterror-request-to-openai-failed-received-429",
+    "title": "LiteLLM Proxy Rate Limit Exceeded When Routing to OpenAI Backend",
+    "description": "Resolve LiteLLM proxy returning 429 rate limit errors when routing requests to OpenAI/Claude backends — understand per-backend vs proxy-wide limits Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "Rate limit exceeded: litellm.proxy.exception.RateLimitError - Request to openai failed, received 429",
+    "search_intent": "Resolve LiteLLM proxy returning 429 rate limit errors when routing requests to OpenAI/Claude backends — understand per-backend vs proxy-wide limits",
+    "common_causes": [
+      "LiteLLM is P1 priority technology with no existing coverage. As a proxy layer between apps and LLM providers, it captures and relays rate-limit errors from downstream APIs. Users searching for this error need to distinguish between provider-side 429s and LiteLLM's own concurrency/rate-limit controls. The proxy architecture means errors surface differently than direct OpenAI API calls."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "LiteLLM"
+    ]
+  },
+  {
+    "slug": "vercel-edge-runtime-function-timed-out-after-10-seconds-next-js-middleware-server-action-exceeded-edge-runtime-limit",
+    "title": "Vercel Edge Runtime Timeout on Server-Side Data Fetches",
+    "description": "Fix Vercel Edge Runtime function timeout errors when making database queries or external API calls from Next.js Edge functions Includes evidence for Vercel troubleshooting demand.",
+    "category": "Deployment",
+    "technology": "Vercel",
+    "error_signature": "Edge Runtime function timed out after 10 seconds - Next.js middleware/server action exceeded edge runtime limit",
+    "search_intent": "Fix Vercel Edge Runtime function timeout errors when making database queries or external API calls from Next.js Edge functions",
+    "common_causes": [
+      "Vercel 'build failed' and 'module not found' are already covered, but Edge Runtime timeout is a distinct error pattern. Edge functions have strict 10s timeout and compute-unit limits separate from serverless functions. Developers migrating SSR code to Edge frequently hit this without understanding the architectural difference."
+    ],
+    "quick_fix": "Check the build output, project root, and deployment platform configuration before redeploying.",
+    "related_errors": [
+      "Deployment"
+    ]
+  },
+  {
+    "slug": "docker-cannot-connect-to-the-docker-socket-at-var-run-docker-sock-permission-denied-hint-are-you-running-as-non-root-with-rootless-docker",
+    "title": "Cannot Connect to the Docker Daemon - Rootless Mode Socket Permission",
+    "description": "Fix Docker client unable to connect to daemon when using rootless mode on Linux or macOS Docker Desktop Includes evidence for Docker troubleshooting demand.",
+    "category": "Docker",
+    "technology": "Docker",
+    "error_signature": "Cannot connect to the Docker socket at /var/run/docker.sock: permission denied (hint: Are you running as non-root with rootless docker?)",
+    "search_intent": "Fix Docker client unable to connect to daemon when using rootless mode on Linux or macOS Docker Desktop",
+    "common_causes": [
+      "Docker daemon troubleshooting docs document 'Cannot connect to the Docker daemon' as a top issue with multiple sub-scenarios. The covered-errors list has generic 'cannot connect to daemon' but does not cover the specific rootless-mode socket path (/run/user/<uid>/docker.sock) or systemd user-service timing conflicts which cause distinct troubleshooting paths."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Docker"
+    ]
+  },
+  {
+    "slug": "azure-system-nullreferenceexception-microsoft-azure-webjobs-servicebus-error-processing-message-binding-failed-for-input-output-parameter",
+    "title": "Azure Service Bus Binding Failure in Azure Functions",
+    "description": "Fix Azure Functions Service Bus binding errors where the trigger cannot read messages from the queue — often caused by connection string issues or wrong extension versions Includes evidence for Azure troubleshooting demand.",
+    "category": "Cloud Platforms",
+    "technology": "Azure",
+    "error_signature": "System.NullReferenceException: Microsoft.Azure.WebJobs.ServiceBus error processing message — binding failed for input/output parameter",
+    "search_intent": "Fix Azure Functions Service Bus binding errors where the trigger cannot read messages from the queue — often caused by connection string issues or wrong extension versions",
+    "common_causes": [
+      "Azure Functions binding errors are an important subset of cloud deployment failures. Azure Functions docs confirm output binding error handling limitations and that certain triggers support retries while others don't. Missing coverage of Service Bus binding-specific errors in the dev-error DB creates a gap since developers hitting this need provider-specific retry strategy guidance."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Cloud Platforms"
+    ]
+  },
+  {
+    "slug": "docker-container-killed-due-to-out-of-memory-docker-container-was-terminated-by-kernel-oom-killer",
+    "title": "Docker Out of Memory OOM Killer During Container Runtime",
+    "description": "Fix Docker containers getting killed by OOM killer — understand container memory limits vs host limits Includes evidence for Docker troubleshooting demand.",
+    "category": "Docker",
+    "technology": "Docker",
+    "error_signature": "container killed due to out of memory: docker container was terminated by kernel OOM killer",
+    "search_intent": "Fix Docker containers getting killed by OOM killer — understand container memory limits vs host limits",
+    "common_causes": [
+      "Docker troubleshoot page explicitly lists 'Out of memory issues' under host-level problems. This is distinct from 'no space left on device' (already covered). OOM involves both --memory flag misconfiguration and cgroup v1/v2 swap accounting differences that cause confusing behavior."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Docker"
+    ]
+  },
+  {
+    "slug": "docker-iptables-failed-iptables-wait-t-nat-d-docker-p-tcp-d-0-0-dport-xxxx-j-dnat-to-destination-yy-yy-yy-yy-zzzz-firewall-is-not-running",
+    "title": "Docker Network Disappearing — iptables Rules Lost After System Sleep",
+    "description": "Fix Docker networking issues where container ports become inaccessible after system suspend/resume — Docker network rules cleared by firewall state changes Includes evidence for Docker troubleshooting demand.",
+    "category": "Docker",
+    "technology": "Docker",
+    "error_signature": "iptables failed: iptables --wait -t nat -D DOCKER -p tcp -d 0/0 --dport XXXX -j DNAT --to-destination YY.YY.YY.YY:ZZZZ : Firewall is not running",
+    "search_intent": "Fix Docker networking issues where container ports become inaccessible after system suspend/resume — Docker network rules cleared by firewall state changes",
+    "common_causes": [
+      "Docker troubleshoot docs list 'Docker networks disappearing' as a specific issue category linked to iptables/netfilter state corruption. This is distinct from the generic 'cannot connect to daemon' and has a completely different fix (restart iptables/firewalld service, configure dockerd restart policies). Covered-errors list only has 'cannot connect' not this network-level variant."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Docker"
+    ]
   }
 ]
