@@ -39533,5 +39533,85 @@
     "related_errors": [
       "Cursor"
     ]
+  },
+  {
+    "slug": "openai-api-realtime-api-sip-webrtc-flow-are-down",
+    "title": "OpenAI Realtime API SIP/WebRTC Flow Completely Down",
+    "description": "Enterprise developers building real-time voice/audio features via OpenAI's Realtime API encounter complete failure of SIP/WebRTC transport layer. Need resolution timeline and workaround for audio-based products. Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "Realtime API - SIP/WebRTC flow are down",
+    "search_intent": "Enterprise developers building real-time voice/audio features via OpenAI's Realtime API encounter complete failure of SIP/WebRTC transport layer. Need resolution timeline and workaround for audio-based products.",
+    "common_causes": [
+      "Extracted from OpenAI Status Page incident #8pqfms14 (resolved 2026-05-13). The Realtime API's underlying audio transport failed entirely for many customers. While resolved, this error type persists — new users deploying audio apps will hit similar issues. High commercial value: Realtime API pricing tiers make it expensive for businesses. Category: OpenAI API."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "vercel-build-passes-locally-with-vercel-prod-but-fails-during-github-integrated-build-deploy",
+    "title": "Vercel Build via GitHub Fails But Works Locally With vercel --prod",
+    "description": "Developer's CI/CD pipeline (GitHub→Vercel) is failing while local builds work perfectly — needs to diagnose environment variable or dependency differences in Vercel's remote build. Includes evidence for Vercel troubleshooting demand.",
+    "category": "Deployment",
+    "technology": "Vercel",
+    "error_signature": "Build passes locally with 'vercel --prod' but fails during GitHub-integrated build deploy",
+    "search_intent": "Developer's CI/CD pipeline (GitHub→Vercel) is failing while local builds work perfectly — needs to diagnose environment variable or dependency differences in Vercel's remote build.",
+    "common_causes": [
+      "Found on Stack Overflow (#70750597). Classic Vercel deployment issue where local dev dependencies or missing env vars cause silent build failures only visible in Vercel's CI. High commercial value as it blocks production releases. Category maps directly to Deployment."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "Deployment"
+    ]
+  },
+  {
+    "slug": "openai-api-codex-engines-experiencing-high-error-rate-gpt-5-5-in-codex-elevated-errors",
+    "title": "OpenAI Codex Engine High Error Rate During Production Use",
+    "description": "Developers using OpenAI's Codex IDE/CLI tools encounter intermittent server errors during active coding sessions, blocking productivity in paid team environments. Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "Codex engines experiencing high error rate / gpt-5.5 in codex elevated errors",
+    "search_intent": "Developers using OpenAI's Codex IDE/CLI tools encounter intermittent server errors during active coding sessions, blocking productivity in paid team environments.",
+    "common_causes": [
+      "Multiple status page incidents: #c5d7k685 (2026-05-13), #dcdq0m5b (2026-04-24), and #r5haxjmg (2026-05-07). Codex is an increasingly-used paid product for professional developers. Frequent error spikes indicate reliability concern worth documenting. Category: OpenAI API."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "openai-api-ratelimiterror-error-code-429-azure-openai-service-throttling",
+    "title": "Azure OpenAI Service Rate Limit 429 Throttling Error Handling",
+    "description": "Developer using Azure OpenAI SDK receives HTTP 429 errors and needs to understand Azure-specific rate limit mechanism, retry policy configuration, and token usage optimization. Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "RateLimitError: Error code: 429 - Azure OpenAI service throttling",
+    "search_intent": "Developer using Azure OpenAI SDK receives HTTP 429 errors and needs to understand Azure-specific rate limit mechanism, retry policy configuration, and token usage optimization.",
+    "common_causes": [
+      "Found on Stack Overflow (#79347773, 1404 views, 1 answer). Azure OpenAI has its own rate limit model separate from platform.openai.com. Developers confuse the two systems. Critical for enterprise users who pay for Azure OpenAI credits. Category maps to OpenAI API since it concerns API-level 429 handling."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "kubernetes-crashloopbackoff-but-no-logs-are-showing-up",
+    "title": "Kubernetes Pod CrashLoopBackOff with No Logs Showing",
+    "description": "Developer has a container crashing in CrashLoopBackOff state but kubectl logs returns nothing — needs debugging steps when standard log access fails. Includes evidence for Kubernetes troubleshooting demand.",
+    "category": "Cloud Platforms",
+    "technology": "Kubernetes",
+    "error_signature": "CrashLoopBackOff but no logs are showing up",
+    "search_intent": "Developer has a container crashing in CrashLoopBackOff state but kubectl logs returns nothing — needs debugging steps when standard log access fails.",
+    "common_causes": [
+      "Found on Stack Overflow (#68834246). CrashLoopBackOff with empty logs means the container exits before logging initializes or log driver cannot capture output. Affects enterprise cloud deployments. Higher commercial value due to infrastructure costs. Already listed under 'Kubernetes' category context."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Cloud Platforms"
+    ]
   }
 ]
