@@ -39613,5 +39613,53 @@
     "related_errors": [
       "Cloud Platforms"
     ]
+  },
+  {
+    "slug": "langchain-nested-astream-events-version-v3-inside-a-tool-yields-empty-messages-typeerror-nonetype-object-is-not-subscriptable",
+    "title": "LangGraph Nested astream_events(v3) Yields Empty Messages Due to ContextVar Leak",
+    "description": "Fix LangGraph sub-agent streaming events captured by parent callback, causing sub-agent output to return None and crash downstream processing Includes evidence for LangChain troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "LangChain",
+    "error_signature": "Nested astream_events(version=\"v3\") inside a tool yields empty messages; TypeError: 'NoneType' object is not subscriptable",
+    "search_intent": "Fix LangGraph sub-agent streaming events captured by parent callback, causing sub-agent output to return None and crash downstream processing",
+    "common_causes": [
+      "GitHub issue langchain-ai/langgraph#7948 opened 2026-05-30 (within hours). Self-contained minimal reproducible example with full code. Root cause confirmed: var_child_runnable_config contextvar leak causes parent's StreamMessagesHandler to steal nested stream events. Critical bug for multi-agent architectures on paid plans."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "next-js-vercel-client-side-navigation-freezes-js-thread-deadlocks-on-browser-back-forward-bfcache-restore-in-next-16-dev-mode",
+    "title": "Next.js 16 Dev Mode BFCache Restores Freeze Entire Application (JS Thread Deadlock)",
+    "description": "Fix frozen Next.js application when user presses browser back/forward button during development, caused by BFCache restoring deadlocked JS thread state Includes evidence for Next.js / Vercel troubleshooting demand.",
+    "category": "Deployment",
+    "technology": "Next.js / Vercel",
+    "error_signature": "Client-side navigation freezes (JS thread deadlocks) on browser Back/Forward (BFCache) restore in Next 16 Dev Mode",
+    "search_intent": "Fix frozen Next.js application when user presses browser back/forward button during development, caused by BFCache restoring deadlocked JS thread state",
+    "common_causes": [
+      "GitHub issue vercel/next.js#94254 — Next.js 16 regression where BFCache + dev mode creates JS thread deadlock. Affects development workflow for all Next.js developers; could impact production if misconfigured. Strong commercial relevance for Vercel-hosted apps."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Deployment"
+    ]
+  },
+  {
+    "slug": "docker-containers-refuse-to-start-on-rootless-setup-with-loki-logging-driver-since-docker-29-5-0",
+    "title": "Docker Engine 29.5.0 Containers Fail to Start on Rootless Setup with Loki Logging Driver",
+    "description": "Fix Docker containers failing to start after upgrade to 29.5.0 when using rootless mode combined with Loki logging driver configuration Includes evidence for Docker troubleshooting demand.",
+    "category": "Docker",
+    "technology": "Docker",
+    "error_signature": "Containers refuse to start on rootless setup with Loki logging driver since Docker 29.5.0",
+    "search_intent": "Fix Docker containers failing to start after upgrade to 29.5.0 when using rootless mode combined with Loki logging driver configuration",
+    "common_causes": [
+      "GitHub issue moby/moby#52673 — Regression introduced in Docker 29.5.0 breaking rootless containers with Loki logging. Affects enterprise CI/CD pipelines and production container deployments using centralized logging."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Docker"
+    ]
   }
 ]
