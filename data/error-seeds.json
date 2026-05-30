@@ -38973,5 +38973,85 @@
     "related_errors": [
       "AI Coding Tools"
     ]
+  },
+  {
+    "slug": "anthropic-api-type-error-error-type-overloaded-error-message-anthropic-is-currently-overloaded-please-try-again-shortly",
+    "title": "Anthropic HTTP 529 Overloaded Error — Causes and Multi-Provider Workarounds",
+    "description": "Developer receives 529 overloaded_error from Anthropic API; wants to understand if it is capacity-related vs rate-limit and how to implement exponential backoff, tier fallback, or cross-provider failover Includes evidence for Anthropic API troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Anthropic API",
+    "error_signature": "{\"type\": \"error\", \"error\": {\"type\": \"overloaded_error\", \"message\": \"Anthropic is currently overloaded. Please try again shortly.\"}}",
+    "search_intent": "Developer receives 529 overloaded_error from Anthropic API; wants to understand if it is capacity-related vs rate-limit and how to implement exponential backoff, tier fallback, or cross-provider failover",
+    "common_causes": [
+      "Comprehensive guide from tokenmix.ai detailing why 529 spiked post-Claude Opus 4.7 launch (April 2026), four workaround patterns (backoff, tier fallback, cross-provider failover, aggregator routing), and monitoring strategies. Distinct from rate-limit 429. Non-standard HTTP 529 status. Category mapped to Anthropic API."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "Anthropic API"
+    ]
+  },
+  {
+    "slug": "openai-api-429-rate-limit-reached-insufficient-quota-different-429-responses-require-different-fixes",
+    "title": "OpenAI API Distinguishing Rate Limit (429) from Insufficient Quota — Fix Strategy",
+    "description": "Developer encounters 429 from OpenAI API; needs to distinguish whether it is a request/token rate limit (needs backoff/retry) or insufficient quota/billing issue (needs account fix) Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "429 rate limit reached / insufficient_quota — different 429 responses require different fixes",
+    "search_intent": "Developer encounters 429 from OpenAI API; needs to distinguish whether it is a request/token rate limit (needs backoff/retry) or insufficient quota/billing issue (needs account fix)",
+    "common_causes": [
+      "Deep analysis from yingtu.ai and reintech.io covering the two distinct 429 branches. Key insight: retries worsen insufficient_quota cases. Evidence supports clear actionable error signatures. Category mapped to OpenAI API per rules table."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "anthropic-api-type-error-error-type-authentication-error-message-invalid-x-api-key",
+    "title": "Claude API 401 Authentication Error — invalid x-api-key Across Python SDK, curl, and Cursor",
+    "description": "Developer gets 401 with 'invalid x-api-key' when calling Claude API via Python SDK, curl, Cherry Studio, or Cursor; needs to identify root cause (whitespace, expired key, proxy mismatch, env var issue) Includes evidence for Anthropic API troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Anthropic API",
+    "error_signature": "{ \"type\": \"error\", \"error\": { \"type\": \"authentication_error\", \"message\": \"invalid x-api-key\" } }",
+    "search_intent": "Developer gets 401 with 'invalid x-api-key' when calling Claude API via Python SDK, curl, Cherry Studio, or Cursor; needs to identify root cause (whitespace, expired key, proxy mismatch, env var issue)",
+    "common_causes": [
+      "Handbook from claudeapi.com covering all six common Claude API errors including exact 401 response bodies. Documents error surface across Python SDK (Traceback: anthropic.AuthenticationError), curl (raw JSON), Cherry Studio (red alert banner), and Cursor (toast notification). Four specific causes and fixes listed. Tier 0 API attempted first (GitHub REST returned no useful results), then normal_fetch succeeded."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "Anthropic API"
+    ]
+  },
+  {
+    "slug": "github-copilot-unexpected-weekly-rate-limit-subscription-allowance-exhausted-due-to-token-counting-bug-in-copilot-billing",
+    "title": "GitHub Copilot Pro Rate Limit Exhaustion Due to Token Counting Bug",
+    "description": "Copilot Pro subscriber encounters sudden rate limit block or quota exhaustion not caused by actual usage volume, but by a reported token counting bug; needs to understand the root cause and workaround options Includes evidence for GitHub Copilot troubleshooting demand.",
+    "category": "GitHub Copilot",
+    "technology": "GitHub Copilot",
+    "error_signature": "Unexpected weekly rate limit / subscription allowance exhausted due to token counting bug in Copilot billing",
+    "search_intent": "Copilot Pro subscriber encounters sudden rate limit block or quota exhaustion not caused by actual usage volume, but by a reported token counting bug; needs to understand the root cause and workaround options",
+    "common_causes": [
+      "Firsthand reports from The Register (April 2026) and GitHub community forum describe a token counting bug that inflated billing, leading to rapid exhaustion of Copilot Pro subscription allowance. GitHub suspended free trials and imposed new concurrency limits. Developer reports 44-hour unexpected rate limit blocks forcing downgrade to Auto mode. Recent event means low competition on dev-error-db. Category mapped to GitHub Copilot."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "GitHub Copilot"
+    ]
+  },
+  {
+    "slug": "langchain-model-not-found-rate-limit-authentication-failed-when-using-langchain-wrapper-over-openai-anthropic-or-other-llm-providers",
+    "title": "LangChain LLM Provider Integration Errors — Model Not Found, Rate Limits, Auth Failures",
+    "description": "Developer integrating LangChain encounters provider-specific errors (model IDs, rate limits, auth keys) surfaced through the LangChain abstraction layer; needs to troubleshoot whether the error is in the LangChain configuration or the upstream provider Includes evidence for LangChain troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "LangChain",
+    "error_signature": "Model not found / rate limit / authentication failed when using LangChain wrapper over OpenAI, Anthropic, or other LLM providers",
+    "search_intent": "Developer integrating LangChain encounters provider-specific errors (model IDs, rate limits, auth keys) surfaced through the LangChain abstraction layer; needs to troubleshoot whether the error is in the LangChain configuration or the upstream provider",
+    "common_causes": [
+      "Respan.ai docs mention LangChain integration. LangChain wraps multiple LLM providers and inherits their errors with additional abstraction layers. Common errors include model ID mismatches (e.g., gpt-4-deprecated still referenced in old templates), rate limits inherited from provider tiers, and auth header translation issues. Distinct from direct provider errors because of the extra indirection layer."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
   }
 ]
