@@ -39773,5 +39773,69 @@
     "related_errors": [
       "Deployment"
     ]
+  },
+  {
+    "slug": "cursor-error-openai-unable-to-reach-the-model-provider",
+    "title": "How to Fix 'Unable to Reach the Model Provider' Error in Cursor (HTTP/2 Conflict)",
+    "description": "Fix Cursor IDE connection error where AI models become unreachable despite working network; user suspects rate limiting but Codex agent works fine — likely HTTP/2 protocol conflict. Includes evidence for Cursor troubleshooting demand.",
+    "category": "Cursor",
+    "technology": "Cursor",
+    "error_signature": "ERROR_OPENAI — Unable to reach the model provider",
+    "search_intent": "Fix Cursor IDE connection error where AI models become unreachable despite working network; user suspects rate limiting but Codex agent works fine — likely HTTP/2 protocol conflict.",
+    "common_causes": [
+      "Found in Cursor Community Forum (#143466) and DEV.to article. Users report persistent 'Unable to reach the model provider' errors that resolve when disabling HTTP/2 in Cursor Settings → Network. Distinct from generic 'Connection failed' — specifically triggered when switching between model providers (GPT-5/Claude). High commercial value as Cursor is a paid subscription tool used by paying developers daily."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "Cursor"
+    ]
+  },
+  {
+    "slug": "claude-code-couldn-t-reach-the-mcp-server-authorization-with-the-mcp-server-failed",
+    "title": "Claude Code GitHub Remote MCP Server Connection Failure via OAuth",
+    "description": "Fix Claude MCP connector authentication failures when connecting Claude Code to remote services (GitHub, Slack, etc.) via OAuth; diagnose whether the issue is auth config, MCP server availability, or TLS/SSL handshake. Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Couldn't reach the MCP server / Authorization with the MCP server failed",
+    "search_intent": "Fix Claude MCP connector authentication failures when connecting Claude Code to remote services (GitHub, Slack, etc.) via OAuth; diagnose whether the issue is auth config, MCP server availability, or TLS/SSL handshake.",
+    "common_causes": [
+      "Anthropic's official troubleshooting docs identify two key error messages ('Couldn't reach the MCP server' and 'Authorization with the MCP server failed') that cover multiple root causes. Connector failures are a frequent blocker for developers integrating Claude Code into team workflows. Official docs coverage exists but lacks deep diagnostics for individual scenarios."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "cursor-connection-failed-if-the-problem-persists-please-check-your-internet-connection-or-vpn",
+    "title": "Fixing Cursor 'Connection failed' Error — HTTP/2 Protocol Issues",
+    "description": "Resolve intermittent 'Connection failed' errors in Cursor IDE that appear even when internet is stable; root cause is HTTP/2 protocol instability causing sudden connection drops during AI chat sessions. Includes evidence for Cursor troubleshooting demand.",
+    "category": "Cursor",
+    "technology": "Cursor",
+    "error_signature": "Connection failed. If the problem persists, please check your internet connection or VPN",
+    "search_intent": "Resolve intermittent 'Connection failed' errors in Cursor IDE that appear even when internet is stable; root cause is HTTP/2 protocol instability causing sudden connection drops during AI chat sessions.",
+    "common_causes": [
+      "DEV.to article documents Cursor using HTTP/2 for its AI connection layer, which randomly fails even on stable networks. This causes sudden disconnections and forces users to retry. Distinct from 'models not available' (#1 above) — this is a transport-layer issue rather than a model-provider connectivity problem. High commercial relevance for Cursor Pro/Paid subscribers."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Cursor"
+    ]
+  },
+  {
+    "slug": "claude-code-command-not-found-authentication-failures-mcp-server-issues-slow-performance",
+    "title": "How to Fix Common Claude Code Errors: Installation, Auth, MCP, and Performance",
+    "description": "Troubleshoot common Claude Code installation and runtime errors including CLI not found, auth token failures, MCP server connection problems, and degraded performance. Need debug mode guidance and targeted fixes. Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "command not found / authentication failures / MCP server issues / slow performance",
+    "search_intent": "Troubleshoot common Claude Code installation and runtime errors including CLI not found, auth token failures, MCP server connection problems, and degraded performance. Need debug mode guidance and targeted fixes.",
+    "common_causes": [
+      "Comprehensive troubleshooting guide (bswen.com, March 2026) covers the four most common Claude Code error categories: command not found during install, authentication/bearer token failures, MCP server misconfiguration, and performance degradation. Covers both setup and runtime issues affecting daily development workflows."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
   }
 ]
