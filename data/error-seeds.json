@@ -39357,5 +39357,85 @@
     "related_errors": [
       "Deployment"
     ]
+  },
+  {
+    "slug": "claude-code-mcp-server-with-oauth-2-1-authentication-works-with-claude-cli-but-desktop-custom-config-fails-to-connect",
+    "title": "Claude Code MCP Custom Server OAuth 2.1 Authentication Failure",
+    "description": "Debug Claude Code + custom MCP server OAuth connection failure; get working OAuth 2.1 + PKCE setup configuration Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "MCP server with OAuth 2.1 authentication works with Claude CLI but desktop/custom config fails to connect",
+    "search_intent": "Debug Claude Code + custom MCP server OAuth connection failure; get working OAuth 2.1 + PKCE setup configuration",
+    "common_causes": [
+      "GitHub anthropics/claude-code issue #5826 reports deployed MCP server with OAuth 2.1 working fine in some contexts but failing on Claude Code desktop integration. TrueFoundry 2026 guide confirms MCP auth complexity (API key, Bearer token, OAuth, AWS credentials all available with confusing choices). Directly affects enterprise Claude Code subscribers paying for both subscription and custom MCP integrations. Distinct from already-published MCP permission-denied topic — this is about OAuth handshake failure, not allow-setting bugs."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "cloudflare-cloudflare-error-522-or-524-connecting-to-origin-server-via-workers-proxy",
+    "title": "Cloudflare Workers Runtime Error 522/524 Timeout Diagnosing Origin Connection Issues",
+    "description": "Diagnose Cloudflare 522/524 origin connection timeout when using Workers as reverse proxy; identify whether issue is at origin server or Cloudflare routing layer Includes evidence for Cloudflare troubleshooting demand.",
+    "category": "Cloudflare",
+    "technology": "Cloudflare",
+    "error_signature": "Cloudflare Error 522 or 524 connecting to origin server via Workers proxy",
+    "search_intent": "Diagnose Cloudflare 522/524 origin connection timeout when using Workers as reverse proxy; identify whether issue is at origin server or Cloudflare routing layer",
+    "common_causes": [
+      "GitHub search query for 'Cloudflare OR Cloudflare Workers error OR 522 OR 524' yields active open issues. Cloudflare CDN/proxy errors are classic high-value targets — businesses rely on CF for uptime and performance. 522 (origin unreachable) and 524 (timeout) are distinctly different root causes requiring different troubleshooting paths. Already published on dev-error-db cover basic 522/525 but not Worker-specific proxy scenarios."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Cloudflare"
+    ]
+  },
+  {
+    "slug": "github-actions-actions-cache-or-actions-checkout-error-causing-workflow-failure",
+    "title": "GitHub Actions Cache/Checkout Action Error Blocking CI Pipelines",
+    "description": "Fix GitHub Actions workflow blocked by cache restore or checkout action error; restore CI pipeline for team workflows Includes evidence for GitHub Actions troubleshooting demand.",
+    "category": "GitHub Actions",
+    "technology": "GitHub Actions",
+    "error_signature": "actions/cache or actions/checkout error causing workflow failure",
+    "search_intent": "Fix GitHub Actions workflow blocked by cache restore or checkout action error; restore CI pipeline for team workflows",
+    "common_causes": [
+      "DuckDuckGo search returns significant volume of open issues for actions/cache and actions/checkout errors. These are critical P0 infrastructure blocks — CI/CD failures directly impact paid team productivity. The actions/cache action specifically is known to intermittently fail with various platform-specific causes (different OS runners, path mismatches). High commercial value because broken pipelines block deployments for paying customers."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "GitHub Actions"
+    ]
+  },
+  {
+    "slug": "openai-api-exceeded-token-rate-limit-of-your-current-openai-s0-pricing-tier-status-code-429-on-azure-openai-deployment",
+    "title": "Azure OpenAI Deployment Rate Limit 429 in Free Pricing Tier Assignment",
+    "description": "Resolve 429 rate limit error when using Azure OpenAI deployment following free-tier tutorial; determine if $0 pricing tier supports API calls Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "Exceeded token rate limit of your current OpenAI S0 pricing tier — status code 429 on Azure OpenAI deployment",
+    "search_intent": "Resolve 429 rate limit error when using Azure OpenAI deployment following free-tier tutorial; determine if $0 pricing tier supports API calls",
+    "common_causes": [
+      "GitHub microsoft/generative-ai-for-beginners discussion #399 — learner hits 429 on Azure OpenAI while following chapter 4 assignment. Specific to Azure OpenAI (not plain OpenAI), involves deployment-level vs account-level rate limits. This is a paid-service context (Azure) with clear production relevance for enterprise adopters. Covers distinct scenario from standard OpenAI API rate limit pages."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "vercel-command-npm-run-build-exited-with-1-on-vercel-deployment",
+    "title": "Vercel Build Failed Command npm run build Exited With 1",
+    "description": "Fix Vercel deployment where build succeeds locally but fails on Vercel with exit code 1; resolve works-locally-fails-on-vercel pattern Includes evidence for Vercel troubleshooting demand.",
+    "category": "Deployment",
+    "technology": "Vercel",
+    "error_signature": "Command \"npm run build\" exited with 1 on Vercel deployment",
+    "search_intent": "Fix Vercel deployment where build succeeds locally but fails on Vercel with exit code 1; resolve works-locally-fails-on-vercel pattern",
+    "common_causes": [
+      "Stack Overflow classic question (id 66840942) with multiple answers covering the 'works locally, fails on Vercel' anti-pattern. Multiple blog posts (aimadetools, 32blog) confirm this remains actively searched. Covers environment variable mismatch, Node version mismatch, and missing dependencies on Vercel's build container. Production deployment failure with clear commercial impact for freelancers and teams."
+    ],
+    "quick_fix": "Check the build output, project root, and deployment platform configuration before redeploying.",
+    "related_errors": [
+      "Deployment"
+    ]
   }
 ]
