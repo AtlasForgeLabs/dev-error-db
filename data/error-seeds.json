@@ -39661,5 +39661,117 @@
     "related_errors": [
       "Docker"
     ]
+  },
+  {
+    "slug": "openai-api-typeerror-nonetype-object-is-not-iterable-when-server-emits-response-completed-with-output-none",
+    "title": "OpenAI SDK responses.stream() crashes with NoneType iteration on null output",
+    "description": "Fix streaming response crash in OpenAI Python SDK when Codex backend returns null output in stream Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "TypeError: 'NoneType' object is not iterable when server emits response.completed with output=None",
+    "search_intent": "Fix streaming response crash in OpenAI Python SDK when Codex backend returns null output in stream",
+    "common_causes": [
+      "Multiple related issues: #3312 (opened May 27), #3321 (May 27), #3313 (May 27), #3314 (May 27) — same root cause pattern across openai/openai-python. Widespread bug affecting many users simultaneously. High urgency as this is a core SDK stability issue on paid service."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "openai-api-typeerror-parse-response-crashes-when-response-output-is-null-in-response-completed-event",
+    "title": "OpenAI SDK parse_response crashes when response.output is null from ChatGPT Codex backend",
+    "description": "Fix Python SDK crash when OpenAI Codex backend sends null output in completed events Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "TypeError: parse_response crashes when response.output is null in response.completed event",
+    "search_intent": "Fix Python SDK crash when OpenAI Codex backend sends null output in completed events",
+    "common_causes": [
+      "GitHub Issue #3325 in openai/openai-python opened May 28, 2026. Bug report about unhandled null response.output in Codex stream causing TypeError. High commercial value as it affects paid API users with production crashes. Category mapping: OpenAI API official SDK."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "litellm-o-n-json-loads-retry-in-handle-accumulated-json-chunk-blocks-event-loop-kills-liveness-probes",
+    "title": "LiteLLM O(n²) json.loads retry blocks event loop killing liveness probes",
+    "description": "Fix LiteLLM proxy event loop blocking caused by quadratic JSON parsing retry logic affecting deployment availability Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "O(n²) json.loads retry in handle_accumulated_json_chunk blocks event loop, kills liveness probes",
+    "search_intent": "Fix LiteLLM proxy event loop blocking caused by quadratic JSON parsing retry logic affecting deployment availability",
+    "common_causes": [
+      "GitHub Issue #26181 in BerriAI/litellm opened Apr 22, 2026. Performance bug causing k8s liveness probe failures. Affects self-hosted LiteLLM deployments in production. Strong infrastructure/commercial value as it causes service outages."
+    ],
+    "quick_fix": "Check the build output, project root, and deployment platform configuration before redeploying.",
+    "related_errors": [
+      "LiteLLM"
+    ]
+  },
+  {
+    "slug": "litellm-max-budget-reached-also-blocks-zero-cost-models",
+    "title": "LiteLLM Max Budget reached incorrectly blocks zero-cost models",
+    "description": "Fix LiteLLM budget enforcement that incorrectly rejects free-tier model calls when total budget cap is exhausted Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "Max Budget reached also blocks Zero-Cost-Models",
+    "search_intent": "Fix LiteLLM budget enforcement that incorrectly rejects free-tier model calls when total budget cap is exhausted",
+    "common_causes": [
+      "GitHub Issue #10973 in BerriAI/litellm. Budget logic bug affects pricing/usage management in production LiteLLM deployments. Clear billing-related error signature with direct financial impact interpretation."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "LiteLLM"
+    ]
+  },
+  {
+    "slug": "litellm-litellm-spendlogtoolindex-is-never-pruned-grows-unbounded-orphaned-after-spend-log-retention-cleanup",
+    "title": "LiteLLM SpendLog grows unbounded due to missing cleanup retention pruning",
+    "description": "Fix LiteLLM proxy database growing indefinitely due to missing index pruning on spend logs Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "LiteLLM_SpendLogToolIndex is never pruned — grows unbounded, orphaned after spend log retention cleanup",
+    "search_intent": "Fix LiteLLM proxy database growing indefinitely due to missing index pruning on spend logs",
+    "common_causes": [
+      "GitHub Issue #29342 in BerriAI/litellm opened May 31, 2026. Database growth issue directly impacts self-hosted LiteLLM users managing budgets and billing. Production impact for teams using LiteLLM Enterprise features. P1 tech with direct billing/quota implications."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "LiteLLM"
+    ]
+  },
+  {
+    "slug": "openai-api-prompt-cache-retention-type-declares-in-memory-but-api-expects-in-memory",
+    "title": "LiteLLM prompt_cache_retention type mismatch: declares in-memory but API expects in_memory",
+    "description": "Fix SDK type mismatch for OpenAI prompt cache retention parameter causing API rejection Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "prompt_cache_retention type declares in-memory but API expects in_memory",
+    "search_intent": "Fix SDK type mismatch for OpenAI prompt cache retention parameter causing API rejection",
+    "common_causes": [
+      "GitHub Issue #2883 in openai/openai-python opened Feb 23, 2026, updated May 27, 2026 with 12 linked PRs. SDK documentation/type bug creating incorrect API expectations. 12 linked PRs shows active community fix effort, confirming widespread impact. Direct OpenAI API parameter compatibility issue."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "vercel-uncaughtexception-error-aborted-with-sse-after-client-browser-close-the-connection",
+    "title": "Vercel/Next.js uncaughtException aborted with SSE after client browser closes connection",
+    "description": "Fix Server-Sent Events (SSE) abort error causing unhandled exceptions in Next.js/React apps deployed on Vercel Includes evidence for Vercel troubleshooting demand.",
+    "category": "Deployment",
+    "technology": "Vercel",
+    "error_signature": "uncaughtException: Error: aborted with SSE after client browser close the connection",
+    "search_intent": "Fix Server-Sent Events (SSE) abort error causing unhandled exceptions in Next.js/React apps deployed on Vercel",
+    "common_causes": [
+      "GitHub Issue #56529 in vercel/next.js. SSE connection handling bug in App Router causing uncaught exceptions. Deployment-relevant error with real production impact for server-rendered React applications."
+    ],
+    "quick_fix": "Check the build output, project root, and deployment platform configuration before redeploying.",
+    "related_errors": [
+      "Deployment"
+    ]
   }
 ]
