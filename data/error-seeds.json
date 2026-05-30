@@ -39325,5 +39325,37 @@
     "related_errors": [
       "LiteLLM"
     ]
+  },
+  {
+    "slug": "anthropic-api-sse-stream-errors-return-http-200-instead-of-actual-error-status-code-rate-limit-overloaded-errors-masked-as-success",
+    "title": "Mid-Stream SSE Errors Get Status Code 200 Instead of Actual Error Code",
+    "description": "Debug why streaming API responses appear as successful 200 responses when they actually contain error events — developers cannot distinguish between working streams and failed/erroring ones Includes evidence for Anthropic API troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Anthropic API",
+    "error_signature": "SSE stream errors return HTTP 200 instead of actual error status code (rate limit / overloaded errors masked as success)",
+    "search_intent": "Debug why streaming API responses appear as successful 200 responses when they actually contain error events — developers cannot distinguish between working streams and failed/erroring ones",
+    "common_causes": [
+      "GitHub issue #1258 in anthropics/anthropic-sdk-python (closed Mar 2026, but root cause still relevant). Describes mid-stream Server-Sent Events returning 200 status even when the actual payload indicates an error (overloaded_rate_limit, permission_denied, etc.). High commercial value because billing continues on apparent 200 responses. Category: Anthropic API per mapping table."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "Anthropic API"
+    ]
+  },
+  {
+    "slug": "vercel-build-failed-failed-to-fetch-https-fonts-googleapis-com-css2-family-inter-network-request-to-google-fonts-cdn-returned-empty-null-body-causing-npm-err",
+    "title": "Next.js Build Failed: Failed to Fetch Google Fonts (Production Deployment Blocking Error)",
+    "description": "Resolve production deployment blocking error where Next.js build fails because it cannot fetch external Google Fonts CSS — developers need workarounds for isolated network environments or blocked CDN access Includes evidence for Vercel troubleshooting demand.",
+    "category": "Deployment",
+    "technology": "Vercel",
+    "error_signature": "Build failed: Failed to fetch https://fonts.googleapis.com/css2?family=Inter... Network request to Google Fonts CDN returned empty/null body causing npm ERR!",
+    "search_intent": "Resolve production deployment blocking error where Next.js build fails because it cannot fetch external Google Fonts CSS — developers need workarounds for isolated network environments or blocked CDN access",
+    "common_causes": [
+      "GitHub issue #91653 in vercel/next.js (bug, locked, updated Apr 2026). Production Next.js build fails with network error fetching Google Fonts stylesheet, completely blocking deployment. Affects developers who can access Google Fonts locally but not in CI/build environment. Strong commercial value due to Vercel deployment context and blocked production releases. Category: Deployment per mapping table."
+    ],
+    "quick_fix": "Check the build output, project root, and deployment platform configuration before redeploying.",
+    "related_errors": [
+      "Deployment"
+    ]
   }
 ]
