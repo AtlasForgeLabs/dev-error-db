@@ -39053,5 +39053,69 @@
     "related_errors": [
       "AI Coding Tools"
     ]
+  },
+  {
+    "slug": "claude-code-command-output-was-lost-the-temp-filesystem-at-private-tmp-claude-uid-project-session-uuid-tasks-is-full-0mb-free-the-child-process-s-stdout-stderr-writes-failed-with-enospc",
+    "title": "Claude Code Task Runner ENOSPC despite disk having free space",
+    "description": "Fix Claude Code Bash tool silently returning empty output due to spurious ENOSPC errors on macOS tmpfs even when df shows GBs of free space Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Command output was lost: the temp filesystem at /private/tmp/claude-$UID/<project>/<session-uuid>/tasks is full (0MB free). The child process's stdout/stderr writes failed with ENOSPC",
+    "search_intent": "Fix Claude Code Bash tool silently returning empty output due to spurious ENOSPC errors on macOS tmpfs even when df shows GBs of free space",
+    "common_causes": [
+      "GitHub issue #63909 in anthropics/claude-code (opened today May 30 2026) reports enospc on subprocess output despite 23GB free. Session-UUID-per-conversation state corruption hypothesis. Labels: area:bash, bug, has repro, platform:macos. High commercial value as this breaks core Claude Code functionality."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "claude-code-something-went-wrong-try-sending-your-message-again-if-it-keeps-happening-share-feedback-so-we-can-investigate-api-error-usage-credits-required-for-1m-context-turn-on-usage-credits-at-claude-ai-settings-usage-or-use",
+    "title": "Claude Code Usage credits required for 1M context toggle",
+    "description": "Resolve Claude Code API error when 1M context window requires paid usage credits but user does not know how or where to enable them Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Something went wrong. Try sending your message again. If it keeps happening, share feedback so we can investigate. API Error: Usage credits required for 1M context · turn on usage credits at claude.ai/settings/usage, or use",
+    "search_intent": "Resolve Claude Code API error when 1M context window requires paid usage credits but user does not know how or where to enable them",
+    "common_causes": [
+      "GitHub issue #63908 in anthropics/claude-code (opened today May 30 2026). Clear billing/quota-related API error that directly blocks paying users. Strong commercial value — quota errors on AI coding tools are high-intent search queries. Category maps to AI Coding Tools per SKILL.md rules."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "ollama-pulling-manifest-error-pull-model-manifest-get-https-registry-ollama-ai-v2-library-model-manifests-tag-dial-tcp-ip-443-i-o-timeout",
+    "title": "Ollama pulling manifest fails with dial tcp i/o timeout",
+    "description": "Fix Ollama model download failures caused by registry connection timeouts, especially on Raspberry Pi or specific ISPs blocking Cloudflare properties Includes evidence for Ollama troubleshooting demand.",
+    "category": "Ollama",
+    "technology": "Ollama",
+    "error_signature": "pulling manifest / Error: pull model manifest: Get \"https://registry.ollama.ai/v2/library/<model>/manifests/<tag>\": dial tcp <ip>:443: i/o timeout",
+    "search_intent": "Fix Ollama model download failures caused by registry connection timeouts, especially on Raspberry Pi or specific ISPs blocking Cloudflare properties",
+    "common_causes": [
+      "GitHub issue #16330 in ollama/ollama reports that ALL models fail to pull with 'dial tcp ... i/o timeout' on registry.ollama.ai. Root cause appears to be ISP-level blocking of Cloudflare DNS/IP ranges for certain providers (e.g., CBPU). Multiple users affected; workaround involves VPN or alternative DNS."
+    ],
+    "quick_fix": "Verify the model name, local service connectivity, and network access before retrying the model pull.",
+    "related_errors": [
+      "Ollama"
+    ]
+  },
+  {
+    "slug": "openai-api-responses-stream-crashes-with-typeerror-nonetype-object-is-not-iterable-when-server-emits-response-completed-with-output-none",
+    "title": "OpenAI responses.stream crashes with TypeError when server emits response.completed with output=None",
+    "description": "Fix OpenAI Python SDK crash when ChatGPT Codex backend or other services return response.output as null/None in stream completion events Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "responses.stream crashes with TypeError: 'NoneType' object is not iterable when server emits response.completed with output=None",
+    "search_intent": "Fix OpenAI Python SDK crash when ChatGPT Codex backend or other services return response.output as null/None in stream completion events",
+    "common_causes": [
+      "GitHub issue #3312 in openai/openai-python (created May 27 2026). Line 61 in openai/lib/_parsing/_responses.py does 'for output in response.output:' without null guard. Also see related issue #3313 about parse_response crashing on null output from Codex backend stream. Both indicate missing null checks in stream parsing code."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "OpenAI API"
+    ]
   }
 ]
