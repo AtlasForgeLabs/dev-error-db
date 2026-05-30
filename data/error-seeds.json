@@ -38717,5 +38717,85 @@
     "related_errors": [
       "Anthropic API"
     ]
+  },
+  {
+    "slug": "claude-code-codex-improper-429-error-near-the-end-of-a-5-hour-window-usage-display-inside-codex-shows-unexpected-rate-limit",
+    "title": "Claude Code gives improper 429 rate limit error at end of 5-hour usage window",
+    "description": "Fix unexpected 429 rate limit error appearing near the end of a usage window in Claude Code/Codex, where the usage counter shows remaining quota but requests are rejected Includes evidence for Claude Code / Codex troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code / Codex",
+    "error_signature": "improper 429 error near the end of a 5-hour window, usage display inside Codex shows unexpected rate limit",
+    "search_intent": "Fix unexpected 429 rate limit error appearing near the end of a usage window in Claude Code/Codex, where the usage counter shows remaining quota but requests are rejected",
+    "common_causes": [
+      "GitHub Issue #9135 in openai/codex (Jan 2026) reports that Codex throws 429 rate limit errors unexpectedly close to the end of a 5-hour window, with usage display inconsistency between internal tracker and API. Category mapping: AI Coding Tool (Claude Code/Codex). Not covered in dev-error-db which only lists generic OpenAI 429."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "ollama-running-out-of-memory-underutilizes-available-gpu-vram-cuda-out-of-memory",
+    "title": "Ollama running out of memory — GPU VRAM not freed between model loads",
+    "description": "Fix Ollama repeatedly running out of GPU VRAM when loading multiple models — memory not freed after use, causing repeated OOM crashes on subsequent calls Includes evidence for Ollama troubleshooting demand.",
+    "category": "Ollama",
+    "technology": "Ollama",
+    "error_signature": "running out of memory / underutilizes available GPU VRAM / CUDA out of memory",
+    "search_intent": "Fix Ollama repeatedly running out of GPU VRAM when loading multiple models — memory not freed after use, causing repeated OOM crashes on subsequent calls",
+    "common_causes": [
+      "Multiple GitHub Issues in ollama/ollama (#10114, #6238, #8734, #14632). Issue #14632 (Mar 2026) specifically describes GPU VRAM under-utilization causing out-of-memory. Stress testing shows memory accumulation over time. Category mapping: Ollama (exact match). Not covered — dev-error-db only has Docker memory issues, not Ollama-specific."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Ollama"
+    ]
+  },
+  {
+    "slug": "litellm-bug-virtual-key-auth-error-user-doesn-t-exists",
+    "title": "LiteLLM virtual key authentication error: 'user doesn't exists'",
+    "description": "Fix LiteLLM proxy authentication error when using virtual keys — proxy rejects request claiming user does not exist despite virtual key being configured Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "[Bug]: virtual key auth error user doesn't exists",
+    "search_intent": "Fix LiteLLM proxy authentication error when using virtual keys — proxy rejects request claiming user does not exist despite virtual key being configured",
+    "common_causes": [
+      "GitHub Issue #5111 in BerriAI/litellm (Aug 2024). Virtual key proxy auth fails with explicit 'user doesn't exists' message. This targets LiteLLM proxy operators managing paid multi-tenant setups. Category mapping: LiteLLM (exact match). Not covered by existing covered errors which focus on generic OpenAI auth errors."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "LiteLLM"
+    ]
+  },
+  {
+    "slug": "litellm-roo-code-litellm-integration-fails-when-v1-model-info-is-unreachable-or-returns-an-error-e-g-403-forbidden",
+    "title": "Roo Code LiteLLM integration fails when /v1/model/info returns error",
+    "description": "Fix Roo Code crashing when connecting to LiteLLM proxy — /v1/model/info endpoint unreachable or returns 403, causing entire IDE integration to fail without graceful fallback Includes evidence for LiteLLM / Roo Code troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM / Roo Code",
+    "error_signature": "LiteLLM Integration Fails When /v1/model/info Is unreachable or returns an error (e.g., 403 Forbidden)",
+    "search_intent": "Fix Roo Code crashing when connecting to LiteLLM proxy — /v1/model/info endpoint unreachable or returns 403, causing entire IDE integration to fail without graceful fallback",
+    "common_causes": [
+      "GitHub Issue #11898 in RooCodeInc/Roo-Code (Mar 2026). Roo Code requires /v1/model/info but should gracefully fallback to /v1/models when unavailable. Affects IDE plugin integrations with LiteLLM proxies. Category mapping: LiteLLM (proxy integration failure). Distinct from generic proxy errors — focuses on client-side integration robustness."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "LiteLLM"
+    ]
+  },
+  {
+    "slug": "openai-api-rawresponsevalidationerror-1-validation-error-for-chatcompletionresponse-detail-response-must-have-either-data-or-error-fields",
+    "title": "OpenAI Python SDK RuntimeError wraps RawResponseValidationError from chat completions",
+    "description": "Fix OpenAI Python SDK raising RawResponseValidationError with 'must have either data or error fields' — occurs when API returns malformed response payload during beta features or streaming endpoints Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "RawResponseValidationError: 1 validation error for ChatCompletionResponse (detail) Response must have either data or error fields",
+    "search_intent": "Fix OpenAI Python SDK raising RawResponseValidationError with 'must have either data or error fields' — occurs when API returns malformed response payload during beta features or streaming endpoints",
+    "common_causes": [
+      "GitHub Issue in openai/python-sdk related to RawResponseValidationError on ChatCompletionResponse. Distinct from standard 401/429/500 errors — this is a parsing/validation failure when response format doesn't match expected schema. Category mapping: OpenAI API. Covers beta/edge-case responses that trigger validation errors, not just HTTP-level errors."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "OpenAI API"
+    ]
   }
 ]
