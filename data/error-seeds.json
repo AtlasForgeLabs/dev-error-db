@@ -38605,5 +38605,53 @@
     "related_errors": [
       "GitHub Copilot"
     ]
+  },
+  {
+    "slug": "claude-code-missing-scope-parameter-in-dynamic-client-registration-and-authorization-requests-consistently-fails-to-include-the-scope-parameter-during-oauth-dynamic-client-registration-and-authorization-requests",
+    "title": "Claude Code Missing scope Parameter in OAuth Dynamic Client Registration",
+    "description": "Debug Claude Code OAuth integration failures where scope parameter is omitted causing ORY Hydra auth server to reject requests Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Missing scope Parameter in Dynamic Client Registration and Authorization Requests — consistently fails to include the scope parameter during OAuth dynamic client registration and authorization requests",
+    "search_intent": "Debug Claude Code OAuth integration failures where scope parameter is omitted causing ORY Hydra auth server to reject requests",
+    "common_causes": [
+      "Issue #4540 on anthropics/claude-code: Claude Code client omits the scope parameter during both dynamic client registration and subsequent authorization requests when integrating with OAuth2 Authorization Server (ORY Hydra) + MCP endpoint. Deviates from standard OAuth2 spec preventing proper scope negotiation."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "litellm-rate-limit-error-message-body-leaks-full-sha-256-token-hash-on-429-responses-parallel-request-limiter-includes-the-full-64-character-sha-256-hash-of-the-offending-virtual-key-in-the-error-message-field-visible-to-http-clients",
+    "title": "LiteLLM Rate Limit 429 Response Leaks Full SHA-256 Token Hash",
+    "description": "Fix LiteLLM proxy leaking sensitive SHA-256 key identifiers in rate-limit error responses; protect API key security on proxy deployments serving paying customers Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "Rate limit error message body leaks full SHA-256 token hash on 429 responses — parallel request limiter includes the full 64-character SHA-256 hash of the offending virtual key in the error.message field visible to HTTP clients",
+    "search_intent": "Fix LiteLLM proxy leaking sensitive SHA-256 key identifiers in rate-limit error responses; protect API key security on proxy deployments serving paying customers",
+    "common_causes": [
+      "Issue #27884 on BerriAI/litellm (opened May 14, 2026): When the parallel request limiter returns a 429 response, the JSON error body includes the full 64-char SHA-256 hash of the virtual key. redact_user_api_key_info config does not suppress this leak. Affects production LiteLLM proxy deployments serving end users."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "LiteLLM"
+    ]
+  },
+  {
+    "slug": "ollama-failed-to-initialize-model-qwen3next-layer-40-missing-attn-qkv-attn-gate-projections",
+    "title": "Ollama Fails to Load Qwen3.6 MTP GGUF Models — Missing attn_qkv Projections",
+    "description": "Fix Ollama 0.24.0 failing to load Qwen3.6 MTP/GGUF models with nextn prediction layers; understand why routing goes through wrong attention path Includes evidence for Ollama troubleshooting demand.",
+    "category": "Ollama",
+    "technology": "Ollama",
+    "error_signature": "failed to initialize model: qwen3next: layer 40 missing attn_qkv/attn_gate projections",
+    "search_intent": "Fix Ollama 0.24.0 failing to load Qwen3.6 MTP/GGUF models with nextn prediction layers; understand why routing goes through wrong attention path",
+    "common_causes": [
+      "Issue #16282 on ollama/ollama (May 24, 2026, open): Ollama 0.24.0 fails to load Qwen3.6-35B-A3B-MTP-GGUF models including upstream MTP/nextn prediction layers. Architecture reads correctly as qwen35moe but layer 40 (the nextn MTP head) routes through regular attention path and aborts. Clear error with specific reproduction."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Ollama"
+    ]
   }
 ]
