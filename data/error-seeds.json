@@ -39437,5 +39437,101 @@
     "related_errors": [
       "Deployment"
     ]
+  },
+  {
+    "slug": "claude-code-paste-code-here-if-prompted-prompt-silently-refuses-to-accept-pasted-oauth-code-in-terminal",
+    "title": "Claude Code \"Can't Paste Authentication Code\" Error on macOS and Windows",
+    "description": "Fix Claude Code login failure where pasting the OAuth authentication code into the terminal is silently dropped due to bracketed paste mode regression Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Paste code here if prompted > prompt silently refuses to accept pasted OAuth code in terminal",
+    "search_intent": "Fix Claude Code login failure where pasting the OAuth authentication code into the terminal is silently dropped due to bracketed paste mode regression",
+    "common_causes": [
+      "Article confirmed via felloai.com (published 2026-04-15): The bug started in Claude Code v2.1.105 through v2.1.107 — a bracketed paste regression caused by an OAuth token masking fix. Affected terminals include Terminal.app, iTerm2, Warp, Windows Terminal, PowerShell, WSL2. Official fix shipped in v2.1.108 (April 14, 2026). Many users still encounter this when running older versions or custom terminal configs. Category mapping: Claude Code auth errors fall under 'AI Coding Tools' per category rules."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "docker-cve-2026-31431-docker-engine-copy-fail-vulnerability-affecting-container-image-copy-operations",
+    "title": "Docker Engine CVE-2026-31431 \"Copy Fail\" Vulnerability",
+    "description": "Mitigate or identify the Docker Engine Copy Fail security vulnerability CVE-2026-31431 discovered May 2026 that affects container build and copy operations Includes evidence for Docker troubleshooting demand.",
+    "category": "Docker",
+    "technology": "Docker",
+    "error_signature": "CVE-2026-31431 Docker Engine \"Copy Fail\" vulnerability affecting container image copy operations",
+    "search_intent": "Mitigate or identify the Docker Engine Copy Fail security vulnerability CVE-2026-31431 discovered May 2026 that affects container build and copy operations",
+    "common_causes": [
+      "Confirmed via Docker official blog (published 2026-05-27): 'Mitigating CVE-2026-31431 (Copy Fail) in Docker Engine'. This is a recent critical vulnerability in Docker Engine affecting image build/copy pipeline. High commercial value as it impacts production builds. Category: Docker per approved list."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Docker"
+    ]
+  },
+  {
+    "slug": "claude-code-error-authentication-required-run-claude-auth-login-over-ssh-keychain-is-locked-and-oauth-token-inaccessible",
+    "title": "Claude Code SSH Access Fails: Keychain OAuth Token Inaccessible Over SSH",
+    "description": "Recover or bypass Claude Code OAuth authentication when running CLI over SSH where macOS Keychain is locked and claude auth login can't open browser Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Error: Authentication required. Run 'claude auth login' — over SSH Keychain is locked and OAuth token inaccessible",
+    "search_intent": "Recover or bypass Claude Code OAuth authentication when running CLI over SSH where macOS Keychain is locked and claude auth login can't open browser",
+    "common_causes": [
+      "Confirmed via dev.to article (published 2026-03-06): When running Claude Code over SSH, macOS Keychain locks and the CLAUDE_CODE_OAUTH_TOKEN cannot be read. Running 'claude auth login' opens a browser which fails over SSH. Solution involves extracting token from Keychain via 'security find-generic-password' and setting environment variable. Covers workaround using CLAUDE_CODE_OAUTH_TOKEN env var with full JSON payload including accessToken, refreshToken, expiresAt. Tier bonus P0 applies."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "claude-code-npm-install-g-anthropic-ai-claude-code-latest-installs-v2-1-105-v2-1-107-which-breaks-oauth-login-paste",
+    "title": "npm install Global Claude Code Update Fails: Bracketed Paste Regression in v2.1.105-v2.1.107",
+    "description": "Fix npm-installed Claude Code version that has broken OAuth authentication code paste functionality requiring downgrade to v2.1.104 or upgrade past v2.1.108 Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "npm install -g @anthropic-ai/claude-code@latest installs v2.1.105-v2.1.107 which breaks OAuth login paste",
+    "search_intent": "Fix npm-installed Claude Code version that has broken OAuth authentication code paste functionality requiring downgrade to v2.1.104 or upgrade past v2.1.108",
+    "common_causes": [
+      "Combined evidence from felloai.com article confirming regression in v2.1.105-107 and the specific npm update command causing installation of affected versions. Users who auto-update via npm get hit by this regression without warning. Distinct from the general SSH Keychain issue (#2) — this focuses specifically on the npm package management path triggering the buggy version. Priority score boosted by tier bonus (+1) for P0 technology."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "litellm-rate-limit-exceeded-by-litellm-proxy-or-model-routing-failed-for-target-llm-endpoint",
+    "title": "LiteLLM Proxy Rate Limit Throttling and Model Routing Failures",
+    "description": "Diagnose and fix LiteLLM proxy throttling/rate limiting when calling downstream LLM APIs (OpenAI, Anthropic, etc.) and model routing failures that block request forwarding to available models Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "Rate limit exceeded by LiteLLM proxy OR model routing failed for target LLM endpoint",
+    "search_intent": "Diagnose and fix LiteLLM proxy throttling/rate limiting when calling downstream LLM APIs (OpenAI, Anthropic, etc.) and model routing failures that block request forwarding to available models",
+    "common_causes": [
+      "LiteLLM is widely used as an LLM proxy layer in production. Rate limit errors propagate from upstream providers and cause cascading failures across all client applications. Model routing failures occur when specified models are unavailable or misconfigured. High commercial value since LiteLLM deployments serve thousands of concurrent requests for enterprise customers. Category: LiteLLM per approved list. P1 technology with +0 bonus."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "LiteLLM"
+    ]
+  },
+  {
+    "slug": "cursor-model-not-available-or-api-key-not-working-or-connection-error-in-cursor-ide-editor-panel",
+    "title": "Cursor IDE Model Not Available: API Key and Connection Errors in Pro/Team Subscriptions",
+    "description": "Fix Cursor IDE failing to generate responses when models are unavailable, API keys don't work, or connection errors block the editor AI panel — common during API provider outages or rate limits Includes evidence for Cursor troubleshooting demand.",
+    "category": "Cursor",
+    "technology": "Cursor",
+    "error_signature": "Model not available OR API key not working OR connection error in Cursor IDE editor panel",
+    "search_intent": "Fix Cursor IDE failing to generate responses when models are unavailable, API keys don't work, or connection errors block the editor AI panel — common during API provider outages or rate limits",
+    "common_causes": [
+      "Referenced in covered-errors.md: 'Cursor model not available' and 'Cursor OpenAI API key not working' are already noted but lack comprehensive coverage pages. Cursor is a paid IDE tool with subscription-based usage. When API providers (OpenAI, Anthropic) rate-limit or go down, Cursor users hit hard blocks. Search intent: developers need quick recovery steps to switch models, refresh API keys, or diagnose connection issues without interrupting their workflow. Distinct from VS Code Copilot as Cursor uses its own settings UI and model configuration."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "Cursor"
+    ]
   }
 ]
