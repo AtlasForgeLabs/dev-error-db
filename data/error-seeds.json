@@ -39229,5 +39229,21 @@
     "related_errors": [
       "AI Coding Tools"
     ]
+  },
+  {
+    "slug": "claude-code-http-503-from-claude-code-anthropic-backend-unreachable-on-route-cf-ray-header-present-corporate-ztna-breaking-long-lived-https-streams",
+    "title": "Claude Code HTTP 503 Edge Unreachable — Corporate Proxy & VPN Breaking Anthropic Requests",
+    "description": "Fix Claude Code returning 503 due to network routing issues — corporate proxy, VPN, zero-trust network agent breaking HTTPS connections to api.anthropic.com Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "HTTP 503 from Claude Code — Anthropic backend unreachable on route, cf-ray header present, corporate ZTNA breaking long-lived HTTPS streams",
+    "search_intent": "Fix Claude Code returning 503 due to network routing issues — corporate proxy, VPN, zero-trust network agent breaking HTTPS connections to api.anthropic.com",
+    "common_causes": [
+      "From Cod ersera 2026 guide, covers 503 as edge-level transport failure (distinct from 529 application-level). Symptoms: request didn't make it past Cloudflare or regional gateway. Fixes include curl -I connectivity test, VPN/ztna disable, egress testing via hotspot. Persistent 503s warrant ticket with cf-ray header + traceroute. Commercial value: enterprise users behind corporate networks hit this frequently. Not covered by existing dev-error-db entries."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
   }
 ]
