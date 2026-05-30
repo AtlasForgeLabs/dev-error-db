@@ -38653,5 +38653,69 @@
     "related_errors": [
       "Ollama"
     ]
+  },
+  {
+    "slug": "anthropic-api-billing-overcharge-server-writes-cache-entries-past-explicit-cache-control-breakpoint-billing-1-25x-for-unread-tokens",
+    "title": "Server writes additional cache entries past explicit cache_control breakpoint, billing 1.25x for tokens never read",
+    "description": "Report Anthropic API billing discrepancy where server-side caching exceeds developer-specified cache_control breakpoint, causing unexpected token charges Includes evidence for Anthropic API troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Anthropic API",
+    "error_signature": "Billing overcharge: Server writes cache entries past explicit cache_control breakpoint, billing 1.25x for unread tokens",
+    "search_intent": "Report Anthropic API billing discrepancy where server-side caching exceeds developer-specified cache_control breakpoint, causing unexpected token charges",
+    "common_causes": [
+      "anthropics/anthropic-sdk-python #1547 — api-labeled bug opened May 15 2026. Critical billing/commercial issue: developers are paying 1.25x for cached tokens they explicitly disabled via cache_control. High search intent for 'Anthropic API billing extra charge' and 'cache control breakpoint'."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Anthropic API"
+    ]
+  },
+  {
+    "slug": "openai-api-typeerror-nonetype-object-is-not-iterable-responses-stream-crashes-when-response-completed-payload-has-output-null",
+    "title": "responses.stream crashes with NoneType iteration when response.completed payload has output=null",
+    "description": "Resolve Python SDK streaming crash caused by null server response output during Chat Responses API usage Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "TypeError: 'NoneType' object is not iterable — responses.stream() crashes when response.completed payload has output=null",
+    "search_intent": "Resolve Python SDK streaming crash caused by null server response output during Chat Responses API usage",
+    "common_causes": [
+      "openai/openai-python #3321 — opened May 27 2026, 1 comment + 1 linked PR. Same issue family as #3325/#3312 but specifically for stream() method. Directly impacts production apps using streaming completions."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "openai-api-crash-responses-stream-parser-fails-when-terminal-response-output-is-null",
+    "title": "Responses stream parser crashes when terminal response.output is null",
+    "description": "Fix OpenAI Python SDK stream parser crash for null-terminal responses in Chat Responses API Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "Crash: Responses stream parser fails when terminal response.output is null",
+    "search_intent": "Fix OpenAI Python SDK stream parser crash for null-terminal responses in Chat Responses API",
+    "common_causes": [
+      "openai/openai-python #3314 — opened May 27 2026 by yelixir-dev. Part of the same null-output crash wave (#3312/#3313/#3321/#3325) showing broad user impact. High signal as multiple related bugs filed within hours of each other."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "anthropic-api-mcp-connector-intermittently-emits-tool-use-instead-of-mcp-tool-use-for-tools-declared-in-mcp-toolset",
+    "title": "[BUG] MCP connector model intermittently emits tool_use instead of mcp_tool_use for declared tools",
+    "description": "Fix intermittent MCP tool routing error in Anthropic SDK where model uses generic tool_use name instead of specific mcp_tool_use declaration Includes evidence for Anthropic API troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Anthropic API",
+    "error_signature": "MCP connector intermittently emits tool_use instead of mcp_tool_use for tools declared in mcp_toolset",
+    "search_intent": "Fix intermittent MCP tool routing error in Anthropic SDK where model uses generic tool_use name instead of specific mcp_tool_use declaration",
+    "common_causes": [
+      "anthropics/anthropic-sdk-python #1581 — bug opened May 21 2026, updated May 29. Intersects MCP (Model Context Protocol) which is hot adoption area for enterprise AI integrations. Tool routing errors break function calling pipelines."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Anthropic API"
+    ]
   }
 ]
