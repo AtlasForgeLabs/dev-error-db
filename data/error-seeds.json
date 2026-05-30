@@ -38909,5 +38909,69 @@
     "related_errors": [
       "Docker"
     ]
+  },
+  {
+    "slug": "claude-code-dynamic-client-registration-failed-http-403-no-client-info-found-claude-code-ignores-configured-oauth-clientid-in-mcp-json-and-attempts-dcr-anyway",
+    "title": "Claude Code fails connecting to MCP servers without Dynamic Client Registration — OAuth flow aborts with 403",
+    "description": "Fix Claude Code MCP connection failure with OAuth providers (Auth0, AWS Cognito, Okta) that do not support RFC 7591 Dynamic Client Registration — find workaround or permanent fix for OAuth auth flow Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Dynamic client registration failed: HTTP 403 / No client info found / Claude Code ignores configured oauth.clientId in .mcp.json and attempts DCR anyway",
+    "search_intent": "Fix Claude Code MCP connection failure with OAuth providers (Auth0, AWS Cognito, Okta) that do not support RFC 7591 Dynamic Client Registration — find workaround or permanent fix for OAuth auth flow",
+    "common_causes": [
+      "GitHub Issue #3273 on anthropics/claude-code: 52+ 👍 reactions, ongoing discussion as of May 2026. Root cause: Claude Code forces DCR (RFC 7591) even when .mcp.json declares clientId; DCR fails 404/403 for Cognito/Auth0. Fixed as resolved in v2.1.30 via --client-id flag. Still highly searched because many users haven't upgraded or use custom plugin MCP servers (Cowork/GitHub plugin) that lack clientId plumbing."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "openai-api-typeerror-iterating-over-null-in-parse-response-response-output-is-null-in-response-completed-sse-event-causing-sdk-crash",
+    "title": "OpenAI Python SDK TypeError when server sends null output in response.completed streaming event",
+    "description": "Fix Python SDK crash when OpenAI server returns null output in streaming response.completed event — developers see TypeError instead of graceful empty output handling Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "TypeError: iterating over null in parse_response — response.output is null in response.completed SSE event causing SDK crash",
+    "search_intent": "Fix Python SDK crash when OpenAI server returns null output in streaming response.completed event — developers see TypeError instead of graceful empty output handling",
+    "common_causes": [
+      "GitHub Issue #3331 on openai/openai-python, created 2026-05-29. The SDK iterates over response.output without null check; existing PRs only add defensive guard but silently discard valid accumulated items. Affects production apps using OpenAI streaming API — crashing mid-stream means lost responses for paying customers. Very specific technical error with clear code-level root cause."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "claude-code-agent-fabricates-tool-output-and-raises-false-positive-prompt-injection-alert-creates-phantom-security-incident-blocking-legitimate-operations",
+    "title": "Agent fabricated tool output and reported non-existent prompt-injection incident",
+    "description": "Debug Claude Code agent generating fake tool outputs and incorrectly reporting prompt injection attacks — causes workflow disruption and unnecessary security warnings Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Agent fabricates tool output and raises false positive prompt injection alert — creates phantom security incident blocking legitimate operations",
+    "search_intent": "Debug Claude Code agent generating fake tool outputs and incorrectly reporting prompt injection attacks — causes workflow disruption and unnecessary security warnings",
+    "common_causes": [
+      "GitHub Issue #63871 on anthropics/claude-code, created 2026-05-30 (very recent). Bug category: agent hallucination/security false positive. High urgency because it affects trust in AI coding tools — false positives block real work. New issue trending up."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "claude-code-claude-code-attempts-oauth2-dynamic-client-registration-despite-mcp-being-configured-with-authorization-header-in-mcp-json",
+    "title": "MCP http transport bypasses Authorization header — forces unnecessary OAuth2 Dynamic Client Registration",
+    "description": "Fix MCP http transport ignoring pre-configured Authorization header and unnecessarily triggering OAuth DCR flow — break for developers who already have valid bearer tokens for their MCP server Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Claude Code attempts OAuth2 Dynamic Client Registration despite MCP being configured with Authorization header in .mcp.json",
+    "search_intent": "Fix MCP http transport ignoring pre-configured Authorization header and unnecessarily triggering OAuth DCR flow — break for developers who already have valid bearer tokens for their MCP server",
+    "common_causes": [
+      "GitHub Issue #2831 on anthropics/claude-code. Similar to #1763. When MCP server is configured with static Authorization header, Claude Code should use it directly but instead attempts OAuth2 DCR. Blocks simple token-based MCP auth patterns. Related to #3273 but focuses on Authorization header bypass specifically."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
   }
 ]
