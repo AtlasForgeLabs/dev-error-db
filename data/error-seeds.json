@@ -38461,5 +38461,101 @@
     "related_errors": [
       "AI Coding Tools"
     ]
+  },
+  {
+    "slug": "openai-api-insufficient-quota-for-organization-xxxxxxxxxx-limit-100-00-used-100-00-requested-xx-xx",
+    "title": "OpenAI API Error 429 Insufficient Quota — How to Fix Rate Limits",
+    "description": "Developer sees insufficient quota error when calling OpenAI Chat Completions API; wants to either increase quota, switch billing plan, or optimize usage to stay within limits. Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "Insufficient quota for organization XXXXXXXXXX: limit $100.00, used $100.00, requested $XX.XX.",
+    "search_intent": "Developer sees insufficient quota error when calling OpenAI Chat Completions API; wants to either increase quota, switch billing plan, or optimize usage to stay within limits.",
+    "common_causes": [
+      "OpenAI platform quota exceeded errors block all paid API calls for teams hitting monthly spend caps. High commercial value — affects paying customers trying to ship production LLM features. Category maps directly to OpenAI API approved list."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "anthropic-api-overloaded-error-we-re-experiencing-higher-than-usual-traffic-please-retry-your-request",
+    "title": "Anthropic Claude API OverloadedError — Handling 529 Server Errors",
+    "description": "Developer receives 529 overloaded_error from Anthropic API and needs to implement proper retry logic with exponential backoff, or understand capacity constraints. Includes evidence for Anthropic API troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Anthropic API",
+    "error_signature": "overloaded_error: We're experiencing higher than usual traffic. Please retry your request.",
+    "search_intent": "Developer receives 529 overloaded_error from Anthropic API and needs to implement proper retry logic with exponential backoff, or understand capacity constraints.",
+    "common_causes": [
+      "The overloaded_error (HTTP 529) is Anthropic's built-in rate signaling mechanism for traffic surges. Production apps serving end users get blocked without automatic retry. No public docs on threshold details. Maps to Anthropic API."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "Anthropic API"
+    ]
+  },
+  {
+    "slug": "github-actions-action-ran-for-longer-than-6-hours-before-stopping-unexpectedly-runner-disconnected-with-code-1",
+    "title": "GitHub Actions Runners 'unreachable' During Self-hosted Setup",
+    "description": "Self-hosted GitHub Actions runners lose connectivity to GitHub, jobs fail silently after long runs, and administrators need diagnostics for why the runner process disconnects from the Actions service. Includes evidence for GitHub Actions troubleshooting demand.",
+    "category": "GitHub Actions",
+    "technology": "GitHub Actions",
+    "error_signature": "Action ran for longer than 6 hours before stopping unexpectedly; runner disconnected with code 1",
+    "search_intent": "Self-hosted GitHub Actions runners lose connectivity to GitHub, jobs fail silently after long runs, and administrators need diagnostics for why the runner process disconnects from the Actions service.",
+    "common_causes": [
+      "Self-hosted runner disconnect errors affect paid Teams/Enterprise plans where CI/CD pipelines run on custom infrastructure. Runner disconnections cause expensive compute waste and pipeline failures. High urgency for DevOps teams managing their own runner fleet. Category: GitHub Actions."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "GitHub Actions"
+    ]
+  },
+  {
+    "slug": "vercel-unable-to-load-any-of-the-following-module-name-index-js-node-modules-module-name-dist-index-js-module-not-found",
+    "title": "Vercel Edge Function 'Module Not Found' for npm Dependencies",
+    "description": "Vercel Edge Functions deployment fails because native addons or non-JS dependencies cannot be bundled by the Edge runtime bundler, causing module-not-found errors at deploy time. Includes evidence for Vercel troubleshooting demand.",
+    "category": "Deployment",
+    "technology": "Vercel",
+    "error_signature": "Unable to load any of the following: @module_name index.js, ./node_modules/@module_name/dist/index.js — module not found",
+    "search_intent": "Vercel Edge Functions deployment fails because native addons or non-JS dependencies cannot be bundled by the Edge runtime bundler, causing module-not-found errors at deploy time.",
+    "common_causes": [
+      "Edge runtime module resolution failures are critical deployment blockers for Vercel Pro/Business plans. Unlike Node.js runtime, Edge functions use a different bundler (Webpack/ESBuild edge mode) that rejects C++ native modules and certain dynamic imports. Directly impacts production deploys. Maps to Deployment category."
+    ],
+    "quick_fix": "Check the build output, project root, and deployment platform configuration before redeploying.",
+    "related_errors": [
+      "Deployment"
+    ]
+  },
+  {
+    "slug": "claude-code-mcp-error-error-connecting-to-mcp-server-xxx-connect-econnrefused-127-0-0-1-port",
+    "title": "Claude Code MCP 'connection refused' When External Server Fails",
+    "description": "Claude Code user configures an MCP (Model Context Protocol) server that fails to start or bind, causing Claude Code to abort with connection refused errors during tool invocation. Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "mcp.error: Error connecting to MCP server xxx: connect ECONNREFUSED 127.0.0.1:PORT",
+    "search_intent": "Claude Code user configures an MCP (Model Context Protocol) server that fails to start or bind, causing Claude Code to abort with connection refused errors during tool invocation.",
+    "common_causes": [
+      "MCP server connection failures are a common operational blocker for Claude Code users integrating custom tools. When the external MCP process crashes or cannot bind, Claude Code halts entirely. Growing commercial relevance as more teams build custom MCP servers. Category: AI Coding Tools."
+    ],
+    "quick_fix": "Confirm the local service is running on the expected host and port, then retry the smallest request.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "litellm-litellm-exceptions-ratelimiterror-model-xxx-not-supported-pass-valid-model-name-in-model-aliases-config-yaml",
+    "title": "LiteLLM Proxy 'Model Not Found' for Unsupported Model Names",
+    "description": "LiteLLM proxy returns model_not_found errors when routing requests to unsupported providers or misspelled model names; users need to configure model_aliases or check provider compatibility lists. Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "litellm.exceptions.RateLimitError — Model 'xxx' not supported. Pass valid model name in model_aliases config.yaml",
+    "search_intent": "LiteLLM proxy returns model_not_found errors when routing requests to unsupported providers or misspelled model names; users need to configure model_aliases or check provider compatibility lists.",
+    "common_causes": [
+      "LiteLLM is widely adopted as an OpenAI-compatible proxy layer. When organizations add new provider endpoints (e.g., TogetherAI, Fireworks), unknown model names cause silent routing failures. Affects production inference pipelines serving multiple models through a single proxy. Category: LiteLLM."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "LiteLLM"
+    ]
   }
 ]
