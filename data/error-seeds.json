@@ -40717,5 +40717,85 @@
     "related_errors": [
       "LiteLLM"
     ]
+  },
+  {
+    "slug": "claude-code-http-oauth-mcp-server-silent-failure-no-tools-appear-no-error-notification-dcr-fails-without-registration-endpoint",
+    "title": "Claude Code HTTP OAuth MCP servers silently fail with no user error",
+    "description": "Fix Claude Code MCP OAuth authentication failure where no error is shown and tools don't load Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "HTTP OAuth MCP server: silent failure, no tools appear, no error notification — DCR fails without registration_endpoint",
+    "search_intent": "Fix Claude Code MCP OAuth authentication failure where no error is shown and tools don't load",
+    "common_causes": [
+      "GitHub Issue #46623 documents Claude Code silently failing when connecting to HTTP MCP servers requiring OAuth without Dynamic Client Registration support. Root cause: 401 response with OAuth metadata, Claude Code attempts DCR, fails silently (no message to user). Scope shadowing in ~/.claude.json compounds confusion. Category: AI Coding Tools — paid developer tool, high commercial value."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "claude-code-sdk-auth-failed-incompatible-auth-server-does-not-support-dynamic-client-registration",
+    "title": "Claude Code Slack MCP auth fails: incompatible auth server — does not support dynamic client registration",
+    "description": "Fix OAuth authentication failure for Slack MCP server in Claude Code when auth server lacks DCR support Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "SDK auth failed: Incompatible auth server: does not support dynamic client registration",
+    "search_intent": "Fix OAuth authentication failure for Slack MCP server in Claude Code when auth server lacks DCR support",
+    "common_causes": [
+      "GitHub Issue #52638 reports Claude Code cannot authenticate with Slack's HTTP MCP server (https://mcp.slack.com/mcp) because it requires DCR which Slack doesn't implement. Cursor IDE works around this via pre-registered client_id. The same auth endpoint succeeds in Cursor but completely fails in Claude Code. High commercial value — developers need working MCP integrations. Category: AI Coding Tools."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "cursor-the-model-glm-4-6-does-not-work-with-your-current-plan-or-api-key",
+    "title": "Cursor 'model XXX does not work with your current plan or API key' error after update",
+    "description": "Fix Cursor showing model incompatibility error with custom API key after IDE update blocks premium model access Includes evidence for Cursor troubleshooting demand.",
+    "category": "Cursor",
+    "technology": "Cursor",
+    "error_signature": "The model GLM-4.6 does not work with your current plan or API key",
+    "search_intent": "Fix Cursor showing model incompatibility error with custom API key after IDE update blocks premium model access",
+    "common_causes": [
+      "Cursor forum reports that after an afternoon update, previously working models (e.g., GLM-4.6) started showing 'does not work with your current plan or API key'. Affects both free and Pro accounts. Users add their own API keys (BYOK) but Cursor backend validates account tier before allowing model access, rendering BYOK ineffective for tier-restricted models. High commercial value — directly impacts paying Cursor subscription users and those bringing their own API credits."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Cursor"
+    ]
+  },
+  {
+    "slug": "claude-code-no-conversation-found-with-session-id-id",
+    "title": "Claude Code session resume returns 'No conversation found' despite .jsonl files existing on disk",
+    "description": "Fix Claude Code --resume or --continue not finding existing sessions even though JSONL data exists on disk Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "No conversation found with session ID: <id>",
+    "search_intent": "Fix Claude Code --resume or --continue not finding existing sessions even though JSONL data exists on disk",
+    "common_causes": [
+      "GitHub Issue #33912 documents claude --resume always returning 'No conversation found' even when .jsonl session files exist. Root cause analysis reveals session index is keyed by PID rather than session ID; when OS reuses a PID, new sessions overwrite old index entries causing orphan sessions. This is a structural bug affecting all users running multiple concurrent/sequential sessions. Category: AI Coding Tools — core functionality break."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "litellm-error-code-429-you-exceeded-your-current-quota-please-check-your-plan-and-billing-details-for-more-information-on-this-error-read-https-platform-openai-com-docs-guides-error-codes-api-errors",
+    "title": "LiteLLM proxy returns 429 from upstream OpenAI — missing retry/backoff handling",
+    "description": "Fix LiteLLM not properly retrying or backoff-ing on upstream OpenAI 429 rate limit errors Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "Error code: 429 - You exceeded your current quota, please check your plan and billing details. For more information on this error, read https://platform.openai.com/docs/guides/error-codes/api-errors",
+    "search_intent": "Fix LiteLLM not properly retrying or backoff-ing on upstream OpenAI 429 rate limit errors",
+    "common_causes": [
+      "GitHub Issue #5983 on BerriAI/litellm reports LiteLLM proxy forwarding raw 429 from OpenAI without adequate retry logic or exponential backoff. Affects production deployments using LiteLLM as unified proxy layer over OpenAI and other providers. When upstream rate-limits, LiteLLM cascades the error rather than implementing smart retry policies. Category: LiteLLM — critical proxy reliability issue affecting multi-model production setups."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "LiteLLM"
+    ]
   }
 ]
