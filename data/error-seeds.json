@@ -41245,5 +41245,117 @@
     "related_errors": [
       "Cloud Platforms"
     ]
+  },
+  {
+    "slug": "claude-code-bug-persistent-server-side-session-billing-phantom-usage-cannot-be-killed-from-client",
+    "title": "Claude Code Phantom Session Billing — Server-Side Sessions Cannot Be Killed",
+    "description": "Fix phantom billing charges from Claude Code server-side sessions that persist even after the user tries to kill them Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "[BUG] Persistent server-side session billing phantom usage — cannot be killed from client",
+    "search_intent": "Fix phantom billing charges from Claude Code server-side sessions that persist even after the user tries to kill them",
+    "common_causes": [
+      "GitHub issue #64256 opened Jun 1 2026 on anthropics/claude-code. Tagged area:cost + area:cowork. Multiple users report paying for idle sessions that cannot be terminated client-side. Covers production billing impact for paid Claude Code tiers."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "claude-code-opus-4-8-appears-to-re-fetch-identical-tool-results-after-normal-non-error-returns-2-3x-vs-opus-4-7",
+    "title": "Opus 4.8 Re-fetches Identical Tool Results — 2-3x Cost Increase Over Opus 4.7",
+    "description": "Reduce excessive API call costs caused by Claude Code Opus 4.8 repeatedly refetching tool results it already received Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "opus-4-8 appears to re-fetch identical tool results after normal (non-error) returns — 2-3x vs opus-4-7",
+    "search_intent": "Reduce excessive API call costs caused by Claude Code Opus 4.8 repeatedly refetching tool results it already received",
+    "common_causes": [
+      "GitHub issue #64257 on anthropics/claude-code, opened Jun 1 2026. Tagged area:cost + area:model + bug. Directly impacts billing for Pro/Max plan users. Performance regression compared to previous Opus 4.7 model. Each redundant fetch adds token cost and latency."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "claude-code-bug-v2-1-156-plus-regression-native-read-bash-return-fabricated-but-plausible-content-triggering-agent-confabulation-cascades",
+    "title": "Claude Code v2.1.156+ Regression — Read/Bash Return Fabricated Plausible Content",
+    "description": "Fix regression in Claude Code v2.1.156+ where file read and bash operations return realistic-looking but fake content Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "[Bug] v2.1.156+ regression: native Read/Bash return fabricated-but-plausible content, triggering agent confabulation cascades",
+    "search_intent": "Fix regression in Claude Code v2.1.156+ where file read and bash operations return realistic-looking but fake content",
+    "common_causes": [
+      "GitHub issue #64268 on anthropics/claude-code, opened Jun 1 2026. Tagged area:bash + area:tools + bug + has repro + regression. Critical version-specific regression affecting trust in core file/bash operations. High impact for developers relying on Claude Code automation."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "claude-code-model-opus-4-8-fabricated-a-present-tense-user-request-and-persisted-on-an-invented-task-context",
+    "title": "Claude Code Opus 4.8 Hallucinates User Requests — Fabricates Task Context",
+    "description": "Fix Claude Code (Opus 4.8) generating fake user instructions and continuing work based on hallucinated task context Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "[MODEL] Opus 4.8 fabricated a present-tense user request and persisted on an invented task context",
+    "search_intent": "Fix Claude Code (Opus 4.8) generating fake user instructions and continuing work based on hallucinated task context",
+    "common_causes": [
+      "GitHub issue #64260 on anthropics/claude-code, opened Jun 1 2026. Tagged area:model + bug + has repro. Specific regression in Opus 4.8 model behavior — fabricates user prompts. Has detailed reproduction steps confirmed by community."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "claude-code-bug-insights-skill-ai-generated-sections-empty-returns",
+    "title": "Claude Code /insights Skill Returns Empty Object Instead of Generated Content",
+    "description": "Fix Claude Code insights skill command returning empty JSON {} instead of AI-generated analysis content Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "[BUG] /insights skill: AI-generated sections empty (returns {})",
+    "search_intent": "Fix Claude Code insights skill command returning empty JSON {} instead of AI-generated analysis content",
+    "common_causes": [
+      "GitHub issue #64275 on anthropics/claude-code, opened Jun 1 2026. Tagged area:skills + bug + platform:macos. The /insights CLI skill fails silently with empty responses. Impacts developers relying on automated project insights for code reviews."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "claude-code-bug-lsp-client-never-sends-textdocument-didclose-leaking-language-server-resources-until-oom",
+    "title": "Claude Code LSP Client Leaks Resources Until Out-of-Memory Crash",
+    "description": "Fix Claude Code LSP integration missing textDocument/didClose messages that cause cumulative memory leaks leading to OOM crashes Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "[BUG] LSP client never sends textDocument/didClose, leaking language-server resources until OOM",
+    "search_intent": "Fix Claude Code LSP integration missing textDocument/didClose messages that cause cumulative memory leaks leading to OOM crashes",
+    "common_causes": [
+      "GitHub issue #64276 on anthropics/claude-code, opened Jun 1 2026. Tagged area:lsp + bug + perf:memory + platform:macos. Long-running Claude Code sessions gradually consume memory due to missing LSP lifecycle messages. Eventually crashes the IDE/editor process."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "claude-code-bug-headless-mode-p-output-format-stream-json-breaks-askuserquestion-handling-model-continues-on-assumptions-instead-of-stopping",
+    "title": "Claude Code Headless Mode Breaks AskUserQuestion Handling — Model Continues on Assumptions",
+    "description": "Fix Claude Code headless mode where interactive questions bypass the expected pause-and-wait behavior, causing the model to make wrong assumptions Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "[BUG] Headless mode (-p --output-format stream-json) breaks AskUserQuestion handling — model continues on assumptions instead of stopping",
+    "search_intent": "Fix Claude Code headless mode where interactive questions bypass the expected pause-and-wait behavior, causing the model to make wrong assumptions",
+    "common_causes": [
+      "GitHub issue #64265 on anthropics/claude-code, opened Jun 1 2026. Tagged api:anthropic + area:cli + bug + has repro + regression. Affects automated CI/CD workflows and headless agent setups. Model proceeds incorrectly without user confirmation — potential for destructive actions."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
   }
 ]
