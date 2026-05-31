@@ -40061,5 +40061,69 @@
     "related_errors": [
       "Cloud Platforms"
     ]
+  },
+  {
+    "slug": "openai-api-insufficient-quota-http-429-classified-as-rate-limit-instead-of-billing",
+    "title": "OpenAI insufficient_quota Returns HTTP 429 Instead of 402 — Billing vs Rate Limit Classification Bug",
+    "description": "Fix misclassification of OpenAI billing exhaustion errors that return HTTP 429 with insufficient_quota error code being treated as retryable rate_limit instead of permanent billing error Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "insufficient_quota (HTTP 429) — classified as rate_limit instead of billing",
+    "search_intent": "Fix misclassification of OpenAI billing exhaustion errors that return HTTP 429 with insufficient_quota error code being treated as retryable rate_limit instead of permanent billing error",
+    "common_causes": [
+      "GitHub issue in NousResearch/hermes-agent repo (#29478, created 2026-05-20). OpenAI returns billing exhaustion as HTTP 429 instead of expected 402. Error classifier early-returns rate_limit for all 429 responses before checking error.code field, masking the actual insufficient_quota billing error. Covers covered 'insufficient_quota' but the HTTP 429 transport layer nuance is not on dev-error-db. Category: OpenAI API (billing/quota failure on paid API)."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "openai-api-openai-api-error-after-retries-exhausted-status-429-code-insufficient-quota-you-exceeded-your-current-quota",
+    "title": "TTS API Broken by OpenAI Quota Exhaustion — 429 insufficient_quota for All Voice Requests",
+    "description": "Recover TTS voice synthesis when OpenAI quota exhausted; developers need billing fix strategy (upgrade plan, add payment method) and retry prevention patterns Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "OpenAI API error after retries exhausted — status: 429, code: \"insufficient_quota\" — You exceeded your current quota",
+    "search_intent": "Recover TTS voice synthesis when OpenAI quota exhausted; developers need billing fix strategy (upgrade plan, add payment method) and retry prevention patterns",
+    "common_causes": [
+      "GitHub issue in shantamg/meet-without-fear repo (#642, created 2026-05-23). Production service where TTS requests return 429 insufficient_quota for all users. Sentry shows 4+ events. Render deployment logs show full stack trace with model: tts-1, retries: 2. Real production impact affecting paying users. Covered-errors.md has generic 'insufficient_quota' but this specific TTS + rendered deployment context is unique."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "claude-code-api-error-529-type-overloaded-error-anthropic-capacity-temporarily-saturated",
+    "title": "Claude Code 529 Overloaded Error — Capacity Saturation on Opus Model During Peak Hours",
+    "description": "Resolve Claude Code 529 overloaded error during peak hours; switch models or wait for capacity recovery without tight retry loops causing collateral 429 rate limiting Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "API Error: 529 {\"type\":\"overloaded_error\"} — Anthropic capacity temporarily saturated",
+    "search_intent": "Resolve Claude Code 529 overloaded error during peak hours; switch models or wait for capacity recovery without tight retry loops causing collateral 429 rate limiting",
+    "common_causes": [
+      "Comprehensive coverage in codersera.com blog post on Claude Code common errors (2026). 529 is distinct from 429 (per-account rate limit) and 503 (edge outage). Specifically affects Opus model on Max plan during peak hours. Search SERP dominated by old forum threads with wrong fixes — strong opportunity for authoritative error guide. /doctor tool can diagnose 80% of issues. High-value P0 candidate."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "anthropic-api-overloaded-error-sse-event-surfaces-raw-json-into-copilot-sidebar-chat-bubble",
+    "title": "Anthropic overloaded_error SSE Event Leaked to User Chat as Visible Error Wall",
+    "description": "Handle Anthropic API overloaded_error (transient server load-shedding, documented) as recoverable transient state instead of surfacing raw error JSON to end users as product bug Includes evidence for Anthropic API troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Anthropic API",
+    "error_signature": "overloaded_error SSE event surfaces raw JSON into Copilot sidebar chat bubble",
+    "search_intent": "Handle Anthropic API overloaded_error (transient server load-shedding, documented) as recoverable transient state instead of surfacing raw error JSON to end users as product bug",
+    "common_causes": [
+      "GitHub issue in Umbraco.AI repo (#174, created 2026-05-20). When Anthropic's API returns an SSE event of type overloaded_error, the client surfaces raw JSON into user-facing chat UI. Users perceive this as a product bug rather than recoverable API state. Distinct from existing dev-error-db entry on client-side retry logic — this focuses on UI/UX error presentation and SSE event handling. Not already published."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Anthropic API"
+    ]
   }
 ]
