@@ -41133,5 +41133,117 @@
     "related_errors": [
       "LiteLLM"
     ]
+  },
+  {
+    "slug": "ollama-heap-out-of-bounds-read-in-gguf-tensor-parsing-cve-2026-7482-cvss-9-1-crafted-malicious-gguf-file-causes-arbitrary-memory-extraction-via-converttof32-buffer-overrun",
+    "title": "Ollama Bleeding Llama CVE-2026-7482 — critical unauthenticated memory leak exposing conversations and API keys",
+    "description": "Understand and fix Ollama vulnerability where crafted GGUF files with mismatched tensor dimensions cause heap buffer overread, potentially leaking user conversations, API keys, and proprietary code Includes evidence for Ollama troubleshooting demand.",
+    "category": "Ollama",
+    "technology": "Ollama",
+    "error_signature": "Heap out-of-bounds read in GGUF tensor parsing (CVE-2026-7482, CVSS 9.1) — Crafted malicious GGUF file causes arbitrary memory extraction via ConvertToF32() buffer overrun",
+    "search_intent": "Understand and fix Ollama vulnerability where crafted GGUF files with mismatched tensor dimensions cause heap buffer overread, potentially leaking user conversations, API keys, and proprietary code",
+    "common_causes": [
+      "Cyera Research disclosure (May 5, 2026) of CVE-2026-7482 affecting ~300,000 Ollama deployments. Critical unauthenticated memory leak: attacker sends crafted GGUF file declaring fake tensor dimensions, triggering out-of-bounds read in ConvertToF32(). Exposes conversations, API keys, env vars, proprietary code. Extremely high commercial value given 170K GitHub stars, 100M Docker Hub downloads. Category: Ollama per SKILL.md."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "Ollama"
+    ]
+  },
+  {
+    "slug": "openai-api-usage-limit-exceeded-plan-limit-reached-no-response-no-error-displayed-no-toast-no-spinner-stop-after-waiting-10s-plus",
+    "title": "OpenAI Codex OAuth usage exhaustion produces no response and no error — silent failure UX",
+    "description": "Add Codex-specific quota exhaustion detection to handle 'Plan limit reached' / 'usage_limit_exceeded' shapes missing from current substring-list detector Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "usage_limit_exceeded — Plan limit reached — No response, no error displayed, no toast, no spinner-stop after waiting 10s+",
+    "search_intent": "Add Codex-specific quota exhaustion detection to handle 'Plan limit reached' / 'usage_limit_exceeded' shapes missing from current substring-list detector",
+    "common_causes": [
+      "Issue #1765 in nesquena/hermes-webui (May 2026) reports OpenAI Codex OAuth accounts going silent on usage exhaustion — no signal whatsoever. Real response body contains phrasing like 'Plan limit reached', 'You've reached the limit of messages per window', 'usage_limit_exceeded'. High commercial value: Plus/Team users ($200/mo) hit quota and get zero feedback. Category: OpenAI API per SKILL.md."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "openai-api-failed-to-parse-openai-responses-stream-event-missing-field-message-actual-response-type-invalid-request-error-code-context-length-exceeded",
+    "title": "OpenAI API error response masking: \"missing field message\" hides real cause (context overflow, quota exceeded)",
+    "description": "Fix Zed editor's OpenAI transport failing to surface actual error reasons (quota exceeded, context overflow) behind generic parsing errors Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "Failed to parse OpenAI responses stream event: missing field `message` — Actual response type: invalid_request_error code: context_length_exceeded",
+    "search_intent": "Fix Zed editor's OpenAI transport failing to surface actual error reasons (quota exceeded, context overflow) behind generic parsing errors",
+    "common_causes": [
+      "Issue #57024 in zed-industries/zed (May 18, 2026) reports GPT-5.5 streaming calls return opaque 'missing field message' instead of the actual error cause (context_length_exceeded). Affects paying users on Codex Pro ($200/mo). High commercial value because developers waste debugging time on misleading errors. Category mapping: OpenAI API per SKILL.md."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "anthropic-api-api-error-529-overloaded-error-type-overloaded-error-multiple-server-errors-400-529-500-blocking-execution",
+    "title": "Anthropic API 529 Overloaded error despite low session usage — blocked execution",
+    "description": "Handle Anthropic 529 overloaded_error gracefully with proper retry/backoff when server-side capacity is exhausted regardless of user's actual usage level Includes evidence for Anthropic API troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Anthropic API",
+    "error_signature": "API Error: 529 Overloaded — error.type: overloaded_error — Multiple server errors (400, 529, 500) blocking execution",
+    "search_intent": "Handle Anthropic 529 overloaded_error gracefully with proper retry/backoff when server-side capacity is exhausted regardless of user's actual usage level",
+    "common_causes": [
+      "Multiple issues in anthropics/claude-code (#61368 May 22, #61387 May 22, #63051 May 28) report 529 Overloaded errors even at 32% weekly session usage. Issue #61387 shows cascading 400/529/500 errors blocking developer workflows entirely. High commercial value: Claude Code Pro subscribers affected during peak hours. Category: Anthropic API per SKILL.md."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "Anthropic API"
+    ]
+  },
+  {
+    "slug": "litellm-claude-code-authentication-failed-unable-to-find-token-in-cache-or-litellm-verificationtokentable-401-authentication-error-invalid-proxy-server-token-passed",
+    "title": "Claude Code 3P tab in Claude Desktop fails proxy auth — LiteLLM virtual key rejected despite valid token",
+    "description": "Fix Anthropic OAuth token taking precedence over LiteLLM virtual key, causing 3P tab authentication failures in Claude Desktop Includes evidence for LiteLLM / Claude Code troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM / Claude Code",
+    "error_signature": "Authentication failed — Unable to find token in cache or LiteLLM_VerificationTokenTable — 401 Authentication Error, Invalid proxy server token passed",
+    "search_intent": "Fix Anthropic OAuth token taking precedence over LiteLLM virtual key, causing 3P tab authentication failures in Claude Desktop",
+    "common_causes": [
+      "Issue #29190 in BerriAI/litellm (May 28, 2026) reports Claude Code 3P tab in Claude Desktop failing proxy auth even with valid LiteLLM virtual key. The root cause hypothesis: Authorization header carrying Anthropic OAuth token (sk-ant-oat-) overrides x-api-key for proxy auth. Same key works in claude CLI but fails in 3P tab. High commercial value: affects paid LiteLLM users running Claude Code through proxy."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "LiteLLM"
+    ]
+  },
+  {
+    "slug": "anthropic-api-authorization-with-the-mcp-server-failed-you-can-check-your-credentials-and-permissions-if-this-persists-share-this-reference-with-support-ofid",
+    "title": "Anthropic MCP server OAuth authorization fails — misleading error message blames credentials when CDN edge blocks callback",
+    "description": "Troubleshoot Anthropic MCP OAuth DCR flow where post-token callback is silently blocked by CDN/firewall, but error message misleads users into thinking their credentials are wrong Includes evidence for Anthropic API troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Anthropic API",
+    "error_signature": "Authorization with the MCP server failed. You can check your credentials and permissions. If this persists, share this reference with support: ofid_...",
+    "search_intent": "Troubleshoot Anthropic MCP OAuth DCR flow where post-token callback is silently blocked by CDN/firewall, but error message misleads users into thinking their credentials are wrong",
+    "common_causes": [
+      "Issue #327 in anthropics/claude-ai-mcp (May 2026) reports OAuth DCR → /authorize → /token completing successfully server-side, but Claude.ai callback to MCP endpoint blocked at CDN edge layer. Error gives zero signal toward infrastructure rejection, steering debugging toward wrong layer (credentials vs network). Reference ID format ofid_* provides actionable debug info. Moderate commercial value: enterprise developers building custom MCP servers."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "Anthropic API"
+    ]
+  },
+  {
+    "slug": "kubernetes-crashloopbackoff-pod-constantly-crashing-in-endless-loop-cannot-start-containers-defined-in-manifest",
+    "title": "Kubernetes CrashLoopBackOff persistent — automated diagnosis requires correlating pod status, events, logs, conditions",
+    "description": "Diagnose CrashLoopBackOff root causes across sprawling K8s clusters by correlating pod status, conditions, events, container state, logs, previous logs, owner resources, and resource details automatically Includes evidence for Kubernetes troubleshooting demand.",
+    "category": "Cloud Platforms",
+    "technology": "Kubernetes",
+    "error_signature": "CrashLoopBackOff — Pod constantly crashing in endless loop — Cannot start containers defined in manifest",
+    "search_intent": "Diagnose CrashLoopBackOff root causes across sprawling K8s clusters by correlating pod status, conditions, events, container state, logs, previous logs, owner resources, and resource details automatically",
+    "common_causes": [
+      "Search results confirm CrashLoopBackOff remains one of the most common Kubernetes production errors. Issues exist in multiple domains (k8s-sigs/headlamp#5431 feature request confirms widespread demand for better diagnostics). High commercial value: enterprise DevOps teams dealing with production outages. Many existing articles exist but no dedicated troubleshooting hub exists on dev-error-db."
+    ],
+    "quick_fix": "Verify the model name, local service connectivity, and network access before retrying the model pull.",
+    "related_errors": [
+      "Cloud Platforms"
+    ]
   }
 ]
