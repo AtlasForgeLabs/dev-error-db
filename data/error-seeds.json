@@ -40509,5 +40509,117 @@
     "related_errors": [
       "Cloudflare"
     ]
+  },
+  {
+    "slug": "openai-api-429-you-exceeded-your-current-quota-please-check-your-plan-and-billing-details-for-more-information-on-this-error-read-the-docs-https-platform-openai-com-docs-guides-error-codes-api-errors",
+    "title": "OpenAI API 429 Rate Limit Exceeded — TPM Quota Errors",
+    "description": "Fix OpenAI 429 rate limit error when using GPT-4.1 or other models; understand TPM/quota limits and how to increase or manage them Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "429 You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.",
+    "search_intent": "Fix OpenAI 429 rate limit error when using GPT-4.1 or other models; understand TPM/quota limits and how to increase or manage them",
+    "common_causes": [
+      "Multiple reported in continuedev/continue issues (#10572, #9563) where developers hit exact 429 quota exceeded errors with detailed TPM response (Limit 30000, Used 22343, Requested 10955). Specific to organization-scoped rate limits. Category: OpenAI API as per mapping rules."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "openai-api-rate-limit-reached-for-gpt-4-1-in-organization-org-np2zltcbjrx4eh8i3wcq7ykd-on-tokens-per-min-tpm-limit-30000-used-22343-requested-10955-please-try-again-in-6-596s",
+    "title": "OpenAI Organization-Specific TPM Rate Limit Per Minute",
+    "description": "Debug and resolve per-organization TPM rate limits on OpenAI API; need to adjust limits or implement backoff strategy Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "Rate limit reached for gpt-4.1 in organization org-np2zLTCBjRx4eh8i3WCq7YKD on tokens per min (TPM): Limit 30000, Used 22343, Requested 10955. Please try again in 6.596s.",
+    "search_intent": "Debug and resolve per-organization TPM rate limits on OpenAI API; need to adjust limits or implement backoff strategy",
+    "common_causes": [
+      "Found in continuedev/continue#9563 with full organizational context showing org-level TPM tracking. Distinct from general quota exceeded—this is about per-minute token limits at the org level. Category: OpenAI API."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "claude-code-mcp-error-32000-connection-closed-after-establishment-failed-to-fetch-tools-cursor-option-disappears-entirely-in-ide-menu",
+    "title": "Claude Code MCP IDE Connection Failure — Race Condition in Cursor Integration",
+    "description": "Fix Claude Code failing to connect to Cursor IDE via MCP protocol; MCP server connection race condition causes repeated disconnect loops Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "MCP error -32000: Connection closed after establishment; Failed to fetch tools; 'Cursor' option disappears entirely in /ide menu",
+    "search_intent": "Fix Claude Code failing to connect to Cursor IDE via MCP protocol; MCP server connection race condition causes repeated disconnect loops",
+    "common_causes": [
+      "anthropics/claude-code#20826 reports persistent IDE disconnection loop with MCP ws-ide server closing immediately after connection. Windows-specific but root cause may be cross-platform. Repeated in related issues #12449, #20713. Category: AI Coding Tools (Claude Code mapping per SKILL.md)."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "litellm-litellm-timeout-connection-timed-out-prisma-client-timeout-error-removes-active-models",
+    "title": "LiteLLM Timeout Bug Deletes Active Models from Gateway",
+    "description": "Resolve LiteLLM gateway becoming unusable when timeout causes deletion of all active models from the database Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "litellm.Timeout: Connection timed out; Prisma client timeout error removes active models",
+    "search_intent": "Resolve LiteLLM gateway becoming unusable when timeout causes deletion of all active models from the database",
+    "common_causes": [
+      "BerriAI/litellm#6397 reports custom model timeout not working as configured; #7196 shows Prisma timeout causing deletion of all active models. Production impact on proxy-based LLM routing. Category: LiteLLM per mapping rules."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "LiteLLM"
+    ]
+  },
+  {
+    "slug": "github-actions-remote-permission-to-repo-git-denied-to-github-actions-bot",
+    "title": "GitHub Actions Workflow Permission Denied When Pushing to Repo",
+    "description": "Fix GitHub Actions CI/CD pipeline failing when bot account lacks push permission to repository after checkout step Includes evidence for GitHub Actions troubleshooting demand.",
+    "category": "GitHub Actions",
+    "technology": "GitHub Actions",
+    "error_signature": "remote: Permission to <repo>.git denied to github-actions[bot].",
+    "search_intent": "Fix GitHub Actions CI/CD pipeline failing when bot account lacks push permission to repository after checkout step",
+    "common_causes": [
+      "community/discussions#156921 describes persistent permission denied errors in GitHub Actions workflows when attempting automated commits. Affects paid team CI/CD. Category: GitHub Actions per mapping rules."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "GitHub Actions"
+    ]
+  },
+  {
+    "slug": "docker-error-during-connect-this-error-may-indicate-that-the-docker-daemon-is-not-running-get-http-2f-2f-2fpipe-2fdocker-engine-v1-24-containers-json",
+    "title": "Docker Compose Cannot Connect to Daemon — Socket/File Not Found",
+    "description": "Fix Docker Compose failing with daemon connection error; identify why Docker daemon socket is inaccessible Includes evidence for Docker troubleshooting demand.",
+    "category": "Docker",
+    "technology": "Docker",
+    "error_signature": "error during connect: this error may indicate that the docker daemon is not running: Get \"http://%2F%2F.%2Fpipe%2Fdocker_engine/v1.24/containers/json\"",
+    "search_intent": "Fix Docker Compose failing with daemon connection error; identify why Docker daemon socket is inaccessible",
+    "common_causes": [
+      "docker/compose#10223 reports Docker daemon not running error with pipe/socket access failure. Common pain point for developers. Category: Docker per mapping rules. Additional evidence from docker/for-win#14759."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Docker"
+    ]
+  },
+  {
+    "slug": "ollama-failed-to-connect-to-ollama-api-500-internal-server-error-error-model-requires-more-system-memory-20-0-gib-than-is-available-5-0-gib",
+    "title": "Ollama Model Loading Fails — Insufficient System Memory (Required > Available)",
+    "description": "Resolve Ollama 500 error when loading large models that exceed available system RAM; find solutions for managing large local LLMs Includes evidence for Ollama troubleshooting demand.",
+    "category": "Ollama",
+    "technology": "Ollama",
+    "error_signature": "Failed to connect to Ollama API: 500 Internal Server Error {\"error\":\"model requires more system memory (20.0 GiB) than is available (5.0 GiB)\"}",
+    "search_intent": "Resolve Ollama 500 error when loading large models that exceed available system RAM; find solutions for managing large local LLMs",
+    "common_causes": [
+      "zed-industries/zed#42751 shows Zed IDE receiving 500 from Ollama API due to memory mismatch. Related: ollama/ollama#10784 ROCm buffer allocation failure. Strong signals for local LLM serving pain point. Category: Ollama per mapping rules."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Ollama"
+    ]
   }
 ]
