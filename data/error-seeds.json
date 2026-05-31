@@ -40125,5 +40125,85 @@
     "related_errors": [
       "Anthropic API"
     ]
+  },
+  {
+    "slug": "anthropic-api-api-error-an-image-in-the-conversation-could-not-be-processed-and-was-removed-double-press-esc-to-edit-your-message-or-re-read-the-file-if-you-still-need-it",
+    "title": "Anthropic API Image Processing Failure Burns Tokens",
+    "description": "User pays per-token for Claude API/Claude Code but Anthropic fails to process images they didn't even send, wasting their 5-hour session window. They want to know why their credits burn when no image is present and how to prevent it. Includes evidence for Anthropic API troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Anthropic API",
+    "error_signature": "API Error: an image in the conversation could not be processed and was removed. Double press esc to edit your message, or re-read the file if you still need it.",
+    "search_intent": "User pays per-token for Claude API/Claude Code but Anthropic fails to process images they didn't even send, wasting their 5-hour session window. They want to know why their credits burn when no image is present and how to prevent it.",
+    "common_causes": [
+      "GitHub issue #60334 on anthropics/claude-code repo (labelled bug, area:api, area:cost, platform:macos). User reports 'a LOT' of errors burning ~70% of 5h window with no image attached. Root cause: 'Unable to determine image format'. Error occurs during normal coding sessions. Covers both the generic image-processing API failure AND the related rate-limiting behavior ('Server is temporarily limiting requests'). Category mapping: direct Anthropic API error surface within Claude Code environment."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Anthropic API"
+    ]
+  },
+  {
+    "slug": "claude-code-usage-limit-reached",
+    "title": "Claude Code Usage Limit Reached Despite Low UI Percentage Display",
+    "description": "Paid Claude Code Pro subscriber gets blocked with hard 'Usage limit reached' error while dashboard shows only 1-17% utilization across all tracked metrics. They need to understand the discrepancy, get unblocked, and learn whether switching models helps. Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Usage limit reached",
+    "search_intent": "Paid Claude Code Pro subscriber gets blocked with hard 'Usage limit reached' error while dashboard shows only 1-17% utilization across all tracked metrics. They need to understand the discrepancy, get unblocked, and learn whether switching models helps.",
+    "common_causes": [
+      "GitHub issue #51219 on anthropics/claude-code repo (labelled bug, area:cost, platform:windows, stale). Created 2026-04-20, closed 2026-05-30. Reports hard block on all models including Opus 4.7 and Sonnet 4.6 while weekly limits show ~17%. Switching models did not resolve. Category mapping: direct Claude Code subscription tool error — user facing paid plan restrictions incorrectly."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "claude-code-setting-up-a-cloud-container",
+    "title": "Claude Code Cloud Container Stuck Indefinitely on 'Setting Up'",
+    "description": "Enterprise Claude Code web user's scheduled routine (CCR) hangs indefinitely at 'Setting up a cloud container' for 25+ minutes with no progress, error, or timeout. User needs to get running automated tasks working with Opus 4-7 on private repos. Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Setting up a cloud container",
+    "search_intent": "Enterprise Claude Code web user's scheduled routine (CCR) hangs indefinitely at 'Setting up a cloud container' for 25+ minutes with no progress, error, or timeout. User needs to get running automated tasks working with Opus 4-7 on private repos.",
+    "common_causes": [
+      "GitHub issue #54444 on anthropics/claude-code repo (labelled duplicate, platform:web, area:routines, stale). Created 2026-04-28, closed 2026-05-30. Occurs on Web platform with GitHub-authenticated private repos. Routine scheduled every 3 hours with claude-opus-4-7 model. Verified PAT authenticates fine from local machine — problem is server-side container provisioning. Category mapping: Claude Code web/cloud runtime failure affecting paid Opus-tier enterprise workflows."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "claude-code-starting-claude-code-on-the-web-container-fails-to-start-api-timeout-partial-response",
+    "title": "Claude Code Ultraplan Container Startup Failure Loop",
+    "description": "Claude Code Ultraplan subscriber attempts plan-refined execution via cloud container but encounters persistent failures: container never spins up (90-min idle then error), partial response with timeout, or error_during_execution before ExitPlanMode. Needs reliable cloud-hosted agent execution for complex plans. Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Starting Claude Code on the web… container fails to start / API timeout / partial response",
+    "search_intent": "Claude Code Ultraplan subscriber attempts plan-refined execution via cloud container but encounters persistent failures: container never spins up (90-min idle then error), partial response with timeout, or error_during_execution before ExitPlanMode. Needs reliable cloud-hosted agent execution for complex plans.",
+    "common_causes": [
+      "GitHub issue #54476 on anthropics/claude-code repo (labelled bug, platform:windows, area:cowork, stale). Created 2026-04-28, closed 2026-05-30. Describes sustained failure pattern across multiple consecutive attempts with ~10K-token plan files. Workaround: fallback to local execution. Category mapping: Claude Code cloud container orchestration failure affecting paid Ultraplan users executing multi-step plans remotely."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "vercel-malformed-request-url-causes-500-response",
+    "title": "Next.js Malformed Request URL Causes Internal 500 Server Error",
+    "description": "Developer deployed to Vercel/Next.js sees HTTP 500 errors triggered by malformed request URLs. They need to identify which URL patterns cause the crash and how to add input validation or error handling to prevent server crashes in production. Includes evidence for Vercel troubleshooting demand.",
+    "category": "Deployment",
+    "technology": "Vercel",
+    "error_signature": "Malformed Request URL causes 500 response",
+    "search_intent": "Developer deployed to Vercel/Next.js sees HTTP 500 errors triggered by malformed request URLs. They need to identify which URL patterns cause the crash and how to add input validation or error handling to prevent server crashes in production.",
+    "common_causes": [
+      "GitHub issue #94272 on vercel/next.js repo (labelled invalid link, auto-closed). Created 2026-05-30, closed same day. The error signature points to server-side URL parsing crashing with 500 — developer-facing error that blocks production debugging. Related PR #94241 shows similar category: 'next typegen' silent failures causing tsc errors downstream. Category mapping: Next.js deployment framework error surface on Vercel hosting platform."
+    ],
+    "quick_fix": "Check the build output, project root, and deployment platform configuration before redeploying.",
+    "related_errors": [
+      "Deployment"
+    ]
   }
 ]
