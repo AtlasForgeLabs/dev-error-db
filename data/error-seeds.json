@@ -41357,5 +41357,69 @@
     "related_errors": [
       "AI Coding Tools"
     ]
+  },
+  {
+    "slug": "claude-code-mcp-server-connection-timed-out-after-30000ms-got-new-credentials-but-reconnecting-to-server-failed",
+    "title": "MCP server HTTP/SSE type times out after OAuth authentication completes in Claude Code",
+    "description": "Fix MCP HTTP/SSE server timeout that occurs after OAuth flow completes successfully — Claude Code fails to establish the MCP connection despite endpoint being active Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "MCP server connection timed out after 30000ms: Got new credentials, but reconnecting to server failed",
+    "search_intent": "Fix MCP HTTP/SSE server timeout that occurs after OAuth flow completes successfully — Claude Code fails to establish the MCP connection despite endpoint being active",
+    "common_causes": [
+      "Source: GitHub issue #60521 on anthropics/claude-code repo. After successful OAuth flow, Claude Code times out connecting to HTTP/SSE MCP servers (tested with Glean MCP). Endpoint responds with HTTP 401 in ~0.3s via direct curl, confirming it's alive. Issue confirmed as regression (worked in previous version), Claude Code v2.1.144 on macOS with AWS Bedrock platform."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "litellm-rate-limit-error-reported-as-no-deployments-available-for-selected-region-instead-of-proper-429-error",
+    "title": "LiteLLM RateLimitError misreported as deployment unavailable",
+    "description": "Fix LiteLLM proxy returning confusing error message 'No deployments available' when actual root cause is 429 rate limit from VertexAI backend Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "Rate limit error reported as \"No deployments available for selected region\" instead of proper 429 error",
+    "search_intent": "Fix LiteLLM proxy returning confusing error message 'No deployments available' when actual root cause is 429 rate limit from VertexAI backend",
+    "common_causes": [
+      "Source: GitHub issue #20867 on BerriAI/litellm repo. When VertexAI backend hits rate limit (HTTP 429, RESOURCE_EXHAUSTED), LiteLLM's exception class is correct but user-facing error message is misleading. Also supported by issue #7358 showing RateLimitError with VertexAIException during PaperQA stress testing. High commercial value since production routing failures affect billing."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "LiteLLM"
+    ]
+  },
+  {
+    "slug": "vercel-module-not-found-can-t-resolve-components-forms-registerform-works-locally-on-windows-fails-on-vercel-linux-build",
+    "title": "Vercel Module Not Found case-sensitive file system bug (local OK, deploy fails)",
+    "description": "Fix Next.js module resolution failure during Vercel deployment caused by case-sensitive file system difference between local Windows machine and Vercel Linux build environment Includes evidence for Vercel troubleshooting demand.",
+    "category": "Deployment",
+    "technology": "Vercel",
+    "error_signature": "Module not found: Can't resolve '@/components/forms/RegisterForm' — works locally on Windows, fails on Vercel Linux build",
+    "search_intent": "Fix Next.js module resolution failure during Vercel deployment caused by case-sensitive file system difference between local Windows machine and Vercel Linux build environment",
+    "common_causes": [
+      "Source: GitHub issue #69390 on vercel/next.js repo. Local build (npm run build on Windows/Next.js 14.2.3) succeeds but Vercel deployment fails with webpack module not found error. Suspected root cause: case sensitivity mismatch (Windows case-insensitive vs Vercel Linux case-sensitive). Common for developers deploying from Mac/Windows machines to Vercel."
+    ],
+    "quick_fix": "Check the build output, project root, and deployment platform configuration before redeploying.",
+    "related_errors": [
+      "Deployment"
+    ]
+  },
+  {
+    "slug": "claude-code-sdk-auth-failed-the-provided-redirect-uris-are-not-registered-for-this-client-meta-ads-mcp",
+    "title": "Meta Ads MCP OAuth fails on Claude Code desktop: redirect_uri not registered",
+    "description": "Fix Meta Ads MCP OAuth failure in Claude Code desktop where redirect_uri localhost:PORT is not registered on Meta's OAuth app Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "SDK auth failed: The provided redirect_uris are not registered for this client (meta ads MCP)",
+    "search_intent": "Fix Meta Ads MCP OAuth failure in Claude Code desktop where redirect_uri localhost:PORT is not registered on Meta's OAuth app",
+    "common_causes": [
+      "Source: GitHub issue #57114 on anthropics/claude-code repo. Meta Ads MCP authenticates successfully in claude.ai web app but fails in Claude Code desktop due to mismatched redirect_uri registration. Root cause: claude.ai web uses https://claude.ai/... redirect while desktop likely uses http://localhost:PORT. No workaround available — users must fallback to manual Graph API credentials."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
   }
 ]
