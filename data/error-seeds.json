@@ -40621,5 +40621,101 @@
     "related_errors": [
       "Ollama"
     ]
+  },
+  {
+    "slug": "github-copilot-copilot-cli-incorrectly-blocks-usage-with-quota-exceeded-402-despite-paid-over-quota-enabled",
+    "title": "GitHub Copilot CLI Blocks Usage Despite Paid Over-Quota Enabled (402 Quota Exceeded)",
+    "description": "Resolve incorrect quota block on Copilot CLI for paid Pro+ accounts that have over-quota feature enabled — users pay extra but still get 402 errors Includes evidence for GitHub Copilot troubleshooting demand.",
+    "category": "GitHub Copilot",
+    "technology": "GitHub Copilot",
+    "error_signature": "Copilot CLI incorrectly blocks usage with quota_exceeded (402) despite paid over-quota enabled",
+    "search_intent": "Resolve incorrect quota block on Copilot CLI for paid Pro+ accounts that have over-quota feature enabled — users pay extra but still get 402 errors",
+    "common_causes": [
+      "Issue #3431 on github/copilot-cli. Paid users with explicit over-quota toggle are incorrectly denied with HTTP 402. Related: issue #3311 (auth flow swallows REST quota errors) and #2742 (persistent 429 on paid Pro+). High commercial value — directly affects paying Copilot Pro+ subscribers."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "GitHub Copilot"
+    ]
+  },
+  {
+    "slug": "cursor-connection-failed-please-try-again-or-contact-support-if-the-issue-persists-request-id-visible",
+    "title": "Cursor IDE Connection Failed After 2026 Update — Contact Support Required",
+    "description": "Resolve Cursor IDE connection failure post-update requiring support intervention — paid users unable to access AI coding features Includes evidence for Cursor troubleshooting demand.",
+    "category": "Cursor",
+    "technology": "Cursor",
+    "error_signature": "Connection failed. Please try again, or contact support if the issue persists (Request ID visible)",
+    "search_intent": "Resolve Cursor IDE connection failure post-update requiring support intervention — paid users unable to access AI coding features",
+    "common_causes": [
+      "Forum.cursor.com thread from April 26, 2026. Generic 'Connection failed' error with unique Request ID tracking. Also related: issue #152326 (models except Auto failing), #159032 (non-Auto models broken), #154332 (ERROR_NETWORK_ERROR). All affect paying Cursor users."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Cursor"
+    ]
+  },
+  {
+    "slug": "anthropic-api-agent-sdk-crashes-on-429-rate-limit-error-instead-of-implementing-retry-backoff-logic",
+    "title": "Anthropic Agent SDK Crashes on 429 Rate Limit Instead of Handling Gracefully",
+    "description": "Add graceful 429 rate limit handling with retry-after logic to Anthropic Claude Agent SDK — currently crashes on first rate limit hit Includes evidence for Anthropic API troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Anthropic API",
+    "error_signature": "Agent SDK crashes on 429 rate limit error instead of implementing retry/backoff logic",
+    "search_intent": "Add graceful 429 rate limit handling with retry-after logic to Anthropic Claude Agent SDK — currently crashes on first rate limit hit",
+    "common_causes": [
+      "Issue #812 on anthropics/claude-agent-sdk-python (7K stars). SDK does not handle HTTP 429 gracefully — causes agent crashes instead of exponential backoff. Related: issue #35517 (frequent overloaded_error/529 on Opus 4.6 subagent spawning), #44481 (429/529 on Max plan with concurrent teammates). Affects production agent workflows."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "Anthropic API"
+    ]
+  },
+  {
+    "slug": "vercel-typeerror-path-argument-must-be-of-type-string-received-undefined-during-applying-modifyconfig-from-vercel",
+    "title": "Vercel Remote Build Fails With TypeError During Applying ModifyConfig from Vercel",
+    "description": "Fix Vercel remote deployment crash caused by undefined path argument in Next.js 16.x modifyConfig hook integration Includes evidence for Vercel troubleshooting demand.",
+    "category": "Deployment",
+    "technology": "Vercel",
+    "error_signature": "TypeError: path argument must be of type string. Received undefined during Applying modifyConfig from Vercel",
+    "search_intent": "Fix Vercel remote deployment crash caused by undefined path argument in Next.js 16.x modifyConfig hook integration",
+    "common_causes": [
+      "Issue #16409 on vercel/vercel + related #94053 on vercel/next.js. Type error in Vercel's internal config modification step during remote builds — specific stack trace, reproducible, affects Next.js 16.x projects deployed on Vercel. High urgency for teams running CI/CD via Vercel."
+    ],
+    "quick_fix": "Check the build output, project root, and deployment platform configuration before redeploying.",
+    "related_errors": [
+      "Deployment"
+    ]
+  },
+  {
+    "slug": "github-actions-internal-error-during-cache-restore-download-in-github-actions-workflow",
+    "title": "GitHub Actions Cache Internal Error With Community Widespread Impact",
+    "description": "Fix GitHub Actions cache action returning internal server errors, blocking CI/CD pipelines for teams relying on dependency caching Includes evidence for GitHub Actions troubleshooting demand.",
+    "category": "GitHub Actions",
+    "technology": "GitHub Actions",
+    "error_signature": "Internal error during cache restore/download in GitHub Actions workflow",
+    "search_intent": "Fix GitHub Actions cache action returning internal server errors, blocking CI/CD pipelines for teams relying on dependency caching",
+    "common_causes": [
+      "Issue #1611 on actions/cache. Persistent internal error in cache operation with 39 👍 reactions. Affects production CI/CD pipelines — builds fail when cache cannot be restored, slowing down team productivity."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "GitHub Actions"
+    ]
+  },
+  {
+    "slug": "litellm-routerratelimiterror-missing-retry-after-header-when-all-deployments-in-cooldown-rate-limit-reported-as-no-deployments-available-for-selected-model",
+    "title": "LiteLLM Rate Limit Error Returns Wrong Message Without Retry-After Header",
+    "description": "Fix LiteLLM proxy to include proper Retry-After header and accurate error messages when rate limiting backend deployments — current output shows confusing generic message instead of actionable rate limit info Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "RouterRateLimitError missing Retry-After header when all deployments in cooldown; rate limit reported as 'No deployments available for selected model'",
+    "search_intent": "Fix LiteLLM proxy to include proper Retry-After header and accurate error messages when rate limiting backend deployments — current output shows confusing generic message instead of actionable rate limit info",
+    "common_causes": [
+      "Issues #27823 (missing Retry-After header), #20867 (rate limit mislabeled as 'No deployments available'), #22007 (missing normalized prefix) on BerriAI/litellm. Affects teams using LiteLLM as proxy gateway managing multi-provider API costs — wrong error messages make automated retry logic impossible."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "LiteLLM"
+    ]
   }
 ]
