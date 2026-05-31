@@ -40429,5 +40429,85 @@
     "related_errors": [
       "LiteLLM"
     ]
+  },
+  {
+    "slug": "openai-api-quota-exceeded-when-i-have-93-available-in-my-5-hour-window-and-weekly-usage-at-94-available",
+    "title": "OpenAI Codex Shows Quota Exceeded Despite Having Usage Available — API Key vs Subscription Confusion",
+    "description": "Resolve false-positive quota exceeded error in Codex IDE/CLI when actual API credits remain unused due to subscription vs API key billing confusion Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "Quota exceeded, when I have 93% available in my 5 hour window, and weekly usage at 94% available",
+    "search_intent": "Resolve false-positive quota exceeded error in Codex IDE/CLI when actual API credits remain unused due to subscription vs API key billing confusion",
+    "common_causes": [
+      "GitHub Issue #9305 on openai/codex reports users getting quota exceeded error despite having 93% of their 5-hour window available. Root cause: subscription windows vs API key billing are conflated. Directly affects paid Codex users and creates billing confusion. High ad/affiliate value for OpenAI API pricing pages. Category mapping: OpenAI Codex API errors → OpenAI API."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "litellm-no-deployments-available-for-selected-provider-rate-limit-actually-triggered-but-wrapped-as-deployment-unavailable",
+    "title": "LiteLLM Rate Limit Misreported as Deployment Failure — Missing Provider-Specific Error Prefix",
+    "description": "Decode correct rate limit errors from LiteLLM proxy when upstream provider (Bedrock, etc.) hits RPM/TPM quotas but LiteLLM masks them as deployment failures Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "No deployments available for selected provider — rate limit actually triggered but wrapped as deployment unavailable",
+    "search_intent": "Decode correct rate limit errors from LiteLLM proxy when upstream provider (Bedrock, etc.) hits RPM/TPM quotas but LiteLLM masks them as deployment failures",
+    "common_causes": [
+      "GitHub Issues #20867 + #18116 on BerriAI/litellm. Provider-side rate limits get normalized but LiteLLM internal proxy limits (virtual key RPM/TPM in _handle_rate_limit_error) raise plain HTTPException without proper litellm.RateLimitError prefix. Teams using LiteLLM proxy for multi-provider routing cannot distinguish real outages from rate limits. Category mapping: LiteLLM proxy errors → LiteLLM."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "LiteLLM"
+    ]
+  },
+  {
+    "slug": "github-copilot-401-unauthorized-unauthorized-authenticatetoken-authentication-failed",
+    "title": "GitHub Copilot CLI Auth Regression — AuthenticateToken Failed After Upgrade to v0.0.372",
+    "description": "Fix GitHub Copilot CLI authentication regression introduced in v0.0.372 where login succeeds but model calls fail with AuthenticateToken error Includes evidence for GitHub Copilot troubleshooting demand.",
+    "category": "GitHub Copilot",
+    "technology": "GitHub Copilot",
+    "error_signature": "401 unauthorized: unauthorized: AuthenticateToken authentication failed",
+    "search_intent": "Fix GitHub Copilot CLI authentication regression introduced in v0.0.372 where login succeeds but model calls fail with AuthenticateToken error",
+    "common_causes": [
+      "GitHub Issue #829 on github/copilot-cli. Confirmed regression in v0.0.372 — downgrade to v0.0.369 resolves immediately. Reproduced on macOS and Ubuntu, corporate networks affected. Directly impacts paying Copilot subscribers using CLI. Already fixed by devm33 but still relevant for upgrade tracking pages. Category mapping: GitHub Copilot specific → GitHub Copilot."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "GitHub Copilot"
+    ]
+  },
+  {
+    "slug": "litellm-anthropic-authenticationerror-error-code-401-type-authentication-error-message-invalid-x-api-key",
+    "title": "LiteLLM Proxy Authentication Error — Anthropic SDK Passes Through Invalid x-api-key Header",
+    "description": "Fix Anthropic SDK pass-through authentication failure when using LiteLLM proxy virtual keys (sk-*), causing 401 invalid x-api-key errors Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "anthropic.AuthenticationError: Error code: 401 - {\"type\":\"authentication_error\",\"message\":\"invalid x-api-key\"}",
+    "search_intent": "Fix Anthropic SDK pass-through authentication failure when using LiteLLM proxy virtual keys (sk-*), causing 401 invalid x-api-key errors",
+    "common_causes": [
+      "GitHub Issue #9466 on BerriAI/litellm. Users following official docs get 401 errors when using LITELLM_MASTER_KEY with Anthropic SDK via LiteLLM proxy. The x-api-key header format isn't properly mapped. Affects all LiteLLM proxy deployments. Distinct from rate limit issues (#20867). Category mapping: LiteLLM proxy auth → LiteLLM."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "LiteLLM"
+    ]
+  },
+  {
+    "slug": "cloudflare-npx-wrangler-tail-command-fails-with-etimedout-errors-connecting-to-various-ip-addresses",
+    "title": "Cloudflare Workers SDK wrangler tail Command Fails with ETIMEDOUT Network Errors",
+    "description": "Fix Cloudflare Workers log streaming timeout errors preventing real-time debugging of production Workers Includes evidence for Cloudflare troubleshooting demand.",
+    "category": "Cloudflare",
+    "technology": "Cloudflare",
+    "error_signature": "npx wrangler tail command fails with ETIMEDOUT errors connecting to various IP addresses",
+    "search_intent": "Fix Cloudflare Workers log streaming timeout errors preventing real-time debugging of production Workers",
+    "common_causes": [
+      "GitHub Issue #6524 on cloudflare/workers-sdk. wrangler tail fails with ETIMEDOUT when connecting to worker IPs. Critical for debugging production Workers in paid plans. Also found Issue #787 (custom domain worker-to-worker 522 timeout) and Issue #10616 (malformed 524 responses). Multi-issue cluster increases search demand. Category mapping: Cloudflare Workers → Cloudflare."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Cloudflare"
+    ]
   }
 ]
