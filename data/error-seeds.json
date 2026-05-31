@@ -41677,5 +41677,117 @@
     "related_errors": [
       "Cloudflare"
     ]
+  },
+  {
+    "slug": "openai-api-error-429-rate-limit-exceeded",
+    "title": "OpenAI API 429 Rate Limit Exceeded — Tier RPM/TPM Limits in Serverless (Next.js / AWS Lambda)",
+    "description": "Resolve OpenAI API 429 errors caused by hitting tier-based RPM/TPM limits when using the SDK in serverless environments like Next.js App Router or AWS Lambda, including how to stream responses and configure exponential backoff Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "Error 429: Rate Limit Exceeded",
+    "search_intent": "Resolve OpenAI API 429 errors caused by hitting tier-based RPM/TPM limits when using the SDK in serverless environments like Next.js App Router or AWS Lambda, including how to stream responses and configure exponential backoff",
+    "common_causes": [
+      "Multiple articles (Tech Hacks May 29 2026, Technology Org May 4 2026, Eden AI Mar 13 2026) cover OpenAI 429 rate-limiting in production serverless deployments. Errors triggered by RPM or TPM thresholds depending on user tier (Tier 1 ~500K TPM/1K RPM vs Tier 5 several million). No existing coverage on dev-error-db.com for this specific serverless context."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "cursor-user-api-key-rate-limit-exceeded",
+    "title": "Cursor GPT-5.5 BYOK 'User API key rate limit exceeded' Blocks Custom Backend Requests",
+    "description": "Fix Cursor blocking requests to custom OpenAI-compatible endpoints with BYOK and showing a false rate-limit error before reaching user's own backend server Includes evidence for Cursor troubleshooting demand.",
+    "category": "Cursor",
+    "technology": "Cursor",
+    "error_signature": "User API key rate limit exceeded",
+    "search_intent": "Fix Cursor blocking requests to custom OpenAI-compatible endpoints with BYOK and showing a false rate-limit error before reaching user's own backend server",
+    "common_causes": [
+      "Cursor forum report #160004 (May 2026): GPT-5.5 model in Cursor IDE intercepts and blocks requests meant for configured custom backend, displaying 'User API key rate limit exceeded' instead. The same API key works correctly in other IDEs/tools; selecting GPT-5.4 bypasses the issue. Category mapping: Cursor IDE-specific bug affecting BYOK paying users."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "Cursor"
+    ]
+  },
+  {
+    "slug": "vercel-typeerror-cannot-read-properties-of-undefined-reading-path-at-incomingmessage-anonymous-opt-rust-nodejs-js-2-14272",
+    "title": "Vercel Runtime 504 Timeout — TypeError Cannot read properties of undefined (reading 'path') at /opt/rust/nodejs.js",
+    "description": "Debug Vercel runtime bridge failures causing 504 timeout errors on deployed functions, where the internal nodejs.js module throws an unhandled TypeError during execution Includes evidence for Vercel troubleshooting demand.",
+    "category": "Deployment",
+    "technology": "Vercel",
+    "error_signature": "TypeError: Cannot read properties of undefined (reading 'path') at IncomingMessage.<anonymous> (/opt/rust/nodejs.js:2:14272)",
+    "search_intent": "Debug Vercel runtime bridge failures causing 504 timeout errors on deployed functions, where the internal nodejs.js module throws an unhandled TypeError during execution",
+    "common_causes": [
+      "Vercel Community forum post (May 8 2026): CedarJS/RedwoodJS deployments experience repeated 504 timeouts with internal TypeError originating from /opt/rust/nodejs.js in the Vercel runtime bridge. Issue affects multiple regions (Sydney/ap-southeast-2). No prior dev-error-db.com coverage of this specific Vercel runtime bug."
+    ],
+    "quick_fix": "Check the build output, project root, and deployment platform configuration before redeploying.",
+    "related_errors": [
+      "Deployment"
+    ]
+  },
+  {
+    "slug": "litellm-cross-pod-spend-counter-double-counting-after-redis-cache-miss",
+    "title": "LiteLLM Cross-Pod Spend Counter Double-Counting After Redis Cache Miss",
+    "description": "Fix LiteLLM proxy budget/spend tracking inaccuracies where team budgets are double-counted across pods following Redis cache misses, leading to incorrect quota enforcement and premature rate limiting Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "cross-pod spend-counter double-counting after Redis cache miss",
+    "search_intent": "Fix LiteLLM proxy budget/spend tracking inaccuracies where team budgets are double-counted across pods following Redis cache misses, leading to incorrect quota enforcement and premature rate limiting",
+    "common_causes": [
+      "LiteLLM release notes v1.85.1/v1.84.1 (May 20 2026): Patch fix for cross-pod spend-counter double-counting bug triggered by Redis cache miss. This directly impacts team budget accuracy and rate limiting in multi-pod LiteLLM deployments. Category mapping: LiteLLM proxy billing/quota error."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "LiteLLM"
+    ]
+  },
+  {
+    "slug": "github-actions-failed-to-queue-workflow-run-please-try-again",
+    "title": "GitHub Actions Manual Workflow Dispatch Fails With 'Failed to Queue Workflow Run'",
+    "description": "Fix GitHub Actions manual workflow_dispatch trigger returning 'Failed to queue workflow run' error preventing CI workflow execution and deployment validation Includes evidence for GitHub Actions troubleshooting demand.",
+    "category": "GitHub Actions",
+    "technology": "GitHub Actions",
+    "error_signature": "Failed to queue workflow run. Please try again.",
+    "search_intent": "Fix GitHub Actions manual workflow_dispatch trigger returning 'Failed to queue workflow run' error preventing CI workflow execution and deployment validation",
+    "common_causes": [
+      "GitHub community discussion #196982 (May 26 2026): Manual workflow dispatch consistently fails with 'Failed to queue workflow run' error despite workflow having correct workflow_dispatch event trigger. Blocks manual CI validation and deployment-related checks. Related to April 2026 GitHub service degradation incidents."
+    ],
+    "quick_fix": "Check the build output, project root, and deployment platform configuration before redeploying.",
+    "related_errors": [
+      "GitHub Actions"
+    ]
+  },
+  {
+    "slug": "claude-code-failed-to-start-oauth-flow-for-meta-ads-sdk-auth-failed-the-provided-redirect-uris-are-not-registered-for-this-client",
+    "title": "Claude Code MCP OAuth Flow Fails — 'redirect_uris are not registered for this client'",
+    "description": "Fix Claude Code MCP server OAuth authentication failing because Meta does not recognize the redirect URI presented during OAuth client registration, blocking meta-ads integration Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Failed to start OAuth flow for meta-ads: SDK auth failed: The provided redirect_uris are not registered for this client",
+    "search_intent": "Fix Claude Code MCP server OAuth authentication failing because Meta does not recognize the redirect URI presented during OAuth client registration, blocking meta-ads integration",
+    "common_causes": [
+      "GitHub issue anthropics/claude-code#59924: The built-in mcp__meta-ads__ server cannot complete OAuth authentication because its redirect_uri is not on Meta's allowed list. Auth flow never reaches facebook.com authorization page. Occurs during initial OAuth client validation. Category mapping: Claude Code MCP auth error for paid enterprise integrations."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "docker-failed-to-connect-to-the-docker-api-at-npipe-pipe-dockerdesktoplinuxengine-the-system-cannot-find-the-file-specified",
+    "title": "Docker Desktop v4.73.0 Fails to Start — npipe Docker API Connection Error on Windows WSL2",
+    "description": "Resolve Docker Desktop v4.73.0 starting failure on Windows where Docker Engine fails to connect to the npipe endpoint in WSL2 environment Includes evidence for Docker troubleshooting demand.",
+    "category": "Docker",
+    "technology": "Docker",
+    "error_signature": "failed to connect to the docker API at npipe:////./pipe/dockerDesktopLinuxEngine: The system cannot find the file specified",
+    "search_intent": "Resolve Docker Desktop v4.73.0 starting failure on Windows where Docker Engine fails to connect to the npipe endpoint in WSL2 environment",
+    "common_causes": [
+      "Docker Community Forums thread (May 2026): Docker Desktop v4.73.0 fails to start on Windows WSL2 with npipe connection error. Also produces 'Cannot connect to the Docker daemon' on Linux variants (dial unix /var/run/docker.sock: no such file or directory). Diagnostic ID provided. Category mapping: Docker desktop/runtime startup failure."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Docker"
+    ]
   }
 ]
