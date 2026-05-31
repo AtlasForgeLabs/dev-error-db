@@ -41597,5 +41597,85 @@
     "related_errors": [
       "Cursor"
     ]
+  },
+  {
+    "slug": "openai-api-error-code-429-error-code-rate-limit-error-message-this-request-would-exceed-the-rate-limit-for-your-organization-type-invalid-request-error",
+    "title": "OpenAI API 429 returns opaque error without rate-limit header details",
+    "description": "User gets a 429 rate limit error from OpenAI but cannot see the actual rate-limit headers (x-ratelimit-remaining, x-ratelimit-reset) to diagnose whether they are truly over the limit or hitting a false-positive throttling. Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "Error code: 429 - {'error': {'code': 'rate_limit_error', 'message': 'This request would exceed the rate limit for your organization...', 'type': 'invalid_request_error'}}",
+    "search_intent": "User gets a 429 rate limit error from OpenAI but cannot see the actual rate-limit headers (x-ratelimit-remaining, x-ratelimit-reset) to diagnose whether they are truly over the limit or hitting a false-positive throttling.",
+    "common_causes": [
+      "Multiple GitHub reports show users getting 429 on gpt-4o / gpt-4 with unclear cause — n8n workflow failing at first node despite low monthly usage, OpenManus exceeding TPM limits silently. Users need visibility into actual token consumption vs. rate-limit thresholds. Category maps to OpenAI API (paid API, quota/billing impact)."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "github-copilot-you-ve-hit-your-global-rate-limit-please-upgrade-your-plan-or-wait-for-your-limit-to-reset-shown-continuously-6-plus-hours-with-only-45-3-quota-used",
+    "title": "GitHub Copilot Pro+ persistent global 429 rate limit despite active quota and paid plan",
+    "description": "Paid Copilot Pro/Pro+ users hit persistent rate limit errors that don't resolve even after waiting hours, despite having significant unused quota allocation. Includes evidence for GitHub Copilot troubleshooting demand.",
+    "category": "GitHub Copilot",
+    "technology": "GitHub Copilot",
+    "error_signature": "You've hit your global rate limit. Please upgrade your plan or wait for your limit to reset. (shown continuously 6+ hours with only 45.3% quota used)",
+    "search_intent": "Paid Copilot Pro/Pro+ users hit persistent rate limit errors that don't resolve even after waiting hours, despite having significant unused quota allocation.",
+    "common_causes": [
+      "Multiple GitHub community discussions report Copilot users on paid plans hitting continuous 429 rate limits — one user on 30-day free trial with card added was blocked for 6+ hours at 45.3% usage; another Pro+ subscriber stuck for weeks citing 463-hour wait message. Infrastructure-level bug, affects paying users heavily. Category: GitHub Copilot."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "GitHub Copilot"
+    ]
+  },
+  {
+    "slug": "claude-code-server-turned-down-this-mcp-server-has-been-turned-down-please-use-claude-ai-instead-redirect-uri-http-localhost-callback",
+    "title": "Claude Code web GitHub MCP OAuth flow completely broken — consent screen shows wrong page",
+    "description": "Users running Claude Code on claude.ai/code web sessions want to use the built-in GitHub MCP for PR/issue management but the OAuth flow redirects to a retired gdrive page instead of the GitHub consent screen. Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Server Turned Down — This MCP server has been turned down. Please use claude.ai instead. (redirect_uri=http://localhost:/callback)",
+    "search_intent": "Users running Claude Code on claude.ai/code web sessions want to use the built-in GitHub MCP for PR/issue management but the OAuth flow redirects to a retired gdrive page instead of the GitHub consent screen.",
+    "common_causes": [
+      "GitHub Issue #60807 (anthropics/claude-code) reports the web-hosted GitHub MCP OAuth redirect points to api.anthropic.com/v2/ccr-sessions/*/github/mcp which serves a retired gdrive install page. No workaround within web session — only local Claude Code CLI works. Affects paying users who rely on cloud sessions for remote work. Category: AI Coding Tools."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "claude-code-sdk-auth-failed-every-authenticate-call-posts-oauth-register-minting-new-client-id-client-secret-and-orphaning-previous-refresh-token",
+    "title": "Claude Code MCP OAuth re-runs Dynamic Client Registration every time, creating forced re-auth loop",
+    "description": "Self-hosted MCP server users experience forced re-authentication loops because Claude Code performs fresh DCR on every authenticate() call instead of persisting and reusing clientId/clientSecret per MCP spec §6.1.4. Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "SDK auth failed: Every authenticate call POSTs /oauth/register, minting new client_id/client_secret and orphaning previous refresh_token",
+    "search_intent": "Self-hosted MCP server users experience forced re-authentication loops because Claude Code performs fresh DCR on every authenticate() call instead of persisting and reusing clientId/clientSecret per MCP spec §6.1.4.",
+    "common_causes": [
+      "GitHub Issue #59460 (anthropics/claude-code) documents that each authenticate() call creates a new client_id via POST /oauth/register, leaving previous tokens orphaned. Combined with server-side refresh-token rotation, this forces perpetual re-authentication. Evidence includes 30+ client rows over 48h. Category: AI Coding Tools (self-hosted MCP integration)."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "cloudflare-522-connection-timed-out-failed-tcp-handshakes-between-cloudflare-and-the-origin-server-the-origin-did-not-return-a-syn-ack-within-the-timeout-window-15-seconds",
+    "title": "Cloudflare Error 522 Connection Timed Out — TCP handshake failure between CF and origin",
+    "description": "Site owner sees Cloudflare Error 522 and needs to diagnose whether it's caused by server overload, firewall blocking CF IPs, incorrect DNS/A record, or network issues — then implement fixes. Includes evidence for Cloudflare troubleshooting demand.",
+    "category": "Cloudflare",
+    "technology": "Cloudflare",
+    "error_signature": "522 Connection Timed Out — Failed TCP handshakes between Cloudflare and the origin server. The origin did not return a SYN-ACK within the timeout window (15 seconds).",
+    "search_intent": "Site owner sees Cloudflare Error 522 and needs to diagnose whether it's caused by server overload, firewall blocking CF IPs, incorrect DNS/A record, or network issues — then implement fixes.",
+    "common_causes": [
+      "Contabo blog (updated 2026) provides comprehensive troubleshooting for 522: six root causes including server crash/crash/reboot/maintenance, firewall dropping CF IP ranges, wrong A/AAAA records post-migration, and general connectivity problems. Also distinguished from 521 (connection refused) and 524 (connection established but slow response). High search intent from sysadmins and DevOps operators. Category: Cloudflare."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Cloudflare"
+    ]
   }
 ]
