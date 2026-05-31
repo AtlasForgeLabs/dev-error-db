@@ -40957,5 +40957,117 @@
     "related_errors": [
       "Cloud Platforms"
     ]
+  },
+  {
+    "slug": "anthropic-api-api-error-529-overloaded-internal-server-error-type-api-error-message-internal-server-error",
+    "title": "Anthropic API Error: 529 Overloaded Despite Low Session Usage",
+    "description": "Fix 529 overloaded error when session usage is well under the weekly limit (e.g., only 32% used) Includes evidence for Anthropic API troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Anthropic API",
+    "error_signature": "API Error: 529 Overloaded. Internal server error. type: api_error, message: \"Internal server error\"",
+    "search_intent": "Fix 529 overloaded error when session usage is well under the weekly limit (e.g., only 32% used)",
+    "common_causes": [
+      "Multiple recent reports (#61365, #61368, #63051, #56747, #56746) of Anthropic API returning 529 Overloaded despite low session usage (≤32%). User sees full error stack trace with request_id. Not currently covered in dev-error-db. Category mapping: direct Anthropic API error → Anthropic API."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "Anthropic API"
+    ]
+  },
+  {
+    "slug": "github-copilot-error-message-you-have-no-quota-code-quota-exceeded-http-402",
+    "title": "GitHub Copilot CLI quota_exceeded (402) Despite Paid Over-Quota Billing Enabled",
+    "description": "Resolve false quota_exceeded blocking in Copilot CLI when over-quota billing is actually enabled and should allow continued usage Includes evidence for GitHub Copilot troubleshooting demand.",
+    "category": "GitHub Copilot",
+    "technology": "GitHub Copilot",
+    "error_signature": "{\"error\":{\"message\":\"You have no quota\",\"code\":\"quota_exceeded\"}} — HTTP 402",
+    "search_intent": "Resolve false quota_exceeded blocking in Copilot CLI when over-quota billing is actually enabled and should allow continued usage",
+    "common_causes": [
+      "Issue #3431 in github/copilot-cli: requests rejected with 402 quota_exceeded even though paid over-quota billing is enabled. Bug introduced between May 19-20. Previously over-quota requests were charged correctly. Blocks all further Copilot CLI usage. High impact on paying teams relying on CLI. Not covered in dev-error-db. Category mapping: GitHub Copilot CLI error → GitHub Copilot."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "GitHub Copilot"
+    ]
+  },
+  {
+    "slug": "openrouter-http-402-payment-required-incorrectly-retried-as-transient-error-please-top-up-your-balance-and-try-again-40-burned-in-48-hours",
+    "title": "Hermes Agent HTTP 402 Retried as Transient Error Causes Runaway Token Spend on OpenRouter",
+    "description": "Fix retry logic that treats HTTP 402 payment-required as transient, causing runaway API spend when user runs out of credits Includes evidence for OpenRouter troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenRouter",
+    "error_signature": "HTTP 402 (payment required) incorrectly retried as transient error — 'Please top up your balance and try again.' — ~$40 burned in ~48 hours",
+    "search_intent": "Fix retry logic that treats HTTP 402 payment-required as transient, causing runaway API spend when user runs out of credits",
+    "common_causes": [
+      "Issue #31273 in hermes-agent: LLM provider returns 402 (Payment Required), but Hermes retries up to agent.api_max_retries (default: 3) treating it as transient rate-limit. Real cost: $40 burned in ~48 hours on 24/7 gateway deployment. Applies to any pay-per-token provider via OpenRouter. Distinct from general 429/429 — this is a billing/paywall error being misclassified. Category: OpenAI API (OpenRouter routed)."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "claude-code-permission-error-oauth-authentication-is-currently-not-allowed-for-this-organization-error-403",
+    "title": "Claude Code Enterprise Org Disables OAuth Authentication",
+    "description": "Fix OAuth authentication failure in Claude Code when organization has disabled subscription access Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "permission_error: OAuth authentication is currently not allowed for this organization. Error: 403",
+    "search_intent": "Fix OAuth authentication failure in Claude Code when organization has disabled subscription access",
+    "common_causes": [
+      "Issue #63685 reports exact error 'OAuth authentication is currently not allowed for this organization' from Claude Code v2.1.x on macOS. Multiple failed attempts with request_ids logged. Workaround is to use Anthropic API key instead, but enterprise users need OAuth flow to work. High commercial value for enterprise Claude Code subscribers. Not covered."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "openai-api-responses-retrying-without-encrypted-reasoning-content-provider-openai-codex-api-openai-codex-responses-model-gpt-5-5-followed-by-429-too-many-requests",
+    "title": "OpenAI Codex Retry Storm Causes False 429 Rate Limit When Encrypted Reasoning Fails",
+    "description": "Stop retry loop when openai-codex encrypted reasoning content fails decryption, which exhausts the separate Codex Responses API rate limit pool Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "[responses] retrying without encrypted reasoning content provider=openai-codex api=openai-codex-responses model=gpt-5.5 — followed by 429 Too Many Requests",
+    "search_intent": "Stop retry loop when openai-codex encrypted reasoning content fails decryption, which exhausts the separate Codex Responses API rate limit pool",
+    "common_causes": [
+      "Issue #86186 in openclaw/openclaw: built-in openai-codex provider retries 10+ times per turn when encrypted reasoning fails decryption. Each retry adds 10-20s and burns through separate Codex Responses API rate limit (separate from ChatGPT dashboard quota). Results in false 429 rate limiting. Strong commercial value — affects Codex users hitting both retry waste AND real rate limits."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "docker-permission-denied-while-trying-to-connect-to-the-docker-daemon-socket-at-unix-var-run-docker-sock-treated-as-cannot-connect-to-the-docker-daemon-is-the-docker-daemon-running",
+    "title": "Docker Permission Denied Masquerades as Daemon Not Running on Linux",
+    "description": "Distinguish between Docker daemon stopped vs Docker socket permissions issue on Linux; stop systemctl start docker polkit prompts when it's just a permission problem Includes evidence for Docker troubleshooting demand.",
+    "category": "Docker",
+    "technology": "Docker",
+    "error_signature": "permission denied while trying to connect to the Docker daemon socket at unix:///var/run/docker.sock — treated as 'Cannot connect to the Docker daemon … Is the docker daemon running?'",
+    "search_intent": "Distinguish between Docker daemon stopped vs Docker socket permissions issue on Linux; stop systemctl start docker polkit prompts when it's just a permission problem",
+    "common_causes": [
+      "Issue #22255 in microsoft/vscode-mssql: on Linux, docker info failure is overwhelmingly a permissions problem (EACCES on /var/run/docker.sock), not a stopped daemon. Extension catches error, assumes 'not running', tries systemctl start docker → triggers polkit auth prompt then fails silently. Users see generic 'daemon not running' message instead of actionable permission fix. Not in covered-errors.md as this distinguishes permission vs daemon-stopped root cause."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Docker"
+    ]
+  },
+  {
+    "slug": "litellm-relation-litellm-verificationtoken-does-not-exist-sqlstate-42p01-virtual-key-auth-fails-with-transaction-pooled-postgres",
+    "title": "LiteLLM Virtual Key Auth Fails with PostgreSQL Relation Not Found in Transaction Pooling Mode",
+    "description": "Fix LiteLLM virtual key authentication failure when using Neon/pgBouncer transaction pooling mode Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "relation \"LiteLLM_VerificationToken\" does not exist (SQLSTATE 42P01) — virtual-key auth fails with transaction-pooled Postgres",
+    "search_intent": "Fix LiteLLM virtual key authentication failure when using Neon/pgBouncer transaction pooling mode",
+    "common_causes": [
+      "Issue #29093: DATABASE_URL pointing at transaction-pooled Postgres (Neon -pooler.* hostnames, PgBouncer in transaction mode) causes LiteLLM virtual-key auth to fail with missing relation error. LiteLLM schema hasn't been created in pooled connection's schema. Affects self-hosted LiteLLM proxy users running in modern cloud infrastructure."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "LiteLLM"
+    ]
   }
 ]
