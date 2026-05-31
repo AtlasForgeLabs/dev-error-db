@@ -41421,5 +41421,101 @@
     "related_errors": [
       "AI Coding Tools"
     ]
+  },
+  {
+    "slug": "openai-api-responses-retrying-without-encrypted-reasoning-content-429-usage-limit-reached-after-10-retries",
+    "title": "openai-codex provider encrypted reasoning retry storm causes false 429 rate limits",
+    "description": "Fix retry storm where openai-codex provider retries 10+ times per turn when encrypted reasoning fails decryption, each retry consuming quota until hitting 429 Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "[responses] retrying without encrypted reasoning content → 429 usage_limit_reached after 10 retries",
+    "search_intent": "Fix retry storm where openai-codex provider retries 10+ times per turn when encrypted reasoning fails decryption, each retry consuming quota until hitting 429",
+    "common_causes": [
+      "GitHub issue #86186 (openclaw/openclaw) documents that the built-in openai-codex provider makes 10+ full round-trip retries per single turn when encrypted reasoning content fails decryption. Each retry takes 10-20 seconds and burns quota, ultimately triggering false 429 rate limits. Affects ChatGPT Pro $200/mo users. Category: OpenAI API. Not a duplicate of previous — distinct bug in retry logic itself."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "openai-api-http-429-the-usage-limit-has-been-reached",
+    "title": "Interactive CLI session does not auto-fallback on Codex 429 usage_limit_reached",
+    "description": "Fix Codex 429 usage_limit_reached not triggering fallback_providers in interactive CLI sessions, while cron jobs succeed with the same chain Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "HTTP 429: The usage limit has been reached",
+    "search_intent": "Fix Codex 429 usage_limit_reached not triggering fallback_providers in interactive CLI sessions, while cron jobs succeed with the same chain",
+    "common_causes": [
+      "GitHub issue #20465 (NousResearch/hermes-agent) documents that interactive mode hits a hard 429 wall when using openai-codex/gpt-5.5, failing after 3 retries instead of activating the configured fallback chain (Ollama + OpenRouter). Cron jobs work correctly. Category: OpenAI API because it affects paid Codex subscription users. Distinct from covered 'rate limit error' — this is about the specific failure to activate fallback providers in interactive context."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "litellm-no-rate-limiting-or-per-client-quota-on-proxy-endpoints-single-key-can-exhaust-all-upstream-credentials-and-cause-permanent-account-bans",
+    "title": "CLIProxyAPI missing rate limiting causes upstream account bans",
+    "description": "Find fix for AI proxy (CLIProxyAPI) that lacks per-client rate limiting, allowing any key holder to flood upstream APIs causing bans and cost abuse Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "No rate limiting or per-client quota on proxy endpoints: single key can exhaust all upstream credentials and cause permanent account bans",
+    "search_intent": "Find fix for AI proxy (CLIProxyAPI) that lacks per-client rate limiting, allowing any key holder to flood upstream APIs causing bans and cost abuse",
+    "common_causes": [
+      "GitHub issue #3467 (router-for-me/CLIProxyAPI) reports the proxy server has zero rate-limiting middleware across all endpoints (/v1/, /v1beta/, /backend-api/codex/). A single client can exhaust all upstream OAuth accounts, trigger ToS violations and permanent bans. Category: LiteLLM because CLIProxyAPI fills the same role as LiteLLM proxy (unified LLM gateway with shared keys). Has explicit recommended fix with acceptance criteria. No current coverage on dev-error-db."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "LiteLLM"
+    ]
+  },
+  {
+    "slug": "kubernetes-crashloopbackoff-exit-code-139-sigsegv-with-empty-container-logs-no-crash-diagnostic-information-available",
+    "title": "Kubernetes pod CrashLoopBackOff without crash diagnostics",
+    "description": "Debug Kubernetes pod that keeps crashing with segfault (exit 139) but provides zero diagnostic info — crashes in milliseconds with empty logs Includes evidence for Kubernetes troubleshooting demand.",
+    "category": "Cloud Platforms",
+    "technology": "Kubernetes",
+    "error_signature": "CrashLoopBackOff: Exit Code 139 (SIGSEGV) with empty container logs — no crash diagnostic information available",
+    "search_intent": "Debug Kubernetes pod that keeps crashing with segfault (exit 139) but provides zero diagnostic info — crashes in milliseconds with empty logs",
+    "common_causes": [
+      "GitHub issue #23065 (kubernetes/minikube) reports rbd-mirror daemon crashing with SIGSEGV in Rook deployment. Pod shows CrashLoopBackOff with exit code 139, started and finished in the same second, with completely empty container logs. User had to run container locally with coredumpctl to identify tcmalloc stack trace. Category: Cloud Platforms (always for K8s). Very specific error signature — many DevOps engineers face this exact debugging dead end."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Cloud Platforms"
+    ]
+  },
+  {
+    "slug": "anthropic-api-invalid-request-error-messages-n-content-m-thinking-or-redacted-thinking-blocks-in-the-latest-assistant-message-cannot-be-modified-these-blocks-must-remain-as-they-were-in-the-original-response",
+    "title": "Anthropic API invalid_request_error: thinking blocks cannot be modified",
+    "description": "Fix Anthropic API 400 error when modifying thinking/redacted_thinking blocks in assistant message content during conversation continuation Includes evidence for Anthropic API troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Anthropic API",
+    "error_signature": "invalid_request_error: messages.N.content.M: `thinking` or `redacted_thinking` blocks in the latest assistant message cannot be modified. These blocks must remain as they were in the original response.",
+    "search_intent": "Fix Anthropic API 400 error when modifying thinking/redacted_thinking blocks in assistant message content during conversation continuation",
+    "common_causes": [
+      "GitHub issue #63194 (anthropics/claude-code) reports Anthropic API returning 400 invalid_request_error when the CLI tries to modify thinking blocks that were included in the original assistant response. This blocks conversation continuation for users with thinking enabled. Category: Anthropic API. Covered-errors.md lists 'invalid API key' but not this specific invalid_request_error variant for thinking blocks."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Anthropic API"
+    ]
+  },
+  {
+    "slug": "vercel-turbopack-error-failed-to-write-app-endpoint-page",
+    "title": "Turbopack cache exhaustion causes build failures after repeated reloads",
+    "description": "Fix Turbopack RocksDB cache ballooning to thousands of files after repeated dev server reloads, exhausting system resources and breaking builds Includes evidence for Vercel troubleshooting demand.",
+    "category": "Deployment",
+    "technology": "Vercel",
+    "error_signature": "Turbopack Error: Failed to write app endpoint /page",
+    "search_intent": "Fix Turbopack RocksDB cache ballooning to thousands of files after repeated dev server reloads, exhausting system resources and breaking builds",
+    "common_causes": [
+      "GitHub discussion #94227 (vercel/next.js) documents Turbopack encountering Windows error 1450 (insufficient system resources) caused by corrupted/expanding .next cache. Repeated reloads create thousands of .sst/.meta files. Root cause is cache management, not code error. Category: Deployment (Vercel/Next.js). Covers Turbopack-specific failure distinct from generic 'build command failed'."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Deployment"
+    ]
   }
 ]
