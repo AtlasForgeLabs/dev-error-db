@@ -40029,5 +40029,37 @@
     "related_errors": [
       "GitHub Actions"
     ]
+  },
+  {
+    "slug": "langchain-429-too-many-requests-langgraph-workflow-crashes-mid-execution-e-g-step-7-of-n-when-openrouter-or-openai-returns-rate-limit-error-sequential-fallbacks-too-slow-no-coordination-across-workers-leading-to-retry-storms",
+    "title": "LangGraph Progress Lost to OpenAI/OpenRouter 429 Errors",
+    "description": "Prevent LangGraph workflows from crashing on 429 rate limits; implement coordinated retries, multi-provider racing, checkpoint/resume logic across distributed worker instances Includes evidence for LangChain troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "LangChain",
+    "error_signature": "429 Too Many Requests — LangGraph workflow crashes mid-execution (e.g., step 7 of N) when OpenRouter or OpenAI returns rate limit error; sequential fallbacks too slow; no coordination across workers leading to retry storms",
+    "search_intent": "Prevent LangGraph workflows from crashing on 429 rate limits; implement coordinated retries, multi-provider racing, checkpoint/resume logic across distributed worker instances",
+    "common_causes": [
+      "Source: HN item 47043197 (Show HN post about preventing LangGraph progress loss to 429s). Addresses a real production problem: agent workflows failing mid-run due to upstream LLM provider rate limits. Distinct because most docs cover single-call retries, not multi-step agent workflow recovery. Category: AI Coding Tools (per SKILL.md mapping for LangChain/LangGraph). High commercial value — affects production AI agents. Tier bonus: P0 via LangChain category."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "kubernetes-crashloopbackoff-pod-repeatedly-restarting-with-reasons-including-oomkilled-imagepullbackoff-missing-environment-config-values-port-binding-failures-readiness-probe-failures",
+    "title": "Kubernetes CrashLoopBackOff Root Cause Analysis",
+    "description": "Diagnose why Kubernetes pods keep restarting; identify root cause patterns (OOM, image pull errors, config issues, port conflicts); get recommended kubectl commands for investigation Includes evidence for Kubernetes troubleshooting demand.",
+    "category": "Cloud Platforms",
+    "technology": "Kubernetes",
+    "error_signature": "CrashLoopBackOff — Pod repeatedly restarting with reasons including OOMKilled, ImagePullBackOff, missing environment/config values, port binding failures, readiness probe failures",
+    "search_intent": "Diagnose why Kubernetes pods keep restarting; identify root cause patterns (OOM, image pull errors, config issues, port conflicts); get recommended kubectl commands for investigation",
+    "common_causes": [
+      "Source: HN item 47364723 (Crashloop Analyzer tool launch) + item 44215983 (another K8s crash loop tool). CrashLoopBackOff is one of the most common K8s errors affecting production deployments. High urgency since downtime = money for ops teams. Category: Cloud Platforms (per SKILL.md for Kubernetes). Tier: P1 technology. Pattern-based detection makes this a well-defined error signature."
+    ],
+    "quick_fix": "Verify the model name, local service connectivity, and network access before retrying the model pull.",
+    "related_errors": [
+      "Cloud Platforms"
+    ]
   }
 ]
