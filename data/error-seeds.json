@@ -40205,5 +40205,101 @@
     "related_errors": [
       "Deployment"
     ]
+  },
+  {
+    "slug": "github-copilot-instant-quota-exceeded-upon-installation-and-logging-in",
+    "title": "GitHub Copilot CLI Instant Quota Exceeded on First Use After Install",
+    "description": "Fix Copilot CLI quota exhaustion immediately after install/login despite no prior usage — shared quota across Copilot experiences Includes evidence for GitHub Copilot troubleshooting demand.",
+    "category": "GitHub Copilot",
+    "technology": "GitHub Copilot",
+    "error_signature": "Instant Quota exceeded upon installation and logging in",
+    "search_intent": "Fix Copilot CLI quota exhaustion immediately after install/login despite no prior usage — shared quota across Copilot experiences",
+    "common_causes": [
+      "Source: GitHub issue #730 (github/copilot-cli). Paid service with billing impact. Users installing Copilot CLI get instant rate-limit/quota error even though they haven't used it. Distinct from generic auth failures. Category: GitHub Copilot."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "GitHub Copilot"
+    ]
+  },
+  {
+    "slug": "github-actions-app-token-exchange-failed-401-unauthorized-workflow-validation-failed-the-workflow-file-must-exist-and-have-identical-content-to-the-version-on-the-repository-s-default-branch",
+    "title": "GitHub Actions Reusable Workflow OIDC Token Exchange Returns 401 Validation Failed",
+    "description": "Fix GitHub reusable workflow OIDC token exchange failure caused by workflow validation mismatch between fork/pr and default branch Includes evidence for GitHub Actions troubleshooting demand.",
+    "category": "GitHub Actions",
+    "technology": "GitHub Actions",
+    "error_signature": "App token exchange failed: 401 Unauthorized - Workflow validation failed. The workflow file must exist and have identical content to the version on the repository's default branch",
+    "search_intent": "Fix GitHub reusable workflow OIDC token exchange failure caused by workflow validation mismatch between fork/pr and default branch",
+    "common_causes": [
+      "Source: GitHub issue #443 (anthropics/claude-code-action). CI/CD pipeline blocker for paid teams using reusable workflows. 401 error during OIDC→app-token exchange. Block production deployment. Category: GitHub Actions."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "GitHub Actions"
+    ]
+  },
+  {
+    "slug": "claude-code-org-create-api-key-scope-silently-stripped-by-workspace-policy-causing-oauth-failure",
+    "title": "Claude Code OAuth Scope Missing When Workspace Policy Disables API Key Creation",
+    "description": "Resolve misleading OAuth error when workspace setting disallows creating new API keys — subscription users unexpectedly blocked Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "org:create_api_key scope silently stripped by workspace policy causing OAuth failure",
+    "search_intent": "Resolve misleading OAuth error when workspace setting disallows creating new API keys — subscription users unexpectedly blocked",
+    "common_causes": [
+      "Source: GitHub issue #54502 (anthropics/claude-code). Distinct from generic OAuth failure (#1484): specific workspace policy scope stripping bug. Users can work around by removing org%3Acreate_api_key from authorize URL params. Category: AI Coding Tools."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "openrouter-model-not-found-or-model-unavailable-error-from-openrouter-provider",
+    "title": "OpenRouter Model Unavailable with No Fallback Routing",
+    "description": "Fix OpenRouter returning hard errors instead of fallback routing when specified model is temporarily unavailable Includes evidence for OpenRouter troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenRouter",
+    "error_signature": "model_not_found OR model_unavailable error from OpenRouter provider",
+    "search_intent": "Fix OpenRouter returning hard errors instead of fallback routing when specified model is temporarily unavailable",
+    "common_causes": [
+      "Source: web_search for OpenRouter availability issues via site:github.com. High commercial value — enterprises depend on OpenRouter model routing reliability. When primary model goes down without fallback, billing stops and SLAs breach. Category: OpenAI API (per mapping: OpenRouter model routing/API compatibility → OpenAI API)."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "vercel-module-not-found-can-t-resolve-vercel-build-works-locally-but-fails-on-deployment",
+    "title": "Vercel Deploy Module Not Found Case-Sensitive Filesystem Bug",
+    "description": "Fix Vercel deployment failure where Next.js components resolve locally but fail on deploy — suspected case-sensitive filesystem issue Includes evidence for Vercel troubleshooting demand.",
+    "category": "Deployment",
+    "technology": "Vercel",
+    "error_signature": "Module not found: Can't resolve ... Vercel build works locally but fails on deployment",
+    "search_intent": "Fix Vercel deployment failure where Next.js components resolve locally but fail on deploy — suspected case-sensitive filesystem issue",
+    "common_causes": [
+      "Source: vercel/next.js #69390. Common scenario: local dev builds fine, Vercel cloud build fails. Directly affects paying Vercel customers deploying production apps. Specific actionable fix available. Category: Deployment."
+    ],
+    "quick_fix": "Check the build output, project root, and deployment platform configuration before redeploying.",
+    "related_errors": [
+      "Deployment"
+    ]
+  },
+  {
+    "slug": "litellm-stream-timeout-not-enforced-on-first-chunk-timeout-raised-only-after-receiving-delayed-response",
+    "title": "LiteLLM stream_timeout Not Enforced as Time-to-First-Token Check",
+    "description": "Fix LiteLLM proxy ignoring stream_timeout config for TTFT — requests hang past configured timeout waiting for first LLM chunk instead of aborting early Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "stream_timeout not enforced on first chunk; timeout raised only after receiving delayed response",
+    "search_intent": "Fix LiteLLM proxy ignoring stream_timeout config for TTFT — requests hang past configured timeout waiting for first LLM chunk instead of aborting early",
+    "common_causes": [
+      "Source: GitHub issue #19909 (BerriAI/litellm). Proxy billing waste: slow LLMs consume time/billing before LiteLLM notices the timeout violation. Bug in core timeout logic documented in config spec. Category: LiteLLM."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "LiteLLM"
+    ]
   }
 ]
