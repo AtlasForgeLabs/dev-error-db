@@ -41517,5 +41517,85 @@
     "related_errors": [
       "Deployment"
     ]
+  },
+  {
+    "slug": "openai-api-http-429-rate-limit-exceeded-or-insufficient-quota-same-status-code-opposite-fixes",
+    "title": "OpenAI API 429 — Distinguishing rate_limit_exceeded vs insufficient_quota Errors",
+    "description": "Fixing OpenAI 429 rate-limit / quota errors by identifying whether it's RPM/TPM speed limit or billing credit exhaustion Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "HTTP 429: rate_limit_exceeded OR insufficient_quota — same status code, opposite fixes",
+    "search_intent": "Fixing OpenAI 429 rate-limit / quota errors by identifying whether it's RPM/TPM speed limit or billing credit exhaustion",
+    "common_causes": [
+      "Multiple recent articles (May 2026) document confusion between rate_limit_exceeded (RPM/TPM speed-based, fixable via backoff) and insufficient_quota (billing/credit exhaustion, requires payment update). Covered-errors lists 'OpenAI API 429 Too Many Requests' generically; this distinguishes the two sub-cases. Category maps to OpenAI API per rules."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "github-copilot-failed-to-connect-to-api-429-too-many-requests-error-message-sorry-you-ve-exceeded-your-5-hour-session-limits-code-user-global-rate-limited-pro-plus",
+    "title": "GitHub Copilot Pro+ User Weekly Rate Limit Hits After Few Requests — user_global_rate_limited:pro_plus",
+    "description": "Paid GitHub Copilot Pro+ subscriber hitting extremely aggressive weekly/hourly rate limits that block normal development work despite paying for the service Includes evidence for GitHub Copilot troubleshooting demand.",
+    "category": "GitHub Copilot",
+    "technology": "GitHub Copilot",
+    "error_signature": "Failed to connect to API: 429 Too Many Requests {\"error\":{\"message\":\"Sorry, you've exceeded your 5 hour session limits.\",\"code\":\"user_global_rate_limited:pro_plus\"}",
+    "search_intent": "Paid GitHub Copilot Pro+ subscriber hitting extremely aggressive weekly/hourly rate limits that block normal development work despite paying for the service",
+    "common_causes": [
+      "Multiple GitHub community discussions (April–May 2026) document Pro+ subscribers hitting rate limits after only ~180 requests/week. Error includes specific code user_global_rate_limited:pro_plus. No similar issue in covered-errors.md. Category maps to GitHub Copilot."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "GitHub Copilot"
+    ]
+  },
+  {
+    "slug": "claude-code-bug-anthropic-api-error-rate-limit-exceeded-with-2-parallel-sessions-cli-hits-429-even-at-very-low-concurrency",
+    "title": "Claude Code Rate Limit Exceeded with Only 2 Parallel Sessions",
+    "description": "Developers hitting Claude Code 429 rate limit errors despite only running 2 parallel sessions; seeking resolution for severely restrictive API concurrency limits Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "[Bug] Anthropic API Error: Rate limit exceeded with 2 parallel sessions — CLI hits 429 even at very low concurrency",
+    "search_intent": "Developers hitting Claude Code 429 rate limit errors despite only running 2 parallel sessions; seeking resolution for severely restrictive API concurrency limits",
+    "common_causes": [
+      "GitHub issue #61277 on anthropics/claude-code (May 21, 2026) documents developers being throttled at just 2 parallel sessions. Combined with broader community reports of Claude rate-exceeded errors being misdiagnosed. Category maps to Claude Code per SKILL rules."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "claude-code-authorization-with-the-mcp-server-failed-you-can-check-your-credentials-and-permissions-if-this-persists-share-this-reference-with-support-ofid",
+    "title": "Claude MCP Authorization Failure — OAuth Token Issuance Error with ofid Reference",
+    "description": "Fixing Claude Code MCP server OAuth authorization failures where token issuance completes but Claude rejects the callback; getting opaque ofid_ error references instead of actionable diagnostics Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Authorization with the MCP server failed. You can check your credentials and permissions. If this persists, share this reference with support: ofid_…",
+    "search_intent": "Fixing Claude Code MCP server OAuth authorization failures where token issuance completes but Claude rejects the callback; getting opaque ofid_ error references instead of actionable diagnostics",
+    "common_causes": [
+      "GitHub issue #327 on anthropics/claude-ai-mcp (May 19, 2026) shows OAuth flow completing server-side but failing at Claude.ai post-token callback due to CDN/WAF edge blocking. Generic error message misdirects troubleshooting. Multiple related MCP auth issues (#270) confirm this is active. Category maps to Claude Code."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "cursor-override-openai-base-url-openai-api-key-toggle-turns-off-randomly-cursor-extension-required-to-auto-re-enable",
+    "title": "Cursor OpenAI API Key Toggle Randomly Resets Itself — Extension Workaround Required",
+    "description": "Developer whose Cursor IDE keeps resetting the OpenAI API key toggle setting, requiring manual re-enablement or third-party extension workaround Includes evidence for Cursor troubleshooting demand.",
+    "category": "Cursor",
+    "technology": "Cursor",
+    "error_signature": "\"Override OpenAI Base URL\" / \"OpenAI API Key\" toggle turns off randomly; Cursor extension required to auto-re-enable",
+    "search_intent": "Developer whose Cursor IDE keeps resetting the OpenAI API key toggle setting, requiring manual re-enablement or third-party extension workaround",
+    "common_causes": [
+      "GitHub repo ttempaa/cursor-openai-enabler documents this as a known Cursor bug where the API key toggle resets itself. Community forum posts confirm widespread impact. Distinct from 'model not available' and 'OpenAI API key not working' already covered. Category maps to Cursor."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Cursor"
+    ]
   }
 ]
