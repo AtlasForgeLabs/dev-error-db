@@ -40797,5 +40797,101 @@
     "related_errors": [
       "LiteLLM"
     ]
+  },
+  {
+    "slug": "claude-code-hosted-github-mcp-oauth-flow-broken-in-claude-ai-code-web-sessions-shows-server-turned-down-this-mcp-server-has-been-turned-down-instead-of-github-consent-screen",
+    "title": "Claude Code Web Session GitHub MCP OAuth Flow Broken - Returns 'Server Turned Down' Page Instead of Consent Screen",
+    "description": "Fix GitHub MCP authentication in web-based Claude Code sessions that returns generic 'Server Turned Down' error instead of OAuth consent screen Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Hosted GitHub MCP OAuth flow broken in claude.ai/code web sessions — shows 'Server Turned Down — This MCP server has been turned down' instead of GitHub consent screen",
+    "search_intent": "Fix GitHub MCP authentication in web-based Claude Code sessions that returns generic 'Server Turned Down' error instead of OAuth consent screen",
+    "common_causes": [
+      "GitHub issue #60807 reports hosted GitHub MCP OAuth completely broken in claude.ai/code web sessions since May 2026. Users get retired gdrive install page instead of GitHub consent screen. Affects all web session users needing GitHub repo access. Clear P0 commercial impact for paid Anthropic users. Maps to AI Coding Tools category."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "claude-code-remote-review-quota-consumed-on-anthropic-api-rate-limit-crash-with-zero-findings-http-429-causes-upstream-crash-but-free-run-still-charged-review-crashed-before-producing-findings",
+    "title": "Claude Code Remote Review Quota Consumed Despite Rate-Limit Crash (Zero Findings)",
+    "description": "Fix buggy billing where crashed Claude Code remote reviews consume a free run despite being caused by upstream 429 rate-limit errors with no output generated Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Remote review quota consumed on Anthropic API rate-limit crash with zero findings — HTTP 429 causes upstream crash, but free run still charged: 'Review crashed before producing findings'",
+    "search_intent": "Fix buggy billing where crashed Claude Code remote reviews consume a free run despite being caused by upstream 429 rate-limit errors with no output generated",
+    "common_causes": [
+      "GitHub issue #57619 shows critical billing bug: when remote review hits upstream rate-limit (429), the task crashes with 'Review crashed before producing findings', yet the free run is NOT refunded. Affects Pro/Max plan users paying per-use. High commercial value — directly impacts billing/quota on paid tier. Category: AI Coding Tools."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "github-copilot-failed-to-connect-to-api-429-too-many-requests-error-message-sorry-you-ve-exceeded-your-5-hour-session-limits-please-review-our-terms-of-service-code-user-global-rate-limited-pro-plus",
+    "title": "GitHub Copilot Pro Plus User Weekly Rate Limited For Hours With user_weekly_rate_limited Error",
+    "description": "Fix GitHub Copilot Pro+ subscription getting unexpectedly rate-limited for extended periods (hours to days) despite active paid subscription, blocking all coding features Includes evidence for GitHub Copilot troubleshooting demand.",
+    "category": "GitHub Copilot",
+    "technology": "GitHub Copilot",
+    "error_signature": "Failed to connect to API: 429 Too Many Requests {\"error\":{\"message\":\"Sorry, you've exceeded your 5 hour session limits. Please review our Terms of Service.\",\"code\":\"user_global_rate_limited:pro_plus\"}",
+    "search_intent": "Fix GitHub Copilot Pro+ subscription getting unexpectedly rate-limited for extended periods (hours to days) despite active paid subscription, blocking all coding features",
+    "common_causes": [
+      "GitHub Community discussion #192485 from May 2026. Multiple reports of Copilot Pro+ users hitting sustained rate limits ('user_global_rate_limited:pro_plus') lasting hours after paying subscription. Search volume strong — developers frustrated by paid service blocking. Category: GitHub Copilot (exact match). No dev-error-db coverage."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "GitHub Copilot"
+    ]
+  },
+  {
+    "slug": "cursor-gpt-5-5-byok-not-working-cursor-does-not-send-request-to-configured-overridden-openai-base-url-shows-routing-unsupported-gpt-5-5-routing-failed-only-supports-responses-compatible-requests",
+    "title": "Cursor GPT-5.5 BYOK Bypasses Custom Base URL and Routes to api.openai.com",
+    "description": "Fix Cursor IDE ignoring custom OpenAI base URL and API key for GPT-5.5 model, causing 400 errors even though same config works with other models like GPT-5.4 Includes evidence for Cursor troubleshooting demand.",
+    "category": "Cursor",
+    "technology": "Cursor",
+    "error_signature": "GPT-5.5 BYOK not working — Cursor does not send request to configured overridden OpenAI base URL, shows 'routing_unsupported: gpt-5.5 routing failed: only supports Responses-compatible requests'",
+    "search_intent": "Fix Cursor IDE ignoring custom OpenAI base URL and API key for GPT-5.5 model, causing 400 errors even though same config works with other models like GPT-5.4",
+    "common_causes": [
+      "Cursor community forum report from May 2026. GPT-5.5 specifically bypasses custom base URL configured in Cursor settings, while GPT-5.4 works fine with same config/API key. Error response is 'ERROR_OPENAI: Provider was unable to process your request | routing_unsupported'. Direct commercial impact for paid Cursor Pro/Max users using BYOK with self-hosted LLM endpoints. Category: Cursor (exact match)."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Cursor"
+    ]
+  },
+  {
+    "slug": "litellm-prismaerror-pool-timeout-connection-error-auth-exception-handler-falls-back-to-proxy-admin-token-when-database-unavailable",
+    "title": "LiteLLM Proxy Admin Privilege Escalation via Prisma Pool Exhaustion (auth_exception_handler.py)",
+    "description": "Fix LiteLLM proxy vulnerability where database connection pool exhaustion causes fallback authentication to grant PROXY_ADMIN privileges without any valid virtual key Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "PrismaError: pool timeout / connection error — auth_exception_handler falls back to PROXY_ADMIN token when database unavailable",
+    "search_intent": "Fix LiteLLM proxy vulnerability where database connection pool exhaustion causes fallback authentication to grant PROXY_ADMIN privileges without any valid virtual key",
+    "common_causes": [
+      "Security/availability research from STAR Labs blog May 2026. When PrismaDB encounters pool timeout/connection errors, the auth_exception_handler silently grants PROXY_ADMIN role with hardcoded 'failed-to-connect-to-db' token. Affects LiteLLM proxy deployments running on Docker. Combines availability error (pool timeout) with privilege escalation risk. Category: LiteLLM (exact match)."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "LiteLLM"
+    ]
+  },
+  {
+    "slug": "anthropic-api-overloaded-error-http-529-the-api-is-temporarily-overloaded-requires-different-retry-strategy-than-429-rate-limit-error",
+    "title": "Anthropic Claude API 529 overloaded_error — Distinct from 429 Rate Limit Retry Strategy",
+    "description": "Understand the difference between 529 overloaded_error and 429 rate_limit_error in Claude API, and implement correct exponential backoff with jitter for 529 responses Includes evidence for Anthropic API troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Anthropic API",
+    "error_signature": "overloaded_error (HTTP 529): 'The API is temporarily overloaded' — requires different retry strategy than 429 rate_limit_error",
+    "search_intent": "Understand the difference between 529 overloaded_error and 429 rate_limit_error in Claude API, and implement correct exponential backoff with jitter for 529 responses",
+    "common_causes": [
+      "Widely discussed in developer community (multiple blog posts, docs). HTTP 529 overloaded_error is a capacity signal requiring pressure reduction and retry-storm prevention, NOT simple rate-limit retries. Developers consistently confuse it with 429. Strong search intent, clear fix demand. Covers paid API usage impacting production deployments. Category: Anthropic API."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "Anthropic API"
+    ]
   }
 ]
