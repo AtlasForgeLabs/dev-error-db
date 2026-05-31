@@ -40301,5 +40301,133 @@
     "related_errors": [
       "LiteLLM"
     ]
+  },
+  {
+    "slug": "anthropic-api-type-rate-limit-error-message-usage-credits-are-required-for-long-context-requests",
+    "title": "Persistent 429 Rate Limit Responses Consuming Credits on Max Plan",
+    "description": "Fix Anthropic API persistent 429 rate limit errors on Max plan that consume credits without returning useful responses Includes evidence for Anthropic API troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Anthropic API",
+    "error_signature": "{\"type\":\"rate_limit_error\",\"message\":\"Usage credits are required for long context requests.\"}",
+    "search_intent": "Fix Anthropic API persistent 429 rate limit errors on Max plan that consume credits without returning useful responses",
+    "common_causes": [
+      "Source: anthropics/claude-code #44310. Directly affects paying users on Max plan who get burned by 429s even when they have credits. The 'usage credits required' message on already-paid plans is highly actionable. Maps to Anthropic API per approved category. Very high commercial intent — credit consumption on paid tier. Distinct from generic OpenAI 429 because it involves Claude's long-context pricing tier specifically."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "Anthropic API"
+    ]
+  },
+  {
+    "slug": "openai-api-error-rate-limit-reached-for-o3-in-organization-org-redacted-on-tokens-per-min-tpm-limit-30000-used-23669-requested-32760-please-try-again-in-x-seconds",
+    "title": "Rate-limit 429 causes Codex CLI abort / raw-mode crash",
+    "description": "Fix OpenAI rate limit (429) crash causing Codex CLI to abort unexpectedly during production use Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "[Error]: Rate limit reached for o3 in organization org-REDACTED on tokens per min (TPM): Limit 30000, Used 23669, Requested 32760 — Please try again in X seconds.",
+    "search_intent": "Fix OpenAI rate limit (429) crash causing Codex CLI to abort unexpectedly during production use",
+    "common_causes": [
+      "Tavily search returned high-signal source from openai/codex repo (#157). Error blocks tool usage directly. Maps to OpenAI API category per approved mapping. High commercial value — TPM limits hit frequently in paid org tier. No coverage gap on dev-error-db.com for CLI-specific 429 crash behavior (not generic web usage). Tier 0 attempted (GitHub API), limited by anonymous rate cap; degraded to Tier 1 Tavily search + snippet extraction."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "anthropic-api-type-rate-limit-error-message-extra-usage-is-required-for-long-context-requests-request-was-only-23k-tokens-well-within-max-plan-1m-context-limit",
+    "title": "Anthropic Spurious 429 'Extra Usage Required for Long Context' on Max Plan",
+    "description": "Fix Anthropic API incorrectly rejecting Max plan requests with 429 errors despite being within plan token limits Includes evidence for Anthropic API troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Anthropic API",
+    "error_signature": "{\"type\":\"rate_limit_error\",\"message\":\"Extra usage is required for long context requests.\"} — request was only ~23K tokens, well within Max plan 1M context limit",
+    "search_intent": "Fix Anthropic API incorrectly rejecting Max plan requests with 429 errors despite being within plan token limits",
+    "common_causes": [
+      "Source: anthropics/claude-code #42616. False-positive rate limit on Max plan with 1M context enabled. User paid for 1M context but gets 429 on 23K token request. Very specific edge case with clear reproduction steps. Maps to Anthropic API. High commercial value — billing-related bugs always attract search volume. Low competition since it's a very narrow bug report."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "Anthropic API"
+    ]
+  },
+  {
+    "slug": "anthropic-api-api-error-529-overloaded-with-opus-4-7",
+    "title": "Anthropic API 529 Overloaded Error with Opus 4.7",
+    "description": "Resolve Anthropic API 529 overloaded errors preventing Claude Opus 4.7 model inference during production use Includes evidence for Anthropic API troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Anthropic API",
+    "error_signature": "API Error: 529 Overloaded (with opus 4.7)",
+    "search_intent": "Resolve Anthropic API 529 overloaded errors preventing Claude Opus 4.7 model inference during production use",
+    "common_causes": [
+      "Source: anthropics/claude-code #53106. Server-side 529 on latest Opus model. Affects production LLM pipelines using Claude Opus. Clear error signature with model version. Maps to Anthropic API. Commercial value high since Opus 4.7 is premium model on paid plan. Low competition to rank for — most pages discuss generic 522/525 Cloudflare 529."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "Anthropic API"
+    ]
+  },
+  {
+    "slug": "vercel-module-not-found-can-t-resolve-path-to-registerform-vercel-deployment-fails-while-local-build-succeeds",
+    "title": "Vercel Deployment Module Not Found: Can't Resolve RegisterForm",
+    "description": "Fix Vercel Next.js deployment module resolution errors that don't occur locally but break production deploys Includes evidence for Vercel troubleshooting demand.",
+    "category": "Deployment",
+    "technology": "Vercel",
+    "error_signature": "Module not found: Can't resolve './path/to/RegisterForm' — Vercel deployment fails while local build succeeds",
+    "search_intent": "Fix Vercel Next.js deployment module resolution errors that don't occur locally but break production deploys",
+    "common_causes": [
+      "Source: vercel/next.js #69390. Local build works but Vercel deploy fails — classic case causing frustration for Next.js developers. Case-sensitive filesystem suspicion. Maps to Deployment category. High commercial value — deployment failures block revenue-generating sites. Good ranking opportunity as most answers are scattered across Stack Overflow."
+    ],
+    "quick_fix": "Check the build output, project root, and deployment platform configuration before redeploying.",
+    "related_errors": [
+      "Deployment"
+    ]
+  },
+  {
+    "slug": "anthropic-api-type-permission-error-message-oauth-authentication-is-currently-not-allowed-for-this-organization",
+    "title": "Anthropic API Permission Error: OAuth Authentication Not Allowed for Organization",
+    "description": "Fix Anthropic API 403 permission_error when OAuth authentication is disabled at organization level Includes evidence for Anthropic API troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Anthropic API",
+    "error_signature": "{\"type\":\"permission_error\",\"message\":\"OAuth authentication is currently not allowed for this organization.\"}",
+    "search_intent": "Fix Anthropic API 403 permission_error when OAuth authentication is disabled at organization level",
+    "common_causes": [
+      "Source: anthropics/claude-code #61869. Enterprise/organization-level auth blocking. Clear JSON error with exact type/message. Maps to Anthropic API. High commercial value — affects enterprise org admins who manage Anthropic access policies. Growing topic as more companies adopt Anthropic APIs internally."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "Anthropic API"
+    ]
+  },
+  {
+    "slug": "docker-error-failed-to-solve-failed-to-compute-cache-key-blob-not-found",
+    "title": "Docker Buildx Failed to Compute Cache Key: Blob Not Found",
+    "description": "Fix Docker Buildx cache corruption causing 'blob not found' errors during CI/CD builds Includes evidence for Docker troubleshooting demand.",
+    "category": "Docker",
+    "technology": "Docker",
+    "error_signature": "error: failed to solve: failed to compute cache key: blob not found",
+    "search_intent": "Fix Docker Buildx cache corruption causing 'blob not found' errors during CI/CD builds",
+    "common_causes": [
+      "Source: docker/buildx #681. Exact error signature with clear root cause path. Occurs during GitHub Actions workflow builds. Maps to Docker category. Moderate-to-high commercial value — CI/CD pipeline failure for teams using Docker Buildx in production. Specific enough to be ranked for with targeted content. Covers an edge case not in dev-error-db.com current list."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Docker"
+    ]
+  },
+  {
+    "slug": "litellm-authenticationerror-api-key-none-openai-sdk-rejects-null-api-key-when-use-litellm-proxy-true-but-litellm-proxy-api-key-is-not-configured",
+    "title": "LiteLLM Proxy AuthenticationError When LITELLM_PROXY_API_KEY Not Set",
+    "description": "Fix LiteLLM proxy authentication error caused by missing LITELLM_PROXY_API_KEY environment variable in proxy deployments Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "AuthenticationError: api_key=None — OpenAI SDK rejects null API key when USE_LITELLM_PROXY=true but LITELLM_PROXY_API_KEY is not configured",
+    "search_intent": "Fix LiteLLM proxy authentication error caused by missing LITELLM_PROXY_API_KEY environment variable in proxy deployments",
+    "common_causes": [
+      "Source: BerriAI/litellm #20925. Specific bug where self-hosted LiteLLM proxy silently uses null key instead of fallback. Affects DevOps engineers deploying LiteLLM proxy in enterprise environments. Maps to LiteLLM per approved category. Moderate commercial value — proxy infrastructure failures impact entire team's API routing. Unique angle on a growing open-source project."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "LiteLLM"
+    ]
   }
 ]
