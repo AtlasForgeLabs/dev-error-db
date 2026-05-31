@@ -40893,5 +40893,69 @@
     "related_errors": [
       "Anthropic API"
     ]
+  },
+  {
+    "slug": "github-copilot-session-was-not-created-with-authentication-info-or-custom-provider-from-underlying-rest-quota-rate-limit-error",
+    "title": "GitHub Copilot CLI auth flow swallows REST quota errors, shows misleading message",
+    "description": "Fix GitHub Copilot CLI silently swallowing REST API rate-limit errors during token validation, surfacing them as generic 'Session was not created...' auth failure instead of actual rate-limit message Includes evidence for GitHub Copilot troubleshooting demand.",
+    "category": "GitHub Copilot",
+    "technology": "GitHub Copilot",
+    "error_signature": "\"Session was not created with authentication info or custom provider\" (from underlying REST quota/rate-limit error)",
+    "search_intent": "Fix GitHub Copilot CLI silently swallowing REST API rate-limit errors during token validation, surfacing them as generic 'Session was not created...' auth failure instead of actual rate-limit message",
+    "common_causes": [
+      "Issue #3311 on github/copilot-cli: The CLI auth flow hides the real cause (REST quota exceeded) behind a misleading session auth message. Also issue #3459 confirms auto-update check makes unauthenticated requests hitting rate limits in shared-NAT environments. Affects paying Copilot Pro+ users."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "GitHub Copilot"
+    ]
+  },
+  {
+    "slug": "claude-code-sdk-auth-failed-http-404-invalid-oauth-error-response-syntaxerror-json-parse-error-unrecognized-token",
+    "title": "Claude Code attempts OAuth instead of Bearer token for remote MCP servers",
+    "description": "Fix Claude Code incorrectly attempting OAuth flow for remote MCP servers configured with static Bearer token headers, resulting in 404 HTML parse errors Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "\"SDK auth failed: HTTP 404: Invalid OAuth error response: SyntaxError: JSON Parse error: Unrecognized token '<'\"",
+    "search_intent": "Fix Claude Code incorrectly attempting OAuth flow for remote MCP servers configured with static Bearer token headers, resulting in 404 HTML parse errors",
+    "common_causes": [
+      "Issue #47424 on anthropics/claude-code: Remote HTTP MCP server with Bearer token auth fails because Claude Code tries OAuth discovery. Server has no OAuth endpoints (only Bearer header). Users stuck unable to use configured MCP without OAuth support. Tier-0 API search confirmed this issue."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "aws-lambda-function-times-out-but-sdk-tool-does-not-capture-or-report-the-timeout-event",
+    "title": "AWS Lambda integration timeout not captured by monitoring SDKs",
+    "description": "Fix AWS Lambda timeout events not being captured by Sentry/monitoring SDKs; developers unaware when their Lambda functions time out beyond the function-level timeout limit Includes evidence for AWS troubleshooting demand.",
+    "category": "Cloud Platforms",
+    "technology": "AWS",
+    "error_signature": "Lambda function times out but SDK/tool does not capture or report the timeout event",
+    "search_intent": "Fix AWS Lambda timeout events not being captured by Sentry/monitoring SDKs; developers unaware when their Lambda functions time out beyond the function-level timeout limit",
+    "common_causes": [
+      "Issue #4014 on getsentry/sentry-python reports Lambda integration fails to capture timeout indications even though issue #4872 on aws-sdk-go notes the same gap. Combined with #3301 on n8n-io showing Axios timeout wrapping Lambda native timeout. Developers miss critical production failures."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Cloud Platforms"
+    ]
+  },
+  {
+    "slug": "kubernetes-imagepullbackoff-pulling-image-from-registry-fails-due-to-rate-limit-exceeded-e-g-docker-hub-100-pulls-6-hours-anonymous",
+    "title": "Kubernetes ImagePullBackOff caused by container registry rate limiting (Docker Hub)",
+    "description": "Fix Kubernetes pod failing to start because container image pull hits registry rate limits; distinguish from authentication/image-not-found causes; understand how Docker Hub anonymous rate limits trigger ImagePullBackOff Includes evidence for Kubernetes troubleshooting demand.",
+    "category": "Cloud Platforms",
+    "technology": "Kubernetes",
+    "error_signature": "ImagePullBackOff — pulling image from registry fails due to rate limit exceeded (e.g., Docker Hub 100 pulls/6 hours anonymous)",
+    "search_intent": "Fix Kubernetes pod failing to start because container image pull hits registry rate limits; distinguish from authentication/image-not-found causes; understand how Docker Hub anonymous rate limits trigger ImagePullBackOff",
+    "common_causes": [
+      "Verified via web_search: dedicated troubleshooting guides cover this specific angle — Docker Hub anonymous rate limits triggering ImagePullBackOff. Distinct from basic tutorial content because it addresses the intersection of cloud platform (K8s) + registry billing tier limits. No exact duplicate found on dev-error-db.com."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "Cloud Platforms"
+    ]
   }
 ]
