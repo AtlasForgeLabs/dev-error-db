@@ -39965,5 +39965,69 @@
     "related_errors": [
       "AI Coding Tools"
     ]
+  },
+  {
+    "slug": "litellm-cloudflare-workers-ai-models-return-empty-response-through-litellm-when-using-newer-openai-style-result-choices-0-message-content-shape-legacy-parser-only-reads-result-response-field",
+    "title": "Cloudflare Workers AI returns empty content via LiteLLM OpenAI-compatible parser",
+    "description": "Fix LiteLLM Cloudflare response parser to handle both legacy and new OpenAI-compatible response shapes from Cloudflare Workers AI models (Kimi K-2.6, GLM, Gemma-4-26B) Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "Cloudflare Workers AI models return empty response through LiteLLM when using newer OpenAI-style result.choices[0].message.content shape — Legacy parser only reads result.response field",
+    "search_intent": "Fix LiteLLM Cloudflare response parser to handle both legacy and new OpenAI-compatible response shapes from Cloudflare Workers AI models (Kimi K-2.6, GLM, Gemma-4-26B)",
+    "common_causes": [
+      "GitHub Issue #29353 on BerriAI/litellm (created 2026-05-30). Users report LiteLLM returns empty/no content when proxying Cloudflare Workers AI models that use the newer choices[0].message.content JSON shape instead of the legacy result.response. Direct Cloudflare API calls work fine. Category mapping: LiteLLM proxy routing failure → LiteLLM per SKILL.md."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "LiteLLM"
+    ]
+  },
+  {
+    "slug": "litellm-imagepullbackoff-helm-chart-defaults-to-main-appversion-tag-which-does-not-exist-on-ghcr-e-g-ghcr-io-berriai-litellm-database-main-1-86-2-returns-404-while-plain-1-86-2-tag-exists",
+    "title": "LiteLLM Helm chart default image tag missing → ImagePullBackOff on stable releases",
+    "description": "Fix LiteLLM Helm chart default image tag so stable kubernetes deployments succeed without manual image.tag override — systemic across versions 1.84.x–1.86.2 Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "ImagePullBackOff: helm chart defaults to main-<appVersion> tag which does not exist on ghcr — e.g., ghcr.io/berriai/litellm-database:main-1.86.2 returns 404 while plain 1.86.2 tag exists",
+    "search_intent": "Fix LiteLLM Helm chart default image tag so stable kubernetes deployments succeed without manual image.tag override — systemic across versions 1.84.x–1.86.2",
+    "common_causes": [
+      "GitHub Issue #29348 on BerriAI/litellm (created 2026-05-30). The chart renders main-<AppVersion> but only <AppVersion> plain tags are published to GHCR. This blocks ALL default installations across 6+ recent versions. Category mapping: LiteLLM K8s deployment failure → LiteLLM per SKILL.md."
+    ],
+    "quick_fix": "Verify the model name, local service connectivity, and network access before retrying the model pull.",
+    "related_errors": [
+      "LiteLLM"
+    ]
+  },
+  {
+    "slug": "openrouter-provider-returned-error-404-item-with-id-rs-xxxxxxxxx-not-found-items-are-not-persisted-when-store-is-set-to-false",
+    "title": "LangChain OpenRouter rs_* reasoning IDs cause 404 on /responses replay across upstreams",
+    "description": "Fix langchain-openrouter passing opaque rs_* reasoning item IDs back to OpenRouter's /responses beta endpoint which strips persistence across upstream switches Includes evidence for OpenRouter troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenRouter",
+    "error_signature": "Provider returned error 404: Item with id 'rs_XXXXXXXXX' not found. Items are not persisted when store is set to false",
+    "search_intent": "Fix langchain-openrouter passing opaque rs_* reasoning item IDs back to OpenRouter's /responses beta endpoint which strips persistence across upstream switches",
+    "common_causes": [
+      "GitHub Issue #37777 on langchain-ai/langchain (created 2026-05-29). ChatOpenRouter forwards rs_* reasoning IDs from additional_kwargs; OpenRouter's /responses beta does not propagate store=true across upstreams. Results in cascading 404 errors. Reproduction confirmed on multiple upstreams including direct OpenAI. Category mapping: OpenRouter model routing/API compatibility → OpenAI API per SKILL.md."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "github-actions-actions-checkout-hangs-or-times-out-severely-degraded-performance-from-european-hosted-runners-started-around-2026-05-19",
+    "title": "GitHub Actions actions/checkout extremely slow or timing out from European runners",
+    "description": "Fix sudden degradation in GitHub Actions checkout speed for EU-region runners blocking CI/CD pipelines for teams using self-hosted or GitHub-hosted EU runners Includes evidence for GitHub Actions troubleshooting demand.",
+    "category": "GitHub Actions",
+    "technology": "GitHub Actions",
+    "error_signature": "actions/checkout hangs or times out severely degraded performance from European hosted runners — started around 2026-05-19",
+    "search_intent": "Fix sudden degradation in GitHub Actions checkout speed for EU-region runners blocking CI/CD pipelines for teams using self-hosted or GitHub-hosted EU runners",
+    "common_causes": [
+      "GitHub Issue #2441 on actions/checkout (created 2026-05-24). Multiple workflows reporting severe slowdown starting 2026-05-19, affecting EU runner regions specifically. Impacts paid team CI/CD pipelines. Category mapping: GitHub Actions workflow failed → GitHub Actions per SKILL.md."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "GitHub Actions"
+    ]
   }
 ]
