@@ -41789,5 +41789,101 @@
     "related_errors": [
       "Docker"
     ]
+  },
+  {
+    "slug": "claude-code-not-logged-in-please-run-login-even-though-claude-auth-status-shows-loggedin-true-claude-p-works-and-direct-curl-calls-succeed",
+    "title": "Claude Code Interactive Mode Ignores ANTHROPIC_API_KEY — Requires /login Despite Valid Auth",
+    "description": "Fix Claude Code interactive mode authentication when API key env var is set but rejected in favor of OAuth flow Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Not logged in · Please run /login (even though claude auth status shows loggedIn:true, claude -p works, and direct curl calls succeed)",
+    "search_intent": "Fix Claude Code interactive mode authentication when API key env var is set but rejected in favor of OAuth flow",
+    "common_causes": [
+      "GitHub issue #27900 on anthropics/claude-code: Interactive mode refuses ANTHROPIC_API_KEY env var, requires /login OAuth flow, but claude -p and direct curl API calls work perfectly. Confirmed regression vs expected behavior. Mapping: AI coding tool authentication failure on paid tier → AI Coding Tools."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "claude-code-refusing-to-allow-an-oauth-app-to-create-or-update-workflow-github-workflows-file-yml-without-workflow-scope",
+    "title": "Claude Code Cloud Session Git Push Blocked: Refusing OAuth App Workflow Scope",
+    "description": "Fix Claude Code cloud session inability to push changes to .github/workflows/ — both git push and GitHub MCP fail with same OAuth scope error Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "refusing to allow an OAuth App to create or update workflow .github/workflows/<file>.yml without workflow scope",
+    "search_intent": "Fix Claude Code cloud session inability to push changes to .github/workflows/ — both git push and GitHub MCP fail with same OAuth scope error",
+    "common_causes": [
+      "GitHub issue #61189 on anthropics/claude-code: Claude Code cloud session produces correct patch but fails at push time. Both git push origin and mcp__github__create_or_update_file fail with identical OAuth-scope error. The shared OAuth App wording suggests docker proxy and GitHub MCP share credentials lacking workflow scope. Blocks legitimate CI-fix tasks entirely. Mapping: Claude Code workflow/tool usage error → AI Coding Tools."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "claude-code-bypass-dangerously-skip-permissions-now-broken-in-all-claude-code-versions-newer-than-v2-1-77-every-edit-requires-clicking-yes-accept",
+    "title": "Claude Code Bypass/Dangerously Skip Permissions Broken Since v2.1.77",
+    "description": "Fix regression where bypass/skip permissions UI fails in Claude Code v2.1.77+, forcing manual confirmation on every file edit Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Bypass/dangerously skip permissions now broken in all Claude Code versions newer than v2.1.77 — every edit requires clicking 'yes/accept'",
+    "search_intent": "Fix regression where bypass/skip permissions UI fails in Claude Code v2.1.77+, forcing manual confirmation on every file edit",
+    "common_causes": [
+      "GitHub issue #36168 on anthropics/claude-code: Confirmed regression — rolling back to v2.1.77 restores functionality. Users report extreme frustration with mandatory per-edit approval. Mapping: AI coding tool broken workflow → AI Coding Tools. This is a high-friction UX bug directly impacting paid subscription users."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "litellm-authenticationerror-litellm-proxyexception-the-api-key-client-option-must-be-set-either-by-passing-api-key-to-the-client-or-by-setting-the-litellm-proxy-api-key-environment-variable",
+    "title": "LiteLLM Provider Raises AuthenticationError When LITELLM_PROXY_API_KEY Not Set",
+    "description": "Fix LiteLLM proxy rejecting api_key=None instead of falling back to dummy key like other self-hosted providers (hosted_vllm, lm-studio, llamafile) Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "AuthenticationError: Litellm_proxyException - The api_key client option must be set either by passing api_key to the client or by setting the LITELLM_PROXY_API_KEY environment variable",
+    "search_intent": "Fix LiteLLM proxy rejecting api_key=None instead of falling back to dummy key like other self-hosted providers (hosted_vllm, lm-studio, llamafile)",
+    "common_causes": [
+      "GitHub issue #20925 on BerriAI/litellm: USE_LITELLM_PROXY=true without LITELLM_PROXY_API_KEY causes OpenAI SDK to reject None key. Other providers fall back to 'fake-api-key'. This blocks service mesh (Istio mTLS), VPC-internal access, local dev where proxy runs with master_key=None. Affects enterprise LiteLLM proxy deployments. Commercial value: proxy billing/routing failures affecting production microservices."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "LiteLLM"
+    ]
+  },
+  {
+    "slug": "ollama-pull-model-manifest-get-dial-tcp-172-67-182-229-443-connect-connection-refused-behind-proxy-where-http-proxy-https-proxy-are-set-correctly",
+    "title": "Ollama Pull Fails Behind Corporate Proxy: Connection Refused on registry.ollama.ai",
+    "description": "Fix Ollama model pull failing with connection refused behind corporate proxy despite correct HTTP_PROXY/HTTPS_PROXY environment variables Includes evidence for Ollama troubleshooting demand.",
+    "category": "Ollama",
+    "technology": "Ollama",
+    "error_signature": "pull model manifest: Get \"\" dial tcp 172.67.182.229:443: connect: connection refused (behind proxy where http_proxy/https_proxy are set correctly)",
+    "search_intent": "Fix Ollama model pull failing with connection refused behind corporate proxy despite correct HTTP_PROXY/HTTPS_PROXY environment variables",
+    "common_causes": [
+      "GitHub issue #5844 on ollama/ollama: Users behind corporate proxy can successfully browse to registry.ollama.ai in browser but ollama pull fails with TCP connection refused. Proxy env vars verified correct. Also seen in #6140 (connection reset by peer). Affects enterprise users who must pull models through firewalls. High commercial value: local LLM serving blocked in corporate environments."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "Ollama"
+    ]
+  },
+  {
+    "slug": "github-actions-cache-not-found-for-input-keys-configuration-runid-process-completed-with-exit-code-1-job-usually-results-in-no-cache-misses",
+    "title": "GitHub Actions Intermittent Cache Misses Cause Job Failures",
+    "description": "Fix intermittent GitHub Actions cache miss causing downstream jobs to fail despite successful cache save in preceding job Includes evidence for GitHub Actions troubleshooting demand.",
+    "category": "GitHub Actions",
+    "technology": "GitHub Actions",
+    "error_signature": "Cache not found for input keys: configuration-RUNID → Process completed with exit code 1; job usually results in no cache misses",
+    "search_intent": "Fix intermittent GitHub Actions cache miss causing downstream jobs to fail despite successful cache save in preceding job",
+    "common_causes": [
+      "GitHub discussion #47816 (community): Reproducible but intermittent cache miss issue in actions/cache@v3. A job saves cache successfully, but subsequent dependent job cannot retrieve it. No workflow changes made recently. Affects CI/CD pipelines for paid teams. Commercial value: CI/CD failures block deployments for paid organizations."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "GitHub Actions"
+    ]
   }
 ]
