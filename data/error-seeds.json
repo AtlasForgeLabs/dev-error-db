@@ -43741,5 +43741,69 @@
     "related_errors": [
       "Cloudflare"
     ]
+  },
+  {
+    "slug": "claude-code-http-529-overloaded",
+    "title": "Claude Code HTTP 529 Overloaded — Anthropic Edge Unreachable Troubleshooting",
+    "description": "Fix Claude Code returning 529 when Anthropic backend is unreachable or rate-limited Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "HTTP 529 overloaded",
+    "search_intent": "Fix Claude Code returning 529 when Anthropic backend is unreachable or rate-limited",
+    "common_causes": [
+      "Comprehensive 2026 troubleshooting guide (codersera.com) identifies HTTP 529 as Anthropic overload — distinct from 503 (edge unreachable). Common causes include corporate proxies breaking long-lived HTTPS, regional Cloudflare outages. Users need back-off strategies and model switching guidance. High commercial value since Claude Code subscription is broken."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "vercel-cannot-find-module-common-build-successful-on-dashboard-but-api-endpoint-returns-500-function-crash",
+    "title": "Vercel Runtime Cannot Find Module — Build Succeeds But Deploy Fails at Runtime",
+    "description": "Fix Vercel deployments where npm install succeeds but modules are missing at runtime, causing 500 errors despite successful build Includes evidence for Vercel troubleshooting demand.",
+    "category": "Deployment",
+    "technology": "Vercel",
+    "error_signature": "Cannot find module './common' — build successful on dashboard but API endpoint returns 500 function crash",
+    "search_intent": "Fix Vercel deployments where npm install succeeds but modules are missing at runtime, causing 500 errors despite successful build",
+    "common_causes": [
+      "Vercel Community post #18432 documents a critical case: all new deployments fail at runtime with varying missing modules (suggesting corrupted npm install on Vercel build servers). Build step reports success, but API endpoints return 500. Triggered by adding env vars via dashboard. Vercel CLI build succeeds locally. This is a Vercel-specific edge case distinct from case-sensitivity module-not-found."
+    ],
+    "quick_fix": "Check the build output, project root, and deployment platform configuration before redeploying.",
+    "related_errors": [
+      "Deployment"
+    ]
+  },
+  {
+    "slug": "kubernetes-crashloopbackoff-container-repeatedly-crashes-and-restarts-with-exponential-backoff",
+    "title": "Kubernetes CrashLoopBackOff After Container Starts — OOMKilled, Bad Probes, Init Failures",
+    "description": "Diagnose and fix Kubernetes pods stuck in CrashLoopBackOff state caused by OOMKilled, bad health probes, init container failures, or missing dependencies Includes evidence for Kubernetes troubleshooting demand.",
+    "category": "Cloud Platforms",
+    "technology": "Kubernetes",
+    "error_signature": "CrashLoopBackOff — container repeatedly crashes and restarts with exponential backoff",
+    "search_intent": "Diagnose and fix Kubernetes pods stuck in CrashLoopBackOff state caused by OOMKilled, bad health probes, init container failures, or missing dependencies",
+    "common_causes": [
+      "PerfectScale comprehensive guide (April 2026) covers Kubernetes CrashLoopBackOff diagnosis including OOMKilled, init container failures, DNS issues, probe misconfigurations. Distinct from ImagePullBackOff (pre-start). Enterprise DevOps engineers searching for this constantly — high commercial intent when production pods won't start. Multiple Stack Overflow threads corroborate."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Cloud Platforms"
+    ]
+  },
+  {
+    "slug": "claude-code-mcp-server-tools-disappear-silently-no-error-shown-tools-list-returns-unauthorized",
+    "title": "Claude Code MCP Server OAuth Silent Failure — No User-Facing Error Notification",
+    "description": "Fix Claude Code HTTP MCP servers that fail silently without showing any authentication error to the user Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "MCP server tools disappear silently — no error shown, tools/list returns Unauthorized",
+    "search_intent": "Fix Claude Code HTTP MCP servers that fail silently without showing any authentication error to the user",
+    "common_causes": [
+      "GitHub Issue #46623 and #26917 document HTTP MCP servers requiring OAuth failing silently in Claude Code. When tools/list returns Unauthorized, Claude Code swallows the error with no notification. Root causes: DCR failure with missing registration_endpoint, scope shadowing (~/.claude.json local vs project vs user hierarchy), stale .mcp.json overrides. Critical for teams using MCP integrations in production."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
   }
 ]
