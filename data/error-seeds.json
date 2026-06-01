@@ -42317,5 +42317,69 @@
     "related_errors": [
       "Docker"
     ]
+  },
+  {
+    "slug": "anthropic-api-anthropic-api-error-persistent-429-rate-limit-responses-consuming-credits",
+    "title": "Anthropic API 429 Rate Limit Errors Are Still Consuming Credits",
+    "description": "Fix Anthropic API 429 errors that continue charging credits after rate limit is hit Includes evidence for Anthropic API troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Anthropic API",
+    "error_signature": "Anthropic API Error: Persistent 429 Rate Limit Responses Consuming Credits",
+    "search_intent": "Fix Anthropic API 429 errors that continue charging credits after rate limit is hit",
+    "common_causes": [
+      "Issue #44310 on anthropics/claude-code reports that 429 rate-limit responses from Claude API still consume user credits despite the request being throttled. Enterprise users face direct financial loss per 429 event. Category: Anthropic API. P0 tier."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "Anthropic API"
+    ]
+  },
+  {
+    "slug": "github-copilot-cli-auth-flow-silently-swallows-rest-quota-rate-limit-errors-during-token-validation-surfaces-them-as-session-was-not-created-with-authentication-info-or-custom-provider",
+    "title": "GitHub Copilot CLI Auth Flow Silently Swallows Quota Exceeded (402) Errors",
+    "description": "Resolve misleading Copilot CLI authentication error caused by underlying quota/rate-limit 429 or 402 errors being suppressed Includes evidence for GitHub Copilot troubleshooting demand.",
+    "category": "GitHub Copilot",
+    "technology": "GitHub Copilot",
+    "error_signature": "CLI auth flow silently swallows REST quota / rate-limit errors during token validation, surfaces them as 'Session was not created with authentication info or custom provider'",
+    "search_intent": "Resolve misleading Copilot CLI authentication error caused by underlying quota/rate-limit 429 or 402 errors being suppressed",
+    "common_causes": [
+      "Two related issues: #3311 (auth flow swallows 429/402) and #3431 (quota_exceeded 402 despite paid over-quota enabled) on github/copilot-cli. Paid Copilot Pro users blocked by confusing error messages. High commercial value — affects paying subscribers' core workflow. Category: GitHub Copilot. P0 tier."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "GitHub Copilot"
+    ]
+  },
+  {
+    "slug": "claude-code-mcp-oauth-403-insufficient-scope-step-up-authorization-does-not-trigger-re-authorization-flow",
+    "title": "Claude Code MCP OAuth 403 Insufficient Scope Does Not Trigger Re-Authorization Flow",
+    "description": "Fix Claude Code OAuth flow so insufficient_scope 403 errors correctly prompt user to re-authorize with elevated scopes Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "MCP OAuth 403 insufficient_scope step-up authorization does not trigger re-authorization flow",
+    "search_intent": "Fix Claude Code OAuth flow so insufficient_scope 403 errors correctly prompt user to re-authorize with elevated scopes",
+    "common_causes": [
+      "Issue #44652 on anthropics/claude-code: when MCP tools require additional OAuth scopes beyond initial consent, the 403 insufficient_scope response fails to initiate step-up re-auth. Users stuck permanently locked out of tools. Affects enterprise users integrating Claude Code with GitHub/GitLab via MCP. Category: AI Coding Tools. P0 tier."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "langchain-429-handling-inconsistent-across-providers-retry-amplification-under-concurrency",
+    "title": "LangChainJS 429 Handling Inconsistent Across Providers → Retry Amplification Under Concurrency",
+    "description": "Fix inconsistent 429 rate-limit handling in LangChainJS that causes retry storms and amplifies downstream throttling across multiple LLM providers Includes evidence for LangChain troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "LangChain",
+    "error_signature": "429 handling inconsistent across providers → retry amplification under concurrency",
+    "search_intent": "Fix inconsistent 429 rate-limit handling in LangChainJS that causes retry storms and amplifies downstream throttling across multiple LLM providers",
+    "common_causes": [
+      "Issue #10566 on langchain-ai/langchainjs: different LLM providers return varying 429 formats/headers but LangChainJS applies uniform retry logic, causing cascading retry amplification. When one provider ratelimits, the retry storm hits others. Production-grade multi-provider setups affected. Category: AI Coding Tools. P1 tier."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
   }
 ]
