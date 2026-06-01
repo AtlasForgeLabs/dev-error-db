@@ -42493,5 +42493,85 @@
     "related_errors": [
       "Cloudflare"
     ]
+  },
+  {
+    "slug": "claude-code-you-re-out-of-extra-usage-resets-x-ratelimittype-five-hour-overagestatus-rejected-overagedisabledreason-out-of-credits",
+    "title": "Claude Code Max Plan Rejected with 'Out of Extra Usage' Despite Quota Remaining",
+    "description": "Fix claude CLI rejecting prompts with 'out of extra usage' error while Claude Desktop works fine on same account Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "You're out of extra usage · resets X; rateLimitType: five_hour; overageStatus: rejected; overageDisabledReason: out_of_credits",
+    "search_intent": "Fix claude CLI rejecting prompts with 'out of extra usage' error while Claude Desktop works fine on same account",
+    "common_causes": [
+      "GitHub issue #57096 from anthropics/claude-code reports claude -p CLI gets rejected against empty extra-usage pool while Claude Desktop continues working. Same account, same minute, same model. This indicates asymmetric quota handling between Desktop and CLI — a real paid-service pain point for Max plan users. Category: AI Coding Tools (Claude Code)."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "claude-code-api-error-529-overloaded-this-is-a-server-side-issue-usually-temporary-try-again-in-a-moment",
+    "title": "Anthropic API Error 529 Overloaded Blocks Claude Code Agent Workflows",
+    "description": "Resolve Claude Code receiving persistent 529 Overloaded errors from Anthropic API endpoint causing agent sessions to fail Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "API Error: 529 Overloaded. This is a server-side issue, usually temporary — try again in a moment.",
+    "search_intent": "Resolve Claude Code receiving persistent 529 Overloaded errors from Anthropic API endpoint causing agent sessions to fail",
+    "common_causes": [
+      "GitHub issue #61365 from anthropics/claude-code reports 529 Overloaded errors. Category: Anthropic API since the error originates from the Anthropic API backend, affecting paid API consumers who rely on availability guarantees. 529 status code is a server overload indicator — users need diagnostic pages explaining severity vs transient vs permanent."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "litellm-429-rate-limit-exceeded-limit-type-max-parallel-requests-remaining-0-counter-never-decremented-after-upstream-502-504",
+    "title": "LiteLLM Proxy max_parallel_requests Deadlocks After Provider Timeouts — Requires Redis Restart",
+    "description": "Fix LiteLLM proxy getting permanently locked with max_parallel_requests=0 after upstream provider timeouts, requiring manual Redis restart to recover Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "429 Rate limit exceeded — Limit type: max_parallel_requests — Remaining: 0 — counter never decremented after upstream 502/504",
+    "search_intent": "Fix LiteLLM proxy getting permanently locked with max_parallel_requests=0 after upstream provider timeouts, requiring manual Redis restart to recover",
+    "common_causes": [
+      "GitHub issue #20256 from BerriAI/litellm describes a soft deadlock: when upstream providers return 502/504/timeouts, the in-flight counter never decrements, causing all subsequent requests to be immediately rejected with 429. The lock doesn't self-recover and needs Redis restart. Critical production bug for proxy deployments handling multiple paid API keys. Category: LiteLLM."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "LiteLLM"
+    ]
+  },
+  {
+    "slug": "cloudflare-502-bad-gateway-on-post-pages-assets-upload-wrangler-differential-upload-reconciler-fails",
+    "title": "Cloudflare Pages Deploy Fails with 502 Bad Gateway on Differential Asset Uploads",
+    "description": "Fix Cloudflare Pages deployment failing with 502 Bad Gateway during partial/differential static asset uploads Includes evidence for Cloudflare troubleshooting demand.",
+    "category": "Cloudflare",
+    "technology": "Cloudflare",
+    "error_signature": "502 Bad Gateway on POST /pages/assets/upload — Wrangler differential upload reconciler fails",
+    "search_intent": "Fix Cloudflare Pages deployment failing with 502 Bad Gateway during partial/differential static asset uploads",
+    "common_causes": [
+      "GitHub issue #14021 from cloudflare/workers-sdk confirms reproducible 502 on differential uploads using wrangler. Workaround --skip-caching exists but disables caching. Affects production deployments of paid Cloudflare Pages projects. Category: Cloudflare."
+    ],
+    "quick_fix": "Check the build output, project root, and deployment platform configuration before redeploying.",
+    "related_errors": [
+      "Cloudflare"
+    ]
+  },
+  {
+    "slug": "ollama-error-pull-model-manifest-file-does-not-exist-after-pulling-manifest-prompt",
+    "title": "Ollama Pull Manifest Fails with Generic 'File Does Not Exist' Masking Network/Cert Issues",
+    "description": "Fix Ollama failing to pull models on macOS Apple Silicon with misleading 'file does not exist' error masking DNS/TLS/certificate resolution failures Includes evidence for Ollama troubleshooting demand.",
+    "category": "Ollama",
+    "technology": "Ollama",
+    "error_signature": "Error: pull model manifest: file does not exist (after 'pulling manifest...' prompt)",
+    "search_intent": "Fix Ollama failing to pull models on macOS Apple Silicon with misleading 'file does not exist' error masking DNS/TLS/certificate resolution failures",
+    "common_causes": [
+      "GitHub issue #16278 from ollama/ollama reports ollama pull immediately errors with 'file does not exist' despite active service, direct connection, and all diagnostics passing. Root cause appears to be masked network/DNS/certificate resolution failure at registry. Also #16067 shows related TLS cert verification errors. Category: Ollama — local LLM serving tool with significant developer adoption."
+    ],
+    "quick_fix": "Verify the model name, local service connectivity, and network access before retrying the model pull.",
+    "related_errors": [
+      "Ollama"
+    ]
   }
 ]
