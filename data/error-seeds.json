@@ -42573,5 +42573,101 @@
     "related_errors": [
       "Ollama"
     ]
+  },
+  {
+    "slug": "claude-code-remote-permission-to-owner-repo-git-denied-to-owner-fatal-unable-to-access-repo-the-requested-url-returned-error-403",
+    "title": "Claude Code web session loses GitHub push access mid-project — GitHub App missing install",
+    "description": "Fix Claude Code web session git push 403 errors despite having GitHub OAuth authorization; understand why GitHub App installation state causes write failures mid-project Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "remote: Permission to <owner>/<repo>.git denied to <owner>; fatal: unable to access ':/<repo>/': The requested URL returned error: 403",
+    "search_intent": "Fix Claude Code web session git push 403 errors despite having GitHub OAuth authorization; understand why GitHub App installation state causes write failures mid-project",
+    "common_causes": [
+      "GitHub Issue #57009 (anthropics/claude-code): Claude Code web sessions lose GitHub push access mid-project. Root cause: GitHub settings show Claude is authorized as an OAuth app but 'has not been installed on any accounts' — the GitHub App installation is missing, so only read access works. This affects paying Claude Code users doing active development where git push fails silently after previous commits succeeded."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "litellm-http-2-500-error-posting-to-endpoint-error-mcp-request-failed-details-expected-401-www-authenticate-for-oauth-browser-flow",
+    "title": "LiteLLM interactive OAuth2 MCP server returns 500 instead of proper 401+WWW-Authenticate",
+    "description": "Fix LiteLLM proxy returning 500 errors instead of HTTP 401 with WWW-Authenticate header when MCP server OAuth2 auth is required but user has no Google OAuth token yet Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "HTTP/2 500 \"Error POSTing to endpoint: {\"error\":\"MCP request failed\",\"details\":\"\"}\" — expected 401 WWW-Authenticate for OAuth browser flow",
+    "search_intent": "Fix LiteLLM proxy returning 500 errors instead of HTTP 401 with WWW-Authenticate header when MCP server OAuth2 auth is required but user has no Google OAuth token yet",
+    "common_causes": [
+      "GitHub Issue #29261 (BerriAI/litellm): When MCP server configured with auth_type oauth2 sends request with valid x-litellm-api-key but no Authorization header, LiteLLM 1.85.0 returns HTTP 500 instead of clean 401 + WWW-Authenticate header. This prevents MCP clients (OpenCode, Claude Code) from initiating the OAuth browser flow. Directly blocks production AI gateway setups using LiteLLM enterprise features."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "LiteLLM"
+    ]
+  },
+  {
+    "slug": "vercel-build-completes-successfully-8s-but-deployment-stays-stuck-in-building-status-indefinitely-log-ends-at-built-in-xs-with-no-further-output-build-completed-in-vercel-output-never-appears",
+    "title": "Vercel deployment stuck in building after successful build — iad1 post-build pipeline hang",
+    "description": "Fix Vercel deployment hanging in building state after build succeeds; understand iad1 region post-build pipeline failures and deploy output step stalls Includes evidence for Vercel troubleshooting demand.",
+    "category": "Deployment",
+    "technology": "Vercel",
+    "error_signature": "Build completes successfully (~8s) but deployment stays stuck in 'building' status indefinitely; log ends at '✓ built in Xs' with no further output; 'Build Completed in /vercel/output' never appears",
+    "search_intent": "Fix Vercel deployment hanging in building state after build succeeds; understand iad1 region post-build pipeline failures and deploy output step stalls",
+    "common_causes": [
+      "Vercel Community thread 42983: Hobby plan project builds complete in ~8s but deployment remains stuck in 'building' indefinitely. Log shows '✓ built in ~8s' then nothing. Three consecutive failures on June 1, 2026 with zero code changes between working and failing deploys. Post-build pipeline ('Deploying outputs' step) never initiates. Production-blocking issue for Vercel paying users."
+    ],
+    "quick_fix": "Check the build output, project root, and deployment platform configuration before redeploying.",
+    "related_errors": [
+      "Deployment"
+    ]
+  },
+  {
+    "slug": "github-copilot-premium-requests-quota-exceeded-copilot-shows-usage-limit-messages-rate-limiting-applied-to-included-models-when-premium-requests-exhausted",
+    "title": "GitHub Copilot premium request quota exceeded — rate limited after exhausting monthly allowance",
+    "description": "Understand and fix GitHub Copilot premium request limits hitting too quickly; manage per-plan allowances and identify strategies to extend or reset premium request quotas without upgrading plans Includes evidence for GitHub Copilot troubleshooting demand.",
+    "category": "GitHub Copilot",
+    "technology": "GitHub Copilot",
+    "error_signature": "Premium requests quota exceeded — Copilot shows usage limit messages; rate limiting applied to included models when premium requests exhausted",
+    "search_intent": "Understand and fix GitHub Copilot premium request limits hitting too quickly; manage per-plan allowances and identify strategies to extend or reset premium request quotas without upgrading plans",
+    "common_causes": [
+      "GitHub Docs copilot-billing documentation details premium request billing mechanics effective June 2025. Copilot Pro/Pro+/student plans have tighter weekly limits since April 2026. Multiple developers on X report hitting $20/mo tier limits within hours. Rate limiting applied after quota exhaustion. New June 1 2026 policy: Copilot code review has model multiplier of 13, drastically reducing monthly quota."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "GitHub Copilot"
+    ]
+  },
+  {
+    "slug": "claude-code-authorization-with-the-mcp-server-failed-you-can-check-your-credentials-and-permissions-your-authorization-server-returned-invalid-grant-on-token-exchange-reference-ofid",
+    "title": "MCP server OAuth DCR authorization failed — invalid_grant on token exchange causing Claude connector failures",
+    "description": "Fix Claude Code/connectors failing with MCP OAuth authorization errors during streamable-http transport; understand invalid_grant token exchange failures and CDN edge blocking post-token callbacks Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Authorization with the MCP server failed. You can check your credentials and permissions. Your authorization server returned invalid_grant on token exchange. Reference: ofid_…",
+    "search_intent": "Fix Claude Code/connectors failing with MCP OAuth authorization errors during streamable-http transport; understand invalid_grant token exchange failures and CDN edge blocking post-token callbacks",
+    "common_causes": [
+      "GitHub Issue #327 (anthropics/claude-ai-mcp): Custom MCP server with DCR+PKCE OAuth flow fails post-token callback at user's CDN edge layer. OAuth completes server-side correctly with right aud claim, but Claude.ai rejected callback produces confusing 'credentials' error instead of actionable infra guidance. Affects developers integrating custom tools with Claude ecosystem."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "vercel-typeerror-cannot-read-properties-of-undefined-reading-path-at-incomingmessage-anonymous-opt-rust-nodejs-js-2-14272-vercel-runtime-timeout-error-task-timed-out-after-120-seconds-exit-status-128",
+    "title": "CedarJS/RedwoodJS Vercel deployment runtime timeout — /opt/rust/nodejs.js unhandled rejection error",
+    "description": "Fix CedarJS/RedwoodJS Vercel function invocations timing out after deployment with unhandled rejections in Vercel internal runtime nodejs.js; resolve 504 gateway errors on API endpoints Includes evidence for Vercel troubleshooting demand.",
+    "category": "Deployment",
+    "technology": "Vercel",
+    "error_signature": "TypeError: Cannot read properties of undefined (reading 'path') at IncomingMessage.<anonymous> (/opt/rust/nodejs.js:2:14272); Vercel Runtime Timeout Error: Task timed out after 120 seconds; exit status: 128",
+    "search_intent": "Fix CedarJS/RedwoodJS Vercel function invocations timing out after deployment with unhandled rejections in Vercel internal runtime nodejs.js; resolve 504 gateway errors on API endpoints",
+    "common_causes": [
+      "Vercel Community thread 41506: Reproducible production deployment issue affecting CedarJS (fork of Redwood) on Node 24. Functions hang before response headers sent, resulting in 504 timeouts. Runtime evidence shows TypeError in Vercel internal /opt/rust/nodejs.js plus unhandled rejections. First visible failures started immediately after deployment became active. Multiple affected deployment IDs confirmed."
+    ],
+    "quick_fix": "Check the build output, project root, and deployment platform configuration before redeploying.",
+    "related_errors": [
+      "Deployment"
+    ]
   }
 ]
