@@ -41885,5 +41885,85 @@
     "related_errors": [
       "GitHub Actions"
     ]
+  },
+  {
+    "slug": "anthropic-api-http-529-overloaded-overloaded-error-529-response",
+    "title": "Anthropic API 529 Overloaded Error on Claude Opus 4.6 Max Plan",
+    "description": "Fix Anthropic API overloaded errors blocking production usage of Claude Opus 4.6, understand when these occur and how to handle them on Max plan Includes evidence for Anthropic API troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Anthropic API",
+    "error_signature": "HTTP 529 Overloaded / overloaded_error (529 Response)",
+    "search_intent": "Fix Anthropic API overloaded errors blocking production usage of Claude Opus 4.6, understand when these occur and how to handle them on Max plan",
+    "common_causes": [
+      "Multiple GitHub issues on anthropics/claude-code (#45064, #39767, #35517) report frequent 529 overloaded responses specifically on Opus 4.6 models with the paid Max subscription tier. This is a recurring server-side error impacting paying users. Category: Anthropic API (paid per-token API)."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "Anthropic API"
+    ]
+  },
+  {
+    "slug": "openai-api-exceeded-retry-limit-last-status-429-too-many-requests",
+    "title": "OpenAI Codex 429 Rate Limit Exceeds Retry Budget Blocking Development Workflow",
+    "description": "Fix OpenAI Codex (CLI coding agent) getting stuck in retry loops after hitting 429 rate limits, understand proper retry strategy and recovery Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "exceeded retry limit, last status: 429 Too Many Requests",
+    "search_intent": "Fix OpenAI Codex (CLI coding agent) getting stuck in retry loops after hitting 429 rate limits, understand proper retry strategy and recovery",
+    "common_causes": [
+      "Issues #12775, #9148, #11083 on openai/codex show repeated reports of 429 rate limits exceeding the retry budget. Codex is a terminal-based AI coding agent with paid tiers. Category: OpenAI API (API error on paid service). Multiple recent issues indicate ongoing impact."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "claude-code-bug-anthropic-api-error-529-overloaded-missing-exponential-backoff-for-subagent-spawns",
+    "title": "Claude Code Missing Exponential Backoff Causes Cascading 529 Errors During Subagent Spawning",
+    "description": "Resolve Claude Code subagent spawn failures caused by missing exponential backoff leading to cascading overloaded errors on paid Anthropic plans Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "[Bug] Anthropic API Error: 529 Overloaded - Missing Exponential Backoff for Subagent Spawns",
+    "search_intent": "Resolve Claude Code subagent spawn failures caused by missing exponential backoff leading to cascading overloaded errors on paid Anthropic plans",
+    "common_causes": [
+      "Issue #41624 on anthropics/claude-code documents missing exponential backoff in subagent spawning logic, which causes thundering herd 529 errors. Affects developers using Claude Code as an agentic coding tool with paid subscriptions. Category: AI Coding Tools."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "github-copilot-session-was-not-created-with-authentication-info-or-custom-provider-rate-limit-hidden-behind-generic-auth-error",
+    "title": "GitHub Copilot CLI Auth Flow Silently Swallows REST Quota Errors During Token Validation",
+    "description": "Understand why Copilot CLI shows confusing auth errors when the real cause is REST API rate limiting during token validation, fix authentication workflow Includes evidence for GitHub Copilot troubleshooting demand.",
+    "category": "GitHub Copilot",
+    "technology": "GitHub Copilot",
+    "error_signature": "Session was not created with authentication info or custom provider (rate-limit hidden behind generic auth error)",
+    "search_intent": "Understand why Copilot CLI shows confusing auth errors when the real cause is REST API rate limiting during token validation, fix authentication workflow",
+    "common_causes": [
+      "Issue #3311 on github/copilot-cli reveals that the CLI auth flow silently swallows 429 rate-limit errors from the REST API during token validation, surfacing them as the confusing 'Session was not created with authentication info' message. Impacts paying Copilot Enterprise users. Category: GitHub Copilot (context-dependent: copilot-cli repo)."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "GitHub Copilot"
+    ]
+  },
+  {
+    "slug": "vercel-next-js-16-2-6-remote-build-fails-with-typeerror-path-argument-must-be-of-type-string-received-undefined-during-applying-modifyconfig-from-vercel",
+    "title": "Vercel Remote Build Fails With TypeError Path Argument Must Be String Received Undefined",
+    "description": "Fix Vercel remote build failures caused by internal Vercel modifyConfig TypeError preventing deployments, need workaround or official fix Includes evidence for Vercel troubleshooting demand.",
+    "category": "Deployment",
+    "technology": "Vercel",
+    "error_signature": "Next.js 16.2.6 remote build fails with TypeError: path argument must be of type string. Received undefined during Applying modifyConfig from Vercel",
+    "search_intent": "Fix Vercel remote build failures caused by internal Vercel modifyConfig TypeError preventing deployments, need workaround or official fix",
+    "common_causes": [
+      "Issue #16409 on vercel/vercel documents a regression where Next.js 16.2.6 triggers a TypeError inside Vercel's modifyConfig hook during remote builds. Blocks production deployments. Category: Deployment (Vercel paid hosting). High commercial impact as this blocks CI/deployment pipelines."
+    ],
+    "quick_fix": "Check the build output, project root, and deployment platform configuration before redeploying.",
+    "related_errors": [
+      "Deployment"
+    ]
   }
 ]
