@@ -43501,5 +43501,165 @@
     "related_errors": [
       "Cloudflare"
     ]
+  },
+  {
+    "slug": "openai-api-message-you-exceeded-your-current-quota-please-check-your-plan-and-billing-details-type-insufficient-quota-param-null-code-insufficient-quota-occurs-even-with-paid-subscription-and-available-credit-balance",
+    "title": "OpenAI API insufficient_quota on paid account — billing limits vs approved usage confusion",
+    "description": "Resolve OpenAI API 429 insufficient_quota error on paid accounts where the user has a valid subscription and credit balance, caused by confusion between billing limits and approved usage limits. Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "{\"message\": \"You exceeded your current quota, please check your plan and billing details.\", \"type\": \"insufficient_quota\", \"param\": null, \"code\": \"insufficient_quota\"} — occurs even with paid subscription and available credit balance",
+    "search_intent": "Resolve OpenAI API 429 insufficient_quota error on paid accounts where the user has a valid subscription and credit balance, caused by confusion between billing limits and approved usage limits.",
+    "common_causes": [
+      "Blog.laozhang.ai comprehensive guide (May 6, 2026) plus Stack Overflow question #77583070 showing paid users getting insufficient_quota despite positive balances. Key insight: billing limits != approved usage limits. Account may have trial credits expired, prepaid balance zero, wrong org/project selected, or model route not accessible. Very high commercial value as it directly affects paying OpenAI API users. Not yet covered on dev-error-db (429 rate limit and model not found are covered but not this specific billing/quota boundary confusion)."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "claude-code-http-529-type-overloaded-error",
+    "title": "Claude Code HTTP 529 overloaded_error during peak hours — Opus Max plan saturation",
+    "description": "Fix Claude Code overloaded error when Anthropic's API capacity is temporarily saturated, especially on Opus/Max plans during peak hours. Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "HTTP 529 {\"type\":\"overloaded_error\"}",
+    "search_intent": "Fix Claude Code overloaded error when Anthropic's API capacity is temporarily saturated, especially on Opus/Max plans during peak hours.",
+    "common_causes": [
+      "Confirmed from codersera.com comprehensive Claude Code troubleshooting guide (May 2026). Distinct from 429 rate limit (quota-based) vs 529 overloaded (capacity-based). Source has detailed /doctor diagnostics and specific fix steps. Category mapping: Claude Code belongs to AI Coding Tools per approved mappings."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "cursor-error-timeout-waiting-for-everythingprovider",
+    "title": "Cursor 'Timeout waiting for EverythingProvider' — v3.1 models unavailable in IDE",
+    "description": "Fix Cursor IDE v3.1 where all models show unavailable in IDE despite working in web, affecting Authentication UI, Cursor Tab, Agent Endpoint, and Codebase Indexing. Includes evidence for Cursor troubleshooting demand.",
+    "category": "Cursor",
+    "technology": "Cursor",
+    "error_signature": "Error: Timeout waiting for EverythingProvider",
+    "search_intent": "Fix Cursor IDE v3.1 where all models show unavailable in IDE despite working in web, affecting Authentication UI, Cursor Tab, Agent Endpoint, and Codebase Indexing.",
+    "common_causes": [
+      "Found via tavily search. Real forum report from cursor.com community forum (April 2026). Multiple components affected simultaneously (Auth UI, Agent Endpoint, Codebase Indexing all timeout). Cursor users paying Pro/Enterprise lose core coding functionality. Clear error signature from IDE logs."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "Cursor"
+    ]
+  },
+  {
+    "slug": "github-copilot-you-ve-hit-your-global-rate-limit-please-upgrade-your-plan-or-wait-for-your-limit-to-reset-appears-persistently-even-when-premium-request-usage-shows-only-45-3",
+    "title": "GitHub Copilot 'global rate limit' bug — 429 error despite only 45% monthly usage consumed",
+    "description": "Fix GitHub Copilot persistent global rate limit 429 error that occurs even when well below monthly quota, requiring plan upgrade suggestion despite adequate remaining allowance. Includes evidence for GitHub Copilot troubleshooting demand.",
+    "category": "GitHub Copilot",
+    "technology": "GitHub Copilot",
+    "error_signature": "\"You've hit your global rate limit. Please upgrade your plan or wait for your limit to reset.\" — appears persistently even when premium request usage shows only 45.3%",
+    "search_intent": "Fix GitHub Copilot persistent global rate limit 429 error that occurs even when well below monthly quota, requiring plan upgrade suggestion despite adequate remaining allowance.",
+    "common_causes": [
+      "Real GitHub community discussion (updated May 2026). Copilot Pro user on 30-day free trial hits persistent 429 for 6+ hours while only using 136/300 requests. Reset date still weeks away. Strong commercial value — affects paid Copilot Pro users directly. Clear distinct error from normal rate limiting since quota is demonstrably not exhausted."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "GitHub Copilot"
+    ]
+  },
+  {
+    "slug": "cursor-connection-error-with-verified-personal-anthropic-api-key-5-balance-free-plan-user-cannot-use-agent-mode-with-byok",
+    "title": "Cursor BYOK connection error — Free plan blocks valid Anthropic API keys in Agent/Ask modes",
+    "description": "Resolve Cursor connection error when free plan users try to use their own Anthropic API key in Agent or Ask modes; now requires Pro subscription. Includes evidence for Cursor troubleshooting demand.",
+    "category": "Cursor",
+    "technology": "Cursor",
+    "error_signature": "Connection error with verified personal Anthropic API key ($5 balance) — free plan user cannot use agent mode with BYOK",
+    "search_intent": "Resolve Cursor connection error when free plan users try to use their own Anthropic API key in Agent or Ask modes; now requires Pro subscription.",
+    "common_causes": [
+      "Real forum report (April 2026) showing Cursor changed policy: BYOK in Agent/Ask modes now requires Pro subscription. Users with valid API keys and $5 Anthropic balance still get connection errors. Strong commercial intent as users attempt to save money by bringing own keys but face paywall. Category mapping: Cursor -> Cursor per approved categories."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Cursor"
+    ]
+  },
+  {
+    "slug": "kubernetes-imagepullbackoff-kubelet-failed-to-pull-image-rpc-error-code-unknown-desc-reading-manifest-latest-requested-access-to-the-resource-is-denied",
+    "title": "Kubernetes ImagePullBackOff — unable to pull container image from private registry",
+    "description": "Fix Kubernetes ImagePullBackOff errors preventing pod startup due to image pull/auth/tag issues from container registries including Docker Hub rate limits. Includes evidence for Kubernetes troubleshooting demand.",
+    "category": "Cloud Platforms",
+    "technology": "Kubernetes",
+    "error_signature": "ImagePullBackOff — kubelet: Failed to pull image — rpc error: code = Unknown desc = reading manifest latest requested access to the resource is denied",
+    "search_intent": "Fix Kubernetes ImagePullBackOff errors preventing pod startup due to image pull/auth/tag issues from container registries including Docker Hub rate limits.",
+    "common_causes": [
+      "Confirmed from multiple sources including PerfectScale guide and Komodor blog (2026). Core Kubernetes error blocking production deployments. ImagePullBackOff causes cascading failures in CI/CD pipelines affecting paid enterprise teams. Related to ErrImagePull. Covers private registry auth, invalid names, Docker Hub rate limits, and network issues. Category: Cloud Platforms per AWS/GCP/Azure/K8s always mapping."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "Cloud Platforms"
+    ]
+  },
+  {
+    "slug": "ollama-error-pull-model-manifest-file-does-not-exist-max-retries-exceeded-unexpected-eof-pull-model-manifest-429",
+    "title": "Ollama 'pull model manifest: file does not exist' — network proxy/HF token issues",
+    "description": "Fix Ollama model download failures caused by proxy misconfiguration, HuggingFace rate limiting (429), and missing environment variables during manifest fetching. Includes evidence for Ollama troubleshooting demand.",
+    "category": "Ollama",
+    "technology": "Ollama",
+    "error_signature": "Error: pull model manifest: file does not exist / max retries exceeded: unexpected EOF / pull model manifest: 429",
+    "search_intent": "Fix Ollama model download failures caused by proxy misconfiguration, HuggingFace rate limiting (429), and missing environment variables during manifest fetching.",
+    "common_causes": [
+      "Found via tavily search covering Ollama-specific issues including GitHub #1770 report. Common error pattern during first-time model pulls or after network disruptions. Root causes include proxy env vars not applied during manifest requests, HF token rate limiting, and carrier NAT shared egress IPs. Commercial value moderate but growing as more enterprises adopt local LLM serving. Category: Ollama per approved categories."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "Ollama"
+    ]
+  },
+  {
+    "slug": "aws-lambda-function-invocation-times-out-when-called-via-aws-sdk-sdk-socket-timeout-shorter-than-lambda-timeout-setting-different-timeouts-per-sdk-language",
+    "title": "AWS Lambda timeout when invoking function via SDK — retry/socket/timeout mismatch",
+    "description": "Fix AWS Lambda timeout errors when invoking functions through AWS SDK — resolve mismatch between SDK socket timeouts, connection timeouts, and Lambda function timeout settings across Python/Boto3, JavaScript, Java, .NET, and Go. Includes evidence for AWS troubleshooting demand.",
+    "category": "Cloud Platforms",
+    "technology": "AWS",
+    "error_signature": "Lambda function invocation times out when called via AWS SDK; SDK socket timeout shorter than Lambda timeout setting; different timeouts per SDK language",
+    "search_intent": "Fix AWS Lambda timeout errors when invoking functions through AWS SDK — resolve mismatch between SDK socket timeouts, connection timeouts, and Lambda function timeout settings across Python/Boto3, JavaScript, Java, .NET, and Go.",
+    "common_causes": [
+      "Official AWS re:Post documentation (updated Feb 2026). Detailed per-SDK timeout configurations: Boto3 defaults to 60s connect + 60s socket, JS to 120s socket, Java 10s connect + 50s socket, .NET 100s connect + 300s socket. Critical for production systems where timeout misconfigurations cause silent failures. Enterprise cloud cost impact when timed-out Lambda invocations still charge. Category: Cloud Platforms per AWS always maps to Cloud Platforms."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Cloud Platforms"
+    ]
+  },
+  {
+    "slug": "langchain-langchainratelimiterror-rate-limit-exceeded-ratelimiterror-litellm-ratelimiterror-openaiexception-you-exceeded-your-current-quota",
+    "title": "LangChain RateLimitError wrapping OpenAI 429 — excessive API calls per minute exceeded",
+    "description": "Fix LangChain API rate limit errors caused by exceeding RPM/TPM limits from underlying providers like OpenAI, implementing proper retry logic with exponential backoff and token bucket rate limiting. Includes evidence for LangChain troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "LangChain",
+    "error_signature": "LangChainRateLimitError: Rate limit exceeded / RateLimitError: litellm.RateLimitError: OpenAIException - You exceeded your current quota",
+    "search_intent": "Fix LangChain API rate limit errors caused by exceeding RPM/TPM limits from underlying providers like OpenAI, implementing proper retry logic with exponential backoff and token bucket rate limiting.",
+    "common_causes": [
+      "Multiple 2026 sources confirming LangChainRateLimitError wrapping provider 429 responses. DrDroid stack diagnosis and DeepLearning.AI community reports both from 2026. Distinguishable from raw OpenAI RateLimitError because LangChain adds its own error type wrapper. Important for production RAG/chatbot applications. Category: AI Coding Tools per LangChain always maps to AI Coding Tools."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "claude-code-mcp-error-32000-generic-json-rpc-server-error-mcp-server-process-crashed-failed-to-start-threw-during-initialization-or-exited-mid-handshake",
+    "title": "Claude Code MCP error -32000 — generic JSON-RPC server crash during tool execution",
+    "description": "Fix Claude Code MCP -32000 JSON-RPC error caused by MCP server process crashes, including missing dependencies, wrong Node version, incorrect paths in stripped environment, and console.log() corrupting JSON-RPC stdout stream. Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "MCP error -32000: Generic JSON-RPC server error — MCP server process crashed (failed to start, threw during initialization, or exited mid-handshake)",
+    "search_intent": "Fix Claude Code MCP -32000 JSON-RPC error caused by MCP server process crashes, including missing dependencies, wrong Node version, incorrect paths in stripped environment, and console.log() corrupting JSON-RPC stdout stream.",
+    "common_causes": [
+      "Comprehensive analysis from codersera.com (May 2026) covering MCP -32000 root causes in detail. Distinct from 401/529/503 errors already considered — this is transport-level failure specific to Claude Code's MCP plugin architecture. Affects developers using third-party MCP servers with Claude Code. Growing category as MCP adoption increases. Not duplicated by other candidates."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
   }
 ]
