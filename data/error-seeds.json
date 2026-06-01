@@ -43149,5 +43149,69 @@
     "related_errors": [
       "Cloud Platforms"
     ]
+  },
+  {
+    "slug": "anthropic-api-this-request-would-exceed-your-organization-s-rate-limit-of-30-000-input-tokens-per-minute-error-429-rate-limit-exceeded-below-organization-input-token-quota",
+    "title": "Anthropic Claude API 429 Rate Limit Exceeded Below Organization TPM Quota",
+    "description": "Understand why Anthropic API returns 429 rate limit errors even below displayed org TPM quota; clarify TPM calculation including conversation history size, file uploads, and tool responses Includes evidence for Anthropic API troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Anthropic API",
+    "error_signature": "This request would exceed your organization's rate limit of 30,000 input tokens per minute / Error: 429 Rate Limit Exceeded Below Organization Input Token Quota",
+    "search_intent": "Understand why Anthropic API returns 429 rate limit errors even below displayed org TPM quota; clarify TPM calculation including conversation history size, file uploads, and tool responses",
+    "common_causes": [
+      "GitHub Issue #56342 on anthropics/claude-code reports 429 errors below stated organization TPM limits. TypingMind docs explain detailed TPM calculation mechanics. Common confusion point: total token usage = all previous messages + system instructions + tool responses + uploaded files. Each new request grows heavier as conversation expands. Includes fix strategies: upgrade tier, reduce context size, split conversations."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "Anthropic API"
+    ]
+  },
+  {
+    "slug": "claude-code-sdk-auth-failed-expected-string-code-invalid-type-path-client-uri-message-invalid-input-expected-string-received-null-incompatible-auth-server-does-not-support-dynamic-client-registration",
+    "title": "Custom MCP Connector OAuth Tokens Fail to Persist Across Restart (Claude Code)",
+    "description": "Fix Claude Code custom MCP connector OAuth tokens failing to persist after app restart; tools load in-session but vanish after close; stale DCR registrations block clean auth Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "SDK auth failed: [\"expected\":\"string\",\"code\":\"invalid_type\",\"path\":[\"client_uri\"],\"message\":\"Invalid input: expected string, received null\"] / Incompatible auth server: does not support dynamic client registration",
+    "search_intent": "Fix Claude Code custom MCP connector OAuth tokens failing to persist after app restart; tools load in-session but vanish after close; stale DCR registrations block clean auth",
+    "common_causes": [
+      "GitHub Issue #52565 on anthropics/claude-code documents persistent OAuth token failure for custom MCP connectors in both Desktop GUI and CLI paths. Server-side Zod v4 DCR field validation rejects null fields causing silent auth failure. Also linked Issue #52638 shows HTTP MCP servers fail when auth server doesn't support DCR. High commercial value: affects paid Claude Code Pro/Team users integrating external tools."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "vercel-error-the-edge-function-middleware-is-referencing-unsupported-modules-crypto-middlewarehandler-is-not-a-function-middleware-invocation-failed",
+    "title": "Next.js Middleware Fails on Edge Runtime After Vercel Build (Unsupported Modules)",
+    "description": "Fix Vercel build/deployment failures caused by Next.js middleware using modules unsupported on Edge Runtime (e.g., node:crypto), especially in subfolder monorepo root configs Includes evidence for Vercel troubleshooting demand.",
+    "category": "Deployment",
+    "technology": "Vercel",
+    "error_signature": "Error: The Edge Function \"middleware\" is referencing unsupported modules: crypto | middlewareHandler is not a function | MIDDLEWARE_INVOCATION_FAILED",
+    "search_intent": "Fix Vercel build/deployment failures caused by Next.js middleware using modules unsupported on Edge Runtime (e.g., node:crypto), especially in subfolder monorepo root configs",
+    "common_causes": [
+      "Multiple sources confirm recurring Vercel + Next.js middleware deployment failures. One reported regression in Vercel CLI 50.28.0 causes middleware to not execute. Another report shows Next.js 16 middleware returning 404 sitewide due to unsupported module bundling. Subfolder monorepo root config compounds the issue. Strong production impact for teams deploying Next.js apps."
+    ],
+    "quick_fix": "Check the build output, project root, and deployment platform configuration before redeploying.",
+    "related_errors": [
+      "Deployment"
+    ]
+  },
+  {
+    "slug": "aws-invalidclienttokenid-the-security-token-included-in-the-request-isn-t-valid-aws-sdk-credential-providers-fromtemporarycredentials-behavior-change-results-in-invalidclienttokenid",
+    "title": "AWS SDK JS v3 fromTemporaryCredentials Behavior Change Causes InvalidClientTokenId",
+    "description": "Fix AWS SDK JavaScript v3 temporary credentials returning InvalidClientTokenId after a behavioral change in fromTemporaryCredentials; update credentials provider configuration Includes evidence for AWS troubleshooting demand.",
+    "category": "Cloud Platforms",
+    "technology": "AWS",
+    "error_signature": "InvalidClientTokenId: The security token included in the request isn't valid / @aws-sdk/credential-providers fromTemporaryCredentials behavior change results in InvalidClientTokenId",
+    "search_intent": "Fix AWS SDK JavaScript v3 temporary credentials returning InvalidClientTokenId after a behavioral change in fromTemporaryCredentials; update credentials provider configuration",
+    "common_causes": [
+      "GitHub Issue #6869 on aws/aws-sdk-js-v3 documents a breaking change in @aws-sdk/credential-providers fromTemporaryCredentials method causing InvalidClientTokenId errors. Combined with general AWS authentication error guides covering InvalidClientTokenId, ExpiredTokenException, and SignatureDoesNotMatch — represents a real regression affecting TypeScript/JS developers using AWS SDK v3 modular packages in production."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Cloud Platforms"
+    ]
   }
 ]
