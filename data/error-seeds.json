@@ -42669,5 +42669,101 @@
     "related_errors": [
       "Deployment"
     ]
+  },
+  {
+    "slug": "claude-code-http-oauth-mcp-servers-silently-fail-in-claude-code-inside-claude-desktop-no-error-no-guidance",
+    "title": "Claude Code MCP HTTP OAuth servers silently fail — no error shown to user",
+    "description": "Fix MCP server that appears loaded but never loads tools, causing multi-hour debugging loops without any visible error message Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "HTTP OAuth MCP servers silently fail in Claude Code inside Claude Desktop — no error, no guidance",
+    "search_intent": "Fix MCP server that appears loaded but never loads tools, causing multi-hour debugging loops without any visible error message",
+    "common_causes": [
+      "GitHub Issue #46623 on anthropics/claude-code documents HTTP OAuth MCP servers failing silently because DCR fails (no registration_endpoint) and the failure is swallowed. Scope shadowing at ~/.claude.json causes broken local-scoped entries to override working configs. Source: https://github.com/anthropics/claude-code/issues/46623. Category maps to AI Coding Tools per SKILL.md."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "openai-api-openai-error-badrequesterror-error-code-429-error-message-you-exceeded-your-current-quota-please-check-your-plan-and-billing-details-type-insufficient-quota-param-null-code-insufficient-quota",
+    "title": "OpenAI insufficient_quota errors mistaken for rate limits and retried",
+    "description": "Distinguish between OpenAI's insufficient_quota (non-retryable) vs actual rate limit (retryable), fix retry logic that burns retries on quota errors Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "openai.error.BadRequestError: Error code: 429 - {'error': {'message': 'You exceeded your current quota, please check your plan and billing details.', 'type': 'insufficient_quota', 'param': null, 'code': 'insufficient_quota'}}",
+    "search_intent": "Distinguish between OpenAI's insufficient_quota (non-retryable) vs actual rate limit (retryable), fix retry logic that burns retries on quota errors",
+    "common_causes": [
+      "LangChain JS Issue #1929 documents OpenAI returning 429 for insufficient quota that libraries mistakenly treat as rate-limit and retry endlessly, producing misleading messages. Direct hit on paid API billing/quota pain point. Source: https://github.com/langchain-ai/langchainjs/issues/1929. Maps to OpenAI API category."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "claude-code-max-20-plan-rate-limit-100-exhausted-within-70-minutes-after-reset-current-session-shows-100-used-while-local-session-total-cost-only-0-76",
+    "title": "Claude Code session usage limit hits 100% abnormally fast despite low visible usage",
+    "description": "Understand why Claude Code session limits drain extremely fast (21%→100% on single prompt, full window in ~70 min) on paid plans, find workaround or attribution breakdown Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Max 20 plan: rate limit 100% exhausted within ~70 minutes after reset; Current session shows 100% used while local session total cost only $0.76",
+    "search_intent": "Understand why Claude Code session limits drain extremely fast (21%→100% on single prompt, full window in ~70 min) on paid plans, find workaround or attribution breakdown",
+    "common_causes": [
+      "GitHub Issue #54750 on anthropics/claude-code documents Max 20 users hitting 100% session limit within ~70 min despite minimal visible local usage. Multiple root causes documented including prompt-cache invalidation, session-resume token generation bug (#38029), and subagent accounting. Broader pattern of abnormal usage drain across all paid tiers since March 23, 2026. Strong commercial relevance to paid plan users. Source: https://github.com/anthropics/claude-code/issues/54750."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "vercel-modulenotfounderror-module-not-found-error-can-t-resolve-components-forms-registerform-works-locally-but-fails-on-vercel-deploy-with-build-failed-because-of-webpack-errors",
+    "title": "Vercel deployment ModuleNotFoundError — case-sensitive filesystem mismatch",
+    "description": "Fix Vercel deploy failures caused by case-sensitive filesystem differences between Windows (local) and Linux (Vercel), resolve module import path mismatches Includes evidence for Vercel troubleshooting demand.",
+    "category": "Deployment",
+    "technology": "Vercel",
+    "error_signature": "ModuleNotFoundError: Module not found: Error: Can't resolve '@/components/forms/RegisterForm' — Works locally but fails on Vercel Deploy with 'Build failed because of webpack errors'",
+    "search_intent": "Fix Vercel deploy failures caused by case-sensitive filesystem differences between Windows (local) and Linux (Vercel), resolve module import path mismatches",
+    "common_causes": [
+      "Next.js Issue #69390 reports Vercel build failing with ModuleNotFoundError for case-mismatched imports that work fine locally on Windows. Root cause: Windows file system is case-insensitive while Vercel's Linux build environment is case-sensitive. Workaround: git config core.ignorecase false. Highly common error with direct commercial impact on deployed projects. Source: https://github.com/vercel/next.js/issues/69390."
+    ],
+    "quick_fix": "Check the build output, project root, and deployment platform configuration before redeploying.",
+    "related_errors": [
+      "Deployment"
+    ]
+  },
+  {
+    "slug": "kubernetes-init-crashloopbackoff-pods-return-metric-value-0-in-kube-pod-container-status-waiting-reason-query-creating-monitoring-blind-spot-for-init-container-failures",
+    "title": "Kubernetes pods stuck in CrashLoopBackOff and Init:CrashLoopBackOff — monitoring blind spot",
+    "description": "Fix Prometheus/Grafana monitoring queries that miss Init:CrashLoopBackOff, ErrImagePull, Init:Error statuses, ensuring operators can detect all pod lifecycle failures including init containers Includes evidence for Kubernetes troubleshooting demand.",
+    "category": "Cloud Platforms",
+    "technology": "Kubernetes",
+    "error_signature": "Init:CrashLoopBackOff pods return metric value 0 in kube_pod_container_status_waiting_reason query, creating monitoring blind spot for init container failures",
+    "search_intent": "Fix Prometheus/Grafana monitoring queries that miss Init:CrashLoopBackOff, ErrImagePull, Init:Error statuses, ensuring operators can detect all pod lifecycle failures including init containers",
+    "common_causes": [
+      "kube-state-metrics Issue #788 reveals that the standard metric query catches ImagePullBackOff/CrashLoopBackOff but returns 0 for Init:CrashLoopBackOff and Init:Error — creating a critical blind spot in production monitoring. Also affects k9s sorting preference (k9s #3589). Production operations impact with strong commercial intent. Sources: https://github.com/kubernetes/kube-state-metrics/issues/788, https://github.com/derailed/k9s/issues/3589."
+    ],
+    "quick_fix": "Verify the model name, local service connectivity, and network access before retrying the model pull.",
+    "related_errors": [
+      "Cloud Platforms"
+    ]
+  },
+  {
+    "slug": "ollama-error-pull-model-manifest-file-does-not-exist-occurs-immediately-under-1-second-despite-ollama-serve-running-on-port-11434",
+    "title": "Ollama 'pull model manifest: file does not exist' on macOS Apple Silicon despite running serve",
+    "description": "Fix Ollama manifest pull failure on macOS Apple Silicon M4 where registry.ollama.ai cannot be reached by the binary despite functional network and working lsof connections on port 11434 Includes evidence for Ollama troubleshooting demand.",
+    "category": "Ollama",
+    "technology": "Ollama",
+    "error_signature": "Error: pull model manifest: file does not exist (occurs immediately under 1 second despite ollama serve running on port 11434)",
+    "search_intent": "Fix Ollama manifest pull failure on macOS Apple Silicon M4 where registry.ollama.ai cannot be reached by the binary despite functional network and working lsof connections on port 11434",
+    "common_causes": [
+      "GitHub Issue #16278 on ollama/ollama documents a specific macOS Apple Silicon scenario where ollama pull fails immediately with 'file does not exist' — a generic mask for network/registry resolution failure. Process is alive (lsof confirms ESTABLISHED on :11434), firewall allows local connections, DNS tested with multiple resolvers. Affects self-hosted LLM users. Source: https://github.com/ollama/ollama/issues/16278."
+    ],
+    "quick_fix": "Verify the model name, local service connectivity, and network access before retrying the model pull.",
+    "related_errors": [
+      "Ollama"
+    ]
   }
 ]
