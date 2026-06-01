@@ -43325,5 +43325,69 @@
     "related_errors": [
       "Ollama"
     ]
+  },
+  {
+    "slug": "cursor-user-api-key-rate-limit-exceeded-user-provided-api-key-rate-limit-exceeded",
+    "title": "Cursor GPT-5.5 BYOK Rate Limit Block — Custom OpenAI-Compatible Endpoint Shows \"User API key rate limit exceeded\"",
+    "description": "Fix false rate-limit error in Cursor when using custom BYOK endpoint with GPT-5.5 model — requests are blocked by Cursor before reaching the configured backend Includes evidence for Cursor troubleshooting demand.",
+    "category": "Cursor",
+    "technology": "Cursor",
+    "error_signature": "User API key rate limit exceeded / User-provided API key rate limit exceeded",
+    "search_intent": "Fix false rate-limit error in Cursor when using custom BYOK endpoint with GPT-5.5 model — requests are blocked by Cursor before reaching the configured backend",
+    "common_causes": [
+      "Users report GPT-5.5 stopped working with BYOK/custom OpenAI-compatible endpoints on or after May 4th 2026. Cursor intercepts the request and shows a rate-limit error instead of forwarding to the custom backend. GPT-5.4 works fine with same config. Verified via Community Forum thread with screenshots and reproduction steps. Maps to 'Cursor' approved category."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "Cursor"
+    ]
+  },
+  {
+    "slug": "claude-code-sdk-auth-failed-the-provided-redirect-uris-are-not-registered-for-this-client",
+    "title": "Claude Code MCP OAuth Failed — redirect_uris Not Registered for Client (Desktop vs Web Discrepancy)",
+    "description": "Fix MCP OAuth authentication failure in Claude Code desktop app where the same MCP service works fine in claude.ai web app — mismatched OAuth redirect URIs between desktop and web clients Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "SDK auth failed: The provided redirect_uris are not registered for this client",
+    "search_intent": "Fix MCP OAuth authentication failure in Claude Code desktop app where the same MCP service works fine in claude.ai web app — mismatched OAuth redirect URIs between desktop and web clients",
+    "common_causes": [
+      "GitHub issue #57114 on anthropics/claude-code reports Meta Ads MCP authenticates successfully on claude.ai web but fails on Claude Code desktop. The web app uses a redirect URI registered with Meta's OAuth app; Claude Code desktop likely uses a different unregistered redirect URI. No workaround available — users forced to use raw Graph API. Maps to 'AI Coding Tools' approved category (per SKILL.md: Claude Code → AI Coding Tools)."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "claude-code-oauth-error-500-internal-server-error-authentication-failed-500-failed-to-exchange-auth-code",
+    "title": "Claude Code OAuth Error 500 — Internal Server Error, Cache Corruption, Auth Exchange Failure",
+    "description": "Resolve Claude Code OAuth login failures including 500 errors caused by outdated versions, cached token corruption, or expired auth endpoints requiring cache clearing and session reset Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "OAuth error 500: Internal Server Error / Authentication failed: 500 / Failed to exchange auth code",
+    "search_intent": "Resolve Claude Code OAuth login failures including 500 errors caused by outdated versions, cached token corruption, or expired auth endpoints requiring cache clearing and session reset",
+    "common_causes": [
+      "RemoteOpenClaw blog details three root causes of Claude Code OAuth 500 errors: (1) outdated Claude Code using deprecated OAuth endpoints, fix is update; (2) corrupted cache tokens in ~/.claude/cache causing auth loop, fix is rm -rf ~/.claude/cache and claude --reset-session; (3) Anthropic server-side incident. Multiple error message variants across versions documented. Highly valuable for paid API users. Maps to 'AI Coding Tools' approved category."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "litellm-model-not-found-error-when-setting-anthropic-base-url-but-forgetting-to-map-all-three-model-slots-haiku-sonnet-opus",
+    "title": "LiteLLM Claude Code Proxy \"model not found\" — Missing Multi-Slot Configuration for Haiku/Sonnet/Opus",
+    "description": "Fix Claude Code 'model not found' error when routing through LiteLLM proxy — requires setting ALL THREE env vars (ANTHROPIC_DEFAULT_HAIKU_MODEL, SONNET_MODEL, OPUS_MODEL) even if changing only one slot via /model command Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "\"model not found\" error when setting ANTHROPIC_BASE_URL but forgetting to map all three model slots (Haiku, Sonnet, Opus)",
+    "search_intent": "Fix Claude Code 'model not found' error when routing through LiteLLM proxy — requires setting ALL THREE env vars (ANTHROPIC_DEFAULT_HAIKU_MODEL, SONNET_MODEL, OPUS_MODEL) even if changing only one slot via /model command",
+    "common_causes": [
+      "Techsy.io blog documents the most common LiteLLM/Claude Code integration error: Claude Code internally uses three separate model slots (Haiku for background tasks, Sonnet for default coding, Opus for complex reasoning). Changing only ONE slot via /model command still causes remaining two slots to fail with 'model not found'. Requires all three ANTHROPIC_DEFAULT_*_MODEL env vars to be set simultaneously. Affects many teams using LiteLLM as AI gateway proxy. Maps to 'LiteLLM' approved category."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "LiteLLM"
+    ]
   }
 ]
