@@ -42765,5 +42765,117 @@
     "related_errors": [
       "Ollama"
     ]
+  },
+  {
+    "slug": "openai-api-quota-exceeded-check-your-plan-and-billing-details-rate-limits-are-shorter-term-5h-and-weekly-throttles-quotas-are-monthly-usage-spending-caps",
+    "title": "OpenAI Codex Quota Exceeded — rate limit vs spending cap confusion blocks developers",
+    "description": "Developer needs to understand and fix OpenAI quota vs rate limit errors when building with Codex CLI or API Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "Quota exceeded. Check your plan and billing details. Rate limits are shorter-term (5h and weekly) throttles; quotas are monthly usage/spending caps",
+    "search_intent": "Developer needs to understand and fix OpenAI quota vs rate limit errors when building with Codex CLI or API",
+    "common_causes": [
+      "GitHub issue #6792 on openai/codex documents recurring confusion between rate limits and quotas — users hit 'Quota exceeded' after paying for a plan but have reached monthly spend caps. Extremely high commercial intent as it directly impacts paying users. Category: OpenAI API."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "claude-code-oauth-flow-completes-but-fails-missing-scope-parameter-in-oauth-2-0-authorization-request-for-http-mcp-servers",
+    "title": "OAuth authorization for HTTP MCP servers missing required scope parameter",
+    "description": "Fix Claude Code OAuth error when connecting to HTTP-based MCP servers that require explicit scope parameter Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "OAuth flow completes but fails — missing 'scope' parameter in OAuth 2.0 authorization request for HTTP MCP servers",
+    "search_intent": "Fix Claude Code OAuth error when connecting to HTTP-based MCP servers that require explicit scope parameter",
+    "common_causes": [
+      "GitHub issue #12077 on anthropics/claude-code reports Claude Code initiates OAuth 2.0 flow for HTTP MCP servers without including the required 'scope' parameter per RFC 6749, causing auth failure. High commercial value — affects paying Cursor/Claude Code users with custom MCP integrations. Category: AI Coding Tools (Claude Code-specific bug)."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "claude-code-sdk-auth-failed-http-404-invalid-oauth-error-response-syntaxerror-json-parse-error-unrecognized-token-server-responds-with-404-html-because-it-has-no-oauth-endpoints",
+    "title": "Remote HTTP MCP server with Bearer token auth gets OAuth 404 instead of using configured header",
+    "description": "Fix Claude Code incorrectly attempting OAuth flow against servers that only support static Bearer token authentication via headers Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "SDK auth failed: HTTP 404: Invalid OAuth error response: SyntaxError: JSON Parse error: Unrecognized token '<'. Server responds with 404 HTML because it has no OAuth endpoints",
+    "search_intent": "Fix Claude Code incorrectly attempting OAuth flow against servers that only support static Bearer token authentication via headers",
+    "common_causes": [
+      "GitHub issue #47424 on anthropics/claude-code reports that Claude Code ignores configured `headers` with static Bearer tokens and instead attempts OAuth discovery, hitting 404 pages. Directly affects enterprise users running internal MCP servers. Category: AI Coding Tools."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "vercel-module-not-found-can-t-resolve-registerform-works-fine-locally-but-fails-on-vercel-deployment-case-sensitive-file-system",
+    "title": "Vercel build succeeds locally but fails 'Module not found: Can't resolve' due to case sensitivity",
+    "description": "Fix Vercel deployment module resolution error caused by OS-level case-insensitive file naming that differs from Linux file system Includes evidence for Vercel troubleshooting demand.",
+    "category": "Deployment",
+    "technology": "Vercel",
+    "error_signature": "Module not found: Can't resolve './RegisterForm' — works fine locally but fails on Vercel deployment (case-sensitive file system)",
+    "search_intent": "Fix Vercel deployment module resolution error caused by OS-level case-insensitive file naming that differs from Linux file system",
+    "common_causes": [
+      "GitHub issue #69390 on vercel/next.js shows Next.js builds passing locally (macOS case-insensitive) but failing on Vercel's Linux host with module not found. Affects production deployments for many Next.js teams. Category: Deployment."
+    ],
+    "quick_fix": "Check the build output, project root, and deployment platform configuration before redeploying.",
+    "related_errors": [
+      "Deployment"
+    ]
+  },
+  {
+    "slug": "aws-accessdeniedexception-lambda-s-execution-role-lacks-permissions-for-bedrock-invokemodelwithresponsestream",
+    "title": "AWS Lambda execution role AccessDeniedException lacks bedrock:InvokeModelWithResponseStream permission",
+    "description": "Fix AWS IAM permission error when Lambda deployed via Amplify cannot call Bedrock for streaming inference Includes evidence for AWS troubleshooting demand.",
+    "category": "Cloud Platforms",
+    "technology": "AWS",
+    "error_signature": "AccessDeniedException: Lambda's execution role lacks permissions for bedrock:InvokeModelWithResponseStream",
+    "search_intent": "Fix AWS IAM permission error when Lambda deployed via Amplify cannot call Bedrock for streaming inference",
+    "common_causes": [
+      "GitHub issue #3162 on aws-amplify/amplify-category-api reports AccessDenied when Lambda execution roles lack explicit bedrock:InvokeModelWithResponseStream permission. Growing error as more teams add AI features to AWS Amplify apps. Category: Cloud Platforms."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Cloud Platforms"
+    ]
+  },
+  {
+    "slug": "kubernetes-companion-pods-go-to-crashloopbackoff-during-rollout-restart-with-containerd-2-0-2-all-static-pods-crash-including-kubeapiserver",
+    "title": "Kubernetes CrashLoopBackOff after containerd 2.0 update breaks production clusters",
+    "description": "Fix CrashLoopBackOff loop in Kubernetes nodes after upgrading to containerd 2.0.2 that blocks cluster operations Includes evidence for Kubernetes troubleshooting demand.",
+    "category": "Cloud Platforms",
+    "technology": "Kubernetes",
+    "error_signature": "companion pods go to CrashLoopBackOff during rollout restart with containerd://2.0.2 — all static pods crash including kubeapiserver",
+    "search_intent": "Fix CrashLoopBackOff loop in Kubernetes nodes after upgrading to containerd 2.0.2 that blocks cluster operations",
+    "common_causes": [
+      "Multiple GitHub issues (#11947 kubespray, #5734 kubernetes enhancements, #40752 keycloak) show CrashLoopBackOff as a widespread post-upgrade issue with containerd 2.0.2. Critical for ops/deploy teams. Category: Cloud Platforms."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Cloud Platforms"
+    ]
+  },
+  {
+    "slug": "docker-permission-denied-while-trying-to-connect-to-the-docker-daemon-socket-at-unix-var-run-docker-sock-mounted-docker-sock-has-wrong-group-name-root-instead-of-docker",
+    "title": "Docker socket group mismatch after Docker Desktop upgrade causes permission denied",
+    "description": "Fix Docker permission denied error after Docker Desktop upgrade where /var/run/docker.sock group changed from docker to root Includes evidence for Docker troubleshooting demand.",
+    "category": "Docker",
+    "technology": "Docker",
+    "error_signature": "permission denied while trying to connect to the Docker daemon socket at unix:///var/run/docker.sock — mounted docker.sock has wrong group name root instead of docker",
+    "search_intent": "Fix Docker permission denied error after Docker Desktop upgrade where /var/run/docker.sock group changed from docker to root",
+    "common_causes": [
+      "GitHub issues on docker/for-win (#13451, #13969) report consistent permission denied errors after Docker Desktop 4.19+ upgrade — the mounted docker.sock gets wrong group ownership. Affects Mac/Windows developers using Docker tools like Watchtower, n8n, Supabase. Category: Docker."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Docker"
+    ]
   }
 ]
