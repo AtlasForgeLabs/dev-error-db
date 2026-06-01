@@ -42877,5 +42877,53 @@
     "related_errors": [
       "Docker"
     ]
+  },
+  {
+    "slug": "github-actions-actions-checkout-v4-with-lfs-fails-because-of-double-auth-header",
+    "title": "GitHub Actions checkout@v4 with LFS Fails Due to Double Auth Header",
+    "description": "Fix GitHub Actions LFS checkout failures caused by duplicate Authorization headers Includes evidence for GitHub Actions troubleshooting demand.",
+    "category": "GitHub Actions",
+    "technology": "GitHub Actions",
+    "error_signature": "'actions/checkout@v4' with LFS fails because of double auth header",
+    "search_intent": "Fix GitHub Actions LFS checkout failures caused by duplicate Authorization headers",
+    "common_causes": [
+      "Issue #1830 on actions/checkout repo (open status, 13 👍 reactions). When using actions/checkout@v4 with large files stored in Git LFS, the action sends a double auth header causing the LFS download to fail. Blocks CI/CD pipelines for teams using LFS for binaries/models. P0 tech + open issue + strong signal. No covered match in covered-errors.md (existing entry is about permission denied publickey, different error)."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "GitHub Actions"
+    ]
+  },
+  {
+    "slug": "openai-api-improper-429-error-near-the-end-of-a-5-hour-window-when-i-still-had-plenty-of-usage-left",
+    "title": "OpenAI Codex Improper 429 Error Despite Remaining Quota",
+    "description": "Fix premature rate-limit errors in OpenAI Codex when remaining quota exists Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "improper 429 error near the end of a 5-hour window, when I still had plenty of usage left",
+    "search_intent": "Fix premature rate-limit errors in OpenAI Codex when remaining quota exists",
+    "common_causes": [
+      "Issue #9135 in openai/codex repo. Users report receiving 429 Too Many Requests before actual quota exhaustion during 5-hour rolling windows. This differs from existing covered error 'OpenAI API rate limit error' — this is specifically about incorrect 429 triggering due to quota accounting bug, which has higher commercial value since it's a software defect rather than legitimate rate limiting. Existing covered entry is generic; this specific accounting bug is distinct."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "litellm-router-retry-does-not-perform-on-litellm-notfounderror-error",
+    "title": "LiteLLM Router Retry Does Not Perform on NotFoundError",
+    "description": "Fix LiteLLM router automatic failover not triggering when upstream model returns 404 NotFoundError Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "router retry does not perform on litellm.NotFoundError error",
+    "search_intent": "Fix LiteLLM router automatic failover not triggering when upstream model returns 404 NotFoundError",
+    "common_causes": [
+      "Issue #17001 on BerriAI/litellm. When using LiteLLM proxy with model routing/failover configured, the router doesn't retry on litellm.NotFoundError exceptions, causing immediate request failure instead of falling back to backup models. Critical for production proxy deployments where model availability varies by provider."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "LiteLLM"
+    ]
   }
 ]
