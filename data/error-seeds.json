@@ -42381,5 +42381,117 @@
     "related_errors": [
       "AI Coding Tools"
     ]
+  },
+  {
+    "slug": "claude-code-oauth-token-exchange-not-completed-accesstoken-not-persisted-in-claude-json-mcp-server-stays-unauthenticated",
+    "title": "Claude Code MCP OAuth Token Exchange fails with non-DCR Authorization Server (Cloudflare Access)",
+    "description": "Fix Claude Code failing to complete OAuth token exchange when connecting to remote MCP servers backed by non-DCR Authorization Servers like Cloudflare Access for SaaS OIDC Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "OAuth Token Exchange not completed — accessToken not persisted in ~/.claude.json; MCP server stays unauthenticated",
+    "search_intent": "Fix Claude Code failing to complete OAuth token exchange when connecting to remote MCP servers backed by non-DCR Authorization Servers like Cloudflare Access for SaaS OIDC",
+    "common_causes": [
+      "anthropics/claude-code #60395 — detailed reproduction with Cloudflare Access OIDC; browser auth flow succeeds but token POST either drops or response not persisted; affects paid enterprise users with custom MCP setups."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "claude-code-oauth-dance-completes-successfully-but-token-not-used-or-persisted-mcp-shows-needs-authentication-indefinitely-tools-never-become-available",
+    "title": "Claude Code MCP OAuth completes but token not honored — server stuck in Needs authentication",
+    "description": "Fix Claude Code where browser OAuth flow succeeds but resulting token is discarded — corporate MCP servers stay permanently authenticated despite valid Bearer tokens obtained via curl Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "OAuth dance completes successfully but token not used or persisted; /mcp shows 'Needs authentication' indefinitely; tools never become available",
+    "search_intent": "Fix Claude Code where browser OAuth flow succeeds but resulting token is discarded — corporate MCP servers stay permanently authenticated despite valid Bearer tokens obtained via curl",
+    "common_causes": [
+      "anthropics/claude-code #60260 — multiple OAuth-protected corporate MCP servers affected; works for some providers (Figma, Atlassian) but not others; stale listener process on port 8080 suspected as contributor."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "litellm-apiconnectionerror-wrapping-http-429-from-providers-json-custom-providers-prevents-router-cooldown-and-fallback-to-healthy-alternatives",
+    "title": "LiteLLM providers.json 429 rate limit errors incorrectly wrapped as APIConnectionError bypassing cooldown",
+    "description": "Fix LiteLLM router not applying rate-limit cooldown for custom OpenAI-like providers defined in providers.json, causing requests to continue hitting the same failing deployment instead of falling back Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "APIConnectionError wrapping HTTP 429 from providers.json custom providers prevents router cooldown and fallback to healthy alternatives",
+    "search_intent": "Fix LiteLLM router not applying rate-limit cooldown for custom OpenAI-like providers defined in providers.json, causing requests to continue hitting the same failing deployment instead of falling back",
+    "common_causes": [
+      "BerriAI/litellm #24366 — providers registered via providers.json are missing from litellm._openai_like_providers; _is_cooldown_required() returns False for any exception containing APIConnectionError; explicit fix options provided."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "LiteLLM"
+    ]
+  },
+  {
+    "slug": "vercel-typeerror-path-argument-must-be-of-type-string-received-undefined-occurs-during-applying-modifyconfig-from-vercel-on-next-js-16-2-0-16-2-6",
+    "title": "Vercel Next.js 16.2.x remote build crashes with TypeError path argument undefined during modifyConfig",
+    "description": "Fix Vercel remote build crashing during Next.js 16.2.x modifyConfig step with TypeError on undefined path argument; breaks CI/CD pipelines for teams using latest Next.js with Vercel hosting Includes evidence for Vercel troubleshooting demand.",
+    "category": "Deployment",
+    "technology": "Vercel",
+    "error_signature": "TypeError: path argument must be of type string. Received undefined — occurs during Applying modifyConfig from Vercel on Next.js 16.2.0–16.2.6",
+    "search_intent": "Fix Vercel remote build crashing during Next.js 16.2.x modifyConfig step with TypeError on undefined path argument; breaks CI/CD pipelines for teams using latest Next.js with Vercel hosting",
+    "common_causes": [
+      "vercel/vercel #16409 and vercel/next.js #94053 — systematic issue across Next.js 16.2.x versions affecting Vercel remote builds; blocked deployments; affects production sites using Vercel paid plans."
+    ],
+    "quick_fix": "Check the build output, project root, and deployment platform configuration before redeploying.",
+    "related_errors": [
+      "Deployment"
+    ]
+  },
+  {
+    "slug": "cloudflare-502-bad-gateway-on-post-pages-assets-upload-during-differential-upload-once-partial-cache-exists-at-edge",
+    "title": "Cloudflare Pages Deploy 502 Bad Gateway during differential/d增量 uploads with Wrangler",
+    "description": "Fix Cloudflare Pages deploy failing with 502 on wrangler after initial successful upload; only triggers on differential upload where some files already cached; --skip-caching flag bypasses bug Includes evidence for Cloudflare troubleshooting demand.",
+    "category": "Cloudflare",
+    "technology": "Cloudflare",
+    "error_signature": "502 Bad Gateway on POST /pages/assets/upload during differential upload once partial cache exists at edge",
+    "search_intent": "Fix Cloudflare Pages deploy failing with 502 on wrangler after initial successful upload; only triggers on differential upload where some files already cached; --skip-caching flag bypasses bug",
+    "common_causes": [
+      "cloudflare/workers-sdk #14021 — confirmed differential upload reconciler bug on Cloudflare backend; uses wrangler v4.94.0; Ray IDs logged for each failure; workaround (--skip-caching) proves it's backend-side not CLI-side."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Cloudflare"
+    ]
+  },
+  {
+    "slug": "litellm-post-v1beta-models-model-generatecontent-returns-500-internal-server-error-for-non-existent-model-clients-treat-as-transient-failure-and-retry-indefinitely",
+    "title": "LiteLLM Google AI /v1beta/models endpoint returns 500 instead of 400 for non-existent model names",
+    "description": "Fix LiteLLM proxy returning HTTP 500 (retryable) instead of 400/404 (client error) when a non-existent model name is specified, causing infinite client retries Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "POST /v1beta/models/{model}:generateContent returns 500 Internal Server Error for non-existent model; clients treat as transient failure and retry indefinitely",
+    "search_intent": "Fix LiteLLM proxy returning HTTP 500 (retryable) instead of 400/404 (client error) when a non-existent model name is specified, causing infinite client retries",
+    "common_causes": [
+      "BerriAI/litellm #25466 — Anthropic-compatible endpoint correctly returns 400 under same conditions but Google AI endpoint returns 500; version v1.83.5; causes Gemini CLI clients to retry forever."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "LiteLLM"
+    ]
+  },
+  {
+    "slug": "cloudflare-a-request-to-the-cloudflare-api-failed-code-971-please-wait-and-consider-throttling-your-request-speed-miniflare-throws-apierror-on-createpreviewsession",
+    "title": "Cloudflare Wrangler 4.83.0 Preview Token API rate limit code: 971 blocking deployments",
+    "description": "Fix Cloudflare Wrangler hitting preview token API rate limit code 971 that blocks worker preview/deploy even after normalizing request frequency; regression in v4.83.0 Includes evidence for Cloudflare troubleshooting demand.",
+    "category": "Cloudflare",
+    "technology": "Cloudflare",
+    "error_signature": "A request to the Cloudflare API failed [code: 971] — Please wait and consider throttling your request speed; miniflare throws APIError on createPreviewSession",
+    "search_intent": "Fix Cloudflare Wrangler hitting preview token API rate limit code 971 that blocks worker preview/deploy even after normalizing request frequency; regression in v4.83.0",
+    "common_causes": [
+      "cloudflare/workers-sdk #13564 — regression introduced in v4.83.0; rate limit triggered specifically during preview token creation (/edge-preview endpoint); telemetry shows message about throttling but standard retries don't resolve."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "Cloudflare"
+    ]
   }
 ]
