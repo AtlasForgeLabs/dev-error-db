@@ -42205,5 +42205,117 @@
     "related_errors": [
       "Docker"
     ]
+  },
+  {
+    "slug": "openai-api-http-429-the-usage-limit-has-been-reached-rate-limit-retry-loop-does-not-trigger-try-activate-fallback-in-interactive-mode",
+    "title": "Fix: Interactive CLI Session Does Not Auto-Fallback on OpenAI 429 'usage_limit_reached' (while Cron Jobs Work)",
+    "description": "Developer hits OpenAI usage limit during interactive coding session; automatic provider/model fallback chain fails to activate, while identical configuration works correctly for cron/scheduled jobs Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "HTTP 429: The usage limit has been reached — rate limit retry loop does not trigger _try_activate_fallback() in interactive mode",
+    "search_intent": "Developer hits OpenAI usage limit during interactive coding session; automatic provider/model fallback chain fails to activate, while identical configuration works correctly for cron/scheduled jobs",
+    "common_causes": [
+      "Hermes agent Issue #20465 shows detailed logs where interactive sessions hit repeated HTTP 429 usage_limit_reached without ever calling _try_activate_fallback(). Cron sessions of the same time window succeed with proper fallback activation to gpt-5.5 → nemotron → openrouter → ollama. Evidence includes structured log dumps, code references to _try_activate_fallback(), and clear reproduction pattern. P0 tech with direct billing impact."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "litellm-api-error-400-error-anthropic-messages-invalid-model-name-passed-in-model-claude-sonnet-4-6-only-in-resumed-sessions-fresh-sessions-work-fine",
+    "title": "LiteLLM Proxy Session Resume Returns 400 Invalid Model Name When Fronting AWS Bedrock",
+    "description": "Enterprise user runs Claude Code against LiteLLM proxy fronting AWS Bedrock; after ending/resuming a session with --resume, every prompt returns 400 Invalid model name until manually re-running /model command Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "API Error: 400: {'error': 'anthropic_messages: Invalid model name passed in model=claude-sonnet-4-6'} — only in resumed sessions, fresh sessions work fine",
+    "search_intent": "Enterprise user runs Claude Code against LiteLLM proxy fronting AWS Bedrock; after ending/resuming a session with --resume, every prompt returns 400 Invalid model name until manually re-running /model command",
+    "common_causes": [
+      "Anthropic claude-code Issue #63435 (regression mid-May 2026) reproduces 100% on session resume with exact error message. Workaround confirmed (/model re-select). Root cause points to initialization-on-resume gap. Directly affects LiteLLM proxy deployments in production. Commercial value: enterprise billing/API gateway context."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "LiteLLM"
+    ]
+  },
+  {
+    "slug": "claude-code-authorization-url-is-surfaced-in-terminal-but-browser-auto-open-is-silently-disabled-redirect-handling-is-skipped-tools-unavailable-until-manual-url-paste",
+    "title": "Claude Code MCP OAuth Browser Auto-Open Silently Disabled on Windows (CC 2.1.148)",
+    "description": "Windows user adding an MCP server via Claude Code sees OAuth URL printed in terminal, but browser never launches automatically, blocking all MCP tools from being exposed to the LLM Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Authorization URL is surfaced in terminal but browser auto-open is silently disabled; redirect handling is skipped — tools unavailable until manual URL paste",
+    "search_intent": "Windows user adding an MCP server via Claude Code sees OAuth URL printed in terminal, but browser never launches automatically, blocking all MCP tools from being exposed to the LLM",
+    "common_causes": [
+      "Anthropic claude-code Issue #61542 documents regression where MCP OAuth auto-browser-open was enabled pre-#14220 (closed 2026-02-14), then disabled without replacement UX. Debug-log root cause: 'Redirection handling is disabled, skipping redirect.' Affects paid Claude Code desktop users. Severity: bug even breaks /feedback self-reporting path. Category mapped to AI Coding Tools per SKILL.md rules for Claude Code."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "kubernetes-crashloopbackoff-external-dns-container-segfaulting-exitcode-2-with-restartcount-1420-plus-on-kubernetes-eks-sigsegv-segmentation-fault",
+    "title": "Kubernetes External-Dns Pod CrashLoopBackOff SIGSEGV on AWS EKS v0.21.0",
+    "description": "DevOps engineer running external-dns on AWS EKS sees pod stuck in CrashLoopBackOff; container repeatedly crashes with SIGSEGV after ~1420 restarts, cluster DNS resolution affected Includes evidence for Kubernetes troubleshooting demand.",
+    "category": "Cloud Platforms",
+    "technology": "Kubernetes",
+    "error_signature": "CrashLoopBackOff: external-dns container segfaulting (exitCode=2) with restartCount=1420+ on Kubernetes EKS — SIGSEGV segmentation fault",
+    "search_intent": "DevOps engineer running external-dns on AWS EKS sees pod stuck in CrashLoopBackOff; container repeatedly crashes with SIGSEGV after ~1420 restarts, cluster DNS resolution affected",
+    "common_causes": [
+      "kubernetes-sigs/external-dns Issue #6416 provides detailed pod status dump showing container crash with SIGSEGV, go runtime trace (go1.26.1, Platform linux/amd64), full environment including AWS IAM token volume mounts. Memory limits at 50Mi — may contribute. Direct K8s deployment failure on widely-used cloud platform component."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Cloud Platforms"
+    ]
+  },
+  {
+    "slug": "openrouter-context-overflow-prompt-too-large-for-the-model-rawerror-400-endpoint-max-context-262144-tokens-requested-277747-tokens-output-allocated-262142-of-262144-auto-compaction-fails-repeatedly",
+    "title": "OpenClaw Context Overflow With OpenRouter Models: max_tokens Allocates Nearly Full Context Limit as Output",
+    "description": "Developer using OpenRouter models in OpenClaw gets immediate context overflow because system allocates nearly entire context budget as output tokens, leaving zero room for prompt/tool tokens; /reset and /new don't help Includes evidence for OpenRouter troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenRouter",
+    "error_signature": "Context overflow: prompt too large for the model — rawError 400 endpoint max context 262144 tokens, requested 277747 tokens (output allocated 262142 of 262144), auto-compaction fails repeatedly",
+    "search_intent": "Developer using OpenRouter models in OpenClaw gets immediate context overflow because system allocates nearly entire context budget as output tokens, leaving zero room for prompt/tool tokens; /reset and /new don't help",
+    "common_causes": [
+      "openclaw/openclaw Issue #86880 provides precise token arithmetic: context limit 262144, output request 262142 (leaving only ~26 for prompt+tools+history). Works correctly on ChatGPT/OpenAI providers but fails on OpenRouter. Confirmed across multiple OpenRouter models (moonshotai/kimi-k2.6 tested). Root cause likely in OpenRouter provider adapter max_tokens calculation."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "cursor-agent-thought-completes-but-answer-appears-incomplete-cursor-jumps-to-thinking-state-comes-back-with-truncated-response-no-warnings-or-errors-shown-model-sonnet-4-6",
+    "title": "Cursor Agent Window Answers Appear Incomplete — Stuck Without Errors After Thought Process",
+    "description": "Cursor Pro/Max user finds that agent responses are consistently truncated — model stops mid-answer after completing its internal reasoning, with no visible error or retry mechanism Includes evidence for Cursor troubleshooting demand.",
+    "category": "Cursor",
+    "technology": "Cursor",
+    "error_signature": "Agent thought completes but answer appears incomplete — Cursor jumps to thinking state, comes back with truncated response, no warnings or errors shown, model Sonnet 4.6",
+    "search_intent": "Cursor Pro/Max user finds that agent responses are consistently truncated — model stops mid-answer after completing its internal reasoning, with no visible error or retry mechanism",
+    "common_causes": [
+      "Cursor Community Forum post (May 30, 2026) from Windows 10/11 user reporting complete usability breakage with Sonnet 4.6 across all models. Request ID available for tracing. Multiple similar reports in related topics including 'Unable to reach the model provider v2' and 'Model Provider Connection Error'. Suggests systemic provider-side connectivity instability."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Cursor"
+    ]
+  },
+  {
+    "slug": "docker-failed-to-fetch-manifest-cannot-connect-to-host-ghcr-io-443-ssl-default-none-docker-image-pull-supervisor-docker-interface-authorization-failure",
+    "title": "Docker Manifest Fetch Fails: Cannot Connect to Host ghcr.io:443 SSL Default Timeout",
+    "description": "Raspberry Pi or Linux Docker user cannot pull images from GitHub Container Registry (ghcr.io); SSL/TLS connection times out at network level affecting Home Assistant, Ollama, and other containerized services Includes evidence for Docker troubleshooting demand.",
+    "category": "Docker",
+    "technology": "Docker",
+    "error_signature": "Failed to fetch manifest: Cannot connect to host ghcr.io:443 ssl:default [None] — docker image pull / supervisor.docker.interface authorization failure",
+    "search_intent": "Raspberry Pi or Linux Docker user cannot pull images from GitHub Container Registry (ghcr.io); SSL/TLS connection times out at network level affecting Home Assistant, Ollama, and other containerized services",
+    "common_causes": [
+      "Multiple related GitHub issues: ollama/ollama #16330 (no models will pull on RPi5, dial tcp timeout pulling manifest), home-assistant/core #172301 (failed to resolve reference, EOF on anonymous token fetch from ghcr.io). Both show 'Cannot connect to host ghcr.io:443 ssl:default [None]' pattern. Production Docker pulls failing = strong commercial impact for IoT/edge deployments."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "Docker"
+    ]
   }
 ]
