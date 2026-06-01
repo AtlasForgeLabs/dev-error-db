@@ -43389,5 +43389,117 @@
     "related_errors": [
       "LiteLLM"
     ]
+  },
+  {
+    "slug": "cursor-the-model-glm-4-6-does-not-work-with-your-current-plan-or-api-key-shows-free-instead-of-pro-after-update",
+    "title": "Cursor Subscription Sync Bug: Pro User Downgraded to FREE After Update",
+    "description": "Cursor shows free plan after upgrading to Pro; custom API key feature disabled after app update; user wants subscription restored Includes evidence for Cursor troubleshooting demand.",
+    "category": "Cursor",
+    "technology": "Cursor",
+    "error_signature": "The model GLM-4.6 does not work with your current plan or API key; shows FREE instead of Pro after update",
+    "search_intent": "Cursor shows free plan after upgrading to Pro; custom API key feature disabled after app update; user wants subscription restored",
+    "common_causes": [
+      "Cursor forum report Feb 2026. After updating to v2.4.0-pre.24.patch.0, Pro user suddenly shown as FREE and custom API key unavailable. Root cause appears to be subscription status sync issue. Category mapping: Cursor-specific subscription/auth bug to Cursor."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Cursor"
+    ]
+  },
+  {
+    "slug": "github-copilot-you-have-hit-your-global-rate-limit-please-upgrade-your-plan-or-wait-for-your-limit-to-reset-persists-over-6-hours-at-45-usage",
+    "title": "GitHub Copilot Paid User Stuck on Persistent Global Rate Limit Despite Low Usage",
+    "description": "Copilot Pro user gets rate-limited despite having only used half monthly quota; error never clears even after waiting hours; wants rate limit resolved or plan reset Includes evidence for GitHub Copilot troubleshooting demand.",
+    "category": "GitHub Copilot",
+    "technology": "GitHub Copilot",
+    "error_signature": "You have hit your global rate limit. Please upgrade your plan or wait for your limit to reset. Persists over 6 hours at 45% usage",
+    "search_intent": "Copilot Pro user gets rate-limited despite having only used half monthly quota; error never clears even after waiting hours; wants rate limit resolved or plan reset",
+    "common_causes": [
+      "GitHub Community discussion March to May 2026. Pro user on 30-day trial hits persistent global rate limit with Claude Sonnet 4.6 model. At time of error, only 45.3 percent of premium requests consumed. Try Again does nothing, session limit persists for over 24 hours. Multiple users report similar issues with Pro+ plans."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "GitHub Copilot"
+    ]
+  },
+  {
+    "slug": "litellm-litellm-ratelimiterror-litellm-exceptions-ratelimiterror-vertex-ai-betaexception-quota-exceeded-for-gemini-3-flash",
+    "title": "LiteLLM Streaming Fallback Fails When Gemini Returns 429 Rate Limit",
+    "description": "LiteLLM proxy does not trigger fallback when underlying provider returns 429 during streaming; ML ops team needs reliable failover configuration Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "litellm.RateLimitError: litellm.exceptions.RateLimitError: vertex_ai_betaException - quota exceeded for gemini-3-flash",
+    "search_intent": "LiteLLM proxy does not trigger fallback when underlying provider returns 429 during streaming; ML ops team needs reliable failover configuration",
+    "common_causes": [
+      "GitHub issue 2026 reports LiteLLM fallback mechanism fails when Pydantic-AI agents receive 429 from Gemini 3 Preview during streaming. Proxy logs show RESOURCE_EXHAUSTED status but no automatic model switch occurs. High-value for MLOps teams relying on LiteLLM for billing/routing."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "LiteLLM"
+    ]
+  },
+  {
+    "slug": "aws-an-error-occurred-unrecognizedclientexception-when-calling-createfunction-listclusters-the-security-token-included-in-the-request-is-invalid",
+    "title": "AWS Lambda UnrecognizedClientException Invalid Security Token",
+    "description": "AWS Lambda function calls return UnrecognizedClientException due to expired or invalid IAM role session tokens or temporary credential propagation delays; developer needs fix for cross-account Lambda-to-service calls Includes evidence for AWS troubleshooting demand.",
+    "category": "Cloud Platforms",
+    "technology": "AWS",
+    "error_signature": "An error occurred (UnrecognizedClientException) when calling CreateFunction ListClusters: The security token included in the request is invalid",
+    "search_intent": "AWS Lambda function calls return UnrecognizedClientException due to expired or invalid IAM role session tokens or temporary credential propagation delays; developer needs fix for cross-account Lambda-to-service calls",
+    "common_causes": [
+      "AWS re:Post and Stack Overflow. UnrecognizedClientException in Lambda when calling AWS services including EKS ListClusters and Lambda CreateFunction. Common causes: expired STS assume-role sessions, wrong region, missing sessionToken, inactive access key."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Cloud Platforms"
+    ]
+  },
+  {
+    "slug": "vercel-we-encountered-an-internal-error-please-try-again-build-succeeds-but-deployment-fails-at-deploying-outputs-phase-in-iad1-sfo1-eu-regions",
+    "title": "Vercel Deployment Internal Error During Deploying Outputs Phase",
+    "description": "Vercel Next.js project builds fine locally and on Vercel but deployment phase fails with opaque internal error; user needs workaround to get deployment through Includes evidence for Vercel troubleshooting demand.",
+    "category": "Deployment",
+    "technology": "Vercel",
+    "error_signature": "We encountered an internal error. Please try again. Build succeeds but deployment fails at deploying outputs phase in iad1 sfo1 EU regions",
+    "search_intent": "Vercel Next.js project builds fine locally and on Vercel but deployment phase fails with opaque internal error; user needs workaround to get deployment through",
+    "common_causes": [
+      "Vercel Community March 2026. Build completes successfully with Next.js 16.1.6, static files collected, serverless functions created, but deployment fails during deploying outputs phase with generic internal error. Affected multiple regions iad1, sfo1, EU. No workarounds other than retry. High commercial impact as deployment tool blocks production releases."
+    ],
+    "quick_fix": "Check the build output, project root, and deployment platform configuration before redeploying.",
+    "related_errors": [
+      "Deployment"
+    ]
+  },
+  {
+    "slug": "kubernetes-imagepullbackoff-kubelet-failed-to-pull-container-image-after-multiple-errimagepull-attempts-exponential-backoff-between-retries",
+    "title": "Kubernetes ImagePullBackOff Container Image Pull Fails After ErrImagePull",
+    "description": "Kubernetes pod stuck in ImagePullBackOff state; image wont pull from registry; developer needs to diagnose and fix image name typos, missing credentials, or Docker Hub rate limits Includes evidence for Kubernetes troubleshooting demand.",
+    "category": "Cloud Platforms",
+    "technology": "Kubernetes",
+    "error_signature": "ImagePullBackOff - kubelet failed to pull container image after multiple ErrImagePull attempts; exponential backoff between retries",
+    "search_intent": "Kubernetes pod stuck in ImagePullBackOff state; image wont pull from registry; developer needs to diagnose and fix image name typos, missing credentials, or Docker Hub rate limits",
+    "common_causes": [
+      "Groundcover blog, Portainer, Spacelift 2026. ImagePullBackOff occurs when kubelet repeatedly fails to pull container images. Causes include incorrect image tags/digests, missing imagePullSecrets, private registry auth failures, network/DNS issues, and Docker Hub rate limits for unauthenticated pulls. Distinct from CrashLoopBackOff which covers crashing containers rather than failing pulls."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "Cloud Platforms"
+    ]
+  },
+  {
+    "slug": "cloudflare-failed-to-publish-your-function-got-error-an-unknown-error-has-occurred-or-504-gateway-time-out-on-post-deployments-endpoint",
+    "title": "Cloudflare Pages Wrangler Deploy Function Publish Failure and 504 Gateway Timeout",
+    "description": "Cloudflare Pages deployment fails at function publish step or throws 504 during upload; users seeking wrangler deploy workaround Includes evidence for Cloudflare troubleshooting demand.",
+    "category": "Cloudflare",
+    "technology": "Cloudflare",
+    "error_signature": "Failed to publish your Function. Got error: An unknown error has occurred. Or 504 Gateway Time-out on POST deployments endpoint",
+    "search_intent": "Cloudflare Pages deployment fails at function publish step or throws 504 during upload; users seeking wrangler deploy workaround",
+    "common_causes": [
+      "Cloudflare workers-sdk issue 13259 April 2026. Wrangler 4.80.0 pages deploy fails at final function publish step with unknown error. Issue 9460: wrangler 4.18.0 gets intermittent 504 Gateway Timeout during file upload to Cloudflare Pages API. Affects production deployments with static sites."
+    ],
+    "quick_fix": "Check the build output, project root, and deployment platform configuration before redeploying.",
+    "related_errors": [
+      "Cloudflare"
+    ]
   }
 ]
