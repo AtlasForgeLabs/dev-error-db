@@ -43661,5 +43661,85 @@
     "related_errors": [
       "AI Coding Tools"
     ]
+  },
+  {
+    "slug": "openai-api-ratelimiterror-error-code-429-insufficient-quota-despite-having-available-credits-and-rpm",
+    "title": "Encountering RateLimitError Despite Having Available Credits and RPM — OpenAI",
+    "description": "Fix false-positive 429 rate-limit error when account has remaining credits and RPM quota — likely burst-token or short-burst triggering TPM limit Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "RateLimitError: Error code: 429 - insufficient_quota (despite having available credits and RPM)",
+    "search_intent": "Fix false-positive 429 rate-limit error when account has remaining credits and RPM quota — likely burst-token or short-burst triggering TPM limit",
+    "common_causes": [
+      "Community thread on community.openai.com reports developers on Tier 1 plan hitting RateLimitError despite visible credits and well-under RPM. Root cause appears to be short bursts exceeding per-minute token (TPM) limits even when RPM is fine. Distinct from standard 'quota exhausted' — this is quota-aware but burst-sensitive. Category mapping straightforward. Not in covered-errors.md."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "vercel-at-least-one-out-of-memory-oom-event-was-detected-during-the-build-process-terminated-with-sigkill-signal",
+    "title": "Vercel Build Fails with OOM Event — SIGKILL During Deployment",
+    "description": "Resolve Vercel build crashes caused by excessive node_modules/cache size consuming build container 8GB RAM — needs cache clearing, NODE_OPTIONS tuning, or on-demand enhanced builds Includes evidence for Vercel troubleshooting demand.",
+    "category": "Deployment",
+    "technology": "Vercel",
+    "error_signature": "At least one \"Out of Memory\" (\"OOM\") event was detected during the build. Process terminated with SIGKILL signal.",
+    "search_intent": "Resolve Vercel build crashes caused by excessive node_modules/cache size consuming build container 8GB RAM — needs cache clearing, NODE_OPTIONS tuning, or on-demand enhanced builds",
+    "common_causes": [
+      "Vercel community discussion and official KB confirm OOM/SIGKILL as recurring failure mode. Distinct from generic 'build command failed' — this is specifically memory exhaustion with identifiable root causes: stale build cache (6+ GB), oversized SWC binaries, Cypress cache. Clear fix path exists. High commercial impact for paid team plans blocked from deploying. Not in covered-errors.md."
+    ],
+    "quick_fix": "Check the build output, project root, and deployment platform configuration before redeploying.",
+    "related_errors": [
+      "Deployment"
+    ]
+  },
+  {
+    "slug": "cursor-connection-error-the-connection-stalled-please-try-again-limited-models-shown-after-update-to-v2-4-21",
+    "title": "Cursor Version 2.4.21 Connection Stall — Limited Model List and Unavailable",
+    "description": "Fix post-update Cursor IDE connection stall where only composer 1 model shows up and prompts time out — requires sign-out/re-sign-in, cache clear, or extensions disable Includes evidence for Cursor troubleshooting demand.",
+    "category": "Cursor",
+    "technology": "Cursor",
+    "error_signature": "connection error: The connection stalled. Please try again; limited models shown after update to v2.4.21",
+    "search_intent": "Fix post-update Cursor IDE connection stall where only composer 1 model shows up and prompts time out — requires sign-out/re-sign-in, cache clear, or extensions disable",
+    "common_causes": [
+      "Active bug report on forum.cursor.com describing regression after upgrading to v2.4.21: model list shrinks dramatically, prompts stall indefinitely. Workarounds include sign-out/sign-in, cursor --disable-extensions, VPN toggle. Distinct from known 'model not available' error — this is a network-handshake stall introduced in specific version. Strong commercial value as Cursor Pro/Team subscriptions directly affected. Not in covered-errors.md."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Cursor"
+    ]
+  },
+  {
+    "slug": "litellm-litellm-proxy-proxy-server-handle-llm-api-exception-exception-occured-no-deployments-available-for-selected-model-routerratelimiterrorbasic-raised-as-plain-httpexception",
+    "title": "LiteLLM Proxy Parallel Request Limiter Raises Unhandled HTTPException Instead of RateLimitError",
+    "description": "Fix LiteLLM proxy returning raw HTTPException with confusing message instead of normalized litellm.RateLimitError — blocks automated retry logic and proper rate-limit handling in downstream clients Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "litellm.proxy.proxy_server._handle_llm_api_exception(): Exception occured - No deployments available for selected model. (RouterRateLimitErrorBasic raised as plain HTTPException)",
+    "search_intent": "Fix LiteLLM proxy returning raw HTTPException with confusing message instead of normalized litellm.RateLimitError — blocks automated retry logic and proper rate-limit handling in downstream clients",
+    "common_causes": [
+      "Active GitHub issue in BerriAI/litellm repo (v1.81.9+) where _handle_rate_limit_error method raises bare HTTPException instead of litellm.RateLimitError. Also produces misleading 'No deployments available for selected model' instead of clear rate-limit message. PR #20932 submitted to fix. Directly impacts proxy users with virtual key RPM/TPM limits who need accurate error classification for retry logic. Newer bug (Feb 2026). Not in covered-errors.md."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "LiteLLM"
+    ]
+  },
+  {
+    "slug": "cloudflare-error-522-connection-timed-out-cloudflare-cannot-complete-tcp-handshake-with-origin-server-within-100-seconds",
+    "title": "Cloudflare Error 522 — Connection Timed Out Between Edge and Origin Server",
+    "description": "Diagnose and fix Cloudflare 522 timeouts caused by overloaded origin, firewall blocking Cloudflare IPs, SSL/TLS misconfiguration, or Workers fetch-to-self routing Includes evidence for Cloudflare troubleshooting demand.",
+    "category": "Cloudflare",
+    "technology": "Cloudflare",
+    "error_signature": "Error 522: connection timed out — Cloudflare cannot complete TCP handshake with origin server within 100 seconds",
+    "search_intent": "Diagnose and fix Cloudflare 522 timeouts caused by overloaded origin, firewall blocking Cloudflare IPs, SSL/TLS misconfiguration, or Workers fetch-to-self routing",
+    "common_causes": [
+      "Official Cloudflare support doc + multiple detailed troubleshooting guides cover 522 comprehensively. Specific advanced case: Workers fetch-to-self returns 522 when using custom domain (requires route or compatibility flag). Firewall IP whitelist, DNS mismatch, and KeepAlive settings all relevant. Strong search volume and moderate ranking difficulty. Not in covered-errors.md."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Cloudflare"
+    ]
   }
 ]
