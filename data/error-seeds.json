@@ -42925,5 +42925,69 @@
     "related_errors": [
       "LiteLLM"
     ]
+  },
+  {
+    "slug": "docker-compose-permissionerror-errno-13-permission-denied-when-connecting-to-docker-sock-misleading-message",
+    "title": "Docker Compose Misleading Permission Denied Error on Docker Socket Access",
+    "description": "Get clear actionable error message when Docker socket permission denied instead of generic cryptic 'Couldn't connect to Docker daemon' Includes evidence for Docker Compose troubleshooting demand.",
+    "category": "Docker",
+    "technology": "Docker Compose",
+    "error_signature": "PermissionError: [Errno 13] Permission denied when connecting to docker.sock — misleading message",
+    "search_intent": "Get clear actionable error message when Docker socket permission denied instead of generic cryptic 'Couldn't connect to Docker daemon'",
+    "common_causes": [
+      "Issue #13649 on docker/compose: Bug — misleading error message hides root cause when user lacks docker socket permissions. Unlike already-covered 'Docker permission denied' (general), this specifically targets the socket permission scenario with concrete fix (add user to docker group / fix ACL). Also relevant: issue #10484 (mount source mkdir operation not permitted on Docker Desktop). Category mapping: Docker Compose runtime permission → Docker."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Docker"
+    ]
+  },
+  {
+    "slug": "ollama-pull-model-manifest-unsupported-scheme-http-ollama-ignores-http-proxy-for-non-https-registries",
+    "title": "Ollara Pull Manifest Behind HTTP Proxy Fails Due to Plain HTTP Manifest Downloads",
+    "description": "Fix Ollara model download failures behind corporate proxy when model manifests use plain HTTP (non-HTTPS) Includes evidence for Ollama troubleshooting demand.",
+    "category": "Ollama",
+    "technology": "Ollama",
+    "error_signature": "pull model manifest: unsupported scheme \"http\" — Ollama ignores http_proxy for non-HTTPS registries",
+    "search_intent": "Fix Ollara model download failures behind corporate proxy when model manifests use plain HTTP (non-HTTPS)",
+    "common_causes": [
+      "Issue #15358 on ollama/ollama: Ollama respects https_proxy but ignores http_proxy for manifest downloads, causing manifest fetch failures in environments where registry.ollama.ai serves manifests via HTTP. Related: issue #8050 (behind proxy can't pull new models). This is a growing issue as more enterprises use mixed-proxied environments. Category mapping: Ollama local LLM serving → Ollama."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "Ollama"
+    ]
+  },
+  {
+    "slug": "github-copilot-cli-session-was-not-created-with-authentication-info-or-custom-provider-caused-by-swallowed-rate-limit-error",
+    "title": "Copilot CLI Auth Flow Silently Swallows REST Rate Limit During Token Validation",
+    "description": "Fix misleading Copilot CLI auth error that masks the real cause (REST rate limit exceeded during token exchange) Includes evidence for GitHub Copilot CLI troubleshooting demand.",
+    "category": "GitHub Copilot",
+    "technology": "GitHub Copilot CLI",
+    "error_signature": "Session was not created with authentication info or custom provider — caused by swallowed rate-limit error",
+    "search_intent": "Fix misleading Copilot CLI auth error that masks the real cause (REST rate limit exceeded during token exchange)",
+    "common_causes": [
+      "Issue #3311 on github/copilot-cli: When Copilot CLI validates tokens via REST API, a 429 rate-limit is silently swallowed and surfaced as generic 'session not created' error. Developers waste time re-authenticating instead of addressing rate-limit throttling. Category mapping: GitHub Copilot CLI auth bug → GitHub Copilot."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "GitHub Copilot"
+    ]
+  },
+  {
+    "slug": "kubernetes-imagepullbackoff-stuck-indefinitely-pod-never-transitions-to-waiting-backoff-when-image-pull-fails-continuously",
+    "title": "Kubernetes ImagePullBackOff Stuck Indefinitely When Image Pull Repeatedly Fails",
+    "description": "Resolve pod stuck in ImagePullBackOff state when image pull keeps failing (network outage, registry auth expiry, quota exceeded) Includes evidence for Kubernetes troubleshooting demand.",
+    "category": "Cloud Platforms",
+    "technology": "Kubernetes",
+    "error_signature": "ImagePullBackOff stuck indefinitely — pod never transitions to Waiting/BackOff when image pull fails continuously",
+    "search_intent": "Resolve pod stuck in ImagePullBackOff state when image pull keeps failing (network outage, registry auth expiry, quota exceeded)",
+    "common_causes": [
+      "Issue #119891 on kubernetes/kubernetes: Pods in ImagePullBackOff get permanently stuck — never transition to BackOff phase when pull failures persist beyond initial period. Requires manual intervention (kubectl delete pod). Also: PR #127918 addresses related issue of not surfacing image pull errors in status message. Category mapping: K8s cluster management → Cloud Platforms."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "Cloud Platforms"
+    ]
   }
 ]
