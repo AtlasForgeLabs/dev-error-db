@@ -42989,5 +42989,165 @@
     "related_errors": [
       "Cloud Platforms"
     ]
+  },
+  {
+    "slug": "claude-code-http-401-authentication-error-oauth-token-expired-revoked-or-missing-scope-every-subsequent-tool-call-returns-authentication-error-until-re-auth",
+    "title": "Claude Code HTTP 401 Authentication Failure Mid-Session: OAuth Token Expired During Autonomous Run",
+    "description": "Fix Claude Code suddenly failing with 401 auth error mid-session; user needs to re-authenticate because OAuth token expired during an autonomous run Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "HTTP 401 authentication_error: OAuth token expired, revoked, or missing scope — every subsequent tool call returns authentication_error until re-auth",
+    "search_intent": "Fix Claude Code suddenly failing with 401 auth error mid-session; user needs to re-authenticate because OAuth token expired during an autonomous run",
+    "common_causes": [
+      "Source: deepstation.ai blog '10 Common Claude Code Errors' (June 2026). Error occurs when OAuth token expires mid-session — every tool call fails with 401 authentication_error. Fix: check status page first, then run /doctor to diagnose auth/scope issues. Distinct from generic 'invalid API key' — this is a session-level OAuth expiry problem unique to Claude Code's MCP auth flow."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "cursor-provider-error-provider-error-we-re-having-trouble-finding-the-resource-you-requested-gemini-3-x-models-stop-working-for-byok-users-after-cursor-v3-1-update",
+    "title": "Cursor Gemini 3.x BYOK API Key Stopped Working After v3.1 Update: Backend Slug Resolution Bug",
+    "description": "Fix Cursor IDE where Gemini API keys (BYOK) stopped working after upgrading to Cursor v3.1 — backend slug resolution bug for Gemini 3.x models affecting all BYOK users Includes evidence for Cursor troubleshooting demand.",
+    "category": "Cursor",
+    "technology": "Cursor",
+    "error_signature": "PROVIDER_ERROR: Provider Error — We're having trouble finding the resource you requested. Gemini 3.x models stop working for BYOK users after Cursor v3.1 update",
+    "search_intent": "Fix Cursor IDE where Gemini API keys (BYOK) stopped working after upgrading to Cursor v3.1 — backend slug resolution bug for Gemini 3.x models affecting all BYOK users",
+    "common_causes": [
+      "Source: Cursor Community Forum (April 2026). Confirmed server-side bug: model name resolved incorrectly on Cursor backend when request goes through BYOK for Gemini 3.x. Cursor team acknowledged and tracking. Workaround: downgrade to v3.0 or use Gemini 2.5 Flash. Blocks paying Cursor Pro users who relied on Gemini models via their own API keys."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Cursor"
+    ]
+  },
+  {
+    "slug": "cursor-error-provider-error-provider-error-we-re-having-trouble-connecting-to-the-model-provider-this-might-be-temporary-please-try-again-in-a-moment-after-setting-implementation-plan-using-premium-model-build-won-t-start",
+    "title": "Cursor IDE Provider Error On All Models After Premium Feature Use: Session State Corrupted",
+    "description": "Fix Cursor IDE returning Provider Error on all models after using Premium model features — likely session state corruption preventing any model from being reached Includes evidence for Cursor troubleshooting demand.",
+    "category": "Cursor",
+    "technology": "Cursor",
+    "error_signature": "ERROR_PROVIDER_ERROR: Provider Error — We're having trouble connecting to the model provider. This might be temporary — please try again in a moment. (after setting implementation plan using Premium model, Build won't start)",
+    "search_intent": "Fix Cursor IDE returning Provider Error on all models after using Premium model features — likely session state corruption preventing any model from being reached",
+    "common_causes": [
+      "Source: Cursor Community Forum thread (April 2026). Error occurs specifically after using Premium model to create an implementation plan — subsequent builds fail with ERROR_PROVIDER_ERROR. Workaround requires full app quit + relaunch. Multiple users affected with Request IDs traceable to backend. Blocks Cursor Pro paying users completely."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Cursor"
+    ]
+  },
+  {
+    "slug": "vercel-error-cannot-find-module-rollup-rollup-linux-x64-gnu-npm-has-a-bug-related-to-optional-dependencies-npm-cli-sharp-4828",
+    "title": "Vercel Build Fails with Rollup Native Module Missing: @rollup/rollup-linux-x64-gnu npm Bug on Optional Dependencies",
+    "description": "Fix Vercel build failure caused by npm optional dependency bug — native Rollup binary missing for Linux x64 gnu platform during build deploy Includes evidence for Vercel troubleshooting demand.",
+    "category": "Deployment",
+    "technology": "Vercel",
+    "error_signature": "Error: Cannot find module @rollup/rollup-linux-x64-gnu. npm has a bug related to optional dependencies (npm/cli#4828)",
+    "search_intent": "Fix Vercel build failure caused by npm optional dependency bug — native Rollup binary missing for Linux x64 gnu platform during build deploy",
+    "common_causes": [
+      "Source: GitHub next.js discussion #50560. Error triggered when deploying Vite+Next.js apps on Vercel. Root cause is npm cli bug #4828 with optional dependencies on Linux. Fix involves removing package-lock.json + node_modules and reinstalling. Highly commercial value: blocks production deployment for thousands of Next.js projects using Vite bundler on Vercel."
+    ],
+    "quick_fix": "Check the build output, project root, and deployment platform configuration before redeploying.",
+    "related_errors": [
+      "Deployment"
+    ]
+  },
+  {
+    "slug": "openrouter-model-set-failed-error-model-not-allowed-model-name-persists-for-all-models-including-non-openrouter-after-hitting-openrouter-5-spending-limit",
+    "title": "OpenRouter Rate Limit Failover Bug: Hitting $5 Spending Cap Triggers 'Model Not Allowed' For All Models Including Non-OpenRouter",
+    "description": "Fix OpenRouter spending cap bug where exceeding $5 budget causes 'model not allowed' error globally, preventing model switching even after limit is removed or increased Includes evidence for OpenRouter troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenRouter",
+    "error_signature": "model set failed: Error: model not allowed: <model_name> — persists for ALL models (including non-OpenRouter) after hitting OpenRouter $5 spending limit",
+    "search_intent": "Fix OpenRouter spending cap bug where exceeding $5 budget causes 'model not allowed' error globally, preventing model switching even after limit is removed or increased",
+    "common_causes": [
+      "Source: GitHub openclaw/openclaw issue #1405. After hitting OpenRouter API rate limit ($5 spending cap), switching models fails with 'model not allowed' for ALL models including locally-configured ones. Error persists even after removing spending limit and restarting. Suggests model path parsing issue with duplicated provider prefixes (openrouter/openrouter/auto). Commercial value: blocks developers using OpenRouter as proxy/router."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "github-actions-waiting-for-a-runner-to-pick-up-this-job-dial-unix-var-run-docker-sock-connect-permission-denied-error-eacces-permission-denied-open-w-temp-runner-file-commands-set-env",
+    "title": "GitHub Actions Workflow Stuck Waiting for Runner: Self-Hosted Runner Idle But Not Picking Up Jobs + Permission Denied EACCES",
+    "description": "Fix GitHub Actions jobs stuck in queued state — self-hosted runners not picking up jobs due to permission denied on docker.sock, ARC non-root container EACCES errors, or org repository permissions blocking runner group Includes evidence for GitHub Actions troubleshooting demand.",
+    "category": "GitHub Actions",
+    "technology": "GitHub Actions",
+    "error_signature": "Waiting for a runner to pick up this job... | dial unix /var/run/docker.sock: connect: permission denied | Error: EACCES: permission denied, open '/__w/_temp/_runner_file_commands/set_env_*'",
+    "search_intent": "Fix GitHub Actions jobs stuck in queued state — self-hosted runners not picking up jobs due to permission denied on docker.sock, ARC non-root container EACCES errors, or org repository permissions blocking runner group",
+    "common_causes": [
+      "Sources: GitHub community discussions #31587, #120813, #147604 + aws-actions/configure-aws-credentials issue #1011. Three distinct sub-errors: (1) infinite queue wait on GitHub-hosted runners during outage, (2) self-hosted idle but not accepting jobs due to org repo permission settings, (3) EACCES permission denied on docker.sock when running non-root containers. Blocks paid team CI/CD pipelines — high commercial intent."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "GitHub Actions"
+    ]
+  },
+  {
+    "slug": "cloudflare-error-522-connection-timed-out-cloudflare-times-out-contacting-the-origin-web-server-within-15-seconds-tcp-handshake-never-establishes",
+    "title": "Cloudflare Error 522 Origin Connection Timed Out: TCP Handshake Fails Between Edge and Origin Server",
+    "description": "Diagnose and fix Cloudflare 522 errors where origin server doesn't respond to TCP handshake — caused by server overload, firewall blocking Cloudflare IPs, KeepAlive disabled, or DNS misconfiguration Includes evidence for Cloudflare troubleshooting demand.",
+    "category": "Cloudflare",
+    "technology": "Cloudflare",
+    "error_signature": "Error 522: connection timed out — Cloudflare times out contacting the origin web server within ~15 seconds, TCP handshake never establishes",
+    "search_intent": "Diagnose and fix Cloudflare 522 errors where origin server doesn't respond to TCP handshake — caused by server overload, firewall blocking Cloudflare IPs, KeepAlive disabled, or DNS misconfiguration",
+    "common_causes": [
+      "Sources: Cloudflare official docs (updated May 15 2026), contabo.com blog, elementor.com guide. Error 522 means TCP connection between Cloudflare edge and origin never completes — unlike 524 where connection succeeds but response is slow. Causes: overloaded origin, firewall blocking CF IPs, incorrect DNS/IP, disabled KeepAlive. Very high volume daily search, blocks production websites."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Cloudflare"
+    ]
+  },
+  {
+    "slug": "ollama-cuda-error-out-of-memory-exit-status-1-signal-killed-model-starts-loading-then-hangs-indefinitely-ollama-returns-error-but-no-specific-message",
+    "title": "Ollama Out of Memory OOM Crashes When Loading Large Models: CUDA Error + Kernel Kill + No Specific Message",
+    "description": "Diagnose and fix Ollama OOM crashes when pulling/loading large models (70B+) — including GPU VRAM exhaustion, RAM swap thrashing, and silent crash without error messages Includes evidence for Ollama troubleshooting demand.",
+    "category": "Ollama",
+    "technology": "Ollama",
+    "error_signature": "CUDA error: out of memory | exit status 1 | signal: killed | model starts loading then hangs indefinitely | Ollama returns error but no specific message",
+    "search_intent": "Diagnose and fix Ollama OOM crashes when pulling/loading large models (70B+) — including GPU VRAM exhaustion, RAM swap thrashing, and silent crash without error messages",
+    "common_causes": [
+      "Source: serverman.co.uk guide (Jan 2026) + tech-insider.org tutorial. Multiple distinct OOM symptoms confirmed: CUDA OOM on GPU, kernel OOM kill on CPU, signal: killed mid-inference, and silent hangs. Solutions include smaller quantization (--num-ctx 1024), Q2_K quant, OLLAMA_MAX_LOADED_MODELS=1. Commercially significant as local LLM deployment blocks teams unable to afford cloud API credits."
+    ],
+    "quick_fix": "Verify the model name, local service connectivity, and network access before retrying the model pull.",
+    "related_errors": [
+      "Ollama"
+    ]
+  },
+  {
+    "slug": "litellm-litellm-types-router-routerratelimiterrorbasic-no-deployments-available-for-selected-model-raised-when-actually-hitting-429-rate-limit-misleading-admin-admin-dashboard-operators",
+    "title": "LiteLLM Proxy Misleading Error: Rate Limit Returns 'No Deployments Available for Selected Model' Instead of Clear 429 Message",
+    "description": "Understand why LiteLLM proxy reports 'No deployments available' instead of clear rate-limit 429 error message, making it hard for admins to diagnose quota/rate-limit issues vs actual model unavailability Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "litellm.types.router.RouterRateLimitErrorBasic: No deployments available for selected model — raised when actually hitting 429 rate limit, misleading admin/admin dashboard operators",
+    "search_intent": "Understand why LiteLLM proxy reports 'No deployments available' instead of clear rate-limit 429 error message, making it hard for admins to diagnose quota/rate-limit issues vs actual model unavailability",
+    "common_causes": [
+      "Source: BerriAI/litellm issue #20867 (Feb 2026). RouterRateLimitErrorBasic incorrectly surfaced as 'No deployments available' instead of the actual rate-limit condition. PR #20932 fixes this. Affects proxy administrators managing multi-model routing who rely on clear error messages to distinguish between rate-limited models and truly unavailable ones."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "LiteLLM"
+    ]
+  },
+  {
+    "slug": "kubernetes-reason-crashloopbackoff-last-state-terminated-reason-starterror-failed-to-create-containerd-task-failed-to-create-shim-task-context-deadline-exceeded-unknown-exit-code-128",
+    "title": "GKE Pod CrashLoopBackOff With Context Deadline Exceeded Exit Code 128: kubelet Container Creation Fails Silently",
+    "description": "Debug GKE pods stuck in CrashLoopBackOff with exit code 128 and 'context deadline exceeded' — kubelet unable to create containerd shim tasks silently Includes evidence for Kubernetes troubleshooting demand.",
+    "category": "Cloud Platforms",
+    "technology": "Kubernetes",
+    "error_signature": "Reason: CrashLoopBackOff | Last State: Terminated Reason: StartError | failed to create containerd task: failed to create shim task: context deadline exceeded: unknown | Exit Code: 128",
+    "search_intent": "Debug GKE pods stuck in CrashLoopBackOff with exit code 128 and 'context deadline exceeded' — kubelet unable to create containerd shim tasks silently",
+    "common_causes": [
+      "Source: Google Kubernetes Engine documentation (GKE troubleshooting guide). Distinct pattern: pods show Restart Count >3000 but reason is StartError, not ApplicationCrash. Exit code 128 suggests container runtime issue rather than application bug. 'context deadline exceeded' indicates timeout during container creation, not during execution. High commercial value for teams running production workloads on GCP."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Cloud Platforms"
+    ]
   }
 ]
