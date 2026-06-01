@@ -42061,5 +42061,69 @@
     "related_errors": [
       "Cloud Platforms"
     ]
+  },
+  {
+    "slug": "docker-kernel-panic-in-ext4-es-scan-kswapd-freezes-entire-vm-linuxkit-6-12-76-docker-desktop-4-73-0-or-crashes-on-startup-with-disk-extend-panic",
+    "title": "Docker Desktop M1/M2 macOS Kernel Panic Crashes After Update — ext4_es_scan / kswapd Freezes VM",
+    "description": "Fix Docker Desktop kernel panics and startup crashes on Apple Silicon Macs after version updates, specifically ext4 filesystem scanner and swap daemon causing complete VM freezes Includes evidence for Docker troubleshooting demand.",
+    "category": "Docker",
+    "technology": "Docker",
+    "error_signature": "Kernel panic in ext4_es_scan / kswapd freezes entire VM (linuxkit 6.12.76 / Docker Desktop 4.73.0) OR crashes on startup with disk.extend panic",
+    "search_intent": "Fix Docker Desktop kernel panics and startup crashes on Apple Silicon Macs after version updates, specifically ext4 filesystem scanner and swap daemon causing complete VM freezes",
+    "common_causes": [
+      "Multiple open GitHub issues on docker/for-mac (#7834, #7877, #7825, #7664, #7828) showing a pattern of kernel panic crashes affecting M1/M2 Macs on recent Docker Desktop versions (4.41+ through 4.73.0). This is distinct from the covered 'cannot connect to daemon' error — these are hard crashes requiring restart/reinstall. Enterprise impact: CI/CD pipelines, local development blocked entirely. High commercial value as Docker Desktop has paid enterprise tier."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Docker"
+    ]
+  },
+  {
+    "slug": "openai-api-429-too-many-requests-with-error-type-rate-limit-exceeded-vs-error-type-insufficient-quota",
+    "title": "OpenAI API 429 Error — Rate Limit vs Quota Confusion Leading to Wasted Retries and Billing Failure",
+    "description": "Differentiate between OpenAI 429 rate_limit_exceeded (speed issue) and insufficient_quota (billing issue), avoiding wasteful retry loops on quota errors that require payment method fixes instead of backoff Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "429 Too Many Requests with error.type='rate_limit_exceeded' vs error.type='insufficient_quota'",
+    "search_intent": "Differentiate between OpenAI 429 rate_limit_exceeded (speed issue) and insufficient_quota (billing issue), avoiding wasteful retry loops on quota errors that require payment method fixes instead of backoff",
+    "common_causes": [
+      "Comprehensive article from aitoolsrank.io (updated 2026-05-27) explaining the two distinct 429 types via error.type/error.code JSON fields. Covers code examples, rate-limit headers, tier escalation, billing alerts. Check against covered-errors.md: already published 429 too many requests and insufficient quota individually, but THIS candidate's unique angle is the 'how to distinguish them at runtime' diagnostic flow, which is a critical gap — developers consistently misdiagnose these leading to wrong fixes."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "litellm-proxy-silently-drops-all-models-after-extended-runtime-config-only-no-db-all-llm-api-calls-start-returning-not-fund-error-despite-valid-configuration",
+    "title": "LiteLLM Proxy Silently Drops All Models After Extended Runtime — Config-Only No-DB Mode Bug",
+    "description": "Fix LiteLLM proxy memory leak / state corruption bug where configured models disappear from routing pool after prolonged operation without database backend Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "Proxy silently drops all models after extended runtime (config-only, no DB) — all LLM API calls start returning Not Fund Error despite valid configuration",
+    "search_intent": "Fix LiteLLM proxy memory leak / state corruption bug where configured models disappear from routing pool after prolonged operation without database backend",
+    "common_causes": [
+      "GitHub issue BerriAI/litellm #25350 shows active production bug affecting multi-provider proxy setups. Combined with #25469 PR and general proxy routing timeout/rate-limit issues found via search. Affects production systems using LiteLLM as centralized LLM gateway — high commercial value as organizations depend on reliable model routing. No existing dev-error-db coverage for this proxy-specific stability issue."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "LiteLLM"
+    ]
+  },
+  {
+    "slug": "claude-code-http-oauth-mcp-servers-silently-fail-in-claude-code-inside-claude-desktop-no-error-message-no-guidance-shown-to-user",
+    "title": "Claude Code HTTP OAuth MCP Servers Silently Fail Inside Claude Desktop — No Error, No Guidance",
+    "description": "Debug Claude Code failing silently when connecting to MCP servers over plain HTTP (non-TLS) OAuth flows, where the UI provides no visible error feedback making troubleshooting nearly impossible Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "HTTP OAuth MCP servers silently fail in Claude Code inside Claude Desktop — no error message, no guidance shown to user",
+    "search_intent": "Debug Claude Code failing silently when connecting to MCP servers over plain HTTP (non-TLS) OAuth flows, where the UI provides no visible error feedback making troubleshooting nearly impossible",
+    "common_causes": [
+      "GitHub issue #46623 on anthropics/claude-code reveals a UX-level bug where MCP OAuth failures produce zero user-facing error. This is distinct from the 'incompatible auth server' candidate — here the error IS silently swallowed rather than surfaced. High debug difficulty = strong SEO intent. Duplicate risk low from other Claude Code OAuth entries because the core problem (silent failure vs explicit error) is different."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
   }
 ]
