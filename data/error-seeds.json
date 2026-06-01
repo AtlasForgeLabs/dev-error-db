@@ -43213,5 +43213,117 @@
     "related_errors": [
       "Cloud Platforms"
     ]
+  },
+  {
+    "slug": "openai-api-sip-endpoint-returning-503-service-unavailable-instant-rejection-no-webhooks-generated",
+    "title": "OpenAI API SIP Endpoint Returning 503 Service Unavailable",
+    "description": "Fix OpenAI Realtime SIP endpoint 503 errors blocking all calls and webhooks Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "SIP Endpoint returning 503 Service Unavailable — instant rejection, no webhooks generated",
+    "search_intent": "Fix OpenAI Realtime SIP endpoint 503 errors blocking all calls and webhooks",
+    "common_causes": [
+      "Source: community.openai.com/t/sip-endpoint-returning-503-service-unavailable/1382026. Reported 2026-05-29, multiple users affected. Error impacts production apps using SIP integration. Paid API user impact = strong commercial value. Category mapping: direct OpenAI API billing-impacting error."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "cursor-no-models-available-in-ide-but-showing-up-in-web-cursor-unusable-model-picker-empty-across-versions-3-1-3-0-2-6",
+    "title": "Cursor IDE Model Picker Completely Empty — No Models Available Despite Active Subscription",
+    "description": "Fix Cursor IDE suddenly showing zero available models while web version still displays them correctly Includes evidence for Cursor troubleshooting demand.",
+    "category": "Cursor",
+    "technology": "Cursor",
+    "error_signature": "No models available in IDE but showing up in web — Cursor unusable, model picker empty across versions 3.1/3.0/2.6",
+    "search_intent": "Fix Cursor IDE suddenly showing zero available models while web version still displays them correctly",
+    "common_causes": [
+      "Multiple reports from forum.cursor.com (April 15, 2026). Affects PRO subscribers. Confirmed on Windows and Mac. Known bug in v3.1.14 with workaround via rollback. Clear enterprise paid-user impact. Category mapping: direct Cursor-specific subscription/tool error."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Cursor"
+    ]
+  },
+  {
+    "slug": "litellm-routerratelimiterrorbasic-no-deployments-available-for-selected-model-returned-on-429-rate-limit-instead-of-actual-rate-limit-message",
+    "title": "LiteLLM Proxy Rate Limit Returns Misleading 'No Deployments Available' Error Instead of 429",
+    "description": "Fix LiteLLM proxy masking 429 rate limit errors with incorrect 'No deployments available' message causing debugging confusion Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "RouterRateLimitErrorBasic: No deployments available for selected model — returned on 429 rate limit instead of actual rate-limit message",
+    "search_intent": "Fix LiteLLM proxy masking 429 rate limit errors with incorrect 'No deployments available' message causing debugging confusion",
+    "common_causes": [
+      "GitHub issue #20867 (BerriAI/litellm), fixed via PR #20932 on Feb 11, 2026. LiteLLM v1.81.9 affected. The proxy throws RouterRateLimitErrorBasic with misleading text instead of the actual rate-limit info from downstream providers. Critical for production AI gateway operators. Category mapping: LiteLLM proxy-specific routing/visibility bug."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "LiteLLM"
+    ]
+  },
+  {
+    "slug": "cursor-we-re-experiencing-high-demand-for-composer-1-5-right-now-but-user-was-not-using-composer-1-5-any-model-selection-shows-same-error",
+    "title": "Cursor Pro Subscriber Gets 'High Demand' Wrong Model Error Across All Selections",
+    "description": "Fix Cursor showing wrong model demand error on all models when connected to correct plan Includes evidence for Cursor troubleshooting demand.",
+    "category": "Cursor",
+    "technology": "Cursor",
+    "error_signature": "We're experiencing high demand for Composer 1.5 right now — but user was not using Composer 1.5; any model selection shows same error",
+    "search_intent": "Fix Cursor showing wrong model demand error on all models when connected to correct plan",
+    "common_causes": [
+      "Forum cursor.com report dated 2026-04-16. User has PRO plan but every model triggers Composer-specific high-demand error. Desktop UI routing mismatch confirmed — Agent mode hits wrong model regardless of selection. CLI agent works fine, isolating to desktop client bug. Affects paying users. Category mapping: Cursor IDE-specific model routing error."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Cursor"
+    ]
+  },
+  {
+    "slug": "vercel-resource-provisioning-failed-deployment-fails-instantly-with-0ms-build-time-logs-not-shown",
+    "title": "Vercel Deployment Resource Provisioning Failed with Zero Millisecond Build Time",
+    "description": "Fix Vercel deployment failing with resource provisioning error without any build logs visible Includes evidence for Vercel troubleshooting demand.",
+    "category": "Deployment",
+    "technology": "Vercel",
+    "error_signature": "Resource provisioning failed — deployment fails instantly with 0ms build time, logs not shown",
+    "search_intent": "Fix Vercel deployment failing with resource provisioning error without any build logs visible",
+    "common_causes": [
+      "Community Vercel forum report. Related topics include identical error patterns from Feb 2026. Users unable to debug because no build logs render. Production deployments blocked. High value for SaaS teams shipping to Vercel. Category mapping: Vercel platform-level deployment failure."
+    ],
+    "quick_fix": "Check the build output, project root, and deployment platform configuration before redeploying.",
+    "related_errors": [
+      "Deployment"
+    ]
+  },
+  {
+    "slug": "kubernetes-imagepullbackoff-pod-cannot-pull-container-image-from-registry-due-to-network-credentials-or-auth-failures",
+    "title": "Kubernetes ImagePullBackOff ErrImagePull Failed to Pull Image From Registry",
+    "description": "Debug Kubernetes ImagePullBackOff error when pods fail to pull images from private registries Includes evidence for Kubernetes troubleshooting demand.",
+    "category": "Cloud Platforms",
+    "technology": "Kubernetes",
+    "error_signature": "ImagePullBackOff — pod cannot pull container image from registry due to network, credentials, or auth failures",
+    "search_intent": "Debug Kubernetes ImagePullBackOff error when pods fail to pull images from private registries",
+    "common_causes": [
+      "Dash0 guide (updated Feb 24, 2026) provides comprehensive troubleshooting. Dev.to guide covers CrashLoopBackOff, ImagePullBackOff, OOMKilled, Pending, and CreateContainerConfigError. Well-established error with active community content but room for structured coverage. Category mapping: Kubernetes/cloud platforms."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "Cloud Platforms"
+    ]
+  },
+  {
+    "slug": "ollama-pull-model-manifest-429-huggingface-rate-limit-during-ollama-model-download",
+    "title": "Ollama Pull Failing With HuggingFace 429 Manifest Download Error Behind Corporate Proxy",
+    "description": "Fix Ollama model pull failing with HuggingFace 429 rate limit error behind corporate proxy or VPN Includes evidence for Ollama troubleshooting demand.",
+    "category": "Ollama",
+    "technology": "Ollama",
+    "error_signature": "pull model manifest: 429 — HuggingFace rate limit during Ollama model download",
+    "search_intent": "Fix Ollama model pull failing with HuggingFace 429 rate limit error behind corporate proxy or VPN",
+    "common_causes": [
+      "Hugging Face Forums post. Root cause: shared egress IPs/VPNs trigger HF rate limiting during model manifest requests. Workaround: set HTTPS_PROXY (not HTTP_PROXY), use HF_TOKEN env var in systemd service file. Technical detail-rich issue with clear fix path. Category mapping: Ollama local LLM serving error."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "Ollama"
+    ]
   }
 ]
