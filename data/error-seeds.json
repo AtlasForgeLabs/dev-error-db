@@ -42125,5 +42125,85 @@
     "related_errors": [
       "AI Coding Tools"
     ]
+  },
+  {
+    "slug": "litellm-litellm-ratelimiterror-vertexaiexception-error-code-429-message-resource-has-been-exhausted-e-g-check-quota-status-resource-exhausted-logged-as-no-deployments-available-for-selected-model",
+    "title": "LiteLLM RateLimitError Misleadingly Reported as 'No Deployments Available' — False Positive Error Masking",
+    "description": "Fix LiteLLM proxy logging rate limit errors as deployment failures; understand why stack trace prints 3x even with num_retries: 0 Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "litellm.RateLimitError: VertexAIException - {\"error\": {\"code\": 429, \"message\": \"Resource has been exhausted (e.g. check quota).\", \"status\": \"RESOURCE_EXHAUSTED\"}} — logged as 'No deployments available for selected model'",
+    "search_intent": "Fix LiteLLM proxy logging rate limit errors as deployment failures; understand why stack trace prints 3x even with num_retries: 0",
+    "common_causes": [
+      "GitHub issue #20867 on BerriAI/litellm reports LiteLLM proxy misclassifying genuine rate limit errors (VertexAI 429 RESOURCE_EXHAUSTED) as 'No deployments available for selected model'. Stack trace printed 3× despite num_retries: 0. PR #20932 fixes this by surfacing clear rate-limit messages. Commercial impact: teams debugging production proxy failures waste hours chasing false deployment issues."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "LiteLLM"
+    ]
+  },
+  {
+    "slug": "cursor-error-timeout-waiting-for-everythingprovider-authentication-ui-cursor-tab-agent-endpoint-codebase-indexing-all-failed-no-model-available-in-ide-but-showing-up-in-web-version",
+    "title": "Cursor IDE Model Picker Empty — Timeout waiting for EverythingProvider Across All Versions",
+    "description": "Cursor IDE refuses to load any AI models in the agent panel despite web version showing models; full quit+restart needed; affects v2.6, v3.0, and v3.1 simultaneously Includes evidence for Cursor troubleshooting demand.",
+    "category": "Cursor",
+    "technology": "Cursor",
+    "error_signature": "Error: Timeout waiting for EverythingProvider (Authentication UI / Cursor Tab / Agent Endpoint / Codebase Indexing all FAILED); No model available in IDE but showing up in web version",
+    "search_intent": "Cursor IDE refuses to load any AI models in the agent panel despite web version showing models; full quit+restart needed; affects v2.6, v3.0, and v3.1 simultaneously",
+    "common_causes": [
+      "Cursor forum post (#157780) — users report zero models in IDE while web interface works. Network diagnostics show Authentication UI, Cursor Tab, Agent Endpoint, and Codebase Indexing all FAILED with 'Timeout waiting for EverythingProvider'. Affects all recent versions. Related issue (#156074) shows similar behavior with ERROR_PROVIDER_ERROR. Requires disabling extensions (cursor --disable-extensions) and checking antivirus interference."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "Cursor"
+    ]
+  },
+  {
+    "slug": "vercel-module-not-found-can-t-resolve-components-registerform-works-locally-npm-run-build-succeeds-but-fails-on-vercel-deployment",
+    "title": "Vercel Next.js Deployment Module Not Found — Case-Sensitive Filesystem on Vercel vs Local Dev",
+    "description": "Next.js project builds successfully on local machine but Vercel deployment fails with module not found error; root cause is Vercel's case-sensitive filesystem vs Windows/Mac default case-insensitive filesystem Includes evidence for Vercel troubleshooting demand.",
+    "category": "Deployment",
+    "technology": "Vercel",
+    "error_signature": "Module not found: Can't resolve './components/RegisterForm' — works locally (npm run build succeeds) but fails on Vercel deployment",
+    "search_intent": "Next.js project builds successfully on local machine but Vercel deployment fails with module not found error; root cause is Vercel's case-sensitive filesystem vs Windows/Mac default case-insensitive filesystem",
+    "common_causes": [
+      "GitHub issue vercel/next.js #69390 documents exact scenario: local build succeeds, Vercel deployment fails with 'Module not found: Can't resolve.' Case-sensitivity is the hidden culprit — file paths with wrong capitalization work on local macOS (case-insensitive by default) but fail on Vercel's Linux-based case-sensitive build environment. Very common for teams developing on Mac/Windows deploying to Vercel."
+    ],
+    "quick_fix": "Check the build output, project root, and deployment platform configuration before redeploying.",
+    "related_errors": [
+      "Deployment"
+    ]
+  },
+  {
+    "slug": "claude-code-invalid-request-the-redirect-uri-parameter-does-not-match-a-valid-url-for-the-application-claude-code-cli-uses-http-localhost-random-port-callback-which-provider-oauth-apps-reject-only-https-and-urn-ietf-wg-oauth-2-0-oob-supported",
+    "title": "Claude Code CLI MCP OAuth Failed — Localhost Callback Port Mismatch Not Supported by Provider Apps",
+    "description": "Connect external tools (Asana, Jira, etc.) via MCP server to Claude Code CLI but OAuth fails because localhost redirect URIs aren't accepted; find workaround using Anthropic-managed connectors Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "invalid_request: The redirect_uri parameter does not match a valid url for the application. Claude Code CLI uses http://localhost:{random_port}/callback which provider OAuth apps reject (only https and urn:ietf:wg:oauth:2.0:oob supported)",
+    "search_intent": "Connect external tools (Asana, Jira, etc.) via MCP server to Claude Code CLI but OAuth fails because localhost redirect URIs aren't accepted; find workaround using Anthropic-managed connectors",
+    "common_causes": [
+      "Asana forum post (#1136057) documents MCP OAuth failure when connecting to Claude Code CLI. Works fine in Claude Desktop App (server-side OAuth) but CLI uses ephemeral localhost ports per RFC 822. Providers like Asana don't support http://localhost redirect URIs. Workaround: register connector via claude.ai/settings/connectors first then enable via ENABLE_CLAUDEAI_MCP_SERVERS env var. High commercial value — MCP integration is rapidly growing use case."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "docker-docker-permission-denied-while-trying-to-connect-to-the-docker-daemon-socket-at-unix-var-run-docker-sock-failed-to-install-com-docker-vmnetd-authorization-required",
+    "title": "Docker Desktop macOS Permission Denied on Docker Socket — vmnetd Authorization Failure on Sonoma+",
+    "description": "Fix Docker Desktop permission denied errors on modern macOS after system updates; socket access lost due to security changes; Docker daemon won't start or accepts no commands Includes evidence for Docker troubleshooting demand.",
+    "category": "Docker",
+    "technology": "Docker",
+    "error_signature": "docker: permission denied while trying to connect to the Docker daemon socket at unix:///var/run/docker.sock — Failed to install com.docker.vmnetd: Authorization required",
+    "search_intent": "Fix Docker Desktop permission denied errors on modern macOS after system updates; socket access lost due to security changes; Docker daemon won't start or accepts no commands",
+    "common_causes": [
+      "usedocker.com comprehensive guide covers Docker Desktop Mac permission denied patterns including vmnetd authorization failures on macOS Sonoma+. Already-published errors list Docker 'permission denied' and 'cannot connect to daemon' broadly, but the macOS-specific vmnetd path with sonoma+ OS incompatibility creates a distinct troubleshooting flow. Oneuptime article adds diagnosis steps for daemon startup on macOS."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "Docker"
+    ]
   }
 ]
