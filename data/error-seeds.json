@@ -41965,5 +41965,101 @@
     "related_errors": [
       "Deployment"
     ]
+  },
+  {
+    "slug": "anthropic-api-529-overloaded-error-during-regular-usage-on-max-subscriber-plan",
+    "title": "HTTP 529 Overloaded errors on Claude Code Max plan causing full-day productivity loss",
+    "description": "Fix frequent 529 overloaded errors blocking Max plan Claude Code users, especially Opus model requests Includes evidence for Anthropic API troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Anthropic API",
+    "error_signature": "529 Overloaded error during regular usage on Max subscriber plan",
+    "search_intent": "Fix frequent 529 overloaded errors blocking Max plan Claude Code users, especially Opus model requests",
+    "common_causes": [
+      "Multiple claude-code issues (#35704, #35549, #39767, #41624, #23049) report recurring 529 Overloaded errors affecting paying Max subscribers. Server-side overload is a direct revenue-impacting issue for Anthropic. Category mapping: Anthropic API per approved list."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "Anthropic API"
+    ]
+  },
+  {
+    "slug": "claude-code-mcp-oauth-completes-but-bearer-token-never-sent-to-server-server-stuck-in-needs-authentication",
+    "title": "Claude Code MCP OAuth completes but Bearer token never sent — server stays in 'Needs authentication'",
+    "description": "Fix broken MCP OAuth authentication flow in Claude Code where tokens complete OAuth but are never actually transmitted to the MCP server Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "MCP OAuth completes but Bearer token never sent to server; server stuck in 'Needs authentication'",
+    "search_intent": "Fix broken MCP OAuth authentication flow in Claude Code where tokens complete OAuth but are never actually transmitted to the MCP server",
+    "common_causes": [
+      "anthropics/claude-code#60260 reports persistent auth failure for MCP servers. Multiple related issues (#33578, #36307, #44830, #46140, #49043, #54727) confirm this is an active, recurring pattern affecting production use of AI coding tools. High commercial value since it blocks paid Anthropic subscription users."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "github-actions-unable-to-reserve-cache-actions-cache-save-v5-corrupted-cache-after-workflow-cancellation",
+    "title": "GitHub Actions cache/save writes corrupt cache when workflow is canceled mid-operation",
+    "description": "Fix GitHub Actions cache corruption when workflows are cancelled during cache operations, causing subsequent builds to fail Includes evidence for GitHub Actions troubleshooting demand.",
+    "category": "GitHub Actions",
+    "technology": "GitHub Actions",
+    "error_signature": "Unable to reserve cache (actions/cache/save@v5); corrupted cache after workflow cancellation",
+    "search_intent": "Fix GitHub Actions cache corruption when workflows are cancelled during cache operations, causing subsequent builds to fail",
+    "common_causes": [
+      "actions/cache#1707 and #1729 report cache reservation failures and corruption from workflow cancellation. CI/CD pipeline failures directly block paid team workflows. 10+ reactions on #1707, 15+ on #1710 indicate widespread pain point."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "GitHub Actions"
+    ]
+  },
+  {
+    "slug": "litellm-model-list-is-empty-after-upgrading-litellm-proxy-all-model-calls-return-400-errors",
+    "title": "LiteLLM model list becomes empty after upgrading v1.79.1 to v1.83.5, model calls return 400",
+    "description": "Fix LiteLLM proxy breaking after version upgrade where model registry empties and all downstream API calls fail with 400 errors Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "Model list is empty after upgrading LiteLLM proxy; all model calls return 400 errors",
+    "search_intent": "Fix LiteLLM proxy breaking after version upgrade where model registry empties and all downstream API calls fail with 400 errors",
+    "common_causes": [
+      "BerriAI/litellm#26407 reports a breaking regression in LiteLLM proxy that affects all model routing — critical for production proxy setups serving multiple services. Also supported by additional timeout and model-unavailability issues (#19549, #19909, #14635), confirming ongoing stability concerns in LiteLLM."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "LiteLLM"
+    ]
+  },
+  {
+    "slug": "docker-slirp4netns-executable-file-not-found-in-path-rootless-docker-v29-5-0",
+    "title": "Docker rootless fails after update to v29.5.0: slirp4netns executable not found in PATH",
+    "description": "Fix rootless Docker engine failing to start after 29.5.0 upgrade due to missing slirp4netns binary Includes evidence for Docker troubleshooting demand.",
+    "category": "Docker",
+    "technology": "Docker",
+    "error_signature": "\"slirp4netns\": executable file not found in $PATH (rootless Docker v29.5.0)",
+    "search_intent": "Fix rootless Docker engine failing to start after 29.5.0 upgrade due to missing slirp4netns binary",
+    "common_causes": [
+      "moby/moby#52641 is a regression in official Docker release affecting rootless mode. Broken container runtime blocks all development/deployment workflows. Docker Enterprise customers impacted."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Docker"
+    ]
+  },
+  {
+    "slug": "kubernetes-image-pull-credential-verification-doesn-t-work-imagepullbackoff-despite-valid-credentials",
+    "title": "Kubernetes image pull credential verification doesn't work, pods stuck ImagePullBackOff",
+    "description": "Fix Kubernetes kubelet not verifying image pull secrets properly, leaving pods permanently stuck in ImagePullBackOff state Includes evidence for Kubernetes troubleshooting demand.",
+    "category": "Cloud Platforms",
+    "technology": "Kubernetes",
+    "error_signature": "image pull credential verification doesn't work (ImagePullBackOff despite valid credentials)",
+    "search_intent": "Fix Kubernetes kubelet not verifying image pull secrets properly, leaving pods permanently stuck in ImagePullBackOff state",
+    "common_causes": [
+      "kubernetes/kubernetes#137024 is an open bug where credential verification is broken, causing production pods to fail pulling images. Combined with #138175 (preloaded image spec poisoning) and #138211 (shared digest poisoning), this forms a cluster of interconnected CR/auth bugs in recent k8s versions."
+    ],
+    "quick_fix": "Verify the model name, local service connectivity, and network access before retrying the model pull.",
+    "related_errors": [
+      "Cloud Platforms"
+    ]
   }
 ]
