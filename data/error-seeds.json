@@ -45341,5 +45341,101 @@
     "related_errors": [
       "Ollama"
     ]
+  },
+  {
+    "slug": "openai-api-sip-endpoint-returning-503-service-unavailable-all-calls-failing-with-instant-rejection-no-webhooks-being-generated",
+    "title": "OpenAI SIP Endpoint Returns 503 Service Unavailable",
+    "description": "Fix SIP/WebRTC endpoint returning 503 errors preventing real-time voice communication via OpenAI API Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "SIP Endpoint returning 503 Service Unavailable — all calls failing with instant rejection, no webhooks being generated",
+    "search_intent": "Fix SIP/WebRTC endpoint returning 503 errors preventing real-time voice communication via OpenAI API",
+    "common_causes": [
+      "Multiple users reporting same issue on OpenAI community forum thread #1382026 starting May 29, 2026. Issue confirmed by OpenAI support investigating. Affects paid SIP endpoint integration used in production deployments. Category mapping: direct OpenAI API error on a paid enterprise feature."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "anthropic-api-api-error-rate-limited-rate-limit-error-with-message-rate-limited-even-during-only-2-parallel-claude-code-sessions",
+    "title": "Anthropic API Rate Limit Exceeded Even With Only 2 Parallel Sessions",
+    "description": "Fix unexpected rate limiting blocking multiple simultaneous Claude Code sessions despite low usage count Includes evidence for Anthropic API troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Anthropic API",
+    "error_signature": "API Error: Rate limited — rate_limit_error with message 'Rate limited' even during only 2 parallel Claude Code sessions",
+    "search_intent": "Fix unexpected rate limiting blocking multiple simultaneous Claude Code sessions despite low usage count",
+    "common_causes": [
+      "GitHub issue #61277 in anthropics/claude-code repository opened May 21, 2026. Developer with paid tier hitting rate limits at only 2 parallel sessions. Closed as duplicate but indicates widespread unresolved pain point. Related issue #55899 shows rate limiting also wastes free ultrareview credits. Category mapping: direct Anthropic API quota/rate-limit error on paid service."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "Anthropic API"
+    ]
+  },
+  {
+    "slug": "cursor-crashed-code-5-renderer-process-crash-during-long-composer-or-agent-sessions-due-to-memory-buildup-rendering-cursor-unusable",
+    "title": "Cursor Renderer Process Crashes With Code 5 During Long Agent Sessions",
+    "description": "Fix Cursor IDE crashing with code 5 error after prolonged use of Composer or Agent features, making the editor completely unusable Includes evidence for Cursor troubleshooting demand.",
+    "category": "Cursor",
+    "technology": "Cursor",
+    "error_signature": "Crashed Code 5 — renderer process crash during long Composer or Agent sessions due to memory buildup, rendering Cursor unusable",
+    "search_intent": "Fix Cursor IDE crashing with code 5 error after prolonged use of Composer or Agent features, making the editor completely unusable",
+    "common_causes": [
+      "Community forum thread #160233 posted May 9, 2026 with official Cursor staff confirmation: known macOS issue with renderer process after long sessions. Version 3.3.30 affected. Multiple related threads (e.g. 'Repeatedly crashing after every prompt') suggest ongoing issue. Category mapping: Cursor-specific runtime crash affecting paid IDE users in production workflows."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Cursor"
+    ]
+  },
+  {
+    "slug": "litellm-cve-2026-42208-pre-authentication-sql-injection-allowing-full-gateway-control-without-credentials-credential-replay-recovers-virtual-api-keys-and-produces-rce-inside-litellm-container",
+    "title": "LiteLLM Proxy CVE-2026-42208 Pre-Auth SQL Injection and Credential Replay",
+    "description": "Understand and remediate critical pre-auth SQL injection vulnerability in LiteLLM proxy that compromises all provider keys and enables remote code execution Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "CVE-2026-42208 — Pre-authentication SQL injection allowing full gateway control without credentials; credential replay recovers virtual API keys and produces RCE inside LiteLLM container",
+    "search_intent": "Understand and remediate critical pre-auth SQL injection vulnerability in LiteLLM proxy that compromises all provider keys and enables remote code execution",
+    "common_causes": [
+      "Research blog from Miggo (May 2026) detailing two-step exploit chain: Step 1 pre-auth SQL injection into Authorization header, Step 2 credential replay via recovered virtual API keys. CVSS-critical severity. Prisma connection pool saturation enables privilege escalation to PROXY_ADMIN. Published by STAR Labs confirming four exploit chains evolving rapidly. This represents a major enterprise-facing vulnerability in widely deployed AI middleware."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "LiteLLM"
+    ]
+  },
+  {
+    "slug": "github-copilot-token-expired-or-invalid-401-copilot-enters-long-loop-switching-between-thinking-preparing-analyzing-then-fails-with-http-401",
+    "title": "GitHub Copilot Token Expired or Invalid Causing 401 Errors in VS Code",
+    "description": "Fix GitHub Copilot showing persistent 401 auth errors despite account being signed in, causing autocomplete to fail repeatedly Includes evidence for GitHub Copilot troubleshooting demand.",
+    "category": "GitHub Copilot",
+    "technology": "GitHub Copilot",
+    "error_signature": "token expired or invalid: 401 — Copilot enters long loop switching between 'Thinking', 'Preparing', 'Analyzing' then fails with HTTP 401",
+    "search_intent": "Fix GitHub Copilot showing persistent 401 auth errors despite account being signed in, causing autocomplete to fail repeatedly",
+    "common_causes": [
+      "GitHub community discussion #194953 reports severe latency combined with 401 auth errors. Request IDs provided: e5e0ac26-fac0-4ad2-b1e1-d95fadd6991e. User confirmed not signed out. Token cache refresh needed. Also corroborated by Hermes Agent issue #20832 showing same pattern in auxiliary clients. Category mapping: GitHub Copilot authentication failure directly blocking paid subscription usage."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "GitHub Copilot"
+    ]
+  },
+  {
+    "slug": "cloudflare-error-523-origin-is-unreachable-cloudflare-cannot-route-to-origin-through-configured-dns-target-or-network-path",
+    "title": "Cloudflare Error 523 Origin Is Unreachable — DNS/Routing Misconfiguration",
+    "description": "Diagnose and fix Cloudflare Error 523 distinguishing it from 521/522, involving DNS misconfiguration, wrong origin IP, routing table issues, or host network reachability failure Includes evidence for Cloudflare troubleshooting demand.",
+    "category": "Cloudflare",
+    "technology": "Cloudflare",
+    "error_signature": "Error 523: Origin Is Unreachable — Cloudflare cannot route to origin through configured DNS target or network path",
+    "search_intent": "Diagnose and fix Cloudflare Error 523 distinguishing it from 521/522, involving DNS misconfiguration, wrong origin IP, routing table issues, or host network reachability failure",
+    "common_causes": [
+      "Comprehensive guide article from Unknown Proxies (May 21, 2026) documenting Error 523 distinction from other 52x codes. Covers root causes: stale DNS records, hosting migrations without DNS updates, private/internal IPs, firewall routing issues, IPv6 unreachable hosts. Not already published on dev-error-db (no existing Error 523 page found in covered-errors.md; only 522 and 525 listed). Category mapping: direct Cloudflare origin-side error with actionable troubleshooting paths."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Cloudflare"
+    ]
   }
 ]
