@@ -44445,5 +44445,85 @@
     "related_errors": [
       "Ollama"
     ]
+  },
+  {
+    "slug": "claude-code-mcp-oauth-access-tokens-empty-on-every-fresh-container-accesstoken-in-claude-credentials-json-client-registration-rate-limit-error-on-re-auth",
+    "title": "Claude Code Remote Routine MCP OAuth Tokens Empty on Fresh Container",
+    "description": "Fix Claude Code Remote Routine sessions where MCP OAuth servers (Slack, Notion, Google-Calendar) start every session with empty access tokens, causing auth prompts and OAuth client registration rate limit failures Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "MCP OAuth access tokens empty on every fresh container; accessToken: \"\" in ~/.claude/.credentials.json; client registration rate limit error on re-auth",
+    "search_intent": "Fix Claude Code Remote Routine sessions where MCP OAuth servers (Slack, Notion, Google-Calendar) start every session with empty access tokens, causing auth prompts and OAuth client registration rate limit failures",
+    "common_causes": [
+      "GitHub issue #61231 (anthropics/claude-code) describes regression where configured MCP OAuth servers start every ephemeral container session with empty accessToken strings. Each fresh container attempts new dynamic OAuth client registration, exhausting per-client registration limit. Works in previous versions, confirmed regression. Category: AI Coding Tools (Claude Code auth/OAuth issue)."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "litellm-prisma-errors-prismaerror-pool-timeout-connection-error-when-flooding-unknown-key-requests-across-auth-d-endpoints-saturates-prisma-connection-pool-causing-downstream-lookup-failures",
+    "title": "LiteLLM Proxy Prisma Pool Timeout Causes Authentication Bypass",
+    "description": "Understand LiteLLM proxy vulnerability where flooding unknown-key requests to authenticated endpoints saturates Prisma connection pool, causing pool timeout errors and enabling privilege escalation to PROXY_ADMIN without valid virtual key Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "prisma.errors.PrismaError (pool timeout / connection error) when flooding unknown-key requests across auth'd endpoints; saturates Prisma connection pool causing downstream lookup failures",
+    "search_intent": "Understand LiteLLM proxy vulnerability where flooding unknown-key requests to authenticated endpoints saturates Prisma connection pool, causing pool timeout errors and enabling privilege escalation to PROXY_ADMIN without valid virtual key",
+    "common_causes": [
+      "STAR Labs security blog report details exploit chains in LiteLLM v1.82.3 where Prisma pool defaults (10 connections / 60s timeout) with no rate limiting on auth path allow saturation attacks. Combined with env-ref resolution bypass, attackers can escalate to PROXY_ADMIN. Patch applied but scope limited. Security-relevant error affecting paid LiteLLM enterprise users. Category mapping: LiteLLM."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "LiteLLM"
+    ]
+  },
+  {
+    "slug": "openai-api-silent-failure-when-oauth-codex-account-runs-out-of-usage-message-appears-sent-but-nothing-comes-back-no-inline-error-no-toast-no-spinner-stop-no-quota-banner",
+    "title": "OpenAI Codex OAuth Usage Exhaustion Produces Silent Failure With No Response",
+    "description": "Debug why OpenAI Codex OAuth accounts produce no response and no error when usage quota is exhausted, creating confusing silent-failure UX Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "Silent failure when OAuth Codex account runs out of usage — message appears sent but nothing comes back, no inline error, no toast, no spinner-stop, no quota banner",
+    "search_intent": "Debug why OpenAI Codex OAuth accounts produce no response and no error when usage quota is exhausted, creating confusing silent-failure UX",
+    "common_causes": [
+      "GitHub issue #1765 (nesquena/hermes-webui) documents a UX bug where OAuth-authenticated Codex users see complete silence (no response, no error) when their usage is exhausted. Codex first-token latency (3-10s) compounds frustration — users wait 10s repeatedly. Root cause: quota-detector string-match misses Codex-specific 'plan limit reached' / 'usage_limit_exceeded' shapes. Multiple corroborating comments. Category: OpenAI API."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "kubernetes-crashloopbackoff-with-exit-code-137-oomkilled-container-killed-by-kernel-oom-killer-pod-keeps-restarting-exponentially-delayed",
+    "title": "Kubernetes CrashLoopBackOff Exit Code 137 OOMKilled Diagnostic Guide",
+    "description": "Systematically diagnose and fix Kubernetes CrashLoopBackOff errors, particularly distinguishing between application crashes vs. OOMKilled vs. node eviction by reading exit codes and pod events Includes evidence for Kubernetes troubleshooting demand.",
+    "category": "Cloud Platforms",
+    "technology": "Kubernetes",
+    "error_signature": "CrashLoopBackOff with Exit Code 137 (OOMKilled) — container killed by kernel OOM killer, pod keeps restarting exponentially delayed",
+    "search_intent": "Systematically diagnose and fix Kubernetes CrashLoopBackOff errors, particularly distinguishing between application crashes vs. OOMKilled vs. node eviction by reading exit codes and pod events",
+    "common_causes": [
+      "Comprehensive troubleshooting guide covers 7 causes of CrashLoopBackOff with specific diagnostic commands. Key insight: exit code 137 means SIGKILL/OOMKilled, while empty logs indicate node memory/disk pressure eviction rather than application crash. Covers ConfigMap/Secret missing, volume permission denied (fsGroup fix), wrong image tag. Strong commercial value for DevOps/SRE professionals managing production K8s clusters. Category mapping: Cloud Platforms (Kubernetes)."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Cloud Platforms"
+    ]
+  },
+  {
+    "slug": "cloudflare-error-522-connection-timed-out-cloudflare-times-out-contacting-the-origin-web-server-specifically-occurs-when-workers-with-custom-domain-performs-fetch-to-its-own-hostname",
+    "title": "Cloudflare Error 522 Connection Timed Out On Workers Custom Domain",
+    "description": "Fix Cloudflare Error 522 (connection timed out) on Worker custom domains where self-fetching triggers timeout; also covers 520-526 origin error spectrum for developer-side troubleshooting Includes evidence for Cloudflare troubleshooting demand.",
+    "category": "Cloudflare",
+    "technology": "Cloudflare",
+    "error_signature": "Error 522: connection timed out — Cloudflare times out contacting the origin web server, specifically occurs when Workers with Custom Domain performs fetch to its own hostname",
+    "search_intent": "Fix Cloudflare Error 522 (connection timed out) on Worker custom domains where self-fetching triggers timeout; also covers 520-526 origin error spectrum for developer-side troubleshooting",
+    "common_causes": [
+      "Official Cloudflare docs document Error 522 with specific edge case: fetching from a Worker's own hostname via fetch() causes a 522 error. Workarounds include using Route, targeting another hostname, or enabling global_fetch_strictly_public compatibility flag. Also covers full 52x error spectrum (520-526) origin troubleshooting. Official documentation provides authoritative error signatures. Category mapping: Cloudflare."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Cloudflare"
+    ]
   }
 ]
