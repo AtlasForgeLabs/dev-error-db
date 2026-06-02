@@ -44285,5 +44285,85 @@
     "related_errors": [
       "Deployment"
     ]
+  },
+  {
+    "slug": "claude-code-bug-http-mcp-servers-requiring-oauth-silently-fail-with-no-user-notification",
+    "title": "Claude Code HTTP MCP Server OAuth Silent Failure — No User Notification",
+    "description": "Troubleshoot Claude Code MCP servers that require OAuth but fail silently — no tools appear and no error message is shown to the user. Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "[BUG] HTTP MCP servers requiring OAuth silently fail with no user notification",
+    "search_intent": "Troubleshoot Claude Code MCP servers that require OAuth but fail silently — no tools appear and no error message is shown to the user.",
+    "common_causes": [
+      "GitHub Issues #26917 and #46623 on anthropics/claude-code report multiple bugs where HTTP/SSE MCP servers with OAuth fail without any user-facing error. DCR registration_endpoint missing causes silent failure; scope shadowing writes to wrong config file. Users experience hours-long debugging loops. High commercial value — developers setting up enterprise MCP integrations. Category: AI Coding Tools per SKILL.md mapping."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "openai-api-ratelimiterror-you-exceeded-your-current-quota-please-check-your-plan-and-billing-details-even-with-free-credit-grants-displayed-as-available",
+    "title": "OpenAI API Quota Exceeded Despite Showing Available Balance — Free Credit Mismatch Bug",
+    "description": "Fix OpenAI API 429 quota errors when the account balance page shows available free credits that are actually expired or inactive — users cannot tell the difference between balance display and actual usable spend. Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "RateLimitError: You exceeded your current quota, please check your plan and billing details — even with free credit grants displayed as available",
+    "search_intent": "Fix OpenAI API 429 quota errors when the account balance page shows available free credits that are actually expired or inactive — users cannot tell the difference between balance display and actual usable spend.",
+    "common_causes": [
+      "Multiple OpenAI Community posts (Feb–May 2026) report users seeing $10–$18 in available credit grants but still hitting 'insufficient_quota' / 429 errors. Root cause: free trial credits expire or get consumed by non-API usage (ChatGPT web). Distinct from the already-covered 'OpenAI API insufficient quota' entry because this addresses the misleading balance UI problem specifically. High volume source discussion with active comments."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "github-actions-cache-not-found-for-input-keys-generated-repository-lib-github-actions-actions-cache-v2-service-migration-causing-intermittent-cache-restore-failures",
+    "title": "GitHub Actions Cache Service v2 Migration Breaking Workflows — Cache Not Found",
+    "description": "Fix GitHub Actions workflows failing to restore build caches after GitHub's February 2025 cache service v2 migration, especially on self-hosted runners with outdated versions. Includes evidence for GitHub Actions troubleshooting demand.",
+    "category": "GitHub Actions",
+    "technology": "GitHub Actions",
+    "error_signature": "Cache not found for input keys: generated-repository-lib-* — GitHub Actions Actions Cache v2 service migration causing intermittent cache restore failures",
+    "search_intent": "Fix GitHub Actions workflows failing to restore build caches after GitHub's February 2025 cache service v2 migration, especially on self-hosted runners with outdated versions.",
+    "common_causes": [
+      "Herodevs blog and GitHub discussions document ongoing cache restore failures following the Feb 1, 2025 cache service deprecation. Self-hosted runners below v2.327.1 (required for actions/cache@v5) show 'Cache not found' despite successful saves. Multiple GitHub Discussions threads confirm this remains unresolved into March 2026. Distinct from the already-covered 'npm ci lockfile' error. High commercial impact — CI/CD pipelines for paid Teams plans blocked."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "GitHub Actions"
+    ]
+  },
+  {
+    "slug": "cursor-unable-to-reach-the-model-provider-we-re-having-trouble-connecting-to-the-model-provider-this-might-be-temporary-please-try-again-in-a-moment",
+    "title": "Cursor OpenAI API Key Error Recurs After Restart — Cursor-Side Bug",
+    "description": "Fix recurring model connection errors in Cursor that return after every prompt unless Cursor is restarted repeatedly. Includes evidence for Cursor troubleshooting demand.",
+    "category": "Cursor",
+    "technology": "Cursor",
+    "error_signature": "Unable to reach the model provider — We're having trouble connecting to the model provider. This might be temporary — please try again in a moment.",
+    "search_intent": "Fix recurring model connection errors in Cursor that return after every prompt unless Cursor is restarted repeatedly.",
+    "common_causes": [
+      "Cursor Community Forum (Jan 2026, v2.3.21) reports users on their own OpenAI API keys getting persistent 'Unable to reach the model provider' errors that only temporarily resolve via restart. Root cause is a Cursor-side state management bug, not an API key issue. High commercial value — affects paying Cursor Pro users continuously. Distinct from standard 'model not available' errors."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Cursor"
+    ]
+  },
+  {
+    "slug": "litellm-litellm-ratelimiterror-vertexaiexception-resource-exhausted",
+    "title": "LiteLLM RateLimitError RESOURCE_EXHAUSTED via VertexAI Provider — Router Routing Failure",
+    "description": "Fix LiteLLM proxy failing downstream calls to VertexAI/Gemini models with 429 RESOURCE_EXHAUSTED errors, including proper retry and routing configuration for multi-provider setups. Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "litellm.RateLimitError: VertexAIException - RESOURCE_EXHAUSTED",
+    "search_intent": "Fix LiteLLM proxy failing downstream calls to VertexAI/Gemini models with 429 RESOURCE_EXHAUSTED errors, including proper retry and routing configuration for multi-provider setups.",
+    "common_causes": [
+      "GitHub Issue #7358 on BerriAI/litellm documents RateLimitError cascading from VertexAI resource exhaustion through LiteLLM's router layer. Stack Overflow question (Nov 2024) covers litellm.BadRequestError 'LLM Provider NOT provided' — common misconfiguration when using model prefixes without provider namespace. Documentation exists but many users miss the provider prefix convention. Medium-high commercial value — LiteLLM deployed as production gateway."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "LiteLLM"
+    ]
   }
 ]
