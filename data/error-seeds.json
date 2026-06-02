@@ -44621,5 +44621,101 @@
     "related_errors": [
       "LiteLLM"
     ]
+  },
+  {
+    "slug": "github-copilot-quota-exceeded-402-you-have-no-quota",
+    "title": "Copilot CLI blocks usage with quota_exceeded (402) despite paid over-quota enabled",
+    "description": "Fix Copilot CLI being blocked after hitting premium request quota despite over-quota billing being enabled and active on the account Includes evidence for GitHub Copilot troubleshooting demand.",
+    "category": "GitHub Copilot",
+    "technology": "GitHub Copilot",
+    "error_signature": "quota_exceeded (402) — You have no quota",
+    "search_intent": "Fix Copilot CLI being blocked after hitting premium request quota despite over-quota billing being enabled and active on the account",
+    "common_causes": [
+      "GitHub Issue #3431 on github/copilot-cli reports 402 quota_exceeded error rejecting all requests even though over-quota billing is enabled. Previously worked — requests continued beyond quota with overage billing. Started around May 19-20, 2026, shortly after GitHub moved to usage-based token billing. Affects paying users whose tool becomes completely unusable. Category mapping: direct GitHub Copilot product error."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "GitHub Copilot"
+    ]
+  },
+  {
+    "slug": "claude-code-authorization-with-the-mcp-server-failed-claude-ai-receives-access-token-from-oauth-flow-but-discards-it-and-never-sends-authorization-bearer-token",
+    "title": "Claude.ai web MCP connector completes OAuth but never sends Bearer token to server",
+    "description": "Fix claude.ai web interface unable to authenticate with self-hosted MCP servers despite successful OAuth 2.1 + PKCE flow completion; Bearer token is issued but never used in subsequent MCP requests Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Authorization with the MCP server failed — claude.ai receives access_token from OAuth flow but discards it and never sends Authorization: Bearer <token>",
+    "search_intent": "Fix claude.ai web interface unable to authenticate with self-hosted MCP servers despite successful OAuth 2.1 + PKCE flow completion; Bearer token is issued but never used in subsequent MCP requests",
+    "common_causes": [
+      "GitHub Issue #46140 on anthropics/claude-code marked CRITICAL/URGENT. Full OAuth 2.1 authorization_code + PKCE flow completes (DCR → authorize → token exchange → 200 access_token), but claude.ai never attempts the authenticated MCP request. Server-side implementation verified working via curl. Blocks ALL self-hosted remote MCP servers for claude.ai web users. Claude Code CLI works perfectly with same server. Newer issue reflecting growing adoption of remote MCP with claude.ai web. Category: Claude Code / AI Coding Tools."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "github-copilot-token-based-billing-overage-user-cost-jumps-from-29-mo-to-750-3-000-mo-after-usage-based-billing-rollout",
+    "title": "GitHub Copilot token-based billing causes massive overcharges — $29 to $750+/month",
+    "description": "Understand and manage unexpected Copilot bill escalation after Microsoft switches from flat-rate subscription to per-token usage billing effective June 1, 2026 Includes evidence for GitHub Copilot troubleshooting demand.",
+    "category": "GitHub Copilot",
+    "technology": "GitHub Copilot",
+    "error_signature": "Token-based billing overage — user cost jumps from $29/mo to $750-$3,000/mo after usage-based billing rollout",
+    "search_intent": "Understand and manage unexpected Copilot bill escalation after Microsoft switches from flat-rate subscription to per-token usage billing effective June 1, 2026",
+    "common_causes": [
+      "TechCrunch (May 30) and The Register (Jun 2) report widespread developer backlash as GitHub Copilot transitions to token-based billing. Users report costs jumping from $29-50/month to $750-3000/month. This is a new billing-related pain point created by the June 1 policy change. Multiple distinct search intents: understanding new billing model, managing token consumption, comparing with alternatives like Cursor/Claude Code. High search volume expected given the scale of changes affecting millions of developers. Category: GitHub Copilot."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "GitHub Copilot"
+    ]
+  },
+  {
+    "slug": "claude-code-failedtoopensocket-connectionrefused-claude-code-cli-cannot-connect-to-http-mcp-servers-bun-runtime-tcp-failure-while-vs-code-extension-works-fine",
+    "title": "Claude Code CLI fails to connect to HTTP MCP servers with FailedToOpenSocket / ConnectionRefused on macOS",
+    "description": "Fix Claude Code CLI failing to connect to HTTP MCP servers with socket-level connection refused errors on macOS, specifically when VS Code extension connects successfully with identical configuration Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "FailedToOpenSocket / ConnectionRefused — Claude Code CLI cannot connect to HTTP MCP servers; Bun runtime TCP failure while VS Code extension works fine",
+    "search_intent": "Fix Claude Code CLI failing to connect to HTTP MCP servers with socket-level connection refused errors on macOS, specifically when VS Code extension connects successfully with identical configuration",
+    "common_causes": [
+      "GitHub Issue #34982 on anthropics/claude-code filed March 16, 2026. The Bun runtime bundled in the Claude Code CLI binary fails at the TCP socket level before any HTTP request is made. Same MCP server connects successfully via VS Code extension (same version 2.1.76, same ~/.claude.json). Verified via curl that the MCP server responds HTTP 200 correctly. Regession — worked in previous version. Category mapping: Claude Code is part of AI coding tools ecosystem, MCP integration is core functionality."
+    ],
+    "quick_fix": "Confirm the local service is running on the expected host and port, then retry the smallest request.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "vercel-error-we-encountered-an-internal-error-please-try-again-occurs-during-deploying-outputs-phase-after-build-completes-successfully-on-next-js-projects-deployed-to-vercel",
+    "title": "Vercel deployment fails with internal error during 'Deploying outputs' phase — affects multiple regions",
+    "description": "Fix Vercel deployment failing mid-deploy with internal infrastructure error after build phase finishes; build logs show 'Build completed successfully' but deployment fails at output upload/serve stage, often region-specific (dxb1, iad1, sfo1) Includes evidence for Vercel troubleshooting demand.",
+    "category": "Deployment",
+    "technology": "Vercel",
+    "error_signature": "Error: We encountered an internal error. Please try again. — occurs during 'Deploying outputs' phase after build completes successfully on Next.js projects deployed to Vercel",
+    "search_intent": "Fix Vercel deployment failing mid-deploy with internal infrastructure error after build phase finishes; build logs show 'Build completed successfully' but deployment fails at output upload/serve stage, often region-specific (dxb1, iad1, sfo1)",
+    "common_causes": [
+      "Vercel Community post (Mar 2, 2026) with 5,637 views, 137 likes, 140 users affected. Occurs after build completes successfully. Next.js 16.1.6 reported. Vercel confirmed operational issues in dxb1 region with traffic re-routed to bom1. Related community posts confirm similar issues in iad1 and sfo1 regions. Affects production deployments for many teams. Category mapping: Vercel deployment failure."
+    ],
+    "quick_fix": "Check the build output, project root, and deployment platform configuration before redeploying.",
+    "related_errors": [
+      "Deployment"
+    ]
+  },
+  {
+    "slug": "litellm-v1-models-returns-data-0-models-after-8-14h-runtime-while-health-still-reports-healthy-all-downstream-consumers-fail-with-model-not-found-errors",
+    "title": "LiteLLM Proxy silently drops all loaded models after extended runtime — model list returns empty",
+    "description": "Fix LiteLLM proxy silently dropping all config-loaded models after extended runtime, causing model_not_found errors for all downstream API calls while health endpoint incorrectly reports healthy Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "/v1/models returns {\"data\": []} (0 models) after 8-14h runtime while /health still reports healthy — all downstream consumers fail with model-not-found errors",
+    "search_intent": "Fix LiteLLM proxy silently dropping all config-loaded models after extended runtime, causing model_not_found errors for all downstream API calls while health endpoint incorrectly reports healthy",
+    "common_causes": [
+      "GitHub Issue #25350 on BerriAI/litellm. Config-only setup (no DB), models loaded from config.yaml disappear after 8-14 hours under normal load. Health endpoint masks the problem by reporting healthy. Suspected root cause: _schedule_regular_config_update background task partially wipes llm_router.model_list or model_cost_map_reload task interferes. Workaround: external health check auto-restarts proxy every 10 minutes. While the specific reporter self-closed it as their own gateway config issue, this is a known silent-failure pattern referenced by related issues #12711, #22215, #24349. Affects enterprise LiteLLM proxy deployments running 24/7. Category: LiteLLM."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "LiteLLM"
+    ]
   }
 ]
