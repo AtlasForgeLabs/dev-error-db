@@ -45053,5 +45053,101 @@
     "related_errors": [
       "Cloud Platforms"
     ]
+  },
+  {
+    "slug": "vercel-error-we-encountered-an-internal-error-please-try-again-during-deploying-outputs-phase-build-completed-successfully",
+    "title": "Vercel Deployment Fails at Deploying Outputs Phase — Internal Error Despite Successful Build",
+    "description": "Resolve Vercel deployment failure occurring at the post-build 'Deploying outputs' step with only an internal error message and no build/runtime errors visible Includes evidence for Vercel troubleshooting demand.",
+    "category": "Deployment",
+    "technology": "Vercel",
+    "error_signature": "Error: We encountered an internal error. Please try again. (during 'Deploying outputs' phase, build completed successfully)",
+    "search_intent": "Resolve Vercel deployment failure occurring at the post-build 'Deploying outputs' step with only an internal error message and no build/runtime errors visible",
+    "common_causes": [
+      "Vercel Community thread with 197 replies, 6k+ views (Mar 2026): Build succeeds with Next.js 16.1.6 but deployment stalls at 'Deploying outputs' with generic internal error. Root cause linked to regional infra issues (dxb1 unavailable). Same issue also reported in iad1 and sfo1 regions. Multiple related threads on output upload errors and function region changes. Very strong search volume signal."
+    ],
+    "quick_fix": "Check the build output, project root, and deployment platform configuration before redeploying.",
+    "related_errors": [
+      "Deployment"
+    ]
+  },
+  {
+    "slug": "cursor-connection-error-you-ve-hit-your-usage-limit-even-with-verified-personal-anthropic-api-key-5-balance",
+    "title": "Cursor BYOK Blocked on Free Plan — \"Connection Error\" & \"Usage Limit\" Despite Valid Anthropic API Key",
+    "description": "Fix Cursor showing connection error or usage limit popup despite having a valid, funded Anthropic API key; understand why BYOK (bring-your-own-key) requires Pro subscription Includes evidence for Cursor troubleshooting demand.",
+    "category": "Cursor",
+    "technology": "Cursor",
+    "error_signature": "Connection Error / You've hit your usage limit even with verified personal Anthropic API key ($5 balance)",
+    "search_intent": "Fix Cursor showing connection error or usage limit popup despite having a valid, funded Anthropic API key; understand why BYOK (bring-your-own-key) requires Pro subscription",
+    "common_causes": [
+      "Cursor forum bug report (Apr 2026): Free plan users see 'Connection Error' + 'Usage Limit' popups when entering a valid $5 Anthropic API key. Support confirmed BYOK in Agent/Ask modes now requires Pro subscription. Related thread: 'Ask mode with my own API Key required Pro Subscription' (882 views). Exact error messages appear even with verified keys — high commercial value as it directly affects paid upgrade decisions."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Cursor"
+    ]
+  },
+  {
+    "slug": "cloudflare-524-a-timeout-occurred-tcp-connection-succeeded-but-origin-did-not-respond-within-120-second-proxy-read-timeout",
+    "title": "Cloudflare Error 524 A Timeout Occurred — Origin Server Fails Within Proxy Read Timeout",
+    "description": "Fix Cloudflare 524 timeout errors by identifying slow backend processes and optimizing origin server response times within the 120-second proxy read timeout window Includes evidence for Cloudflare troubleshooting demand.",
+    "category": "Cloudflare",
+    "technology": "Cloudflare",
+    "error_signature": "524 A Timeout Occurred — TCP connection succeeded but origin did not respond within 120-second proxy read timeout",
+    "search_intent": "Fix Cloudflare 524 timeout errors by identifying slow backend processes and optimizing origin server response times within the 120-second proxy read timeout window",
+    "common_causes": [
+      "Official Cloudflare docs detail 524 error triggers including long-running DB queries, overloaded origins, and large data exports. Enterprise plans can increase timeout to 6000s via Cache Rule. Common fix patterns: async processing, DNS-only subdomains for long tasks, proxy_read_timeout adjustments. November 2025 outage included 524 errors. Strong evergreen commercial intent — any business using Cloudflare CDN experiences this."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Cloudflare"
+    ]
+  },
+  {
+    "slug": "github-copilot-failed-to-get-copilot-token-timed-out-waiting-for-authentication-provider-to-register-failed-to-fetch-token-entitlements-server-returned-403",
+    "title": "GitHub Copilot Auth Token Expired — \"Timed Out Waiting for Authentication Provider to Register\"",
+    "description": "Restore GitHub Copilot authentication in VS Code when the extension fails to connect with auth provider registration timeout, credential cache corruption, or 403 token fetch errors Includes evidence for GitHub Copilot troubleshooting demand.",
+    "category": "GitHub Copilot",
+    "technology": "GitHub Copilot",
+    "error_signature": "Failed to get copilot token | Timed out waiting for authentication provider to register | Failed to fetch token entitlements Server returned 403",
+    "search_intent": "Restore GitHub Copilot authentication in VS Code when the extension fails to connect with auth provider registration timeout, credential cache corruption, or 403 token fetch errors",
+    "common_causes": [
+      "Multiple GitHub community discussions (May 2025, ongoing): Copilot auth token becomes stale/corrupt in VS Code globalStorage directory, causing 401/403 errors. Fixes involve clearing cached tokens from globalStorage, re-authenticating via Command Palette, enabling built-in GitHub Auth extension. Corporate networks with shared IPs also trigger rate limiting on copilot CLI update checks. Strong recurring issue for paid Copilot subscribers."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "GitHub Copilot"
+    ]
+  },
+  {
+    "slug": "anthropic-api-529-status-code-overloaded-error-server-side-capacity-constraint-not-a-rate-limit-anthropic-ratelimit-headers-show-remaining-tokens-but-529-still-returned",
+    "title": "Claude API 529 Overloaded Error — Distinct From Rate Limit (429) Requires Different Retry Strategy",
+    "description": "Differentiate Claude 529 overloaded errors from 429 rate limits and apply correct exponential backoff strategy without incorrectly counting against rate limit budgets Includes evidence for Anthropic API troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Anthropic API",
+    "error_signature": "529 status code: overloaded_error — server-side capacity constraint (not a rate limit); anthropic-ratelimit headers show remaining tokens but 529 still returned",
+    "search_intent": "Differentiate Claude 529 overloaded errors from 429 rate limits and apply correct exponential backoff strategy without incorrectly counting against rate limit budgets",
+    "common_causes": [
+      "SitePoint detailed guide (2026) explains Claude API 529 as distinct from 429 rate limit — both produce similar symptoms but 529 means max capacity regardless of quota. Developers frequently conflate the two. Correct approach: don't count 529 against rate limit backoff timer, still use exponential backoff starting at 1-5 seconds. March 2026 outage saw elevated 500/529 errors specifically for Opus model. Q1 2026 growth was 80x annualized driving these constraints."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "Anthropic API"
+    ]
+  },
+  {
+    "slug": "kubernetes-crashloopbackoff-pod-keeps-crashing-and-restarting-with-increasing-delays-kubectl-logs-previous-reveals-root-cause-in-last-crash",
+    "title": "Kubernetes CrashLoopBackOff — Container Repeatedly Crashes After Starting With Exponential Backoff",
+    "description": "Troubleshoot Kubernetes CrashLoopBackOff state by identifying application bugs, misconfigured entrypoints, missing dependencies, or resource limit violations causing containers to crash after startup Includes evidence for Kubernetes troubleshooting demand.",
+    "category": "Cloud Platforms",
+    "technology": "Kubernetes",
+    "error_signature": "CrashLoopBackOff — pod keeps crashing and restarting with increasing delays; kubectl logs --previous reveals root cause in last crash",
+    "search_intent": "Troubleshoot Kubernetes CrashLoopBackOff state by identifying application bugs, misconfigured entrypoints, missing dependencies, or resource limit violations causing containers to crash after startup",
+    "common_causes": [
+      "Portainer comprehensive guide (2026) and Dash0 deep dive explain CrashLoopBackOff as symptom (not root cause) of container failures. Ops teams spend 60% of time troubleshooting K8s. Dashboard management costs $1-3k/month per manager. Causes include app bugs, wrong env vars, missing ConfigMaps/Secrets, resource exhaustion. First diagnostic step: kubectl logs <pod> --previous. High enterprise value as K8s clusters running production workloads are heavily impacted."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Cloud Platforms"
+    ]
   }
 ]
