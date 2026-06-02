@@ -45229,5 +45229,117 @@
     "related_errors": [
       "Ollama"
     ]
+  },
+  {
+    "slug": "litellm-litellm-package-compromised-versions-1-82-7-and-1-82-8-contain-malicious-code-contacting-external-c2-domains",
+    "title": "LiteLLM Supply Chain Compromise Incident — Install Poisoned Versions",
+    "description": "Determine if a project installed compromised LiteLLM versions and clean the installation; scan GitLab CI/CD jobs and GitHub Actions for affected deployments Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "LiteLLM package compromised — versions 1.82.7 and 1.82.8 contain malicious code contacting external C2 domains",
+    "search_intent": "Determine if a project installed compromised LiteLLM versions and clean the installation; scan GitLab CI/CD jobs and GitHub Actions for affected deployments",
+    "common_causes": [
+      "Critical security incident reported March 27, 2026. BerriAI (LiteLLM maintainer) disclosed a suspected supply chain attack. Versions 1.82.7 and 1.82.8 were poisoned and contacted checkmarx.zone. Clean version v1.83.0 released via new CI/CD v2 pipeline. Security scanners provided for GitLab and GitHub. CVE-2026-42208 (pre-auth SQL injection) and CVE-2026-30623 (MCP command injection) also discovered. High commercial value because LiteLLM is a widely-used AI gateway proxy serving as the front door to 100+ LLM providers for enterprises. Category mapping: LiteLLM → LiteLLM (direct match). This is a unique security-event-driven error that would be extremely valuable for dev-error-db coverage."
+    ],
+    "quick_fix": "Check the build output, project root, and deployment platform configuration before redeploying.",
+    "related_errors": [
+      "LiteLLM"
+    ]
+  },
+  {
+    "slug": "cursor-provider-error-we-re-having-trouble-finding-the-resource-you-requested-gemini-3-1-pro-3-0-flash",
+    "title": "Cursor v3.1 Gemini API Key Provider Error After Model Update",
+    "description": "Fix Gemini model PROVIDER_ERROR in Cursor IDE after updating to v3.1; restore custom API key functionality for Gemini models Includes evidence for Cursor troubleshooting demand.",
+    "category": "Cursor",
+    "technology": "Cursor",
+    "error_signature": "PROVIDER_ERROR — We're having trouble finding the resource you requested (Gemini 3.1 Pro / 3.0 Flash)",
+    "search_intent": "Fix Gemini model PROVIDER_ERROR in Cursor IDE after updating to v3.1; restore custom API key functionality for Gemini models",
+    "common_causes": [
+      "Reported by 1430+ views on Cursor Community Forum (topic #157546). After Cursor updated to v3.1 on April 2026, Gemini Studio keys stopped working for gemini-3.1-pro-preview and gemini-3.0-flash models while 2.5 flash still works. Users getting 'Provider Error' even with valid keys, MCP disabled, diagnostics passed. Workaround is downgrading to v3.0 but breaks workflow. This directly impacts paid Cursor users doing AI development. Category mapping: Cursor → Cursor (direct match). Note: covered-errors already lists 'Cursor model not available' but this is a distinct provider-specific issue for Gemini models post-update."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Cursor"
+    ]
+  },
+  {
+    "slug": "github-actions-failed-to-cancel-workflow-runner-acquisition-internal-server-error-jobs-stuck-at-queued-indefinitely",
+    "title": "GitHub Actions Hosted Runner Internal Server Error — Jobs Stuck Queued",
+    "description": "Resolve GitHub Actions hosted runner picking up failures where jobs never get acquired by a runner, leaving them stuck in queued state Includes evidence for GitHub Actions troubleshooting demand.",
+    "category": "GitHub Actions",
+    "technology": "GitHub Actions",
+    "error_signature": "Failed to cancel workflow / runner acquisition internal server error — jobs stuck at 'queued' indefinitely",
+    "search_intent": "Resolve GitHub Actions hosted runner picking up failures where jobs never get acquired by a runner, leaving them stuck in queued state",
+    "common_causes": [
+      "Community Discussion #186208 reports ongoing GHA incidents where self-referenced jobs fail before execution due to runner acquisition errors. Correlation IDs returned in failed runs. Jobs on ubuntu-latest with Node 20 CI/CD pipelines affected. Multiple past incidents reported. GitHub Status page shows degraded performance / incidents for GitHub Actions and Hosted Runners. This affects paid team workflows — blocked CI/CD = blocked deployments. Category mapping: GitHub Actions → GitHub Actions (direct match). Covered-errors lists npm ci lockfile, node version mismatch, and publickey but NOT runner acquisition failures."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "GitHub Actions"
+    ]
+  },
+  {
+    "slug": "kubernetes-crashloopbackoff-with-reason-oomkilled-exit-code-137",
+    "title": "Kubernetes CrashLoopBackOff — OOMKilled (Exit Code 137) Diagnosis Guide",
+    "description": "Diagnose and fix pods stuck in CrashLoopBackOff specifically caused by memory limits being exceeded (OOMKilled); determine whether to increase resources or fix memory leaks Includes evidence for Kubernetes troubleshooting demand.",
+    "category": "Cloud Platforms",
+    "technology": "Kubernetes",
+    "error_signature": "CrashLoopBackOff with Reason: OOMKilled, Exit Code 137",
+    "search_intent": "Diagnose and fix pods stuck in CrashLoopBackOff specifically caused by memory limits being exceeded (OOMKilled); determine whether to increase resources or fix memory leaks",
+    "common_causes": [
+      "Comprehensive troubleshooting guides available on Dash0, Netdata, Komodor, Sysdig, CNCF blog (updated Mar 2026). CrashLoopBackOff triggered by OOMKilled is the #1 cause of pod restart loops. kubectl logs --previous shows last crash context. Root causes include: application memory leak, insufficient resources.limits.memory, missing init container setup, configmap/secret mount failures. Commercial impact: production cluster instability for teams running microservices on EKS/GKE/AKS. Category mapping: Kubernetes → Cloud Platforms (per category rules). This covers the specific OOMKilled sub-case which is the most impactful trigger."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Cloud Platforms"
+    ]
+  },
+  {
+    "slug": "vercel-module-not-found-can-t-resolve-components-forms-registerform-build-successful-locally-but-fails-on-vercel-deployment",
+    "title": "Vercel Deploy Module Not Found Due to Case-Sensitive Filesystem on Windows",
+    "description": "Fix Next.js/Vercel deploy module not found errors caused by case sensitivity differences between local Windows/macOS filesystem and Vercel's Linux build environment Includes evidence for Vercel troubleshooting demand.",
+    "category": "Deployment",
+    "technology": "Vercel",
+    "error_signature": "Module not found: Can't resolve '@/components/forms/RegisterForm' — Build successful locally but fails on Vercel deployment",
+    "search_intent": "Fix Next.js/Vercel deploy module not found errors caused by case sensitivity differences between local Windows/macOS filesystem and Vercel's Linux build environment",
+    "common_causes": [
+      "Verified issue on GitHub Issue #69390 (vercel/next.js) and multiple Vercel Community threads (8178, 4352, 18432). Local builds succeed on Windows/macOS (case-insensitive FS) but fail on Vercel (Linux case-sensitive). Specific examples: @/components/forms/RegisterForm vs register.ts, siteSettings vs SiteSettings, clsx import path casing. Fix: ensure exact case-match in import statements. Also related: vercel CLI succeeds locally but cloud build still fails, npm install getting corrupted on Vercel servers causing cascading CannotFindModule errors. Category mapping: Vercel → Deployment (per category rules). Covered-errors lists 'Vercel module not found' but this specific case-sensitivity variant is not explicitly covered."
+    ],
+    "quick_fix": "Check the build output, project root, and deployment platform configuration before redeploying.",
+    "related_errors": [
+      "Deployment"
+    ]
+  },
+  {
+    "slug": "aws-task-timed-out-after-3-00-seconds-lambda-function-times-out-during-init-phase-sandbox-timedout",
+    "title": "AWS Lambda Function Init Phase Timeout (Sandbox.Timedout)",
+    "description": "Fix Lambda functions that timeout during the Init phase before Invoke can run; diagnose cold start delays, initialization code bottlenecks, or dependency loading issues Includes evidence for AWS troubleshooting demand.",
+    "category": "Cloud Platforms",
+    "technology": "AWS",
+    "error_signature": "Task timed out after 3.00 seconds — Lambda function times out during Init phase (Sandbox.Timedout)",
+    "search_intent": "Fix Lambda functions that timeout during the Init phase before Invoke can run; diagnose cold start delays, initialization code bottlenecks, or dependency loading issues",
+    "common_causes": [
+      "AWS official docs detail Sandbox.Timedout as a distinct error type — the Init phase timing out before the Invoke phase begins. Default timeout is only 3 seconds. Causes include: large handler initialization code, slow dependency loads (e.g., Python packages downloading on first invocation), VPC configuration delays, NAT Gateway issues, or SDK client lazy-loading. Fixes involve increasing timeout, provisioning concurrency, optimizing initialization code, or increasing memory allocation (which also increases CPU). Commercial impact: serverless function timeouts block API endpoints, affect billing (pay-per-invocation wasted calls), and degrade end-user experience. Category mapping: AWS → Cloud Platforms (per category rules). Covered-errors does not list Lambda-specific errors."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Cloud Platforms"
+    ]
+  },
+  {
+    "slug": "ollama-pulling-manifest-error-500-internal-server-error-unable-to-load-model-c-users-ollama-models-blobs-sha256",
+    "title": "Ollama Pulling Manifest Error on HuggingFace GGUF Models — 500 Internal Server Error",
+    "description": "Fix ollama pulling manifest failures when importing custom GGUF models from HuggingFace; resolve sha256 blob loading errors after successful download Includes evidence for Ollama troubleshooting demand.",
+    "category": "Ollama",
+    "technology": "Ollama",
+    "error_signature": "pulling manifest Error: 500 Internal Server Error: unable to load model: C:\\Users\\...ollama\\models\\blobs\\sha256-...",
+    "search_intent": "Fix ollama pulling manifest failures when importing custom GGUF models from HuggingFace; resolve sha256 blob loading errors after successful download",
+    "common_causes": [
+      "Stack Overflow question 79947633 and Hugging Face Forums thread report identical errors: ollama successfully pulls the GGUF file (100% progress) but then fails with '500 Internal Server Error: unable to load model' pointing to the sha256 blob path. Root causes: checksum corruption during transfer, case-sensitive filename mismatch in Modelfile (Qwen2.5-1.5B-Instruct.Q8_0 vs qwen2.5-1.5b-instruct-q8_0.gguf), or improper GGUF packaging. Setting OLLAMA_DEBUG=1 reveals loader-level diagnostic info. Workaround involves manual rebuild from GGUF. Category mapping: Ollama → Ollama (direct match). Covered-errors does not list Ollama manifest/loading errors."
+    ],
+    "quick_fix": "Verify the model name, local service connectivity, and network access before retrying the model pull.",
+    "related_errors": [
+      "Ollama"
+    ]
   }
 ]
