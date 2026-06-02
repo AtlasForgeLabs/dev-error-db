@@ -44013,5 +44013,37 @@
     "related_errors": [
       "Ollama"
     ]
+  },
+  {
+    "slug": "anthropic-api-claude-code-error-403-type-error-error-type-permission-error-message-permission-denied-request-id-req-xxx",
+    "title": "Claude Code 403 Permission Denied During CLI Generate Calls",
+    "description": "Claude Code CLI 在执行 generate() 调用时报 403 Permission denied，伴随 ripgrep 超时和 background session 泄漏。可能与 OAuth token 过期、组织策略变更或 sandbox 权限更新有关。 Includes evidence for Anthropic API / Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Anthropic API / Claude Code",
+    "error_signature": "Error: 403 {\"type\":\"error\",\"error\":{\"type\":\"permission_error\",\"message\":\"Permission denied\"},\"request_id\":\"req_xxx\"}",
+    "search_intent": "Claude Code CLI 在执行 generate() 调用时报 403 Permission denied，伴随 ripgrep 超时和 background session 泄漏。可能与 OAuth token 过期、组织策略变更或 sandbox 权限更新有关。",
+    "common_causes": [
+      "GitHub Issue #51610 on anthropics/claude-code 确认（2026年4月），错误堆栈清晰显示 403 permission_error 来自 Anthropic API 而非本地配置。同时观察到 ripgrep timeout 和 background sessions 泄漏等伴随行为。SFEIR Institute 故障排除指南提供了诊断流程。covered-errors.md 中的 'Cursor model not available' 为竞品产品，与此不同。category=AI Coding Tools（按 SKILL.md 规则）。"
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "litellm-error-message-litellm-virtual-key-xxx-key-alias-none-exceeded-budget-for-model-gpt-4o-type-budget-exceeded-param-null-code-400",
+    "title": "LiteLLM Proxy Virtual Key Budget Exceeded (400 budget_exceeded Error)",
+    "description": "使用 LiteLLM Proxy 虚拟密钥管理预算时，当达到 max_budget 上限时返回 400 budget_exceeded 错误。多实例部署时需要 Redis 共享限流状态，配置不当会导致预算计数不准确。 Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "{\"error\": {\"message\": \"LiteLLM Virtual Key: xxx, key_alias: None, exceeded budget for model=gpt-4o\", \"type\": \"budget_exceeded\", \"param\": null, \"code\": \"400\"}}",
+    "search_intent": "使用 LiteLLM Proxy 虚拟密钥管理预算时，当达到 max_budget 上限时返回 400 budget_exceeded 错误。多实例部署时需要 Redis 共享限流状态，配置不当会导致预算计数不准确。",
+    "common_causes": [
+      "LiteLLM 官方文档明确描述了此错误模式（docs.litellm.ai/docs/proxy/users）。Virtual Key 预算控制是生产环境中企业级代理的关键功能，错误直接影响 AI gateway 的流量路由。covered-errors.md 中无 LiteLLM 条目。category=LiteLLM。"
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "LiteLLM"
+    ]
   }
 ]
