@@ -45437,5 +45437,101 @@
     "related_errors": [
       "Cloudflare"
     ]
+  },
+  {
+    "slug": "anthropic-api-http-529-overloaded-error-the-api-is-temporarily-overloaded-anthropic-distinguishes-529-overloaded-from-429-rate-limit-error",
+    "title": "Claude API 529 Overloaded Error Confused With 429 Rate Limit",
+    "description": "Diagnose and fix Claude API HTTP 529 overloaded_error without treating it as a user-side rate limit violation Includes evidence for Anthropic API troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Anthropic API",
+    "error_signature": "HTTP 529 — overloaded_error — The API is temporarily overloaded. Anthropic distinguishes 529 (overloaded) from 429 (rate_limit_error)",
+    "search_intent": "Diagnose and fix Claude API HTTP 529 overloaded_error without treating it as a user-side rate limit violation",
+    "common_causes": [
+      "Dedicated article on yingtū.ai explains that 529 is an Anthropic capacity branch separate from organization-level 429 rate limits. Users commonly misapply 429 recovery playbooks (key rotation, throttling) to 529 issues, worsening the situation. Distinct from existing covered errors. Sources: yingtū.ai guide, SitePoint rate-limits article, official Claude API docs page platform.claude.com/docs/en/api/errors."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "Anthropic API"
+    ]
+  },
+  {
+    "slug": "cursor-we-re-having-trouble-connecting-to-the-model-provider-this-might-be-temporary-please-try-again-in-a-moment-connecterror-unavailable",
+    "title": "Cursor Model Provider Connection Error Persistent Across Networks",
+    "description": "Resolve persistent Cursor model provider connection errors affecting paid plans including Ultra and Pro, occurring on stable internet connections across Windows and Mac Includes evidence for Cursor troubleshooting demand.",
+    "category": "Cursor",
+    "technology": "Cursor",
+    "error_signature": "\"We're having trouble connecting to the model provider. This might be temporary - please try again in a moment.\" — ConnectError: [unavailable]",
+    "search_intent": "Resolve persistent Cursor model provider connection errors affecting paid plans including Ultra and Pro, occurring on stable internet connections across Windows and Mac",
+    "common_causes": [
+      "Multiple reports on Cursor community forum (issue #156137 and related) describe persistent connection errors blocking paid users. Affects both GPT and Claude models regardless of plan tier. Symptoms include ConnectError [unavailable] and ERROR_OPENAI details despite stable 1000 Mbps connections. Distinct from existing \"model not available\" entry which focuses on plan-model compatibility rather than connectivity layer errors. High commercial impact for paid Cursor subscribers."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Cursor"
+    ]
+  },
+  {
+    "slug": "github-actions-repository-https-github-com-not-found-or-could-not-read-username-for-https-github-com-terminal-prompts-disabled-actions-checkout-github-token-contents-scope-set-to-none",
+    "title": "GitHub Actions Checkout Fails: repository not found / terminal prompts disabled",
+    "description": "Fix actions/checkout action failing with two new error messages after workflow permission changes restrict GITHUB_TOKEN contents scope to none Includes evidence for GitHub Actions troubleshooting demand.",
+    "category": "GitHub Actions",
+    "technology": "GitHub Actions",
+    "error_signature": "repository 'https://github.com/...' not found OR could not read Username for 'https://github.com': terminal prompts disabled — actions/checkout GITHUB_TOKEN contents scope set to none",
+    "search_intent": "Fix actions/checkout action failing with two new error messages after workflow permission changes restrict GITHUB_TOKEN contents scope to none",
+    "common_causes": [
+      "Comprehensive article covering two distinct checkout errors caused by the new default GITHUB_TOKEN permission change (Read-only by default on new repos). When contents scope is set to none, checkout fails with 'repository not found' or 'terminal prompts disabled'. Distinct from existing covered entries ('npm ci lockfile error', 'permission denied publickey') because it targets the new permission-scope default behavior. Source: mickeygousset.com blog post."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "GitHub Actions"
+    ]
+  },
+  {
+    "slug": "vercel-build-completed-successfully-deploying-outputs-hangs-for-20-plus-minutes-an-unexpected-error-happened-when-running-this-build-internal-error-at-deploying-outputs-stage",
+    "title": "Vercel Build Succeeds But Hangs at Deploying Outputs Stage",
+    "description": "Fix Vercel deployments that pass the build phase but hang indefinitely at the 'deploying outputs' stage with internal errors across regions (iad1, sfo1, cdg1) Includes evidence for Vercel troubleshooting demand.",
+    "category": "Deployment",
+    "technology": "Vercel",
+    "error_signature": "Build completed successfully → Deploying outputs… hangs for 20+ minutes → An unexpected error happened when running this build (internal error at deploying outputs stage)",
+    "search_intent": "Fix Vercel deployments that pass the build phase but hang indefinitely at the 'deploying outputs' stage with internal errors across regions (iad1, sfo1, cdg1)",
+    "common_causes": [
+      "Multiple Vercel community posts document a persistent pattern: builds compile successfully (npm run build succeeds) but fail during the deployment output upload phase. Affects Next.js and Nuxt projects. Distinct from existing covered entries ('build command failed', 'module not found') because the build itself succeeds — the failure occurs in the post-build deployment pipeline. High commercial value as it blocks production deploys for paying customers. Source: community.vercel.com posts #14718 and related."
+    ],
+    "quick_fix": "Check the build output, project root, and deployment platform configuration before redeploying.",
+    "related_errors": [
+      "Deployment"
+    ]
+  },
+  {
+    "slug": "aws-http-429-throttling-error-when-traffic-increases-rapidly-in-lambda-managed-instances-throttles-as-lambda-scales-up-execution-environments",
+    "title": "AWS Lambda Managed Instances Throttling Errors During Scale-Up",
+    "description": "Fix HTTP 429 throttling errors during rapid traffic spikes on AWS Lambda Managed Instances where scaling is asynchronous Includes evidence for AWS troubleshooting demand.",
+    "category": "Cloud Platforms",
+    "technology": "AWS",
+    "error_signature": "HTTP 429 throttling error when traffic increases rapidly in Lambda Managed Instances — throttles as Lambda scales up execution environments",
+    "search_intent": "Fix HTTP 429 throttling errors during rapid traffic spikes on AWS Lambda Managed Instances where scaling is asynchronous",
+    "common_causes": [
+      "AWS official documentation describes throttling behavior unique to Lambda Managed Instances: scaling is based on CPU utilization and multi-concurrency saturation, causing HTTP 429 errors when traffic more than doubles within 5 minutes. Requires adjusting target resource utilization settings to maintain headroom. This is distinct from standard Lambda concurrency limits because it applies to the Managed Instances (provisioned) model, a newer feature. High commercial impact for enterprise workloads using provisioned concurrency. Source: docs.aws.amazon.com/lambda/latest/dg/lambda-managed-instances-troubleshooting.html."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Cloud Platforms"
+    ]
+  },
+  {
+    "slug": "litellm-litellm-ratelimiterror-vertexaiexception-resource-has-been-exhausted-e-g-check-quota-litellm-acompletion-model-gemini-fails-with-opaque-wrapper",
+    "title": "LiteLLM RateLimitError Wraps Upstream Provider Errors Opaque",
+    "description": "Debug LiteLLM proxy where upstream provider 429/rate-limit errors are wrapped in generic litellm.RateLimitError making root cause identification difficult Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "litellm.RateLimitError: VertexAIException - Resource has been exhausted (e.g. check quota) — litellm.acompletion(model=gemini/…) fails with opaque wrapper",
+    "search_intent": "Debug LiteLLM proxy where upstream provider 429/rate-limit errors are wrapped in generic litellm.RateLimitError making root cause identification difficult",
+    "common_causes": [
+      "Issue #7358 shows LiteLLM wrapping Google Vertex AI 429 RESOURCE_EXHAUSTED errors inside its own RateLimitError class, obscuring which backend provider actually triggered the limit. Also reports asyncio event loop binding issue. Multiple community discussions confirm similar opaque-wrapping problems with OpenAI and Anthropic backends. Distinct commercial angle: LiteLLM proxy owners need visibility into WHICH provider hit limits for routing decisions. Source: github.com/BerriAI/litellm/issues/7358."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "LiteLLM"
+    ]
   }
 ]
