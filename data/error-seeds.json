@@ -45597,5 +45597,133 @@
     "related_errors": [
       "LiteLLM"
     ]
+  },
+  {
+    "slug": "claude-code-failedtoopensocket-connectionrefused-mcp-server-fails-to-connect-via-tcp-despite-curl-returning-http-200-with-valid-mcp-initialize-response",
+    "title": "Claude Code CLI MCP ConnectionRefused Error Despite Successful curl Test (macOS)",
+    "description": "Developer using Claude Code on macOS cannot connect to HTTP/SSE MCP servers; curl and VS Code extension work fine but CLI binary compiled with Bun fails at TCP level Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "FailedToOpenSocket / ConnectionRefused — MCP server fails to connect via TCP despite curl returning HTTP 200 with valid MCP initialize response",
+    "search_intent": "Developer using Claude Code on macOS cannot connect to HTTP/SSE MCP servers; curl and VS Code extension work fine but CLI binary compiled with Bun fails at TCP level",
+    "common_causes": [
+      "GitHub Issue #34982 reports root cause: CLI binary compiled with Bun bundles its own HTTP/socket implementation separate from Node.js. Bun networking stack produces FailedToOpenSocket / ConnectionRefused while identical code runs on Node.js (VS Code extension host). Category: AI Coding Tools per mapping table."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "openai-api-error-type-insufficient-quota-message-you-exceeded-your-current-quota-please-check-your-plan-and-billing-details-code-insufficient-quota-even-though-account-shows-unused-credits",
+    "title": "OpenAI API 429 insufficient_quota Despite Having Credits Remaining",
+    "description": "Developers receiving 429 insufficient_quota errors after free tier expires or when billing account balance drops to zero, confusing because dashboard may still show previous credit balance Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "{ \"error\": { \"type\": \"insufficient_quota\", \"message\": \"You exceeded your current quota, please check your plan and billing details.\", \"code\": \"insufficient_quota\" }} — even though account shows unused credits",
+    "search_intent": "Developers receiving 429 insufficient_quota errors after free tier expires or when billing account balance drops to zero, confusing because dashboard may still show previous credit balance",
+    "common_causes": [
+      "Multiple SO questions confirm the pattern: free-tier credits expire after 3 months or when balance hits $0. Dashboard shows old balance until refreshed. Requires adding funds, upgrading plan, or generating new API key after payment. Distinct from generic 429 rate-limit — this is billing/quota confusion. Category: OpenAI API per mapping."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "litellm-api-error-400-error-message-tools-3-custom-input-examples-extra-inputs-are-not-permitted-caused-by-anthropic-beta-tool-examples-2025-10-29-header",
+    "title": "LiteLLM Experimental Beta Header Causes 400 Bad Request with Claude Code",
+    "description": "Developer using LiteLLM proxy to route Claude Code requests gets 400 errors because LiteLLM auto-injects experimental beta headers that Claude Code version doesn't support Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "API Error: 400 {\"error\":{\"message\":\"tools.3.custom.input_examples: Extra inputs are not permitted\"}} caused by anthropic-beta: tool-examples-2025-10-29 header",
+    "search_intent": "Developer using LiteLLM proxy to route Claude Code requests gets 400 errors because LiteLLM auto-injects experimental beta headers that Claude Code version doesn't support",
+    "common_causes": [
+      "Reddit post r/ClaudeCode shows LiteLLM automatically enables Anthropic experimental betas injecting 'anthropic-beta' header, triggering 400 errors from Claude Code. Fix: set CLAUDE_CODE_DISABLE_EXPERIMENTAL_BETAS=1 env variable. Commercial value high — proxy billing + model routing failure on paid service. Category: LiteLLM."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "LiteLLM"
+    ]
+  },
+  {
+    "slug": "claude-code-api-error-request-timed-out-model-sonnet-retrying-in-seconds-attempt-x-10",
+    "title": "Claude Code API Error: Request Timed Out Continuously (attempt x/10)",
+    "description": "Claude Code users get continuous request timeout errors during normal usage; pressing escape doesn't stop error messages, counts to attempt 10/10 then stops trying entirely Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "API Error: Request timed out. /model sonnet — Retrying in .. seconds.. (attempt x/10)",
+    "search_intent": "Claude Code users get continuous request timeout errors during normal usage; pressing escape doesn't stop error messages, counts to attempt 10/10 then stops trying entirely",
+    "common_causes": [
+      "GitHub Issue #2728 reports Claude Code CLI v1.0.35 getting persistent 'Request timed out' errors for both Opus and Sonnet models. Escape key doesn't help, requires restarting session. Occurs without network connectivity issues. Suggests server-side throttling or connection pooling bug. Category: AI Coding Tools per mapping."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "vercel-failed-to-compile-modulenotfounderror-module-not-found-error-can-t-resolve-components-forms-registerform-works-locally-on-windows-but-fails-on-vercel-s-linux-case-sensitive-filesystem",
+    "title": "Vercel Deployment Fails ModuleNotFoundError Due to Case-Sensitive Filesystem (Windows Developer)",
+    "description": "Developer on Windows with case-insensitive Git develops Next.js app successfully locally, but Vercel deployment fails due to filename casing mismatch (e.g., 'RegisterForm' vs 'registerForm'). Root cause: core.ignorecase=true on Windows suppresses git case changes. Includes evidence for Vercel troubleshooting demand.",
+    "category": "Deployment",
+    "technology": "Vercel",
+    "error_signature": "Failed to compile → ModuleNotFoundError: Module not found: Error: Can't resolve '@/components/forms/RegisterForm' — works locally on Windows but fails on Vercel's Linux case-sensitive filesystem",
+    "search_intent": "Developer on Windows with case-insensitive Git develops Next.js app successfully locally, but Vercel deployment fails due to filename casing mismatch (e.g., 'RegisterForm' vs 'registerForm'). Root cause: core.ignorecase=true on Windows suppresses git case changes.",
+    "common_causes": [
+      "GitHub Issue #69390 and multiple SO posts confirm Vercel uses case-sensitive Linux filesystem while Windows local dev masks casing mismatches. Fix: git config core.ignorecase false, reset git cache, or rename files to match import casing exactly. Category: Deployment per mapping."
+    ],
+    "quick_fix": "Check the build output, project root, and deployment platform configuration before redeploying.",
+    "related_errors": [
+      "Deployment"
+    ]
+  },
+  {
+    "slug": "kubernetes-crashloopbackoff-pod-repeatedly-restarts-but-kubectl-logs-returns-no-meaningful-output-container-exits-silently-with-exit-code-137-oomkilled-or-1",
+    "title": "Kubernetes Pod CrashLoopBackOff with No Logs — Silent Container Exit",
+    "description": "Developer sees CrashLoopBackOff status but kubectl logs is empty or unhelpful; needs systematic debug approach including kubectl describe events, --previous flag, and checking resource limits for OOM kills Includes evidence for Kubernetes troubleshooting demand.",
+    "category": "Cloud Platforms",
+    "technology": "Kubernetes",
+    "error_signature": "CrashLoopBackOff — pod repeatedly restarts but kubectl logs returns no meaningful output; container exits silently with exit code 137 (OOMKilled) or 1",
+    "search_intent": "Developer sees CrashLoopBackOff status but kubectl logs is empty or unhelpful; needs systematic debug approach including kubectl describe events, --previous flag, and checking resource limits for OOM kills",
+    "common_causes": [
+      "Stack Overflow answers document the common frustration of CrashLoopBackOff with silent exits. Key debugging command is kubectl logs <pod> --previous to see last iteration's logs, plus kubectl describe pod for Events section showing OOMKilled reasons. OOMKilled (exit code 137) is most common cause. Category: Cloud Platforms per AWS/GCP/Azure/K8s mapping."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Cloud Platforms"
+    ]
+  },
+  {
+    "slug": "github-actions-error-file-was-unable-to-be-removed-error-eacces-permission-denied-rmdir-opt-actions-runner-work-checkout-v4-fails-on-second-plus-runs-on-self-hosted-ubuntu-runner",
+    "title": "GitHub Actions actions/checkout Fails EACCES Permission Denied on Self-Hosted Runner",
+    "description": "Self-hosted GitHub Actions runner gets EACCES permission errors on subsequent workflow runs after first successful checkout; requires chmod/chown fixes that revert on next run Includes evidence for GitHub Actions troubleshooting demand.",
+    "category": "GitHub Actions",
+    "technology": "GitHub Actions",
+    "error_signature": "Error: File was unable to be removed Error: EACCES: permission denied, rmdir '/opt/actions-runner/_work/...' — checkout@v4 fails on second+ runs on self-hosted Ubuntu runner",
+    "search_intent": "Self-hosted GitHub Actions runner gets EACCES permission errors on subsequent workflow runs after first successful checkout; requires chmod/chown fixes that revert on next run",
+    "common_causes": [
+      "GitHub Issue #1720 on actions/checkout reports recurring EACCES errors on second+ checkout runs. Workaround requires sudo chmod -R u+w and chown that resets each run. Affects paid team CI/CD pipelines. Category: GitHub Actions. Note: 'GitHub Actions permission denied publickey' is already covered but this is a distinct filesystem permission issue on self-hosted runners."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "GitHub Actions"
+    ]
+  },
+  {
+    "slug": "docker-got-permission-denied-while-trying-to-connect-to-the-docker-daemon-socket-at-unix-var-run-docker-sock-get-http-2fvar-2frun-2fdocker-sock-2fversion-dial-unix-var-run-docker-sock-connect-permission-denied",
+    "title": "Docker Desktop Mac Multi-User Permission Denied When Switching User Accounts",
+    "description": "User on macOS switches from the account that installed Docker Desktop to another account and cannot run any docker commands — socket ownership prevents non-owner users from connecting even with sudo Includes evidence for Docker troubleshooting demand.",
+    "category": "Docker",
+    "technology": "Docker",
+    "error_signature": "Got permission denied while trying to connect to the Docker daemon socket at unix:///var/run/docker.sock: Get \"http://%2Fvar%2Frun%2Fdocker.sock%2Fversion\": dial unix /var/run/docker.sock: connect: permission denied",
+    "search_intent": "User on macOS switches from the account that installed Docker Desktop to another account and cannot run any docker commands — socket ownership prevents non-owner users from connecting even with sudo",
+    "common_causes": [
+      "GitHub Issue #6781 on docker/for-mac documents the multi-user scenario: docker.sock owned by original installer's group. Even running with sudo fails because the socket isn't accessible. Fix involves either enabling default socket in Docker Desktop settings or changing socket group permissions. Category: Docker per mapping. Distinct from already-covered 'cannot connect to daemon'."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Docker"
+    ]
   }
 ]
