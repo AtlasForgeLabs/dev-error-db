@@ -43933,5 +43933,85 @@
     "related_errors": [
       "Ollama"
     ]
+  },
+  {
+    "slug": "cursor-invalid-api-key-for-cursor-ai",
+    "title": "How to Fix \"Invalid API key for Cursor AI\" — Invisible Whitespace Causes Authentication Failure",
+    "description": "Fix invalid API key error in Cursor when it cannot authenticate with the model provider; strip hidden whitespace/zero-width characters from copied keys Includes evidence for Cursor troubleshooting demand.",
+    "category": "Cursor",
+    "technology": "Cursor",
+    "error_signature": "Invalid API key for Cursor AI",
+    "search_intent": "Fix invalid API key error in Cursor when it cannot authenticate with the model provider; strip hidden whitespace/zero-width characters from copied keys",
+    "common_causes": [
+      "RapidDev article details that 80% of cases stem from invisible whitespace/newline/zero-width Unicode chars being copied along with the API key. Affects both BYOK and Pro subscription users. Clear fix path: paste into plain text editor, re-enter in settings, restart Cursor. Category mapping: Cursor IDE-specific error → Cursor."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "Cursor"
+    ]
+  },
+  {
+    "slug": "cursor-error-timeout-waiting-for-everythingprovider-no-models-available-in-ide-but-showing-up-in-web",
+    "title": "Cursor v3.1 No Models Available in IDE Despite Showing Up in Web — Timeout for EverythingProvider",
+    "description": "Fix Cursor v3.1 where all models disappear from IDE after update, even though they appear in browser/web; caused by auth UI timeout on EverythingProvider Includes evidence for Cursor troubleshooting demand.",
+    "category": "Cursor",
+    "technology": "Cursor",
+    "error_signature": "Error: Timeout waiting for EverythingProvider / No models available in IDE but showing up in web",
+    "search_intent": "Fix Cursor v3.1 where all models disappear from IDE after update, even though they appear in browser/web; caused by auth UI timeout on EverythingProvider",
+    "common_causes": [
+      "Forum.cursor.com thread reports Cursor v3.1+ breaking model picker entirely. Logs show 'Timeout waiting for EverythingProvider' across Authentication UI, Codebase Indexing, Agent Endpoint. Known regression — multiple users affected. Workaround: rollback to v3.0 or delete appdata and reinstall. Covers both Model Not Available and general model unavailability. Category: Cursor."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "Cursor"
+    ]
+  },
+  {
+    "slug": "anthropic-api-api-error-rate-limit-reached-with-ambiguous-rpm-tpm-spend-limits",
+    "title": "Claude Code 'API Error: Rate Limit Reached' — Two Distinct Rate Limit Systems Cause Confusion",
+    "description": "Determine which rate limit was hit when Claude Code shows 'Rate limit reached': API-key sessions have RPM/TPM/spend limits, Claude Max accounts have usage windows with reset times; confusion between them wastes debugging time Includes evidence for Anthropic API troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Anthropic API",
+    "error_signature": "API Error: Rate limit reached (with ambiguous RPM/TPM/spend limits)",
+    "search_intent": "Determine which rate limit was hit when Claude Code shows 'Rate limit reached': API-key sessions have RPM/TPM/spend limits, Claude Max accounts have usage windows with reset times; confusion between them wastes debugging time",
+    "common_causes": [
+      "SitePoint deep dive (updated May 2026) explains that 'Rate limit reached' does not name one single limit. Clarifies two systems: Claude Max subscription vs API key each have different rate limit structures. Includes practical recovery steps (/model, /clear, /compact, /cost) and proactive monitoring via retry-after headers. Distinguishes 429 rate limit from 529 overloaded server error. High commercial value: affects paid users who can't use their tool mid-task. Category: Anthropic API (direct API route rate-limit)."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "Anthropic API"
+    ]
+  },
+  {
+    "slug": "kubernetes-crashloopbackoff-container-restarting-repeatedly-after-failing-startup",
+    "title": "Kubernetes CrashLoopBackOff — Container Crashes Repeatedly Due to Misconfigured Environment Variables or Missing Dependencies",
+    "description": "Troubleshoot and fix pods stuck in CrashLoopBackOff state; identify root cause from underlying container crash logs using kubectl describe/logs commands Includes evidence for Kubernetes troubleshooting demand.",
+    "category": "Cloud Platforms",
+    "technology": "Kubernetes",
+    "error_signature": "CrashLoopBackOff (Container restarting repeatedly after failing startup)",
+    "search_intent": "Troubleshoot and fix pods stuck in CrashLoopBackOff state; identify root cause from underlying container crash logs using kubectl describe/logs commands",
+    "common_causes": [
+      "Spacelift/Sysdig/Dynatrace comprehensive guides detail the most common K8s pod error. CrashLoopBackOff indicates container starts then crashes, with exponentially increasing backoff delays. Root causes: missing env vars, failed dependency (DB unreachable), incorrect entrypoint command, unhandled exception, resource constraints. Not an isolated error but a wrapper around real app failures. High volume search intent from production engineers. Category: Cloud Platforms (K8s always maps here)."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Cloud Platforms"
+    ]
+  },
+  {
+    "slug": "ollama-no-connection-could-be-made-because-the-target-machine-actively-refused-it",
+    "title": "Ollama GPU Mode Working But CPU Mode Shows 'No Connection Could Be Made Because Target Machine Actively Refused It'",
+    "description": "Fix Ollama connection refused error that only appears when running without GPU; works fine with CUDA/NVIDIA GPU enabled, shuts down CPU backend unexpectedly Includes evidence for Ollama troubleshooting demand.",
+    "category": "Ollama",
+    "technology": "Ollama",
+    "error_signature": "No connection could be made because the target machine actively refused it",
+    "search_intent": "Fix Ollama connection refused error that only appears when running without GPU; works fine with CUDA/NVIDIA GPU enabled, shuts down CPU backend unexpectedly",
+    "common_causes": [
+      "Ollama GitHub Issue #8852 documents this Windows-specific bug in versions 0.55-0.57. When GPU is present and enabled, inference works perfectly. Without GPU, the Ollama server shuts down during model downloads or chat, producing active refusal errors. Multiple test versions confirmed. High commercial value: users with limited GPU RAM forced onto CPU experience complete service failure. Category: Ollama (local LLM serving)."
+    ],
+    "quick_fix": "Confirm the local service is running on the expected host and port, then retry the smallest request.",
+    "related_errors": [
+      "Ollama"
+    ]
   }
 ]
