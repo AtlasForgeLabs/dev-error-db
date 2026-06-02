@@ -44365,5 +44365,85 @@
     "related_errors": [
       "LiteLLM"
     ]
+  },
+  {
+    "slug": "cursor-the-ai-model-you-selected-isn-t-available-please-choose-a-different-model-from-the-dropdown-menu",
+    "title": "Cursor v3.1.14 Models Disappear from IDE Picker — Works on Web But Not Desktop",
+    "description": "Cursor users see all AI models vanish from IDE dropdown despite being available on cursor.com website; tool becomes unusable. Needs model restore workaround. Includes evidence for Cursor troubleshooting demand.",
+    "category": "Cursor",
+    "technology": "Cursor",
+    "error_signature": "The AI model you selected isn't available. Please choose a different model from the dropdown menu.",
+    "search_intent": "Cursor users see all AI models vanish from IDE dropdown despite being available on cursor.com website; tool becomes unusable. Needs model restore workaround.",
+    "common_causes": [
+      "Multiple forum threads report Cursor v3.1.14 model picker broken — models show fine on web dashboard but disappear from IDE. Affects both Mac and Windows. Confirmed known issue; workaround is rolling back to v2.6. High commercial value because Cursor Pro subscription users lose paid tool functionality. Category: Cursor (exact match)."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Cursor"
+    ]
+  },
+  {
+    "slug": "litellm-litellm-ratelimiterror-no-deployments-available-for-selected-model",
+    "title": "LiteLLM Proxy Misreports Rate Limit as \"No deployments available for selected model\"",
+    "description": "Developer using LiteLLM proxy sees misleading 'No deployments available' message instead of actual rate limit/error info; needs correct error interpretation. Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "litellm.RateLimitError: No deployments available for selected model",
+    "search_intent": "Developer using LiteLLM proxy sees misleading 'No deployments available' message instead of actual rate limit/error info; needs correct error interpretation.",
+    "common_causes": [
+      "GitHub issue #20867 on BerriAI/litellm repo shows LiteLLM proxy incorrectly surfaces RouterRateLimitErrorBasic with message 'No deployments available for selected model' when the real cause is a downstream 429 rate limit. Also reported as streaming fallback failure with Gemini 3 Preview. High commercial value — LiteLLM powers production routing for paid-tier models. Category: LiteLLM (exact match)."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "LiteLLM"
+    ]
+  },
+  {
+    "slug": "claude-code-mcp-server-failed-to-connect-or-authenticate-about-blank-infinite-loop",
+    "title": "Claude Code MCP Server OAuth Flow Fails — About Blank Redirect Loop on Desktop/Web UI",
+    "description": "Developer adds custom MCP server to Claude Code Desktop/claude.ai but OAuth flow never initiates — browser opens about:blank creating infinite loop. CLI --transport http works but desktop/web GUI fails. Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "MCP server failed to connect or authenticate (about:blank infinite loop)",
+    "search_intent": "Developer adds custom MCP server to Claude Code Desktop/claude.ai but OAuth flow never initiates — browser opens about:blank creating infinite loop. CLI --transport http works but desktop/web GUI fails.",
+    "common_causes": [
+      "Anthropics/claude-code GitHub issue #11814 documents fully spec-compliant custom MCP OAuth servers failing in Claude Desktop and claude.ai web interface while working in CLI mode. Users see about:blank loop instead of OAuth consent page. Additional Asana MCP OAuth redirect_uri rejection (RFC 8252 loopback blocked) compounds the issue. Category: AI Coding Tools (Claude Code mapping per rules). High commercial value — breaks paid AI coding workflow with custom integrations."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "vercel-module-not-found-can-t-resolve-components-forms-registerform-error-command-npm-run-build-exited-with-1",
+    "title": "Vercel Build Fails with Module Not Found Due to File Case Sensitivity Mismatch",
+    "description": "Next.js project builds successfully locally on Windows/macOS but fails on Vercel with case-sensitive module import errors; needs cross-platform fix. Includes evidence for Vercel troubleshooting demand.",
+    "category": "Deployment",
+    "technology": "Vercel",
+    "error_signature": "Module not found: Can't resolve '@/components/forms/RegisterForm' — Error: Command \"npm run build\" exited with 1",
+    "search_intent": "Next.js project builds successfully locally on Windows/macOS but fails on Vercel with case-sensitive module import errors; needs cross-platform fix.",
+    "common_causes": [
+      "Verified duplicate risk checked against covered-errors (\"Vercel build command failed\" is generic, not case-specific). This is a distinct variant: case-insensitive local FS (Windows/macOS) vs case-sensitive Vercel Linux build env causes 'Module not found' even when paths look correct. Persistent community issue (#69390 vercel/next.js). Category: Deployment (Vercel exact match)."
+    ],
+    "quick_fix": "Check the build output, project root, and deployment platform configuration before redeploying.",
+    "related_errors": [
+      "Deployment"
+    ]
+  },
+  {
+    "slug": "ollama-pull-model-manifest-file-does-not-exist-or-cuda-error-out-of-memory-or-pulling-manifest-429",
+    "title": "Ollama Pull Model Manifest Failures and Out-of-Memory Crashes on Self-Hosted Inference",
+    "description": "Self-hosted developer tries to pull/run large models in Ollama but encounters manifest download failures (HuggingFace rate limit or proxy issues) or GPU OOM crashes needing VRAM management fixes. Includes evidence for Ollama troubleshooting demand.",
+    "category": "Ollama",
+    "technology": "Ollama",
+    "error_signature": "pull model manifest: file does not exist OR CUDA error: out of memory OR pulling manifest 429",
+    "search_intent": "Self-hosted developer tries to pull/run large models in Ollama but encounters manifest download failures (HuggingFace rate limit or proxy issues) or GPU OOM crashes needing VRAM management fixes.",
+    "common_causes": [
+      "Two distinct error patterns from Ollama: (1) manifest pull failures caused by HF rate limiting or proxy env var misconfiguration (SO question 79947633, HuggingFace discuss thread); (2) CUDA out-of-memory crashes on GPU inference requiring layer offloading, context window reduction, or swap tuning. Serverman guide (June 1, 2026) provides comprehensive fix strategies. Not duplicated — neither manifest nor OOM appears in covered list."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "Ollama"
+    ]
   }
 ]
