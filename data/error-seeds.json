@@ -44717,5 +44717,117 @@
     "related_errors": [
       "LiteLLM"
     ]
+  },
+  {
+    "slug": "claude-code-http-529-type-overloaded-error-anthropic-capacity-temporarily-saturated",
+    "title": "Claude Code HTTP 529 Overloaded Error — Anthropic Capacity Saturation on Opus/Max Plan",
+    "description": "Developer using Claude Code gets HTTP 529 error when requesting Opus model; needs to understand this is Anthropic backend capacity (not quota/rate limit), determine whether to switch models or wait for incident resolution. Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "HTTP 529 {\"type\":\"overloaded_error\"} — Anthropic capacity temporarily saturated",
+    "search_intent": "Developer using Claude Code gets HTTP 529 error when requesting Opus model; needs to understand this is Anthropic backend capacity (not quota/rate limit), determine whether to switch models or wait for incident resolution.",
+    "common_causes": [
+      "Codersera comprehensive guide (March 2026) documents the 529 overloaded_error as distinct from 429 rate limit and 503 edge unreachable. New 2026 regression noted where sustained per-account 529s occur. /doctor tool surfaces the error inline. Category mapping: Claude Code transport/auth failure → 'AI Coding Tools'. Not in dev-error-db which lacks Claude Code specific errors."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "vercel-we-encountered-an-internal-error-please-try-again-deployment-fails-during-deploying-outputs-phase-in-iad1-or-sfo1-regions",
+    "title": "Vercel Deployment Internal Error During Deploying Outputs Phase — iad1/sfo1 Region Failure",
+    "description": "Developer has successful build logs on Vercel dashboard but deployment fails at the very end with 'internal error during deploying outputs phase'. Build cache reuse may be involved. Needs workaround to get production deploy working. Includes evidence for Vercel troubleshooting demand.",
+    "category": "Deployment",
+    "technology": "Vercel",
+    "error_signature": "We encountered an internal error. Please try again. — deployment fails during deploying outputs phase in iad1 or sfo1 regions",
+    "search_intent": "Developer has successful build logs on Vercel dashboard but deployment fails at the very end with 'internal error during deploying outputs phase'. Build cache reuse may be involved. Needs workaround to get production deploy working.",
+    "common_causes": [
+      "Vercel Community discussion (Mar 2026) with 197 replies documenting widespread regional failure in iad1 and sfo1 during deploying outputs phase. Multiple confirmed affected deployments across Next.js projects. Root cause traced to internal output upload failure. Workaround: uncheck 'Use existing Build Cache' box when redeploying from V0 or dashboard. This affects paid teams with production deployments. Category mapping: Vercel deployment failure → 'Deployment'. Already published 'Vercel build command failed' covers build-time errors; this is distinct as a post-build output delivery failure."
+    ],
+    "quick_fix": "Check the build output, project root, and deployment platform configuration before redeploying.",
+    "related_errors": [
+      "Deployment"
+    ]
+  },
+  {
+    "slug": "claude-code-mcp-error-32000-connection-closed-mcp-server-process-crashed-at-startup",
+    "title": "Claude Code MCP Server -32000 Connection Closed — Stdio Transport Crash Debugging",
+    "description": "Developer adds an MCP server to Claude Code but gets '-32000 Connection closed'; needs systematic troubleshooting to identify if it's missing binary, wrong Node version, env var drift, or stdout corruption corrupting JSON-RPC stream. Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "MCP error -32000: Connection closed — MCP server process crashed at startup",
+    "search_intent": "Developer adds an MCP server to Claude Code but gets '-32000 Connection closed'; needs systematic troubleshooting to identify if it's missing binary, wrong Node version, env var drift, or stdout corruption corrupting JSON-RPC stream.",
+    "common_causes": [
+      "Multiple sources document the -32000 JSON-RPC generic error specifically for Claude Code MCP servers. Codersera guide maps root causes: wrong absolute path, .zshrc not loaded in stripped environment, console.log() corrupting JSON-RPC on stdout. stuartmason.co.uk (Feb 2026) provides comprehensive 6-cause breakdown including Root Cause 5 (HTTP URL/Auth issues) and Root Cause 6 (scope configuration). Category mapping: Claude Code internal tool failure → 'AI Coding Tools'. Not in dev-error-db."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "litellm-litellm-types-router-routerratelimiterrorbasic-no-deployments-available-for-selected-model-429-response-from-litellm-proxy-with-full-stack-trace",
+    "title": "LiteLLM Proxy RouterRateLimitErrorBasic 'No deployments available for selected model'",
+    "description": "Developer running LiteLLM proxy gets RouterRateLimitErrorBasic with 'No deployments available for selected model' when calling /chat/completions. Proxy returns 429 and crashes with visible traceback. Needs config fix to resolve deployment routing. Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "litellm.types.router.RouterRateLimitErrorBasic: No deployments available for selected model. — 429 response from LiteLLM proxy with full stack trace",
+    "search_intent": "Developer running LiteLLM proxy gets RouterRateLimitErrorBasic with 'No deployments available for selected model' when calling /chat/completions. Proxy returns 429 and crashes with visible traceback. Needs config fix to resolve deployment routing.",
+    "common_causes": [
+      "GitHub issue #20867 on BerriAI/litellm repo documents this exact bug where rate limit error is reported as 'No deployments available' with full Python stack trace showing _pre_call_checks failure. Affects LiteLLM proxy billing/routing logic. Category mapping: LiteLLM proxy internal error → 'LiteLLM'. Not in dev-error-db."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "LiteLLM"
+    ]
+  },
+  {
+    "slug": "cursor-timeout-waiting-for-everythingprovider-no-models-appear-in-cursor-ide-after-updating-to-v3-0-v3-1",
+    "title": "Cursor v3.x Model Picker Empty — \"Timeout waiting for EverythingProvider\" After Update",
+    "description": "Developer updates Cursor IDE to v3.0 or v3.1 and suddenly no models show up in the agent window, while web version still works. Needs to fix EverythingProvider timeout and restore model access. Includes evidence for Cursor troubleshooting demand.",
+    "category": "Cursor",
+    "technology": "Cursor",
+    "error_signature": "Timeout waiting for EverythingProvider — no models appear in Cursor IDE after updating to v3.0/v3.1",
+    "search_intent": "Developer updates Cursor IDE to v3.0 or v3.1 and suddenly no models show up in the agent window, while web version still works. Needs to fix EverythingProvider timeout and restore model access.",
+    "common_causes": [
+      "Forum.cursor.com reports (April 2026) confirm multiple users experiencing empty model picker in v3.1, v3.0 and v2.6. Network diagnostics show 'Timeout waiting for EverythingProvider'. Related: OpenAI API key error loop requiring restart (Jan 2026), and connection stalled after v2.4.21 update. This is a recurring client-side initialization bug pattern affecting Cursor Pro users. Category mapping: Cursor IDE specific → 'Cursor'. Partially overlaps with existing 'Cursor model not available' entry but the EverythingProvider timeout is a distinct root cause with different fix path (full quit+relaunch, --disable-extensions flag, antivirus interference check)."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Cursor"
+    ]
+  },
+  {
+    "slug": "kubernetes-crashloopbackoff-pod-starts-crashes-tries-to-restart-again-and-repeats-indefinitely",
+    "title": "Kubernetes CrashLoopBackOff — Container Repeatedly Crashing After Startup in Production",
+    "description": "Developer deploys to Kubernetes cluster and pods enter CrashLoopBackOff state. Needs systematic troubleshooting steps: kubectl logs, kubectl describe pod, checking CMD/ENTRYPOINT, verifying environment variables and service dependencies. Includes evidence for Kubernetes troubleshooting demand.",
+    "category": "Cloud Platforms",
+    "technology": "Kubernetes",
+    "error_signature": "CrashLoopBackOff — pod starts, crashes, tries to restart again and repeats indefinitely",
+    "search_intent": "Developer deploys to Kubernetes cluster and pods enter CrashLoopBackOff state. Needs systematic troubleshooting steps: kubectl logs, kubectl describe pod, checking CMD/ENTRYPOINT, verifying environment variables and service dependencies.",
+    "common_causes": [
+      "CNCF blog (Sep 2025) and The New Stack provide comprehensive troubleshooting guides for CrashLoopBackOff with detailed step-by-step commands. Also covered by Dash0 and KodeKloud. OOMKilled variant frequently co-occurs. High commercial value because this blocks production deployments for cloud-native teams. Category mapping: K8s cluster-level error → 'Cloud Platforms'. Not in dev-error-db."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Cloud Platforms"
+    ]
+  },
+  {
+    "slug": "github-actions-git-github-com-permission-denied-publickey-load-key-github-home-ssh-id-ed25519-invalid-format",
+    "title": "GitHub Actions SSH Deployment Permission Denied (publickey) — ED25519 vs RSA Key Format Mismatch",
+    "description": "Developer's GitHub Actions workflow fails with SSH permission denied during git clone or deploy step. Root cause often involves mismatched key formats (ED25519 public key vs RSA private key in secrets), truncated PEM in secret values, or ssh-agent not initialized in runner environment. Includes evidence for GitHub Actions troubleshooting demand.",
+    "category": "GitHub Actions",
+    "technology": "GitHub Actions",
+    "error_signature": "git@github.com: Permission denied (publickey). Load key '/github/home/.ssh/id_ed25519': invalid format",
+    "search_intent": "Developer's GitHub Actions workflow fails with SSH permission denied during git clone or deploy step. Root cause often involves mismatched key formats (ED25519 public key vs RSA private key in secrets), truncated PEM in secret values, or ssh-agent not initialized in runner environment.",
+    "common_causes": [
+      "Stack Overflow and GitHub Discussions extensively cover this pattern. Common variants: ed25519 public key but RSA private key pasted into GitHub secrets (multiple SO answers), PEM key truncated missing '-----END RSA PRIVATE KEY-----' line (SO answer), ssh-agent not initialized on ubuntu-latest runner. WP Engine deploy action (#50) and Maven release plugin (#51) both have open issues. Category mapping: GitHub Actions CI/CD auth error → 'GitHub Actions'. Not in dev-error-db."
+    ],
+    "quick_fix": "Check the build output, project root, and deployment platform configuration before redeploying.",
+    "related_errors": [
+      "GitHub Actions"
+    ]
   }
 ]
