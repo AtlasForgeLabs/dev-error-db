@@ -43805,5 +43805,133 @@
     "related_errors": [
       "AI Coding Tools"
     ]
+  },
+  {
+    "slug": "claude-code-oauth-api-keys-expiring-daily-instead-of-maintaining-expected-validity-period-500-errors-and-timeouts-when-reauthorizing-locking-out-of-coding-workflows",
+    "title": "Claude Code OAuth API Keys Expiring Daily — Authentication Loop Breaking Coding Workflows",
+    "description": "Fix recurring OAuth auth failures in Claude Code where API keys expire daily causing 500/timeout on reauthorization Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "OAuth API keys expiring daily instead of maintaining expected validity period; 500 errors and timeouts when reauthorizing; locking out of coding workflows",
+    "search_intent": "Fix recurring OAuth auth failures in Claude Code where API keys expire daily causing 500/timeout on reauthorization",
+    "common_causes": [
+      "Discovered via dev.to article Apr 7 2026: Claude Code users reported widespread auth failures on Apr 6 2026 due to OAuth API keys expiring daily. Users hit 500 errors and timeouts when reauthorizing. Mapped to AI Coding Tools per SKILL category rules. Distinct from existing Cursor/OpenAI key errors — involves platform-side OAuth lifecycle bug not user key misconfiguration."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "vercel-build-completed-successfully-but-hangs-at-deploying-outputs-phase-eventually-times-out-after-20-plus-minutes-with-an-unexpected-error-happened-when-running-this-build-occurs-specifically-in-iad1-and-sfo1-regions",
+    "title": "Vercel Deployment Hangs Indefinitely at Deploying Outputs Phase After Build Success",
+    "description": "Fix Vercel deployments that complete building but hang indefinitely at deploying outputs stage causing timeout failures Includes evidence for Vercel troubleshooting demand.",
+    "category": "Deployment",
+    "technology": "Vercel",
+    "error_signature": "Build Completed successfully but hangs at Deploying outputs… phase; eventually times out after 20+ minutes with An unexpected error happened when running this build; occurs specifically in iad1 and sfo1 regions",
+    "search_intent": "Fix Vercel deployments that complete building but hang indefinitely at deploying outputs stage causing timeout failures",
+    "common_causes": [
+      "Multiple community reports (Jun 2025–Mar 2026) on community.vercel.com and forums showing consistent pattern: builds succeed but deployment phase hangs at outputs upload. Affects pnpm projects especially. Platform-level bug with internal error during output upload in iad1/sfo1 regions. High commercial value — blocks all paid team deployments."
+    ],
+    "quick_fix": "Check the build output, project root, and deployment platform configuration before redeploying.",
+    "related_errors": [
+      "Deployment"
+    ]
+  },
+  {
+    "slug": "cursor-connection-error-unavailable-repeated-high-load-error-http-2-causes-intermittent-failures-switching-between-auto-mode-and-composer-1-requires-disabling-extensions-or-rebooting",
+    "title": "Cursor Connection Error Unavailable Auto Mode Switching to Composer 1",
+    "description": "Fix Cursor IDE intermittent connection failures and unavailability errors when switching between auto mode and Composer 1 requiring workarounds like --disable-extensions flag Includes evidence for Cursor troubleshooting demand.",
+    "category": "Cursor",
+    "technology": "Cursor",
+    "error_signature": "Connection Error (Unavailable); Repeated High Load Error; HTTP/2 causes intermittent failures switching between auto mode and Composer 1; requires disabling extensions or rebooting",
+    "search_intent": "Fix Cursor IDE intermittent connection failures and unavailability errors when switching between auto mode and Composer 1 requiring workarounds like --disable-extensions flag",
+    "common_causes": [
+      "Cursor forum threads (Jan-May 2026) document persistent Connection Error (Unavailable) bug. Users report HTTP/2 protocol causes intermittent failures. Workaround: cursor --disable-extensions flag, switching networks, updating IDE. Regional restrictions also prevent models from appearing in IDE settings. Highly targeted Cursor-specific bug."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Cursor"
+    ]
+  },
+  {
+    "slug": "github-actions-failed-to-queue-workflow-run-please-try-again-gh-workflow-run-workaround-queues-but-fails-during-job-setup-while-downloading-action-archive-from-codeload-github-com-with-failed-to-download-archive-after-n-attempts",
+    "title": "GitHub Actions Failed to Queue Workflow Run During codeload.github.com Download Failure",
+    "description": "Fix GitHub Actions workflow queueing and action archive downloads failing due to codeload.github.com instability affecting CI/CD pipelines Includes evidence for GitHub Actions troubleshooting demand.",
+    "category": "GitHub Actions",
+    "technology": "GitHub Actions",
+    "error_signature": "Failed to queue workflow run. Please try again.; gh workflow run workaround queues but fails during job setup while downloading action archive from codeload.github.com with Failed to download archive after N attempts.",
+    "search_intent": "Fix GitHub Actions workflow queueing and action archive downloads failing due to codeload.github.com instability affecting CI/CD pipelines",
+    "common_causes": [
+      "GitHub community discussion #196970 (May 26 2026) shows active incident where workflow dispatch from UI fails with 'Failed to queue workflow run' and gh CLI workaround triggers download failure at codeload.github.com. Affects both queued and dispatched workflows. Enterprise teams affected. Distinct from known actions/cache and checkout errors — platform-level infrastructure issue."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "GitHub Actions"
+    ]
+  },
+  {
+    "slug": "claude-code-no-mcp-servers-configured-mcp-config-diagnostics-reports-failed-to-parse-even-when-mcp-json-does-not-exist-mcp-config-spawns-with-unsubstituted-var-values-causing-downstream-auth-failure",
+    "title": "Claude Code MCP Stdio Config Silently Dropped on Variable Substitution Failure",
+    "description": "Debug Claude Code MCP config parsing failures where environment variable substitution silently drops servers and leaves users with empty configuration Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "No MCP servers configured; MCP Config Diagnostics reports Failed to parse even when .mcp.json does not exist; --mcp-config spawns with unsubstituted ${VAR} values causing downstream auth failure",
+    "search_intent": "Debug Claude Code MCP config parsing failures where environment variable substitution silently drops servers and leaves users with empty configuration",
+    "common_causes": [
+      "GitHub issue #60513 and #18714 in anthropics/claude-code repo document two related bugs: (1) stdio MCP server silently dropped when $VAR substitution fails — diagnostics say fail to parse but REPL reports No MCP servers configured; (2) diagnostics report Failed to parse error even when .mcp.json doesn't exist. Users lose all MCP tool integrations without understanding why. P0 technology per scoring rules."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "litellm-authentication-error-exceededtokenbudget-current-spend-for-token-x-max-budget-for-token-y-detail-budget-has-been-exceeded-user-ishaan3-has-exceeded-their-budget",
+    "title": "LiteLLM Proxy Budget Exceeded Error Blocks User API Calls Despite Valid Key",
+    "description": "Fix LiteLLM proxy budget enforcement errors that block legitimate API calls when per-user or per-key spending caps are unexpectedly triggered Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "Authentication Error, ExceededTokenBudget: Current spend for token: X; Max Budget for Token: Y; detail: Budget has been exceeded: User ishaan3 has exceeded their budget",
+    "search_intent": "Fix LiteLLM proxy budget enforcement errors that block legitimate API calls when per-user or per-key spending caps are unexpectedly triggered",
+    "common_causes": [
+      "Found via LiteLLM docs page on budgets/rate limits. The proxy returns 401 auth_error type when user budget is exceeded — indistinguishable from auth failures without reading the detail message. Teams running LiteLLM as gateway face silent blockers when budgets activate. Distinct from generic LiteLLM rate-limiting errors — specifically about budget enforcement confusion with auth flow."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "LiteLLM"
+    ]
+  },
+  {
+    "slug": "aws-an-error-occurred-invalidclienttokenid-when-calling-the-assumerole-operation-the-security-token-included-in-the-request-is-invalid-status-code-403",
+    "title": "AWS InvalidClientTokenId When Calling AssumeRole — Security Token Invalid in Lambda",
+    "description": "Fix AWS STS AssumeRole InvalidClientTokenId errors occurring when Lambda functions or Terraform assume roles — often caused by expired keys, wrong env vars, or inactive IAM credentials Includes evidence for AWS troubleshooting demand.",
+    "category": "Cloud Platforms",
+    "technology": "AWS",
+    "error_signature": "An error occurred (InvalidClientTokenId) when calling the AssumeRole operation: The security token included in the request is invalid; Status code: 403",
+    "search_intent": "Fix AWS STS AssumeRole InvalidClientTokenId errors occurring when Lambda functions or Terraform assume roles — often caused by expired keys, wrong env vars, or inactive IAM credentials",
+    "common_causes": [
+      "Stack Overflow and HashiCorp discuss posts confirm this is a persistent issue across terraform + vault credential generation and AWS Lambda functions. Multiple root causes: expired IAM keys, stale environment variable conflicts between original session token and assume-role credentials, inactive access keys in IAM console. High commercial value for DevOps engineers managing cloud infra."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Cloud Platforms"
+    ]
+  },
+  {
+    "slug": "ollama-error-pull-model-manifest-get-https-registry-ollama-ai-v2-library-manifests-latest-net-http-tls-handshake-timeout-dial-tcp-lookup-registry-ollama-ai-read-udp-i-o-timeout-connection-reset-mid-download-restarting-from-0",
+    "title": "Ollama Pull Model Manifest Timeout TLS Handshake Fails on Docker Containers",
+    "description": "Fix Ollama model pull failures caused by TLS handshake timeouts, DNS resolution failures, and network connectivity issues in Docker/Wsl environments Includes evidence for Ollama troubleshooting demand.",
+    "category": "Ollama",
+    "technology": "Ollama",
+    "error_signature": "Error: pull model manifest: Get \"https://registry.ollama.ai/v2/library/.../manifests/latest\": net/http: TLS handshake timeout; dial tcp: lookup registry.ollama.ai: read udp ...: i/o timeout; Connection reset mid-download restarting from 0%",
+    "search_intent": "Fix Ollama model pull failures caused by TLS handshake timeouts, DNS resolution failures, and network connectivity issues in Docker/Wsl environments",
+    "common_causes": [
+      "Tavily search results show multiple distinct sub-errors: (1) TLS handshake timeout pulling manifests from registry.ollama.ai, (2) DNS resolution failure for registry.ollama.ai on custom nameservers, (3) connection reset mid-download causing restart loop in v0.5.7. All affect local LLM workflows on containers/Docker. Commercial value for teams running on-premises LLM infra."
+    ],
+    "quick_fix": "Verify the model name, local service connectivity, and network access before retrying the model pull.",
+    "related_errors": [
+      "Ollama"
+    ]
   }
 ]
