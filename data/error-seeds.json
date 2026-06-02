@@ -45149,5 +45149,85 @@
     "related_errors": [
       "Cloud Platforms"
     ]
+  },
+  {
+    "slug": "openai-api-http-429-insufficient-quota-on-first-api-request-even-after-adding-5-plus-credit",
+    "title": "OpenAI API 429: Insufficient Quota on First Request Despite Credits — Why New Accounts Hit Billing Wall Immediately",
+    "description": "Fix 429 insufficient_quota error that appears on the very first API call despite account having balance and verified limits enabled Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "\"HTTP 429: insufficient_quota\" on first API request even after adding $5+ credit",
+    "search_intent": "Fix 429 insufficient_quota error that appears on the very first API call despite account having balance and verified limits enabled",
+    "common_causes": [
+      "Multiple reports from OpenAI developer community showing new accounts getting 429 insufficient_quota on their first curl/API call. Root causes: 1) organization-scoped vs project-scoped key mismatch, 2) billing cycle not activated yet, 3) model not enabled in the project budget settings. Commercially critical since this blocks first-time paying users immediately."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "cursor-error-bad-user-api-key-unauthorized-user-api-key-applied-to-all-models-after-enabling-openai-api-key",
+    "title": "Cursor 'Unauthorized User API Key' — Applying OpenAI Key Blocks All Other Models (Claude, Gemini)",
+    "description": "Fix Cursor bug where enabling a custom OpenAI API key incorrectly applies to Claude/Gemini models, blocking subscription models with Unauthorized errors Includes evidence for Cursor troubleshooting demand.",
+    "category": "Cursor",
+    "technology": "Cursor",
+    "error_signature": "\"ERROR_BAD_USER_API_KEY\" — \"Unauthorized User API key\" applied to all models after enabling OpenAI API key",
+    "search_intent": "Fix Cursor bug where enabling a custom OpenAI API key incorrectly applies to Claude/Gemini models, blocking subscription models with Unauthorized errors",
+    "common_causes": [
+      "Confirmed bug in Cursor affecting Pro users. When OpenAI API key is enabled in Settings > Models, it gets wrongly applied to all model providers (Claude, Gemini), causing cross-model auth failures. Workaround exists (disable OpenAI key temporarily) but root cause needs official fix. Direct Forum URL evidence available, strong pain signal with multiple related threads. High commercial value as Cursor is a paid subscription tool."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "Cursor"
+    ]
+  },
+  {
+    "slug": "vercel-found-invalid-node-js-version-setting-18-x-says-use-22-x-setting-22-x-says-invalid-use-18-x-dashboard-only-offers-20-x-and-22-x",
+    "title": "Vercel Build Fails with Contradictory Node.js Version Validation — 18.x Discontinued But 22.x Also Invalid",
+    "description": "Fix impossible Node.js version requirement loop on Vercel deployments where every version choice triggers a validation error contradicting other options Includes evidence for Vercel troubleshooting demand.",
+    "category": "Deployment",
+    "technology": "Vercel",
+    "error_signature": "\"Found invalid Node.js Version\" — setting 18.x says use 22.x; setting 22.x says invalid use 18.x; dashboard only offers 20.x and 22.x",
+    "search_intent": "Fix impossible Node.js version requirement loop on Vercel deployments where every version choice triggers a validation error contradicting other options",
+    "common_causes": [
+      "Production-blocking deployment error with high frustration signal. Developers hit circular validation: each attempted version is rejected with instruction to use a different version. Dashboard doesn't offer the suggested version. Multiple reports indicate this started recently suggesting a platform regression. Strong commercial impact as it blocks all deploys."
+    ],
+    "quick_fix": "Check the build output, project root, and deployment platform configuration before redeploying.",
+    "related_errors": [
+      "Deployment"
+    ]
+  },
+  {
+    "slug": "cloudflare-error-520-web-server-returns-an-unknown-error-connection-established-but-response-is-empty-malformed-reset",
+    "title": "Cloudflare Error 520 vs 522 vs 524 — Origin Server Returns Garbled Response After Connection Succeeds",
+    "description": "Diagnose and fix Cloudflare 520 error when origin server returns garbled or empty response after TCP connection succeeds, distinguishing from 522 timeout and 524 gateway timeout Includes evidence for Cloudflare troubleshooting demand.",
+    "category": "Cloudflare",
+    "technology": "Cloudflare",
+    "error_signature": "\"Error 520: web server returns an unknown error\" — connection established but response is empty/malformed/reset",
+    "search_intent": "Diagnose and fix Cloudflare 520 error when origin server returns garbled or empty response after TCP connection succeeds, distinguishing from 522 timeout and 524 gateway timeout",
+    "common_causes": [
+      "Critical infrastructure error affecting production sites globally. 520 is distinct from 522 (connection timeout before response) and 524 (gateway timeout after 100s wait). Common causes: server crashes/resource exhaustion, oversized response headers (>128KB), HTTP/2 misconfiguration, firewall blocking Cloudflare IPs. Official Cloudflare docs + independent analysis both provide detailed troubleshooting. High search demand given it's a common production outage symptom."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Cloudflare"
+    ]
+  },
+  {
+    "slug": "ollama-pulling-manifest-error-pull-model-manifest-412-the-model-you-are-attempting-to-pull-requires-a-newer-version-of-ollama",
+    "title": "Ollama 'pulling manifest Error 412: Model Requires Newer Version' — Client/Server Version Mismatch on AMD GPUs",
+    "description": "Fix Ollama 412 pulling manifest error caused by version mismatch between client (newer) and server/daemon (older), especially on Linux AMD GPU setups with ROCm Includes evidence for Ollama troubleshooting demand.",
+    "category": "Ollama",
+    "technology": "Ollama",
+    "error_signature": "\"pulling manifest Error: pull model manifest: 412: The model you are attempting to pull requires a newer version of Ollama\"",
+    "search_intent": "Fix Ollama 412 pulling manifest error caused by version mismatch between client (newer) and server/daemon (older), especially on Linux AMD GPU setups with ROCm",
+    "common_causes": [
+      "Specific version incompatibility issue. Occurs when ollama client binary is updated but systemd service still runs old daemon version, or vice versa. Confirmed on AMD Linux with ROCm. Related: Windows connection refused on port 11434 when no compatible GPU discovered. Both have actionable fixes (update service, force protocol). P1 technology with dedicated user base facing hardware-specific blockers."
+    ],
+    "quick_fix": "Verify the model name, local service connectivity, and network access before retrying the model pull.",
+    "related_errors": [
+      "Ollama"
+    ]
   }
 ]
