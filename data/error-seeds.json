@@ -44925,5 +44925,101 @@
     "related_errors": [
       "LiteLLM"
     ]
+  },
+  {
+    "slug": "cursor-no-models-available-at-all-in-ide-picker-while-website-shows-models-fine-authentication-ui-timeout-waiting-for-everythingprovider-agent-endpoint-fails",
+    "title": "Cursor v3.1 No models available in IDE while they show up on web — Picker Bug",
+    "description": "Restore missing AI models in Cursor IDE when model picker is empty despite having active subscription and models showing on web dashboard Includes evidence for Cursor troubleshooting demand.",
+    "category": "Cursor",
+    "technology": "Cursor",
+    "error_signature": "No models available at all in IDE picker while website shows models fine — Authentication UI Timeout waiting for EverythingProvider; Agent Endpoint fails",
+    "search_intent": "Restore missing AI models in Cursor IDE when model picker is empty despite having active subscription and models showing on web dashboard",
+    "common_causes": [
+      "Cursor Community Forum thread #157722: Multiple users report models disappearing from IDE across both Windows and Mac. Error logs show 'Timeout waiting for EverythingProvider' affecting Auth UI, Tab, Agent Endpoint, and Codebase Indexing simultaneously. Root cause in version 3.1.14 model picker broken."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "Cursor"
+    ]
+  },
+  {
+    "slug": "claude-code-bug-http-mcp-servers-requiring-oauth-silently-fail-with-no-user-notification-tools-list-returns-unauthorized-after-initialize-handshake-succeeds",
+    "title": "Claude Code HTTP MCP server OAuth returns Unauthorized but swallows error — no user notification",
+    "description": "Fix MCP OAuth authentication failure in Claude Code where the server advertises tools but returns Unauthorized without any visible error Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "[BUG] HTTP MCP servers requiring OAuth silently fail with no user notification — tools/list returns Unauthorized after initialize handshake succeeds",
+    "search_intent": "Fix MCP OAuth authentication failure in Claude Code where the server advertises tools but returns Unauthorized without any visible error",
+    "common_causes": [
+      "GitHub issue #26917 on anthropics/claude-code repo: HTTP MCP server initialize handshake succeeds but tools/list returns Unauthorized; Claude Code produces complete silence with no indication authentication is required. Source evidence via Tavily search snippet confirming full context."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "vercel-build-failed-resource-provisioning-failed-deployment-logs-won-t-load-spinner-keeps-spinning",
+    "title": "Vercel Deployment Failed — Resource Provisioning Failed with no build logs loading",
+    "description": "Debug Vercel deployment failures where resource provisioning fails and build logs are completely inaccessible, blocking triage Includes evidence for Vercel troubleshooting demand.",
+    "category": "Deployment",
+    "technology": "Vercel",
+    "error_signature": "Build Failed — Resource provisioning failed (deployment logs won't load, spinner keeps spinning)",
+    "search_intent": "Debug Vercel deployment failures where resource provisioning fails and build logs are completely inaccessible, blocking triage",
+    "common_causes": [
+      "Vercel Community thread #25588: Deployment shows 'Resource provisioning failed' but build logs never load. Related discussion shows deployments failing with 0ms build time indicating provision-level failure before build even starts. Hobby plan users hit log retention limits (1h). CLI --debug --logs may reveal hidden errors."
+    ],
+    "quick_fix": "Check the build output, project root, and deployment platform configuration before redeploying.",
+    "related_errors": [
+      "Deployment"
+    ]
+  },
+  {
+    "slug": "kubernetes-imagepullbackoff-errimagepull-rpc-error-code-unknown-desc-reading-manifest-latest-in-docker-io-alpinelinux-darkhttpdz-requested-access-to-the-resource-is-denied",
+    "title": "Kubernetes ImagePullBackOff ErrImagePull private registry credential failure",
+    "description": "Troubleshoot Kubernetes pods stuck in ImagePullBackOff state due to private registry authentication failures or invalid image references Includes evidence for Kubernetes troubleshooting demand.",
+    "category": "Cloud Platforms",
+    "technology": "Kubernetes",
+    "error_signature": "ImagePullBackOff / ErrImagePull — rpc error: code = Unknown desc = reading manifest latest in docker.io/alpinelinux/darkhttpdz: requested access to the resource is denied",
+    "search_intent": "Troubleshoot Kubernetes pods stuck in ImagePullBackOff state due to private registry authentication failures or invalid image references",
+    "common_causes": [
+      "Multiple Stack Overflow and community posts describe ImagePullBackOff as one of the most common Kubernetes deployment errors. Causes include image name/tag typos, missing imagePullSecrets for private registries, network connectivity issues between cluster and registry, and incorrect credentials. Diagnostic: kubectl describe pod reveals Events section with exact pull failure reason."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "Cloud Platforms"
+    ]
+  },
+  {
+    "slug": "anthropic-api-529-overloaded-error-the-api-is-temporarily-overloaded-frequently-conflated-with-429-rate-limit-error-by-developers",
+    "title": "Anthropic API 529 overloaded_error vs 429 rate_limit_error — distinguishing capacity constraints from quotas",
+    "description": "Understand the difference between Anthropic 529 overloaded_error and 429 rate_limit_error to apply correct retry strategy (exponential backoff vs waiting for rate limit reset) Includes evidence for Anthropic API troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Anthropic API",
+    "error_signature": "529 overloaded_error: The API is temporarily overloaded — frequently conflated with 429 rate_limit_error by developers",
+    "search_intent": "Understand the difference between Anthropic 529 overloaded_error and 429 rate_limit_error to apply correct retry strategy (exponential backoff vs waiting for rate limit reset)",
+    "common_causes": [
+      "SitePoint guide and MindStudio analysis: Anthropic returns two distinct error codes — 429 rate_limit_error (account hits usage quota) and 529 overloaded_error (server-side capacity constraint). Developers often misdiagnose 529 as 429, applying wrong remediation. 529 requires exponential backoff (1-5s initial delay) and should NOT count against rate limit backoff timer. Anthropic docs explicitly distinguish them. With 80x growth in Q1 2026, 529 errors increasingly common for paid users."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "Anthropic API"
+    ]
+  },
+  {
+    "slug": "litellm-bug-429-rate-limit-errors-from-openrouter-free-models-not-honored-ratelimiterror-silently-ignored-empty-reply-returned-instead-of-proper-exception",
+    "title": "OpenRouter FREE models 429 rate limit errors silently swallowed by LiteLLM — no RateLimitError raised",
+    "description": "Fix LiteLLM silently ignoring OpenRouter 429 rate limit errors and returning empty LLM replies instead of raising RateLimitError for proper error handling Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "[Bug]: 429 rate limit errors from OpenRouter FREE models not honored? — RateLimitError silently ignored, empty reply returned instead of proper exception",
+    "search_intent": "Fix LiteLLM silently ignoring OpenRouter 429 rate limit errors and returning empty LLM replies instead of raising RateLimitError for proper error handling",
+    "common_causes": [
+      "GitHub issue #9035 on BerriAI/litellm: OpenRouter free models have tight rate limits (20 req/min, 200/day) but LiteLLM treats the 429 response as if the LLM returned an empty reply rather than raising RateLimitError. This silently fails without user awareness. Affects production workflows using free tier models. Source: https://github.com/BerriAI/litellm/issues/9035 confirmed via Tavily search snippet."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "LiteLLM"
+    ]
   }
 ]
