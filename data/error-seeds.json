@@ -45021,5 +45021,37 @@
     "related_errors": [
       "LiteLLM"
     ]
+  },
+  {
+    "slug": "github-copilot-error-githubloginfailed-you-are-not-signed-in-to-github-please-sign-in-to-use-copilot",
+    "title": "GitHub Copilot sign-in in Visual Studio fails with 'You are not signed in to GitHub' — no UI login flow offered",
+    "description": "Fix GitHub Copilot sign-in failure in Visual Studio where the extension never opens the browser-based OAuth login UI, leaving users stuck without any path to authenticate Includes evidence for GitHub Copilot troubleshooting demand.",
+    "category": "GitHub Copilot",
+    "technology": "GitHub Copilot",
+    "error_signature": "Error: GitHubLoginFailed — You are not signed in to GitHub. Please sign in to use Copilot.",
+    "search_intent": "Fix GitHub Copilot sign-in failure in Visual Studio where the extension never opens the browser-based OAuth login UI, leaving users stuck without any path to authenticate",
+    "common_causes": [
+      "Visual Studio Developer Community issue #11099837 reported Jun 1, 2026: Copilot plugin enters infinite sign-in loop, output pane shows GitHubLoginFailed but no browser window ever opens. Affects enterprise and personal accounts. Restart, VPN toggling, and account removal/re-addition have been tried. Distinct from generic Copilot auth issues — specifically about missing OAuth UI in VS integration."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "GitHub Copilot"
+    ]
+  },
+  {
+    "slug": "kubernetes-crashloopbackoff-pod-repeatedly-restarting-with-exit-code-137-or-application-crash",
+    "title": "Kubernetes pod CrashLoopBackOff caused by missing environment variables or dependency startup ordering",
+    "description": "Diagnose and fix Kubernetes pods stuck in CrashLoopBackOff — determine if root cause is missing env vars, wrong startup order, port conflicts, or resource limits, then implement proper health checks and dependency management Includes evidence for Kubernetes troubleshooting demand.",
+    "category": "Cloud Platforms",
+    "technology": "Kubernetes",
+    "error_signature": "CrashLoopBackOff — pod repeatedly restarting with exit code 137 or application crash",
+    "search_intent": "Diagnose and fix Kubernetes pods stuck in CrashLoopBackOff — determine if root cause is missing env vars, wrong startup order, port conflicts, or resource limits, then implement proper health checks and dependency management",
+    "common_causes": [
+      "Multiple sources confirm CrashLoopBackOff remains a top DevOps production pain point. Middleware.io guide and Komodor comprehensive troubleshooting page cover the full diagnostic tree. OOMKilled (exit 137) and CreateContainerConfigError are related distinct variants. Highly relevant for teams running production K8s on AWS EKS/Azure AKS/GCP GKE. Distinct from covered-errors.md which has none of these K8s-specific states."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Cloud Platforms"
+    ]
   }
 ]
