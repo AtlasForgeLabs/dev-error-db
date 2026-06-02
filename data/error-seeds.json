@@ -44525,5 +44525,101 @@
     "related_errors": [
       "Cloudflare"
     ]
+  },
+  {
+    "slug": "claude-code-you-ve-hit-your-session-limit-resets-3-45pm-you-ve-hit-your-weekly-limit-resets-mon-12-00am",
+    "title": "Claude Code Session Limit Reset — Usage Quota Exhaustion Errors",
+    "description": "Understand and fix Claude Code usage quota exhaustion; buy more credits or manage rolling limits Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "You've hit your session limit · resets 3:45pm / You've hit your weekly limit · resets Mon 12:00am",
+    "search_intent": "Understand and fix Claude Code usage quota exhaustion; buy more credits or manage rolling limits",
+    "common_causes": [
+      "Official Claude Code docs document three types of usage-limit errors (session limit, weekly limit, Opus limit). Users see explicit reset timestamps but confusion between usage vs context limits is rampant. Many hit limits unexpectedly due to session-resume token generation bug (GitHub #38029: 652K tokens generated without user prompts). Commercially critical — blocks paying Pro ($20/mo), Max ($100/mo), Enterprise users mid-workflow. Anthropic credit overhaul coming June 15, 2026 adds urgency."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "claude-code-32000-connection-closed-mcp-server-crashed-during-initialization-or-exited-mid-handshake",
+    "title": "Claude Code MCP -32000 JSON-RPC Server Error Crash Fix",
+    "description": "Fix Claude Code MCP server crashing with -32000 JSON-RPC generic server-error; find root cause and working fix Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "-32000 Connection closed — MCP server crashed during initialization or exited mid-handshake",
+    "search_intent": "Fix Claude Code MCP server crashing with -32000 JSON-RPC generic server-error; find root cause and working fix",
+    "common_causes": [
+      "Frequent community-reported error in 2026 Claude Code sessions. /doctor surfaces it but doesn't explain why. Root causes include missing binaries, wrong Node version, missing env vars, stdout pollution (console.log corrupts JSON-RPC stream). Fix involves running server command manually, using absolute paths, moving logging to console.error(). Clear fix demand with high commercial value — breaks paid AI coding workflows."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "cursor-unable-to-reach-the-model-provider-we-re-having-trouble-connecting-to-the-model-provider-repeats-after-every-new-prompt-until-cursor-is-restarted",
+    "title": "Cursor 'Unable to Reach the Model Provider' — API Key Error Loop Until Restart",
+    "description": "Fix Cursor IDE repeatedly failing with 'unable to reach the model provider' error requiring constant restarts Includes evidence for Cursor troubleshooting demand.",
+    "category": "Cursor",
+    "technology": "Cursor",
+    "error_signature": "Unable to reach the model provider / We're having trouble connecting to the model provider — repeats after every new prompt until Cursor is restarted",
+    "search_intent": "Fix Cursor IDE repeatedly failing with 'unable to reach the model provider' error requiring constant restarts",
+    "common_causes": [
+      "Reported in Cursor Community Forum: developers using custom OpenAI API keys get error on almost every new prompt. Restarting fixes it temporarily then the loop returns. Not a key problem — a Cursor client-side state management bug. Also related: 'Connection stalled' errors after 2.4.21 update limiting models to composer 1 only. HIGH commercial value as Cursor is subscription tool and this completely breaks the workflow."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Cursor"
+    ]
+  },
+  {
+    "slug": "cloudflare-error-524-a-timeout-occurred-cloudflare-connected-to-origin-but-origin-did-not-provide-http-response-before-proxy-read-timeout-120-seconds",
+    "title": "Cloudflare Error 524 Timeout — Origin Server Response Delay Over 120 Seconds",
+    "description": "Fix Cloudflare 524 timeout error where origin server responds too slowly; understand root causes and fix strategies Includes evidence for Cloudflare troubleshooting demand.",
+    "category": "Cloudflare",
+    "technology": "Cloudflare",
+    "error_signature": "Error 524: a timeout occurred — Cloudflare connected to origin but origin did not provide HTTP response before Proxy Read Timeout (120 seconds)",
+    "search_intent": "Fix Cloudflare 524 timeout error where origin server responds too slowly; understand root causes and fix strategies",
+    "common_causes": [
+      "Official Cloudflare documentation page with detailed diagnosis guide. 524 differs from 522 (522 = TCP handshake timeout, 524 = HTTP response timeout after connection established). Enterprise customers can increase timeout to 6,000s. Common causes: slow database queries, heavy imports/backups, PHP-FPM worker limits. High commercial value because 524 affects live production sites generating revenue. Strong official documentation support reduces ranking difficulty."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "Cloudflare"
+    ]
+  },
+  {
+    "slug": "ollama-pull-model-manifest-429-too-many-requests-from-hugging-face-during-ollama-pull",
+    "title": "Ollama 'Pulling Manifest' 429 Rate Limit + Model Download Failure Workaround",
+    "description": "Fix Ollama model download failure caused by Hugging Face rate limiting (429) when pulling large models Includes evidence for Ollama troubleshooting demand.",
+    "category": "Ollama",
+    "technology": "Ollama",
+    "error_signature": "pull model manifest: 429 — Too Many Requests from Hugging Face during ollama pull",
+    "search_intent": "Fix Ollama model download failure caused by Hugging Face rate limiting (429) when pulling large models",
+    "common_causes": [
+      "Common issue when pulling large models (e.g., deepseek-r1:8b, 70B variants). Hugging Face rate limits shared egress IPs causing pulls to stall at ~50% then fail. Workarounds include using HF_TOKEN environment variable, bash resume scripts, downloading GGUF manually via hf CLI and placing in ollama blobs directory. Commercial value moderate-high since Ollama is growing rapidly for local AI dev workflows and download failures block development entirely."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "Ollama"
+    ]
+  },
+  {
+    "slug": "litellm-litellm-badrequesterror-llm-provider-not-provided-pass-in-the-llm-provider-you-are-trying-to-call-you-passed-model-qwen2-5-32b",
+    "title": "LiteLLM Proxy 'litellm.BadRequestError: LLM Provider NOT provided'",
+    "description": "Fix LiteLLM BadRequestError when model name lacks provider prefix in CrewAI or similar agent frameworks Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "litellm.BadRequestError: LLM Provider NOT provided. Pass in the LLM provider you are trying to call. You passed model=qwen2.5:32b",
+    "search_intent": "Fix LiteLLM BadRequestError when model name lacks provider prefix in CrewAI or similar agent frameworks",
+    "common_causes": [
+      "Stack Overflow question with thousands of views. Occurs when using litellm completion() with bare model names instead of prefixed ones (e.g., 'ollama/qwen2.5:32b' vs 'qwen2.5:32b'). Critical for production LiteLLM proxy setups routing to Ollama, Azure, Bedrock. The LiteLLM supply chain security incident (March 2026, v1.82.7/v1.82.8) also drives renewed search interest in proper proxy configuration. Moderate competition — Stack Overflow has good answer but forum posts still active."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "LiteLLM"
+    ]
   }
 ]
