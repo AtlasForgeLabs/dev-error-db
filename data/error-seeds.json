@@ -44829,5 +44829,101 @@
     "related_errors": [
       "GitHub Actions"
     ]
+  },
+  {
+    "slug": "vercel-built-in-8s-then-hangs-build-completed-in-vercel-output-never-appears-deployment-stuck-in-building-status-indefinitely-11-plus-minutes",
+    "title": "Vercel deployment stuck in 'building' indefinitely after successful build in iad1 region",
+    "description": "Fix Vercel deployment hanging after build completes successfully, where output step never initiates — blocking production deployments for Hobby and Pro plan users Includes evidence for Vercel troubleshooting demand.",
+    "category": "Deployment",
+    "technology": "Vercel",
+    "error_signature": "✓ built in ~8s — then hangs; 'Build Completed in /vercel/output' never appears; deployment stuck in 'building' status indefinitely (11+ minutes)",
+    "search_intent": "Fix Vercel deployment hanging after build completes successfully, where output step never initiates — blocking production deployments for Hobby and Pro plan users",
+    "common_causes": [
+      "Vercel Community post from June 1, 2026 details three consecutive failing attempts on same commit where builds complete (~8s) but post-build pipeline hangs. Log ends at '✓ built in Xs' with no further output. Last working deployment was May 12. Project on Hobby plan, GitHub integration. This directly impacts commercial value — production deployments are blocked, revenue-generating sites are down. Similar related issues exist (Vercel Issue: Builds Successfully But Hang at 'Deploying Outputs' with 681 views). Category: Deployment per SKILL.md."
+    ],
+    "quick_fix": "Check the build output, project root, and deployment platform configuration before redeploying.",
+    "related_errors": [
+      "Deployment"
+    ]
+  },
+  {
+    "slug": "claude-code-needs-authentication-codex-mcp-credentials-written-to-macos-keychain-but-not-loaded-at-session-start",
+    "title": "Claude Code MCP OAuth tokens not persisting — re-auth required every session",
+    "description": "Fix Claude Code requiring re-authentication every session due to MCP OAuth tokens not persisting across restarts Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Needs authentication — Codex MCP Credentials written to macOS Keychain but not loaded at session start",
+    "search_intent": "Fix Claude Code requiring re-authentication every session due to MCP OAuth tokens not persisting across restarts",
+    "common_causes": [
+      "GitHub issue #57674 on anthropics/claude-code reports OAuth-not-persisting pattern recurring since Jan–May 2026 across 60+ days and 83+ sessions. The Keychain-level evidence is unique: tokens are written to 'Codex MCP Credentials' service but never loaded at session start. Related closed issues #16957, #20785, #21333, #25245, #27509 were all 'fixed' superficially. This affects paying users of Claude Code Pro ($20/mo) who rely on MCP integrations (Notion, etc.). Category: AI Coding Tools per SKILL.md mapping."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "github-actions-permission-denied-pulling-docker-image-from-github-container-registry-despite-public-visibility",
+    "title": "GitHub Actions workflow lacks packages:read permission causing Docker pull permission denied on GHCR",
+    "description": "Fix GitHub Actions CI/CD workflow failing to pull public Docker images from GHCR due to missing packages:read permission scope on workflow token Includes evidence for GitHub Actions troubleshooting demand.",
+    "category": "GitHub Actions",
+    "technology": "GitHub Actions",
+    "error_signature": "Permission denied pulling Docker image from GitHub Container Registry despite public visibility",
+    "search_intent": "Fix GitHub Actions CI/CD workflow failing to pull public Docker images from GHCR due to missing packages:read permission scope on workflow token",
+    "common_causes": [
+      "DEV Community article (high engagement) documents the exact scenario: fork PR workflows fail to pull public GHCR images with permission denied error even when image is explicitly marked public. Root cause is GitHub's security stance on forked PRs — token lacks packages:read permission implicitly. Fix requires explicit permissions:contents: read + packages: read in workflow YAML. HIGH commercial value because this blocks CI/CD pipelines for teams using GHCR, especially in enterprise environments where automated deployments depend on container registries."
+    ],
+    "quick_fix": "Verify the model name, local service connectivity, and network access before retrying the model pull.",
+    "related_errors": [
+      "GitHub Actions"
+    ]
+  },
+  {
+    "slug": "cursor-user-api-key-rate-limit-exceeded-false-positive-request-blocked-before-reaching-configured-custom-openai-compatible-backend",
+    "title": "Cursor GPT-5.5 BYOK shows false 'User API key rate limit exceeded' error — requests not sent to custom backend",
+    "description": "Fix Cursor IDE incorrectly showing rate limit error for GPT-5.5 when using Bring-Your-Own-Key with custom endpoint, preventing developer from using their own paid API quota Includes evidence for Cursor troubleshooting demand.",
+    "category": "Cursor",
+    "technology": "Cursor",
+    "error_signature": "User API key rate limit exceeded (false positive — request blocked before reaching configured custom OpenAI-compatible backend)",
+    "search_intent": "Fix Cursor IDE incorrectly showing rate limit error for GPT-5.5 when using Bring-Your-Own-Key with custom endpoint, preventing developer from using their own paid API quota",
+    "common_causes": [
+      "Forum.cursor.com thread (postdated May 7, 2026, ~2069 views) documents that GPT-5.5 specifically blocks requests with Cursor's own infrastructure even though user has a BYOK/custom endpoint configured. Same config works for GPT-5.4. Request ID visible confirms Cursor never sends to backend. Affects Cursor Pro ($20/mo) and Ultra ($60/mo) subscribers trying to use custom backends. This is an enterprise-relevant error because businesses relying on self-hosted models or specific enterprise OpenAI endpoints get blocked."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "Cursor"
+    ]
+  },
+  {
+    "slug": "cursor-bad-request-error-bad-request-this-model-does-not-support-custom-api-keys",
+    "title": "Cursor Composer 2.5 requests blocked with 'This model does not support custom API keys' error when BYOK is active",
+    "description": "Fix Composer 2.5 being rejected by Cursor backend when a BYOK OpenAI/Anthropic API key is enabled in settings — routing oversight prevents explicitly selected Composer models from working Includes evidence for Cursor troubleshooting demand.",
+    "category": "Cursor",
+    "technology": "Cursor",
+    "error_signature": "Bad Request — ERROR_BAD_REQUEST: This model does not support custom API keys.",
+    "search_intent": "Fix Composer 2.5 being rejected by Cursor backend when a BYOK OpenAI/Anthropic API key is enabled in settings — routing oversight prevents explicitly selected Composer models from working",
+    "common_causes": [
+      "Forum.cursor.com report confirmed by Cursor team member as routing oversight rather than technical limitation. Backend strips BYOK key in Auto mode but fails to apply same logic when Composer model explicitly chosen. Error response includes planChoices suggesting UI should offer upgrade path instead of hard block. Relates to multiple similar posts (#162152, Composer 2 broken when custom OpenAI API Key enabled 367 views). High commercial impact — Composer is premium feature for Cursor Ultra ($60/mo)."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Cursor"
+    ]
+  },
+  {
+    "slug": "litellm-cross-pod-spend-counter-double-counting-after-redis-cache-miss-causing-inaccurate-team-budgets",
+    "title": "LiteLLM v1.85.0 cross-pod spend counter double-counts after Redis cache miss — budget corruption",
+    "description": "Fix LiteLLM proxy billing/spend tracking accuracy issue where multi-pod deployments double-count costs after Redis cache misses, affecting enterprise team budgets and usage monitoring Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "Cross-pod spend-counter double-counting after Redis cache miss causing inaccurate team budgets",
+    "search_intent": "Fix LiteLLM proxy billing/spend tracking accuracy issue where multi-pod deployments double-count costs after Redis cache misses, affecting enterprise team budgets and usage monitoring",
+    "common_causes": [
+      "LiteLLM release notes (May 20, 2026) document a critical bug fix for cross-pod spend-counter in v1.85.1. In multi-pod deployments, when Redis cache misses occurred, costs were double-counted, corrupting team budgets. This is an enterprise-grade reliability issue directly tied to billing accuracy. LiteLLM is widely deployed as the universal LLM proxy for teams routing through 100+ providers. Enterprise customers using per-team budget enforcement would be silently overcharged without awareness."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "LiteLLM"
+    ]
   }
 ]
