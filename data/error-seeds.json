@@ -45533,5 +45533,69 @@
     "related_errors": [
       "LiteLLM"
     ]
+  },
+  {
+    "slug": "vercel-modulenotfounderror-can-t-resolve-components-or-common",
+    "title": "Vercel Build Works Locally But Fails Module Not Found During Deployment",
+    "description": "Next.js/Node.js project builds successfully locally but fails on Vercel with Cannot Find Module during deploy, often due to path alias differences, .gitignore excluding files, or node_modules corruption. Includes evidence for Vercel troubleshooting demand.",
+    "category": "Deployment",
+    "technology": "Vercel",
+    "error_signature": "ModuleNotFoundError: Can't resolve '@components/...' or './common'",
+    "search_intent": "Next.js/Node.js project builds successfully locally but fails on Vercel with Cannot Find Module during deploy, often due to path alias differences, .gitignore excluding files, or node_modules corruption.",
+    "common_causes": [
+      "Source: Vercel Community discussion #8178, GitHub next.js issue #69390, community post about persistent runtime module errors on Express apps. Strong commercial value since it blocks production deploys for paying users. Distinct from covered 'build command failed'/'module not found' — specifically addresses the local-vs-remote discrepancy scenario. Category: Deployment."
+    ],
+    "quick_fix": "Check the build output, project root, and deployment platform configuration before redeploying.",
+    "related_errors": [
+      "Deployment"
+    ]
+  },
+  {
+    "slug": "cursor-cursor-unauthorized-user-api-key",
+    "title": "Cursor \"Unauthorized User\" API Key Error: Missing Credits & Model Access Issues",
+    "description": "Developer gets 'unauthorized user' error when integrating custom API key into Cursor IDE — usually caused by zero prepaid balance, expired free trial, model tier mismatch, or cached stale credentials. Includes evidence for Cursor troubleshooting demand.",
+    "category": "Cursor",
+    "technology": "Cursor",
+    "error_signature": "cursor unauthorized user api key",
+    "search_intent": "Developer gets 'unauthorized user' error when integrating custom API key into Cursor IDE — usually caused by zero prepaid balance, expired free trial, model tier mismatch, or cached stale credentials.",
+    "common_causes": [
+      "Source: softwaretimes.blog detailed 2026 guide covering 3 root causes (insufficient credit balance, model access restrictions, incorrect environment config) plus step-by-step fixes. Distinct from covered-errors 'invalid API key' — this covers authorization handshake failures specific to Cursor's custom API key mode. Strong commercial value (paid AI tool). Category: Cursor."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "Cursor"
+    ]
+  },
+  {
+    "slug": "kubernetes-imagepullbackoff-back-off-pulling-image-errimagepull",
+    "title": "Kubernetes ImagePullBackOff: Container Image Pull Failure Troubleshooting",
+    "description": "Developer sees ImagePullBackOff pod status, needs systematic diagnosis: typo in image name/tag, missing imagePullSecrets for private registry, network/DNS/firewall blocking pull, registry rate limits. Includes evidence for Kubernetes troubleshooting demand.",
+    "category": "Cloud Platforms",
+    "technology": "Kubernetes",
+    "error_signature": "ImagePullBackOff - Back-off pulling image / ErrImagePull",
+    "search_intent": "Developer sees ImagePullBackOff pod status, needs systematic diagnosis: typo in image name/tag, missing imagePullSecrets for private registry, network/DNS/firewall blocking pull, registry rate limits.",
+    "common_causes": [
+      "Source: Groundcover deep dive, Komodor guide, SFEIR Institute debug methodology. Covers 5 root causes (name/tag typo, deleted image, unauthorized access, registry network, rate limits) with diagnostic commands (kubectl describe, docker pull test). Strong commercial value for cloud ops teams. Category: Cloud Platforms."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "Cloud Platforms"
+    ]
+  },
+  {
+    "slug": "litellm-litellm-badrequesterror-llm-provider-not-provided",
+    "title": "LiteLLM BadRequestError LLM Provider NOT Provided Error Fix",
+    "description": "Developer using CrewAI + LiteLLM gets BadRequestError because model name lacks provider prefix (e.g., 'qwen2.5:32b' instead of 'ollama/qwen2.5:32b'), needs correct provider prefixing pattern for various LLM backends. Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "litellm.BadRequestError: LLM Provider NOT provided",
+    "search_intent": "Developer using CrewAI + LiteLLM gets BadRequestError because model name lacks provider prefix (e.g., 'qwen2.5:32b' instead of 'ollama/qwen2.5:32b'), needs correct provider prefixing pattern for various LLM backends.",
+    "common_causes": [
+      "Source: Stack Overflow question with accepted answer and 5000+ views on CrewAI community. Root cause is always missing provider prefix in model string. Multiple providers need different prefixes (ollama/, huggingface/, fireworks_ai/, etc.). High search demand signal. Category: LiteLLM."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "LiteLLM"
+    ]
   }
 ]
