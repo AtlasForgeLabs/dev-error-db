@@ -47213,5 +47213,21 @@
     "related_errors": [
       "GitHub Copilot"
     ]
+  },
+  {
+    "slug": "anthropic-api-error-an-api-key-is-required-but-missing-missing-api-key-you-did-not-provide-an-api-key",
+    "title": "Anthropic API Error: 'Permission Error' — Insufficient Access When Using Claude API",
+    "description": "Fixing 401/permission denied errors when calling Anthropic Claude API Includes evidence for Anthropic API troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Anthropic API",
+    "error_signature": "Error: An API key is required but missing. Missing API key: You did not provide an API key.",
+    "search_intent": "Fixing 401/permission denied errors when calling Anthropic Claude API",
+    "common_causes": [
+      "Found via multiple developer reports discussing 'permission_error' and 'An API key is required but missing' when using anthropic-sdk-python. Distinct from covered OpenAI API errors. Category mapping: direct Anthropic API auth error."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "Anthropic API"
+    ]
   }
 ]
