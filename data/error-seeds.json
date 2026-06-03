@@ -46525,5 +46525,85 @@
     "related_errors": [
       "Docker"
     ]
+  },
+  {
+    "slug": "openai-api-openai-badrequesterror-error-code-400-error-code-content-filter-message-request-input-was-flagged-for-violating-openai-s-usage-policies-param-none-type-invalid-request-error",
+    "title": "OpenAI API BadRequestError: content_filter — input_contains_inappropriate_content",
+    "description": "Fix OpenAI content filter block error when making API calls; determine which prompts trigger it and how to bypass or restructure them Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "openai.BadRequestError: Error code: 400 - {'error': {'code': 'content_filter', 'message': 'Request input was flagged for violating OpenAI's usage policies.', 'param': None, 'type': 'invalid_request_error'}}",
+    "search_intent": "Fix OpenAI content filter block error when making API calls; determine which prompts trigger it and how to bypass or restructure them",
+    "common_causes": [
+      "Content filter blocking is a common pain point for ChatGPT/Claude users migrating to OpenAI API. Unlike chat UI which shows vague messages, API returns structured BadRequestError with 'content_filter' code. Search intent is extremely strong — developers want to know why their prompt was flagged and how to fix it without redesigning applications."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "anthropic-api-anthropic-ratelimiterror-error-code-529-error-message-overloaded-type-overloaded-error-code-none",
+    "title": "Anthropic Claude API overloaded_error — 529 Too Many Requests",
+    "description": "Resolve Claude API overloaded_error (HTTP 529); understand when Anthropic enables rate limiting and how to handle retries gracefully Includes evidence for Anthropic API troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Anthropic API",
+    "error_signature": "anthropic.RateLimitError: Error code: 529 - {'error': {'message': 'Overloaded', 'type': 'overloaded_error', 'code': None}}",
+    "search_intent": "Resolve Claude API overloaded_error (HTTP 529); understand when Anthropic enables rate limiting and how to handle retries gracefully",
+    "common_causes": [
+      "Overloaded error is Anthropic's equivalent of OpenAI's 529 response. Common during peak hours and new model launches (o1, Opus). Developers integrating Claude into production apps need robust retry logic. High commercial value as it directly impacts API billing and SLA."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "Anthropic API"
+    ]
+  },
+  {
+    "slug": "claude-code-claude-code-mcp-server-process-exited-with-code-1-error-connectionrefusederror-111-connect-call-failed-127-0-0-1-port",
+    "title": "Claude Code MCP server failed to connect — Connection refused",
+    "description": "Fix Claude Code MCP connection refused error; configure or repair local MCP server integration Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Claude Code: MCP server process exited with code 1 — error=ConnectionRefusedError(111, \"Connect call failed ('127.0.0.1', port)\")",
+    "search_intent": "Fix Claude Code MCP connection refused error; configure or repair local MCP server integration",
+    "common_causes": [
+      "Claude Code's MCP (Model Context Protocol) feature requires connecting to local servers (filesystem, GitHub, databases). When MCP server crashes or config is wrong, Claude Code can't provide context-aware assistance. Critical for AI coding tool users in production workflows — blocks entire development sessions."
+    ],
+    "quick_fix": "Confirm the local service is running on the expected host and port, then retry the smallest request.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "cloudflare-uncaught-in-promise-syntaxerror-unexpected-token-in-json-at-position-0-workers-returning-html-error-pages-instead-of-json-responses",
+    "title": "Cloudflare Workers Runtime Error — Unexpected token '<' in JSON at position 0",
+    "description": "Fix Cloudflare Worker JSON parsing error caused by returning HTML error page (522/524/520) instead of expected API response Includes evidence for Cloudflare troubleshooting demand.",
+    "category": "Cloudflare",
+    "technology": "Cloudflare",
+    "error_signature": "Uncaught (in promise) SyntaxError: Unexpected token '<' in JSON at position 0 — Workers returning HTML error pages instead of JSON responses",
+    "search_intent": "Fix Cloudflare Worker JSON parsing error caused by returning HTML error page (522/524/520) instead of expected API response",
+    "common_causes": [
+      "Common pattern: developers fetch from their own Workers API endpoint which returns 5xx HTML error pages, then try to parse as JSON and fail. Very confusing debugging path. Strong search demand with low-quality competing answers."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Cloudflare"
+    ]
+  },
+  {
+    "slug": "vercel-vercel-build-failed-next-sitemap-or-next-third-parties-import-error-cannot-find-module-next-third-parties-google-imported-from-page-tsx",
+    "title": "Vercel Build Failed — Next.js 'Cannot find module' during static export",
+    "description": "Fix Vercel deployment failing due to missing Next.js modules after upgrading dependencies Includes evidence for Vercel troubleshooting demand.",
+    "category": "Deployment",
+    "technology": "Vercel",
+    "error_signature": "Vercel build failed — next-sitemap or @next/third-parties import error: Cannot find module '@next/third-parties/google' imported from page.tsx",
+    "search_intent": "Fix Vercel deployment failing due to missing Next.js modules after upgrading dependencies",
+    "common_causes": [
+      "Vercel build command failures are core to dev-error-db scope. With Next.js 15 migration breaking changes, many devs hit import errors during Vercel deployments specifically (not locally). High commercial value as Vercel free tier is widely used."
+    ],
+    "quick_fix": "Check the build output, project root, and deployment platform configuration before redeploying.",
+    "related_errors": [
+      "Deployment"
+    ]
   }
 ]
