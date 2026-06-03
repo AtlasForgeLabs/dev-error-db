@@ -46957,5 +46957,69 @@
     "related_errors": [
       "Docker"
     ]
+  },
+  {
+    "slug": "github-copilot-typeerror-nonetype-object-is-not-iterable-provider-openai-codex-model-gpt-5-5-endpoint-https-chatgpt-com-backend-api-codex",
+    "title": "Codex OAuth TypeError 'NoneType' object is not iterable — Team-Wide Auth Block",
+    "description": "Fix team-wide Codex authentication failure returning NoneType non-retryable error blocking all API calls Includes evidence for GitHub Copilot troubleshooting demand.",
+    "category": "GitHub Copilot",
+    "technology": "GitHub Copilot",
+    "error_signature": "TypeError: 'NoneType' object is not iterable (Provider: openai-codex Model: gpt-5.5 Endpoint: https://chatgpt.com/backend-api/codex)",
+    "search_intent": "Fix team-wide Codex authentication failure returning NoneType non-retryable error blocking all API calls",
+    "common_causes": [
+      "OpenAI Codex GitHub Issue #24665, opened May 27 2026, 59 👍 reactions, multiple confirmation comments. Non-retryable client error (HTTP None) blocks all Codex usage across teams using ChatGPT OAuth. This is an OAuth session token deserialization issue when the API returns null/malformed data under rate-limit or timeout conditions."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "GitHub Copilot"
+    ]
+  },
+  {
+    "slug": "claude-code-server-side-rate-limits-break-parallel-agent-workflows",
+    "title": "Server-Side Rate Limits Break Parallel Agent Workflows in Claude Code",
+    "description": "Fix Anthropic API rate limiting that breaks parallel/multi-agent Claude Code execution, where independent agents compete for shared rate budget Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Server-side rate limits break parallel agent workflows",
+    "search_intent": "Fix Anthropic API rate limiting that breaks parallel/multi-agent Claude Code execution, where independent agents compete for shared rate budget",
+    "common_causes": [
+      "GitHub Issue #60562 (May 19 2026) and #62426 (May 26 2026). Multiple agents running in parallel hit the same per-account rate limit wall, with no coordination mechanism. Issue #62426 notes developers get comparable rate limit blocks while OpenAI Codex handles similar multi-instance loads without issue, highlighting an unfair competitive gap."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "claude-code-workflow-harness-retries-indefinitely-on-http-429-5xx-quota-error-from-anthropic-api",
+    "title": "Anthropic API Workflow Harness Retries Indefinitely on HTTP 429",
+    "description": "Prevent infinite retry loops when Claude Code subagents receive 429 or 5xx responses, causing hangs rather than graceful backoff Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Workflow harness retries indefinitely on HTTP 429 / 5xx / quota error from Anthropic API",
+    "search_intent": "Prevent infinite retry loops when Claude Code subagents receive 429 or 5xx responses, causing hangs rather than graceful backoff",
+    "common_causes": [
+      "GitHub Issue #64328 on anthropics/claude-code (May 31 2026). When a subagent gets HTTP 429/quota error, the workflow harness does not implement bounded retry or exponential backoff, leading to indefinite retries. Distinct from rate limit itself — this is the secondary handling bug that compounds the primary rate limit problem."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "cloudflare-524-a-timeout-occurred-connecting-to-the-origin-server-after-cloudflare-proxy-waited-120-seconds",
+    "title": "Cloudflare 524 Timeout When Proxying Long-Running AI API Requests via NewAPI",
+    "description": "Handle Cloudflare 524 timeout errors when making long-running LLM inference requests through the Cloudflare proxy layer, which cuts off responses before they complete Includes evidence for Cloudflare troubleshooting demand.",
+    "category": "Cloudflare",
+    "technology": "Cloudflare",
+    "error_signature": "524 A timeout occurred connecting to the origin server after Cloudflare proxy waited 120 seconds",
+    "search_intent": "Handle Cloudflare 524 timeout errors when making long-running LLM inference requests through the Cloudflare proxy layer, which cuts off responses before they complete",
+    "common_causes": [
+      "GitHub Issue QuantumNous/new-api#4972 (May 19 2026) reports Cloudflare proxy returning 524 errors when AI model inference takes longer than 120 seconds. Also confirmed by NousResearch/hermes-agent#23566 (May 10). Multiple Reddit threads report the same pattern. Directly affects production systems routing large-model inference through Cloudflare."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Cloudflare"
+    ]
   }
 ]
