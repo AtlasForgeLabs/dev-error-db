@@ -45997,5 +45997,69 @@
     "related_errors": [
       "Anthropic API"
     ]
+  },
+  {
+    "slug": "claude-code-callback-port-not-respected-oauth-listener-not-started-browser-redirected-to-localhost-8080-callback-but-connection-refused-because-claude-code-isn-t-listening",
+    "title": "Claude Code MCP OAuth --callback-port not respected — OAuth listener not started when using /mcp authentication flow",
+    "description": "Fix Claude Code MCP OAuth authentication where the specified callback port is ignored and no local server listens for the auth callback Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "--callback-port not respected — OAuth listener not started; browser redirected to localhost:8080/callback but connection refused because Claude Code isn't listening",
+    "search_intent": "Fix Claude Code MCP OAuth authentication where the specified callback port is ignored and no local server listens for the auth callback",
+    "common_causes": [
+      "GitHub Issue #64893 on anthropics/claude-code (created 2026-06-02). User configured claude mcp add with --callback-port 8080 for Salesforce hosted MCP Servers; after browser redirects to localhost:8080/callback?code=..., Chrome gets 'connection refused' because Claude Code never starts its OAuth listener. Confirmed as a CLI bug by Claude Code itself. Category mapping: Claude Code → AI Coding Tools per SKILL.md mapping."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "claude-code-mcp-at-start-session-setup-validation-reports-mcp-error-during-session-initialization",
+    "title": "Claude Code MCP initialization fails at session startup",
+    "description": "Fix Claude Code MCP servers failing to initialize when starting a new coding session Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "MCP at start session — setup validation reports MCP error during session initialization",
+    "search_intent": "Fix Claude Code MCP servers failing to initialize when starting a new coding session",
+    "common_causes": [
+      "GitHub Issue #64931 on anthropics/claude-code (created 2026-06-03 02:30 UTC, today). Reported via built-in feedback mechanism showing '1 setup issue: MCP at start session'. Environment: darwin, ghostty terminal, Claude Code v2.1.160. This is one of the most recent reports indicating a widespread MCP initialization pattern. Category mapping: Claude Code → AI Coding Tools per SKILL.md."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "claude-code-mcp-server-installation-silently-fails-with-no-error-message-no-success-confirmation-mcp-json-and-settings-json-remain-unchanged-affects-filesystem-github-memory-mcp-types",
+    "title": "MCP Server Installer UI Fails Silently — All MCP Types Affected",
+    "description": "Debug why Claude Code/Windsurf MCP Server installer silently fails without any visible error when adding standard MCP servers via the webview UI Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "MCP server installation silently fails with no error message, no success confirmation, .mcp.json and settings.json remain unchanged; affects Filesystem, GitHub, Memory MCP types",
+    "search_intent": "Debug why Claude Code/Windsurf MCP Server installer silently fails without any visible error when adding standard MCP servers via the webview UI",
+    "common_causes": [
+      "GitHub Issue #61455 on anthropics/claude-code (created 2026-05-22). Detailed root cause investigation reveals Claude VSCode extension does not implement MCP server installation — the webview sends update_session_state messages but the result handler lacks proper implementation. Affects all MCP types (Filesystem, GitHub, Memory). Reproducible on Windows 11 with Claude Code/Windsurf. Category mapping: Claude Code → AI Coding Tools per SKILL.md."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "kubernetes-api-uat-jobs-pods-stuck-at-init-crashloopbackoff-state-because-migration-pod-has-already-completed-before-dependent-pods-restart-prior-core-running-requires-both-auth-and-scheduler-running-first",
+    "title": "Core deployment stuck at Init:CrashLoopBackOff due to database migration order",
+    "description": "Fix Kubernetes pod CrashLoopBackOff caused by init container ordering issues where database migration pods complete before dependent application pods expect them Includes evidence for Kubernetes troubleshooting demand.",
+    "category": "Cloud Platforms",
+    "technology": "Kubernetes",
+    "error_signature": "API/UAT/Jobs Pods stuck at Init:CrashLoopBackOff state because migration pod has already completed before dependent pods restart; prior core running requires both auth and scheduler running first",
+    "search_intent": "Fix Kubernetes pod CrashLoopBackOff caused by init container ordering issues where database migration pods complete before dependent application pods expect them",
+    "common_causes": [
+      "GitHub Issue #539 on reportportal/kubernetes (reportportal project). Production-grade k8s deployment pattern where pods enter Init:CrashLoopBackOff after restart because Init job ran and completed. Also corroborated by issues #185 (agents-orchestrator) and #227 (ilm) showing CrashLoopBackOff as recurring k8s deployment failure mode. High commercial value: Kubernetes deployments affect paid enterprise infrastructure. Category mapping: Kubernetes → Cloud Platforms per SKILL.md."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "Cloud Platforms"
+    ]
   }
 ]
