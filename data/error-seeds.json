@@ -47085,5 +47085,117 @@
     "related_errors": [
       "AI Coding Tools"
     ]
+  },
+  {
+    "slug": "anthropic-api-billing-and-subscription-management-issues-error-viewing-subscription-details-or-upgrading-plans",
+    "title": "Anthropic billing and subscription management system failure",
+    "description": "Fix billing UI errors preventing upgrade/change of Anthropic plan or viewing subscription details — payment methods may also fail Includes evidence for Anthropic API troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Anthropic API",
+    "error_signature": "Billing and subscription management issues — error viewing subscription details or upgrading plans",
+    "search_intent": "Fix billing UI errors preventing upgrade/change of Anthropic plan or viewing subscription details — payment methods may also fail",
+    "common_causes": [
+      "Status incident #8q00jfj4yfv6 (May 28, 2026, resolved 19:23 UTC). Directly affects billing flow on claude.ai and Anthropic Console. Users unable to view subscription details, payment methods, or upgrade/change plans. API/chat access unaffected but billing portal completely broken. Highest commercial intent: anyone hitting this error is trying to spend money (upgrade/subscribe). No similar error coverage on dev-error-db yet."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Anthropic API"
+    ]
+  },
+  {
+    "slug": "openai-api-elevated-401-errors-for-api-endpoints",
+    "title": "Elevated 401 errors for OpenAI API endpoints",
+    "description": "Fix unexpected 401 Unauthorized errors on OpenAI API despite having valid API keys — caused widespread auth failures across enterprise and consumer tiers Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "Elevated 401 errors for API endpoints",
+    "search_intent": "Fix unexpected 401 Unauthorized errors on OpenAI API despite having valid API keys — caused widespread auth failures across enterprise and consumer tiers",
+    "common_causes": [
+      "Status incident #01KP1PS4WFSH4CVJT0DJBKQ3FT (Apr 14, 2026). Official OpenAI status page reports widespread 401 auth failures. High commercial value: affects all paid users and API callers; 401s block production workflows entirely. This is distinct from generic 'invalid API key' (already covered). The scope was platform-level infrastructure failure, not user misconfiguration."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "anthropic-api-elevated-errors-on-claude-opus-4-7-model-requests",
+    "title": "Anthropic Claude Opus 4.7 recurrent elevated errors",
+    "description": "Fix recurring elevated error rates on Claude Opus 4.7 — model frequently returns errors despite being the premium tier Includes evidence for Anthropic API troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Anthropic API",
+    "error_signature": "Elevated errors on Claude Opus 4.7 model requests",
+    "search_intent": "Fix recurring elevated error rates on Claude Opus 4.7 — model frequently returns errors despite being the premium tier",
+    "common_causes": [
+      "Multiple incidents recorded on Anthropic status page: Jun 3 (#thp2kyjx60qn), Jun 1 (#qc88nvqjv99m), May 28 (#0w1bqsc12lt8), May 27 (#rtr7z82cqmp9, #fw96fnc5bw45), May 25 (#44pgyz54d48z), May 22 (#r1prbh7v5gcn). Recurring issue on premium Opus 4.7 model — highest paid tier. Commercial value extremely high: Opus is the flagship model for enterprise users paying top prices. Error occurs even when other models (Sonnet, Haiku) work normally."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "Anthropic API"
+    ]
+  },
+  {
+    "slug": "openai-api-codex-codex-gpt-image-2-does-not-exist-errors",
+    "title": "Codex gpt-image-2 does not exist errors",
+    "description": "Fix error when using GPT Image 2 model in Codex — model returned as non-existent despite being available to paid users Includes evidence for OpenAI API / Codex troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API / Codex",
+    "error_signature": "codex-gpt-image-2-does-not-exist-errors",
+    "search_intent": "Fix error when using GPT Image 2 model in Codex — model returned as non-existent despite being available to paid users",
+    "common_causes": [
+      "Status incident #01KT5B2V94YX1T1M88BVQHB58J (Jun 3, 2026) — Codex experienced elevated errors specifically on gpt-image-2 model. Affected 5 components under Codex. Users see model-not-found or does-not-exist errors when attempting to generate images via Codex interface. High commercial value: affects paid Codex subscriptions. Mapped to OpenAI API category since root cause is API model availability."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "openai-api-elevated-errors-for-responses-api-get-v1-responses-endpoint-returning-404",
+    "title": "Responses API elevated 404 errors after deploy rollback",
+    "description": "Fix Responses API returning 404 Not Found errors that started after a deployment — users need workaround or fix until rollforward Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "Elevated errors for Responses API — GET /v1/responses endpoint returning 404",
+    "search_intent": "Fix Responses API returning 404 Not Found errors that started after a deployment — users need workaround or fix until rollforward",
+    "common_causes": [
+      "Status incident #01KR50YN2DBMTXGPC6BQSJN48J (May 8, 2026). Between 4:05pm and 4:40pm PT, Customers using Responses API got 404 errors. Root cause: recent deploy, rolled back. GET /v1/responses endpoint was down entirely (incident #01KNH45H33H4J553XBG6TJ3PQF, May 6). Distinct error signature (404 on /v1/responses vs generic 429/500). Very high commercial value for apps relying on streaming responses."
+    ],
+    "quick_fix": "Check the build output, project root, and deployment platform configuration before redeploying.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "anthropic-claude-code-claude-code-security-reviews-code-reviews-routines-and-web-sessions-degraded",
+    "title": "Claude Code security reviews and routines degradation",
+    "description": "Fix Claude Code features (security reviews, code reviews, routines, web sessions) returning errors or failing during usage Includes evidence for Anthropic (Claude Code) troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Anthropic (Claude Code)",
+    "error_signature": "Claude Code security reviews, code reviews, routines and web sessions degraded",
+    "search_intent": "Fix Claude Code features (security reviews, code reviews, routines, web sessions) returning errors or failing during usage",
+    "common_causes": [
+      "Status incident #0w1blp7cngrr (Jun 3, 2026, resolved 07:36 UTC). Claude Code explicitly listed as component on Anthropic status page with 99.03% uptime over 90 days. Incident affected specific features: security reviews, code reviews, routines, and some web sessions. High commercial value: directly blocks developer workflow in Claude Code IDE extension. Recent enough to be relevant."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "openai-api-codex-codex-stream-disconnecting-intermittently",
+    "title": "OpenAI Codex stream disconnecting intermittently",
+    "description": "Fix Codex AI coding assistant streams dropping mid-response — incomplete code completions requiring manual retry Includes evidence for OpenAI API / Codex troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API / Codex",
+    "error_signature": "Codex stream disconnecting intermittently",
+    "search_intent": "Fix Codex AI coding assistant streams dropping mid-response — incomplete code completions requiring manual retry",
+    "common_causes": [
+      "Status incident #01KQB4AMHC9CKFYT863PMXN1YR (Apr 29, 2026, 07:12 UTC). Codex uses Server-Sent Events/streaming responses. Intermittent disconnection causes incomplete code outputs. Distinct from 'model not available' or 'does not exist' — this is a transport-layer streaming issue that corrupts the developer coding experience without any explicit error message, making it harder to diagnose."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "OpenAI API"
+    ]
   }
 ]
