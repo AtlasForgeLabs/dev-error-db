@@ -46445,5 +46445,85 @@
     "related_errors": [
       "AI Coding Tools"
     ]
+  },
+  {
+    "slug": "claude-code-http-mcp-servers-requiring-oauth-silently-fail-with-no-user-notification-tools-list-returns-unauthorized-but-claude-code-shows-nothing-debug-log-reveals-redirection-handling-is-disabled-skipping-redirect",
+    "title": "Claude Code HTTP MCP Servers Require OAuth Silently Fail — No User Notification",
+    "description": "Fix Claude Code MCP OAuth authentication failure where no browser opens and no tools appear despite correct configuration Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "HTTP MCP servers requiring OAuth silently fail with no user notification — tools/list returns Unauthorized but Claude Code shows nothing; debug log reveals 'Redirection handling is disabled, skipping redirect'",
+    "search_intent": "Fix Claude Code MCP OAuth authentication failure where no browser opens and no tools appear despite correct configuration",
+    "common_causes": [
+      "GitHub Issue #26917 on anthropics/claude-code (Feb 2026): HTTP MCP servers like Granola, Neon, Stripe return Unauthorized on tools/list but Claude Code silently swallows the error with no notification. Related issue shows 'Redirection handling is disabled' prevents browser auth flow from triggering. Covers both Claude Code + Claude Web MCP auth failures on NewsBlur Forum. Maps to approved category AI Coding Tools."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "cursor-cursor-model-not-available-connection-error-ide-fails-to-connect-to-backend-after-update-connection-refused-or-model-unavailable-displayed",
+    "title": "Cursor IDE Connection Error and Model Not Available After Update",
+    "description": "Fix Cursor IDE connection errors and model unavailability after version updates or configuration changes; restore AI assistant functionality Includes evidence for Cursor troubleshooting demand.",
+    "category": "Cursor",
+    "technology": "Cursor",
+    "error_signature": "Cursor model not available / connection error — IDE fails to connect to backend after update; 'connection refused' or 'model unavailable' displayed",
+    "search_intent": "Fix Cursor IDE connection errors and model unavailability after version updates or configuration changes; restore AI assistant functionality",
+    "common_causes": [
+      "Multiple recent GitHub references to Cursor crash/connection/model-not-available issues: huggingface-style agent tooling documentation cites Cursor connection failures. Existing dev-error-db coverage only includes 'Cursor model not available' generically — this candidate adds specificity around connection errors post-update, which is a distinct user scenario. Cursor has strong paid-subscription model making this commercially valuable."
+    ],
+    "quick_fix": "Confirm the local service is running on the expected host and port, then retry the smallest request.",
+    "related_errors": [
+      "Cursor"
+    ]
+  },
+  {
+    "slug": "cloudflare-cloudflare-error-524-a-response-from-the-web-server-took-too-long-workers-script-execution-exceeded-timeout-threshold",
+    "title": "Cloudflare Workers Timeout — Error 524 A Response From the Web Server Took Too Long",
+    "description": "Diagnose and fix Cloudflare 524 timeout errors in production — understand origin server latency, Workers timeout limits, and CDN edge-to-origin communication issues Includes evidence for Cloudflare troubleshooting demand.",
+    "category": "Cloudflare",
+    "technology": "Cloudflare",
+    "error_signature": "Cloudflare Error 524 — a response from the web server took too long; Workers script execution exceeded timeout threshold",
+    "search_intent": "Diagnose and fix Cloudflare 524 timeout errors in production — understand origin server latency, Workers timeout limits, and CDN edge-to-origin communication issues",
+    "common_causes": [
+      "Covered on dev-error-db (Error 522, Error 525) but Error 524 specifically is distinct and commonly confused. Stack Overflow discussions document Apache HTTPS causing 524 errors; general Cloudflare connection issues cause data sync failures reported on SO. 524 errors are very common in production and have clear SEO demand for 'fix'. Not identical to existing coverage since it focuses on timeout rather than SSL/handshake failures."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Cloudflare"
+    ]
+  },
+  {
+    "slug": "litellm-litellm-proxy-timeout-model-unreachable-or-provider-timeout-on-multi-provider-routing-fallback",
+    "title": "LiteLLM Proxy Timeout and Model Unavailable Errors on Multi-Provider Routing",
+    "description": "Debug LiteLLM proxy when routed API calls time out or models become unavailable across integrated providers (OpenAI, Anthropic, local models) Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "LiteLLM proxy timeout — model unreachable or provider timeout on multi-provider routing fallback",
+    "search_intent": "Debug LiteLLM proxy when routed API calls time out or models become unavailable across integrated providers (OpenAI, Anthropic, local models)",
+    "common_causes": [
+      "Multiple developer setups report LiteLLM routing errors: hermes-agent integration docs cite LiteLLM Proxy / OpenRouter cost routing issues; AI-Agent-UN docs show Rate Limit Exceeded + Out of Memory patterns; omnibus routing between providers creates cascading failures when upstream timeout propagates. New enough topic with low existing coverage on dev-error-db. High commercial value due to production multi-provider dependency."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "LiteLLM"
+    ]
+  },
+  {
+    "slug": "docker-eacces-permission-denied-mkdir-usr-local-lib-node-modules-npm-cacache-tmp-or-node-modules-during-npm-install-global-package-in-docker-container",
+    "title": "Docker EACCES Permission Denied on npm Install Global and CLI Scripts",
+    "description": "Fix Docker EACCES permission denied errors when installing global npm packages or running build scripts inside containers Includes evidence for Docker troubleshooting demand.",
+    "category": "Docker",
+    "technology": "Docker",
+    "error_signature": "EACCES: permission denied — mkdir /usr/local/lib/node_modules/.npm/_cacache/tmp or node_modules during npm install global package in Docker/container",
+    "search_intent": "Fix Docker EACCES permission denied errors when installing global npm packages or running build scripts inside containers",
+    "common_causes": [
+      "Widespread error across AI coding tools and DevOps workflows: openclaw README documents EACCES permission denied during npm install -g; MicroClaw reports Permission denied (os error 13) on SDK binary startup; OmniRoute wiki covers EACCES data directory issues. Distinct from already-covered Docker bind/port-permission errors on dev-error-db. Strong commercial value affecting containerized CI/CD pipelines."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Docker"
+    ]
   }
 ]
