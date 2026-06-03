@@ -46269,5 +46269,53 @@
     "related_errors": [
       "LiteLLM"
     ]
+  },
+  {
+    "slug": "claude-code-claude-requested-permissions-to-use-mcp-atlassian-jira-get-issue-but-you-haven-t-granted-it-yet",
+    "title": "How to Auto-Approve MCP Server Permissions in Claude Code GitHub Actions",
+    "description": "Fix permission denied errors when using Claude Code MCP servers in headless GitHub Actions CI/CD pipelines by pre-approving tool permissions without interactive prompts. Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Claude requested permissions to use mcp__atlassian__jira_get_issue, but you haven't granted it yet.",
+    "search_intent": "Fix permission denied errors when using Claude Code MCP servers in headless GitHub Actions CI/CD pipelines by pre-approving tool permissions without interactive prompts.",
+    "common_causes": [
+      "GitHub Issue #647 on anthropics/claude-code-action repo (Oct 28, 2025). Developer reports MCP server tools require manual permission granting in headless GH Actions environment. Root cause: wildcard patterns like mcp__context7__* don't work — must use exact tool names like mcp__context7__. Deny list also conflicts with allowlist causing cascading permission denials. Category mapping: Claude Code → AI Coding Tools per SKILL.md category rules."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "openai-api-ratelimiterror-error-code-429-you-exceeded-your-current-quota-for-this-model-tier",
+    "title": "OpenAI API RateLimitError 429 Causing RAG Application Failure",
+    "description": "Fix RateLimitError 429 errors interrupting RAG (Retrieval Augmented Generation) application workflows that use GPT-4 with Azure Form Recognizer and Pinecone integration. Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "RateLimitError: Error code: 429 — You exceeded your current quota for this model tier.",
+    "search_intent": "Fix RateLimitError 429 errors interrupting RAG (Retrieval Augmented Generation) application workflows that use GPT-4 with Azure Form Recognizer and Pinecone integration.",
+    "common_causes": [
+      "Related Stack Overflow question 78707409 about running RAG applications with langchain, azure-form-recognizer, pinecone. User reports continuous 429 errors even for low traffic Node.js integrations. Retrying with delay helps intermittently. Different from generic insufficient_quota — this is specifically about per-model tier rate limits, not billing status. Category mapping: OpenAI API → OpenAI API (exact match). Affects production apps = +1 boost."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "cloudflare-error-522-connection-timed-out-origin-server-did-not-respond-within-time-limit",
+    "title": "Cloudflare Error 522 Connection Timed Out — Origin Server Too Slow",
+    "description": "Diagnose and fix Cloudflare 522 errors where origin server fails to respond within Cloudflare's timeout window despite proper DNS configuration. Includes evidence for Cloudflare troubleshooting demand.",
+    "category": "Cloudflare",
+    "technology": "Cloudflare",
+    "error_signature": "Error 522: Connection timed out — Origin server did not respond within time limit.",
+    "search_intent": "Diagnose and fix Cloudflare 522 errors where origin server fails to respond within Cloudflare's timeout window despite proper DNS configuration.",
+    "common_causes": [
+      "Reddit r/CloudFlare post about moving to Cloudflare proxy and getting 522 errors from porkbun registrar host. DEV Community comprehensive guide covering 522/523/524 error codes. Users report issues during migration. Cloudflare Workers constant CPU time limit also mentioned as root cause. Category mapping: Cloudflare → Cloudflare (exact match per SKILL.md). Affects production deployments = +2 boost."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Cloudflare"
+    ]
   }
 ]
