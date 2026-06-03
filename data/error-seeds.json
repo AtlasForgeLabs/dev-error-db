@@ -46813,5 +46813,85 @@
     "related_errors": [
       "Ollama"
     ]
+  },
+  {
+    "slug": "litellm-sql-injection-vulnerability-in-litellm-proxy-allows-unauthorized-database-access-cve-2026-42208",
+    "title": "CVE-2026-42208: BerriAI LiteLLM SQL injection vulnerability — proxy database compromised",
+    "description": "Fix/mitigate LiteLLM SQL injection vulnerability that exposes the proxy's backend database to unauthorized reads and modifications Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "SQL injection vulnerability in LiteLLM proxy allows unauthorized database access (CVE-2026-42208)",
+    "search_intent": "Fix/mitigate LiteLLM SQL injection vulnerability that exposes the proxy's backend database to unauthorized reads and modifications",
+    "common_causes": [
+      "Found on dev.to (published 2026-05-08). Critical security vulnerability in LiteLLM proxy allowing attacker read/write access to the proxy database. High commercial value: enterprise LiteLLM deployments at risk, billing data exposed. Category mapped to LiteLLM per approved list. Security event but per notification policy only written to inbox JSON, no Feishu alert sent."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "LiteLLM"
+    ]
+  },
+  {
+    "slug": "claude-code-prompt-failed-workflow-trigger-was-renamed-to-ultracode-in-v2-1-160-every-scripted-prompt-containing-it-regressed",
+    "title": "Claude Code v2.1.160 renamed workflow trigger to ultracode — all scripted prompts just broke",
+    "description": "Fix Claude Code prompts that stopped working after upgrading to v2.1.160 because 'workflow' keyword no longer triggers dynamic workflows Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "[prompt] failed: 'workflow' trigger was renamed to 'ultracode' in v2.1.160, every scripted prompt containing it regressed",
+    "search_intent": "Fix Claude Code prompts that stopped working after upgrading to v2.1.160 because 'workflow' keyword no longer triggers dynamic workflows",
+    "common_causes": [
+      "Found on dev.to (published 2026-06-02). Author reports Claude Code v2.1.160 single-line change silently broke all prompt templates/runbooks/CI scripts using the 'workflow' keyword. High commercial value: affects paid Anthropic API users, breaks production automation. Category mapped to AI Coding Tools per SKILL.md rules."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "anthropic-api-opus-4-8-cache-aware-routing-inside-agentic-loops-produces-unexpected-responses-default-200k-window-behaves-differently-than-documented",
+    "title": "Anthropic Opus 4.8 agent loop cache-aware routing causes unexpected behavior",
+    "description": "Fix unpredictable responses from Claude API after upgrading to Opus 4.8, specifically cache-aware routing causing wrong model choices or truncation in agent loops Includes evidence for Anthropic API troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Anthropic API",
+    "error_signature": "Opus 4.8 cache-aware routing inside agentic loops produces unexpected responses — default 200k window behaves differently than documented",
+    "search_intent": "Fix unpredictable responses from Claude API after upgrading to Opus 4.8, specifically cache-aware routing causing wrong model choices or truncation in agent loops",
+    "common_causes": [
+      "Found on dev.to (published 2026-06-03). Anthropic quietly shipped Opus 4.8 with internal changes to how cache-aware routing works inside agentic loops, affecting production API call patterns. Not a classic error but a regression-like behavioral change with real impact. Commercial value: paid Anthropic API users experiencing degraded output quality. Category mapped to Anthropic API per approved list."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Anthropic API"
+    ]
+  },
+  {
+    "slug": "cursor-cursorrules-file-silently-ignored-by-cursor-agent-mode-due-to-size-scoped-mdc-migration-recommended",
+    "title": "Cursor Agent Mode silently ignores .cursorrules file because it is too large",
+    "description": "Fix Cursor not reading project context/rules because the monorepo .cursorrules file exceeded silent ignore threshold Includes evidence for Cursor troubleshooting demand.",
+    "category": "Cursor",
+    "technology": "Cursor",
+    "error_signature": ".cursorrules file silently ignored by Cursor Agent Mode due to size — scoped .mdc migration recommended",
+    "search_intent": "Fix Cursor not reading project context/rules because the monorepo .cursorrules file exceeded silent ignore threshold",
+    "common_causes": [
+      "Found on dev.to (published 2026-06-03). One oversized .cursorrules for a monorepo causes Cursor Agent Mode to silently drop it — no error message, just missing context. High commercial value: affects paying Cursor users who lose AI coding assistance. Direct fix provided (scoped .mdc migration). Category mapped to Cursor per approved list."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Cursor"
+    ]
+  },
+  {
+    "slug": "cloudflare-cloudflare-dns-01-cert-manager-challenge-fails-due-to-kubernetes-ndots-resolver-misconfiguration-causing-dns-timeout",
+    "title": "Cloudflare DNS-01 challenges failing with Kubernetes ndots resolution issues",
+    "description": "Fix Cloudflare DNS-01 certificate provisioning failing intermittently due to cluster DNS resolution (ndots) conflicts with cert-manager webhook Includes evidence for Cloudflare troubleshooting demand.",
+    "category": "Cloudflare",
+    "technology": "Cloudflare",
+    "error_signature": "Cloudflare DNS-01 cert-manager challenge fails due to Kubernetes ndots resolver misconfiguration causing DNS timeout",
+    "search_intent": "Fix Cloudflare DNS-01 certificate provisioning failing intermittently due to cluster DNS resolution (ndots) conflicts with cert-manager webhook",
+    "common_causes": [
+      "Found on dev.to (published 2026-05-29). Developers report Cloudflare DNS-01 automated certificate renewal failing when combined with Kubernetes ndots settings. Affects cloud deployments using cert-manager + Cloudflare DNS validation. Strong commercial value: broken SSL cert rotation impacts HTTPS services for paying customers. Category mapped to Cloudflare per approved list."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Cloudflare"
+    ]
   }
 ]
