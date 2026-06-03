@@ -46237,5 +46237,37 @@
     "related_errors": [
       "AI Coding Tools"
     ]
+  },
+  {
+    "slug": "anthropic-api-api-error-usage-credits-required-for-1m-context-run-usage-credits-to-turn-them-on-or-model-to-switch-to-standard-context",
+    "title": "Claude Code Max 20x plan users cannot access Opus + 1M context — gets \"Usage credits required\" error",
+    "description": "Fix 'Usage credits required for 1M context' error in Claude Code CLI for Max 20x subscribers who should already have Opus model + 1M context included Includes evidence for Anthropic API troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Anthropic API",
+    "error_signature": "API Error: Usage credits required for 1M context · run /usage-credits to turn them on, or /model to switch to standard context",
+    "search_intent": "Fix 'Usage credits required for 1M context' error in Claude Code CLI for Max 20x subscribers who should already have Opus model + 1M context included",
+    "common_causes": [
+      "GitHub anthropics/claude-code#64953 (open Jun 3, 2026). Max 20x paid subscribers switching to Opus 4.7/4.8 models via /model get API error requiring additional usage credits payment. Sonnet 4.6 works fine. Comment confirms $35.28/$200 usage tracking incorrectly applied. This is a clear billing/subscription edge case directly impacting enterprise paying users. Duplicate label present but still valid distinct error signature. Category: Anthropic API — subscription billing + quota edge case on paid tier."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Anthropic API"
+    ]
+  },
+  {
+    "slug": "litellm-interactive-oauth2-mcp-server-returns-500-instead-of-401-plus-www-authenticate-when-x-litellm-api-key-is-present-but-no-google-oauth-token-exists-yet",
+    "title": "LiteLLM middleware OAuth2 returns 500 instead of 401+WWW-Authenticate for missing tokens",
+    "description": "Fix LiteLLM OAuth2 middleware returning HTTP 500 instead of proper 401+WWW-Authenticate challenge when upstream OAuth token hasn't been obtained yet Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "Interactive OAuth2 MCP server returns 500 instead of 401+WWW-Authenticate when x-litellm-api-key is present but no Google OAuth token exists yet",
+    "search_intent": "Fix LiteLLM OAuth2 middleware returning HTTP 500 instead of proper 401+WWW-Authenticate challenge when upstream OAuth token hasn't been obtained yet",
+    "common_causes": [
+      "GitHub BerriAI/litellm#29261 (open May 29, 2026). When LiteLLM proxy has x-litellm-api-key set but the end-user hasn't completed OAuth flow for Google auth provider, the server returns generic 500 instead of proper 401 WWW-Authenticate. Client applications can't trigger re-auth properly. 3 comments, still open. Category: LiteLLM — HTTP protocol violation in OAuth middleware affecting SSO integrations."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "LiteLLM"
+    ]
   }
 ]
