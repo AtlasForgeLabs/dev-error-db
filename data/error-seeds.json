@@ -45725,5 +45725,101 @@
     "related_errors": [
       "Docker"
     ]
+  },
+  {
+    "slug": "anthropic-api-http-529-overloaded-error-api-error-529-overloaded-global-capacity-saturation-not-per-key-rate-limit",
+    "title": "Anthropic API 529 Overloaded Error After Claude 4.7 Launch — Production Retry Strategy",
+    "description": "Fix Anthropic API 529 overloaded errors during peak traffic or model launches; implement retry-and-fallback strategy for production apps Includes evidence for Anthropic API troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Anthropic API",
+    "error_signature": "HTTP 529 overloaded_error: \"API Error: 529 overloaded\" — global capacity saturation, not per-key rate limit",
+    "search_intent": "Fix Anthropic API 529 overloaded errors during peak traffic or model launches; implement retry-and-fallback strategy for production apps",
+    "common_causes": [
+      "Multiple sources report Anthropic API 529 overloaded_error spiking during Claude 4.7 launch (May 2026). Key distinction: 529 is a global capacity signal, not a per-key rate limit. GitHub issue #63735 directly reports '529 Overloaded'. Sources include web3aiblog.com production analysis, Respan.ai rate limit guide, codersera.com Claude Code troubleshooting, and anthropics/claude-code GitHub issues. Category mapped to Anthropic API (exact match). Covers both the error mechanism and production recovery."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "Anthropic API"
+    ]
+  },
+  {
+    "slug": "github-actions-failed-to-queue-workflow-run-please-try-again-failed-to-download-archive-after-1-attempts",
+    "title": "GitHub Actions Failed to Queue Workflow Run — Archive Download Failure",
+    "description": "Fix GitHub Actions workflow queueing failures and dependency archive download errors affecting team CI/CD pipelines; includes service-wide incident context Includes evidence for GitHub Actions troubleshooting demand.",
+    "category": "GitHub Actions",
+    "technology": "GitHub Actions",
+    "error_signature": "Failed to queue workflow run. Please try again. / Failed to download archive ... after 1 attempts.",
+    "search_intent": "Fix GitHub Actions workflow queueing failures and dependency archive download errors affecting team CI/CD pipelines; includes service-wide incident context",
+    "common_causes": [
+      "GitHub community discussion #196970 (May 26, 2026) documents a widespread GitHub Actions incident where triggering workflows from the UI failed with 'Failed to queue workflow run. Please try again.' and subsequent job setup failed downloading action archives from codeload.github.com. Affects paid teams with active CI/CD pipelines. Multiple confirmed reports in comments. Source-backed from official GitHub community discussions. Category mapped to GitHub Actions (exact match)."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "GitHub Actions"
+    ]
+  },
+  {
+    "slug": "cursor-user-api-key-rate-limit-exceeded-gpt-5-5-on-custom-endpoint-backend-receives-zero-requests",
+    "title": "Cursor BYOK GPT-5.5 Rate Limit Error — Request Never Reaches Backend Server",
+    "description": "Fix Cursor IDE showing rate limit error for GPT-5.5 BYOK configuration despite correct keys and endpoints — actual cause is Cursor silently converting request payloads between API schemas; request never leaves the IDE Includes evidence for Cursor troubleshooting demand.",
+    "category": "Cursor",
+    "technology": "Cursor",
+    "error_signature": "User API key rate limit exceeded (GPT-5.5 on custom endpoint; backend receives zero requests)",
+    "search_intent": "Fix Cursor IDE showing rate limit error for GPT-5.5 BYOK configuration despite correct keys and endpoints — actual cause is Cursor silently converting request payloads between API schemas; request never leaves the IDE",
+    "common_causes": [
+      "Source dredyson.com documents a specific bug: GPT-5.5 returns 'User API key rate limit exceeded' on Cursor IDE BYOK with custom endpoint, but the backend server's access logs show zero incoming requests. Root cause: Cursor silently converts request formats between different API schemas, and GPT-5.5 introduced a format that the custom endpoint cannot handle. Same config with GPT-5.4 works fine. Affects paying Cursor Pro/Team users using custom OpenAI-compatible endpoints. Verified via curl/Postman tests. Category mapped to Cursor (exact match)."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "Cursor"
+    ]
+  },
+  {
+    "slug": "vercel-cannot-find-module-var-task-node-modules-swc-helpers-esm-interop-require-default-js-did-you-forget-to-add-it-to-dependencies-in-package-json",
+    "title": "Vercel Next.js Build Fails — Cannot Find Module @swc/helpers/esm/_interop_require_default.js in Edge Functions",
+    "description": "Fix Vercel deployment failure where Next.js Edge functions crash at runtime due to missing @swc/helpers module — works locally but fails on Vercel deploy; caused by framework bundling layer bug Includes evidence for Vercel troubleshooting demand.",
+    "category": "Deployment",
+    "technology": "Vercel",
+    "error_signature": "Cannot find module '/var/task/node_modules/@swc/helpers/esm/_interop_require_default.js'; Did you forget to add it to \"dependencies\" in package.json?",
+    "search_intent": "Fix Vercel deployment failure where Next.js Edge functions crash at runtime due to missing @swc/helpers module — works locally but fails on Vercel deploy; caused by framework bundling layer bug",
+    "common_causes": [
+      "GitHub issue vercel/next.js#93850 documents MIDDLEWARE_INVOCATION_FAILED and FUNCTION_INVOCATION_FAILED on Vercel deploy with missing @swc/helpers module path. Error occurs only in Vercel's deploy-time pipeline, not locally. Affects Vercel Hobby plan users deploying Next.js 16.2.x projects. The stack trace points to a framework runtime bundling layer bug. Source-backed from vercel/next.js official repo. Category mapped to Deployment (Vercel → Deployment, exact match in approved categories)."
+    ],
+    "quick_fix": "Check the build output, project root, and deployment platform configuration before redeploying.",
+    "related_errors": [
+      "Deployment"
+    ]
+  },
+  {
+    "slug": "anthropic-api-http-529-overloaded-error-during-claude-4-7-peak-traffic-naive-exponential-backoff-makes-problem-worse-requires-jittered-backoff-with-hard-cap",
+    "title": "Anthropic API Batch 529 During Claude 4.7 Peak — Multi-Provider Fallback Chain Pattern",
+    "description": "Implement production retry-and-fallback strategy for Anthropic API 529 errors: jittered exponential backoff (30s cap), Batch API release valve, multi-provider fallback chain (Claude 4.7 → 4.6 → GPT-5) with quality gating Includes evidence for Anthropic API troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Anthropic API",
+    "error_signature": "HTTP 529 overloaded_error during Claude 4.7 peak traffic — naive exponential backoff makes problem worse; requires jittered backoff with hard cap",
+    "search_intent": "Implement production retry-and-fallback strategy for Anthropic API 529 errors: jittered exponential backoff (30s cap), Batch API release valve, multi-provider fallback chain (Claude 4.7 → 4.6 → GPT-5) with quality gating",
+    "common_causes": [
+      "Web3AIBlog.com provides production-tested strategy for Anthropic 529 spikes following Claude 4.7 launch (May 2026). Documents how naive exponential backoff compounds the problem because all retrying clients land in same overload window. Solution includes: jittered exponential backoff with 30-second cap, Batch API as release valve (50% cheaper, separate capacity pool), multi-provider fallback chain with quality gating. Critical operational knowledge for teams running production Anthropic integrations. Duplicate risk low vs candidate #1 (this focuses on the fallback architecture pattern, while #1 covers the error mechanism and basic retry)."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "Anthropic API"
+    ]
+  },
+  {
+    "slug": "kubernetes-error-from-server-forbidden-pods-is-forbidden-user-username-cannot-list-resource-pods-in-namespace-namespace",
+    "title": "Kubernetes kubectl Forbidden — RBAC Permission Denied on Pod Listing",
+    "description": "Fix Kubernetes RBAC permission denied errors when kubectl commands fail for users/service accounts lacking proper Role/RoleBinding; common in multi-tenant clusters and CI/CD pipelines Includes evidence for Kubernetes troubleshooting demand.",
+    "category": "Cloud Platforms",
+    "technology": "Kubernetes",
+    "error_signature": "Error from server (Forbidden): pods is forbidden: User \"<username>\" cannot list resource \"pods\" in namespace \"<namespace>\"",
+    "search_intent": "Fix Kubernetes RBAC permission denied errors when kubectl commands fail for users/service accounts lacking proper Role/RoleBinding; common in multi-tenant clusters and CI/CD pipelines",
+    "common_causes": [
+      "Markaicode provides comprehensive troubleshooting for kubectl RBAC Forbidden errors, including diagnosis flow using kubectl auth can-i --as=<user>. Covers EKS/GKE/AKS specific kubeconfig issues, ServiceAccount binding, cluster-admin misuse. High commercial value for DevOps engineers managing cloud-native deployments. Source-backed technical deep-dive. Category mapped to Cloud Platforms (Kubernetes → Cloud Platforms, exact match per rules table)."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Cloud Platforms"
+    ]
   }
 ]
