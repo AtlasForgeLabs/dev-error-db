@@ -46317,5 +46317,53 @@
     "related_errors": [
       "Cloudflare"
     ]
+  },
+  {
+    "slug": "openai-api-openai-codex-429-rate-limit-repeated-4x-for-the-same-runid-same-model-embeddedattemptsessiontakeovererror",
+    "title": "OpenClaw embedded run does not trigger model fallback on OpenAI Codex quota exceeded (429 usage_limit_reached)",
+    "description": "Fix OpenClaw embedded runs that hang on the same model when OpenAI Codex returns 429 usage_limit_reached, instead of falling back to configured alternate models like deepseek-v4-pro or openrouter providers. Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "OpenAI Codex 429 rate limit (repeated 4x for the same runId, same model) — EmbeddedAttemptSessionTakeoverError",
+    "search_intent": "Fix OpenClaw embedded runs that hang on the same model when OpenAI Codex returns 429 usage_limit_reached, instead of falling back to configured alternate models like deepseek-v4-pro or openrouter providers.",
+    "common_causes": [
+      "GitHub issue #85103 (openclaw/openclaw) filed May 21, 2026, still open. Multiple reporters confirm: when the embedded run hits a provider-wide 429 quota limit, it retried the same model 4 times then crashed with EmbeddedAttemptSessionTakeoverError. Configured fallback chain was never entered. Reproducer confirmed with Codex OAuth Plus plan exhausted. Recent comment Jun 3 added independent confirmation including auth failure 401 reproducing the same pattern with fallbackConfigured=false. Category mapping: primary technology is OpenAI API / Codex Responses API; affected users are paying subscribers."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "anthropic-api-api-error-529-overloaded-error-continuous-retry-loop-up-to-10-plus-attempts",
+    "title": "Claude Code API 529 Overloaded errors during peak hours with excessive retries",
+    "description": "Resolve constant Claude Code 529 overloaded_error during peak usage hours, where repeated API requests get rejected with 'Overloaded' error message, causing long delays from excessive retry cycles. Includes evidence for Anthropic API troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Anthropic API",
+    "error_signature": "API Error: 529 overloaded_error — continuous retry loop up to 10+ attempts",
+    "search_intent": "Resolve constant Claude Code 529 overloaded_error during peak usage hours, where repeated API requests get rejected with 'Overloaded' error message, causing long delays from excessive retry cycles.",
+    "common_causes": [
+      "Reddit r/ClaudeCode thread (10+ comments): multiple users report getting constant API Error 529 Overloaded errors with Claude Code today, with one user experiencing 10 retry attempts. Closed GitHub issue #56257 (anthropics/claude-code) proposes showing error type inline in retry status. Additional related Reddit post references rate limit reaching. Category mapping: directly concerns Anthropic Claude API 529 overloaded errors affecting paying Claude Code users."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "Anthropic API"
+    ]
+  },
+  {
+    "slug": "openai-api-http-429-usage-limit-reached-credential-pool-retry-retries-same-exhausted-account-before-rotating",
+    "title": "Credential pool rotation fails immediately on OpenAI Codex usage_limit_reached 429",
+    "description": "Hermes Agent OAuth credential pool should immediately mark the exhausted Codex account as exhausted and rotate to the next available account on first 429 response containing error.type=usage_limit_reached, instead of retrying the exhausted credential once. Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "HTTP 429: usage_limit_reached — credential pool retry retries same exhausted account before rotating",
+    "search_intent": "Hermes Agent OAuth credential pool should immediately mark the exhausted Codex account as exhausted and rotate to the next available account on first 429 response containing error.type=usage_limit_reached, instead of retrying the exhausted credential once.",
+    "common_causes": [
+      "GitHub issue #26388 (NousResearch/hermes-agent), opened May 15, 2026, closed via PR #27162 May 17, 2026. Follow-up comment reveals additional stale-state path: even after immediate rotation fix, pool entries marked last_status=exhausted remain stale until reset timestamp while live Codex usage endpoint reports allowed=true. Root cause: central 429 classifier treats usage_limit_reached as generic transient rate_limit instead of distinguishing quota-window exhaustion. Category mapping: involves OpenAI Codex Responses API via OAuth; commercial impact on paid subscription credential pooling."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "OpenAI API"
+    ]
   }
 ]
