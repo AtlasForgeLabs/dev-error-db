@@ -47197,5 +47197,21 @@
     "related_errors": [
       "OpenAI API"
     ]
+  },
+  {
+    "slug": "github-copilot-cannot-authenticate-through-token",
+    "title": "GitHub Copilot CLI cannot authenticate through token on Windows",
+    "description": "Developer trying to use GitHub Copilot CLI tools but authentication fails due to expired or invalid tokens on Windows Includes evidence for GitHub Copilot troubleshooting demand.",
+    "category": "GitHub Copilot",
+    "technology": "GitHub Copilot",
+    "error_signature": "cannot authenticate through token",
+    "search_intent": "Developer trying to use GitHub Copilot CLI tools but authentication fails due to expired or invalid tokens on Windows",
+    "common_causes": [
+      "Stack Overflow q77698101 (score 2) + q77005700 (score 1). Multiple reports of Copilot CLI auth failures including Windows token path issues and remote SSH activation errors. Covers both local and remote auth scenarios."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "GitHub Copilot"
+    ]
   }
 ]
