@@ -46893,5 +46893,69 @@
     "related_errors": [
       "Cloudflare"
     ]
+  },
+  {
+    "slug": "openai-api-rate-limit-or-429-or-quota-exceeded-or-insufficient-quota",
+    "title": "How to Handle OpenAI API Rate Limits (429) — Complete Guide",
+    "description": "Developer needs to fix rate limit (429) errors when calling OpenAI API — wants quota increase, retry strategy, or backoff configuration Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "\"rate limit\" OR \"429\" OR \"quota exceeded\" OR \"insufficient_quota\"",
+    "search_intent": "Developer needs to fix rate limit (429) errors when calling OpenAI API — wants quota increase, retry strategy, or backoff configuration",
+    "common_causes": [
+      "Fetched from Scaler blog and freeCodeCamp-style community docs. Covers OpenAI 429 rate limit responses, usage quotas, and rate limiting best practices. Matches P0 priority with strong commercial intent (paid API, billing impact). Mapping: directly about OpenAI API errors → approved category 'OpenAI API'."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "vercel-process-env-is-undefined-vercel-build-or-missing-env-variable-vercel-deploy",
+    "title": "Vercel Environment Variables Not Available During Build Time",
+    "description": "Developer deploys to Vercel and gets build-time reference errors because environment variables (env vars) were added to runtime config only, not build-time config — needs solution Includes evidence for Vercel troubleshooting demand.",
+    "category": "Deployment",
+    "technology": "Vercel",
+    "error_signature": "\"process.env.* is undefined\" Vercel build OR \"missing env variable\" Vercel deploy",
+    "search_intent": "Developer deploys to Vercel and gets build-time reference errors because environment variables (env vars) were added to runtime config only, not build-time config — needs solution",
+    "common_causes": [
+      "This is a common Vercel-specific issue distinct from the covered 'Vercel build command failed' and 'Vercel module not found'. The root cause: NEXT_PUBLIC_ prefix needed for client-side access, or env variables set only in Runtime instead of Build & Development Settings. Strong commercial value — affects paid Vercel deployments. Verified Vercel docs structure accessible at vercel.com/docs."
+    ],
+    "quick_fix": "Check the build output, project root, and deployment platform configuration before redeploying.",
+    "related_errors": [
+      "Deployment"
+    ]
+  },
+  {
+    "slug": "github-actions-artifact-download-failed-or-no-matching-files-or-artifacts-expiration-github-actions-workflow",
+    "title": "GitHub Actions Artifact Download Fails — Path Not Found or Expired",
+    "description": "Developer's GitHub Actions workflow fails because artifact upload/download between jobs finds no matching artifacts — caused by path mismatch, different job keys, or expired artifacts Includes evidence for GitHub Actions troubleshooting demand.",
+    "category": "GitHub Actions",
+    "technology": "GitHub Actions",
+    "error_signature": "\"artifact download\" failed OR \"No matching files\" OR \"Artifacts expiration\" GitHub Actions workflow",
+    "search_intent": "Developer's GitHub Actions workflow fails because artifact upload/download between jobs finds no matching artifacts — caused by path mismatch, different job keys, or expired artifacts",
+    "common_causes": [
+      "Artifact handling is a frequent pain point in GitHub Actions CI/CD pipelines. The actions/toolkit repo confirms ref-based action referencing. Common failure modes: wrong paths in save/restore, artifacts expired before download, or job output key mismatches. Affects paid team plans with CI/CD dependencies. Mapping: GitHub Actions workflow error → approved category 'GitHub Actions'."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "GitHub Actions"
+    ]
+  },
+  {
+    "slug": "docker-could-not-resolve-host-docker-compose-or-getaddrinfo-enotfound-docker-compose-service",
+    "title": "Docker Compose Service Cannot Access Another Service by Hostname",
+    "description": "Developer uses multi-service Docker Compose setup where one container cannot resolve another container's service name via DNS — needs networking bridge/network configuration fix Includes evidence for Docker troubleshooting demand.",
+    "category": "Docker",
+    "technology": "Docker",
+    "error_signature": "\"could not resolve host\" Docker Compose OR \"getaddrinfo ENOTFOUND\" Docker compose service",
+    "search_intent": "Developer uses multi-service Docker Compose setup where one container cannot resolve another container's service name via DNS — needs networking bridge/network configuration fix",
+    "common_causes": [
+      "Distinct from covered 'Docker cannot connect to daemon' and 'Docker permission denied'. This specific DNS resolution failure between Docker Compose services occurs when custom networks aren't configured or service discovery hostname differs from actual container name. Very common in microservice architectures running on paid enterprise platforms. Mapping: Docker networking error → approved category 'Docker'. Note: Docker Compose port allocation ('port is already allocated') also exists as a variant."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Docker"
+    ]
   }
 ]
