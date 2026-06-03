@@ -46365,5 +46365,85 @@
     "related_errors": [
       "OpenAI API"
     ]
+  },
+  {
+    "slug": "claude-code-api-error-usage-credits-required-for-1m-context",
+    "title": "Claude Code: API Error requiring usage credits for extended context (1M)",
+    "description": "Understand why Claude Code throws 'usage credits required' error when attempting to use 1M context window models, and how to resolve payment/billing Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "API Error: Usage credits required for 1M context",
+    "search_intent": "Understand why Claude Code throws 'usage credits required' error when attempting to use 1M context window models, and how to resolve payment/billing",
+    "common_causes": [
+      "Claude Code Issue #63060 — Open issue by Zamhinio94, opened May 28 2026, updated Jun 3 2026. Has 22 comments indicating active community engagement. Labels include api:anthropic, area:cost, bug, duplicate, platform:macos. Directly affects paying users trying to access premium 1M context models. Clear error signature tied to billing/quota system."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "openai-api-openai-internalservererror-upstream-connect-error-or-disconnect-reset-before-headers-reset-reason-connection-failure-transport-failure-reason-delayed-connect-error-111",
+    "title": "OpenAI Python SDK: InternalServerError upstream connect error or disconnect/reset before headers",
+    "description": "Fix intermittent 503 upstream connect errors from OpenAI API SDK caused by Istio/envoy proxy disconnection, without changing request volume Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "openai.InternalServerError: upstream connect error or disconnect/reset before headers. reset reason: connection failure, transport failure reason: delayed connect error: 111",
+    "search_intent": "Fix intermittent 503 upstream connect errors from OpenAI API SDK caused by Istio/envoy proxy disconnection, without changing request volume",
+    "common_causes": [
+      "GitHub Issue #1626 on openai/openai-python shows Response [503 Service Unavailable] from istio-envoy proxy (tgi-cohere.svc.cluster.local). Developer made hundreds of requests/hour and 95% worked fine; crashes occur randomly. Distinct from known 429 rate-limit errors — this is a network-layer upstream connection failure through service mesh. Not covered by existing dev-error-db entries for 401/429/invalid key/model-not-found."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "anthropic-api-beta-skills-create-intermittently-fails-with-cloudflare-520-502-anthropic-sdk-python-0-86-0",
+    "title": "Anthropic SDK: beta.skills.create intermittently fails with Cloudflare 520/502",
+    "description": "Resolve intermittent Cloudflare 520 (Server Error) / 502 (Bad Gateway) responses when calling beta.skills.create via Anthropic Python SDK Includes evidence for Anthropic API troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Anthropic API",
+    "error_signature": "beta.skills.create intermittently fails with Cloudflare 520/502 (anthropic SDK python 0.86.0)",
+    "search_intent": "Resolve intermittent Cloudflare 520 (Server Error) / 502 (Bad Gateway) responses when calling beta.skills.create via Anthropic Python SDK",
+    "common_causes": [
+      "Anthropic SDK Python Issue #1294 — Open issue (#1294) by drewparo, opened Mar 25 2026 and updated Mar 27 2026. Specifically involves Cloudflare proxy layer returning 520/502 for beta.skills.create endpoint. High commercial value: affects paid Anthropic API calls intermittently. Category mapped to Anthropic API as direct API-layer error."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Anthropic API"
+    ]
+  },
+  {
+    "slug": "litellm-litellm-model-routing-failure-and-yaml-config-parsing-errors",
+    "title": "LiteLLM Proxy: Model routing failure and configuration parsing errors",
+    "description": "Fix LiteLLM proxy routing errors and configuration file parse failures that prevent LLM API calls from going through correctly Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "LiteLLM model routing failure and YAML config parsing errors",
+    "search_intent": "Fix LiteLLM proxy routing errors and configuration file parse failures that prevent LLM API calls from going through correctly",
+    "common_causes": [
+      "Discovered via general search for LiteLLM errors. LiteLLM is a widely-used enterprise proxy for routing between 100+ LLM providers. Config parsing errors block entire teams from using the proxy. High commercial value: production CI/CD and multi-model routing depends on it. Competition manageable as official docs cover basic setup but not complex routing edge cases."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "LiteLLM"
+    ]
+  },
+  {
+    "slug": "claude-code-session-visible-in-ui-but-session-not-found-on-disk-jsonl-file-exists-but-has-mismatched-internal-session-id",
+    "title": "Claude Code Desktop: Session visible in UI but 'Session not found on disk'",
+    "description": "Resolve mismatch between Claude Code desktop UI showing a session and the underlying JSONL storage having a different internal session ID, causing session corruption Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Session visible in UI but \"Session not found on disk\" — JSONL file exists but has mismatched internal session ID",
+    "search_intent": "Resolve mismatch between Claude Code desktop UI showing a session and the underlying JSONL storage having a different internal session ID, causing session corruption",
+    "common_causes": [
+      "Claude Code Issue #63904 — Open issue by WebGuyCom, opened May 30 2026, updated Jun 3 2026. Has 'has repro' label confirming detailed reproduction steps exist. Platform: Windows primarily but affects all users relying on session persistence. Core usability issue for paid desktop users. Distinct error: files exist but session IDs don't match, causing data-loss risk."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
   }
 ]
