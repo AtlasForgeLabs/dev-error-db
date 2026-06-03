@@ -45885,5 +45885,117 @@
     "related_errors": [
       "Cloud Platforms"
     ]
+  },
+  {
+    "slug": "openai-api-plan-limit-reached-usage-limit-exceeded-codex-oauth-returns-no-toast-banner-error-when-usage-quota-exhausted-appears-as-infinite-loading-spinner",
+    "title": "OpenAI Codex OAuth usage exhaustion silently fails — no error response shown",
+    "description": "User pays for OpenAI Plus/Team but Codex silently hangs when quota exhausted; needs visible billing error signal Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "\"Plan limit reached\" / \"usage_limit_exceeded\" — Codex OAuth returns no toast/banner/error when usage quota exhausted, appears as infinite loading spinner",
+    "search_intent": "User pays for OpenAI Plus/Team but Codex silently hangs when quota exhausted; needs visible billing error signal",
+    "common_causes": [
+      "Source: GitHub Issue #1765 (nesquena/hermes-webui). Users report Codex OAuth usage exhaustion produces no response and no error — silent data-loss/failure UX. Actual API response contains 'Plan limit reached' or 'usage_limit_exceeded'. Commercial value high: affects paying Plus/Team subscribers, directly tied to billing. Category: OpenAI API per SKILL.md."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "github-copilot-you-ve-reached-your-weekly-rate-limit-please-upgrade-your-plan-or-wait-for-your-limit-to-reset-on-date-failed-to-connect-to-api-429-too-many-requests-user-global-rate-limited-pro-plus",
+    "title": "GitHub Copilot Pro+ user weekly rate limit blocks premium requests permanently",
+    "description": "Paying Pro+ users hit weekly rate limit despite subscription; auto mode sometimes works but manual model selection instantly triggers rate limit error Includes evidence for GitHub Copilot troubleshooting demand.",
+    "category": "GitHub Copilot",
+    "technology": "GitHub Copilot",
+    "error_signature": "\"You've reached your weekly rate limit. Please upgrade your plan or wait for your limit to reset on <date>\" / \"Failed to connect to API: 429 Too Many Requests user_global_rate_limited:pro_plus\"",
+    "search_intent": "Paying Pro+ users hit weekly rate limit despite subscription; auto mode sometimes works but manual model selection instantly triggers rate limit error",
+    "common_causes": [
+      "Sources: community discussion #192485, #192603, #193741. Multiple reports of Pro+ users being blocked by aggressive weekly rate limits that jump unpredictably (63%→86%). Auto mode inconsistently works as a bypass. Error clearly identifies pro_plus subscription state. Category: GitHub Copilot per SKILL.md."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "GitHub Copilot"
+    ]
+  },
+  {
+    "slug": "ollama-cve-2026-7482-unauthenticated-attacker-can-leak-entire-ollama-process-memory-user-messages-system-prompts-env-vars-via-api-pull-endpoint-push-abuse",
+    "title": "Ollama CVE-2026-7482 critical unauthenticated memory leak via /api/pull and /api/push endpoints",
+    "description": "Users deploying Ollama server globally discover critical CVSS 9.1 vulnerability allowing unauthenticated memory dump containing sensitive conversation history and credentials Includes evidence for Ollama troubleshooting demand.",
+    "category": "Ollama",
+    "technology": "Ollama",
+    "error_signature": "CVE-2026-7482 — Unauthenticated attacker can leak entire Ollama process memory (user messages, system prompts, env vars) via /api/pull endpoint push abuse",
+    "search_intent": "Users deploying Ollama server globally discover critical CVSS 9.1 vulnerability allowing unauthenticated memory dump containing sensitive conversation history and credentials",
+    "common_causes": [
+      "Source: Cyera Research blog. CVE-2026-7482 (CVSS 9.1) critical unauthenticated memory leak in Ollama via /api/pull push abuse. Affects ~300,000 servers globally. PushHandler accepts URI-like model names pushing memory to arbitrary URIs. While primarily a security finding, the associated error patterns around /api/push and /api/pull are actively searched. Category: Ollama per SKILL.md."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "Ollama"
+    ]
+  },
+  {
+    "slug": "litellm-model-list-becomes-empty-after-upgrading-v1-79-1-to-v1-83-5-model-calls-return-400-bad-request",
+    "title": "LiteLLM proxy silently drops all models after extended runtime — config-only NoDB mode bug",
+    "description": "After LiteLLM upgrade, proxy returns empty model list and all model calls fail with 400; users cannot use any routed model until proxy restart Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "model list becomes empty after upgrading v1.79.1 to v1.83.5, model calls return 400 Bad Request",
+    "search_intent": "After LiteLLM upgrade, proxy returns empty model list and all model calls fail with 400; users cannot use any routed model until proxy restart",
+    "common_causes": [
+      "Source: Dev Error DB LiteLLM category listing (dev-error-db.com/categories/litellm). Specifically reports: LiteLLM Proxy Silently Drops All Models After Extended Runtime — Config-Only No-DB Mode Bug (June 1, 2026). Also: LiteLLM model list becomes empty after upgrading v1.79.1 to v1.83.5. Affects enterprise proxy deployments. Category: LiteLLM per SKILL.md."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "LiteLLM"
+    ]
+  },
+  {
+    "slug": "cloudflare-522-connection-timed-out-performing-a-fetch-to-worker-s-own-custom-domain-hostname-within-the-worker-causes-self-referencing-522-error",
+    "title": "Cloudflare Workers fetch to own hostname causes recursive 522 connection timeout",
+    "description": "Developer deploys Cloudflare Worker with custom domain and tries to internally fetch() from that same hostname inside the Worker code, resulting in 522 timeout due to self-routing loop through Cloudflare edge Includes evidence for Cloudflare troubleshooting demand.",
+    "category": "Cloudflare",
+    "technology": "Cloudflare",
+    "error_signature": "522 connection timed out — performing a fetch() to Worker's own custom domain hostname within the Worker causes self-referencing 522 error",
+    "search_intent": "Developer deploys Cloudflare Worker with custom domain and tries to internally fetch() from that same hostname inside the Worker code, resulting in 522 timeout due to self-routing loop through Cloudflare edge",
+    "common_causes": [
+      "Source: Cloudflare official docs (developers.cloudflare.com/support/troubleshooting/http-status-codes/cloudflare-5xx-errors/error-522/index.md). Explicitly documented: 'If you are using Workers with a Custom Domain, performing a fetch to its own hostname will cause a 522 error.' Workaround: use Route targeting another hostname, or enable global_fetch_strictly_public compatibility flag. High-value because it's an undocumented-looking gotcha that confuses many developers. Category: Cloudflare per SKILL.md."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Cloudflare"
+    ]
+  },
+  {
+    "slug": "cursor-user-api-key-rate-limit-exceeded-cursor-blocks-request-before-it-reaches-configured-custom-backend-shows-this-error-for-gpt-5-5-specifically-while-gpt-5-4-works-fine-with-same-byok-setup",
+    "title": "Cursor GPT-5.5 BYOK custom endpoint incorrectly intercepts with local rate limit error",
+    "description": "Developer uses BYOK/custom OpenAI-compatible endpoint in Cursor; GPT-5.5 requests never reach the custom backend because Cursor inserts its own rate-limit check, showing a misleading error Includes evidence for Cursor troubleshooting demand.",
+    "category": "Cursor",
+    "technology": "Cursor",
+    "error_signature": "User API key rate limit exceeded — Cursor blocks request before it reaches configured custom backend, shows this error for GPT-5.5 specifically while GPT-5.4 works fine with same BYOK setup",
+    "search_intent": "Developer uses BYOK/custom OpenAI-compatible endpoint in Cursor; GPT-5.5 requests never reach the custom backend because Cursor inserts its own rate-limit check, showing a misleading error",
+    "common_causes": [
+      "Source: Cursor Community Forum post #160004. Cursor IDE silently intercepts GPT-5.5 requests with 'User-provided API key rate limit exceeded' even when using a configured custom backend that successfully handles other models (GPT-5.4). Only affects GPT-5.5 model in Cursor. Clear, reproducible bug. Category: Cursor per SKILL.md."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "Cursor"
+    ]
+  },
+  {
+    "slug": "anthropic-api-login-ineffective-with-expired-claude-code-oauth-token-oauth-auth-fails-with-401-retry-loop-when-claude-code-disable-experimental-betas-1-is-set",
+    "title": "Claude Code /login ineffective with expired CLAUDE_CODE_OAUTH_TOKEN causes retry loop",
+    "description": "Developer runs Claude Code with environment variable override; expired OAuth token stuck in 401 retry loop, /login command does not refresh auth properly Includes evidence for Anthropic API troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Anthropic API",
+    "error_signature": "/login ineffective with expired CLAUDE_CODE_OAUTH_TOKEN — OAuth auth fails with 401 retry loop when CLAUDE_CODE_DISABLE_EXPERIMENTAL_BETAS=1 is set",
+    "search_intent": "Developer runs Claude Code with environment variable override; expired OAuth token stuck in 401 retry loop, /login command does not refresh auth properly",
+    "common_causes": [
+      "Source: Claude Code changelog (claudefa.st/blog/guide/changelog) — v2.1.123 release notes: 'Fixed OAuth authentication failing with a 401 retry loop when CLAUDE_CODE_DISABLE_EXPERIMENTAL_BETAS=1 is set'. Also referenced in Pencil dev docs troubleshooting section. Directly related to Claude Code auth flow and token lifecycle. Category mapping: Anthropic API because the error originates from Anthropic's OAuth token validation rejecting expired CLAUDE_CODE_OAUTH_TOKEN."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "Anthropic API"
+    ]
   }
 ]
