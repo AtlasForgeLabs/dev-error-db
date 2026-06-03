@@ -46685,5 +46685,133 @@
     "related_errors": [
       "Cursor"
     ]
+  },
+  {
+    "slug": "docker-moby-v29-client-fails-to-call-info-against-older-docker-daemons-after-netip-api-changes",
+    "title": "Docker/Moby v29 client fails to call /info against older Docker daemons after netip API changes",
+    "description": "Fix Docker Engine v29 client unable to communicate with older daemon via /info endpoint due to netip breaking change Includes evidence for Docker troubleshooting demand.",
+    "category": "Docker",
+    "technology": "Docker",
+    "error_signature": "Moby v29 client fails to call /info against older Docker daemons after netip API changes",
+    "search_intent": "Fix Docker Engine v29 client unable to communicate with older daemon via /info endpoint due to netip breaking change",
+    "common_causes": [
+      "Source: github.com/moby/moby issue #52728 (Gabedos, opened May 29, updated Jun 3). Direct backwards-compat regression — Enterprise Docker users upgrading to v29 cannot manage older daemons. Category mapping: P0 technology → Docker approved category."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Docker"
+    ]
+  },
+  {
+    "slug": "docker-docker-image-pull-use-not-properly-falling-back-to-next-best-architecture",
+    "title": "Docker/Moby v29 Image Pull not falling back to next-best architecture",
+    "description": "Fix Docker engine failing to use multi-arch image fallback (arm64→amd64 or vice versa) causing pull failures Includes evidence for Docker troubleshooting demand.",
+    "category": "Docker",
+    "technology": "Docker",
+    "error_signature": "Docker Image Pull/use not properly falling back to next-best architecture",
+    "search_intent": "Fix Docker engine failing to use multi-arch image fallback (arm64→amd64 or vice versa) causing pull failures",
+    "common_causes": [
+      "Source: github.com/moby/moby issue #52751 (the-hotmann, opened Jun 3). Multi-architecture image distribution regression — affects hybrid environments deploying containers across x86/arm clusters. Critical for CI/CD pipeline reliability. Category mapping: P0 technology → Docker approved category."
+    ],
+    "quick_fix": "Verify the model name, local service connectivity, and network access before retrying the model pull.",
+    "related_errors": [
+      "Docker"
+    ]
+  },
+  {
+    "slug": "ollama-qwen-3-6-25b-0-30-0-0-30-2-not-use-gpu-but-consume-memory-to-100-cause-system-halted-but-0-24-work-very-well",
+    "title": "Ollama v0.30 qwen 3.6-25b GPU memory leak causing system halt",
+    "description": "Fix Ollama v0.30 memory regression where qwen models bypass GPU and exhaust system RAM causing OS freeze Includes evidence for Ollama troubleshooting demand.",
+    "category": "Ollama",
+    "technology": "Ollama",
+    "error_signature": "qwen 3.6-25b @0.30.0-0.30.2 not use GPU but consume memory to 100% cause system halted, but 0.24 work very well",
+    "search_intent": "Fix Ollama v0.30 memory regression where qwen models bypass GPU and exhaust system RAM causing OS freeze",
+    "common_causes": [
+      "Source: github.com/ollama/ollama issue #16452 (chinahzsy, opened Jun 3). Production-grade memory leak introduced in v0.30 — users lose entire machines when models consume all RAM. High urgency; many Ollama devs encounter this. Category mapping: P1 technology → Ollama approved category."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Ollama"
+    ]
+  },
+  {
+    "slug": "anthropic-api-bug-construct-type-raises-indexerror-when-called-with-bare-unparameterized-list-dict",
+    "title": "Anthropic SDK Python construct_type() raises IndexError on bare unparameterized list/dict annotation",
+    "description": "Fix Anthropic Python SDK crash when processing response types that use bare List or Dict annotations without generics parameter Includes evidence for Anthropic API troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Anthropic API",
+    "error_signature": "BUG: construct_type() raises IndexError when called with bare unparameterized list/dict",
+    "search_intent": "Fix Anthropic Python SDK crash when processing response types that use bare List or Dict annotations without generics parameter",
+    "common_causes": [
+      "Sources: github.com/anthropics/anthropic-sdk-python issues #1626/#1628/#1629/#1619 (devteamaegis, opened Jun 1). Affects users typing SDK calls with Python generic type hints. Widespread bug impacting developers using type-safe SDK patterns. Category mapping: P0 technology → Anthropic API approved category."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Anthropic API"
+    ]
+  },
+  {
+    "slug": "ollama-ollama-v0-30-0-fails-on-tesla-v100-cuda-error-device-kernel-image-is-invalid",
+    "title": "Ollama v0.30 fails on Nvidia Tesla V100: CUDA error device kernel image invalid",
+    "description": "Fix Ollama v0.30 crashing on legacy Nvidia GPUs (Tesla V100) due to incompatible CUDA compiled kernels Includes evidence for Ollama troubleshooting demand.",
+    "category": "Ollama",
+    "technology": "Ollama",
+    "error_signature": "Ollama v0.30.0 fails on Tesla V100: CUDA error: device kernel image is invalid",
+    "search_intent": "Fix Ollama v0.30 crashing on legacy Nvidia GPUs (Tesla V100) due to incompatible CUDA compiled kernels",
+    "common_causes": [
+      "Source: github.com/ollama/ollama issue #16449 (piaopiao233, opened Jun 3). Regression in CUDA compilation target — users with older GPUs hit hard crash on first model load. High urgency as it blocks all model inference. Multiple similar reports (#16455 CUDA_Host buffer allocation fail, #16415 perf regression on GTX 1070 Ti). Category mapping: P1 → Ollama approved category."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Ollama"
+    ]
+  },
+  {
+    "slug": "ollama-gemma4-26b-moe-q4-k-m-returns-empty-response-on-ollama-0-30-2",
+    "title": "Ollama v0.30 Gemma4 26B MoE returns empty response",
+    "description": "Fix Ollama v0.30 returning empty/gibberish responses from gemma4:26b MoE models Includes evidence for Ollama troubleshooting demand.",
+    "category": "Ollama",
+    "technology": "Ollama",
+    "error_signature": "gemma4:26b (MoE, Q4_K_M) returns empty response on Ollama 0.30.2",
+    "search_intent": "Fix Ollama v0.30 returning empty/gibberish responses from gemma4:26b MoE models",
+    "common_causes": [
+      "Source: github.com/ollama/ollama issue #16456 (stabilus, opened Jun 3). Model serving degradation after v0.30 upgrade directly impacts local LLM inference reliability. Commercial: users paying for cloud GPU hours waste compute when models return empty. Category mapping: P1 technology → Ollama approved category."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Ollama"
+    ]
+  },
+  {
+    "slug": "vercel-turbopack-fails-to-resolve-next-package-json-with-pnpm-v11-enableglobalvirtualstore",
+    "title": "Next.js Turbopack fails to resolve next/package.json with pnpm v11 enableGlobalVirtualStore",
+    "description": "Fix Next.js Turbopack not working with pnpm v11 global virtual store mode — package resolution fails during build Includes evidence for Vercel troubleshooting demand.",
+    "category": "Deployment",
+    "technology": "Vercel",
+    "error_signature": "Turbopack fails to resolve next/package.json with pnpm v11 enableGlobalVirtualStore",
+    "search_intent": "Fix Next.js Turbopack not working with pnpm v11 global virtual store mode — package resolution fails during build",
+    "common_causes": [
+      "Source: github.com/vercel/next.js issue #93556 (yamaaaaaa31, opened May 7). Affects teams using pnpm as package manager on new v11 version; blocks builds entirely. Strong commercial value for deployment-focused queries. Category mapping: P0 Vercel → Deployment approved category."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Deployment"
+    ]
+  },
+  {
+    "slug": "ollama-gguf-models-don-t-work-anymore-in-ollama-v0-30",
+    "title": "Ollama GGUF models broken starting in v0.30",
+    "description": "Fix GGUF model loading failures introduced in Ollama v0.30 affecting custom model imports Includes evidence for Ollama troubleshooting demand.",
+    "category": "Ollama",
+    "technology": "Ollama",
+    "error_signature": "GGUF models don't work anymore in Ollama v0.30",
+    "search_intent": "Fix GGUF model loading failures introduced in Ollama v0.30 affecting custom model imports",
+    "common_causes": [
+      "Source: github.com/ollama/ollama issue #16417 (thodem, opened Jun 2, 16 comments as of latest snapshot). Wide-spread issue affecting community-contributed custom models. GGUF is core to Ollama ecosystem — affects power users and enterprise private model deployments. Category mapping: P1 → Ollama approved category."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Ollama"
+    ]
   }
 ]
