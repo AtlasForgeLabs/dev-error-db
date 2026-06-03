@@ -46061,5 +46061,117 @@
     "related_errors": [
       "Cloud Platforms"
     ]
+  },
+  {
+    "slug": "openai-api-429-you-exceeded-your-current-quota-please-check-your-plan-and-billing-details-cause-you-have-run-out-of-credits-or-hit-your-maximum-monthly-spend",
+    "title": "OpenAI 429 Quota Exceeded: Plan and Billing Details Fix Guide",
+    "description": "Resolve OpenAI billing/quota limit errors by purchasing credits or increasing limits. Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "429 - You exceeded your current quota, please check your plan and billing details: Cause: You have run out of credits or hit your maximum monthly spend.",
+    "search_intent": "Resolve OpenAI billing/quota limit errors by purchasing credits or increasing limits.",
+    "common_causes": [
+      "From official OpenAI error-codes page. Separate from the existing covered entry 'OpenAI API insufficient quota' — this specific error message includes 'please check your plan and billing details' text and directs users to billing/limits pages, making it a distinct search intent."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "openai-api-429-rate-limit-reached-for-requests-cause-you-are-sending-requests-too-quickly",
+    "title": "OpenAI API 429 Rate Limit Exceeded: You Have Reached Your Rate Limit — Causes and Solutions",
+    "description": "Fix OpenAI API rate limit errors by pacing requests and configuring retries. Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "429 - Rate limit reached for requests: Cause: You are sending requests too quickly.",
+    "search_intent": "Fix OpenAI API rate limit errors by pacing requests and configuring retries.",
+    "common_causes": [
+      "Official OpenAI docs page confirms 'Rate limit reached for requests' error code with solution: pace requests. Distinct from existing covered 'insufficient_quota' and 'quota exceeded' errors — this is a pure velocity-based rate limit, not a credit exhaustion issue."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "openai-api-401-ip-not-authorized-cause-your-request-ip-does-not-match-the-configured-ip-allowlist-for-your-project-or-organization",
+    "title": "OpenAI 401 IP Not Authorized: Fix IP Allowlist Configuration Errors",
+    "description": "Fix OpenAI API authentication failure caused by IP allowlist mismatch — update organization security settings. Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "401 - IP not authorized: Cause: Your request IP does not match the configured IP allowlist for your project or organization.",
+    "search_intent": "Fix OpenAI API authentication failure caused by IP allowlist mismatch — update organization security settings.",
+    "common_causes": [
+      "New OpenAI error not in covered-errors.md. This is an organizational-tier auth error requiring admin access to fix IP allowlist. High commercial value as org-level configs affect production deployments."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "anthropic-api-overloaded-error-anthropic-api-is-temporarily-overloaded-and-cannot-process-your-request-retry-with-exponential-backoff",
+    "title": "Anthropic API Overloaded Error: 529 Service Temporarily Unavailable",
+    "description": "Handle Anthropic API overload/529 errors when Claude service is experiencing high demand — implement retry strategy. Includes evidence for Anthropic API troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Anthropic API",
+    "error_signature": "Overloaded Error: Anthropic API is temporarily overloaded and cannot process your request. Retry with exponential backoff.",
+    "search_intent": "Handle Anthropic API overload/529 errors when Claude service is experiencing high demand — implement retry strategy.",
+    "common_causes": [
+      "P0 technology. The overloaded_error is a known Anthropic API response during peak traffic periods. Distinct from existing covered 401/429 errors. Users need retry/backoff strategy specifically for 529-level errors."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "Anthropic API"
+    ]
+  },
+  {
+    "slug": "openai-api-openai-apitimeouterror-cause-request-timed-out",
+    "title": "OpenAI Python Library APITimeoutError: Request Timed Out Fix Guide",
+    "description": "Fix OpenAI Python client request timeout errors — adjust timeout config or retry logic. Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "openai.APITimeoutError: Cause: Request timed out.",
+    "search_intent": "Fix OpenAI Python client request timeout errors — adjust timeout config or retry logic.",
+    "common_causes": [
+      "Python library-specific timeout exception (APITimeoutError) not previously covered. Part of the official Python library error types table documented on the OpenAI error-codes page. Developers searching for 'APITimeoutError' need specific timeout adjustment guidance."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "cursor-cursor-failed-to-connect-to-remote-server-econnrefused-or-etimedout-on-localhost-port-or-api-cursor-sh",
+    "title": "Cursor IDE Connection Error: Failed to Connect to Remote API Server",
+    "description": "Fix Cursor IDE connection failure where the app cannot reach its backend API server — restart services or check firewall. Includes evidence for Cursor troubleshooting demand.",
+    "category": "Cursor",
+    "technology": "Cursor",
+    "error_signature": "Cursor failed to connect to remote server: ECONNREFUSED or ETIMEDOUT on localhost:PORT or api.cursor.sh",
+    "search_intent": "Fix Cursor IDE connection failure where the app cannot reach its backend API server — restart services or check firewall.",
+    "common_causes": [
+      "P0 technology. Cursor IDE connection failures between the frontend process and backend API server are a frequent user issue. Often involves port conflicts, stale background processes, or corporate firewall blocks. Distinct from existing covered 'model not available' and 'API key not working' errors."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Cursor"
+    ]
+  },
+  {
+    "slug": "openai-api-403-country-region-or-territory-not-supported-cause-you-are-accessing-the-api-from-an-unsupported-country-region-or-territory",
+    "title": "OpenAI 403 Country Region Not Supported — API Access Restrictions Error",
+    "description": "Understand why OpenAI API returns 403 from certain countries and find workarounds or approved regions. Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "403 - Country, region, or territory not supported: Cause: You are accessing the API from an unsupported country, region, or territory.",
+    "search_intent": "Understand why OpenAI API returns 403 from certain countries and find workarounds or approved regions.",
+    "common_causes": [
+      "New geographic restriction error not in covered-errors.md. Growing relevance as open-source alternatives seek global usage. Directs users to supported-countries documentation."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "OpenAI API"
+    ]
   }
 ]
