@@ -47021,5 +47021,69 @@
     "related_errors": [
       "Cloudflare"
     ]
+  },
+  {
+    "slug": "claude-code-usage-immediately-hits-100-on-first-complex-task-dies-off-without-processing-instant-depletion-of-usage-quota",
+    "title": "Claude Code desktop usage depletes instantly on first prompt (regression)",
+    "description": "Fix sudden regression where Claude Code consumes entire usage allowance instantly instead of processing code modifications incrementally as it did in previous versions Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Usage immediately hits 100% on first complex task — dies off without processing; instant depletion of usage quota",
+    "search_intent": "Fix sudden regression where Claude Code consumes entire usage allowance instantly instead of processing code modifications incrementally as it did in previous versions",
+    "common_causes": [
+      "GitHub Issue #65124 on anthropics/claude-code (created 2026-06-03, confirmed regression from older version). Different from standard quota exceeded — usage drains abnormally fast on normal workloads. Direct billing impact for Pro/Team plan users."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "claude-code-mcp-tools-completely-unavailable-in-agent-mode-no-such-tool-available-on-mcp-call",
+    "title": "Claude Code MCP tools inaccessible in --agent mode",
+    "description": "Fix Claude Code MCP tools not loading when using --agent flag; need project-scoped .mcp.json to work in agent/conductor orchestration patterns Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "MCP tools completely unavailable in --agent mode; No such tool available on mcp__* call",
+    "search_intent": "Fix Claude Code MCP tools not loading when using --agent flag; need project-scoped .mcp.json to work in agent/conductor orchestration patterns",
+    "common_causes": [
+      "GitHub Issue #65142 on anthropics/claude-code (created 2026-06-03, labels: bug, has repro, platform:macos, area:mcp). Confirmed regression from documented behavior — agents coordinating via MCP get 'No such tool available'. Blocks enterprise workflow patterns."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "claude-code-failed-to-start-claude-s-workspace-vm-connection-timeout-after-60-seconds",
+    "title": "Claude Code VM Connection timeout after 60 seconds on Windows Cowork",
+    "description": "Fix Claude Code Desktop app crashing on Windows 11 Cowork mode with VM timeout; need workspace startup fixed to proceed with development Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Failed to start Claude's workspace — VM connection timeout after 60 seconds",
+    "search_intent": "Fix Claude Code Desktop app crashing on Windows 11 Cowork mode with VM timeout; need workspace startup fixed to proceed with development",
+    "common_causes": [
+      "GitHub Issue #65128 on anthropics/claude-code (created 2026-06-03, labels: bug, platform:windows, area:cowork, area:desktop). Complete blocker — users cannot even start Claude Code on Windows. Clear error signature with log messages visible."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "claude-code-loading-models-model-list-never-populates-in-vscode-extension-switch-model-dialog",
+    "title": "Claude Code for VSCode does not load models list after update",
+    "description": "Fix Claude Code VSCode extension unable to load available models after version upgrade; need to switch models for cost optimization Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Loading models... — model list never populates in VSCode extension Switch model dialog",
+    "search_intent": "Fix Claude Code VSCode extension unable to load available models after version upgrade; need to switch models for cost optimization",
+    "common_causes": [
+      "GitHub Issue #65125 on anthropics/claude-code (created 2026-06-03, labels: bug, area:model, platform:vscode, v2.1.161). Paid users stuck on default model with no ability to switch — blocks budget-aware multi-model workflows."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
   }
 ]
