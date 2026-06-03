@@ -46605,5 +46605,85 @@
     "related_errors": [
       "Deployment"
     ]
+  },
+  {
+    "slug": "openai-api-openai-api-credentials-leaked-hijacked-via-environment-variable-injection",
+    "title": "OpenAI API Hijacked via Environment Variables — Credential Theft Prevention",
+    "description": "开发者的 OpenAI API Key 被他人利用来修复自己的项目（通过 Codex），需要防止 API 凭证泄露和恢复受控的方法。 Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "OpenAI API credentials leaked / hijacked via environment variable injection",
+    "search_intent": "开发者的 OpenAI API Key 被他人利用来修复自己的项目（通过 Codex），需要防止 API 凭证泄露和恢复受控的方法。",
+    "common_causes": [
+      "Reddit r/codex 真实案例报告：用户的 OpenAI API 被恶意利用。解决方案包括启用 2FA、删除所有现有 API keys、关闭 VS Code 实例。属于 P0 高商业价值安全事件，直接影响付费用户资金损失风险。Category 映射：OpenAI API。"
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "github-copilot-one-click-github-token-stealing-via-vscode-webview-sandbox-escape-attacker-can-read-write-private-repos",
+    "title": "GitHub Token Exfiltration via VSCode Webview Bug (github.dev)",
+    "description": "开发者关注通过 VSCode github.dev 的 webview bug 导致 GitHub OAuth Token 被窃取的安全漏洞，需要了解防护和缓解方法。 Includes evidence for GitHub Copilot troubleshooting demand.",
+    "category": "GitHub Copilot",
+    "technology": "GitHub Copilot",
+    "error_signature": "One-click GitHub token stealing via VSCode webview sandbox escape — attacker can read/write private repos",
+    "search_intent": "开发者关注通过 VSCode github.dev 的 webview bug 导致 GitHub OAuth Token 被窃取的安全漏洞，需要了解防护和缓解方法。",
+    "common_causes": [
+      "Ammar Askar 博客详细分析了 VSCode github.dev 的 webview 沙箱逃逸漏洞：攻击者仅点击链接即可窃取 GitHub OAuth token（具有读写所有仓库的完全权限）。HN Top Story (score 503)。这影响所有使用 github.dev/GitHub Codespaces 的用户，特别是付费 Copilot 用户。Category 映射：GitHub Copilot。"
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "GitHub Copilot"
+    ]
+  },
+  {
+    "slug": "openai-api-http-503-service-unavailable",
+    "title": "Recurring OpenAI API 503 Service Unavailable Errors — Debugging Guide",
+    "description": "开发者在使用 OpenAI API 时遇到反复的 503 服务不可用错误，需要调试方法和解决方案（如指数退避重试、区域回退、模型健康检查）。 Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "HTTP 503 Service Unavailable",
+    "search_intent": "开发者在使用 OpenAI API 时遇到反复的 503 服务不可用错误，需要调试方法和解决方案（如指数退避重试、区域回退、模型健康检查）。",
+    "common_causes": [
+      "Reddit r/OpenAI 帖子讨论持久性 503 错误。高质量评论提供了实用方案：指数退避(jitter)+区域回退 Azure OpenAI + 轻量级模型健康检查轮询。错误涉及生产级 AI Agent 调用，直接影付费用户。Category 映射：OpenAI API 是明确匹配的 P0 类别。"
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "claude-code-api-rate-limit-reached-please-try-again-later",
+    "title": "Claude Code API Rate Limit Reached — Anthropic Quota Exhaustion Workaround",
+    "description": "使用 Claude Code 发送消息到编排器时遇到速率限制错误，尽管有足够 Anthropic 余额但仍被拒绝。开发者需要绕过或解决配额耗尽的方案。 Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "API rate limit reached. Please try again later.",
+    "search_intent": "使用 Claude Code 发送消息到编排器时遇到速率限制错误，尽管有足够 Anthropic 余额但仍被拒绝。开发者需要绕过或解决配额耗尽的方案。",
+    "common_causes": [
+      "Reddit r/openclaw 帖子显示用户使用 Anthropic 额度时遭遇速率限制错误（非余额不足而是限流）。评论中提到 Nexos 默认令牌耗尽问题以及编排层代理导致的级联限流。属于 AI 编码工具的典型付费用户痛点。Category 映射：Claude Code → AI Coding Tools。"
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "cursor-unable-to-use-codex-with-api-key-model-not-available-connection-error",
+    "title": "Cursor Model Not Available — Connection Error After OpenAI Key Revoke",
+    "description": "在更换或撤销 OpenAI API Key 后，Cursor 无法加载模型并显示连接错误。用户想知道如何在 Cursor 中正确切换/重新配置 API Key。 Includes evidence for Cursor troubleshooting demand.",
+    "category": "Cursor",
+    "technology": "Cursor",
+    "error_signature": "Unable to use Codex with API key — model not available / connection error",
+    "search_intent": "在更换或撤销 OpenAI API Key 后，Cursor 无法加载模型并显示连接错误。用户想知道如何在 Cursor 中正确切换/重新配置 API Key。",
+    "common_causes": [
+      "Reddit r/OpenAI 社区讨论在 Codex/VS Code 环境下 API Key 失效后模型不可用的连锁反应。与 Cursor IDE 的本地配置缓存机制相关——更换 key 后需要清除旧会话状态。属于付费 AI 编程工具的核心使用场景。Category 映射：Cursor。"
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Cursor"
+    ]
   }
 ]
