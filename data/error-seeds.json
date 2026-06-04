@@ -47453,5 +47453,53 @@
     "related_errors": [
       "Cloud Platforms"
     ]
+  },
+  {
+    "slug": "anthropic-api-malformed-authorization-bearer-header-when-anthropic-auth-token-is-an-empty-string",
+    "title": "Anthropic() emits malformed Authorization header when ANTHROPIC_AUTH_TOKEN is empty string",
+    "description": "Fix auth failure caused by empty env variable producing malformed Bearer token header instead of skipping or raising a clear error — causes 401 Unauthorized that confuses developers Includes evidence for Anthropic API troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Anthropic API",
+    "error_signature": "malformed Authorization: Bearer header when ANTHROPIC_AUTH_TOKEN is an empty string",
+    "search_intent": "Fix auth failure caused by empty env variable producing malformed Bearer token header instead of skipping or raising a clear error — causes 401 Unauthorized that confuses developers",
+    "common_causes": [
+      "GitHub issue #1640 in anthropics/anthropic-sdk-python filed Jun 4, 2026 (brand new). When ANTHROPIC_AUTH_TOKEN env var is set to empty string '', the SDK sends 'Authorization: Bearer ' which fails server-side. This is a critical auth edge case for paid API users. The error has a very specific reproduction path (env var exists but empty), low competition because it's a recent SDK-level finding."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "Anthropic API"
+    ]
+  },
+  {
+    "slug": "openai-api-mismatching-event-type-for-audio-transcript-event-in-realtime-api",
+    "title": "Realtime API mismatching event type for audio transcript event",
+    "description": "Fix OpenAI Realtime API returning unexpected event types for audio transcripts, breaking real-time voice application pipelines Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "mismatching event type for audio transcript event in Realtime API",
+    "search_intent": "Fix OpenAI Realtime API returning unexpected event types for audio transcripts, breaking real-time voice application pipelines",
+    "common_causes": [
+      "GitHub issue #2698 in openai/openai-python. The OpenAI Realtime API (used for voice/voice-to-voice applications) returns events with incorrect type fields for audio transcript events, causing client-side parsing failures. This affects developers building paid voice-based AI products using the Realtime beta. Filed Oct 2025, still actively discussed."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "docker-docker-cli-legacy-build-deprecated-on-windows-with-no-replacement-available",
+    "title": "Docker CLI legacy build deprecated on Windows with no replacement available",
+    "description": "Find replacement for deprecated Docker legacy build system on Windows — existing builds break without migration guide Includes evidence for Docker troubleshooting demand.",
+    "category": "Docker",
+    "technology": "Docker",
+    "error_signature": "Docker Cli legacy build deprecated on windows with no replacement available",
+    "search_intent": "Find replacement for deprecated Docker legacy build system on Windows — existing builds break without migration guide",
+    "common_causes": [
+      "GitHub issue #6855 in docker/cli filed Mar 2026, updated May 29. Docker deprecated its legacy build backend on Windows without providing a clear migration path. This affects Windows developers who rely on `docker build`, including CI/CD pipelines for enterprise deployments. High commercial value since Docker Desktop Pro/Premier require paid licenses. Category: Docker."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Docker"
+    ]
   }
 ]
