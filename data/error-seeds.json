@@ -47613,5 +47613,53 @@
     "related_errors": [
       "AI Coding Tools"
     ]
+  },
+  {
+    "slug": "openai-api-video-status-in-progress-progress-0-api-returns-200-ok-with-no-error-no-video-generated-zombie-processes-accumulate",
+    "title": "OpenAI Sora API fails to generate videos silently — returns 200 OK with no content",
+    "description": "Developer trying to use Sora API to generate videos is getting silent failures — no error returned but no video either; needs to understand why and how to resolve or recover stuck jobs Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "Video status: in_progress, progress: 0 — API returns 200 OK with no error, no video generated; zombie processes accumulate",
+    "search_intent": "Developer trying to use Sora API to generate videos is getting silent failures — no error returned but no video either; needs to understand why and how to resolve or recover stuck jobs",
+    "common_causes": [
+      "Found on OpenAI Developer Community (May 30–July 2). Multiple EdTech users reporting identical behavior: Sora API job stays 'in_progress' with progress=0 forever. API returns HTTP 200 but no media output. Affected user reports 46+ accumulated 'zombie processes'. High engagement (610 views, 62 likes, 25 replies). Verified by multiple independent users. Category: OpenAI API since it directly involves OpenAI's Sora API endpoint."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "cursor-codex-login-redirects-paid-account-to-https-auth-openai-com-add-phone-enters-phone-number-then-receives-error-phone-number-already-associated-with-maximum-number-of-accounts",
+    "title": "Codex login redirects paid ChatGPT users to phone verification gate",
+    "description": "Paid ChatGPT subscriber unable to authenticate into Codex CLI because the login flow incorrectly triggers mandatory phone verification and rejects valid phone numbers as already-linked; needs alternative auth path or support resolution Includes evidence for Cursor troubleshooting demand.",
+    "category": "Cursor",
+    "technology": "Cursor",
+    "error_signature": "Codex login redirects paid account to https://auth.openai.com/add-phone, enters phone number then receives error: phone number already associated with maximum number of accounts",
+    "search_intent": "Paid ChatGPT subscriber unable to authenticate into Codex CLI because the login flow incorrectly triggers mandatory phone verification and rejects valid phone numbers as already-linked; needs alternative auth path or support resolution",
+    "common_causes": [
+      "Found on OpenAI Developer Community (May 20 – June 3). User with active paid subscription experiences Codex login redirect to add-phone page; entered phone rejected as max-associated. Other Google/OpenAI accounts work fine — isolated to one account. 3.2k views, 31 likes, 30 replies. Strong signal of systematic auth bug. Category mapped to AI Coding Tools since Codex is an AI coding agent tool within the ChatGPT ecosystem."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "Cursor"
+    ]
+  },
+  {
+    "slug": "openai-api-error-message-invalid-sdp-offer-type-invalid-request-error-code-invalid-offer-param-sip-2-0-400-bad-request-incoming-webhook-never-triggered-realtime-call-incoming-event-never-fires",
+    "title": "OpenAI Realtime API SIP inbound calls fail with Invalid SDP offer before webhook dispatch",
+    "description": "Production voice service using Twilio SIP trunk to OpenAI Realtime API experiencing recurring SIP call rejections at ingress layer; no changes made to code/config; callers need workaround or timeline for fix affecting live customer-facing voice feature Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "{\"error\": {\"message\": \"Invalid SDP offer.\", \"type\": \"invalid_request_error\", \"code\": \"invalid_offer\", \"param\": \"\"}} — SIP/2.0 400 Bad Request, incoming webhook never triggered, realtime.call.incoming event never fires",
+    "search_intent": "Production voice service using Twilio SIP trunk to OpenAI Realtime API experiencing recurring SIP call rejections at ingress layer; no changes made to code/config; callers need workaround or timeline for fix affecting live customer-facing voice feature",
+    "common_causes": [
+      "Found on OpenAI Developer Community (May 13). Recurrence of previous known SIP SDP validation regression. Multiple users affected including direct PBX trunking (not just Twilio). Error occurs pre-webhook — requests rejected before reaching application layer. Production impact confirmed by at least 2 separate teams. 467 views, 38 likes, 24 replies. Previous similar thread also reported. Category: OpenAI API since it affects the Realtime API SIP ingestion endpoint used by developers building voice applications."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "OpenAI API"
+    ]
   }
 ]
