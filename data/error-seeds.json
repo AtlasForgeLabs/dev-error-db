@@ -47837,5 +47837,53 @@
     "related_errors": [
       "Docker"
     ]
+  },
+  {
+    "slug": "claude-code-claude-code-oauth-error-entering-correct-code-still-shows-error-previously-worked-re-login-fails-with-same-error-after-session-expiry",
+    "title": "Claude Code OAuth Login Fails Even with Correct Code — VPS Self-Hosted Setup",
+    "description": "Fix OAuth login loop in Claude Code when self-hosted on VPS; user enters correct auth code repeatedly but gets rejection Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Claude Code OAuth error — entering correct code still shows error; previously worked, re-login fails with same error after session expiry",
+    "search_intent": "Fix OAuth login loop in Claude Code when self-hosted on VPS; user enters correct auth code repeatedly but gets rejection",
+    "common_causes": [
+      "Reddit r/ClaudeAI post (25 days ago): user self-hosted Claude on VPS gets OAuth rejection despite correct code, repeated 3 times; was working before but broke after session expired and required re-auth. Also corroborated by related threads about OAuth request failures and Bearer token not being sent after successful OAuth handshake. Category mapping: Claude Code is an AI coding tool; errors block developer workflow with paid Anthropic usage."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "docker-error-response-from-daemon-client-version-1-52-is-too-new-maximum-supported-api-version-is-1-43",
+    "title": "Docker 29 Client Version Too New — Maximum Supported API Version Is 1.43",
+    "description": "Fix Docker client-daemon API version mismatch after Docker 29 upgrade; newer Docker CLI refuses to connect to older daemon due to API version gap Includes evidence for Docker troubleshooting demand.",
+    "category": "Docker",
+    "technology": "Docker",
+    "error_signature": "Error response from daemon: client version 1.52 is too new maximum supported API version is 1.43",
+    "search_intent": "Fix Docker client-daemon API version mismatch after Docker 29 upgrade; newer Docker CLI refuses to connect to older daemon due to API version gap",
+    "common_causes": [
+      "Google search user query suggestion (yearly range) indicates active discussions around Docker 29 breaking changes. Docker 29 introduces new minimum API version requirements; users upgrading see 'client version X is too new max supported API version is Y' errors. This blocks container deployments on servers/CI pipelines running older Docker versions. Known P0 technology category (Docker). Breaking API changes have high commercial impact for teams managing heterogeneous Docker environments."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Docker"
+    ]
+  },
+  {
+    "slug": "claude-code-claude-code-down-started-with-529-error-now-500-anthropic-api-returning-internal-server-error",
+    "title": "Claude Code Hitting 500 Internal Server Error — Service Down",
+    "description": "Troubleshoot Claude Code returning HTTP 500 when Anthropic backend is overloaded or degraded; users cannot complete any AI-assisted coding tasks Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Claude code down, started with 529 error now 500 — Anthropic API returning internal server error",
+    "search_intent": "Troubleshoot Claude Code returning HTTP 500 when Anthropic backend is overloaded or degraded; users cannot complete any AI-assisted coding tasks",
+    "common_causes": [
+      "Related Reddit thread title (r/ClaudeCode) visible in browse results: 'Claude code down, started with 529 error now 500'. 529 (GitHub-style origin error) escalating to 500 (generic server error) indicates upstream Anthropic service degradation. High-engagement content suggests this affects many paying users simultaneously, representing strong production impact and revenue loss per incident."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
   }
 ]
