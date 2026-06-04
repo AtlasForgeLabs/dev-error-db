@@ -47661,5 +47661,85 @@
     "related_errors": [
       "OpenAI API"
     ]
+  },
+  {
+    "slug": "claude-code-authentication-failed-run-claude-auth-login-to-authenticate-error-401-error-type-authentication-error-message-invalid-x-api-key",
+    "title": "Claude Code Auth Failed? Fix Authentication in 5 Minutes",
+    "description": "Claude Code 用户遇到认证失败（OAuth token 过期或 API key 无效），需要在本地开发环境或无头服务器上重新配置身份验证以恢复编码能力。 Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Authentication failed. Run `claude auth login` to authenticate. / Error: 401 - {\"error\":{\"type\":\"authentication_error\",\"message\":\"invalid x-api-key\"}}",
+    "search_intent": "Claude Code 用户遇到认证失败（OAuth token 过期或 API key 无效），需要在本地开发环境或无头服务器上重新配置身份验证以恢复编码能力。",
+    "common_causes": [
+      "source: https://markaicode.com/errors/claude-code-authentication-failed-fix/ — 覆盖了 claude auth login OAuth 流程、ANTHROPIC_API_KEY 环境变量设置、headless 模式、service account 等多种场景。covered-errors.md 仅覆盖 Cursor/OpenAI key 相关条目，未覆盖 Claude Code 自身认证体系。Commercial value 高：Claude Code Pro 订阅工具，auth 故障直接影响付费用户生产力。Category 按规则映射为 AI Coding Tools。"
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "openai-api-openai-ratelimiterror-error-code-429-error-message-rate-limit-exceeded-for-api-key-redacted-type-requests-param-none-code-rate-limit-error",
+    "title": "Fix OpenAI API Rate Limits in 4 Steps Without Retries",
+    "description": "开发者在生产环境中遇到 OpenAI API 429 rate limit 错误，寻找不使用重试逻辑的替代解决方案（token bucket 限流、指数退避等）来恢复服务吞吐量。 Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "openai.RateLimitError: Error code: 429 - {'error': {'message': 'Rate limit exceeded for api-key [REDACTED].', 'type': 'requests', 'param': None, 'code': 'rate_limit_error'}}",
+    "search_intent": "开发者在生产环境中遇到 OpenAI API 429 rate limit 错误，寻找不使用重试逻辑的替代解决方案（token bucket 限流、指数退避等）来恢复服务吞吐量。",
+    "common_causes": [
+      "source: https://markaicode.com/errors/tool-api-rate-limit-fix/ — 详细分析了 T4 tier 3500 RPM 限制下默认 SDK 线性重试策略导致 30s+ 延迟的问题，提供了 token bucket 实现和 tenacity 方案。covered-errors.md 仅覆盖基础 429 条目，此页面聚焦高并发生产场景下的 advanced 限流策略，具有差异化商业价值。Category 直接映射 OpenAI API。"
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "cursor-invalid-api-key-model-not-available-or-unsupported-model-request-timeout-connection-failed-network-error",
+    "title": "Cursor Error Troubleshooting Guide: 10+ Solutions for API Key, Model, Network Issues",
+    "description": "Cursor IDE 用户面临多种错误（API key 无效、模型不可用、网络超时），需要系统性的故障排除指南来恢复 AI 辅助编程功能。 Includes evidence for Cursor troubleshooting demand.",
+    "category": "Cursor",
+    "technology": "Cursor",
+    "error_signature": "Invalid API Key / Model not available or Unsupported model / Request timeout / Connection failed / Network error",
+    "search_intent": "Cursor IDE 用户面临多种错误（API key 无效、模型不可用、网络超时），需要系统性的故障排除指南来恢复 AI 辅助编程功能。",
+    "common_causes": [
+      "source: https://eastondev.com/blog/en/posts/dev/20260119-cursor-error-guide/ — 涵盖 Invalid API Key（复制多余换行符导致）、Model Not Supported、Request Timeout、Connection Failed 等 10+ 类错误的完整排查步骤。Cursor Pro 是付费订阅工具，错误直接阻断付费用户使用。covered-errors.md 只有 'Cursor model not available' 和 'Cursor OpenAI API key not working'，此页提供更全面的分类排查框架并包含 Ask mode、proxy/DNS 等特殊场景。Category 映射 Cursor。"
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Cursor"
+    ]
+  },
+  {
+    "slug": "cloudflare-error-524-a-timeout-occurred-cloudflare-was-waiting-for-the-web-server-to-respond",
+    "title": "Cloudflare Error 524 A Timeout Occurred — Why and How to Fix It",
+    "description": "使用 Cloudflare CDN/Workers 的网站或服务遇到 524 超时错误（源站响应过慢），管理员需要定位是源站负载过高、CF Workers 超时还是 DNS 解析问题并实施修复。 Includes evidence for Cloudflare troubleshooting demand.",
+    "category": "Cloudflare",
+    "technology": "Cloudflare",
+    "error_signature": "Error 524: A timeout occurred — Cloudflare was waiting for the web server to respond.",
+    "search_intent": "使用 Cloudflare CDN/Workers 的网站或服务遇到 524 超时错误（源站响应过慢），管理员需要定位是源站负载过高、CF Workers 超时还是 DNS 解析问题并实施修复。",
+    "common_causes": [
+      "source: Brave search results including community.cloudflare.com threads (#614427, #541213, #42342) — 官方社区讨论确认该错误持续高频出现。covered-errors.md 已有 522 和 525 但未覆盖 524，属于同一系列但不同错误码，应独立收录。CF Workers 企业版用户在此问题上损失最大。Category 映射 Cloudflare。"
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Cloudflare"
+    ]
+  },
+  {
+    "slug": "litellm-litellm-exceptions-ratelimiterror-provider-provider-returned-429-too-many-requests-retrying-request-after-60-seconds",
+    "title": "LiteLLM Rate Limit Fix: Configure Token Buckets and Fallbacks",
+    "description": "LiteLLM 代理部署者遇到由 provider rate limit 不匹配导致的级联 429 错误，需要配置 per-model rpm/tpm、token bucket retry 和 fallback 模型以恢复代理服务稳定运行。 Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "litellm.exceptions.RateLimitError: Provider <provider> returned 429 Too Many Requests. Retrying request after 60 seconds...",
+    "search_intent": "LiteLLM 代理部署者遇到由 provider rate limit 不匹配导致的级联 429 错误，需要配置 per-model rpm/tpm、token bucket retry 和 fallback 模型以恢复代理服务稳定运行。",
+    "common_causes": [
+      "source: https://markaicode.com/errors/litellm-rate-limit-fix/ — 深入分析 LiteLLM 默认 5 req/s 超过 OpenAI tier-1 3 req/s 限制导致 60% 新部署出现 429 问题，提供 litellm_config.yaml 精确配置示例。Covered errors 中无 LiteLLM 相关条目。此错误影响生产级 LLM 代理服务的多 provider 路由，商业价值极高。Category 映射 LiteLLM。"
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "LiteLLM"
+    ]
   }
 ]
