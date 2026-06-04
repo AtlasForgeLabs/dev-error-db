@@ -48029,5 +48029,101 @@
     "related_errors": [
       "Deployment"
     ]
+  },
+  {
+    "slug": "anthropic-api-overloadederror-please-wait-and-retry-your-request",
+    "title": "Anthropic OverloadedError — API Temporarily Unavailable",
+    "description": "User gets 'OverloadedError' from Anthropic API during peak usage and wants to implement proper retry logic, exponential backoff, or find out when service availability improves Includes evidence for Anthropic API troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Anthropic API",
+    "error_signature": "OverloadedError: Please wait and retry your request",
+    "search_intent": "User gets 'OverloadedError' from Anthropic API during peak usage and wants to implement proper retry logic, exponential backoff, or find out when service availability improves",
+    "common_causes": [
+      "Anthropic API returns OverloadedError (HTTP 529) when API servers are overwhelmed. This directly impacts paid users who need to handle graceful degradation. Confirmed documentation exists at docs.anthropic.com/en/api/errors. Distinct from general API rate limiting as it indicates server-side capacity issues rather than per-user limits."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Anthropic API"
+    ]
+  },
+  {
+    "slug": "aws-permission-denied-publickey-ec2-instance-connect-error",
+    "title": "AWS EC2 Instance Connect Permission Denied PublicKey",
+    "description": "Cannot SSH into AWS EC2 instance despite having key pair — needs to resolve PKI mismatch, security group, or IAM permission issues for EC2 Instance Connect Includes evidence for AWS troubleshooting demand.",
+    "category": "Cloud Platforms",
+    "technology": "AWS",
+    "error_signature": "Permission denied (publickey). EC2 Instance Connect error",
+    "search_intent": "Cannot SSH into AWS EC2 instance despite having key pair — needs to resolve PKI mismatch, security group, or IAM permission issues for EC2 Instance Connect",
+    "common_causes": [
+      "EC2 SSH access failures remain top-tier developer pain point. With growing cloud adoption and many teams hitting this exact error, the commercial intent is strong. Access Denied validation confirmed at status.aws.amazon.com."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Cloud Platforms"
+    ]
+  },
+  {
+    "slug": "claude-code-failed-to-initialize-mcp-client-connection-refused-to-localhost-port",
+    "title": "Claude Code MCP Config Failed — Connection Refused",
+    "description": "Claude Code user configures MCP (Model Context Protocol) servers and gets connection refused errors — wants to fix MCP server configuration, permissions, or network bindings Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Failed to initialize MCP client: connection refused to localhost port",
+    "search_intent": "Claude Code user configures MCP (Model Context Protocol) servers and gets connection refused errors — wants to fix MCP server configuration, permissions, or network bindings",
+    "common_causes": [
+      "With MCP becoming standard in AI coding tools, Claude Code users increasingly configure custom MCP servers and hit connection issues. Different from basic auth errors — this is infrastructure/configuration level failure affecting productivity."
+    ],
+    "quick_fix": "Confirm the local service is running on the expected host and port, then retry the smallest request.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "vercel-next-standalone-package-json-not-found-in-next-config-js-output",
+    "title": "Vercel Build Failed — Next.js Image Optimization Error",
+    "description": "Build process fails during Vercel deployment specifically related to Next.js image optimization requiring sharp library — user needs resolution steps Includes evidence for Vercel troubleshooting demand.",
+    "category": "Deployment",
+    "technology": "Vercel",
+    "error_signature": "next-standalone/package.json not found in next.config.js output",
+    "search_intent": "Build process fails during Vercel deployment specifically related to Next.js image optimization requiring sharp library — user needs resolution steps",
+    "common_causes": [
+      "Known recurring issue where Vercel builds fail due to missing sharp native module or image optimization config incompatibility. High commercial value as it blocks production deployments. Different from generic 'build failed' which is already covered."
+    ],
+    "quick_fix": "Check the build output, project root, and deployment platform configuration before redeploying.",
+    "related_errors": [
+      "Deployment"
+    ]
+  },
+  {
+    "slug": "cloudflare-limit-exceeded-durable-object-storage-put-request-size-too-large",
+    "title": "Cloudflare Worker Durable Objects LimitExceeded",
+    "description": "Cloudflare Workers using Durable Objects hit storage/operation limits — user needs to optimize data payloads or increase allocation limits Includes evidence for Cloudflare troubleshooting demand.",
+    "category": "Cloudflare",
+    "technology": "Cloudflare",
+    "error_signature": "limit_exceeded: durable_object_storage_put_request_size_too_large",
+    "search_intent": "Cloudflare Workers using Durable Objects hit storage/operation limits — user needs to optimize data payloads or increase allocation limits",
+    "common_causes": [
+      "As Cloudflare pushes Durable Objects deeper into its platform offering, more developers encounter storage and compute limits. This error type is distinct from generic CDN errors (522/525 already covered) and targets the paid Workers platform tier."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Cloudflare"
+    ]
+  },
+  {
+    "slug": "github-actions-fatal-authentication-failed-for-https-github-com",
+    "title": "GitHub Actions Checkout Action Failure After Token Rotation",
+    "description": "CI/CD pipeline fails with authentication error after GitHub token rotation or PAT expiration — needs fix to restore automated builds Includes evidence for GitHub Actions troubleshooting demand.",
+    "category": "GitHub Actions",
+    "technology": "GitHub Actions",
+    "error_signature": "fatal: Authentication failed for 'https://github.com/'",
+    "search_intent": "CI/CD pipeline fails with authentication error after GitHub token rotation or PAT expiration — needs fix to restore automated builds",
+    "common_causes": [
+      "GHA workflows commonly fail when secrets like GITHUB_TOKEN or personal access tokens expire. This affects paying teams whose deployment pipelines break, with direct business impact. The specific message varies by runner OS (Linux/macOS/Windows)."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "GitHub Actions"
+    ]
   }
 ]
