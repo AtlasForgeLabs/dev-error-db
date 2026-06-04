@@ -47501,5 +47501,69 @@
     "related_errors": [
       "Docker"
     ]
+  },
+  {
+    "slug": "claude-code-background-subagents-die-permanently-on-transient-server-side-rate-limits",
+    "title": "Background Subagents Die Permanently on Transient Server-Side Rate Limits Instead of Retrying",
+    "description": "Fix Claude Code background subagent not implementing backoff/retry on transient 429 rate limit errors — causes permanent task failure instead of automatic retry Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "background subagents die permanently on transient server-side rate limits",
+    "search_intent": "Fix Claude Code background subagent not implementing backoff/retry on transient 429 rate limit errors — causes permanent task failure instead of automatic retry",
+    "common_causes": [
+      "GitHub anthropics/claude-code#65222 — Bug filed today (Jun 4 2026) about subagents failing permanently on transient rate limits without exponential backoff. Critical for long-running automated workflows. Labels: bug, area:agents. No assigned maintainer yet. Very fresh issue with growing attention."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "anthropic-api-excessive-token-consumption-after-recent-claude-code-updates-unexpected-high-bill",
+    "title": "Excessive Token Consumption After Recent Updates (Max Plan)",
+    "description": "Fix uncontrolled token usage spike causing unexpectedly high API bills after Claude Code v2.x updates, specifically for Max plan users Includes evidence for Anthropic API troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Anthropic API",
+    "error_signature": "excessive token consumption after recent Claude Code updates — unexpected high bill",
+    "search_intent": "Fix uncontrolled token usage spike causing unexpectedly high API bills after Claude Code v2.x updates, specifically for Max plan users",
+    "common_causes": [
+      "GitHub anthropics/claude-code#41617 — Users report token consumption dramatically increased after recent updates. Affects paying Max plan subscribers. Labels: bug, area:cost, platform:linux. Highly active with 18 comments. Recently updated (Jun 4 2026). Strong commercial impact — directly affects billing."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Anthropic API"
+    ]
+  },
+  {
+    "slug": "anthropic-api-rate-limit-100-exhausted-within-70-minutes-after-reset-never-happened-before-v2-1-89",
+    "title": "Max 20 Plan Rate Limit Exhausted Within ~70 Minutes After Reset",
+    "description": "Fix abnormally fast rate limit exhaustion on Claude Code Max 20 plan after update — rate limit window resets but is immediately depleted again Includes evidence for Anthropic API troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Anthropic API",
+    "error_signature": "rate limit 100% exhausted within ~70 minutes after reset (never happened before v2.1.89)",
+    "search_intent": "Fix abnormally fast rate limit exhaustion on Claude Code Max 20 plan after update — rate limit window resets but is immediately depleted again",
+    "common_causes": [
+      "GitHub anthropics/claude-code#41788 — Specific regression introduced in v2.1.89 where rate limits deplete much faster than before. 59 comments indicating widespread user impact. High commercial value for Max plan subscribers. Recently updated Jun 4 2026."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "Anthropic API"
+    ]
+  },
+  {
+    "slug": "anthropic-api-status-code-200-expected-529-for-anthropic-overloaded-error-mid-stream-sse-event",
+    "title": "Mid-stream SSE Errors Get status_code=200 Instead of Actual Error Code (overloaded_error → 529)",
+    "description": "Fix incorrect HTTP status code returned by Anthropic SDK during streaming when API returns overloaded_error — callers checking status_code get wrong answer for retry/fallback logic Includes evidence for Anthropic API troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Anthropic API",
+    "error_signature": "status_code=200 (expected 529) for Anthropic overloaded_error mid-stream SSE event",
+    "search_intent": "Fix incorrect HTTP status code returned by Anthropic SDK during streaming when API returns overloaded_error — callers checking status_code get wrong answer for retry/fallback logic",
+    "common_causes": [
+      "GitHub anthropics/anthropic-sdk-python#1258 — In _streaming.py, SSE error events pass original HTTP 200 response to _make_status_error, causing overloaded_error to appear as status_code=200 instead of 529. pydantic-ai FallbackModel never fires because it checks status_code >= 500. Fixed in release 0.87.0 (#1264). Still relevant as many users may not upgrade. Label: bug fix merged. Updated Apr 1 2026."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "Anthropic API"
+    ]
   }
 ]
