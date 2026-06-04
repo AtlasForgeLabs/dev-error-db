@@ -47277,5 +47277,85 @@
     "related_errors": [
       "GitHub Actions"
     ]
+  },
+  {
+    "slug": "aws-an-error-occurred-accessdenied-when-calling-the-listobjectsv2-operation-access-denied",
+    "title": "AWS Lambda 'S3 Access Denied' Cross-Account Permission Error on S3 Trigger",
+    "description": "Setting up AWS Lambda triggered by S3 events across accounts and getting access denied errors due to bucket policy misconfiguration or IAM role trust relationship missing. Needs cross-account permission setup steps. Includes evidence for AWS troubleshooting demand.",
+    "category": "Cloud Platforms",
+    "technology": "AWS",
+    "error_signature": "An error occurred (AccessDenied) when calling the ListObjectsV2 operation: Access Denied",
+    "search_intent": "Setting up AWS Lambda triggered by S3 events across accounts and getting access denied errors due to bucket policy misconfiguration or IAM role trust relationship missing. Needs cross-account permission setup steps.",
+    "common_causes": [
+      "Cross-account S3-to-Lambda triggers consistently produce AccessDenied errors due to subtle bucket policy / IAM role gaps. Very high commercial value since Lambda+S3 is one of AWS's most-used serverless combos. Maps to Cloud Platforms. Not specifically covered in covered-errors.md which focuses on more basic cloud errors."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Cloud Platforms"
+    ]
+  },
+  {
+    "slug": "vercel-error-err-module-not-found-cannot-find-module-path-to-file-mjs",
+    "title": "Vercel Build Failed: 'Cannot find module' with Next.js and Turbopack",
+    "description": "Deploying Next.js app to Vercel and build fails with module not found error specifically related to Turbopack bundler changes, missing dependencies, or incorrect ESM/CJS imports. User needs Vercel-specific fixes like correct build command, dependency resolution, and .vercel/settings configuration. Includes evidence for Vercel troubleshooting demand.",
+    "category": "Deployment",
+    "technology": "Vercel",
+    "error_signature": "Error [ERR_MODULE_NOT_FOUND]: Cannot find module '/path/to/file.mjs'",
+    "search_intent": "Deploying Next.js app to Vercel and build fails with module not found error specifically related to Turbopack bundler changes, missing dependencies, or incorrect ESM/CJS imports. User needs Vercel-specific fixes like correct build command, dependency resolution, and .vercel/settings configuration.",
+    "common_causes": [
+      "Vercel builds with Turbopack introduced new module resolution behaviors causing ERR_MODULE_NOT_FOUND errors that don't appear in local dev. Distinct from generic 'Vercel module not found' in covered-errors — this is Turbopack-specific. High commercial value because deployment failures directly block paid users releasing products. Maps to Deployment category."
+    ],
+    "quick_fix": "Check the build output, project root, and deployment platform configuration before redeploying.",
+    "related_errors": [
+      "Deployment"
+    ]
+  },
+  {
+    "slug": "anthropic-api-overloaded-error-this-means-we-re-temporarily-unable-to-serve-your-request-try-again-later",
+    "title": "Claude API 'overloaded_error: This means we're temporarily unable to serve your request — try again later'",
+    "description": "Developer sees Anthropic API overloaded_error during API calls and needs best practices for retry logic, exponential backoff, and handling temporary service degradation without crashing production. Includes evidence for Anthropic API troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Anthropic API",
+    "error_signature": "overloaded_error: This means we're temporarily unable to serve your request — try again later.",
+    "search_intent": "Developer sees Anthropic API overloaded_error during API calls and needs best practices for retry logic, exponential backoff, and handling temporary service degradation without crashing production.",
+    "common_causes": [
+      "The overloaded_error is distinct from general 5xx errors — it has a specific message format unique to Anthropic. Covers recommended retry strategies (exponential backoff, jitter), when to fail fast, and monitoring patterns. Maps directly to Anthropic API category. Not covered as an explicit signature entry in covered-errors.md."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Anthropic API"
+    ]
+  },
+  {
+    "slug": "cloudflare-uncaught-referenceerror-self-is-not-defined",
+    "title": "Cloudflare Workers 'Uncaught ReferenceError: self is not defined' on Node.js Compatibility",
+    "description": "Developer migrating or debugging Cloudflare Workers code that uses the global `self` variable, encountering runtime error when Node.js compatibility flag changes behavior. Needs fix for Worker environment detection and polyfill setup. Includes evidence for Cloudflare troubleshooting demand.",
+    "category": "Cloudflare",
+    "technology": "Cloudflare",
+    "error_signature": "Uncaught ReferenceError: self is not defined",
+    "search_intent": "Developer migrating or debugging Cloudflare Workers code that uses the global `self` variable, encountering runtime error when Node.js compatibility flag changes behavior. Needs fix for Worker environment detection and polyfill setup.",
+    "common_causes": [
+      "The 'self is not defined' error in Cloudflare Workers emerged after recent platform updates around Node.js compatibility layer changes. Distinct from generic Cloudflare 522/524 errors in covered-errors. High value because Workers errors affect live production APIs. Maps to Cloudflare category."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Cloudflare"
+    ]
+  },
+  {
+    "slug": "kubernetes-back-off-5m0s-restarting-failed-pod-myapp-abc123-kubelet-pod-has-completed",
+    "title": "Kubernetes 'CrashLoopBackOff' Troubleshooting: Container Exits Immediately After Start",
+    "description": "Kubernetes pod enters CrashLoopBackOff state after deployment — container starts then immediately exits. Developer needs systematic diagnosis: checking logs, event descriptions, resource limits, liveness probe failures, and image pull errors. Includes evidence for Kubernetes troubleshooting demand.",
+    "category": "Cloud Platforms",
+    "technology": "Kubernetes",
+    "error_signature": "back-off 5m0s restarting failed pod=myapp-abc123 kubelet=\"pod has completed\"",
+    "search_intent": "Kubernetes pod enters CrashLoopBackOff state after deployment — container starts then immediately exits. Developer needs systematic diagnosis: checking logs, event descriptions, resource limits, liveness probe failures, and image pull errors.",
+    "common_causes": [
+      "CrashLoopBackOff is a critical but commonly misunderstood Kubernetes status. Developers search for quick diagnostics steps but often get generic tutorials instead of targeted troubleshooting flows. High priority because K8s errors block production deployments. Maps to Cloud Platforms per SKILL.md. Distinct from covered-errors which focuses on ImagePullBackOff rather than CrashLoopBackOff."
+    ],
+    "quick_fix": "Verify the model name, local service connectivity, and network access before retrying the model pull.",
+    "related_errors": [
+      "Cloud Platforms"
+    ]
   }
 ]
