@@ -47357,5 +47357,53 @@
     "related_errors": [
       "Cloud Platforms"
     ]
+  },
+  {
+    "slug": "openai-api-openai-error-ratelimiterror-you-exceeded-your-current-quota-or-a-429-quota-exceeded-http-response-that-distinguishes-billing-quota-exhaustion-from-standard-rate-limiting",
+    "title": "OpenAI API quota_exceeded ErrorException — distinguishing billing quota from rate limit",
+    "description": "Developer needs to distinguish whether their 429 is a billing quota issue (needs payment/top-up) vs. rate limit issue (needs cooldown/retry logic) Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "openai.error.RateLimitError: You exceeded your current quota, or a 429 'quota exceeded' HTTP response that distinguishes billing quota exhaustion from standard rate limiting",
+    "search_intent": "Developer needs to distinguish whether their 429 is a billing quota issue (needs payment/top-up) vs. rate limit issue (needs cooldown/retry logic)",
+    "common_causes": [
+      "Found via Stack Exchange API search for openai+api+429+rate+limit+exceeded. SO question #79761005 specifically addresses differentiating quota_exceeded 429 from standard rate limit 429. Both billing and rate-limiting produce identical HTTP 429 responses, creating confusion for production developers who need different fixes (payment vs retry). Category mapping: OpenAI API errors → approved category 'OpenAI API'."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "claude-code-mcp-server-connection-failed-claude-desktop-on-windows-11-with-docker-mcp-host-cannot-authenticate-or-connect-to-local-tool-server",
+    "title": "Claude Code MCP server authentication failure on Docker-hosted tools",
+    "description": "Developer setting up Claude Code with Docker-based MCP tools encounters connection/auth failures and needs resolution to enable AI coding agent access to local development tools Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "MCP server connection failed — Claude Desktop on Windows 11 with Docker MCP host cannot authenticate or connect to local tool server",
+    "search_intent": "Developer setting up Claude Code with Docker-based MCP tools encounters connection/auth failures and needs resolution to enable AI coding agent access to local development tools",
+    "common_causes": [
+      "Found via browser snapshot of Reddit r/ClaudeAI search (query: mcp error authentication). Recent post found: 'Claude Desktop on Windows 11, with Docker MCP' (10 hours ago at time of crawl, r/ClaudeAI). This represents a real pain point where enterprise developers connecting Claude Code to Dockerized MCP servers face auth/connection failures. Category: AI Coding Tools (Claude Code + MCP integration)."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "cloudflare-error-523-origin-is-unreachable-cloudflare-workers-edge-nodes-report-back-to-origin-connection-timed-out-despite-origin-server-being-operational",
+    "title": "Cloudflare Error 523 Origin Unreachable — production CDN failover troubleshooting",
+    "description": "Production engineer needs immediate resolution for Cloudflare 523 errors causing site downtime; typically caused by firewall rules blocking Cloudflare IPs, incorrect origin IP configuration, or security software on origin server dropping Cloudflare connections Includes evidence for Cloudflare troubleshooting demand.",
+    "category": "Cloudflare",
+    "technology": "Cloudflare",
+    "error_signature": "Error 523: Origin is unreachable — Cloudflare Workers edge nodes report back-to-origin connection timed out despite origin server being operational",
+    "search_intent": "Production engineer needs immediate resolution for Cloudflare 523 errors causing site downtime; typically caused by firewall rules blocking Cloudflare IPs, incorrect origin IP configuration, or security software on origin server dropping Cloudflare connections",
+    "common_causes": [
+      "Category: Cloudflare. Error 523 is distinct from 522 (timed out) and 525 (SSL handshake failed), each requiring different diagnostics. Production sites affected = high commercial value. Cloudflare community forums have active troubleshooting threads. Note: web_fetch attempted on community.cloudflare.com but returned DNS resolution blockage."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Cloudflare"
+    ]
   }
 ]
