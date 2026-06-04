@@ -47997,5 +47997,37 @@
     "related_errors": [
       "Anthropic API"
     ]
+  },
+  {
+    "slug": "litellm-function-tools-with-reasoning-effort-set-fails-through-openai-agents-sdk-via-litellm-proxy-function-tools-with-reasoning-are-not-supported",
+    "title": "LiteLLM GPT-5.4 tool calls with reasoning_effort fail",
+    "description": "Fix incompatible combination of function tool calls and reasoning_effort parameter when routing through LiteLLM proxy to OpenAI GPT-5.4 Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "Function tools with reasoning_effort set fails through openai-agents SDK via LiteLLM proxy: 'Function tools with reasoning are not supported'",
+    "search_intent": "Fix incompatible combination of function tool calls and reasoning_effort parameter when routing through LiteLLM proxy to OpenAI GPT-5.4",
+    "common_causes": [
+      "Found via GitHub API on BerriAI/litellm repo (#23156, created 2026-03-09). Error occurs when using openai-agents SDK with OpenAI GPT-5.4 + function tools + reasoning_effort='low'. P1 technology, blocking production AI workflow when teams use reasoning models with tool calling. Not in covered-errors list."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "LiteLLM"
+    ]
+  },
+  {
+    "slug": "vercel-linkaccount-hangs-indefinitely-on-vercel-but-works-locally",
+    "title": "NextAuth PrismaAdapter linkAccount() hangs indefinitely on Vercel",
+    "description": "Fix NextAuth PrismaAdapter linkAccount hanging only in production on Vercel while working fine locally Includes evidence for Vercel troubleshooting demand.",
+    "category": "Deployment",
+    "technology": "Vercel",
+    "error_signature": "linkAccount() hangs indefinitely on Vercel but works locally",
+    "search_intent": "Fix NextAuth PrismaAdapter linkAccount hanging only in production on Vercel while working fine locally",
+    "common_causes": [
+      "Found via StackExchange API (Q:79919233, 2026). Deployment-specific issue where authentication flow succeeds locally but fails silently on Vercel platform. Strong commercial value as Vercel-hosted apps with authentication lose paying users. This is a Vercel deployment behavior issue not previously in covered-errors."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "Deployment"
+    ]
   }
 ]
