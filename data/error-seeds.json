@@ -47741,5 +47741,101 @@
     "related_errors": [
       "LiteLLM"
     ]
+  },
+  {
+    "slug": "openai-api-429-insufficient-quota-error-api-usage-dashboard-shows-0-api-invocations-but-still-returns-insufficient-quota-after-purchasing-additional-quota",
+    "title": "OpenAI API 429 insufficient_quota Despite Paid Account — Quota Propagation Delay Fix",
+    "description": "Fix quota not being recognized after top-up; wait time for quota propagation; why insufficient_quota persists despite having paid credits Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "429 \"Insufficient Quota\" error — API usage dashboard shows 0 API invocations but still returns insufficient_quota after purchasing additional quota",
+    "search_intent": "Fix quota not being recognized after top-up; wait time for quota propagation; why insufficient_quota persists despite having paid credits",
+    "common_causes": [
+      "Found on Stack Overflow (Q#77583070): user reports getting 429 insufficient_quota even with paid subscription, dashboard shows zero invocations, regenerated keys, waited >12 hours (beyond normal propagation delay). Bing/yingsu blog confirms this is a known quota propagation timing issue separate from rate limiting. Covers real billing/pay-per-token scenario."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "claude-code-authentication-failed-incorrect-or-missing-anthropic-api-key-environment-variable-oauth-login-fails-in-ci-non-interactive-contexts",
+    "title": "Claude Code Authentication Failed — Correct API Key Setup for CLI, CI, and Proxy Environments",
+    "description": "Resolve authentication errors by correctly setting Anthropic API key or re-initiating OAuth login for non-standard environments (CLI scripts, CI pipelines, proxied connections) Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Authentication failed — incorrect or missing ANTHROPIC_API_KEY environment variable; OAuth login fails in CI/non-interactive contexts",
+    "search_intent": "Resolve authentication errors by correctly setting Anthropic API key or re-initiating OAuth login for non-standard environments (CLI scripts, CI pipelines, proxied connections)",
+    "common_causes": [
+      "markaicode.com (May 23, 2026) provides step-by-step fix covering CLI, CI, and proxy environments. Distinct from MCP auth issue (#2 above) — this focuses on API key authentication vs OAuth/MCP connector auth. High commercial value as broken auth stops all Claude Code usage for paid teams."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "claude-code-authorization-with-the-mcp-server-failed-couldn-t-reach-the-mcp-server-oauth-callback-timeouts-macos-keychain-locked-or-dns-resolution-blocking-the-anthropic-auth-endpoint",
+    "title": "Claude Code MCP Server Authorization Failed — OAuth & Keychain Fixes",
+    "description": "Fix Claude Code MCP connection/auth failures caused by OAuth timeout, locked keychain, or DNS preventing auth endpoint reachability Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Authorization with the MCP server failed / Couldn't reach the MCP server — OAuth callback timeouts, macOS keychain locked, or DNS resolution blocking the Anthropic auth endpoint",
+    "search_intent": "Fix Claude Code MCP connection/auth failures caused by OAuth timeout, locked keychain, or DNS preventing auth endpoint reachability",
+    "common_causes": [
+      "Official Anthropic docs (claude.com/docs/connectors/building/troubleshooting) cover both 'Couldn\\'t reach the MCP server' and 'Authorization with the MCP server failed' errors as distinct root causes. Remoteopenclaw.com blog lists common causes: OAuth callback timeouts, locked macOS keychains, DNS resolution issues. Using ANTHROPIC_API_KEY env var as workaround. YouTube tutorial has 342 views (2 months ago), showing active demand."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "docker-address-already-in-use-on-port-8200-hashicorp-vault-in-docker-compose-can-t-start-even-after-restarting-docker-daemon-and-pruning-all-containers",
+    "title": "HashiCorp Vault Docker Compose Fails With Port 8200 Address Already In Use",
+    "description": "Diagnose and fix Docker port allocator holding vault 8200 port hostage; identify what process is actually consuming the port when all diagnostics show free Includes evidence for Docker troubleshooting demand.",
+    "category": "Docker",
+    "technology": "Docker",
+    "error_signature": "Address already in use on port 8200 — HashiCorp Vault in Docker Compose can't start even after restarting Docker daemon and pruning all containers",
+    "search_intent": "Diagnose and fix Docker port allocator holding vault 8200 port hostage; identify what process is actually consuming the port when all diagnostics show free",
+    "common_causes": [
+      "Stack Overflow Q#79951148 posted today: user tried restarting Docker, pruning everything, checking netstat — all show port free but Docker still cannot bind. Classic Docker port allocator internal state bug. Fresh issue (posted today) suggests recent Docker version regression. Enterprise security tool context adds commercial value."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Docker"
+    ]
+  },
+  {
+    "slug": "docker-port-is-already-allocated-docker-compose-fails-when-using-replicas-with-explicit-port-mapping-listen-tcp-0-0-0-0-port-bind-address-already-in-use",
+    "title": "Docker Compose Port Is Already Allocated — Service Replica Port Conflict Fix",
+    "description": "Fix Docker Compose 'port is already allocated' error when deploying multi-replica services; learn proper port mapping for replicated containers using service discovery instead of direct port binding Includes evidence for Docker troubleshooting demand.",
+    "category": "Docker",
+    "technology": "Docker",
+    "error_signature": "port is already allocated — docker-compose fails when using replicas with explicit port mapping; listen tcp 0.0.0.0:PORT: bind: address already in use",
+    "search_intent": "Fix Docker Compose 'port is already allocated' error when deploying multi-replica services; learn proper port mapping for replicated containers using service discovery instead of direct port binding",
+    "common_causes": [
+      "Stack Overflow Q#76847217 and Q#56285989 provide multiple solutions: use Docker service-based load balancing instead of port mapping for replicas, or assign dynamic ports (8080-8085 range). Q#46176584 covers bind:0.0.0.0:PORT conflict with override.yml. Q#79951148 (today) shows HashiCorp Vault port allocation issue where standard Linux tools show port free but Docker holds it — indicates ongoing Docker port allocator bug."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Docker"
+    ]
+  },
+  {
+    "slug": "docker-bind-address-already-in-use-netstat-a-b-o-reveals-no-service-listening-on-port-but-docker-still-refuses-to-bind-occurs-after-docker-update-or-container-kill-cleanup-cycle",
+    "title": "Docker Port Allocator Bug — Port Shows In Use After Container Kill Despite netstat Showing Free",
+    "description": "Diagnose why Docker reserves port internally even after stopping/removing container; find cause of stale port reservation that persists through docker-compose down and reboot Includes evidence for Docker troubleshooting demand.",
+    "category": "Docker",
+    "technology": "Docker",
+    "error_signature": "bind: address already in use — netstat -a -b -o reveals no service listening on port but Docker still refuses to bind; occurs after Docker update or container kill/cleanup cycle",
+    "search_intent": "Diagnose why Docker reserves port internally even after stopping/removing container; find cause of stale port reservation that persists through docker-compose down and reboot",
+    "common_causes": [
+      "Stack Overflow Q#73478575: user reports port 8000 reserved after Docker update, netstat shows nothing listening, docker-compose down doesn't release, port change works only as workaround. GitHub joeyjiaojg/llamacpp-cli TROUBLESHOOTING_PORT.md documents backend container reserving port via Docker internal state even when nothing is actually listening. Q#79951148 (today) extends this to HashiCorp Vault with same symptom pattern. This is clearly a Docker daemon internal state bug affecting production deployments."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Docker"
+    ]
   }
 ]
