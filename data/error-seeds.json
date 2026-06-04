@@ -47565,5 +47565,53 @@
     "related_errors": [
       "Anthropic API"
     ]
+  },
+  {
+    "slug": "claude-code-connection-expired-despite-valid-refresh-token-claude-doesn-t-auto-exercise-refresh-endpoint-on-access-token-expiry",
+    "title": "Claude Code MCP OAuth Does Not Auto-Refresh Access Tokens — Daily 'Connection Expired'",
+    "description": "Fix MCP OAuth connector showing daily 'Connection has expired' in Claude.ai / Desktop despite valid refresh tokens; user wants silent background token refresh instead of manual reconnect Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Connection expired (despite valid refresh token); Claude doesn't auto-exercise refresh endpoint on access token expiry",
+    "search_intent": "Fix MCP OAuth connector showing daily 'Connection has expired' in Claude.ai / Desktop despite valid refresh tokens; user wants silent background token refresh instead of manual reconnect",
+    "common_causes": [
+      "GitHub issue #65036 opened Jun 3 2026 by @deiv061 on anthropics/claude-code repo. Detailed repro with Azure Function App + Entra OAuth 2.0 PKCE. Confirmed cross-platform (Windows 11, macOS). Multiple linked duplicate issues show wide community impact (~$10k+/mo enterprise org affected). Category mapped to AI Coding Tools per SKILL.md rules. Error signature extracted from UI banner text."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "claude-code-mcp-server-authentication-failed-indeed-mcp-connection-error-32429",
+    "title": "MCP Server Authentication Failed — Connection Error -32429 in Claude Code",
+    "description": "Developers integrating third-party MCP servers (like Indeed) with Claude Code face auth failures with error code -32429; need troubleshooting steps and resolution Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "MCP Server Authentication Failed: Indeed MCP Connection Error -32429",
+    "search_intent": "Developers integrating third-party MCP servers (like Indeed) with Claude Code face auth failures with error code -32429; need troubleshooting steps and resolution",
+    "common_causes": [
+      "GitHub issue #65198 opened Jun 4 2026 by @jasonvassallo on anthropics/claude-code. Specific structured error code (-32429), area:auth and area:mcp labels. Brand-new issue (today). Distinct from #65036 (different error type: auth failure vs token refresh). High-value commercial angle since MCP integrations drive enterprise adoption."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "claude-code-tool-calls-intermittently-emitted-as-plain-text-instead-of-structured-blocks-causing-parse-failures-and-hard-hangs-on-retry",
+    "title": "Tool Calls Intermittently Emitted As Plain Text Instead Of Structured Blocks — Parse Failures And Hard Hangs On Retry",
+    "description": "Claude Code intermittently emits tool use calls as plain text instead of parseable XML/JSON blocks, causing downstream tool execution failures and dead locks during agent retries Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Tool calls intermittently emitted as plain text instead of structured blocks, causing parse failures and hard hangs on retry",
+    "search_intent": "Claude Code intermittently emits tool use calls as plain text instead of parseable XML/JSON blocks, causing downstream tool execution failures and dead locks during agent retries",
+    "common_causes": [
+      "GitHub issue #65130 opened Jun 4 2026 by @macaroni-lab on anthropics/claude-code. Critical runtime bug affecting AI coding reliability. Labels: area:tools, bug, has repro, platform:wsl. Distinct from other MCP issues — this is about the LLM output formatting layer. High severity because it causes hard hangs."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
   }
 ]
