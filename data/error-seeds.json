@@ -47933,5 +47933,69 @@
     "related_errors": [
       "AI Coding Tools"
     ]
+  },
+  {
+    "slug": "anthropic-api-429-type-error-error-type-quota-exceeded-message-you-exceeded-your-current-quota-please-check-your-plan-and-billing-details-x-should-retry-false",
+    "title": "Anthropic API 429 Quota Exceeded with x-should-retry: false — Fixed Monthly Spend Limit Exhaustion",
+    "description": "Developer hitting Anthropic API 429 with x-should-retry=false; needs to understand it means monthly spending cap exhausted (not per-minute RPM/TPM), and how to raise budget in console Includes evidence for Anthropic API troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Anthropic API",
+    "error_signature": "429 {\"type\":\"error\",\"error\":{\"type\":\"quota_exceeded\",\"message\":\"You exceeded your current quota, please check your plan and billing details.\"}} x-should-retry: false",
+    "search_intent": "Developer hitting Anthropic API 429 with x-should-retry=false; needs to understand it means monthly spending cap exhausted (not per-minute RPM/TPM), and how to raise budget in console",
+    "common_causes": [
+      "Markaicode full guide fetched via web_fetch (2026-06-04) provides exact error payload, Retry-After header behavior, and step-by-step fix. Key insight: x-should-retry: false means monthly spending limit exhausted, not a temporary RPM cap. Requires Console action (increase spend limit). Distinct from 529 overload_error. Not in covered-errors.md. Category: 'Anthropic API' direct match. P0 technology, affects paying customers with production deployments."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "Anthropic API"
+    ]
+  },
+  {
+    "slug": "claude-code-api-error-529-type-error-error-type-overloaded-error-message-overloaded-retrying-in-1-seconds-attempt-1-10",
+    "title": "Claude Code Overloaded Error 529 vs 429 Confusion — How to Stop Mistaking Server Saturation for Rate Limit",
+    "description": "Claude Code user repeatedly sees 529 overloaded during agent sessions; confused between rate limiting and actual server overload; needs distinction + escalation path Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "API Error (529 {\"type\":\"error\",\"error\":{\"type\":\"overloaded_error\",\"message\":\"Overloaded\"}}) · Retrying in 1 seconds… (attempt 1/10)",
+    "search_intent": "Claude Code user repeatedly sees 529 overloaded during agent sessions; confused between rate limiting and actual server overload; needs distinction + escalation path",
+    "common_causes": [
+      "LaoZhang AI Blog article fetched via Brave search snippet confirms widespread developer confusion between 529 (capacity overload) and 429 (account quota). GitHub #40134 shows Claude Code auto-retrying for 8+ minutes before timeout despite quota at 1%. Article advises escalating with exact error text + request_id. Category mapping: Claude Code → 'AI Coding Tools' per SKILL.md rules. Fresh content from April 11 2026."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "claude-code-extreme-latency-on-claude-code-requests-15s-plus-to-first-token-followed-by-explicit-529-overloaded-error-after-retry-exhaustion",
+    "title": "Claude Code Extreme Latency on Requests (15s+ to first token) Causing 529 Timeouts",
+    "description": "Developer experiencing massive latency spikes (15s+ time-to-first-token) in Claude Code causing downstream 529 timeouts during retries; needs performance diagnosis beyond simple backoff Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Extreme latency on Claude Code requests (15s+ to first token) followed by explicit 529 overloaded_error after retry exhaustion",
+    "search_intent": "Developer experiencing massive latency spikes (15s+ time-to-first-token) in Claude Code causing downstream 529 timeouts during retries; needs performance diagnosis beyond simple backoff",
+    "common_causes": [
+      "GitHub Issue #40134 (#anthropics/claude-code, observed March 28 2026) documents case where context usage was only 4% and fresh 5-hour quota window had 1% usage, yet code retried for 8m20s and ultimately timed out with 529. Session freshly cleared with /clear before testing. Points to infrastructure-level bottleneck rather than application-level misconfiguration. Distinct from the generic 529 candidate (#3 above) because it focuses on latency as the primary trigger. Category: 'AI Coding Tools' per SKILL.md. High commercial value — blocks paid users' workflows."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "anthropic-api-quota-exceeded-for-aiplatform-googleapis-com-online-prediction-requests-per-base-model",
+    "title": "Anthropic Vertex AI Quota Exceeded — Google Cloud Aiplatform Prediction Request Limits",
+    "description": "Developer accessing Claude 3.5 Sonnet through Google Vertex AI gets quota exceeded error on prediction service; needs to increase GCP quota limits Includes evidence for Anthropic API troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Anthropic API",
+    "error_signature": "Quota exceeded for aiplatform.googleapis.com/online_prediction_requests_per_base_model",
+    "search_intent": "Developer accessing Claude 3.5 Sonnet through Google Vertex AI gets quota exceeded error on prediction service; needs to increase GCP quota limits",
+    "common_causes": [
+      "Google Developer Forums discussion (discuss.google.dev, Nov 2024) documents paid Anthropic customer hitting Vertex AI quota for online_prediction_requests. Error is specific to GCP/Vertex AI integration layer — not raw API access. Shows cross-cloud quota management complexity. Relevant for enterprise teams using Claude through Google Cloud Platform. Category: 'Anthropic API' (direct API quota error) also touches 'Cloud Platforms' (GCP). Not in covered-errors.md."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "Anthropic API"
+    ]
   }
 ]
