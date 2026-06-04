@@ -47229,5 +47229,53 @@
     "related_errors": [
       "Anthropic API"
     ]
+  },
+  {
+    "slug": "openai-api-error-429-rate-limit-exceeded-too-many-requests",
+    "title": "How to Fix OpenAI API Rate Limit Error 429 & Timeouts: A Developer's Guide",
+    "description": "Fix OpenAI API rate limiting (HTTP 429) and timeout errors during AI application development Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "Error 429: Rate limit exceeded / Too Many Requests",
+    "search_intent": "Fix OpenAI API rate limiting (HTTP 429) and timeout errors during AI application development",
+    "common_causes": [
+      "Found via Google browser search (chandrahasa.com, published 2026-05-29). Covers combined rate limit + timeout handling when building AI apps with OpenAI SDK — distinct angle from generic '429 Too Many Requests' already in covered-errors.md. High commercial value as developers using OpenAI API pay per token."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "cursor-gpt-5-5-returns-insufficient-quota-error-composer-reports-api-key-is-missing",
+    "title": "GPT-5.5 and Composer Models Broken After Latest Cursor Update",
+    "description": "Fix GPT-5.5 model returning insufficient_quota and Composer reporting missing API key after Cursor IDE version update Includes evidence for Cursor troubleshooting demand.",
+    "category": "Cursor",
+    "technology": "Cursor",
+    "error_signature": "GPT-5.5 returns insufficient_quota error; Composer reports API key is missing",
+    "search_intent": "Fix GPT-5.5 model returning insufficient_quota and Composer reporting missing API key after Cursor IDE version update",
+    "common_causes": [
+      "Found via Google browser search (forum.cursor.com, posted ~1 day ago — very fresh). Multiple model types affected post-update. Distinct from 'Cursor model not available' in covered-errors.md because it specifically covers GPT-5.5 + Composer combination failures triggered by a recent version update. High commercial value: Cursor is a paid coding tool affecting production workflows."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "Cursor"
+    ]
+  },
+  {
+    "slug": "github-actions-github-actions-bot-denied-permission-github-token-lacks-repository-write-access",
+    "title": "GitHub Actions Permission Denied: GITHUB_TOKEN Lacks Write Access for Workflows",
+    "description": "Fix GitHub Actions workflows failing due to default GITHUB_TOKEN having only read-only access, preventing PR creation, branch pushes, or script execution Includes evidence for GitHub Actions troubleshooting demand.",
+    "category": "GitHub Actions",
+    "technology": "GitHub Actions",
+    "error_signature": "github-actions[bot] denied permission / GITHUB_TOKEN lacks repository write access",
+    "search_intent": "Fix GitHub Actions workflows failing due to default GITHUB_TOKEN having only read-only access, preventing PR creation, branch pushes, or script execution",
+    "common_causes": [
+      "Found via Google browser search (github.com/orgs/community/discussions). Covers three sub-scenarios: (1) GITHUB_TOKEN read-only causing workflow permission denied, (2) branch protection rules blocking github-actions[bot] commits, (3) scripts missing execute bit (chmod +x issue). Distinct from 'GitHub Actions npm ci lockfile error' already in covered-errors.md — this targets the workflow permissions configuration gap."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "GitHub Actions"
+    ]
   }
 ]
