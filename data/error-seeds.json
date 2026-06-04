@@ -47885,5 +47885,53 @@
     "related_errors": [
       "AI Coding Tools"
     ]
+  },
+  {
+    "slug": "claude-code-bug-claude-code-does-not-support-mcp-protocol-version-2025-06-18-needed-by-lens-studio-and-others",
+    "title": "Claude Code MCP Protocol Version 2025-06-18 Not Supported by Older Clients",
+    "description": "Fix compatibility between Claude Code and external tools/services requiring the latest MCP protocol version (2025-06-18) Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "[BUG] Claude code does not support MCP protocol version 2025-06-18 needed by Lens Studio and others",
+    "search_intent": "Fix compatibility between Claude Code and external tools/services requiring the latest MCP protocol version (2025-06-18)",
+    "common_causes": [
+      "GitHub Issue #17169 on anthropics/claude-code (Jan 2026). After debugging, identified that MCP clients using protocol version 2025-06-18 fail with Claude Code which doesn't support this newer spec version yet. Affects developers integrating external tools via MCP Registry. High commercial relevance because MCP is becoming the standard extension protocol. Category mapping: AI Coding Tools (Claude Code is explicitly listed under this category)."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "openai-api-ratelimiterror-error-code-429-rate-limit-reached-for-text-moderation-007-in-organization-org-xxx-on-tokens-per-min-tpm-limit-150000-used-138657-requested-20493",
+    "title": "OpenAI Moderation API 429 Rate Limit Error for Long Input — Even Below TPM Quota",
+    "description": "Fix false 429 rate limit error on OpenAI Moderation API when input exceeds ~6000 chars but total TPM usage is still below quota Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "RateLimitError: Error code: 429 - 'Rate limit reached for text-moderation-007 in organization org-xxx on tokens per min (TPM): Limit 150000, Used 138657, Requested 20493'",
+    "search_intent": "Fix false 429 rate limit error on OpenAI Moderation API when input exceeds ~6000 chars but total TPM usage is still below quota",
+    "common_causes": [
+      "Discussed on OpenAI Developer Community (issue #718609). Users reproduce consistently: passing long text to the Moderation API triggers a 429 even when RPM/TPM limits have plenty of headroom. Root cause tied to per-endpoint internal token counting; waiting doesn't resolve because same-length input gets same result. This is a specific, fixable edge-case not covered in standard rate-limit guides. Category: OpenAI API (direct API billing/limiting concern)."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "claude-code-bug-claude-code-persistent-json-parse-error-on-windows-versions-2-0-62-2-0-73",
+    "title": "Claude Code Persistent JSON Parse Error After OAuth on Windows v2.0.62+",
+    "description": "Fix recurring JSON parsing crashes in Claude Code after OAuth authentication completes on Windows Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "[BUG] Claude Code - Persistent JSON Parse Error on Windows (versions 2.0.62-2.0.73)",
+    "search_intent": "Fix recurring JSON parsing crashes in Claude Code after OAuth authentication completes on Windows",
+    "common_causes": [
+      "GitHub Issue #14442 on anthropics/claude-code (Dec 2025). After successful OAuth auth, Claude Code fails to parse JSON response and enters error loop instead of starting. Affects Windows users specifically across versions 2.0.62–2.0.73. Clear bug report with actionable context. Category: AI Coding Tools."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
   }
 ]
