@@ -47405,5 +47405,53 @@
     "related_errors": [
       "Cloudflare"
     ]
+  },
+  {
+    "slug": "openai-api-http-429-insufficient-quota-insufficient-quota",
+    "title": "HTTP 429 insufficient_quota Error Despite Having $20 Credit Available",
+    "description": "开发者购买了 $20 额度后仍收到 insufficient_quota 错误，找不到解决方法 Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "HTTP 429 (insufficient_quota: insufficient_quota)",
+    "search_intent": "开发者购买了 $20 额度后仍收到 insufficient_quota 错误，找不到解决方法",
+    "common_causes": [
+      "社区帖子 1284955（OpenAI Developer Community）中用户反馈充值了 $20 信用但所有 API 端点均返回 HTTP 429 insufficient_quota。涉及计费与可用余额的矛盾场景。已覆盖列表中没有此变体。Category mapping：OpenAI API → OpenAI API。"
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "openai-api-error-429-insufficient-quota-even-though-still-have-4-98-available-in-account",
+    "title": "API Error 429 exceeding current quota with $4.98 Still Available in Account",
+    "description": "用户账户仍有剩余资金（$4.98）但 API 调用仍然触发 429 insufficient_quota 错误，困惑为什么付费账户报配额不足 Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "Error 429 'insufficient_quota' — even though still have $4.98 available in account",
+    "search_intent": "用户账户仍有剩余资金（$4.98）但 API 调用仍然触发 429 insufficient_quota 错误，困惑为什么付费账户报配额不足",
+    "common_causes": [
+      "OpenAI Developer Community 帖子 #1379873（2026年4月27日）显示用户虽有可用余额但仍获 429 错误。这不同于 #1284955（完全未充值的 $20 信用），而是已有余额但系统判定配额已满的情况，可能涉及自动扣费失败、账单状态异常。Distinct error variant。Category mapping：OpenAI API → OpenAI API。"
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "azure-openai-429-insufficient-quota-azure-openai-model-quota-exceeded-in-subscription-region",
+    "title": "Azure OpenAI Returns 429 insufficient_quota When Model Quota Exhausted in Subscription Region",
+    "description": "开发者在 Azure OpenAI 上遇到 429 insufficient_quota，需要区分 OpenAI 自有计费不足与 Azure 订阅模型配额耗尽的不同根因 Includes evidence for Azure OpenAI troubleshooting demand.",
+    "category": "Cloud Platforms",
+    "technology": "Azure OpenAI",
+    "error_signature": "429 insufficient_quota — Azure OpenAI model quota exceeded in subscription region",
+    "search_intent": "开发者在 Azure OpenAI 上遇到 429 insufficient_quota，需要区分 OpenAI 自有计费不足与 Azure 订阅模型配额耗尽的不同根因",
+    "common_causes": [
+      "Microsoft Learn 论坛（learn.microsoft.com/en-in/answers/questions/5759907）确认 Azure OpenAI 可在订阅/区域模型配额耗尽时返回 429 insufficient_quota。这与普通 OpenAI API 的余额不足不同——Azure 有独立的 v-core 配额机制。属于 Cloud Platforms 类别。已在 covered-errors.md 中排除。"
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "Cloud Platforms"
+    ]
   }
 ]
