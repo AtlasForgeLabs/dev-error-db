@@ -48173,5 +48173,85 @@
     "related_errors": [
       "OpenAI API"
     ]
+  },
+  {
+    "slug": "claude-code-anthropic-http-mcp-server-returns-rfc-6750-401-but-fails-to-trigger-oauth-2-1-dance-flow-due-to-missing-rfc-9728-resource-metadata-hint-parameter",
+    "title": "[BUG] HTTP MCP server returning RFC 6750 401 without RFC 9728 resource_metadata_hint surfaces as Failed to connect instead of triggering OAuth dance",
+    "description": "Fix Claude Code MCP OAuth authentication failure where OAuth 2.1 dance flow is not triggered after receiving RFC 6750 401 response Includes evidence for Claude Code (Anthropic) troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code (Anthropic)",
+    "error_signature": "HTTP MCP server returns RFC 6750 401 but fails to trigger OAuth 2.1 dance flow due to missing RFC 9728 resource_metadata_hint parameter",
+    "search_intent": "Fix Claude Code MCP OAuth authentication failure where OAuth 2.1 dance flow is not triggered after receiving RFC 6750 401 response",
+    "common_causes": [
+      "GitHub issue #61376 on anthropics/claude-code repo: The MCP OAuth implementation returns RFC 6750 401 but omits RFC 9728 resource_metadata_hint in WWW-Authenticate header, so OAuth 2.1 dance flow is not triggered and users see generic Failed to connect error instead of proper OAuth 2.1 dance flow. This blocks enterprise SSO integrations for Claude Code users."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "vercel-vercel-build-broken-with-pnpm-monorepos-outside-vercel-infrastructure-hardcoded-path",
+    "title": "Vercel build broken with pnpm monorepos outside Vercel infrastructure — hardcoded PATH causes command resolution failure",
+    "description": "Fix Vercel CLI build failures in pnpm monorepo setups running outside Vercel's cloud infrastructure due to hardcoded PATH issues Includes evidence for Vercel troubleshooting demand.",
+    "category": "Deployment",
+    "technology": "Vercel",
+    "error_signature": "vercel build broken with pnpm monorepos outside Vercel infrastructure — hardcoded PATH",
+    "search_intent": "Fix Vercel CLI build failures in pnpm monorepo setups running outside Vercel's cloud infrastructure due to hardcoded PATH issues",
+    "common_causes": [
+      "Issue #15204 on vercel/vercel repo: vercel build breaks when used with pnpm monorepos outside Vercel infrastructure due to hardcoded PATH causing pnpm commands to fail. Affects teams using local or CI builds with pnpm monorepo structures. High commercial value for production deployments."
+    ],
+    "quick_fix": "Check the build output, project root, and deployment platform configuration before redeploying.",
+    "related_errors": [
+      "Deployment"
+    ]
+  },
+  {
+    "slug": "cloudflare-error-fetch-failed-typeerror-fetch-failed",
+    "title": "Cloudflare Workers SDK [ERROR] fetch failed — TypeError: fetch failed during Worker runtime",
+    "description": "Fix Cloudflare Workers fetch API failing at runtime with TypeError: fetch failed errors Includes evidence for Cloudflare troubleshooting demand.",
+    "category": "Cloudflare",
+    "technology": "Cloudflare",
+    "error_signature": "[ERROR] fetch failed — TypeError: fetch failed",
+    "search_intent": "Fix Cloudflare Workers fetch API failing at runtime with TypeError: fetch failed errors",
+    "common_causes": [
+      "Issue #11002 on cloudflare/workers-sdk repo documents [ERROR] fetch failed in Workers SDK. Multiple related issues (#2847, #10947) show consistent pattern of fetch API failures within Cloudflare Workers runtime. These failures affect production deployed Workers that make outbound HTTP calls. Issue #10947 mentions HTTP/3 protocol causing internal errors."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Cloudflare"
+    ]
+  },
+  {
+    "slug": "github-actions-runner-can-t-connect-to-broker-actions-githubusercontent-com-connection-refused-unreachable",
+    "title": "Runner can't connect to broker.actions.githubusercontent.com — self-hosted runner network connectivity failure",
+    "description": "Fix GitHub Actions self-hosted runner failing to connect to the GitHub Actions broker service Includes evidence for GitHub Actions troubleshooting demand.",
+    "category": "GitHub Actions",
+    "technology": "GitHub Actions",
+    "error_signature": "Runner can't connect to broker.actions.githubusercontent.com — connection refused / unreachable",
+    "search_intent": "Fix GitHub Actions self-hosted runner failing to connect to the GitHub Actions broker service",
+    "common_causes": [
+      "Issue #4090 on actions/runner repo: Self-hosted runners cannot connect to broker.actions.githubusercontent.com, blocking all workflow runs. This is a recurring network connectivity issue affecting enterprise CI/CD pipelines. Multiple similar reports including #4235 about tokenghub.actions.githubusercontent.com being unreachable."
+    ],
+    "quick_fix": "Confirm the local service is running on the expected host and port, then retry the smallest request.",
+    "related_errors": [
+      "GitHub Actions"
+    ]
+  },
+  {
+    "slug": "claude-code-anthropic-mcp-http-oauth-client-doesn-t-read-resource-metadata-from-www-authenticate-header-rfc-9728-non-compliance",
+    "title": "MCP HTTP OAuth: Client doesn't read resource_metadata from WWW-Authenticate header (RFC 9728 compliance gap)",
+    "description": "Fix Claude Code OAuth implementation not reading RFC 9728 resource_metadata parameter from WWW-Authenticate response header Includes evidence for Claude Code (Anthropic) troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code (Anthropic)",
+    "error_signature": "MCP HTTP OAuth client doesn't read resource_metadata from WWW-Authenticate header — RFC 9728 non-compliance",
+    "search_intent": "Fix Claude Code OAuth implementation not reading RFC 9728 resource_metadata parameter from WWW-Authenticate response header",
+    "common_causes": [
+      "GitHub issue #58802 on anthropics/claude-code: Claude Code does not properly parse resource_metadata from WWW-Authenticate header per RFC 9728 specification. Related to #61376 but a distinct compliance issue about client-side parsing behavior rather than server-side hint generation. Another distinct variant of the same broader problem area."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
   }
 ]
