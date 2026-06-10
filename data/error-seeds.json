@@ -48317,5 +48317,101 @@
     "related_errors": [
       "Deployment"
     ]
+  },
+  {
+    "slug": "azure-aadsts7000222-the-provided-client-secret-keys-for-app-are-expired-azure-devops-pipeline-fails-to-authenticate-to-azure-resource-manager",
+    "title": "Azure Pipelines service connection authorization error AADSTS7000222 client secret expired",
+    "description": "CI/CD pipelines fail with AADSTS7000222 when Azure AD service principal secrets expire; developers need to rotate credentials without breaking builds. Includes evidence for Azure troubleshooting demand.",
+    "category": "Cloud Platforms",
+    "technology": "Azure",
+    "error_signature": "AADSTS7000222: The provided client secret keys for app are expired — Azure DevOps pipeline fails to authenticate to Azure Resource Manager",
+    "search_intent": "CI/CD pipelines fail with AADSTS7000222 when Azure AD service principal secrets expire; developers need to rotate credentials without breaking builds.",
+    "common_causes": [
+      "Multiple sources: aztokenwatch.com guide (June 3, 2026), oneuptime.com detailed fix article (Feb 16, 2026), and Microsoft Q&A thread on secret rotation in Azure DevOps pipelines. This affects production deployments at scale. Category: Cloud Platforms. High commercial value as it blocks CI/CD for enterprise teams."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "Cloud Platforms"
+    ]
+  },
+  {
+    "slug": "azure-bug-long-running-jobs-lose-authentication-and-fail-at-finalization-azure-pipelines-agent-loses-session-token-during-extended-execution",
+    "title": "Long-running Azure Pipelines jobs lose authentication and fail at finalization",
+    "description": "Azure Pipelines jobs that run longer than expected (e.g., compilation, testing suites) silently lose authentication mid-execution and fail at the finalization stage, requiring investigation of agent timeout and credential refresh settings. Includes evidence for Azure troubleshooting demand.",
+    "category": "Cloud Platforms",
+    "technology": "Azure",
+    "error_signature": "[BUG]: Long-running jobs lose authentication and fail at finalization — Azure Pipelines agent loses session token during extended execution",
+    "search_intent": "Azure Pipelines jobs that run longer than expected (e.g., compilation, testing suites) silently lose authentication mid-execution and fail at the finalization stage, requiring investigation of agent timeout and credential refresh settings.",
+    "common_causes": [
+      "GitHub issue microsoft/azure-pipelines-agent #5520 filed as open bug titled 'Long-running jobs lose authentication and fail at finalization'. MicrosoftDocs azure-devops-docs contains errors-workload-identity documentation covering workload identity authentication edge cases. Category: Cloud Platforms per mapping rules. Distinct from generic AADSTS7000222 — this is specifically about agent-level token loss during extended job runtime, not credential expiry."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "Cloud Platforms"
+    ]
+  },
+  {
+    "slug": "aws-accessdeniedexception-user-is-not-authorized-to-perform-lambda-updatefunctioncode-lambda-function-deployment-via-aws-cli-fails-despite-iam-policy",
+    "title": "AWS Lambda AccessDeniedException when updating function code via AWS CLI",
+    "description": "Developers configuring Lambda via AWS CLI get AccessDeniedException even after adding IAM policies; the issue often involves missing resource-level permissions or trust relationships. Includes evidence for AWS troubleshooting demand.",
+    "category": "Cloud Platforms",
+    "technology": "AWS",
+    "error_signature": "AccessDeniedException: User is not authorized to perform lambda:UpdateFunctionCode — Lambda function deployment via AWS CLI fails despite IAM policy",
+    "search_intent": "Developers configuring Lambda via AWS CLI get AccessDeniedException even after adding IAM policies; the issue often involves missing resource-level permissions or trust relationships.",
+    "common_causes": [
+      "AWS re:Post thread QUcSHvVHpkT8ad4EmspXORvA documents this exact scenario — AccessDeniedException when attempting to update Lambda function code via AWS CLI, despite having multiple permissions configured. Also corroborated by general security token troubleshooting guide. Category: Cloud Platforms. Medium-high commercial value as Lambda is heavily used in serverless production."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "Cloud Platforms"
+    ]
+  },
+  {
+    "slug": "gcp-403-permission-denied-on-cloud-run-deploy-cloud-build-custom-service-account-even-with-owner-role",
+    "title": "GCP Cloud Build 403 Permission Denied custom service account deploy failure",
+    "description": "Deployments from Google Cloud Build to Cloud Run fail with 403 Permission Denied when using custom service accounts; the roles required extend beyond just Cloud Build and Cloud Run. Includes evidence for GCP troubleshooting demand.",
+    "category": "Cloud Platforms",
+    "technology": "GCP",
+    "error_signature": "403 Permission Denied on Cloud Run Deploy / Cloud Build custom service account — even with Owner role",
+    "search_intent": "Deployments from Google Cloud Build to Cloud Run fail with 403 Permission Denied when using custom service accounts; the roles required extend beyond just Cloud Build and Cloud Run.",
+    "common_causes": [
+      "Google Developer forums thread 193515 documents the exact error pattern: 403 even with Owner role on Cloud Run deploy. Layer 77 blog (May 7, 2025) covers the same issue with custom service accounts. Oneuptime (April 4, 2026) provides additional Cloud Build troubleshooting perspective. Category: Cloud Platforms. Growing relevance as more teams migrate from default service accounts to least-privilege custom accounts."
+    ],
+    "quick_fix": "Check the build output, project root, and deployment platform configuration before redeploying.",
+    "related_errors": [
+      "Cloud Platforms"
+    ]
+  },
+  {
+    "slug": "openai-api-unable-to-access-rate-limit-headers-due-to-exceptions-openai-node-sdk-throws-before-exposing-x-ratelimit-remaining-response-headers",
+    "title": "OpenAI API 429 rate limit headers inaccessible due to SDK exception masking",
+    "description": "When catching RateLimitError in openai-node SDK, developers cannot read rate-limit response headers to diagnose which limit was hit (RPM vs TPM vs RPD); exceptions mask the raw HTTP response. Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "Unable to access rate limit headers due to exceptions — openai-node SDK throws before exposing x-ratelimit-remaining response headers",
+    "search_intent": "When catching RateLimitError in openai-node SDK, developers cannot read rate-limit response headers to diagnose which limit was hit (RPM vs TPM vs RPD); exceptions mask the raw HTTP response.",
+    "common_causes": [
+      "GitHub issue openai/openai-node #1477 filed as open bug with label 'bug' requests ability to access rate-limit headers from within exception handler. Brackets source_afterbuild_labs confirms RPM/TPM/RPD tripartite system makes header inspection critical. Category: OpenAI API. Distinct from generic 429 — focuses on observability gap in the SDK itself."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "kubernetes-imagepullbackoff-kubelet-failed-to-pull-a-container-image-and-is-retrying-with-exponential-backoff",
+    "title": "Kubernetes ImagePullBackOff kubelet failed to pull container image retrying exponential backoff",
+    "description": "Container images fail to pull due to registry credentials, image name typos, or network connectivity; developers need systematic debugging workflow to distinguish causes. Includes evidence for Kubernetes troubleshooting demand.",
+    "category": "Cloud Platforms",
+    "technology": "Kubernetes",
+    "error_signature": "ImagePullBackOff — kubelet failed to pull a container image and is retrying with exponential backoff",
+    "search_intent": "Container images fail to pull due to registry credentials, image name typos, or network connectivity; developers need systematic debugging workflow to distinguish causes.",
+    "common_causes": [
+      "Error Medic comprehensive guide provides full breakdown of ImagePullBackOff causes including typo in image name, missing registry credentials, and network issues presenting as 'kubernetes connect refused'. Multiple Jorijn Schrijvershof articles provide deeper dives. Category: Cloud Platforms. High volume search intent for devops engineers. Duplicate check: CrashLoopBackOff is NOT listed in covered-errors.md so this is distinct."
+    ],
+    "quick_fix": "Verify the model name, local service connectivity, and network access before retrying the model pull.",
+    "related_errors": [
+      "Cloud Platforms"
+    ]
   }
 ]
