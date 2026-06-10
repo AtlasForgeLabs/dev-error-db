@@ -48253,5 +48253,69 @@
     "related_errors": [
       "AI Coding Tools"
     ]
+  },
+  {
+    "slug": "claude-code-claude-code-oauth-authentication-completes-but-mcp-server-stays-in-needs-authentication-state-bearer-token-never-sent-to-downstream-server",
+    "title": "OAuth completes but Bearer token never sent to MCP server — Claude Code needs re-authentication",
+    "description": "Fix Claude Code MCP OAuth flow where token acquisition appears successful but the server continues requesting authentication, requiring manual restart or re-login Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Claude Code OAuth authentication completes but MCP server stays in 'Needs authentication' state; Bearer token never sent to downstream server",
+    "search_intent": "Fix Claude Code MCP OAuth flow where token acquisition appears successful but the server continues requesting authentication, requiring manual restart or re-login",
+    "common_causes": [
+      "Issues #46140, #60260, #65408 on anthropics/claude-code report OAuth flow bugs: completion succeeds but token is not honored, causing persistent auth loops. Affects paid users relying on Claude Code in production development workflows. AI coding tool broken = significant commercial value boost. Category mapping: Claude Code specific auth/MCP bug → AI Coding Tools."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "litellm-litellm-proxy-silently-drops-all-models-after-extended-runtime-config-only-no-db",
+    "title": "Proxy silently drops all models after extended runtime — LiteLLM config-only mode",
+    "description": "Fix LiteLLM proxy stopping routing requests to any LLM after running for an extended period without a database backend Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "LiteLLM proxy silently drops all models after extended runtime (config-only, no DB)",
+    "search_intent": "Fix LiteLLM proxy stopping routing requests to any LLM after running for an extended period without a database backend",
+    "common_causes": [
+      "Issue #25350 on BerriAI/litellm reports that after extended uptime in config-only mode (no DB), the proxy silently stops routing to all configured models with no error message. Affects production LiteLLM deployments serving paid APIs. Category mapping: LiteLLM-specific proxy behavior → LiteLLM."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "LiteLLM"
+    ]
+  },
+  {
+    "slug": "github-actions-container-jobs-fail-with-permission-denied-on-github-env-and-workspace-after-upgrade-from-v2-330-0-to-v2-332-0",
+    "title": "v2.332.0 Container jobs fail with permission denied on GITHUB_ENV and workspace",
+    "description": "Fix permission denied errors in containerized GitHub Actions jobs caused by runner upgrade from v2.330 to v2.332 Includes evidence for GitHub Actions troubleshooting demand.",
+    "category": "GitHub Actions",
+    "technology": "GitHub Actions",
+    "error_signature": "Container jobs fail with permission denied on GITHUB_ENV and workspace after upgrade from v2.330.0 to v2.332.0",
+    "search_intent": "Fix permission denied errors in containerized GitHub Actions jobs caused by runner upgrade from v2.330 to v2.332",
+    "common_causes": [
+      "Issue #4302 on actions/runner reports a regression in runner v2.332.0 where container jobs get EACCES on GITHUB_ENV and workspace directories. Blocks CI/CD for teams using containerized workflows. P0 technology (GitHub Actions) + production-blocking = high commercial value. Category mapping: GitHub Actions runner issue → GitHub Actions."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "GitHub Actions"
+    ]
+  },
+  {
+    "slug": "vercel-custom-install-command-packagemanager-field-no-longer-being-executed-on-vercel-deployment",
+    "title": "Custom install command no longer being run on deploy — Vercel ignoring custom commands",
+    "description": "Fix Vercel ignoring custom install command specified in package.json or vercel.json, defaulting to incorrect package manager Includes evidence for Vercel troubleshooting demand.",
+    "category": "Deployment",
+    "technology": "Vercel",
+    "error_signature": "Custom install command (packageManager field) no longer being executed on Vercel deployment",
+    "search_intent": "Fix Vercel ignoring custom install command specified in package.json or vercel.json, defaulting to incorrect package manager",
+    "common_causes": [
+      "Community post on community.vercel.com (#30249) describes a regression where custom install commands (e.g., pnpm install for mixed FastAPI+Svelte projects) are ignored during deployment. Users had working deployments that suddenly broke without code changes. Production-breaking for deployed applications. Category mapping: Vercel deployment → Deployment."
+    ],
+    "quick_fix": "Check the build output, project root, and deployment platform configuration before redeploying.",
+    "related_errors": [
+      "Deployment"
+    ]
   }
 ]
