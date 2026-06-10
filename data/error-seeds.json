@@ -48125,5 +48125,53 @@
     "related_errors": [
       "GitHub Actions"
     ]
+  },
+  {
+    "slug": "gcp-vertex-ai-gemini-api-http-429-too-many-requests-after-5-7-burst-calls-to-gemini-2-5-flash-preview-tts-or-gemini-2-5-flash-image",
+    "title": "Gemini API 429 Rate Limiting After Just 5–7 Calls — How to Resolve",
+    "description": "User needs to scale beyond very low free-tier rate limits on Gemini generative AI APIs without paying $2700/month for provisioned throughput Includes evidence for GCP (Vertex AI / Gemini API) troubleshooting demand.",
+    "category": "Cloud Platforms",
+    "technology": "GCP (Vertex AI / Gemini API)",
+    "error_signature": "HTTP 429: Too Many Requests (after 5–7 burst calls to gemini-2.5-flash-preview-tts or gemini-2.5-flash-image)",
+    "search_intent": "User needs to scale beyond very low free-tier rate limits on Gemini generative AI APIs without paying $2700/month for provisioned throughput",
+    "common_causes": [
+      "Found on Reddit r/googlecloud: real user deploying GenAI app hits HTTP 429 after 5–7 image/TTS calls within a minute. Comments confirm this affects credit-based accounts aggressively; Google Cloud quota discovery has 6000+ endpoints making it hard to identify limits. Solutions include Vertex AI provisioned throughput (~$3.75/hr GSU), retry with exponential backoff, regional vs global endpoints, and switching from API key to Application Default Credentials via gcloud CLI. Strong commercial value — billing impact, enterprise scaling question."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "Cloud Platforms"
+    ]
+  },
+  {
+    "slug": "vercel-module-not-found-can-t-resolve-module-during-vercel-build-deploy-step",
+    "title": "Vercel Build Fails With Module Not Found in Production Deployments",
+    "description": "Developer trying to deploy Next.js or similar project on Vercel encounters build-time module resolution failure that does not occur locally Includes evidence for Vercel troubleshooting demand.",
+    "category": "Deployment",
+    "technology": "Vercel",
+    "error_signature": "Module not found: Can't resolve '<module>' (during Vercel build/deploy step)",
+    "search_intent": "Developer trying to deploy Next.js or similar project on Vercel encounters build-time module resolution failure that does not occur locally",
+    "common_causes": [
+      "From Google search snippets: 'every project I try to create hits API rate limits' and related Vercel deployment failures. Covers scenario where local dev works but Vercel CI pipeline fails due to Node version mismatch, transitive dependency issues, or edge runtime module incompatibilities. Commercially significant — deployment blocks mean lost revenue for SaaS teams on paid plans."
+    ],
+    "quick_fix": "Check the build output, project root, and deployment platform configuration before redeploying.",
+    "related_errors": [
+      "Deployment"
+    ]
+  },
+  {
+    "slug": "openai-api-rate-limit-exceeded-http-429-you-can-send-approximately-1-request-s-per-second-until-you-upgrade-your-account",
+    "title": "OpenAI API Rate Limit 429 on Free Tier — How to Fix Burst Limits",
+    "description": "Free-tier OpenAI users hitting aggressive RPM/TPM/RPS limits that block multi-agent or batch workflows Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "Rate limit exceeded (HTTP 429) — You can send approximately 1 request(s) per second until you upgrade your account",
+    "search_intent": "Free-tier OpenAI users hitting aggressive RPM/TPM/RPS limits that block multi-agent or batch workflows",
+    "common_causes": [
+      "Google search snippet confirms: 'What would fix this: Either adding credits/updating the billing plan on the OpenAI account tied to this API key, or replacing the key with one from an account...'. Users report rate limits from multiple origins (RPM, TPM, RPS, RPD). Additional findings mention 'API rate limit reached. Please try again later' errors affecting Telegram orchestrators with Anthropic credits. Commercial value high — requires upgrading to paid tier."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "OpenAI API"
+    ]
   }
 ]
