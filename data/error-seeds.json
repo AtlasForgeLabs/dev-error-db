@@ -48621,5 +48621,69 @@
     "related_errors": [
       "GitHub Copilot"
     ]
+  },
+  {
+    "slug": "claude-code-messages-1-tool-use-ids-were-found-without-tool-result-blocks-immediately-after-each-tool-use-block-must-have-a-corresponding-tool-result-block-in-the-next-message",
+    "title": "Claude Code v2.1.19: API Error 400 — tool_use blocks without corresponding tool_result blocks",
+    "description": "Developer using Claude Code v2.1.19 on Windows gets persistent 400 API error when Claude attempts tool execution (Read, Bash, Glob, Task); wants to fix extension so it resumes normal code analysis workflow Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "messages.1: tool_use ids were found without tool_result blocks immediately after. Each tool_use block must have a corresponding tool_result block in the next message.",
+    "search_intent": "Developer using Claude Code v2.1.19 on Windows gets persistent 400 API error when Claude attempts tool execution (Read, Bash, Glob, Task); wants to fix extension so it resumes normal code analysis workflow",
+    "common_causes": [
+      "Detailed bug report from anthropics/claude-quickstarts#345 showing exact invalid_request_error payload with request_id, MCP server Method not found error, Windows symlink permission issues. Systematic failure pattern with different tool_use IDs. Extension completely non-functional until patched. Category maps to AI Coding Tools per approved mappings."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "anthropic-api-http-529-overloaded-error-no-retry-after-http-529-overloaded-error-shouldretry-does-not-handle-529-like-it-handles-429-rate-limit",
+    "title": "Anthropic SDK HTTP 529 overloaded_error missing built-in retry policy forces manual retries",
+    "description": "Developer building multi-tenant app with MCP clients encounters HTTP 529 overloaded error from backend proxy; needs automatic retry logic but SDK does not handle 529 unlike standard 429 rate limit handling Includes evidence for Anthropic API troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Anthropic API",
+    "error_signature": "HTTP 529 overloaded_error: no retry after HTTP 529 overloaded_error; shouldRetry does not handle 529 like it handles 429 rate limit",
+    "search_intent": "Developer building multi-tenant app with MCP clients encounters HTTP 529 overloaded error from backend proxy; needs automatic retry logic but SDK does not handle 529 unlike standard 429 rate limit handling",
+    "common_causes": [
+      "Reported at anthropics/anthropic-sdk-typescript#791 (closed Jul 11, 2025). User investigated private shouldRetry() method and confirmed 529 is excluded from built-in retry while 429 has proper retry-after handling. Builds multi-tenant app with MCP clients where load spikes cause temporary overload. High commercial value because enterprise customers running multi-tenant workloads are forced to implement custom retry logic for a paid API service that should handle this natively."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "Anthropic API"
+    ]
+  },
+  {
+    "slug": "claude-code-error-spawning-claude-claude-code-on-windows-requires-git-bash-if-installed-but-not-in-path-set-environment-variable-pointing-to-your-bash-exe-claude-code-git-bash-path-c-program-files-git-bin-bash-exe",
+    "title": "Claude Code for VS Code fails to read CLAUDE_CODE_GIT_BASH_PATH environment variable on Windows",
+    "description": "Windows developer has Git Bash correctly installed and verified via where bash and PowerShell env checks, yet Claude Code extension still refuses to launch requesting same configuration already set Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Error spawning Claude: Claude Code on Windows requires git-bash. If installed but not in PATH, set environment variable pointing to your bash.exe: CLAUDE_CODE_GIT_BASH_PATH=C:\\Program Files\\Git\\bin\\bash.exe",
+    "search_intent": "Windows developer has Git Bash correctly installed and verified via where bash and PowerShell env checks, yet Claude Code extension still refuses to launch requesting same configuration already set",
+    "common_causes": [
+      "From anthropics/claude-quickstarts#391 opened Apr 8, 2026. User verified Git Bash exists at correct path in both Machine and User-level environment variables, Git Bash terminal works fine inside VS Code, yet Claude Code throws identical error asking user to do what is already done. Extension loaded v2.1.96, OAuth auth succeeded, but bash detection failed silently. This blocks entire product on Windows — a major enterprise platform. High commercial value as it affects paid subscription usage directly."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "cloudflare-error-522-origin-connection-timed-out-cloudflare-workers-unable-to-reach-upstream-origin",
+    "title": "Error 522 Connection Timed Out origin server behind Cloudflare Workers returning connection timeout",
+    "description": "Web developers whose sites are protected by Cloudflare experience intermittent 522 errors preventing visitors from reaching their origin servers; need diagnostic steps and resolution methods Includes evidence for Cloudflare troubleshooting demand.",
+    "category": "Cloudflare",
+    "technology": "Cloudflare",
+    "error_signature": "Error 522 Origin connection timed out — Cloudflare Workers unable to reach upstream origin",
+    "search_intent": "Web developers whose sites are protected by Cloudflare experience intermittent 522 errors preventing visitors from reaching their origin servers; need diagnostic steps and resolution methods",
+    "common_causes": [
+      "Found via GitHub search across cloudflare/workers-sdk issues #12590 (closed Feb 20, 2026), #6888 (closed Nov 2025), and #7340 (closed Dec 2024). Recurring issue with Cloudflare protecting origin servers — direct revenue impact as sites become unavailable. Multiple reports indicate consistent pattern of timeout-related failures. Clear fix demand: diagnosing whether origin is down, firewall blocking CF IPs, or slow response times causing timeouts."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Cloudflare"
+    ]
   }
 ]
