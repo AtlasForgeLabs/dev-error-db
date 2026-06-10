@@ -48413,5 +48413,101 @@
     "related_errors": [
       "Cloud Platforms"
     ]
+  },
+  {
+    "slug": "claude-code-error-connect-econnrefused-127-0-0-1-3000-tcpconnectwrap-afterconnect-as-oncomplete",
+    "title": "Fix: `ECONNREFUSED` When a Local MCP Server Starts Before the Client Is Ready — Claude Code / Cursor",
+    "description": "User configures an MCP server in Claude Code and receives ECONNREFUSED because the server hasn't finished listening yet; needs fix for startup race condition and localhost IPv6 binding. Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Error: connect ECONNREFUSED 127.0.0.1:3000 / TCPConnectWrap.afterConnect [as oncomplete]",
+    "search_intent": "User configures an MCP server in Claude Code and receives ECONNREFUSED because the server hasn't finished listening yet; needs fix for startup race condition and localhost IPv6 binding.",
+    "common_causes": [
+      "Multiple sources confirm: startdebugging.net (May 2026), claudecodeguides.com. Error occurs when local MCP stdio/http server starts before client connection is ready. Race between node:net listener and client TCP connect. Covers IPv6 ::1 vs 127.0.0.1 mismatch. Also related to MCP server stdio hang when launched from Claude Code (stdout pollution, npx install prologue). Strong signal from GitHub issues #34982 (CLI MCP connection issue) and community guides. Already published: Cursor 'model not available' and 'OpenAI API key not working' but NOT ECONNREFUSED from local MCP servers."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "claude-code-sse-mcp-server-disconnection-crashes-session-no-graceful-degradation",
+    "title": "[BUG] SSE MCP Server Disconnection Crashes Session Instead of Graceful Degradation — Claude Code",
+    "description": "When an SSE-based MCP server loses network connectivity, Claude Code crashes the entire session instead of recovering gracefully. Users need the agent to continue working even if one MCP server drops. Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "SSE MCP server disconnection crashes session (no graceful degradation)",
+    "search_intent": "When an SSE-based MCP server loses network connectivity, Claude Code crashes the entire session instead of recovering gracefully. Users need the agent to continue working even if one MCP server drops.",
+    "common_causes": [
+      "GitHub issue #18557 on anthropics/claude-code repository. Distinct from ECONNREFUSED (#34982): this is about runtime disconnection during operation, not startup race. GitHub copilot-cli also shows similar pattern (#3706 - Remote MCP OAuth startup fans out across hosts/reconnects causing rate limits). MCP reliability is a core pain point for paid users running agents that depend on external MCP servers. Category: AI Coding Tools (Claude Code)."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "github-copilot-mcp-silent-token-refresh-sends-v1-resource-clientid-instead-of-v2-scope-aadsts90009-after-60-min-github-copilot-api-token-expires-mid-session-with-no-proactive-refresh-causing-401-errors-in-long-running-subagents",
+    "title": "OpenRouter Auth Token Expires Mid-Session — AADSTS90009 After ~60 Min Silent Refresh",
+    "description": "Developers using GitHub Copilot CLI via MCP sessions experience silent OAuth token expiration after ~60 minutes. The silent refresh sends outdated OAuth v1 resource format instead of v2 scope format, causing Azure AD rejection (AADSTS90009). Long-running coding sessions die unexpectedly without re-auth flow. Includes evidence for GitHub Copilot troubleshooting demand.",
+    "category": "GitHub Copilot",
+    "technology": "GitHub Copilot",
+    "error_signature": "MCP silent token refresh sends v1 resource=<clientId> instead of v2 scope= → AADSTS90009 after ~60 min / GitHub Copilot API token expires mid-session with no proactive refresh, causing 401 errors in long-running subagents",
+    "search_intent": "Developers using GitHub Copilot CLI via MCP sessions experience silent OAuth token expiration after ~60 minutes. The silent refresh sends outdated OAuth v1 resource format instead of v2 scope format, causing Azure AD rejection (AADSTS90009). Long-running coding sessions die unexpectedly without re-auth flow.",
+    "common_causes": [
+      "Three distinct but related GitHub issues: copilot-cli#3583 (AADSTS90009 after ~60min silent refresh v1 vs v2 format), openclaw/openclaw#31132 (Copilot API token expires mid-session with no proactive refresh, 401 errors in long-running subagents), copilot-sdk#867 (authentication error on Debian Bookworm but same setup works on Windows). The v1→v2 OAuth transition is causing production-reliability issues for teams using Copilot CLI in CI/coding agents. Category: GitHub Copilot (Copilot-specific)."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "GitHub Copilot"
+    ]
+  },
+  {
+    "slug": "litellm-litellm-callfailed-error-code-404-openrouter-model-ids-stopped-working-after-litellm-upgrade-to-v1-82-1",
+    "title": "LiteLLM 1.82.1 OpenRouter Model IDs No Longer Working",
+    "description": "After upgrading to LiteLLM 1.82.1, previously working OpenRouter model IDs throw 404 errors. Users proxying through LiteLLM proxy lose access to OpenRouter models and need quick workaround to restore routing to healthy deployments. Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "litellm.CallFailed: Error code: 404 — OpenRouter model IDs stopped working after LiteLLM upgrade to v1.82.1",
+    "search_intent": "After upgrading to LiteLLM 1.82.1, previously working OpenRouter model IDs throw 404 errors. Users proxying through LiteLLM proxy lose access to OpenRouter models and need quick workaround to restore routing to healthy deployments.",
+    "common_causes": [
+      "GitHub issue #22667 on BerriAI/litellm: 'LiteLLM 1.82.1 OpenRouter Model IDs no longer working'. Regression introduced in v1.82.1 breaking proxy routes to OpenRouter. Related: issue #24795 'OpenRouter model selected from Admin UI list fails Test Connect with is not a valid model ID'. Also issue #27362 'APIConnectionError hardcoded in cooldown_handlers.py prevents failover to healthy deployments'. These are all regression-style bugs affecting paying users who route production traffic through LiteLLM. Category: LiteLLM."
+    ],
+    "quick_fix": "Check the build output, project root, and deployment platform configuration before redeploying.",
+    "related_errors": [
+      "LiteLLM"
+    ]
+  },
+  {
+    "slug": "claude-code-utilityprocess-spawn-timeout-hardcoded-5s-spawn-timeout-plus-simultaneous-spawn-plus-full-reload-on-toggle-make-3-plus-stdio-servers-unreliable",
+    "title": "[BUG] UtilityProcess Spawn Timeout — MCP Servers Fail on Windows in Claude Code",
+    "description": "Windows users launching 3+ MCP servers in Claude Code see sporadic timeout failures due to hardcoded 5-second spawn timeout. Simultaneous spawning + reload-on-toggle behavior compounds the issue. Users need reliable multi-MCP setups for complex agent workflows. Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "\"UtilityProcess spawn timeout\" — hardcoded 5s spawn timeout + simultaneous spawn + full reload-on-toggle make 3+ stdio servers unreliable",
+    "search_intent": "Windows users launching 3+ MCP servers in Claude Code see sporadic timeout failures due to hardcoded 5-second spawn timeout. Simultaneous spawning + reload-on-toggle behavior compounds the issue. Users need reliable multi-MCP setups for complex agent workflows.",
+    "common_causes": [
+      "GitHub issue #61524 on anthropics/claude-code. Hardcoded 5s spawn timeout is too aggressive for large models or slow machines. This is a platform-specific bug (Windows only) that creates unreproducible failures for paying users running multiple MCP servers. Distinct from ECONNREFUSED (#34982) and SSE disconnection (#18557). Claude Code v2.1.153 shipped 36 changes fixing MCP reliability (aiagentsfirst.com May 2026), suggesting ongoing fixes but this specific spawn timeout may persist."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "git-git-pull-hangs-for-30-seconds-and-fails-with-remote-http-basic-access-denied-or-fatal-authentication-failed-for-https-github-com-empty-credential-prompt-in-terminal-that-cannot-accept-input",
+    "title": "Git Credential Helper Locked — All Pulls/Pushes Fail After macOS Keychain Updates",
+    "description": "Developer's git credential-helper (osxkeychain or manager) locks up after OS updates or credential rotation. All git operations fail. User needs to unblock CI pipelines or daily development. Distinct from covered 'Git permission denied (publickey)' — this is HTTPS credential-helper specific. Includes evidence for Git troubleshooting demand.",
+    "category": "Git",
+    "technology": "Git",
+    "error_signature": "git pull hangs for 30 seconds and fails with 'remote: HTTP Basic: Access denied' or 'fatal: Authentication failed for https://github.com/...'. Empty credential prompt in terminal that cannot accept input.",
+    "search_intent": "Developer's git credential-helper (osxkeychain or manager) locks up after OS updates or credential rotation. All git operations fail. User needs to unblock CI pipelines or daily development. Distinct from covered 'Git permission denied (publickey)' — this is HTTPS credential-helper specific.",
+    "common_causes": [
+      "aitoolsguidebook.com article (2026) documents the exact symptom: git pull hangs for 30s then returns 'Access denied'. github.com/hickford/git-credential-oauth#42 confirms periodic auth failures with git-credential-osxkeychain. Anomaly co/opencode#13740 shows 'unauthorized: AuthenticateToken authentication failed' with multiple concurrent instances. StackOverflow 68868084 (31K views) covers osxkeychain access prompts. High demand with 31K+ SO views alone. New relative to covered-errors.md which only lists SSH-based 'permission denied (publickey)' error."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "Git"
+    ]
   }
 ]
