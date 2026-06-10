@@ -48509,5 +48509,117 @@
     "related_errors": [
       "Git"
     ]
+  },
+  {
+    "slug": "openai-api-rate-limit-reached-for-gpt-3-5-turbo-in-organization-org-exampleorgid123-on-tokens-per-min-limit-10000-000000-min-current-10020-000000-min",
+    "title": "OpenAI API 429 Rate Limit Exceeded — Production Impact",
+    "description": "Fix OpenAI 429 rate limit error by understanding RPM/TPM dimensions and configuring proper retry/backoff strategy Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "Rate limit reached for gpt-3.5-turbo in organization org-exampleorgid123 on tokens per min. Limit: 10000.000000 / min. Current: 10020.000000 / min.",
+    "search_intent": "Fix OpenAI 429 rate limit error by understanding RPM/TPM dimensions and configuring proper retry/backoff strategy",
+    "common_causes": [
+      "OpenAI Help Center confirms 429 errors occur when exceeding RPM/TPM limits across four dimensions (RPM, TPM, RPD, TPD). Inference.net 2026 guide details six-tier system. Markaicode article provides concrete fixes. Category mapping is exact: OpenAI API → OpenAI API."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "claude-code-getaddrinfo-enotfound-auth-anthropic-com-claude-code-oauth-login-fails-with-timeout-auth-anthropic-com-does-not-resolve-via-dns-making-authentication-impossible",
+    "title": "Claude Code OAuth DNS Resolution Failure — auth.anthropic.com ENOTFOUND",
+    "description": "Fix Claude Code OAuth login failures caused by DNS resolution failure of auth.anthropic.com Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "getaddrinfo ENOTFOUND auth.anthropic.com — Claude Code OAuth login fails with timeout; auth.anthropic.com does not resolve via DNS, making authentication impossible",
+    "search_intent": "Fix Claude Code OAuth login failures caused by DNS resolution failure of auth.anthropic.com",
+    "common_causes": [
+      "Multiple GitHub issues (#33238, #44275, #41655) report Claude Code OAuth failures due to DNS resolution errors and internal hostname exposure (alb-cache). Issue #36019 reports intermittent crashes on Linux with DNS resolution failures. Category mapping: Claude Code → AI Coding Tools."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "vercel-cannot-find-module-or-module-not-found-or-process-completed-with-exit-code-1-or-vercel-build-failed-despite-local-npm-run-build-being-green",
+    "title": "Vercel Build Failed — Node Version & Missing Env Var Drift",
+    "description": "Fix Vercel deployment build failures caused by environment drift (Node version mismatch, missing build-time env vars like NEXT_PUBLIC_*), TypeScript stricter compilation, or OOM conditions Includes evidence for Vercel troubleshooting demand.",
+    "category": "Deployment",
+    "technology": "Vercel",
+    "error_signature": "Cannot find module OR \"Module not found\" OR Process completed with exit code 1 OR Vercel build failed despite local npm run build being green",
+    "search_intent": "Fix Vercel deployment build failures caused by environment drift (Node version mismatch, missing build-time env vars like NEXT_PUBLIC_*), TypeScript stricter compilation, or OOM conditions",
+    "common_causes": [
+      "AI Tools Guidebook comprehensive analysis (June 2026) identifies seven failure categories covering ~95% of real Vercel build failures. Key causes include Node version drift (Vercel defaults to Node 24.x), missing production-level env vars, and TypeScript strictness. Community post #34782 reports internal deployment outputs errors. Category mapping: Vercel → Deployment."
+    ],
+    "quick_fix": "Check the build output, project root, and deployment platform configuration before redeploying.",
+    "related_errors": [
+      "Deployment"
+    ]
+  },
+  {
+    "slug": "litellm-litellm-llms-custom-httpx-http-handler-httphandler-post-connection-refused-or-httpx-connecterror-errno-111-connection-refused",
+    "title": "LiteLLM Connection Refused Error — Proxy Misconfiguration",
+    "description": "Fix LiteLLM proxy ConnectionRefusedError by verifying proxy process is running on expected host:port, resolving Docker network isolation, unsetting conflicting LITELLM_PORT env variable Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "litellm.llms.custom_httpx.http_handler.HTTPHandler.post: Connection refused OR httpx.ConnectError: [Errno 111] Connection refused",
+    "search_intent": "Fix LiteLLM proxy ConnectionRefusedError by verifying proxy process is running on expected host:port, resolving Docker network isolation, unsetting conflicting LITELLM_PORT env variable",
+    "common_causes": [
+      "Markaicode article (June 2026) documents that ConnectionRefusedError accounts for ~40% of all LiteLLM startup errors. Root causes are port mismatch, wrong host inside Docker (localhost vs host.docker.internal), and firewall/SELinux blocking port 4000. GitHub issue #27823 notes RouterRateLimitError masking underlying quota errors without Retry-After header. Category mapping: LiteLLM → LiteLLM."
+    ],
+    "quick_fix": "Confirm the local service is running on the expected host and port, then retry the smallest request.",
+    "related_errors": [
+      "LiteLLM"
+    ]
+  },
+  {
+    "slug": "docker-error-bind-for-0-0-0-0-5001-failed-port-is-already-allocated-or-bind-address-already-in-use",
+    "title": "Docker 'Bind for 0.0.0.0:PORT failed: port is already allocated'",
+    "description": "Resolve Docker Compose or docker run port binding conflicts where host port is already occupied by another container or host process Includes evidence for Docker troubleshooting demand.",
+    "category": "Docker",
+    "technology": "Docker",
+    "error_signature": "ERROR: Bind for 0.0.0.0:5001 failed: port is already allocated OR bind: address already in use",
+    "search_intent": "Resolve Docker Compose or docker run port binding conflicts where host port is already occupied by another container or host process",
+    "common_causes": [
+      "Deadends.dev provides detailed analysis showing fix rates 92%-96%, identifying stale containers and host processes as root causes. Moby GitHub issue #52092 reproduces the bug even with no visible containers. Netdata and multiple guides document the pattern. Category mapping: Docker → Docker."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Docker"
+    ]
+  },
+  {
+    "slug": "github-actions-error-httperror-resource-not-accessible-by-integration-or-remote-permission-to-user-repo-git-denied-to-github-actions-bot-or-error-eacces-permission-denied-open-home-runner-npm-cacache",
+    "title": "GitHub Actions Permission Denied EACCES — Resource Not Accessible by Integration",
+    "description": "Fix GitHub Actions workflow permission errors including GITHUB_TOKEN scope issues, fork PR restrictions, and runner filesystem ownership conflicts from root vs non-root step runs Includes evidence for GitHub Actions troubleshooting demand.",
+    "category": "GitHub Actions",
+    "technology": "GitHub Actions",
+    "error_signature": "Error: HttpError: Resource not accessible by integration OR remote: Permission to user/repo.git denied to github-actions[bot] OR Error: EACCES: permission denied, open '/home/runner/.npm/_cacache/...'",
+    "search_intent": "Fix GitHub Actions workflow permission errors including GITHUB_TOKEN scope issues, fork PR restrictions, and runner filesystem ownership conflicts from root vs non-root step runs",
+    "common_causes": [
+      "FixDevs comprehensive guide documents all classes of GitHub Actions permission errors. Root causes include read-only default token permissions (post-2023), fork pull_request events getting read-only tokens regardless of settings, and root-owned files blocking subsequent non-root steps. Multiple error patterns covered: 403, EACCES, and filesystem ownership. Category mapping: GitHub Actions → GitHub Actions."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "GitHub Actions"
+    ]
+  },
+  {
+    "slug": "github-copilot-session-was-not-created-with-authentication-info-or-custom-provider-root-cause-cli-auth-flow-silently-swallows-rest-quota-rate-limit-errors-during-token-validation",
+    "title": "GitHub Copilot CLI Auth Swallows REST Quota Errors — Session Was Not Created",
+    "description": "Diagnose and fix GitHub Copilot CLI authentication failures caused by silent swallowing of REST quota exceeded and rate limit errors during token validation phase Includes evidence for GitHub Copilot troubleshooting demand.",
+    "category": "GitHub Copilot",
+    "technology": "GitHub Copilot",
+    "error_signature": "Session was not created with authentication info or custom provider (root cause: CLI auth flow silently swallows REST quota/rate-limit errors during token validation)",
+    "search_intent": "Diagnose and fix GitHub Copilot CLI authentication failures caused by silent swallowing of REST quota exceeded and rate limit errors during token validation phase",
+    "common_causes": [
+      "Copilot-cli GitHub issue #3311 specifically reports that the CLI auth flow silently swallows REST quota/rate-limit errors, surfacing them as opaque 'Session was not created' messages instead of actionable quota errors. Related issue microsoft/vscode #263822 shows rate limit exceeded for user sign-in with explicit request IDs. Another issue #13702 documents quota_exceeded server error. Category mapping: GitHub Copilot → GitHub Copilot."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "GitHub Copilot"
+    ]
   }
 ]
