@@ -48685,5 +48685,85 @@
     "related_errors": [
       "Cloudflare"
     ]
+  },
+  {
+    "slug": "claude-code-error-server-error-message-oops-an-unexpected-error-occurred-http-500-from-asana-v2-mcp-server",
+    "title": "Asana MCP Server 500 Internal Server Error on get_task/update_tasks due to legacy V1 schema",
+    "description": "User enables Asana MCP connector in Claude.ai and attempts to read or update a single task; receives 500 Internal Server Error instead of expected task data; wants to fix the connector so it works with Asana V2 API. Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "{\"error\": \"server_error\", \"message\": \"Oops! An unexpected error occurred...\"} (HTTP 500 from Asana V2 MCP server)",
+    "search_intent": "User enables Asana MCP connector in Claude.ai and attempts to read or update a single task; receives 500 Internal Server Error instead of expected task data; wants to fix the connector so it works with Asana V2 API.",
+    "common_causes": [
+      "GitHub Issue #4258 on modelcontextprotocol/servers. Root cause: connector sends deprecated V1 parameter 'task_id' but Asana V2 endpoint requires 'task_gid'. Not in covered-errors.md. High commercial value — breaks actual workflow inside Claude.ai (paid subscription). Category mapping: Claude Code AI Coding Tool integration → AI Coding Tools."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "claude-code-server-transport-closed-unexpectedly-root-cause-enoent-stat-on-missing-directory-in-promise-all-rejection",
+    "title": "server-filesystem crashes silently on startup when allowed directory is deleted",
+    "description": "User adds a directory to MCP server-filesystem allowed_directories list then deletes that folder; Claude Desktop shows generic 'Server transport closed unexpectedly' with no diagnostic info; wants to know why the server won't start and how to recover. Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Server transport closed unexpectedly (root cause: ENOENT stat on missing directory in Promise.all rejection)",
+    "search_intent": "User adds a directory to MCP server-filesystem allowed_directories list then deletes that folder; Claude Desktop shows generic 'Server transport closed unexpectedly' with no diagnostic info; wants to know why the server won't start and how to recover.",
+    "common_causes": [
+      "GitHub Issue #4238 on modelcontextprotocol/servers. Root cause: Promise.all rejects on first ENOENT; host (especially Claude Desktop Windows MSIX build) captures no stderr. Proposed fix: switch to Promise.allSettled and list ALL invalid dirs. Not in covered-errors.md. Critical UX pain point for AI coding tool users."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "pnpm-node-js-error-err-module-not-found-cannot-find-package-zod-imported-from",
+    "title": "ERR_MODULE_NOT_FOUND: zod missing with pnpm strict isolation on @modelcontextprotocol/sdk packages",
+    "description": "User encounters runtime ERR_MODULE_NOT_FOUND for 'zod' after installing @modelcontextprotocol/server-sequential-thinking via pnpm with strict isolation enabled; wants to fix the module resolution failure. Includes evidence for pnpm / Node.js troubleshooting demand.",
+    "category": "Node.js",
+    "technology": "pnpm / Node.js",
+    "error_signature": "Error [ERR_MODULE_NOT_FOUND]: Cannot find package 'zod' imported from ...",
+    "search_intent": "User encounters runtime ERR_MODULE_NOT_FOUND for 'zod' after installing @modelcontextprotocol/server-sequential-thinking via pnpm with strict isolation enabled; wants to fix the module resolution failure.",
+    "common_causes": [
+      "GitHub Issue #4288 on modelcontextprotocol/servers (opened Jun 7, 2026). Root cause: zod declared in both dependencies and peerDependencies; with pnpm strict isolation the peer dep takes precedence but consumer does not declare zod, causing runtime ESM resolution failure. Not in covered-errors.md. Strong signal for Node.js/npm/pnpm error audience. Approved category: Node.js."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Node.js"
+    ]
+  },
+  {
+    "slug": "claude-code-error-400-type-error-error-type-invalid-request-error-message-thinking-type-disabled-is-not-supported-for-this-model-thinking-defaults-to-adaptive-mode-when-not-specified-use-thinking-type-enabled-with-budget-tokens-for-extended-thinking",
+    "title": "Claude Code 400 invalid_request_error: thinking.type.disabled not supported",
+    "description": "User tries to disable extended thinking in Claude Code CLI on a model where thinking.control is not supported; gets 400 invalid_request_error and wants to resolve the configuration conflict. Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Error: 400 {\"type\":\"error\",\"error\":{\"type\":\"invalid_request_error\",\"message\":\"\\\"thinking.type.disabled\\\" is not supported for this model. Thinking defaults to adaptive mode when not specified; use \\\"thinking.type.enabled\\\" with \\\"budget_tokens\\\" for extended thinking.\"}}",
+    "search_intent": "User tries to disable extended thinking in Claude Code CLI on a model where thinking.control is not supported; gets 400 invalid_request_error and wants to resolve the configuration conflict.",
+    "common_causes": [
+      "GitHub Issue #67285 on anthropics/claude-code (opened Jun 11, 2026 by original reporter). Version 2.1.169 on darwin. The thinking.type.disabled config parameter is incompatible with the current model, which defaults to adaptive mode. Not in covered-errors.md. Direct API config error on paid Claude Code product."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "cursor-secure-filesystem-server-becomes-unavailable-after-receiving-a-single-1-mb-json-rpc-message-node-process-exits-or-enters-zombie-state-no-response-to-subsequent-requests",
+    "title": "Filesystem MCP server crashes or enters zombie state on ~1MB JSON-RPC message",
+    "description": "User running server-filesystem via npx in Cursor Desktop encounters server unresponsiveness after sending a large JSON-RPC message; wants to understand why and how to prevent server crashes from oversized messages. Includes evidence for Cursor troubleshooting demand.",
+    "category": "Cursor",
+    "technology": "Cursor",
+    "error_signature": "Secure filesystem server becomes unavailable after receiving a single ~1 MB JSON-RPC message; Node process exits or enters zombie state (no response to subsequent requests)",
+    "search_intent": "User running server-filesystem via npx in Cursor Desktop encounters server unresponsiveness after sending a large JSON-RPC message; wants to understand why and how to prevent server crashes from oversized messages.",
+    "common_causes": [
+      "GitHub Issue #4207 on modelcontextprotocol/servers. Reproduced on Cursor Desktop platform. Missing per-line size limits + unbounded buffering leads to memory pressure and broken read loop. Not in covered-errors.md. Directly affects Cursor paid users. Category mapping: reported on Cursor Desktop → AI Coding Tools."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Cursor"
+    ]
   }
 ]
