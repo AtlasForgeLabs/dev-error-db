@@ -48765,5 +48765,21 @@
     "related_errors": [
       "Cursor"
     ]
+  },
+  {
+    "slug": "claude-code-error-401-unauthorized-mcp-auth-token-expired-mid-session-user-must-manually-re-login-to-resume-ai-coding-session",
+    "title": "Claude Code MCP auth fails with 401 Unauthorized when OAuth token expires mid-session",
+    "description": "Resolve Claude Code authentication failure preventing AI coding session from resuming after token expiry Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Error: 401 Unauthorized — MCP auth token expired mid-session, user must manually re-login to resume AI coding session",
+    "search_intent": "Resolve Claude Code authentication failure preventing AI coding session from resuming after token expiry",
+    "common_causes": [
+      "Multiple reports describe Claude Code MCP sessions terminating when OAuth tokens expire mid-session. Users report complete session termination requiring full re-authentication even when no code modifications were made."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
   }
 ]
