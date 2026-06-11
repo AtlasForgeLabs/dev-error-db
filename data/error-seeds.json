@@ -48845,5 +48845,85 @@
     "related_errors": [
       "Cloudflare"
     ]
+  },
+  {
+    "slug": "openai-api-gpt-5-4-mini-returns-500-internal-error-when-providing-input-files-images",
+    "title": "GPT-5.4-Mini returns 500 internal errors 95% of the time when providing input files / images as parameters",
+    "description": "Fix 500 Internal Server Error when passing images or files to GPT-5.4-Mini via OpenAI API Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "GPT-5.4-Mini returns 500 internal error when providing input files/images",
+    "search_intent": "Fix 500 Internal Server Error when passing images or files to GPT-5.4-Mini via OpenAI API",
+    "common_causes": [
+      "Found in openai/openai-python#3090 — reported by Tom3652 on Apr 15, 2026, still open as of Jun 8, 2026. The issue affects users sending image/input-file parameters to GPT-5.4-Mini with a 95% failure rate returning 500 errors. Strong commercial value since it blocks production usage of paid API. Direct OpenAI API server-side bug."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "openai-api-openai-realtime-api-does-not-execute-tool-calls-with-mcp-model-context-protocol",
+    "title": "Realtime does not execute tool calls with MCP protocol",
+    "description": "Fix OpenAI Realtime API so it properly executes tool calls defined via MCP integration Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "OpenAI Realtime API does not execute tool calls with MCP (Model Context Protocol)",
+    "search_intent": "Fix OpenAI Realtime API so it properly executes tool calls defined via MCP integration",
+    "common_causes": [
+      "Found in openai/openai-python#3128 — reported by hemaAI on Apr 27, 2026. Users integrating MCP (Model Context Protocol) with OpenAI Realtime find that tool definitions are accepted but never actually executed. This blocks a growing use case as MCP adoption increases rapidly among enterprise customers."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "openai-api-upload-and-poll-hangs-indefinitely-file-status-stuck-at-in-progress",
+    "title": "vector_stores.files.upload_and_poll() hangs indefinitely with file status stuck at in_progress",
+    "description": "Fix indefinite hang when uploading files to OpenAI vector stores using upload_and_poll method Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "upload_and_poll() hangs indefinitely, file status stuck at in_progress",
+    "search_intent": "Fix indefinite hang when uploading files to OpenAI vector stores using upload_and_poll method",
+    "common_causes": [
+      "Found in openai/openai-python#3097 — reported by t-kalinowski on Apr 16, 2026. The vector_stores.files.upload_and_poll() method can hang indefinitely without timeout when the file status gets stuck at 'in_progress'. Critical for any user building RAG pipelines or document workflows with OpenAI API."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "claude-code-session-context-corruption-claude-code-generates-responses-about-irrelevant-topics-github-discussions-memory-md-instead-of-current-request",
+    "title": "[Bug] Session context corruption with cache/away_summary restoration causing cross-contaminated responses",
+    "description": "Fix corrupted session context in Claude Code that causes AI to respond with stale/cross-session data instead of answering the current prompt Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Session context corruption: Claude Code generates responses about irrelevant topics (GitHub Discussions, MEMORY.md) instead of current request",
+    "search_intent": "Fix corrupted session context in Claude Code that causes AI to respond with stale/cross-session data instead of answering the current prompt",
+    "common_causes": [
+      "Found in anthropics/claude-code#67508 — reported by tokku5552 on Jun 11, 2026. User reports Claude Code session producing garbled outputs referencing memory.md, GitHub Discussions, and unrelated Japanese phrases despite only asking about app specs. This is a high-value candidate because context corruption makes the entire tool unusable — developers rely heavily on accurate code generation and context awareness."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "openai-api-accumulate-delta-drops-tool-call-fragments-when-one-chunk-has-multiple-entries-at-the-same-index",
+    "title": "Streaming tool_call deltas with duplicate indexes are accumulated incorrectly in openai-python SDK",
+    "description": "Fix streaming tool call delta accumulation bug where duplicate indexes cause fragment loss Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "accumulate_delta drops tool_call fragments when one chunk has multiple entries at the same index",
+    "search_intent": "Fix streaming tool call delta accumulation bug where duplicate indexes cause fragment loss",
+    "common_causes": [
+      "Found in openai/openai-python#3203 — closed as duplicate but indicates an active streaming bug. Multiple related issues (#3201) show the same pattern: when streaming chunks contain duplicate function-call indexes, accumulate_delta silently drops later entries. Critical for any real-time AI application relying on streaming tool calls with parallel executions."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "OpenAI API"
+    ]
   }
 ]
