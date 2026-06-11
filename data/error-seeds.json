@@ -48925,5 +48925,117 @@
     "related_errors": [
       "OpenAI API"
     ]
+  },
+  {
+    "slug": "claude-code-mcp-error-32602-invalid-parameters-parameter-serialization-fails-on-consecutive-function-calls",
+    "title": "MCP Parameter Serialization Bug Causing Tool Call Failures",
+    "description": "Fix MCP parameter serialization bug that causes tool call failures (-32602) when making consecutive function calls in Claude Code Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "MCP error -32602: invalid parameters; parameter serialization fails on consecutive function calls",
+    "search_intent": "Fix MCP parameter serialization bug that causes tool call failures (-32602) when making consecutive function calls in Claude Code",
+    "common_causes": [
+      "CRITICAL severity GitHub issue anthropics/claude-code#4192 shows MCP parameter serialization failing consistently on consecutive function calls in both Claude Code and Claude Desktop. Error code -32602 indicates invalid parameters sent to MCP tools, blocking all sequential tool operations."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "claude-code-could-not-connect-to-mcp-server-mcp-registry-error-connecting-to-mcp-protocol-instance",
+    "title": "MCP Protocol Instance Validation Failure in Claude Desktop",
+    "description": "Fix Claude Desktop MCP registration failure caused by protocol validation errors when connecting to mcp-registry servers Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "Could not connect to MCP server mcp-registry — Error connecting to MCP protocol instance",
+    "search_intent": "Fix Claude Desktop MCP registration failure caused by protocol validation errors when connecting to mcp-registry servers",
+    "common_causes": [
+      "GitHub issue anthropics/claude-code#27390 reports Claude Desktop MCP servers failing with Protocol instance validation errors. Occurred Feb 2026, affecting latest release with MCP integration enabled. Strong signal of ongoing P0 product stability issues."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "claude-code-mcp-error-could-not-connect-to-mcp-server-connection-refused-or-handshake-failed",
+    "title": "MCP Servers Fail to Connect in Claude Code Despite Running",
+    "description": "Fix MCP server connection failure in Claude Code where MCP servers cannot connect despite being configured and running Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "MCP error — Could not connect to MCP server; connection refused or handshake failed",
+    "search_intent": "Fix MCP server connection failure in Claude Code where MCP servers cannot connect despite being configured and running",
+    "common_causes": [
+      "GitHub issue anthropics/claude-code#1611 documents MCP servers failing to connect in Claude Code even when running. Debug mode output required for detailed MCP error analysis. This is a P0 technology (Claude Code) with strong commercial value as it blocks developer workflows."
+    ],
+    "quick_fix": "Confirm the local service is running on the expected host and port, then retry the smallest request.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "chrome-devtools-mcp-cannot-connect-to-the-chrome-devtools-mcp-server-mcp-connection-fails-for-chrome-devtools-integration",
+    "title": "Cannot Connect to Chrome-devtools MCP Server",
+    "description": "Fix Chrome DevTools MCP server connection failure when integrating with Claude Code or other MCP-compatible tools Includes evidence for Chrome DevTools MCP troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Chrome DevTools MCP",
+    "error_signature": "Cannot connect to the Chrome-devtools mcp server — MCP connection fails for Chrome DevTools integration",
+    "search_intent": "Fix Chrome DevTools MCP server connection failure when integrating with Claude Code or other MCP-compatible tools",
+    "common_causes": [
+      "GitHub issue ChromeDevTools/chrome-devtools-mcp#182 documents inability to connect Chrome-devtools MCP server. User resolved their MCP connection error by following specific debugging steps. Affects AI coding tool users who want browser automation via MCP protocol."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "serena-mcp-mcp-error-32000-connection-closed-when-fetching-tools-in-claude-code-cli",
+    "title": "MCP Connection Closed While Fetching Tools",
+    "description": "Fix MCP error -32000 connection closed during tool fetching when configuring Serena as MCP server for Claude Code Includes evidence for Serena (MCP) troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Serena (MCP)",
+    "error_signature": "MCP error -32000: Connection closed when fetching tools in Claude Code CLI",
+    "search_intent": "Fix MCP error -32000 connection closed during tool fetching when configuring Serena as MCP server for Claude Code",
+    "common_causes": [
+      "GitHub issue oraios/serena#898 documents MCP error -32000 occurring when Serena is configured as MCP server in Claude Code. Connection terminates unexpectedly during the tool discovery phase, completely blocking subsequent MCP tool usage."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "claude-code-string-should-have-minimum-length-but-contains-space-in-mcp-tool-name-claude-code-will-error-if-there-is-a-space-in-the-name",
+    "title": "MCP Tool Calls Fail When Name Contains Space Character",
+    "description": "Fix Claude Code rejecting MCP tool calls due to spaces in tool/function names, causing string validation errors Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "String should have minimum length but contains space in MCP tool name; Claude Code will error if there is a space in the name",
+    "search_intent": "Fix Claude Code rejecting MCP tool calls due to spaces in tool/function names, causing string validation errors",
+    "common_causes": [
+      "GitHub issue anthropics/claude-code#467 reveals Claude Code errors on MCP tool names containing spaces. String validation rejects tool names with spaces, silently breaking third-party MCP tools that don't follow naming conventions. Low ranking difficulty as it's a niche but impactful edge case."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "docker-mcp-gateway-error-mcp-server-mcp-docker-stderr-timeout-connecting-to-docker-mcp-toolkit",
+    "title": "Docker MCP Gateway Timeout with Claude Code",
+    "description": "Fix Docker MCP gateway timeout errors when Claude Code attempts to integrate with Docker-based MCP toolkit via gateway Includes evidence for Docker MCP Gateway troubleshooting demand.",
+    "category": "Cloud Platforms",
+    "technology": "Docker MCP Gateway",
+    "error_signature": "[ERROR] MCP server MCP_DOCKER stderr — timeout connecting to Docker MCP Toolkit",
+    "search_intent": "Fix Docker MCP gateway timeout errors when Claude Code attempts to integrate with Docker-based MCP toolkit via gateway",
+    "common_causes": [
+      "GitHub issue docker/mcp-gateway#336 documents Claude Code failing to connect to Docker MCP Toolkit with timeout logged at ERROR level. Occurs Jan 2026; affects developers building cloud-native MCP integrations combining Docker infrastructure with AI coding workflows."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "Cloud Platforms"
+    ]
   }
 ]
