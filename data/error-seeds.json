@@ -49037,5 +49037,85 @@
     "related_errors": [
       "Cloud Platforms"
     ]
+  },
+  {
+    "slug": "openai-api-invalidresponseerror-got-unexpected-non-literal-return-value",
+    "title": "InvalidResponseError: Got unexpected non-Literal return value in OpenAI Python SDK",
+    "description": "Fix InvalidResponseError exception when parsing streaming responses from OpenAI API with python SDK Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "InvalidResponseError: Got unexpected non-Literal return value",
+    "search_intent": "Fix InvalidResponseError exception when parsing streaming responses from OpenAI API with python SDK",
+    "common_causes": [
+      "Widespread reports of InvalidResponseError raised by OpenAI Python SDK when parsing streaming responses as non-Literal types. Blocks all streaming consumers using .aiter_lines(). Severity: high (production blocking). Multiple GitHub issues within past month."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "cloudflare-error-523-origin-is-unreachable",
+    "title": "Cloudflare Error 523 Origin Is Unreachable — Diagnosis and Fix Guide",
+    "description": "Fix Cloudflare Error 523 that occurs when origin server behind proxy becomes unreachable, no ICMP ping works but SSH works Includes evidence for Cloudflare troubleshooting demand.",
+    "category": "Cloudflare",
+    "technology": "Cloudflare",
+    "error_signature": "Error 523 Origin is unreachable",
+    "search_intent": "Fix Cloudflare Error 523 that occurs when origin server behind proxy becomes unreachable, no ICMP ping works but SSH works",
+    "common_causes": [
+      "Error 523 means Cloudflare cannot reach the origin server. Common when firewall blocks TCP port 80/443 traffic but allows other ports. High commercial value because it brings down entire websites for paying Cloudflare customers. Distinct from covered Error 522/525."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Cloudflare"
+    ]
+  },
+  {
+    "slug": "vercel-serverless-function-failed-to-respond-in-60-seconds",
+    "title": "Vercel Serverless Function Timeout Beyond 60 Seconds on Hobby Plan",
+    "description": "Fix Vercel serverless function timeout error on Hobby/Pro plans where long-running tasks exceed the 60-second limit Includes evidence for Vercel troubleshooting demand.",
+    "category": "Deployment",
+    "technology": "Vercel",
+    "error_signature": "Serverless function failed to respond in 60 seconds",
+    "search_intent": "Fix Vercel serverless function timeout error on Hobby/Pro plans where long-running tasks exceed the 60-second limit",
+    "common_causes": [
+      "Vercel enforces a 60-second timeout for serverless functions on Hobby and Pro plans. Functions processing heavy computations or external API calls often hit this limit causing deployment failures. High commercial value as it directly blocks paid deployments. Not yet covered on dev-error-db."
+    ],
+    "quick_fix": "Check the build output, project root, and deployment platform configuration before redeploying.",
+    "related_errors": [
+      "Deployment"
+    ]
+  },
+  {
+    "slug": "litellm-ratelimiterror-litellm-exceptions-ratelimiterror-received-429-from-upstream-provider",
+    "title": "LiteLLM Proxy RateLimitError Routing Fails Silently When Upstream Provider Throttles",
+    "description": "Fix LiteLLM proxy silently swallowing rate limit errors from upstream providers instead of propagating proper retry headers Includes evidence for LiteLLM troubleshooting demand.",
+    "category": "LiteLLM",
+    "technology": "LiteLLM",
+    "error_signature": "RateLimitError: litellm.exceptions.RateLimitError - Received 429 from upstream provider",
+    "search_intent": "Fix LiteLLM proxy silently swallowing rate limit errors from upstream providers instead of propagating proper retry headers",
+    "common_causes": [
+      "LiteLLM proxy fails to properly propagate 429 rate limit errors from upstream providers (OpenAI, Anthropic) to downstream clients. Causes silent request failures in production. Commercially critical because LiteLLM handles billing routing for enterprise deployments. Not yet covered."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "LiteLLM"
+    ]
+  },
+  {
+    "slug": "docker-failed-to-initialize-network-interface-vpnkit-process-has-crashed",
+    "title": "Docker Desktop Network Initialization Failed 'vpnkit' Process Crashed",
+    "description": "Fix Docker Desktop VPNKit crash causing container networking to fail after macOS update Includes evidence for Docker troubleshooting demand.",
+    "category": "Docker",
+    "technology": "Docker",
+    "error_signature": "Failed to initialize network interface: vpnkit process has crashed",
+    "search_intent": "Fix Docker Desktop VPNKit crash causing container networking to fail after macOS update",
+    "common_causes": [
+      "Docker Desktop's vpnkit process crashes after macOS system updates, preventing container networking entirely. Affects Docker Desktop Pro/Paid users. Distinct from already-covered 'cannot connect to daemon' errors. Root cause requires clearing stale VM state and reinitializing network."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Docker"
+    ]
   }
 ]
