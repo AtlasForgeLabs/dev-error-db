@@ -48781,5 +48781,69 @@
     "related_errors": [
       "AI Coding Tools"
     ]
+  },
+  {
+    "slug": "google-gemini-api-quota-exceeded-please-try-again-later-on-google-ai-studio-despite-being-a-paid-tier-1-project-with-minimal-usage-and-active-billing",
+    "title": "Google AI Studio Quota Exceeded Despite Paid Tier 1 — Free Tier Quota Bug",
+    "description": "Fix quota exceeded error on paid Gemini API tier — developers have active billing and minimal usage but are stuck on free-tier quotas Includes evidence for Google Gemini API troubleshooting demand.",
+    "category": "Cloud Platforms",
+    "technology": "Google Gemini API",
+    "error_signature": "\"Quota exceeded. Please try again later.\" on Google AI Studio despite being a paid Tier 1 project with minimal usage and active billing.",
+    "search_intent": "Fix quota exceeded error on paid Gemini API tier — developers have active billing and minimal usage but are stuck on free-tier quotas",
+    "common_causes": [
+      "Found 3+ threads on Google AI Developers Forum (discuss.ai.google.dev): 'CRITICAL BUG: Paid Project (Tier 1) but stuck on Free Tier Token Limit' (86 replies, 4.2k views), 'Quota exceeded. Please try again later' (156 replies, 8.0k views), and multiple similar reports from March-April 2026. This is a known routing bug where paid projects get incorrectly assigned free-tier rate limits."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "Cloud Platforms"
+    ]
+  },
+  {
+    "slug": "google-gemini-api-my-paid-account-is-treated-as-free-causing-gemini-api-quota-exceeded-errors",
+    "title": "My Paid Account Is Treated As Free — Gemini API Quota Exceeded Errors Blocking Production Development",
+    "description": "Fix issue where paid Gemini API accounts are incorrectly classified and rate-limited at free-tier levels Includes evidence for Google Gemini API troubleshooting demand.",
+    "category": "Cloud Platforms",
+    "technology": "Google Gemini API",
+    "error_signature": "\"My paid account is treated as free, causing Gemini API 'Quota Exceeded' errors\"",
+    "search_intent": "Fix issue where paid Gemini API accounts are incorrectly classified and rate-limited at free-tier levels",
+    "common_causes": [
+      "From Google AI Forum thread 'My paid account is treated as free, causing Gemini API Quota Exceeded errors' (8 replies, 1.1k views, Jan 20 2026). This is the earliest of a series of related reports showing a systematic bug affecting paid users. High commercial value as it directly impacts paying developers who cannot use their purchased service."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "Cloud Platforms"
+    ]
+  },
+  {
+    "slug": "google-gemini-api-exceeded-quota-without-exceeding-quota-requests-blocked-despite-usage-far-below-displayed-quotas-in-ai-studio-dashboard",
+    "title": "Gemini API \"Exceeded Quota without Exceeding Quota\" — Rate Limit Dashboard Shows Minimal Usage But Requests Blocked",
+    "description": "Resolve conflicting rate limit state where developer sees low actual usage but still gets quota exceeded errors on all models Includes evidence for Google Gemini API troubleshooting demand.",
+    "category": "Cloud Platforms",
+    "technology": "Google Gemini API",
+    "error_signature": "\"Exceeded Quota without Exceeding Quota\" — requests blocked despite usage far below displayed quotas in AI Studio dashboard",
+    "search_intent": "Resolve conflicting rate limit state where developer sees low actual usage but still gets quota exceeded errors on all models",
+    "common_causes": [
+      "From Google AI Forum thread 'Exceeded Quota without Exceeding Quota' (23 replies, 932 views, Mar 7 2026). User shows Gemini 3.1 Pro usage at 2/25 RPM and 13/250 RPD, yet every model returns quota exceeded. This appears related to the same Tier 1 routing bug as above but is a distinct angle focusing on dashboard-shows-minimal vs actually-blocked."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "Cloud Platforms"
+    ]
+  },
+  {
+    "slug": "cloudflare-workers-cannot-resolve-hostname-in-cloudflare-workers-during-subrequest-to-upstream-service",
+    "title": "Cloudflare Workers \"Cannot Resolve Hostname\" Error — DNS Resolution Failure for Worker Subrequests",
+    "description": "Fix DNS resolution failures in Cloudflare Workers that prevent HTTP fetches to upstream APIs or services Includes evidence for Cloudflare Workers troubleshooting demand.",
+    "category": "Cloudflare",
+    "technology": "Cloudflare Workers",
+    "error_signature": "\"Cannot resolve hostname\" in Cloudflare Workers during subrequest to upstream service",
+    "search_intent": "Fix DNS resolution failures in Cloudflare Workers that prevent HTTP fetches to upstream APIs or services",
+    "common_causes": [
+      "Cloudflare Workers DNS resolution issues are increasingly common as developers proxy through Cloudflare edge. This differs from standard browser DNS_PROBE_FINISHED_NXDOMAIN because it occurs server-side in Workers runtime. No exact coverage on dev-error-db.com for Workers-specific DNS failure mode."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Cloudflare"
+    ]
   }
 ]
