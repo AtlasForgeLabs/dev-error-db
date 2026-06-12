@@ -49165,5 +49165,69 @@
     "related_errors": [
       "Cursor"
     ]
+  },
+  {
+    "slug": "openai-api-429-rate-limit-exceeded-for-gpt-4",
+    "title": "OpenAI API 429: rate limit exceeded for gpt-4",
+    "description": "Fix 429 rate limit errors when calling GPT-4 by understanding rate limits and requesting quota increases or implementing retry logic Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "429: rate limit exceeded for gpt-4",
+    "search_intent": "Fix 429 rate limit errors when calling GPT-4 by understanding rate limits and requesting quota increases or implementing retry logic",
+    "common_causes": [
+      "Multiple users on openai/openai-python repo report 429 rate limit errors for GPT-4. Issue #3212 (opened May 8, 2026) discusses background response failures lacking stable error codes. This is a paid per-token API with high commercial value."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "OpenAI API"
+    ]
+  },
+  {
+    "slug": "anthropic-api-x-api-key-header-not-sent-for-foundry-client-api-key-authentication",
+    "title": "Anthropic Foundry API missing x-api-key header for API-key auth",
+    "description": "Fix missing x-api-key header when authenticating with Foundry model deployments on Anthropic API Includes evidence for Anthropic API troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Anthropic API",
+    "error_signature": "x-api-key header not sent for Foundry client API-key authentication",
+    "search_intent": "Fix missing x-api-key header when authenticating with Foundry model deployments on Anthropic API",
+    "common_causes": [
+      "GitHub issue #62 / #1661 in anthropics/anthropic-sdk-python (closed v0.107.1, June 7, 2026). The Foundry client was not including the required x-api-key header during API-key auth mode, causing auth failures for enterprise Foundry model requests."
+    ],
+    "quick_fix": "Verify the account session, API key, provider settings, and environment where the failing tool is running.",
+    "related_errors": [
+      "Anthropic API"
+    ]
+  },
+  {
+    "slug": "anthropic-api-claude-opus-4-1-model-marked-as-deprecated-server-side-fallback-may-cause-unexpected-model-switches-and-pricing-changes",
+    "title": "Claude Opus 4.1 deprecated with server-side fallback implications",
+    "description": "Users hitting deprecation notice for Claude Opus 4.1 and need migration path to replacement models with compatible pricing and capabilities Includes evidence for Anthropic API troubleshooting demand.",
+    "category": "Anthropic API",
+    "technology": "Anthropic API",
+    "error_signature": "Claude Opus 4.1 model marked as deprecated; server-side fallback may cause unexpected model switches and pricing changes",
+    "search_intent": "Users hitting deprecation notice for Claude Opus 4.1 and need migration path to replacement models with compatible pricing and capabilities",
+    "common_causes": [
+      "v0.106.0 changelog (June 5, 2026) marks Claude Opus 4.1 as deprecated in anthropic-sdk-python. Enterprise users running production workloads with Opus 4.1 will face breaking changes. Server-side fallback mechanism may switch models unexpectedly."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "Anthropic API"
+    ]
+  },
+  {
+    "slug": "openai-api-peer-closed-connection-without-sending-complete-message-body-incomplete-chunked-read-when-using-logprobs-parameter",
+    "title": "Logprobs causing peer closed connection without sending complete message body",
+    "description": "Fix incomplete chunked read errors when streaming responses with logprobs=True enabled on OpenAI chat completions endpoint Includes evidence for OpenAI API troubleshooting demand.",
+    "category": "OpenAI API",
+    "technology": "OpenAI API",
+    "error_signature": "peer closed connection without sending complete message body (incomplete chunked read) when using logprobs parameter",
+    "search_intent": "Fix incomplete chunked read errors when streaming responses with logprobs=True enabled on OpenAI chat completions endpoint",
+    "common_causes": [
+      "GitHub issue #2360 (openai/openai-python). Enabling logprobs causes TCP-level connection issues during streaming — client gets incomplete chunked reads. logprobs adds billing cost so this impacts paid usage directly."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "OpenAI API"
+    ]
   }
 ]
