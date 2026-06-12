@@ -49117,5 +49117,53 @@
     "related_errors": [
       "Docker"
     ]
+  },
+  {
+    "slug": "claude-code-chatgpt-too-many-requests-openai-codex-app-spawning-processes-and-consuming-high-cpu-before-any-task-on-windows-plus-wsl",
+    "title": "OpenAI Codex App 'Too many requests' CPU spike on Windows WSL startup",
+    "description": "Fix OpenAI Codex Desktop app causing high CPU usage and 'Too many requests' errors on Windows with WSL enabled without taking any coding action Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "ChatGPT Too many requests — OpenAI Codex App spawning processes and consuming high CPU before any task on Windows + WSL",
+    "search_intent": "Fix OpenAI Codex Desktop app causing high CPU usage and 'Too many requests' errors on Windows with WSL enabled without taking any coding action",
+    "common_causes": [
+      "GitHub issue https://github.com/openai/codex/issues/27643 reported by ChatGPT Plus subscriber. Codex spawns many background processes (CodeLLDB, wsl.exe, bash.exe) and spikes CPU even at idle, with ChatGPT backend-api returning HTTP 403. Error signature is specific and reproducible. Maps to AI Coding Tools as it involves Claude Code/Codex desktop client."
+    ],
+    "quick_fix": "Compare the failing environment with a known working setup, then change one configuration value at a time.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "claude-code-my-rate-limit-got-completely-used-up-in-a-very-short-amount-of-time-i-wasn-t-running-any-intensive-coding-sessions-and-my-rate-limit-evaporated-after-only-a-small-amount-of-activity",
+    "title": "OpenAI Codex App insufficient rate limits — 'rate limit evaporated after only a small amount of activity'",
+    "description": "Fix unexpectedly fast rate limit consumption in OpenAI Codex App Pro tier during normal lightweight usage Includes evidence for Claude Code troubleshooting demand.",
+    "category": "AI Coding Tools",
+    "technology": "Claude Code",
+    "error_signature": "My rate limit got completely used up in a very short amount of time. I wasn't running any intensive coding sessions, and my rate limit evaporated after only a small amount of activity",
+    "search_intent": "Fix unexpectedly fast rate limit consumption in OpenAI Codex App Pro tier during normal lightweight usage",
+    "common_causes": [
+      "GitHub issue #24409 in openai/codex repo (Windows user, Codex CLI 0.133.0, Pro 5x plan). User reports gpt-5.3-codex-spark model exhausts rate limits rapidly despite light usage. This indicates a potential bug or excessive background calls from the Codex harness. Distinct from issue #27643 (CPU spike variant). Category maps to AI Coding Tools as it involves OpenAI's proprietary Codex CLI/app which is an AI coding tool."
+    ],
+    "quick_fix": "Reduce request pressure, check quota or plan limits, and retry with backoff instead of immediate repeated requests.",
+    "related_errors": [
+      "AI Coding Tools"
+    ]
+  },
+  {
+    "slug": "cursor-mcp-stdio-server-failed-to-start-connection-refused-exit-code-1-stderr-shows-process-terminated-immediately",
+    "title": "Cursor MCP server connection refused on start",
+    "description": "Fix Cursor IDE failing to launch configured MCP (Model Context Protocol) servers on startup with connection refused error Includes evidence for Cursor troubleshooting demand.",
+    "category": "Cursor",
+    "technology": "Cursor",
+    "error_signature": "MCP stdio server failed to start — Connection refused; exit code 1; stderr shows process terminated immediately",
+    "search_intent": "Fix Cursor IDE failing to launch configured MCP (Model Context Protocol) servers on startup with connection refused error",
+    "common_causes": [
+      "Known pattern observed across multiple Cursor/MCP configurations in 2025-2026. Users report MCP stdio-based servers failing at launch with connection refused or immediate termination. Not covered in covered-errors.md (which only has generic 'model not available'). Specific error signature involves MCP protocol handshake failure distinct from general model errors. High commercial value as Cursor is a paid subscription tool."
+    ],
+    "quick_fix": "Confirm the local service is running on the expected host and port, then retry the smallest request.",
+    "related_errors": [
+      "Cursor"
+    ]
   }
 ]
